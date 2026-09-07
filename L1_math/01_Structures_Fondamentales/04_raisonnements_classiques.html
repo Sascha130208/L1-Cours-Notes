@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Raisonnements classiques</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Structures Fondamentales — Chapitre 2.4</span></div>
+<div class="page">
+
+<span class="chip">⏩ Pas encore vu en amphi</span>
+<h1>🧭 Chapitre 2 — Raisonnements classiques</h1>
+
+<div class="box warn">
+<span class="box-title">⏩ Avance sur le cours</span>
+Comme pour la récurrence, cette page anticipe sur ce qui n'a pas encore été vu en amphi. C'est un très bon résumé des <strong>5 grandes méthodes de preuve</strong> que tu recroiseras dans presque toutes les matières de maths.
+</div>
+
+<p>Voici les principales <strong>stratégies de démonstration</strong> à avoir en tête face à un exercice. Le bon réflexe : regarder la <strong>forme</strong> de ce qu'on doit prouver (une implication ? une équivalence ? un "pour tout" ? un "il existe" ?) pour choisir la bonne méthode.</p>
+
+<h2>1️⃣ Raisonnement par l'absurde</h2>
+<div class="box info">
+<span class="box-title">🎯 But</span>
+Montrer qu'une assertion <code>P</code> est vraie.
+</div>
+<p><strong>Principe :</strong></p>
+<ol>
+<li>On suppose que <code>P</code> est fausse (c'est-à-dire que <code>¬P</code> est vraie)</li>
+<li>On établit que cela conduit à une <strong>contradiction</strong> (une assertion <code>Q</code> telle que <code>Q</code> ET <code>¬Q</code> sont vraies — ce qui est impossible)</li>
+<li>On conclut que <code>P</code> est vraie</li>
+</ol>
+
+<div class="box tip">
+<span class="box-title">✏️ Exemple</span>
+<strong>Montrer que</strong> « pour tout <code>n ∈ N</code>, <code>n² - 1</code> n'est pas le carré d'un entier naturel non nul ».<br><br>
+— Supposons l'assertion fausse : il existe <code>n ∈ N</code> tel que <code>n² - 1</code> est le carré d'un entier naturel non nul.<br>
+— On peut écrire <code>n² - 1 = a²</code> où <code>a ∈ N</code> et <code>a ≠ 0</code>.<br>
+— On a alors <code>(n+a)(n-a) = 1</code>. Or le produit de deux entiers vaut 1 si et seulement si ils valent tous les deux 1, ou tous les deux -1.<br>
+&nbsp;&nbsp;• Cas <code>n+a = 1</code> et <code>n-a = 1</code> : cela entraîne <code>a = 0</code>.<br>
+&nbsp;&nbsp;• Cas <code>n+a = -1</code> et <code>n-a = -1</code> : cela entraîne aussi <code>a = 0</code>.<br>
+— Donc dans tous les cas <code>a = 0</code>. <strong>C'est une contradiction</strong> avec <code>a ≠ 0</code>.<br>
+— <strong>Conclusion</strong> : l'assertion de départ est bien vraie.
+</div>
+
+<h2>2️⃣ Raisonnement par contraposée</h2>
+<div class="box info">
+<span class="box-title">🎯 But</span>
+Montrer qu'une implication <code>P ⇒ Q</code> est vraie.
+</div>
+<p><strong>Principe :</strong> on montre que sa <strong>contraposée</strong> <code>¬Q ⇒ ¬P</code> est vraie (rappel : elle est <strong>équivalente</strong> à l'implication de départ — voir la page sur la logique propositionnelle).</p>
+
+<div class="box tip">
+<span class="box-title">✏️ Exemple</span>
+Soit <code>n ∈ N</code>. <strong>Montrer par contraposée</strong> que « <code>n² pair ⇒ n pair</code> ».<br><br>
+Il faut montrer : « <code>n non pair ⇒ n² non pair</code> ».<br>
+Si <code>n</code> n'est pas pair, alors il existe un entier <code>k</code> tel que <code>n = 2k+1</code>. On a alors :
+<pre><code>n² = (2k+1)² = 4k² + 4k + 1 = 2(2k² + 2k) + 1</code></pre>
+Donc <code>n²</code> n'est pas pair. ✅
+</div>
+
+<div class="box warn">
+<span class="box-title">⚠️ Pourquoi passer par la contraposée ?</span>
+Prouver directement « n² pair ⇒ n pair » demanderait de partir d'un carré pair et de "remonter" à sa racine, ce qui n'est pas évident. La contraposée « n impair ⇒ n² impair » est beaucoup plus directe : on part d'une forme explicite de n impair (<code>2k+1</code>) et on calcule.
+</div>
+
+<h2>3️⃣ Montrer une équivalence</h2>
+<div class="box info">
+<span class="box-title">🎯 But</span>
+Montrer que deux (ou plusieurs) assertions sont équivalentes.
+</div>
+<ul>
+<li>Pour montrer que <code>P</code> et <code>Q</code> sont équivalentes, il faut démontrer les <strong>deux implications</strong> :
+<pre><code>P ⇒ Q  (sens direct)
+Q ⇒ P  (réciproque)</code></pre>
+</li>
+<li>Pour montrer que <strong>trois</strong> énoncés <code>P</code>, <code>Q</code>, <code>R</code> sont équivalents, on peut démontrer les trois implications en <strong>boucle</strong> (plus efficace que 6 implications séparées) :
+<pre><code>P ⇒ Q,   Q ⇒ R,   R ⇒ P</code></pre>
+</li>
+</ul>
+
+<div class="box tip">
+<span class="box-title">💡 Pourquoi la boucle suffit pour 3 assertions</span>
+Si <code>P ⇒ Q</code>, <code>Q ⇒ R</code> et <code>R ⇒ P</code> sont toutes vraies, alors en chaînant les implications on peut retrouver n'importe quelle implication manquante (ex: <code>P ⇒ R</code> en passant par <code>Q</code>). C'est beaucoup plus économique que de prouver les 6 implications une par une.
+</div>
+
+<h2>4️⃣ Raisonnement par contre-exemple</h2>
+<div class="box info">
+<span class="box-title">🎯 But</span>
+Montrer que l'assertion <code>∀x, P(x)</code> est <strong>fausse</strong>.
+</div>
+<p><strong>Principe :</strong> on montre que sa négation <code>∃x | ¬P(x)</code> est vraie. Pour cela, il suffit de trouver <strong>un seul</strong> élément <code>x₀</code> tel que <code>P(x₀)</code> soit fausse.</p>
+
+<div class="box tip">
+<span class="box-title">✏️ Exemple 1</span>
+<strong>Montrer que</strong> l'assertion « la fonction définie sur R par <code>f(x) = x² - x + 1</code> est paire » est fausse.<br><br>
+On a <code>f(1) = 1</code> et <code>f(-1) = 3</code>, donc <code>f(1) ≠ f(-1)</code> : <code>f</code> n'est pas paire (car il existe un x tel que <code>f(x) ≠ f(-x)</code>, ce qui contredit la définition d'être une fonction paire).
+</div>
+
+<div class="box tip">
+<span class="box-title">✏️ Exemple 2</span>
+<strong>Montrer que</strong> l'assertion « toute fonction numérique est soit paire soit impaire » est fausse.<br><br>
+Considérons la fonction <code>f</code> définie sur R par <code>f(x) = x + 2</code>. Cette fonction n'est ni paire ni impaire (vérifie-le en calculant <code>f(-x)</code> !). Donc l'assertion est fausse.
+</div>
+
+<h2>5️⃣ Raisonnement par récurrence (rappel)</h2>
+<div class="box info">
+<span class="box-title">🎯 But</span>
+Montrer que l'assertion <code>∀n ∈ N, P(n)</code> est vraie.
+</div>
+<p><strong>Principe :</strong> voir la page dédiée <a href="03_recurrence.html">La récurrence</a> — <code>P(0)</code> vraie (initialisation) + <code>P(k) ⇒ P(k+1)</code> pour tout k (hérédité, on dit alors que le prédicat P est <strong>héréditaire</strong>) ⇒ par le principe de récurrence, <code>∀n ∈ N, P(n)</code> est vraie.</p>
+
+<h2>📊 Tableau récapitulatif — quelle méthode choisir ?</h2>
+<table>
+<tr><th>Ce que tu dois prouver</th><th>Méthode à envisager</th></tr>
+<tr><td><code>P</code> (directement difficile)</td><td>Absurde : suppose ¬P, cherche une contradiction</td></tr>
+<tr><td><code>P ⇒ Q</code> (dur dans ce sens)</td><td>Contraposée : montre ¬Q ⇒ ¬P</td></tr>
+<tr><td><code>P ⇔ Q</code></td><td>Deux implications (ou une boucle si 3+ assertions)</td></tr>
+<tr><td><code>∀x, P(x)</code> semble fausse</td><td>Contre-exemple : trouve un seul x₀ qui la met en défaut</td></tr>
+<tr><td><code>∀n ∈ N, P(n)</code></td><td>Récurrence : initialisation + hérédité</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="03_recurrence.html">← La récurrence</a>
+  <a href="../Exercices/exercices_logique.html">Exercices →</a>
+</div>
+
+</div>
+</body>
+</html>

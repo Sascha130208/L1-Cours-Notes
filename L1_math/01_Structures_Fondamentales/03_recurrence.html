@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>La récurrence</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Structures Fondamentales — Chapitre 2.3</span></div>
+<div class="page">
+
+<span class="chip">⏩ Pas encore vu en amphi</span>
+<h1>🔁 Chapitre 2 — La récurrence</h1>
+
+<div class="box warn">
+<span class="box-title">⏩ Avance sur le cours</span>
+Cette page va plus loin que ce qui a été vu en cours jusqu'ici (vous en étiez aux quantificateurs). Garde-la de côté et relis-la quand le prof l'abordera en amphi — ça te fera une révision toute prête !
+</div>
+
+<h2>🎯 Le principe</h2>
+<p>Soit <code>P(n)</code> une assertion dépendant de l'entier <code>n ∈ N</code> (ou plus généralement de tout <code>n ∈ Z</code> tel que <code>n ≥ n₀</code>, avec <code>n₀ ∈ Z</code>).</p>
+
+<div class="box info">
+<span class="box-title">📌 Pour prouver <code>∀n ≥ n₀, P(n)</code>, il suffit de prouver :</span>
+<ol>
+<li><strong>Initialisation</strong> : <code>P(n₀)</code> est vraie</li>
+<li><strong>Hérédité</strong> : <code>∀n ≥ n₀, P(n) ⇒ P(n+1)</code></li>
+</ol>
+</div>
+
+<div class="box tip">
+<span class="box-title">💡 Image mentale : l'effet domino</span>
+Si la première domino tombe (initialisation), et que chaque domino qui tombe fait tomber le suivant (hérédité), alors <strong>tous</strong> les dominos tombent, à l'infini. C'est exactement l'idée de la récurrence.
+</div>
+
+<h3>Version renforcée (récurrence forte)</h3>
+<p>En fait, il suffit même de prouver <code>P(n₀)</code> et :</p>
+<pre><code>∀n ≥ n₀, (∀k ∈ Z | n₀ ≤ k ≤ n, P(k)) ⇒ P(n+1)</code></pre>
+<p>Autrement dit, lorsqu'on cherche à prouver <code>P(n+1)</code>, on peut supposer que <code>P</code> est vraie <strong>jusqu'au rang n inclus</strong>, et pas seulement au rang n. C'est plus fort et parfois nécessaire quand un seul rang précédent ne suffit pas.</p>
+
+<h2>🏛️ Pourquoi ça marche : le bon ordre de N</h2>
+<div class="box info">
+<span class="box-title">📌 Proposition 1</span>
+Toute partie non vide de <code>N</code> admet un <strong>plus petit élément</strong>.
+</div>
+<p>Cette propriété signifie que <code>N</code> est <strong>bien ordonné</strong> (par sa relation d'ordre usuelle). Le raisonnement par récurrence repose en fait sur cette propriété (combinée à un raisonnement par l'absurde).</p>
+
+<div class="box warn">
+<span class="box-title">⚠️ Contre-exemple dans R</span>
+Dans <code>R</code>, l'intervalle <code>]0, 1[</code> est majoré, minoré, non vide — mais il n'admet <strong>ni</strong> plus petit <strong>ni</strong> plus grand élément ! C'est pour ça que la récurrence ne fonctionne que sur <code>N</code> (ou <code>Z</code> à partir d'un certain rang), pas sur <code>R</code>.
+</div>
+
+<h2>✍️ Exemple de rédaction type complète</h2>
+<p><strong>Montrons que</strong> pour tout <code>N ∈ N</code> on a :</p>
+<pre><code>Σ(n=0 à N) n²  =  N(N+1)(2N+1) / 6</code></pre>
+
+<div class="box tip">
+<span class="box-title">📝 Rédaction (à recopier comme modèle)</span>
+Considérons la proposition <code>P(N) : Σ(n=0 à N) n² = N(N+1)(2N+1)/6</code>.<br><br>
+
+<strong>Initialisation.</strong> On remarque aisément que <code>P(0)</code> est vraie car pour <code>N = 0</code>, les parties gauche et droite de l'égalité valent 0 et sont donc bien égales.<br><br>
+
+<strong>Hérédité.</strong> Soit <code>N ∈ N</code>. Supposons <code>P(N)</code> vraie et montrons qu'alors <code>P(N+1)</code> l'est également.<br><br>
+
+En utilisant que <code>Σ(n=0 à N) n² = N(N+1)(2N+1)/6</code>, nous obtenons :
+<pre><code>Σ(n=0 à N+1) n² = Σ(n=0 à N) n² + (N+1)²
+                = N(N+1)(2N+1)/6 + (N+1)²
+                = (2N³ + 9N² + 13N + 6) / 6</code></pre>
+
+Et par ailleurs :
+<pre><code>(N+1)(N+2)(2(N+1)+1) / 6 = (N²+3N+2)(2N+3) / 6 = (2N³ + 9N² + 13N + 6) / 6</code></pre>
+
+Ce qui montre que l'on a bien l'égalité <code>P(N+1)</code>.<br><br>
+
+<strong>Conclusion.</strong> Ainsi <code>P(N)</code> est vraie pour tout <code>N ∈ N</code>.
+</div>
+
+<div class="box danger">
+<span class="box-title">🚨 Erreurs fréquentes en rédaction de récurrence</span>
+<ul>
+<li>Oublier de vérifier l'initialisation (souvent <code>P(0)</code> ou <code>P(1)</code> selon l'énoncé)</li>
+<li>Dans l'hérédité, essayer de prouver directement <code>P(N+1)</code> <strong>sans utiliser</strong> l'hypothèse <code>P(N)</code> (ce qui rend toute la démarche inutile — le principe est justement de <strong>partir de</strong> P(N) pour arriver à P(N+1))</li>
+<li>Ne pas conclure explicitement à la fin (« donc P(N) est vraie pour tout N »)</li>
+</ul>
+</div>
+
+<h2>📊 Tableau récapitulatif</h2>
+<table>
+<tr><th>Étape</th><th>Ce qu'il faut montrer</th></tr>
+<tr><td><strong>1. Initialisation</strong></td><td><code>P(n₀)</code> est vraie (souvent n₀ = 0 ou 1)</td></tr>
+<tr><td><strong>2. Hérédité</strong></td><td><code>P(n)</code> vraie ⇒ <code>P(n+1)</code> vraie, pour un n ≥ n₀ quelconque fixé</td></tr>
+<tr><td><strong>3. Conclusion</strong></td><td>Par le principe de récurrence, <code>∀n ≥ n₀, P(n)</code> est vraie</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="02_quantificateurs.html">← Les quantificateurs</a>
+  <a href="04_raisonnements_classiques.html">Suite : Raisonnements classiques →</a>
+</div>
+
+</div>
+</body>
+</html>
