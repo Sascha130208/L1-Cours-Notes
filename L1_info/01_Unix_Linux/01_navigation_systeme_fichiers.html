@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Navigation & système de fichiers</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Unix/Linux — Chapitre 1</span></div>
+<div class="page">
+
+<h1>🧭 Système d'exploitation — Navigation dans les fichiers</h1>
+
+<h2>💻 Le terminal, c'est quoi ?</h2>
+<p>Le terminal permet de piloter l'ordinateur en tapant des <strong>commandes</strong> au lieu de cliquer avec la souris. Chaque commande est exécutée dans un <mark>répertoire courant</mark> (l'endroit où tu te trouves), un peu comme quand tu navigues dans l'explorateur Windows/Mac, sauf qu'ici tu tapes le chemin au lieu de double-cliquer.</p>
+
+<h2>📍 pwd — Print Working Directory</h2>
+<p>Affiche le chemin complet du répertoire dans lequel on se trouve actuellement.</p>
+<pre><code><span class="cmd">$ pwd</span>
+/home/alice</code></pre>
+<div class="box info"><span class="box-title">📌 À retenir</span><code>pwd</code> = « où suis-je ? »</div>
+
+<h2>📂 ls — List</h2>
+<p>Affiche le contenu (fichiers + répertoires) du répertoire courant.</p>
+<pre><code><span class="cmd">$ ls</span>
+cours  images  documents</code></pre>
+<div class="box info"><span class="box-title">📌 À retenir</span><code>ls</code> = « qu'est-ce qu'il y a ici ? »</div>
+
+<h3>Options utiles de ls</h3>
+<table>
+<tr><th>Option</th><th>Effet</th></tr>
+<tr><td><code>-l</code></td><td>Affichage <strong>détaillé</strong> (long) : permissions, propriétaire, taille, date, nom</td></tr>
+<tr><td><code>-a</code></td><td>Affiche aussi les fichiers <strong>cachés</strong> (ceux qui commencent par <code>.</code>)</td></tr>
+<tr><td><code>-h</code></td><td>Tailles lisibles (Ko, Mo, Go) — à combiner avec <code>-l</code></td></tr>
+<tr><td><code>-la</code></td><td>Combine <code>-l</code> et <code>-a</code></td></tr>
+</table>
+
+<p>Exemple de sortie avec <code>ls -l</code> :</p>
+<pre><code><span class="cmd">$ ls -l</span>
+drwxr-xr-x  2 alice alice 4096 sept.  7 10:00 cours
+-rw-r--r--  1 alice alice  512 sept.  7 09:30 notes.txt</code></pre>
+
+<p>Le tout premier caractère de chaque ligne indique le <strong>type</strong> :</p>
+<table>
+<tr><th>Symbole</th><th>Signifie</th></tr>
+<tr><td><code>d</code></td><td><strong>d</strong>irectory → un <mark>répertoire</mark> (dossier)</td></tr>
+<tr><td><code>-</code></td><td>fichier <strong>ordinaire</strong></td></tr>
+<tr><td><code>l</code></td><td>lien symbolique (raccourci)</td></tr>
+</table>
+
+<h2>🙈 Fichiers cachés</h2>
+<p>Un nom de fichier ou de répertoire qui <strong>commence par un point <code>.</code></strong> est considéré comme <mark>caché</mark>. Il n'apparaît pas avec un simple <code>ls</code>, il faut <code>ls -a</code>.</p>
+<pre><code><span class="cmd">$ ls -a</span>
+.  ..  .bashrc  cours  images</code></pre>
+<ul>
+<li><code>.</code> représente le répertoire courant lui-même</li>
+<li><code>..</code> représente le répertoire <strong>parent</strong></li>
+</ul>
+
+<h2>🚶 Se déplacer : cd (Change Directory)</h2>
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td><code>cd nom_dossier</code></td><td>Va dans le sous-dossier <code>nom_dossier</code></td></tr>
+<tr><td><code>cd ..</code></td><td>Remonte d'un niveau : va dans le répertoire <strong>parent</strong></td></tr>
+<tr><td><code>cd .</code></td><td>Reste dans le répertoire <strong>courant</strong> (ne change rien)</td></tr>
+<tr><td><code>cd ~</code></td><td>Revient dans son <strong>répertoire personnel</strong> (home)</td></tr>
+<tr><td><code>cd -</code></td><td>Revient au <strong>dernier répertoire visité</strong></td></tr>
+<tr><td><code>cd /</code></td><td>Va à la <strong>racine</strong> du système de fichiers</td></tr>
+</table>
+
+<h2>🗺️ Chemins absolus vs chemins relatifs</h2>
+
+<h3>Chemin absolu</h3>
+<p>Commence toujours par <code>/</code> (la racine). Il décrit le chemin <strong>complet</strong>, depuis le tout début du système, peu importe où on se trouve.</p>
+<pre><code>/home/alice/cours/systeme/cours.txt</code></pre>
+
+<h3>Chemin relatif</h3>
+<p>Ne commence PAS par <code>/</code>. Il est décrit <strong>par rapport à l'endroit où l'on se trouve actuellement</strong>.</p>
+<p>Exemple : si on se trouve dans <code>/home/alice</code>, alors le chemin relatif :</p>
+<pre><code>cours/systeme/cours.txt</code></pre>
+<p>...pointe vers exactement le même fichier que le chemin absolu ci-dessus.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Astuce pour comprendre la différence</span>
+Le chemin absolu, c'est comme donner une adresse complète (« 12 rue de la Paix, Paris, France ») — ça marche depuis n'importe où. Le chemin relatif, c'est comme dire « la maison juste après le carrefour » — ça ne veut dire quelque chose que si on sait déjà où on est.
+</div>
+
+<h3>Tableau récapitulatif des symboles</h3>
+<table>
+<tr><th>Symbole</th><th>Signification</th></tr>
+<tr><td><code>/</code></td><td>Racine du système, ou séparateur entre dossiers</td></tr>
+<tr><td><code>~</code></td><td>Répertoire personnel (home)</td></tr>
+<tr><td><code>.</code></td><td>Répertoire courant</td></tr>
+<tr><td><code>..</code></td><td>Répertoire parent</td></tr>
+<tr><td><code>-</code></td><td>(avec <code>cd</code>) dernier répertoire visité</td></tr>
+</table>
+
+<h2>🔎 Autres commandes utiles</h2>
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td><code>whoami</code></td><td>Affiche le nom de l'utilisateur connecté</td></tr>
+<tr><td><code>history</code></td><td>Affiche l'historique des commandes tapées</td></tr>
+<tr><td><code>clear</code></td><td>Efface l'écran (raccourci <code>Ctrl+L</code>)</td></tr>
+</table>
+
+<h2>🧩 Schéma mental</h2>
+<pre><code>/                          <span class="comment">← racine</span>
+├── home/
+│   └── alice/              <span class="comment">← "~" pour alice, = /home/alice</span>
+│       ├── cours/
+│       │   └── systeme/
+│       │       └── cours.txt
+│       ├── images/
+│       └── documents/</code></pre>
+
+<p>Si je suis dans <code>/home/alice</code> et que je tape <code>cd cours/systeme</code>, je me retrouve dans <code>/home/alice/cours/systeme</code>. Si je tape <code>cd ..</code> je remonte dans <code>/home/alice/cours</code>. Si je tape <code>cd ~</code> je reviens direct dans <code>/home/alice</code>.</p>
+
+<div class="nav-links">
+  <a href="../index.html">← Sommaire</a>
+  <a href="02_commandes_fichiers.html">Suite : Manipuler les fichiers →</a>
+</div>
+
+</div>
+</body>
+</html>

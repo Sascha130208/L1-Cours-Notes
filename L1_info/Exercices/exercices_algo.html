@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices Algorithmique</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices Algorithmique</span></div>
+<div class="page">
+
+<h1>✏️ Exercices — Algorithmique (Chapitre 1 : variables)</h1>
+
+<h2>🟢 Noms de variables valides ?</h2>
+<table>
+<tr><th>#</th><th>Nom proposé</th><th>Valide ?</th></tr>
+<tr><td>1</td><td><code>moyenne</code></td><td>?</td></tr>
+<tr><td>2</td><td><code>3eme_note</code></td><td>?</td></tr>
+<tr><td>3</td><td><code>nom_eleve</code></td><td>?</td></tr>
+<tr><td>4</td><td><code>pour</code></td><td>?</td></tr>
+<tr><td>5</td><td><code>age moyen</code></td><td>?</td></tr>
+<tr><td>6</td><td><code>Total2026</code></td><td>?</td></tr>
+<tr><td>7</td><td><code>_compteur</code></td><td>?</td></tr>
+</table>
+
+<details><summary>Réponses</summary>
+<ol>
+<li><code>moyenne</code> → ✅ valide</li>
+<li><code>3eme_note</code> → ❌ commence par un chiffre</li>
+<li><code>nom_eleve</code> → ✅ valide</li>
+<li><code>pour</code> → ❌ mot-clé réservé (boucle <code>Pour</code>)</li>
+<li><code>age moyen</code> → ❌ contient un espace</li>
+<li><code>Total2026</code> → ✅ valide</li>
+<li><code>_compteur</code> → ⚠️ dépend du cours, demande confirmation à ton prof</li>
+</ol>
+</details>
+
+<h2>🟢 Quel type utiliser ?</h2>
+<p>Pour chaque donnée : Entier, Réel, Caractère, Chaîne, ou Booléen ?</p>
+<ol>
+<li>L'âge d'une personne</li>
+<li>Le prix d'un article (ex: 4,99€)</li>
+<li>La première lettre d'un prénom</li>
+<li>Le nom complet d'une personne</li>
+<li>Le fait qu'un élève ait réussi ou non son examen</li>
+<li>Le nombre d'élèves dans une classe</li>
+</ol>
+
+<details><summary>Réponses</summary>
+<ol>
+<li>Entier</li>
+<li>Réel</li>
+<li>Caractère</li>
+<li>Chaîne de caractères</li>
+<li>Booléen</li>
+<li>Entier</li>
+</ol>
+</details>
+
+<h2>🟡 Lire un algorithme</h2>
+<p>Que fait cet algorithme ? Donne le résultat affiché.</p>
+<pre><code>Algorithme Mystere
+Variables
+    a, b, temp : Entier
+Début
+    a ← 5
+    b ← 8
+    temp ← a
+    a ← b
+    b ← temp
+    Écrire(a)
+    Écrire(b)
+Fin</code></pre>
+
+<details><summary>Réponse</summary>
+Cet algorithme <strong>échange (permute)</strong> les valeurs de <code>a</code> et <code>b</code> en utilisant une variable temporaire <code>temp</code>.<br><br>
+Affichage :
+<pre><code>8
+5</code></pre>
+C'est un grand classique de l'algorithmique : sans variable temporaire, on ne peut pas échanger directement deux variables.
+</details>
+
+<h2>🟡 Écrire un algorithme</h2>
+<p><strong>Exercice</strong> : Écris un algorithme qui demande à l'utilisateur son prénom et son âge, puis affiche : "Bonjour &lt;prénom&gt;, tu as &lt;âge&gt; ans."</p>
+
+<details><summary>Solution proposée</summary>
+<pre><code>Algorithme Salutation
+Variables
+    prenom : Chaîne
+    age : Entier
+Début
+    Écrire("Quel est ton prénom ?")
+    Lire(prenom)
+    Écrire("Quel est ton âge ?")
+    Lire(age)
+    Écrire("Bonjour ", prenom, ", tu as ", age, " ans.")
+Fin</code></pre>
+</details>
+
+<h2>🔴 Trouver l'erreur</h2>
+<p>Ce pseudo-code contient plusieurs erreurs. Trouve-les toutes.</p>
+<pre><code>Algorithme Calcul
+Variables
+    2note : Entier
+    Note Finale : Réel
+Début
+    2note = 15
+    Note Finale ← 2note / 2
+    Ecrire(Note Finale)
+Fin</code></pre>
+
+<details><summary>Réponse — 3 erreurs</summary>
+<ol>
+<li><code>2note</code> commence par un chiffre → nom invalide</li>
+<li><code>Note Finale</code> contient un espace → nom invalide (il faudrait <code>noteFinale</code>)</li>
+<li><code>2note = 15</code> utilise <code>=</code> au lieu de <code>←</code> pour l'affectation</li>
+</ol>
+Version corrigée :
+<pre><code>Algorithme Calcul
+Variables
+    note2 : Entier
+    noteFinale : Réel
+Début
+    note2 ← 15
+    noteFinale ← note2 / 2
+    Écrire(noteFinale)
+Fin</code></pre>
+</details>
+
+<h2>🏆 Défi — un peu plus loin</h2>
+<p>Écris un algorithme qui calcule la moyenne pondérée de deux notes : un contrôle (coefficient 1) et un examen (coefficient 2). Formule : <code>moyenne = (controle*1 + examen*2) / 3</code>.</p>
+
+<details><summary>Solution proposée</summary>
+<pre><code>Algorithme MoyennePonderee
+Variables
+    controle, examen : Réel
+    moyenne : Réel
+Début
+    Écrire("Note de contrôle :")
+    Lire(controle)
+    Écrire("Note d'examen :")
+    Lire(examen)
+    moyenne ← (controle * 1 + examen * 2) / 3
+    Écrire("Moyenne pondérée : ", moyenne)
+Fin</code></pre>
+<div class="box info"><span class="box-title">ℹ️ Note</span>Ceci anticipe un peu sur les opérateurs arithmétiques, probablement vus juste après ce chapitre.</div>
+</details>
+
+<div class="nav-links">
+  <a href="exercices_unix.html">← Exercices Unix</a>
+  <a href="../Revisions/methodes_revision.html">Méthodes de révision →</a>
+</div>
+
+</div>
+</body>
+</html>

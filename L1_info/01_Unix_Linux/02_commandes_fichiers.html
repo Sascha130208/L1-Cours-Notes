@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Manipuler les fichiers</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Unix/Linux — Chapitre 2</span></div>
+<div class="page">
+
+<h1>📦 Manipuler les fichiers : copier, déplacer, supprimer, s'informer</h1>
+
+<h2>🔢 wc — Word Count</h2>
+<p>Compte des éléments dans un fichier texte : lignes, mots, caractères.</p>
+<pre><code><span class="cmd">$ wc notes.txt</span>
+  12   84  530 notes.txt</code></pre>
+<p>(ici : 12 lignes, 84 mots, 530 caractères)</p>
+<table>
+<tr><th>Option</th><th>Compte</th></tr>
+<tr><td><code>-l</code></td><td>Nombre de <strong>lignes</strong></td></tr>
+<tr><td><code>-w</code></td><td>Nombre de <strong>mots</strong></td></tr>
+<tr><td><code>-c</code></td><td>Nombre de <strong>caractères</strong> (octets)</td></tr>
+</table>
+<pre><code><span class="cmd">$ wc -l notes.txt</span>
+12 notes.txt</code></pre>
+
+<h2>📋 cp — Copy</h2>
+<p>Copie un fichier (ou un dossier) à un autre endroit.</p>
+<pre><code>cp source destination</code></pre>
+<pre><code><span class="cmd">$ cp notes.txt notes_backup.txt</span>        <span class="comment"># copie dans le même dossier, autre nom</span>
+<span class="cmd">$ cp notes.txt documents/</span>               <span class="comment"># copie dans le dossier documents/</span>
+<span class="cmd">$ cp -r cours/ cours_backup/</span>            <span class="comment"># -r = récursif, obligatoire pour un DOSSIER</span></code></pre>
+<div class="box warn"><span class="box-title">⚠️ Piège classique</span>Sans <code>-r</code>, <code>cp</code> refuse de copier un répertoire entier (erreur "omitting directory").</div>
+
+<h2>🚚 mv — Move</h2>
+<p>Déplace un fichier, OU le renomme (c'est la même commande !).</p>
+<pre><code><span class="cmd">$ mv notes.txt documents/</span>          <span class="comment"># déplace notes.txt dans documents/</span>
+<span class="cmd">$ mv notes.txt notes_finales.txt</span>   <span class="comment"># renomme notes.txt</span></code></pre>
+
+<h2>🗑️ rm — Remove</h2>
+<p>Supprime un fichier <strong>définitivement</strong> (pas de corbeille en ligne de commande !).</p>
+<pre><code><span class="cmd">$ rm notes.txt</span></code></pre>
+<table>
+<tr><th>Option</th><th>Effet</th></tr>
+<tr><td><code>-r</code></td><td>Récursif — nécessaire pour supprimer un <strong>dossier</strong> entier</td></tr>
+<tr><td><code>-f</code></td><td>Force — ne demande pas confirmation</td></tr>
+<tr><td><code>-i</code></td><td>Interactif — demande confirmation avant chaque suppression</td></tr>
+</table>
+<div class="box danger"><span class="box-title">🚨 Attention</span><code>rm -rf</code> supprime tout sans demander confirmation et <strong>sans possibilité de récupération</strong>. Ne jamais taper ça à la légère, surtout avec <code>*</code> ou en tant qu'administrateur.</div>
+
+<h2>📁 rmdir — Remove Directory</h2>
+<p>Supprime un répertoire, mais <strong>seulement s'il est vide</strong>. Sinon, utiliser <code>rm -r</code>.</p>
+<pre><code><span class="cmd">$ rmdir dossier_vide</span></code></pre>
+
+<h2>❓ Obtenir de l'aide : man et apropos</h2>
+
+<h3>man — Manual</h3>
+<p>Affiche le manuel complet d'une commande.</p>
+<pre><code><span class="cmd">$ man ls</span>
+<span class="comment"># pour quitter : touche q</span></code></pre>
+
+<h3>apropos</h3>
+<p>Cherche parmi <strong>toutes</strong> les commandes celles dont la description contient un mot-clé donné.</p>
+<pre><code><span class="cmd">$ apropos "copy"</span>
+cp (1)     - copy files and directories</code></pre>
+
+<h2>📊 Tableau récapitulatif</h2>
+<table>
+<tr><th>Commande</th><th>Rôle</th><th>Exemple</th></tr>
+<tr><td><code>wc</code></td><td>Compter lignes/mots/caractères</td><td><code>wc -l fichier.txt</code></td></tr>
+<tr><td><code>cp</code></td><td>Copier</td><td><code>cp a.txt b.txt</code></td></tr>
+<tr><td><code>mv</code></td><td>Déplacer / renommer</td><td><code>mv a.txt dossier/</code></td></tr>
+<tr><td><code>rm</code></td><td>Supprimer un fichier</td><td><code>rm a.txt</code></td></tr>
+<tr><td><code>rmdir</code></td><td>Supprimer un dossier vide</td><td><code>rmdir dossier</code></td></tr>
+<tr><td><code>man</code></td><td>Voir le manuel</td><td><code>man cp</code></td></tr>
+<tr><td><code>apropos</code></td><td>Chercher une commande</td><td><code>apropos "delete"</code></td></tr>
+</table>
+
+<div class="box tip">
+<span class="box-title">💡 Erreurs fréquentes à éviter</span>
+<ul>
+<li>Confondre <code>rm</code> (fichier) et <code>rmdir</code>/<code>rm -r</code> (dossier).</li>
+<li>Oublier <code>-r</code> en copiant/supprimant un dossier.</li>
+<li>Faire <code>rm</code> sans vérifier avec <code>ls</code> qu'on est au bon endroit (toujours <code>pwd</code> + <code>ls</code> avant un <code>rm</code> important !).</li>
+</ul>
+</div>
+
+<div class="nav-links">
+  <a href="01_navigation_systeme_fichiers.html">← Navigation</a>
+  <a href="03_traitement_texte.html">Suite : Traitement de texte →</a>
+</div>
+
+</div>
+</body>
+</html>

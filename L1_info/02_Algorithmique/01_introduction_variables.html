@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Algorithmique — Introduction & variables</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Algorithmique — Chapitre 1</span></div>
+<div class="page">
+
+<h1>🧮 Algorithmique 1 — Chapitre 1 : Introduction et variables</h1>
+
+<div class="box info">
+<span class="box-title">ℹ️ Note</span>
+Ta prise de notes s'arrêtait en plein milieu de la définition et de la règle de nommage des variables. J'ai complété la suite logique du cours ci-dessous — si ton prof a donné une syntaxe de pseudo-code différente, dis-le-moi et j'adapte.
+</div>
+
+<h2>🤔 Qu'est-ce qu'un algorithme ?</h2>
+<p>Un <strong>algorithme</strong> est une <mark>procédure de calcul bien définie</mark> qui prend en entrée un ensemble de valeurs (les <strong>données</strong>) et qui produit en sortie un ensemble de valeurs (les <strong>résultats</strong>).</p>
+<p>Autrement dit : c'est une <strong>suite finie et non ambiguë d'instructions/étapes</strong> qui permet de résoudre un problème.</p>
+
+<div class="box tip">
+<span class="box-title">🍳 Exemple de la vie courante</span>
+Une recette de cuisine est un algorithme — elle prend des ingrédients en entrée, suit des étapes précises dans un ordre donné, et produit un plat en sortie.
+</div>
+
+<p><strong>Exemple en info</strong> : un algorithme qui calcule la moyenne de 3 notes :</p>
+<ol>
+<li>Entrée : trois notes <code>n1</code>, <code>n2</code>, <code>n3</code></li>
+<li>Calcul : <code>moyenne ← (n1 + n2 + n3) / 3</code></li>
+<li>Sortie : afficher <code>moyenne</code></li>
+</ol>
+
+<h3>Propriétés qu'un bon algorithme doit avoir</h3>
+<table>
+<tr><th>Propriété</th><th>Signifie</th></tr>
+<tr><td><strong>Fini</strong></td><td>Il doit se terminer après un nombre fini d'étapes (pas de boucle infinie)</td></tr>
+<tr><td><strong>Défini / non ambigu</strong></td><td>Chaque étape doit être décrite précisément, sans place à interprétation</td></tr>
+<tr><td><strong>Correct</strong></td><td>Il doit produire le bon résultat pour toutes les entrées valides</td></tr>
+<tr><td><strong>Réalisable</strong></td><td>Chaque étape doit pouvoir être effectivement exécutée</td></tr>
+</table>
+
+<h2>📦 Les variables</h2>
+<p>Une <strong>variable</strong> est un espace réservé en mémoire qui contient une valeur, et qui possède un <strong>nom</strong> (aussi appelé <mark>identificateur</mark>).</p>
+<p>Une variable a toujours (au moins) trois caractéristiques :</p>
+<ul>
+<li>un <strong>nom</strong> (identificateur)</li>
+<li>un <strong>type</strong> (quelle sorte de donnée elle contient)</li>
+<li>une <strong>valeur</strong> (ce qu'elle contient à un instant donné — la valeur peut changer, contrairement au nom et au type)</li>
+</ul>
+
+<h3>Règles de nommage d'une variable (identificateur)</h3>
+<p>D'après tes notes, un nom de variable :</p>
+<ol>
+<li>Est composé de <strong>lettres</strong>, de <strong>chiffres</strong>, et du caractère <strong><code>_</code></strong> — pas d'autres symboles</li>
+<li>Doit <strong>commencer par une lettre</strong> (jamais par un chiffre)</li>
+<li>Doit être <strong>différent d'un mot-clé</strong> du langage (ex : <code>si</code>, <code>pour</code>, <code>tant que</code>, <code>fonction</code>...)</li>
+<li><strong>Pas d'espace</strong> dans le nom (on utilise <code>_</code> à la place)</li>
+</ol>
+
+<h3>Exemples</h3>
+<table>
+<tr><th>Nom</th><th>Valide ?</th><th>Pourquoi</th></tr>
+<tr><td><code>age</code></td><td>✅</td><td>lettres uniquement</td></tr>
+<tr><td><code>note_finale</code></td><td>✅</td><td>lettres + underscore</td></tr>
+<tr><td><code>x1</code></td><td>✅</td><td>commence par une lettre</td></tr>
+<tr><td><code>2ageFois</code></td><td>❌</td><td>commence par un chiffre</td></tr>
+<tr><td><code>note finale</code></td><td>❌</td><td>contient un espace</td></tr>
+<tr><td><code>si</code></td><td>❌</td><td>mot-clé réservé</td></tr>
+<tr><td><code>nom-eleve</code></td><td>❌</td><td>le tiret <code>-</code> n'est pas autorisé</td></tr>
+</table>
+
+<div class="box tip">
+<span class="box-title">💡 Bonne pratique</span>
+Donne des noms de variables <strong>explicites</strong>. <code>age</code> est bien meilleur que <code>x</code> ou <code>a</code>, ça rend l'algorithme lisible sans commentaire.
+</div>
+
+<h2>🏷️ Les types de variables</h2>
+<table>
+<tr><th>Type</th><th>Description</th><th>Exemples</th></tr>
+<tr><td><strong>Entier</strong> (integer)</td><td>Nombre sans virgule</td><td><code>3</code>, <code>-12</code>, <code>0</code></td></tr>
+<tr><td><strong>Réel</strong> (float)</td><td>Nombre à virgule</td><td><code>3.14</code>, <code>-0.5</code></td></tr>
+<tr><td><strong>Caractère</strong> (char)</td><td>Un seul symbole</td><td><code>'a'</code>, <code>'Z'</code></td></tr>
+<tr><td><strong>Chaîne</strong> (string)</td><td>Une suite de caractères (texte)</td><td><code>"Bonjour"</code></td></tr>
+<tr><td><strong>Booléen</strong> (boolean)</td><td>Vrai ou faux uniquement</td><td><code>Vrai</code> / <code>Faux</code></td></tr>
+</table>
+
+<h2>📌 Déclarer une variable</h2>
+<p>Avant d'utiliser une variable, il faut généralement la <strong>déclarer</strong> : indiquer son nom et son type.</p>
+<pre><code>Variable age : Entier
+Variable prenom : Chaîne
+Variable moyenne : Réel
+Variable aReussi : Booléen</code></pre>
+
+<h2>➡️ L'affectation</h2>
+<p><strong>Affecter</strong> une valeur à une variable, c'est lui donner (ou changer) son contenu. On utilise le symbole <code>←</code> — <mark>à ne pas confondre avec le signe <code>=</code> mathématique</mark>.</p>
+<pre><code>age ← 18
+prenom ← "Alice"
+moyenne ← 14.5
+aReussi ← Vrai</code></pre>
+
+<div class="box warn">
+<span class="box-title">⚠️ Piège fréquent</span>
+<code>x ← x + 1</code> ne veut PAS dire "x égale x+1" (mathématiquement impossible). Ça veut dire : "<strong>calcule</strong> la valeur actuelle de x, ajoute 1, et <strong>remplace</strong> le contenu de x par ce résultat". C'est une <strong>action</strong>, pas une équation.
+</div>
+
+<h2>🔃 Entrées / Sorties</h2>
+<table>
+<tr><th>Opération</th><th>Rôle</th><th>Exemple</th></tr>
+<tr><td><strong>Lire</strong> (entrée)</td><td>Récupérer une valeur donnée par l'utilisateur</td><td><code>Lire(age)</code></td></tr>
+<tr><td><strong>Écrire</strong> (sortie)</td><td>Afficher un résultat</td><td><code>Écrire(moyenne)</code></td></tr>
+</table>
+
+<h2>🏗️ Structure générale d'un algorithme</h2>
+<pre><code>Algorithme NomDeLAlgorithme
+Variables
+    n1, n2, n3 : Réel
+    moyenne : Réel
+Début
+    Écrire("Entrez trois notes :")
+    Lire(n1)
+    Lire(n2)
+    Lire(n3)
+    moyenne ← (n1 + n2 + n3) / 3
+    Écrire("La moyenne est : ", moyenne)
+Fin</code></pre>
+
+<h3>Les 3 parties toujours présentes</h3>
+<ol>
+<li><strong>En-tête</strong> : le nom de l'algorithme</li>
+<li><strong>Déclaration des variables</strong> : quelles variables, de quel type</li>
+<li><strong>Corps</strong> (<code>Début ... Fin</code>) : la suite d'instructions</li>
+</ol>
+
+<h2>🔮 Ce qu'on verra probablement ensuite</h2>
+<div class="grid-cards">
+<div class="card"><a>Opérateurs</a><p>Arithmétiques (+ - * / %), comparaison (&lt; &gt; = ≠), logiques (ET, OU, NON)</p></div>
+<div class="card"><a>Conditions</a><p><code>Si ... Alors ... Sinon</code></p></div>
+<div class="card"><a>Boucles</a><p><code>Tant que</code>, <code>Pour</code>, <code>Répéter ... Jusqu'à</code></p></div>
+<div class="card"><a>Tableaux</a><p>Stocker plusieurs valeurs sous un même nom</p></div>
+<div class="card"><a>Fonctions</a><p>Découper un algorithme en sous-parties réutilisables</p></div>
+</div>
+
+<h2>📊 Tableau récapitulatif</h2>
+<table>
+<tr><th>Notion</th><th>Résumé</th></tr>
+<tr><td>Algorithme</td><td>Suite finie et précise d'étapes qui transforme une entrée en sortie</td></tr>
+<tr><td>Variable</td><td>Espace mémoire nommé qui stocke une valeur d'un type donné</td></tr>
+<tr><td>Identificateur</td><td>Lettres/chiffres/<code>_</code>, commence par une lettre, pas de mot-clé, pas d'espace</td></tr>
+<tr><td>Type</td><td>Entier, Réel, Caractère, Chaîne, Booléen</td></tr>
+<tr><td>Affectation (<code>←</code>)</td><td>Action qui donne/change la valeur d'une variable</td></tr>
+<tr><td>Lire / Écrire</td><td>Entrée / Sortie de l'algorithme</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="../index.html">← Sommaire</a>
+  <a href="../Exercices/exercices_algo.html">Exercices Algorithmique →</a>
+</div>
+
+</div>
+</body>
+</html>

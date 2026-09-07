@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Créer & modifier fichiers</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Unix/Linux — Chapitre 4</span></div>
+<div class="page">
+
+<h1>🛠️ Créer et modifier des fichiers et répertoires</h1>
+
+<h2>🔍 Déterminer le type d'un fichier : file</h2>
+<p>Un fichier n'a pas forcément une extension fiable (<code>.txt</code>, <code>.jpg</code>...). La commande <code>file</code> regarde le <strong>contenu réel</strong> du fichier pour deviner son type.</p>
+<pre><code><span class="cmd">$ file notes.txt</span>
+notes.txt: ASCII text
+
+<span class="cmd">$ file photo.jpg</span>
+photo.jpg: JPEG image data</code></pre>
+
+<h2>📁 Créer des répertoires : mkdir</h2>
+<p><code>mkdir</code> = <strong>m</strong>a<strong>k</strong>e <strong>dir</strong>ectory.</p>
+<pre><code><span class="cmd">$ ls</span>
+cours  images
+
+<span class="cmd">$ mkdir documents</span>
+<span class="cmd">$ ls</span>
+cours  documents  images</code></pre>
+<table>
+<tr><th>Option</th><th>Effet</th></tr>
+<tr><td><code>-p</code></td><td>Crée aussi les dossiers <strong>parents</strong> manquants</td></tr>
+</table>
+<pre><code><span class="cmd">$ mkdir -p projets/2026/info</span>   <span class="comment"># crée les 3 niveaux d'un coup</span></code></pre>
+
+<h2>📝 Créer un fichier : 3 façons</h2>
+
+<div class="grid-cards">
+<div class="card"><a>1. touch</a><p>Crée un fichier vide, ou met à jour sa date de modification si il existe déjà.</p></div>
+<div class="card"><a>2. Redirection</a><p>Créer/écraser un fichier en y redirigeant la sortie d'une commande.</p></div>
+<div class="card"><a>3. Éditeur (nano)</a><p>Ouvrir un éditeur dans le terminal pour écrire directement dedans.</p></div>
+</div>
+
+<pre><code><span class="cmd">$ touch nouveau.txt</span></code></pre>
+
+<h2>📖 Voir le contenu d'un fichier : cat</h2>
+<p><code>cat</code> = con<strong>cat</strong>enate. Affiche tout le contenu d'un fichier d'un coup.</p>
+<pre><code><span class="cmd">$ cat notes.txt</span>
+Ligne 1
+Ligne 2
+Ligne 3</code></pre>
+<p>On peut aussi concaténer plusieurs fichiers :</p>
+<pre><code><span class="cmd">$ cat fichier1.txt fichier2.txt</span></code></pre>
+
+<h2>➡️ Les redirections : &gt; et &gt;&gt;</h2>
+<p>Par défaut, une commande affiche son résultat à l'écran. On peut <strong>rediriger</strong> ce résultat vers un fichier.</p>
+<table>
+<tr><th>Symbole</th><th>Effet</th></tr>
+<tr><td><code>&gt;</code></td><td><strong>Remplace</strong> le contenu du fichier (ou le crée)</td></tr>
+<tr><td><code>&gt;&gt;</code></td><td><strong>Ajoute</strong> à la fin du fichier</td></tr>
+</table>
+<pre><code><span class="cmd">$ echo "Première ligne" &gt; fichier.txt</span>      <span class="comment"># fichier.txt = "Première ligne"</span>
+<span class="cmd">$ echo "Deuxième ligne" &gt;&gt; fichier.txt</span>     <span class="comment"># ajoute une 2e ligne</span>
+<span class="cmd">$ echo "Nouveau contenu" &gt; fichier.txt</span>     <span class="comment"># ⚠️ écrase tout !</span></code></pre>
+
+<div class="box danger">
+<span class="box-title">🚨 Piège classique</span>
+Confondre <code>&gt;</code> et <code>&gt;&gt;</code>. Avec <code>&gt;</code>, tout l'ancien contenu est <strong>perdu</strong>. Retiens : <code>&gt;&gt;</code> a "deux chevrons" comme pour dire "j'ajoute, j'ajoute" — un seul <code>&gt;</code> = "je remplace tout".
+</div>
+
+<h2>✏️ Modifier un fichier : nano</h2>
+<p><code>nano</code> est un éditeur de texte simple utilisable directement dans le terminal.</p>
+<pre><code><span class="cmd">$ nano notes.txt</span></code></pre>
+<table>
+<tr><th>Raccourci</th><th>Effet</th></tr>
+<tr><td><code>Ctrl + O</code></td><td>Sauvegarder (<strong>O</strong>utput)</td></tr>
+<tr><td><code>Ctrl + X</code></td><td>Quitter</td></tr>
+<tr><td><code>Ctrl + K</code></td><td>Couper une ligne</td></tr>
+<tr><td><code>Ctrl + U</code></td><td>Coller</td></tr>
+<tr><td><code>Ctrl + W</code></td><td>Rechercher</td></tr>
+</table>
+
+<h2>👀 Voir le début/la fin d'un fichier : head et tail</h2>
+<p>Utile pour de gros fichiers où <code>cat</code> afficherait beaucoup trop de lignes d'un coup.</p>
+
+<h3>head — début du fichier</h3>
+<pre><code><span class="cmd">$ head notes.txt</span>          <span class="comment"># 10 premières lignes par défaut</span>
+<span class="cmd">$ head -n 5 notes.txt</span>     <span class="comment"># 5 premières lignes</span></code></pre>
+
+<h3>tail — fin du fichier</h3>
+<pre><code><span class="cmd">$ tail notes.txt</span>          <span class="comment"># 10 dernières lignes par défaut</span>
+<span class="cmd">$ tail -n 3 notes.txt</span>     <span class="comment"># 3 dernières lignes</span></code></pre>
+
+<table>
+<tr><th>Option</th><th>Effet</th></tr>
+<tr><td><code>-n N</code></td><td>Affiche N lignes au lieu de 10</td></tr>
+<tr><td><code>-f</code></td><td>(tail seulement) <strong>f</strong>ollow — suit le fichier en temps réel</td></tr>
+</table>
+
+<h2>📊 Tableau récapitulatif</h2>
+<table>
+<tr><th>Commande</th><th>Rôle</th></tr>
+<tr><td><code>file</code></td><td>Déterminer le type réel d'un fichier</td></tr>
+<tr><td><code>mkdir</code></td><td>Créer un répertoire</td></tr>
+<tr><td><code>mkdir -p</code></td><td>Créer plusieurs niveaux d'un coup</td></tr>
+<tr><td><code>touch</code></td><td>Créer un fichier vide</td></tr>
+<tr><td><code>cat</code></td><td>Afficher tout le contenu d'un fichier</td></tr>
+<tr><td><code>&gt;</code></td><td>Rediriger en <strong>remplaçant</strong></td></tr>
+<tr><td><code>&gt;&gt;</code></td><td>Rediriger en <strong>ajoutant</strong></td></tr>
+<tr><td><code>nano</code></td><td>Éditer un fichier dans le terminal</td></tr>
+<tr><td><code>head -n N</code></td><td>Afficher les N premières lignes</td></tr>
+<tr><td><code>tail -n N</code></td><td>Afficher les N dernières lignes</td></tr>
+<tr><td><code>tail -f</code></td><td>Suivre un fichier en temps réel</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="03_traitement_texte.html">← Traitement de texte</a>
+  <a href="../Exercices/exercices_unix.html">Exercices Unix →</a>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Méthodes de révision</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Révisions</span></div>
+<div class="page">
+
+<h1>🎯 Comment réviser efficacement (et sans s'ennuyer)</h1>
+
+<h2>🐧 Pour l'Unix/Linux : pratiquer, pas lire</h2>
+<p>Les commandes shell, ça s'apprend par les <strong>doigts</strong>, pas par les yeux. Lire la liste des commandes 10 fois ne vaut pas 10 minutes à vraiment taper dedans.</p>
+
+<div class="grid-cards">
+<div class="card"><a>1. Ouvre un vrai terminal</a><p>Git Bash, WSL, ou un bac à sable en ligne comme webminal.org. Recrée l'arborescence de tes notes avec <code>mkdir -p</code>, navigue avec <code>cd</code>/<code>ls</code>/<code>pwd</code>.</p></div>
+<div class="card"><a>2. Le jeu "je devine la commande"</a><p>Quelqu'un te donne un objectif en français, tu tapes la commande sans regarder tes notes. Chronomètre-toi !</p></div>
+<div class="card"><a>3. Flashcards commande ↔ rôle</a><p>Recto : <code>sort -t ':' -k 2</code> — Verso : "trie selon la 2e colonne". Répète dans les deux sens.</p></div>
+<div class="card"><a>4. Mini-projet fil rouge</a><p>Crée un faux fichier <code>notes_classe.txt</code> et enchaîne un max de commandes dessus : trier, extraire, compter...</p></div>
+<div class="card"><a>5. Quiz à trous chronométré</a><p>Fais tous les exercices Unix d'affilée, note ton score, refais 2 jours après.</p></div>
+</div>
+
+<div class="box tip">
+<span class="box-title">💡 Répétition espacée</span>
+Refaire un quiz 2 jours après est beaucoup plus efficace que de tout revoir la veille d'un contrôle. Le cerveau retient mieux ce qu'il doit "aller rechercher" après un peu d'oubli.
+</div>
+
+<h2>🧮 Pour l'algorithmique : comprendre avant de mémoriser</h2>
+<p>L'algorithmique n'est pas une matière "par cœur" — c'est de la logique. Le but n'est pas de mémoriser un algorithme, mais de comprendre <strong>comment construire un raisonnement</strong>.</p>
+
+<h3>1. La technique du "je l'explique à voix haute"</h3>
+<p>Prends un algorithme et explique <strong>à voix haute</strong>, ligne par ligne, ce qu'il fait — comme à quelqu'un qui n'y connaît rien. Si tu bloques sur une ligne, c'est que tu ne l'as pas encore vraiment comprise.</p>
+
+<h3>2. Trace-le "à la main" (exécution pas à pas)</h3>
+<p>Fais un tableau avec une colonne par variable, note leur valeur après chaque ligne. C'est <strong>LA</strong> méthode de référence pour comprendre (et déboguer) un algorithme.</p>
+
+<p>Exemple pour l'algorithme d'échange :</p>
+<table>
+<tr><th>Ligne exécutée</th><th>a</th><th>b</th><th>temp</th></tr>
+<tr><td><code>a ← 5</code></td><td>5</td><td>?</td><td>?</td></tr>
+<tr><td><code>b ← 8</code></td><td>5</td><td>8</td><td>?</td></tr>
+<tr><td><code>temp ← a</code></td><td>5</td><td>8</td><td>5</td></tr>
+<tr><td><code>a ← b</code></td><td>8</td><td>8</td><td>5</td></tr>
+<tr><td><code>b ← temp</code></td><td>8</td><td>5</td><td>5</td></tr>
+</table>
+
+<h3>3. Invente tes propres erreurs</h3>
+<p>Prends un algorithme correct, introduis volontairement une erreur (mauvais nom de variable, <code>=</code> au lieu de <code>←</code>...), et vois si tu la repères en le relisant. Excellent entraînement pour l'examen où on te demande souvent de "trouver l'erreur".</p>
+
+<h3>4. Transforme le cours en petit défi quotidien</h3>
+<div class="box tip">
+<span class="box-title">💡 5 minutes par jour</span>
+Chaque jour, écris un algorithme tout simple à partir d'une situation réelle (calcul de pourboire, conversion de température, vérifier si un nombre est pair...). 5 minutes par jour valent mieux qu'une révision de 2h la veille de l'examen.
+</div>
+
+<h2>🔗 Idée bonus : mélanger les deux matières</h2>
+<p>Une fois à l'aise avec les deux, essaie de "traduire" un algorithme simple en une <strong>vraie commande shell</strong> quand c'est possible (ex : "trier une liste de nombres" en algo, et <code>sort -n</code> en Unix). Ça aide à comprendre que la programmation, ce sont des concepts qui se retrouvent partout.</p>
+
+<h2>📐 Pour tes cours de maths</h2>
+<div class="box info">
+<span class="box-title">📸 À venir</span>
+Dis-moi quels chapitres de maths tu veux réviser (et envoie-moi tes notes comme pour l'info si tu veux) — je ferai la même chose : notes réorganisées + exercices progressifs + méthodes de révision adaptées (les maths se révisent différemment de l'algo : plus d'exercices répétés, de démonstrations à refaire soi-même sans regarder le cours).
+</div>
+
+<div class="nav-links">
+  <a href="../Exercices/exercices_algo.html">← Exercices Algorithmique</a>
+  <a href="../index.html">Retour au sommaire →</a>
+</div>
+
+</div>
+</body>
+</html>

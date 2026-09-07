@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Les quantificateurs</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Structures Fondamentales — Chapitre 2.2</span></div>
+<div class="page">
+
+<h1>🔢 Chapitre 2 — Les quantificateurs</h1>
+
+<h2>📐 Propositions dépendant d'une variable</h2>
+<p>Une proposition <code>P</code> peut dépendre d'une variable <code>x</code> appartenant à un ensemble <code>E</code>, ce qu'on note <code>P(x)</code>. On peut alors voir <code>P</code> comme une <strong>fonction</strong> :</p>
+<pre><code>P : E → {Vrai, Faux}
+     x ↦ P(x)</code></pre>
+
+<div class="box info">
+<span class="box-title">📌 Exemple du cours</span>
+Soit <code>P(x)</code> l'expression <code>x² - 4x + 2 &lt; 0</code>, définie sur <code>R</code>.<br>
+<code>P</code> est la fonction de <code>R</code> dans <code>{Vrai, Faux}</code>, vraie pour les <code>x</code> tels que <code>x² - 4x + 2 &lt; 0</code>, fausse sinon.<br>
+Par exemple : <code>P(1) = Vrai</code> et <code>P(4) = Faux</code>.
+</div>
+
+<h2>🎯 Le quantificateur existentiel : ∃</h2>
+<p>Pour exprimer que <code>P(x)</code> pourrait être vraie pour un certain <code>x</code>, sans savoir lequel, on utilise :</p>
+<pre><code>∃x ∈ E | P(x)</code></pre>
+<p>qui se lit : <strong>« il existe x dans E tel que P(x) est vraie »</strong>.</p>
+<p>Comme toute proposition, cette expression peut elle-même être vraie ou fausse.</p>
+
+<h2>🌐 Le quantificateur universel : ∀</h2>
+<p>Pour exprimer que « P(x) est vraie <strong>pour tout</strong> x de E » on écrit :</p>
+<pre><code>∀x ∈ E, P(x)</code></pre>
+
+<table>
+<tr><th>Symbole</th><th>Se lit</th></tr>
+<tr><td><code>∀</code></td><td>« quel que soit », ou « pour tout »</td></tr>
+<tr><td><code>∃</code></td><td>« il existe »</td></tr>
+</table>
+
+<div class="box tip">
+<span class="box-title">💡 Exercice du cours</span>
+Le quantificateur <code>∃!</code> se lit « il existe un et un seul ». Essaie de l'exprimer avec <code>∃</code> et <code>∀</code> vus précédemment (voir la correction dans la page d'exercices).
+</div>
+
+<h2>🔀 Distribuer les quantificateurs sur ∧ et ∨</h2>
+<p>Ces équivalences sont très utiles pour décomposer une preuve en raisonnements plus simples :</p>
+
+<div class="box info">
+<span class="box-title">✅ Équivalences (marchent dans les deux sens)</span>
+<pre><code>(∀x ∈ E, P(x) ∧ Q(x))  ⇔  ((∀x ∈ E, P(x)) ∧ (∀x ∈ E, Q(x)))
+(∃x ∈ E, P(x) ∨ Q(x))  ⇔  ((∃x ∈ E, P(x)) ∨ (∃x ∈ E, Q(x)))</code></pre>
+</div>
+
+<div class="box warn">
+<span class="box-title">⚠️ Implications seulement (PAS des équivalences !)</span>
+Pour les cas suivants, il n'y a qu'une implication dans un seul sens — il y a une « perte d'information » à les utiliser. Un contre-exemple existe pour chaque réciproque (à chercher en exercice) :
+<pre><code>(∃x ∈ E, P(x) ∧ Q(x))  ⇒  ((∃x ∈ E, P(x)) ∧ (∃x ∈ E, Q(x)))
+
+((∀x ∈ E, P(x)) ∨ (∀x ∈ E, Q(x)))  ⇒  (∀x ∈ E, P(x) ∨ Q(x))</code></pre>
+</div>
+
+<div class="box danger">
+<span class="box-title">🚨 Pourquoi les parenthèses comptent</span>
+Le cours insiste : on prend soin d'utiliser des parenthèses pour exprimer le plus clairement possible les propositions. L'absence de parenthèses peut créer des confusions dans les énoncés — ne les néglige jamais dans tes rédactions.
+</div>
+
+<h2>🔄 Négation des quantificateurs</h2>
+<p>Nier un quantificateur en <strong>inverse un autre</strong> — c'est une règle absolument fondamentale :</p>
+
+<table>
+<tr><th>Proposition</th><th>Sa négation</th></tr>
+<tr><td><code>∀x ∈ E, P(x)</code></td><td><code>∃x ∈ E | ¬P(x)</code></td></tr>
+<tr><td><code>∃x ∈ E, P(x)</code></td><td><code>∀x ∈ E | ¬P(x)</code></td></tr>
+</table>
+
+<div class="box tip">
+<span class="box-title">💡 Moyen mnémotechnique</span>
+Nier un <code>∀</code> le transforme en <code>∃</code> (et vice-versa), et on nie l'intérieur (<code>P(x)</code> devient <code>¬P(x)</code>). C'est <strong>toujours</strong> comme ça, quel que soit le nombre de quantificateurs enchaînés — on les inverse un par un de gauche à droite.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Cas particulier : l'ensemble vide</span>
+Si <code>E</code> est vide, alors <code>∀x ∈ E, P(x)</code> est <strong>toujours vraie</strong> ! (Il n'y a aucun élément pour contredire l'affirmation — on dit que c'est vrai « par vide ».)
+</div>
+
+<h2>✍️ Remarques typographiques</h2>
+<ul>
+<li>Après le <code>x</code>, on utilise indifféremment une virgule <code>,</code> ou la barre <code>|</code> qui se lit <strong>« tel que »</strong> (abrégé « tq »).</li>
+<li>Le <code>x</code> précédé d'un quantificateur doit satisfaire tout ce qui est écrit après lui dans l'assertion.</li>
+<li>On peut écrire <code>∀x ∈ R | 2 &lt; 3</code> — une assertion un peu bizarre mais valide, où le prédicat ne dépend même pas de <code>x</code> (elle est vraie car <code>2 &lt; 3</code> l'est, peu importe x).</li>
+</ul>
+
+<h3>Raccourcis d'écriture courants</h3>
+<table>
+<tr><th>Raccourci</th><th>Signifie</th></tr>
+<tr><td><code>∀x, y ∈ E</code></td><td><code>∀x ∈ E, ∀y ∈ E</code></td></tr>
+<tr><td><code>∃x, y ∈ E</code></td><td><code>∃x ∈ E, ∃y ∈ E</code></td></tr>
+</table>
+
+<div class="box danger">
+<span class="box-title">🚨 Conseil fort du prof : ne pas utiliser les quantificateurs comme raccourcis dans une rédaction</span>
+Les quantificateurs ne doivent <strong>jamais</strong> être mélangés à des phrases écrites en français dans une copie d'examen. Ils sont toujours écrits sur des lignes séparées pour exprimer soit une proposition vraie, soit ce qu'on souhaite prouver. Tu peux les utiliser comme raccourcis dans tes notes personnelles, mais pas en rédaction d'exercice ou d'examen.
+</div>
+
+<h2>🔤 Lettres « affectées » vs lettres « muettes »</h2>
+<p>Quand on analyse une assertion mathématique, on distingue deux sortes de lettres :</p>
+<table>
+<tr><th>Type de lettre</th><th>Description</th></tr>
+<tr><td><strong>Affectée</strong></td><td>Désigne un objet considéré comme connu, ou « fixé par la pensée »</td></tr>
+<tr><td><strong>Non affectée</strong></td><td>Dite aussi « muette » ou « variable » — n'est pas encore fixée</td></tr>
+</table>
+
+<div class="box info">
+<span class="box-title">📌 Exemples de lettres muettes (x)</span>
+<pre><code>∀x ∈ E, P(x)
+∃x ∈ E, P(x)
+f : R → R, x ↦ 2x + 1</code></pre>
+Ici, <code>x</code> est forcément muette : on peut la remplacer par n'importe quelle autre lettre non affectée (ex: <code>t</code>) sans changer le sens de l'assertion : <code>f : R → R, t ↦ 2t + 1</code> est rigoureusement équivalente.
+</div>
+
+<p>Certaines expressions ont pour but d'<strong>affecter</strong> une lettre qui ne l'était pas :</p>
+<ul>
+<li>« Choisissons un <code>x ∈ ]a, +∞[</code> ; »</li>
+<li>« Fixons un réel <code>x &gt; a</code> ; »</li>
+<li>« Posons <code>x = 2 + 3</code> ; »</li>
+<li>« Soient <code>x</code> et <code>y</code> dans <code>X</code>. »</li>
+</ul>
+<p>C'est souvent plus facile de raisonner avec des objets fixés qu'avec des lettres muettes.</p>
+
+<h2>✍️ Trois rédactions types importantes</h2>
+
+<div class="box tip">
+<span class="box-title">1️⃣ Pour prouver <code>∀x ∈ R, x &lt; 1 + x²</code></span>
+On écrit : « Choisissons <code>x ∈ R</code> » et si on parvient à prouver l'inégalité pour <strong>ce</strong> x (fixé, arbitraire), l'assertion sera prouvée pour tous les x.
+</div>
+
+<div class="box tip">
+<span class="box-title">2️⃣ Pour utiliser la proposition (A) : <code>∃x ∈ R | x⁵ - 5x + 1 = 0</code></span>
+On écrit : « Choisissons, d'après (A), un réel x vérifiant <code>x⁵ - 5x + 1 = 0</code>. »
+</div>
+
+<div class="box tip">
+<span class="box-title">3️⃣ Pour prouver <code>∃x ∈ R | x &gt; x²</code></span>
+On écrit : « Cette proposition est vraie car par exemple <code>x = 1/2</code> convient. » (Il suffit d'exhiber <strong>un seul</strong> exemple qui marche !)
+</div>
+
+<h2>📊 Tableau récapitulatif</h2>
+<table>
+<tr><th>Notion</th><th>Résumé</th></tr>
+<tr><td><code>P(x)</code></td><td>Proposition dépendant d'une variable — vue comme une fonction E → {Vrai, Faux}</td></tr>
+<tr><td><code>∀</code></td><td>« pour tout » — l'assertion doit être vraie pour <strong>chaque</strong> élément</td></tr>
+<tr><td><code>∃</code></td><td>« il existe » — il suffit d'<strong>un seul</strong> élément qui convient</td></tr>
+<tr><td>Négation de <code>∀</code></td><td>Devient <code>∃</code> avec la proposition niée</td></tr>
+<tr><td>Négation de <code>∃</code></td><td>Devient <code>∀</code> avec la proposition niée</td></tr>
+<tr><td>Lettre muette</td><td>Peut être renommée sans changer le sens (souvent liée à un quantificateur)</td></tr>
+<tr><td>Lettre affectée</td><td>Désigne un objet fixé, connu</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="01_logique_propositionnelle.html">← Logique propositionnelle</a>
+  <a href="../Exercices/exercices_logique.html">Exercices →</a>
+</div>
+
+</div>
+</body>
+</html>

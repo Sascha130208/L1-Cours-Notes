@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices — Logique & quantificateurs</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices</span></div>
+<div class="page">
+
+<h1>✏️ Exercices — Logique & quantificateurs</h1>
+<p>Cache la correction avant de cliquer sur "Réponse" — cherche vraiment, même 10-15 minutes, avant de regarder (c'est le conseil du prof dans le descriptif du cours !).</p>
+
+<h2>🟢 Niveau facile — tables de vérité</h2>
+
+<p><strong>1.</strong> Complète la table de vérité de <code>P ∧ ¬Q</code>.</p>
+<details><summary>Réponse</summary>
+<table>
+<tr><th>P</th><th>Q</th><th>¬Q</th><th>P ∧ ¬Q</th></tr>
+<tr><td>Vrai</td><td>Vrai</td><td>Faux</td><td>Faux</td></tr>
+<tr><td>Vrai</td><td>Faux</td><td>Vrai</td><td><strong>Vrai</strong></td></tr>
+<tr><td>Faux</td><td>Vrai</td><td>Faux</td><td>Faux</td></tr>
+<tr><td>Faux</td><td>Faux</td><td>Vrai</td><td>Faux</td></tr>
+</table>
+</details>
+
+<p><strong>2.</strong> Est-ce que <code>P ⇒ Q</code> et <code>Q ⇒ P</code> sont toujours équivalentes ? Justifie avec un exemple.</p>
+<details><summary>Réponse</summary>
+Non ! Prends <code>P</code> = « il pleut » et <code>Q</code> = « le sol est mouillé ». <code>P ⇒ Q</code> est raisonnable (s'il pleut, le sol est mouillé). Mais la réciproque <code>Q ⇒ P</code> (« si le sol est mouillé, alors il pleut ») est fausse : le sol peut être mouillé pour d'autres raisons (arrosage, lavage...).
+</details>
+
+<p><strong>3.</strong> L'assertion <code>(3 = 5) ⇒ (1 = 1)</code> est-elle vraie ou fausse ?</p>
+<details><summary>Réponse</summary>
+<strong>Vraie</strong>. Rappel du cours : quand P est fausse (ici <code>3 = 5</code> est faux), <code>P ⇒ Q</code> est toujours vraie, peu importe Q.
+</details>
+
+<h2>🟡 Niveau intermédiaire — équivalences et lois de De Morgan</h2>
+
+<p><strong>4.</strong> Donne la négation de <code>P ∧ Q</code> en utilisant la loi de De Morgan.</p>
+<details><summary>Réponse</summary><code>¬(P ∧ Q) ⇔ (¬P ∨ ¬Q)</code></details>
+
+<p><strong>5.</strong> Donne la négation de l'implication <code>P ⇒ Q</code>.</p>
+<details><summary>Réponse</summary>
+<code>¬(P ⇒ Q) ⇔ (P ∧ ¬Q)</code><br>
+Autrement dit : pour montrer qu'une implication est <strong>fausse</strong>, il faut trouver un cas où P est vraie ET Q est fausse.
+</details>
+
+<p><strong>6. (l'exercice du cours)</strong> Le quantificateur <code>∃!</code> se lit « il existe un et un seul ». Exprime <code>∃!x ∈ E, P(x)</code> à l'aide de <code>∀</code> et <code>∃</code>.</p>
+<details><summary>Réponse</summary>
+Il faut exprimer deux choses : qu'il existe <strong>au moins un</strong> x qui convient, ET qu'il n'y en a <strong>pas deux différents</strong> qui conviennent tous les deux :
+<pre><code>∃x ∈ E, (P(x) ∧ (∀y ∈ E, P(y) ⇒ y = x))</code></pre>
+Traduction : « il existe un x tel que P(x) est vraie, et tel que tout élément y qui vérifie aussi P(y) est en fait égal à x ».
+</details>
+
+<h2>🔴 Niveau avancé — négation des quantificateurs</h2>
+
+<p><strong>7.</strong> Donne la négation de : <code>∀x ∈ R, x² ≥ 0</code>.</p>
+<details><summary>Réponse</summary>
+<code>∃x ∈ R | x² &lt; 0</code><br>
+(Cette proposition est fausse, mais c'est bien la négation syntaxiquement correcte — la question ne demande pas si elle est vraie !)
+</details>
+
+<p><strong>8.</strong> Donne la négation de : <code>∃x ∈ N | x + 1 = 0</code>.</p>
+<details><summary>Réponse</summary><code>∀x ∈ N, x + 1 ≠ 0</code></details>
+
+<p><strong>9. (piège classique)</strong> Donne la négation de : <code>∀x ∈ E, ∃y ∈ F | P(x, y)</code>.</p>
+<details><summary>Réponse</summary>
+On inverse chaque quantificateur un par un, de gauche à droite :
+<pre><code>∃x ∈ E | ∀y ∈ F, ¬P(x, y)</code></pre>
+C'est l'erreur la plus fréquente chez les étudiants : oublier d'inverser <strong>tous</strong> les quantificateurs, ou les inverser dans le mauvais ordre.
+</details>
+
+<p><strong>10.</strong> L'assertion <code>∀x ∈ ∅, x &gt; 100</code> est-elle vraie ou fausse ?</p>
+<details><summary>Réponse</summary>
+<strong>Vraie !</strong> Rappel du cours : si E est vide, <code>∀x ∈ E, P(x)</code> est toujours vraie, quelle que soit P — il n'y a aucun contre-exemple possible puisqu'il n'y a aucun élément.
+</details>
+
+<h2>🏆 Défi — repérer les lettres muettes et rédiger une preuve</h2>
+
+<p><strong>11.</strong> Dans l'assertion <code>f : R → R, x ↦ 2x + 1</code>, la lettre <code>x</code> est-elle muette ou affectée ? Peut-on la remplacer par <code>t</code> sans changer le sens ?</p>
+<details><summary>Réponse</summary>
+<code>x</code> est <strong>muette</strong> (elle n'est fixée nulle part avant). On peut donc écrire de façon rigoureusement équivalente <code>f : R → R, t ↦ 2t + 1</code>.
+</details>
+
+<p><strong>12.</strong> Rédige une preuve de <code>∀x ∈ R, x² + 1 &gt; 0</code> en suivant la rédaction type vue en cours.</p>
+<details><summary>Solution proposée</summary>
+« Choisissons <code>x ∈ R</code>. On a <code>x² ≥ 0</code> (un carré est toujours positif ou nul), donc <code>x² + 1 ≥ 1 &gt; 0</code>. Ceci étant vrai pour un x quelconque fixé au départ, l'assertion <code>∀x ∈ R, x² + 1 &gt; 0</code> est prouvée. »
+</details>
+
+<p><strong>13.</strong> Montre que l'assertion <code>∀x ∈ R, x &gt; 10</code> est <strong>fausse</strong>, en rédigeant un contre-exemple correctement.</p>
+<details><summary>Solution proposée</summary>
+« Cette assertion est fausse : sa négation est <code>∃x ∈ R | x ≤ 10</code>, qui est vraie car <code>x = 0</code> convient (<code>0 ≤ 10</code>). »
+</details>
+
+<div class="nav-links">
+  <a href="../01_Structures_Fondamentales/02_quantificateurs.html">← Cours : Les quantificateurs</a>
+  <a href="../index.html">Retour au sommaire →</a>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices Unix</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices Unix/Linux</span></div>
+<div class="page">
+
+<h1>✏️ Exercices — Unix / Linux</h1>
+<p>Cache la correction avec ta main avant de cliquer sur "Réponse" !</p>
+
+<h2>🟢 Niveau facile</h2>
+
+<p><strong>1.</strong> Quelle commande affiche le répertoire courant ?</p>
+<details><summary>Réponse</summary><code>pwd</code></details>
+
+<p><strong>2.</strong> Tu es dans <code>/home/alice</code>. Quelle commande te fait remonter dans <code>/home</code> ?</p>
+<details><summary>Réponse</summary><code>cd ..</code></details>
+
+<p><strong>3.</strong> Quelle commande crée un dossier nommé <code>td1</code> ?</p>
+<details><summary>Réponse</summary><code>mkdir td1</code></details>
+
+<p><strong>4.</strong> Quelle commande affiche TOUS les fichiers d'un dossier, y compris les cachés, en mode détaillé ?</p>
+<details><summary>Réponse</summary><code>ls -la</code></details>
+
+<p><strong>5.</strong> Comment crée-t-on un fichier vide nommé <code>rapport.txt</code> ?</p>
+<details><summary>Réponse</summary><code>touch rapport.txt</code></details>
+
+<h2>🟡 Niveau intermédiaire</h2>
+
+<p><strong>6.</strong> Copie le dossier <code>cours/</code> (avec tout son contenu) vers <code>cours_backup/</code>.</p>
+<details><summary>Réponse</summary><code>cp -r cours/ cours_backup/</code></details>
+
+<p><strong>7.</strong> Tu es dans <code>/home/alice/documents</code>. Donne le chemin <strong>relatif</strong> puis <strong>absolu</strong> vers <code>/home/alice/cours/td1.txt</code>.</p>
+<details><summary>Réponse</summary>
+Relatif : <code>../cours/td1.txt</code><br>
+Absolu : <code>/home/alice/cours/td1.txt</code>
+</details>
+
+<p><strong>8.</strong> Quelle est la différence entre <code>echo "test" &gt; fichier.txt</code> exécuté deux fois, et <code>echo "test" &gt;&gt; fichier.txt</code> exécuté deux fois ?</p>
+<details><summary>Réponse</summary>
+Avec <code>&gt;</code> deux fois : le fichier ne contient qu'une seule ligne "test" (la 2e commande écrase la 1ère).<br>
+Avec <code>&gt;&gt;</code> deux fois : le fichier contient deux lignes "test" (chaque commande ajoute à la fin).
+</details>
+
+<p><strong>9.</strong> Fichier <code>notes.csv</code> au format <code>nom;matiere;note</code>. Extrais la colonne des notes (3e colonne).</p>
+<details><summary>Réponse</summary><code>cut -d ';' -f 3 notes.csv</code></details>
+
+<p><strong>10.</strong> Comment afficher les 5 dernières lignes d'un fichier <code>log.txt</code> ?</p>
+<details><summary>Réponse</summary><code>tail -n 5 log.txt</code></details>
+
+<h2>🔴 Niveau avancé (avec pipes |)</h2>
+
+<p><strong>11.</strong> <code>villes.txt</code> contient une ville par ligne, avec des doublons pas forcément côte à côte. Affiche les villes uniques, triées.</p>
+<details><summary>Réponse</summary><code>sort villes.txt | uniq</code></details>
+
+<p><strong>12.</strong> À partir de <code>villes.txt</code>, affiche chaque ville avec son nombre d'occurrences.</p>
+<details><summary>Réponse</summary><code>sort villes.txt | uniq -c</code></details>
+
+<p><strong>13.</strong> <code>etudiants.txt</code> au format <code>nom:prenom:age</code>. Trie les étudiants par âge <strong>décroissant</strong>.</p>
+<details><summary>Réponse</summary><code>sort -t ':' -k 3 -n -r etudiants.txt</code></details>
+
+<p><strong>14.</strong> Compte combien de lignes contient <code>poeme.txt</code>, sans utiliser <code>cat</code> avant.</p>
+<details><summary>Réponse</summary><code>wc -l poeme.txt</code></details>
+
+<p><strong>15. (défi)</strong> À partir de <code>etudiants.txt</code>, une seule ligne de commande qui affiche la liste des noms de famille uniques, triés.</p>
+<details><summary>Réponse</summary><code>cut -d ':' -f 1 etudiants.txt | sort | uniq</code></details>
+
+<h2>🧪 Exercice pratique guidé</h2>
+<div class="box tip">
+<span class="box-title">💡 Mise en situation complète</span>
+<ol>
+<li>Va dans ton répertoire personnel (<code>cd ~</code>)</li>
+<li>Crée un dossier <code>td_unix</code></li>
+<li>Rentre dedans</li>
+<li>Crée un fichier <code>animaux.txt</code> contenant : chat, chien, chat, oiseau, chien, chat (une ligne à la fois avec <code>echo ... &gt;&gt;</code>)</li>
+<li>Affiche le contenu avec <code>cat</code></li>
+<li>Trouve la liste des animaux uniques avec leur nombre d'occurrences, triée par ordre alphabétique</li>
+<li>Vérifie avec <code>wc -l</code> que ton fichier contient bien 6 lignes</li>
+</ol>
+</div>
+
+<details><summary>Solution complète</summary>
+<pre><code><span class="cmd">cd ~</span>
+<span class="cmd">mkdir td_unix</span>
+<span class="cmd">cd td_unix</span>
+<span class="cmd">echo "chat" &gt;&gt; animaux.txt</span>
+<span class="cmd">echo "chien" &gt;&gt; animaux.txt</span>
+<span class="cmd">echo "chat" &gt;&gt; animaux.txt</span>
+<span class="cmd">echo "oiseau" &gt;&gt; animaux.txt</span>
+<span class="cmd">echo "chien" &gt;&gt; animaux.txt</span>
+<span class="cmd">echo "chat" &gt;&gt; animaux.txt</span>
+<span class="cmd">cat animaux.txt</span>
+<span class="cmd">sort animaux.txt | uniq -c</span>
+<span class="cmd">wc -l animaux.txt</span></code></pre>
+</details>
+
+<div class="nav-links">
+  <a href="../01_Unix_Linux/04_creation_fichiers_repertoires.html">← Cours Unix</a>
+  <a href="exercices_algo.html">Exercices Algorithmique →</a>
+</div>
+
+</div>
+</body>
+</html>

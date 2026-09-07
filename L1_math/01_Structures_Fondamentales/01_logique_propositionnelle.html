@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Logique propositionnelle</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Structures Fondamentales — Chapitre 2.1</span></div>
+<div class="page">
+
+<h1>🧠 Chapitre 2 — Logique propositionnelle</h1>
+
+<h2>❓ Qu'est-ce qu'une proposition ?</h2>
+<p>Une <strong>proposition</strong> (ou <strong>assertion</strong>) désigne un « énoncé » mathématique susceptible d'être <mark>vrai</mark> ou <mark>faux</mark> — jamais les deux, jamais ni l'un ni l'autre. C'est ce qu'on appelle la <strong>logique bivalente</strong>.</p>
+
+<div class="box info">
+<span class="box-title">📌 Exemples</span>
+<code>2 + 2 = 4</code> et <code>le livre est ouvert</code> sont des propositions.<br><br>
+Une phrase optative (« Que Dieu nous protège ! »), impérative (« Viens ! ») ou une question <strong>n'est pas</strong> une proposition — elle ne peut pas être vraie ou fausse.
+</div>
+
+<p>On note en général les propositions par des lettres : <strong>P</strong>, <strong>Q</strong>, <strong>R</strong>. Les symboles logiques permettent d'en construire de nouvelles à partir d'elles.</p>
+
+<h2>🚫 La négation : ¬P (Non P)</h2>
+<p><code>¬P</code> désigne la négation de <code>P</code> : elle est vraie quand <code>P</code> est fausse, et fausse quand <code>P</code> est vraie.</p>
+<table>
+<tr><th>P</th><th>¬P</th></tr>
+<tr><td>Vrai</td><td>Faux</td></tr>
+<tr><td>Faux</td><td>Vrai</td></tr>
+</table>
+
+<h2>∧ Le ET : P ∧ Q</h2>
+<p><code>P ∧ Q</code> (qui se lit « P et Q ») est vraie <strong>seulement</strong> lorsque P <strong>et</strong> Q sont toutes les deux vraies.</p>
+<table>
+<tr><th>P</th><th>Q</th><th>P ∧ Q</th></tr>
+<tr><td>Vrai</td><td>Vrai</td><td><strong>Vrai</strong></td></tr>
+<tr><td>Vrai</td><td>Faux</td><td>Faux</td></tr>
+<tr><td>Faux</td><td>Vrai</td><td>Faux</td></tr>
+<tr><td>Faux</td><td>Faux</td><td>Faux</td></tr>
+</table>
+
+<h2>∨ Le OU : P ∨ Q</h2>
+<p><code>P ∨ Q</code> (qui se lit « P ou Q ») est vraie dès que <strong>P ou Q</strong> (ou les deux) est vraie.</p>
+<table>
+<tr><th>P</th><th>Q</th><th>P ∨ Q</th></tr>
+<tr><td>Vrai</td><td>Vrai</td><td><strong>Vrai</strong></td></tr>
+<tr><td>Vrai</td><td>Faux</td><td><strong>Vrai</strong></td></tr>
+<tr><td>Faux</td><td>Vrai</td><td><strong>Vrai</strong></td></tr>
+<tr><td>Faux</td><td>Faux</td><td>Faux</td></tr>
+</table>
+
+<div class="box warn">
+<span class="box-title">⚠️ Le "ou" mathématique est inclusif</span>
+En mathématique formelle, <code>P ∨ Q</code> est vraie même quand P <strong>et</strong> Q sont toutes les deux vraies. Ce n'est pas toujours le cas du "ou" dans le langage courant (« fromage ou dessert » sous-entend en général un choix exclusif).
+</div>
+
+<h3>Deux propriétés immédiates</h3>
+<ul>
+<li><code>P ∨ ¬P</code> est <strong>toujours vraie</strong> (mais on ne sait pas laquelle des deux l'est — c'est le <strong>tiers exclu</strong>).</li>
+<li><code>P ∧ ¬P</code> est <strong>toujours fausse</strong> (une chose ne peut pas être vraie et fausse en même temps).</li>
+</ul>
+
+<h2>⇒ L'implication : P ⇒ Q</h2>
+<p>Par définition, <code>P ⇒ Q</code> est l'expression <code>¬P ∨ Q</code>. On la lit « P implique Q ».</p>
+<table>
+<tr><th>P</th><th>Q</th><th>P ⇒ Q</th></tr>
+<tr><td>Vrai</td><td>Vrai</td><td><strong>Vrai</strong></td></tr>
+<tr><td>Vrai</td><td>Faux</td><td>Faux</td></tr>
+<tr><td>Faux</td><td>Vrai</td><td><strong>Vrai</strong></td></tr>
+<tr><td>Faux</td><td>Faux</td><td><strong>Vrai</strong></td></tr>
+</table>
+
+<div class="box danger">
+<span class="box-title">🚨 Le piège numéro 1 de toute la logique</span>
+Quand <code>P</code> est <strong>fausse</strong>, <code>P ⇒ Q</code> est <strong>toujours vraie</strong>, peu importe Q ! C'est déroutant au début mais logique : l'implication ne dit rien sur le cas où P est fausse, donc on ne peut pas la contredire.<br><br>
+Exemple donné dans le cours : l'assertion <code>(0 = 1) ⇒ (2 &lt; 5)</code> est vraie, alors que <code>0 = 1</code> est absurde !
+</div>
+
+<p>On dit que <code>Q ⇒ P</code> est la <strong>réciproque</strong> de l'implication <code>P ⇒ Q</code>. Attention, une implication et sa réciproque ne sont <strong>pas équivalentes</strong> en général !</p>
+
+<h2>⇔ L'équivalence : P ⇔ Q</h2>
+<p><code>P ⇔ Q</code> représente <code>(P ⇒ Q) ∧ (Q ⇒ P)</code>. On la lit « P équivaut à Q » ou « P si et seulement si Q ».</p>
+<p>Elle est vraie quand P et Q ont <strong>toujours la même valeur de vérité</strong> — y compris quand elles sont toutes les deux fausses.</p>
+
+<h2>⚠️ Remarques importantes du cours</h2>
+
+<div class="box warn">
+<span class="box-title">⚠️ L'implication n'affirme pas de causalité</span>
+<code>(0 = 1) ⇒ (2 &lt; 5)</code> est vraie (et peu utile) — l'implication ne dit rien sur un lien de cause à effet, juste sur les valeurs de vérité.
+</div>
+
+<div class="box danger">
+<span class="box-title">🚨 Ne pas confondre ⇒ et « donc »</span>
+Le signe <code>⇒</code> n'a <strong>pas</strong> le même sens que le mot « donc ». Ainsi :
+<ul>
+<li><code>(1 = 2) ⇒ (6 &gt; 7)</code> est <strong>vraie</strong> (et peu utile)</li>
+<li>« 1 = 2 <strong>donc</strong> 6 &gt; 7 » exprime <strong>deux contre-vérités</strong> assorties d'une fausse relation de causalité — cette phrase est absurde en français, même si l'implication logique correspondante est vraie.</li>
+</ul>
+De même, « <em>f est dérivable ⇒ f est continue</em> » n'affirme <strong>ni</strong> que f est dérivable, <strong>ni</strong> qu'elle est continue — c'est juste une règle générale. Alors que « f est dérivable <strong>donc</strong> f est continue » affirme les deux, ET que la première a été utilisée pour établir la seconde.
+</div>
+
+<div class="box tip">
+<span class="box-title">💡 Conseil de rédaction</span>
+Il est déconseillé d'utiliser les signes <code>∧</code>, <code>∨</code>, <code>⇒</code> dans un texte rédigé en français. Les mots « donc », « or », « car », « c'est-à-dire »... sont presque toujours plus efficaces et mieux compris pour une rédaction précise et correcte.
+</div>
+
+<h2>🔄 Lois de De Morgan et équivalences utiles</h2>
+<p>Ces équivalences permettent de décomposer une preuve en raisonnements plus simples (à démontrer en exercice) :</p>
+<table>
+<tr><th>Loi</th><th>Formule</th></tr>
+<tr><td>Négation du ET</td><td><code>¬(P ∧ Q) ⇔ (¬P ∨ ¬Q)</code></td></tr>
+<tr><td>Négation du OU</td><td><code>¬(P ∨ Q) ⇔ (¬P ∧ ¬Q)</code></td></tr>
+<tr><td>Double négation</td><td><code>P ⇔ ¬(¬P)</code></td></tr>
+<tr><td>Négation de l'implication</td><td><code>¬(P ⇒ Q) ⇔ (P ∧ ¬Q)</code></td></tr>
+</table>
+
+<h3>🔁 Raisonnement par transposition (contraposée)</h3>
+<div class="box info">
+<span class="box-title">📌 Règle</span>
+<code>(P ⇒ Q) ⇔ (¬Q ⇒ ¬P)</code><br><br>
+Raisonner par transposition consiste, pour prouver l'implication de gauche, à prouver l'implication de droite (appelée <strong>transposée</strong> ou <strong>contraposée</strong>) — souvent plus simple à établir directement.
+</div>
+
+<h3>💥 Justification du raisonnement par l'absurde</h3>
+<div class="box info">
+<span class="box-title">📌 Règle</span>
+<code>((¬P) ⇒ (Q ∧ ¬Q)) ⇒ P</code><br><br>
+Donc pour prouver P, on suppose <code>¬P</code> et on en déduit une contradiction (une assertion du type <code>Q ∧ ¬Q</code>, qui ne peut jamais être vraie).
+</div>
+
+<h2>✍️ Rédactions types</h2>
+<table>
+<tr><th>Objectif</th><th>Comment rédiger</th></tr>
+<tr><td>Prouver <code>P ⇒ Q</code></td><td>« Supposons P », puis on prouve Q en utilisant cette information.</td></tr>
+<tr><td>Prouver <code>P ⇔ Q</code></td><td>« Montrons P ⇒ Q. » Une fois fait, on attaque la réciproque « Q ⇒ P ».</td></tr>
+</table>
+
+<h2>📊 Tableau récapitulatif</h2>
+<table>
+<tr><th>Symbole</th><th>Nom</th><th>Se lit</th></tr>
+<tr><td><code>¬P</code></td><td>Négation</td><td>« non P »</td></tr>
+<tr><td><code>P ∧ Q</code></td><td>Conjonction</td><td>« P et Q »</td></tr>
+<tr><td><code>P ∨ Q</code></td><td>Disjonction</td><td>« P ou Q » (inclusif)</td></tr>
+<tr><td><code>P ⇒ Q</code></td><td>Implication</td><td>« P implique Q »</td></tr>
+<tr><td><code>P ⇔ Q</code></td><td>Équivalence</td><td>« P équivaut à Q »</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="00_descriptif_cours.html">← Descriptif du cours</a>
+  <a href="02_quantificateurs.html">Suite : Les quantificateurs →</a>
+</div>
+
+</div>
+</body>
+</html>

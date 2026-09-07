@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Traitement de texte</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Unix/Linux — Chapitre 3</span></div>
+<div class="page">
+
+<h1>✂️ Traitement de texte : cut, paste, sort, uniq</h1>
+
+<p>Ces commandes servent à manipuler des fichiers texte <strong>structurés en colonnes</strong> (comme un fichier CSV), sans ouvrir de tableur.</p>
+
+<div class="box info">
+<span class="box-title">📄 Fichier d'exemple utilisé partout ci-dessous : <code>etudiants.txt</code></span>
+<pre><code>Dupont:Alice:20
+Martin:Bob:22
+Nasser:Chloé:19
+Bernard:David:21</code></pre>
+(format <code>Nom:Prénom:Âge</code>, séparé par <code>:</code>)
+</div>
+
+<h2>✂️ cut — extraire des colonnes</h2>
+<table>
+<tr><th>Option</th><th>Signifie</th></tr>
+<tr><td><code>-d</code></td><td><strong>délimiteur</strong> — le caractère qui sépare les colonnes</td></tr>
+<tr><td><code>-f</code></td><td><strong>field</strong> — numéro de la (ou des) colonne(s) à extraire</td></tr>
+</table>
+<pre><code><span class="cmd">$ cut -d ':' -f 1 etudiants.txt</span>
+Dupont
+Martin
+Nasser
+Bernard</code></pre>
+<p>→ ici on extrait la colonne 1 (le nom), en précisant que le séparateur est <code>:</code>.</p>
+<pre><code><span class="cmd">$ cut -d ':' -f 2,3 etudiants.txt</span>
+Alice:20
+Bob:22
+Chloé:19
+David:21</code></pre>
+<p>→ on peut extraire plusieurs colonnes en séparant les numéros par une virgule.</p>
+
+<h2>📎 paste — recoller des colonnes</h2>
+<p>Fait l'inverse de <code>cut</code> dans l'esprit : elle <strong>fusionne des lignes de plusieurs fichiers côte à côte</strong>, colonne par colonne.</p>
+<pre><code><span class="cmd">$ paste noms.txt ages.txt</span>
+Dupont  20
+Martin  22</code></pre>
+<p>(par défaut, <code>paste</code> sépare avec une tabulation ; on peut changer avec <code>-d</code>)</p>
+
+<h2>🔀 sort — trier</h2>
+<pre><code><span class="cmd">$ sort etudiants.txt</span>
+Bernard:David:21
+Dupont:Alice:20
+Martin:Bob:22
+Nasser:Chloé:19</code></pre>
+<p>→ Par défaut, tri <strong>alphabétique</strong> (ordre croissant).</p>
+
+<table>
+<tr><th>Option</th><th>Effet</th></tr>
+<tr><td><code>-r</code></td><td><strong>r</strong>everse — inverse l'ordre du tri (décroissant)</td></tr>
+<tr><td><code>-n</code></td><td>tri <strong>numérique</strong> (indispensable pour les nombres)</td></tr>
+<tr><td><code>-t</code></td><td>délimiteur (comme <code>-d</code> pour <code>cut</code>)</td></tr>
+<tr><td><code>-k</code></td><td>numéro de la colonne (<strong>k</strong>ey) sur laquelle trier</td></tr>
+</table>
+
+<h3>Trier par colonne précise</h3>
+<pre><code><span class="cmd">$ sort -t ':' -k 2 etudiants.txt</span></code></pre>
+<p>→ trie le fichier en se basant sur la colonne 2 (le prénom).</p>
+
+<div class="box warn">
+<span class="box-title">⚠️ Trier des nombres correctement</span>
+Sans <code>-n</code>, <code>sort</code> trie « 10 » avant « 2 » (comparaison caractère par caractère, comme dans un dictionnaire). Avec <code>-n</code>, il comprend que ce sont des nombres et trie 2 avant 10.
+<pre><code><span class="cmd">$ sort -n fichier_de_nombres.txt</span></code></pre>
+</div>
+
+<h3>Combiner les options</h3>
+<pre><code><span class="cmd">$ sort -t ':' -k 3 -n etudiants.txt</span>      <span class="comment"># trie par âge, numériquement</span>
+<span class="cmd">$ sort -t ':' -k 2 -r etudiants.txt</span>      <span class="comment"># trie par prénom, ordre inversé</span></code></pre>
+
+<h2>🧹 uniq — éliminer les doublons</h2>
+<p>Supprime les lignes <strong>consécutives</strong> identiques.</p>
+<div class="box danger">
+<span class="box-title">🚨 Piège important</span>
+<code>uniq</code> ne fonctionne que sur des doublons <mark>côte à côte</mark> — il faut donc quasiment toujours <strong>trier avant</strong> avec <code>sort</code> !
+</div>
+
+<pre><code><span class="cmd">$ cat villes.txt</span>
+Paris
+Paris
+Lyon
+Paris
+
+<span class="cmd">$ uniq villes.txt</span>
+Paris
+Lyon
+Paris   <span class="comment">← pas consécutif au 1er "Paris", donc il reste !</span></code></pre>
+
+<div class="box tip">
+<span class="box-title">💡 La bonne pratique : toujours trier avant uniq</span>
+<pre><code><span class="cmd">$ sort villes.txt | uniq</span>
+Lyon
+Paris</code></pre>
+</div>
+
+<table>
+<tr><th>Option de uniq</th><th>Effet</th></tr>
+<tr><td><code>-c</code></td><td>affiche le <strong>nombre d'occurrences</strong> de chaque ligne</td></tr>
+</table>
+<pre><code><span class="cmd">$ sort villes.txt | uniq -c</span>
+   1 Lyon
+   2 Paris</code></pre>
+
+<h2>🔗 Le | — pipe (tube)</h2>
+<p>Le symbole <code>|</code> permet de <strong>chaîner des commandes</strong> : la sortie de la commande de gauche devient l'entrée de la commande de droite.</p>
+<pre><code><span class="cmd">$ cut -d ':' -f 1 etudiants.txt | sort</span></code></pre>
+<p>→ extrait les noms, puis les trie.</p>
+<pre><code><span class="cmd">$ cut -d ':' -f 1 etudiants.txt | sort | uniq -c</span></code></pre>
+<p>→ extrait les noms, les trie, puis compte les occurrences de chaque nom.</p>
+
+<h2>📊 Tableau récapitulatif</h2>
+<table>
+<tr><th>Commande</th><th>Rôle</th></tr>
+<tr><td><code>cut -d X -f N</code></td><td>Extraire la colonne N, séparée par X</td></tr>
+<tr><td><code>paste</code></td><td>Fusionner des fichiers colonne par colonne</td></tr>
+<tr><td><code>sort</code></td><td>Trier les lignes (alphabétique par défaut)</td></tr>
+<tr><td><code>sort -n</code></td><td>Trier numériquement</td></tr>
+<tr><td><code>sort -r</code></td><td>Inverser l'ordre</td></tr>
+<tr><td><code>sort -t X -k N</code></td><td>Trier selon la colonne N</td></tr>
+<tr><td><code>uniq</code></td><td>Supprimer les doublons consécutifs</td></tr>
+<tr><td><code>uniq -c</code></td><td>Compter les occurrences</td></tr>
+<tr><td><code>|</code></td><td>Chaîner deux commandes (pipe)</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="02_commandes_fichiers.html">← Manipuler les fichiers</a>
+  <a href="04_creation_fichiers_repertoires.html">Suite : Créer & modifier →</a>
+</div>
+
+</div>
+</body>
+</html>
