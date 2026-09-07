@@ -2,6 +2,12 @@
 
 Notes de cours réécrites, complétées et mises en forme, à jour au fur et à mesure du semestre.
 
+## 🌐 Site en ligne (le plus simple)
+
+👉 **https://sascha130208.github.io/L1-Cours-Notes/**
+
+Tout est lisible directement dans le navigateur, sur ordi comme sur téléphone — aucun téléchargement, aucun code affiché.
+
 ## 📂 Comment consulter
 
 Ouvre simplement le sommaire de la matière qui t'intéresse dans ton navigateur :
