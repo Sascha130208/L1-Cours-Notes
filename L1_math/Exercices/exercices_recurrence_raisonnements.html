@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices — Récurrence & raisonnements classiques</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices</span></div>
+<div class="page">
+
+<span class="chip">⏩ Pas encore vu en amphi</span>
+<h1>✏️ Exercices — Récurrence &amp; raisonnements classiques</h1>
+<p>Cache la correction avant de cliquer sur "Réponse" — cherche vraiment, même 10-15 minutes, avant de regarder. Et pense à <strong>rédiger</strong> ta réponse en phrases complètes, pas juste le calcul : c'est ça, la moitié des points en L1.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Envie de plus d'exercices ?</span>
+Cette page couvre les deux chapitres vus « en avance ». Pour aller plus loin, la page <a href="../../ressources.html">ressources externes</a> t'indique où trouver, sur <strong>Exo7</strong>, les fiches correspondantes avec encore plus d'exercices corrigés.
+</div>
+
+<h2>🟢 Niveau facile — récurrence, l'essentiel</h2>
+
+<p><strong>1.</strong> Rappelle les deux étapes du principe de récurrence pour prouver <code>∀n ≥ n₀, P(n)</code>.</p>
+<details><summary>Réponse</summary>
+<ol>
+<li><strong>Initialisation</strong> : montrer que <code>P(n₀)</code> est vraie.</li>
+<li><strong>Hérédité</strong> : montrer que <code>∀n ≥ n₀, P(n) ⇒ P(n+1)</code> (en supposant P(n) vraie, en déduire que P(n+1) l'est aussi).</li>
+</ol>
+</details>
+
+<p><strong>2.</strong> Dans une hérédité, un étudiant écrit directement la formule pour <code>P(N+1)</code> sans jamais se servir de <code>P(N)</code>. Qu'est-ce qui cloche ?</p>
+<details><summary>Réponse</summary>
+Le principe même de la récurrence est de <strong>partir de l'hypothèse P(N)</strong> pour en déduire P(N+1). Si on ne s'en sert jamais, la démonstration ne prouve rien par récurrence — c'est une erreur très fréquente à l'écrit.
+</details>
+
+<p><strong>3.</strong> Pour prouver <code>∀n ∈ N, P(n)</code>, à quel rang doit-on vérifier l'initialisation ?</p>
+<details><summary>Réponse</summary>
+Au rang <code>n₀ = 0</code> (puisque <code>N</code> commence à 0). Si l'énoncé porte sur <code>∀n ≥ 1</code>, l'initialisation se fait au rang 1, etc. — c'est toujours le premier rang concerné par l'énoncé.
+</details>
+
+<h2>🟡 Niveau intermédiaire — rédiger une récurrence complète</h2>
+
+<p><strong>4. (grand classique)</strong> Montre par récurrence que pour tout <code>n ∈ N</code> :</p>
+<pre><code>Σ(k=0 à n) k  =  n(n+1) / 2</code></pre>
+<details><summary>Solution proposée</summary>
+Considérons <code>P(n) : Σ(k=0 à n) k = n(n+1)/2</code>.<br><br>
+<strong>Initialisation.</strong> Pour <code>n = 0</code> : à gauche, la somme vaut 0 ; à droite, <code>0×1/2 = 0</code>. Les deux valent 0, donc <code>P(0)</code> est vraie.<br><br>
+<strong>Hérédité.</strong> Soit <code>n ∈ N</code>. Supposons <code>P(n)</code> vraie, c'est-à-dire <code>Σ(k=0 à n) k = n(n+1)/2</code>. Montrons <code>P(n+1)</code> :
+<pre><code>Σ(k=0 à n+1) k = Σ(k=0 à n) k + (n+1)
+               = n(n+1)/2 + (n+1)
+               = (n+1)(n/2 + 1)
+               = (n+1)(n+2)/2</code></pre>
+On retrouve bien la formule au rang n+1, donc <code>P(n+1)</code> est vraie.<br><br>
+<strong>Conclusion.</strong> Par récurrence, <code>P(n)</code> est vraie pour tout <code>n ∈ N</code>.
+</details>
+
+<p><strong>5.</strong> Montre par récurrence que pour tout <code>n ∈ N</code>, <code>2ⁿ ≥ n + 1</code>.</p>
+<details><summary>Solution proposée</summary>
+Considérons <code>P(n) : 2ⁿ ≥ n + 1</code>.<br><br>
+<strong>Initialisation.</strong> Pour <code>n = 0</code> : <code>2⁰ = 1 ≥ 0 + 1 = 1</code>. C'est vrai (égalité).<br><br>
+<strong>Hérédité.</strong> Soit <code>n ∈ N</code>. Supposons <code>2ⁿ ≥ n + 1</code>. Alors :
+<pre><code>2ⁿ⁺¹ = 2 × 2ⁿ ≥ 2(n+1) = 2n + 2 = (n+2) + n ≥ n + 2</code></pre>
+(on utilise <code>n ≥ 0</code> pour la dernière inégalité). Donc <code>2ⁿ⁺¹ ≥ n + 2 = (n+1) + 1</code>, ce qui est exactement <code>P(n+1)</code>.<br><br>
+<strong>Conclusion.</strong> Par récurrence, <code>2ⁿ ≥ n + 1</code> pour tout <code>n ∈ N</code>.
+</details>
+
+<p><strong>6.</strong> Montre par récurrence que pour tout <code>n ∈ N*</code>, <code>n³ - n</code> est divisible par 6.</p>
+<details><summary>Solution proposée</summary>
+Considérons <code>P(n) : « n³ - n est divisible par 6 »</code>, pour <code>n ≥ 1</code>.<br><br>
+<strong>Initialisation.</strong> Pour <code>n = 1</code> : <code>1³ - 1 = 0</code>, et 0 est divisible par 6. Donc <code>P(1)</code> est vraie.<br><br>
+<strong>Hérédité.</strong> Soit <code>n ≥ 1</code>. Supposons qu'il existe <code>k ∈ Z</code> tel que <code>n³ - n = 6k</code>. Montrons <code>P(n+1)</code> :
+<pre><code>(n+1)³ - (n+1) = n³ + 3n² + 3n + 1 - n - 1
+               = (n³ - n) + 3n² + 3n
+               = 6k + 3n(n+1)</code></pre>
+Or <code>n(n+1)</code> est un produit de deux entiers consécutifs, donc toujours pair : <code>n(n+1) = 2m</code> pour un certain <code>m ∈ Z</code>. Donc <code>3n(n+1) = 6m</code>, et :
+<pre><code>(n+1)³ - (n+1) = 6k + 6m = 6(k+m)</code></pre>
+qui est bien divisible par 6. Donc <code>P(n+1)</code> est vraie.<br><br>
+<strong>Conclusion.</strong> Par récurrence, <code>n³ - n</code> est divisible par 6 pour tout <code>n ∈ N*</code>.
+</details>
+
+<h2>🔴 Niveau avancé — récurrence forte</h2>
+
+<p><strong>7.</strong> Quelle est la différence entre la récurrence « simple » et la récurrence « forte » ?</p>
+<details><summary>Réponse</summary>
+Dans la récurrence simple, pour prouver <code>P(n+1)</code> on a le droit de supposer seulement <code>P(n)</code>. Dans la récurrence <strong>forte</strong>, on a le droit de supposer <code>P(k)</code> vraie pour <strong>tous</strong> les rangs <code>k</code> entre <code>n₀</code> et <code>n</code> — c'est plus puissant, utile quand un seul rang précédent ne suffit pas à faire le calcul.
+</details>
+
+<p><strong>8. (suite de Fibonacci)</strong> On définit <code>u₀ = 1</code>, <code>u₁ = 1</code>, et <code>uₙ₊₂ = uₙ₊₁ + uₙ</code>. Montre par récurrence forte que pour tout <code>n ∈ N</code>, <code>uₙ ≤ 2ⁿ</code>.</p>
+<details><summary>Solution proposée</summary>
+Considérons <code>P(n) : uₙ ≤ 2ⁿ</code>.<br><br>
+<strong>Initialisation (à deux rangs, car la relation fait intervenir deux termes précédents).</strong><br>
+<code>u₀ = 1 ≤ 2⁰ = 1</code> ✅ et <code>u₁ = 1 ≤ 2¹ = 2</code> ✅.<br><br>
+<strong>Hérédité.</strong> Soit <code>n ∈ N</code>. Supposons <code>P(k)</code> vraie pour tout <code>k</code> avec <code>0 ≤ k ≤ n+1</code> (en particulier pour les rangs <code>n</code> et <code>n+1</code>). Montrons <code>P(n+2)</code> :
+<pre><code>uₙ₊₂ = uₙ₊₁ + uₙ ≤ 2ⁿ⁺¹ + 2ⁿ ≤ 2ⁿ⁺¹ + 2ⁿ⁺¹ = 2 × 2ⁿ⁺¹ = 2ⁿ⁺²</code></pre>
+Donc <code>P(n+2)</code> est vraie.<br><br>
+<strong>Conclusion.</strong> Par récurrence forte, <code>uₙ ≤ 2ⁿ</code> pour tout <code>n ∈ N</code>. (Et c'est exactement pour ce genre de suite — où un terme dépend de <strong>deux</strong> termes précédents — qu'on a besoin de la version forte, avec une initialisation sur deux rangs.)
+</details>
+
+<h2>🧭 Raisonnements classiques — repérer la bonne méthode</h2>
+
+<p><strong>9.</strong> Pour chacun de ces énoncés à prouver, quelle méthode choisirais-tu en premier réflexe : absurde, contraposée, équivalence, contre-exemple, ou récurrence ?</p>
+<ul>
+<li>a) <code>∀n ∈ N, 3ⁿ ≥ n + 1</code></li>
+<li>b) « L'assertion "toute fonction est croissante ou décroissante" est fausse »</li>
+<li>c) <code>n² impair ⇒ n impair</code></li>
+<li>d) <code>x = 2 ⇔ x² - 4 = 0 et x ≥ 0</code></li>
+</ul>
+<details><summary>Réponse</summary>
+a) <strong>Récurrence</strong> (un « pour tout n ∈ N » avec une relation entre rangs successifs).<br>
+b) <strong>Contre-exemple</strong> (montrer qu'une assertion universelle est fausse : il suffit d'exhiber une fonction qui n'est ni l'un ni l'autre, par exemple <code>x ↦ x²</code> sur R).<br>
+c) <strong>Contraposée</strong> (prouver directement « impair » à partir de « n² impair » est pénible ; « n pair ⇒ n² pair » est immédiat).<br>
+d) <strong>Équivalence</strong> : il faut montrer les deux implications séparément (sens direct et réciproque).
+</details>
+
+<p><strong>10. (par l'absurde)</strong> Montre qu'il n'existe pas de plus grand entier naturel.</p>
+<details><summary>Solution proposée</summary>
+Supposons par l'absurde qu'il existe un plus grand entier naturel, notons-le <code>N</code>. Alors <code>N + 1</code> est aussi un entier naturel, et <code>N + 1 &gt; N</code>. Cela contredit le fait que <code>N</code> soit le plus grand. <strong>Contradiction</strong>, donc l'hypothèse de départ est fausse : il n'existe pas de plus grand entier naturel.
+</details>
+
+<p><strong>11. (par contraposée)</strong> Soit <code>n ∈ Z</code>. Montre par contraposée que <code>« n² non divisible par 3 » ⇒ « n non divisible par 3 »</code>.</p>
+<details><summary>Solution proposée</summary>
+La contraposée à montrer est : <code>« n divisible par 3 » ⇒ « n² divisible par 3 »</code>.<br><br>
+Si <code>n</code> est divisible par 3, alors il existe <code>k ∈ Z</code> tel que <code>n = 3k</code>. On a alors <code>n² = 9k² = 3(3k²)</code>, qui est bien divisible par 3.<br><br>
+La contraposée étant vraie, l'implication de départ l'est aussi. ✅
+</details>
+
+<h2>🏆 Défi — combiner récurrence et raisonnements</h2>
+
+<p><strong>12.</strong> Montre par récurrence que pour tout <code>n ∈ N</code>, <code>1 + 2 + 4 + ... + 2ⁿ = 2ⁿ⁺¹ - 1</code> (somme des puissances de 2 de 0 à n).</p>
+<details><summary>Solution proposée</summary>
+Considérons <code>P(n) : Σ(k=0 à n) 2ᵏ = 2ⁿ⁺¹ - 1</code>.<br><br>
+<strong>Initialisation.</strong> Pour <code>n = 0</code> : à gauche <code>2⁰ = 1</code> ; à droite <code>2¹ - 1 = 1</code>. Égalité vérifiée, <code>P(0)</code> est vraie.<br><br>
+<strong>Hérédité.</strong> Soit <code>n ∈ N</code>. Supposons <code>P(n)</code> vraie. Alors :
+<pre><code>Σ(k=0 à n+1) 2ᵏ = Σ(k=0 à n) 2ᵏ + 2ⁿ⁺¹
+                = (2ⁿ⁺¹ - 1) + 2ⁿ⁺¹
+                = 2 × 2ⁿ⁺¹ - 1
+                = 2ⁿ⁺² - 1</code></pre>
+qui est bien la formule au rang n+1. Donc <code>P(n+1)</code> est vraie.<br><br>
+<strong>Conclusion.</strong> Par récurrence, la formule est vraie pour tout <code>n ∈ N</code>.
+</details>
+
+<p><strong>13. (contre-exemple + rédaction)</strong> Un camarade affirme : « pour tout entier naturel n, <code>n² + n + 41</code> est un nombre premier ». Montre que c'est faux.</p>
+<details><summary>Solution proposée</summary>
+Il suffit de trouver <strong>un seul</strong> contre-exemple. Testons <code>n = 41</code> :
+<pre><code>41² + 41 + 41 = 41(41 + 1 + 1) = 41 × 43</code></pre>
+Ce nombre est divisible par 41 (et différent de 41), donc il n'est pas premier. L'assertion est donc fausse dès <code>n = 41</code>.<br><br>
+<em>(Remarque amusante : cette formule donne bien des nombres premiers pour n = 0 à 39 — c'est un exemple classique pour montrer qu'il ne faut jamais se fier à « ça marche sur les premiers cas testés » comme preuve !)</em>
+</details>
+
+<p><strong>14. (absurde + récurrence)</strong> Montre que pour tout <code>n ∈ N</code>, il n'existe pas d'entier naturel <code>m</code> tel que <code>n &lt; m &lt; n + 1</code>.</p>
+<details><summary>Solution proposée</summary>
+Soit <code>n ∈ N</code> fixé. Supposons par l'absurde qu'il existe <code>m ∈ N</code> avec <code>n &lt; m &lt; n + 1</code>.<br><br>
+Comme <code>m</code> et <code>n</code> sont des entiers avec <code>m &gt; n</code>, on a nécessairement <code>m ≥ n + 1</code> (il n'y a pas d'entier strictement entre deux entiers consécutifs — propriété de <code>N</code>). Mais on a supposé <code>m &lt; n + 1</code>. Donc <code>n + 1 ≤ m &lt; n + 1</code>, ce qui est <strong>absurde</strong> (un nombre ne peut pas être strictement inférieur à lui-même).<br><br>
+Donc un tel <code>m</code> n'existe pas, pour tout <code>n ∈ N</code>.
+</details>
+
+<div class="nav-links">
+  <a href="../01_Structures_Fondamentales/04_raisonnements_classiques.html">← Cours : Raisonnements classiques</a>
+  <a href="../index.html">Retour au sommaire →</a>
+</div>
+
+</div>
+</body>
+</html>
