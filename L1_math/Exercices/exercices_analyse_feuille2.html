@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices — Analyse, Feuille 2</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices — Analyse</span></div>
+<div class="page">
+
+<h1>✏️ Analyse — Feuille d'exercices 2</h1>
+<p>UPJV, Analyse 1.1. Sujet : <strong>suites, limites, sous-suites</strong> — correspond au <a href="../02_Analyse/01_suites.html">Chapitre 2</a>.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Cherche vraiment avant de regarder</span>
+Cache chaque correction, pose-toi vraiment la question et écris ta réponse avant de cliquer — c'est ainsi qu'on progresse en maths, pas en lisant des solutions toutes faites.
+</div>
+
+<h2>Exercice 1 — Vrai ou faux ?</h2>
+
+<p><strong>1.</strong> Soit <code>(u_n)</code> une suite réelle telle que <code>(|u_n|)</code> converge. La suite <code>(u_n)</code> converge-t-elle ?</p>
+<details><summary>Réponse</summary>
+<strong>Faux.</strong> Contre-exemple : <code>u_n = (-1)ⁿ</code>. Alors <code>|u_n| = 1</code> pour tout <code>n</code> (constante, donc convergente), mais <code>(u_n)</code> oscille entre <code>1</code> et <code>-1</code> et ne converge pas.
+</details>
+
+<p><strong>2.</strong> Soit <code>(u_n)</code> une suite réelle telle que <code>lim|u_n| = 0</code>. A-t-on <code>lim u_n = 0</code> ?</p>
+<details><summary>Réponse</summary>
+<strong>Vrai.</strong> <code>|u_n| → 0</code> signifie <code>∀ε&gt;0, ∃N, n≥N ⇒ ||u_n|-0| &lt; ε</code>, c'est-à-dire <code>|u_n| &lt; ε</code>. Mais c'est exactement <code>|u_n - 0| &lt; ε</code>. C'est donc précisément la définition de <code>u_n → 0</code>. (Attention, ce résultat est spécifique au cas où la limite de <code>|u_n|</code> vaut <strong>0</strong> — ce n'est pas vrai pour une limite non nulle, cf. exercice précédent avec <code>|u_n|→1</code>.)
+</details>
+
+<p><strong>3.</strong> Soit <code>(u_n)</code> une suite de réels non nuls telle que <code>(1/u_n)</code> converge. La suite <code>(u_n)</code> converge-t-elle ?</p>
+<details><summary>Réponse</summary>
+<strong>Faux.</strong> Contre-exemple : <code>u_n = n</code>. Alors <code>1/u_n = 1/n → 0</code> (converge), mais <code>u_n = n → +∞</code> (diverge).
+</details>
+
+<p><strong>4.</strong> Soit <code>(u_n)</code> une suite de réels non nuls qui diverge. A-t-on <code>lim 1/u_n = 0</code> ?</p>
+<details><summary>Réponse</summary>
+<strong>Faux.</strong> Contre-exemple : <code>u_n = (-1)ⁿ</code> (diverge, ne tend pas vers <code>±∞</code>). Alors <code>1/u_n = (-1)ⁿ</code> également, qui ne tend pas vers 0 (elle diverge aussi). Le résultat <code>1/u_n → 0</code> n'est garanti que si <code>u_n → +∞</code> ou <code>u_n → -∞</code>.
+</details>
+
+<h2>Exercice 2 — Calculs de limites</h2>
+<p>Détermine (lorsqu'elle existe) la limite de chaque suite.</p>
+<p>a) <code>√n</code> &nbsp; b) <code>n-√n</code> &nbsp; c) <code>(n²-n-2)/(2n+1)</code> &nbsp; d) <code>(-1)ⁿn/(n+1)</code> &nbsp; e) <code>n+(-1)ⁿ</code> &nbsp; f) <code>√(n+1)-√n</code></p>
+<details><summary>Réponses</summary>
+<strong>a)</strong> <code>√n → +∞</code>.<br><br>
+<strong>b)</strong> <code>n-√n = n(1 - 1/√n) → +∞</code> (car <code>1-1/√n → 1</code> et <code>n → +∞</code>).<br><br>
+<strong>c)</strong> Fraction rationnelle, degré 2 au numérateur contre degré 1 au dénominateur, coefficient dominant positif : <code>(n²-n-2)/(2n+1) → +∞</code>.<br><br>
+<strong>d)</strong> <strong>N'a pas de limite.</strong> La sous-suite des rangs pairs <code>u_(2n) = 2n/(2n+1) → 1</code>, la sous-suite des rangs impairs <code>u_(2n+1) = -( 2n+1)/(2n+2) → -1</code>. Deux sous-suites, deux limites différentes : la suite diverge.<br><br>
+<strong>e)</strong> <code>n+(-1)ⁿ → +∞</code> : <code>(-1)ⁿ</code> est bornée, elle est « absorbée » par <code>n → +∞</code> (Prop. 4.2, chapitre 2).<br><br>
+<strong>f)</strong> Quantité conjuguée : <code>√(n+1)-√n = 1/(√(n+1)+√n) → 0</code> (dénominateur → +∞).
+</details>
+
+<h2>Exercice 3 — Rédaction de preuves</h2>
+
+<p><strong>1.</strong> Soient <code>(u_n)</code> une suite réelle bornée et <code>(v_n)</code> une suite réelle convergeant vers 0. Montre que <code>lim(n→+∞) u_nv_n = 0</code>.</p>
+<details><summary>Solution proposée</summary>
+C'est la Proposition 6 du cours (chapitre 2). Comme <code>(u_n)</code> est bornée, il existe <code>M &gt; 0</code> tel que <code>|u_n| ≤ M</code> pour tout <code>n</code>. Fixons <code>ε &gt; 0</code>. Comme <code>v_n → 0</code>, il existe <code>N</code> tel que <code>n ≥ N ⇒ |v_n| &lt; ε/M</code>. Alors pour <code>n ≥ N</code> :
+<pre><code>|u_nv_n| = |u_n|·|v_n| ≤ M × ε/M = ε</code></pre>
+Donc <code>u_nv_n → 0</code>. ∎
+</details>
+
+<p><strong>2.</strong> Soit <code>(u_n)</code> une suite réelle telle que <code>lim(n→+∞)(u_(n+1)-u_n) ∈ ]0,+∞]</code> existe. Montre que <code>(u_n)</code> est strictement croissante à partir d'un certain rang puis qu'elle vérifie <code>lim u_n = +∞</code>.</p>
+<details><summary>Solution proposée</summary>
+Notons <code>L = lim(u_(n+1)-u_n) ∈ ]0,+∞]</code>. Dans tous les cas (L fini ou infini), il existe une constante <code>c &gt; 0</code> et un rang <code>N</code> tels que <code>u_(n+1) - u_n ≥ c</code> pour tout <code>n ≥ N</code> (par exemple <code>c = L/2</code> si <code>L</code> est fini, ou <code>c = 1</code> si <code>L = +∞</code>, en utilisant la définition de la limite dans chaque cas).<br><br>
+<strong>Stricte croissance.</strong> Comme <code>c &gt; 0</code>, pour <code>n ≥ N</code> on a <code>u_(n+1) &gt; u_n</code> : la suite est strictement croissante à partir du rang N.<br><br>
+<strong>Divergence vers +∞.</strong> Pour <code>n ≥ N</code>, en sommant les différences (somme télescopique) :
+<pre><code>u_n = u_N + Σ(k=N à n-1) (u_(k+1)-u_k) ≥ u_N + (n-N)·c</code></pre>
+Comme <code>c &gt; 0</code>, le membre de droite tend vers <code>+∞</code> quand <code>n → +∞</code>. Par comparaison (Prop. 7.2, chapitre 2), <code>u_n → +∞</code>. ∎
+</details>
+
+<p><strong>3.</strong> Soit <code>(u_n)</code> une suite réelle qui ne tend pas vers <code>+∞</code>. Montre que <code>(u_n)</code> admet une sous-suite majorée.</p>
+<details><summary>Solution proposée</summary>
+« <code>(u_n)</code> ne tend pas vers <code>+∞</code> » signifie que la propriété <code>∀A&gt;0, ∃N, ∀n≥N, u_n≥A</code> est fausse, c'est-à-dire (négation) :
+<pre><code>∃A > 0, ∀N, ∃n ≥ N, u_n < A</code></pre>
+Fixons un tel <code>A</code>. On construit une suite d'indices strictement croissante par récurrence : pour <code>N=0</code>, on obtient <code>n_0 ≥ 0</code> avec <code>u_(n_0) &lt; A</code>. Pour <code>N = n_0+1</code>, on obtient <code>n_1 ≥ n_0+1 &gt; n_0</code> avec <code>u_(n_1) &lt; A</code>. En itérant, on construit <code>n_0 &lt; n_1 &lt; n_2 &lt; ...</code> tels que <code>u_(n_k) &lt; A</code> pour tout <code>k</code>.<br><br>
+La sous-suite <code>(u_(n_k))</code> est donc majorée par <code>A</code>. ∎
+</details>
+
+<p><strong>4.</strong> Soit <code>(u_n)</code> une suite d'entiers qui converge. Montre que <code>(u_n)</code> est constante à partir d'un certain rang.</p>
+<details><summary>Solution proposée</summary>
+Notons <code>ℓ = lim u_n</code>. En appliquant la définition de la limite avec <code>ε = 1/2</code> : il existe <code>N</code> tel que <code>n ≥ N ⇒ |u_n - ℓ| &lt; 1/2</code>.<br><br>
+Pour <code>n, m ≥ N</code>, par l'inégalité triangulaire :
+<pre><code>|u_n - u_m| ≤ |u_n - ℓ| + |ℓ - u_m| < 1/2 + 1/2 = 1</code></pre>
+Or <code>u_n</code> et <code>u_m</code> sont des <strong>entiers</strong>, donc <code>|u_n-u_m|</code> est un entier <code>≥ 0</code>. Le seul entier strictement inférieur à 1 est 0. Donc <code>u_n = u_m</code> pour tous <code>n,m ≥ N</code> : la suite est constante (égale à <code>u_N</code>) à partir du rang N. ∎
+</details>
+
+<h2>Exercice 4 — Moyennes de Cesàro</h2>
+
+<p><strong>1.</strong> Soit <code>(u_n)</code> une suite convergeant vers <code>ℓ ∈ R</code>. Montre que <code>lim(n→+∞) (u_0+u_1+...+u_n)/(n+1) = ℓ</code>.</p>
+<details><summary>Solution proposée</summary>
+Posons <code>v_n = u_n - ℓ</code>, de sorte que <code>v_n → 0</code>. Il suffit de montrer que la moyenne des <code>v_n</code> tend vers 0 (on retrouvera le résultat en ajoutant <code>ℓ</code>, puisque la moyenne de <code>(u_n)</code> est la moyenne de <code>(v_n)</code> plus <code>ℓ</code>).<br><br>
+Fixons <code>ε &gt; 0</code>. Comme <code>v_n → 0</code>, il existe <code>N</code> tel que <code>n ≥ N ⇒ |v_n| &lt; ε/2</code>. Découpons la moyenne en deux paquets :
+<pre><code>(v_0+...+v_n)/(n+1) = (v_0+...+v_(N-1))/(n+1) + (v_N+...+v_n)/(n+1)</code></pre>
+Le premier terme a un numérateur <code>C = v_0+...+v_(N-1)</code> <strong>constant</strong> (indépendant de n), donc <code>C/(n+1) → 0</code> : il existe <code>N'</code> tel que <code>n ≥ N' ⇒ |C/(n+1)| &lt; ε/2</code>.<br><br>
+Le second terme contient <code>n-N+1</code> termes, chacun de valeur absolue <code>&lt; ε/2</code>, donc :
+<pre><code>|(v_N+...+v_n)/(n+1)| ≤ (n-N+1)/(n+1) × ε/2 ≤ ε/2</code></pre>
+(car <code>(n-N+1)/(n+1) ≤ 1</code>). Pour <code>n ≥ max(N,N')</code>, la somme des deux termes est <code>&lt; ε/2 + ε/2 = ε</code>. Donc la moyenne des <code>v_n</code> tend vers 0, et donc la moyenne des <code>u_n</code> tend vers <code>ℓ</code>. ∎
+</details>
+
+<p><strong>2.</strong> Soit <code>(u_n)</code> une suite convergeant vers <code>ℓ ∈ R</code>. Détermine <code>lim(n→+∞) (0·u_0+1·u_1+...+n·u_n)/n²</code>.</p>
+<details><summary>Solution proposée</summary>
+<strong>Intuition.</strong> Comme <code>u_k → ℓ</code>, on a <code>k·u_k ≈ k·ℓ</code> pour k grand, et <code>Σ(k=0 à n) k ≈ n²/2</code>. On s'attend donc à une limite égale à <code>ℓ/2</code>.<br><br>
+<strong>Rédaction.</strong> Écrivons <code>u_k = ℓ + ε_k</code> avec <code>ε_k → 0</code>. Notons <code>S_n = Σ(k=0 à n) k·u_k</code>. Alors :
+<pre><code>S_n = ℓ Σ(k=0 à n) k + Σ(k=0 à n) k·ε_k = ℓ · n(n+1)/2 + Σ(k=0 à n) k·ε_k</code></pre>
+Donc :
+<pre><code>S_n/n² = ℓ(n+1)/(2n) + (1/n²) Σ(k=0 à n) k·ε_k</code></pre>
+Le premier terme tend vers <code>ℓ/2</code> (car <code>(n+1)/(2n) → 1/2</code>).<br><br>
+Pour le second terme, on adapte l'argument de la question 1 (« moyenne pondérée qui tend vers 0 ») : fixons <code>η &gt; 0</code>, il existe <code>N</code> tel que <code>k ≥ N ⇒ |ε_k| &lt; η</code>. Alors pour <code>n ≥ N</code> :
+<pre><code>|Σ(k=0 à n) k·ε_k| ≤ Σ(k=0 à N-1) k|ε_k| + Σ(k=N à n) k·η ≤ C' + η·n(n+1)/2</code></pre>
+où <code>C'</code> est une constante (indépendante de n). En divisant par <code>n²</code> :
+<pre><code>(1/n²)|Σ k·ε_k| ≤ C'/n² + η(n+1)/(2n) → η/2  lorsque n → +∞</code></pre>
+Ceci est vrai pour tout <code>η &gt; 0</code> arbitrairement petit, donc la limite supérieure de <code>(1/n²)|Σ k·ε_k|</code> vaut 0 : ce terme tend vers 0.<br><br>
+<strong>Conclusion.</strong> <code>lim S_n/n² = ℓ/2 + 0 = ℓ/2</code>.
+</details>
+
+<div class="nav-links">
+  <a href="exercices_analyse_feuille1.html">← Feuille 1 (nombres réels)</a>
+  <a href="exercices_analyse_feuille3.html">Suite : Feuille 3 (suites, approfondissement) →</a>
+</div>
+
+</div>
+</body>
+</html>

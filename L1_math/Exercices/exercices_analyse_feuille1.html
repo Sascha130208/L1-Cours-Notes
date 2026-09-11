@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices — Analyse, Feuille 1</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices — Analyse</span></div>
+<div class="page">
+
+<h1>✏️ Analyse — Feuille d'exercices 1</h1>
+<p>UPJV, Analyse 1.1. Sujet : <strong>nombres réels, intervalles, bornes sup/inf, partie entière</strong> — correspond au <a href="../02_Analyse/00_nombres_reels.html">Chapitre 1</a>.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Cherche vraiment avant de regarder</span>
+Comme le rappelle l'intro du polycopié Exo7 : « il est indispensable de résoudre activement par vous-même des exercices, sans regarder les solutions ! ». Cache chaque correction, pose-toi vraiment la question, écris ta réponse — même fausse — avant de cliquer.
+</div>
+
+<h2>Exercice 1 — Vrai ou faux ?</h2>
+<p>Pour chaque question, réponds par « vrai » ou « faux » en justifiant.</p>
+
+<p><strong>1.</strong> Soient <code>x ∈ Q</code> et <code>y ∈ R\Q</code>. A-t-on <code>x+y ∈ R\Q</code> ? A-t-on <code>xy ∈ R\Q</code> ?</p>
+<details><summary>Réponse</summary>
+<code>x+y ∈ R\Q</code> : <strong>vrai</strong>. Si <code>x+y</code> était rationnel, alors <code>y = (x+y) - x</code> serait rationnel (différence de deux rationnels), ce qui contredit <code>y ∈ R\Q</code>. Donc <code>x+y</code> est irrationnel.<br><br>
+<code>xy ∈ R\Q</code> : <strong>faux</strong> en général. Contre-exemple : <code>x = 0 ∈ Q</code>, <code>y = √2 ∈ R\Q</code>, alors <code>xy = 0 ∈ Q</code>. (C'est vrai si on suppose <code>x ≠ 0</code>, mais l'énoncé ne le précise pas.)
+</details>
+
+<p><strong>2.</strong> L'ensemble <code>{x ∈ R : 1 ≤ -2x+1 < 3}</code> est-il un intervalle ? Est-ce un segment ?</p>
+<details><summary>Réponse</summary>
+On résout : <code>1 ≤ -2x+1 < 3 ⟺ 0 ≤ -2x < 2</code>. En divisant par <code>-2</code> (on <strong>inverse les inégalités</strong> !) : <code>0 ≥ x > -1</code>, c'est-à-dire <code>x ∈ ]-1, 0]</code>.<br><br>
+C'est bien un <strong>intervalle</strong>. Mais ce n'est <strong>pas un segment</strong> : un segment est un intervalle <em>fermé et borné</em> <code>[a,b]</code>, or <code>]-1,0]</code> n'est pas fermé en <code>-1</code>.
+</details>
+
+<p><strong>3.</strong> Soit <code>x ∈ R</code> tel que <code>|x+2026| > 2026</code>. A-t-on <code>x > 0</code> ?</p>
+<details><summary>Réponse</summary>
+<strong>Faux.</strong> L'inégalité équivaut à <code>x+2026 > 2026</code> ou <code>x+2026 < -2026</code>, c'est-à-dire <code>x > 0</code> <strong>ou</strong> <code>x < -4052</code>. Contre-exemple : <code>x = -5000</code> vérifie <code>|x+2026| = |-2974| = 2974 > 2026</code>, mais <code>x < 0</code>.
+</details>
+
+<p><strong>4.</strong> Soient <code>x, y ∈ R</code> tels que <code>xy ≥ 0</code>. A-t-on <code>|x+y| = |x|+|y|</code> ?</p>
+<details><summary>Réponse</summary>
+<strong>Vrai.</strong> <code>xy ≥ 0</code> signifie que <code>x</code> et <code>y</code> sont de même signe (ou l'un des deux est nul). Si <code>x,y ≥ 0</code> : <code>x+y ≥ 0</code> donc <code>|x+y| = x+y = |x|+|y|</code>. Si <code>x,y ≤ 0</code> : <code>x+y ≤ 0</code> donc <code>|x+y| = -(x+y) = |x|+|y|</code>. Dans les deux cas, égalité.
+</details>
+
+<p><strong>5.</strong> Soient <code>A</code> et <code>B</code> deux parties de <code>R</code> telles que <code>A</code> est minorée, <code>B</code> est majorée et <code>A ⊂ B</code>. La partie <code>A</code> est-elle bornée ? La partie <code>B</code> est-elle bornée ?</p>
+<details><summary>Réponse</summary>
+<code>A</code> <strong>bornée : vrai.</strong> <code>A</code> est minorée par hypothèse. Comme <code>A ⊂ B</code> et <code>B</code> est majorée (par un certain <code>M</code>), tout élément de <code>A</code> est aussi <code>≤ M</code> : donc <code>A</code> est aussi majorée. Minorée + majorée = bornée.<br><br>
+<code>B</code> bornée : <strong>faux.</strong> Rien ne dit que <code>B</code> est minorée. Contre-exemple : <code>B = ]-∞, 5]</code> (majorée par 5, non minorée), <code>A = [0,1] ⊂ B</code> (bien minorée). <code>B</code> n'est pas bornée.
+</details>
+
+<p><strong>6.</strong> L'ensemble <code>{|x-1| : x ∈ R+}</code> est-il minoré ? Admet-il un plus petit élément ?</p>
+<details><summary>Réponse</summary>
+Quand <code>x</code> décrit <code>R+ = [0,+∞[</code>, <code>|x-1|</code> décrit <code>[0,+∞[</code> tout entier (la valeur 0 est atteinte en <code>x=1</code>, et <code>|x-1|</code> peut être arbitrairement grand). L'ensemble est donc <code>[0,+∞[</code>.<br><br>
+Il est <strong>minoré</strong> (par 0), et il <strong>admet un plus petit élément</strong> : <code>min = 0</code>, atteint en <code>x = 1</code>.
+</details>
+
+<p><strong>7.</strong> Soit <code>A</code> une partie non vide et majorée de <code>R</code> telle que <code>sup(A) > 0</code>. A-t-on <code>a > 0</code> pour tout <code>a ∈ A</code> ? Existe-t-il <code>a ∈ A</code> tel que <code>a > 0</code> ?</p>
+<details><summary>Réponse</summary>
+« <code>a &gt; 0</code> pour tout <code>a ∈ A</code> » : <strong>faux</strong>. Contre-exemple : <code>A = [-1,1]</code>, <code>sup(A) = 1 > 0</code>, mais <code>-1 ∈ A</code> n'est pas <code>&gt; 0</code>.<br><br>
+« Existe-t-il <code>a ∈ A</code> tel que <code>a &gt; 0</code> » : <strong>vrai</strong>. Par la caractérisation de la borne supérieure (Prop. 5, chapitre 1) appliquée à <code>y = 0 < sup(A)</code> : il existe <code>a ∈ A</code> tel que <code>a > 0</code>.
+</details>
+
+<p><strong>8.</strong> Soit <code>x ∈ R</code>. A-t-on <code>⌊2x⌋ = 2⌊x⌋</code> ?</p>
+<details><summary>Réponse</summary>
+<strong>Faux.</strong> Contre-exemple : <code>x = 0,6</code>. Alors <code>⌊x⌋ = 0</code> donc <code>2⌊x⌋ = 0</code>, mais <code>⌊2x⌋ = ⌊1,2⌋ = 1 ≠ 0</code>.
+</details>
+
+<h2>Exercice 2 — Est-ce un intervalle ?</h2>
+<p>Pour chacune des parties de <code>R</code> suivantes, détermine si c'est un intervalle.</p>
+<p>a) <code>]-∞,-2] ∪ R+</code> &nbsp; b) <code>[-1,1]∪]0,5]</code> &nbsp; c) <code>]-1,0[∪[0,1]</code> &nbsp; d) <code>[-10,-2]∩]-4,4[</code> &nbsp; e) <code>{x∈Q : x≥0}</code> &nbsp; f) <code>{x∈R : 1≤x²≤4}</code></p>
+<details><summary>Réponses</summary>
+<strong>a) Non.</strong> Il y a un « trou » entre <code>-2</code> et <code>0</code> : par exemple <code>-3</code> et <code>1</code> sont dans l'ensemble, mais <code>-1</code> (compris entre les deux) n'y est pas.<br><br>
+<strong>b) Oui.</strong> L'union vaut en fait <code>[-1,5]</code> : tout <code>x ∈ [-1,0]</code> est dans <code>[-1,1]</code>, tout <code>x ∈ ]0,5]</code> est dans le second ensemble.<br><br>
+<strong>c) Oui.</strong> L'union vaut <code>]-1,1]</code> (car <code>[0,1] = {0}∪]0,1]</code> recolle exactement avec <code>]-1,0[</code>).<br><br>
+<strong>d) Oui.</strong> Une intersection de deux intervalles est toujours un intervalle. Ici <code>[-10,-2]∩]-4,4[ = ]-4,-2]</code>.<br><br>
+<strong>e) Non.</strong> <code>0</code> et <code>2</code> sont dans l'ensemble, mais <code>√2</code> (compris entre les deux) n'y est pas car irrationnel.<br><br>
+<strong>f) Non.</strong> <code>1≤x²≤4 ⟺ |x|∈[1,2] ⟺ x∈[-2,-1]∪[1,2]</code>. <code>-1</code> et <code>1</code> sont dans l'ensemble, mais <code>0</code> (entre les deux) n'y est pas.
+</details>
+
+<h2>Exercice 3 — Minorée/majorée, min/max, inf/sup</h2>
+<p>Pour chaque partie : est-elle minorée ? majorée ? quels sont (s'ils existent) son plus petit élément, son plus grand élément, sa borne inférieure, sa borne supérieure ?</p>
+<p>a) <code>[-1,0[∪[1,2[</code> &nbsp; b) <code>{x∈R : |x|≤|x-2|}</code> &nbsp; c) <code>N</code> &nbsp; d) <code>{x∈R : x²+1≤10}</code> &nbsp; e) <code>{x∈Q : x²≤2}</code> &nbsp; f) <code>{1-1/n : n∈N*}</code></p>
+<details><summary>Réponses</summary>
+<strong>a)</strong> Minorée et majorée (bornée). <code>min = -1</code> (atteint), <code>inf = -1</code>. Pas de maximum (les valeurs s'approchent de 2 sans jamais l'atteindre) mais <code>sup = 2</code>.<br><br>
+<strong>b)</strong> <code>|x| ≤ |x-2| ⟺ x² ≤ (x-2)² ⟺ 0 ≤ -4x+4 ⟺ x ≤ 1</code>. L'ensemble est <code>]-∞,1]</code> : non minorée, majorée par 1. Pas de min, pas d'inf. <code>max = 1</code> (atteint, car <code>1≤1</code>), <code>sup = 1</code>.<br><br>
+<strong>c) N.</strong> Minorée (par 0), non majorée. <code>min = inf = 0</code>. Pas de max, pas de sup (borne supérieure infinie).<br><br>
+<strong>d)</strong> <code>x²+1≤10 ⟺ x²≤9 ⟺ x∈[-3,3]</code>. Bornée. <code>min=inf=-3</code>, <code>max=sup=3</code> (les deux atteints).<br><br>
+<strong>e)</strong> Ensemble des rationnels dans <code>[-√2,√2]</code>. Bornée (majorée par exemple par 2, minorée par -2). <code>sup = √2</code>, <code>inf = -√2</code> (bornes réelles, comme vu au chapitre 1) — mais <strong>ni max ni min</strong> : <code>√2</code> est irrationnel donc jamais atteint par un élément de l'ensemble, et par densité de <code>Q</code> on peut toujours trouver un rationnel plus proche de <code>√2</code>.<br><br>
+<strong>f)</strong> C'est exactement l'exemple du cours (chapitre 1, Exemple 9) : minorée et majorée. <code>min = inf = 0</code> (atteint en <code>n=1</code>). Pas de maximum, mais <code>sup = 1</code>.
+</details>
+
+<h2>Exercice 4 — Propriétés du sup/inf (rédaction complète)</h2>
+
+<p><strong>1.</strong> Soit <code>A</code> une partie non vide et majorée de <code>R</code>, et posons <code>-A = {-a : a∈A}</code>. Montrer que <code>-A</code> est non vide et minoré et que <code>inf(-A) = -sup(A)</code>.</p>
+<details><summary>Solution proposée</summary>
+<code>A</code> non vide ⇒ <code>-A</code> non vide (si <code>a∈A</code>, alors <code>-a∈-A</code>). Notons <code>M = sup(A)</code> (existe par le théorème R4, car A non vide majorée).<br><br>
+<strong>-M est un minorant de -A.</strong> Pour tout <code>a∈A</code>, <code>a ≤ M</code>, donc <code>-a ≥ -M</code> : tout élément de <code>-A</code> est <code>≥ -M</code>.<br><br>
+<strong>-M est le plus grand des minorants.</strong> Soit <code>m</code> un minorant quelconque de <code>-A</code> : <code>∀a∈A, -a ≥ m</code>, c'est-à-dire <code>∀a∈A, a ≤ -m</code>. Donc <code>-m</code> est un majorant de <code>A</code>, donc <code>-m ≥ M</code> (M est le <em>plus petit</em> des majorants), donc <code>m ≤ -M</code>.<br><br>
+<code>-M</code> est donc bien le plus grand des minorants de <code>-A</code> : <code>inf(-A) = -M = -sup(A)</code>. ∎
+</details>
+
+<p><strong>2.</strong> Soient <code>A</code> et <code>B</code> deux parties de <code>R</code> telles que <code>A</code> est non vide, <code>B</code> est majorée et <code>A ⊂ B</code>. Montrer que <code>A</code> est majorée et que <code>sup(A) ≤ sup(B)</code>.</p>
+<details><summary>Solution proposée</summary>
+<code>B</code> majorée, non vide (car <code>A⊂B</code> et <code>A</code> non vide), donc <code>M = sup(B)</code> existe. Comme <code>A⊂B</code>, tout élément de <code>A</code> est un élément de <code>B</code>, donc <code>≤ M</code> : <code>M</code> est un majorant de <code>A</code>, donc <code>A</code> est majorée.<br><br>
+<code>A</code> étant non vide et majorée, <code>sup(A)</code> existe, et comme <code>sup(A)</code> est le <em>plus petit</em> des majorants de <code>A</code> tandis que <code>M</code> en est <em>un</em>, on a <code>sup(A) ≤ M = sup(B)</code>. ∎
+</details>
+
+<p><strong>3.</strong> Soient <code>A</code> et <code>B</code> deux parties non vides et majorées de <code>R</code>. Montrer que <code>A∪B</code> est non vide et majoré et que <code>sup(A∪B) = max{sup(A),sup(B)}</code>.</p>
+<details><summary>Solution proposée</summary>
+<code>A∪B</code> non vide (car <code>A</code> l'est). Posons <code>M = max{sup(A), sup(B)}</code>. Pour <code>x∈A∪B</code> : si <code>x∈A</code>, <code>x≤sup(A)≤M</code> ; si <code>x∈B</code>, <code>x≤sup(B)≤M</code>. Donc <code>M</code> majore <code>A∪B</code>, qui est donc majoré, et <code>sup(A∪B) ≤ M</code>.<br><br>
+Pour l'égalité : supposons sans perte de généralité <code>sup(A) ≥ sup(B)</code>, donc <code>M = sup(A)</code>. Comme <code>A ⊂ A∪B</code>, la question 2 donne <code>sup(A) ≤ sup(A∪B)</code>, donc <code>M ≤ sup(A∪B)</code>.<br><br>
+Combiné à <code>sup(A∪B) ≤ M</code>, on obtient <code>sup(A∪B) = M = max{sup(A),sup(B)}</code>. ∎
+</details>
+
+<p><strong>4.</strong> Soient <code>A</code> et <code>B</code> deux parties non vides et majorées de <code>R</code> avec <code>A∩B ≠ ∅</code>. Démontrer que <code>sup(A∩B) ≤ min{sup(A),sup(B)}</code>. Cette inégalité peut-elle être stricte ?</p>
+<details><summary>Solution proposée</summary>
+<code>A∩B</code> est non vide (hypothèse), et <code>A∩B ⊂ A</code> et <code>A∩B ⊂ B</code>. Par la question 2 appliquée deux fois : <code>sup(A∩B) ≤ sup(A)</code> et <code>sup(A∩B) ≤ sup(B)</code>, donc <code>sup(A∩B) ≤ min{sup(A),sup(B)}</code>. ∎<br><br>
+<strong>Oui, l'inégalité peut être stricte.</strong> Exemple : <code>A = [0,1]∪{5}</code> (sup = 5), <code>B = [0,1]∪{3}</code> (sup = 3). Alors <code>A∩B = [0,1]</code>, donc <code>sup(A∩B) = 1 < 3 = min{sup(A),sup(B)}</code>.
+</details>
+
+<p><strong>5.</strong> Soient <code>A</code> et <code>B</code> deux parties non vides et majorées de <code>R</code>, et <code>A+B = {a+b : a∈A, b∈B}</code>. Montrer que <code>A+B</code> est non vide et majoré et que <code>sup(A+B) = sup(A)+sup(B)</code>.</p>
+<details><summary>Solution proposée</summary>
+<code>A+B</code> non vide (clair). Notons <code>α = sup(A)</code>, <code>β = sup(B)</code>. Pour tout <code>a∈A, b∈B</code> : <code>a≤α</code>, <code>b≤β</code>, donc <code>a+b ≤ α+β</code> : <code>A+B</code> est majoré par <code>α+β</code>, donc <code>sup(A+B) ≤ α+β</code>.<br><br>
+Pour l'inégalité inverse, utilisons la caractérisation de la borne sup (Prop. 5). Soit <code>y < α+β</code>. Posons <code>ε = α+β-y > 0</code>. Par caractérisation de <code>α = sup(A)</code>, il existe <code>a∈A</code> tel que <code>a > α - ε/2</code>. De même il existe <code>b∈B</code> tel que <code>b > β - ε/2</code>. Alors :
+<pre><code>a+b > α+β - ε = y</code></pre>
+et <code>a+b ∈ A+B</code>. On a donc trouvé, pour tout <code>y < α+β</code>, un élément de <code>A+B</code> strictement supérieur à <code>y</code> : par la caractérisation de la borne sup, <code>sup(A+B) = α+β</code>. ∎
+</details>
+
+<h2>Exercice 5 — Partie entière</h2>
+<p><strong>1.</strong> Détermine : a) <code>⌊0,7⌋</code>, b) <code>⌊2,3⌋</code>, c) <code>⌊-1⌋</code>, d) <code>⌊-1,9⌋</code>, e) <code>⌊-2,1⌋</code>.</p>
+<details><summary>Réponse</summary>
+a) 0 — b) 2 — c) -1 — d) -2 — e) -3.<br>
+⚠️ Piège classique : <code>⌊-1,9⌋ = -2</code> et pas <code>-1</code> : on arrondit toujours <strong>vers le bas</strong> (l'entier immédiatement inférieur), même pour les négatifs.
+</details>
+
+<p><strong>2.</strong> Soient <code>x,y ∈ R</code>. Montre que <code>⌊x⌋+⌊y⌋ ≤ ⌊x+y⌋ ≤ ⌊x⌋+⌊y⌋+1</code>.</p>
+<details><summary>Solution proposée</summary>
+Par définition, <code>⌊x⌋ ≤ x < ⌊x⌋+1</code> et <code>⌊y⌋ ≤ y < ⌊y⌋+1</code>. En additionnant :
+<pre><code>⌊x⌋+⌊y⌋ ≤ x+y < ⌊x⌋+⌊y⌋+2</code></pre>
+Notons <code>n = ⌊x⌋+⌊y⌋</code> (un entier). On a donc <code>n ≤ x+y < n+2</code>.<br><br>
+<strong>Première inégalité.</strong> <code>n</code> est un entier <code>≤ x+y</code>. Or <code>⌊x+y⌋</code> est le <em>plus grand</em> entier <code>≤ x+y</code>, donc <code>n ≤ ⌊x+y⌋</code>, c'est-à-dire <code>⌊x⌋+⌊y⌋ ≤ ⌊x+y⌋</code>.<br><br>
+<strong>Seconde inégalité.</strong> Si on avait <code>⌊x+y⌋ ≥ n+2</code>, on aurait <code>x+y ≥ ⌊x+y⌋ ≥ n+2</code>, ce qui contredit <code>x+y < n+2</code>. Donc <code>⌊x+y⌋ ≤ n+1 = ⌊x⌋+⌊y⌋+1</code>. ∎
+</details>
+
+<p><strong>3.</strong> Soit <code>x ∈ R</code>. Montre que <code>⌊x⌋ + ⌊x+1/2⌋ = ⌊2x⌋</code>.</p>
+<details><summary>Solution proposée</summary>
+Écrivons <code>x = ⌊x⌋ + f</code> où <code>f = x - ⌊x⌋ ∈ [0,1[</code> est la partie fractionnaire. Deux cas :<br><br>
+<strong>Cas 1 : <code>0 ≤ f &lt; 1/2</code>.</strong> Alors <code>f+1/2 ∈ [1/2, 1[</code>, donc <code>⌊x+1/2⌋ = ⌊x⌋</code>. À gauche : <code>⌊x⌋+⌊x+1/2⌋ = 2⌊x⌋</code>. À droite : <code>2x = 2⌊x⌋+2f</code> avec <code>2f ∈ [0,1[</code>, donc <code>⌊2x⌋ = 2⌊x⌋</code>. Égalité vérifiée.<br><br>
+<strong>Cas 2 : <code>1/2 ≤ f &lt; 1</code>.</strong> Alors <code>f+1/2 ∈ [1, 3/2[</code>, donc <code>⌊x+1/2⌋ = ⌊x⌋+1</code>. À gauche : <code>⌊x⌋+⌊x+1/2⌋ = 2⌊x⌋+1</code>. À droite : <code>2f ∈ [1,2[</code>, donc <code>⌊2x⌋ = 2⌊x⌋+1</code>. Égalité vérifiée aussi.<br><br>
+Dans les deux cas, <code>⌊x⌋+⌊x+1/2⌋ = ⌊2x⌋</code>. ∎
+</details>
+
+<h2>Exercice 6 — Un encadrement classique et son application</h2>
+<p><strong>1.</strong> Montre que <code>2(√(n+1)-√n) &lt; 1/√n &lt; 2(√n-√(n-1))</code> pour tout <code>n ∈ N*</code>.</p>
+<details><summary>Solution proposée</summary>
+L'astuce est de multiplier par la <strong>quantité conjuguée</strong>. Pour l'inégalité de droite :
+<pre><code>2(√n-√(n-1)) = 2(√n-√(n-1))(√n+√(n-1)) / (√n+√(n-1))
+             = 2(n-(n-1)) / (√n+√(n-1))
+             = 2 / (√n+√(n-1))</code></pre>
+Comme <code>√(n-1) &lt; √n</code>, on a <code>√n+√(n-1) &lt; 2√n</code>, donc :
+<pre><code>2/(√n+√(n-1)) > 2/(2√n) = 1/√n</code></pre>
+D'où <code>1/√n &lt; 2(√n-√(n-1))</code>.<br><br>
+De même pour l'inégalité de gauche : <code>2(√(n+1)-√n) = 2/(√(n+1)+√n)</code>, et comme <code>√(n+1) &gt; √n</code>, <code>√(n+1)+√n &gt; 2√n</code>, donc <code>2/(√(n+1)+√n) &lt; 2/(2√n) = 1/√n</code>. ∎
+</details>
+
+<p><strong>2.</strong> En déduire la valeur de <code>⌊1 + 1/√2 + ... + 1/√100⌋</code>.</p>
+<details><summary>Solution proposée</summary>
+Notons <code>S = Σ(k=1 à 100) 1/√k = 1 + Σ(k=2 à 100) 1/√k</code>. On applique l'encadrement de la question 1 pour <code>n = 2, ..., 100</code>, puis on somme (les sommes se <strong>télescopent</strong>) :<br><br>
+<strong>Majoration.</strong>
+<pre><code>Σ(n=2 à 100) 1/√n < Σ(n=2 à 100) 2(√n-√(n-1)) = 2(√100 - √1) = 2×9 = 18</code></pre>
+<strong>Minoration.</strong>
+<pre><code>Σ(n=2 à 100) 1/√n > Σ(n=2 à 100) 2(√(n+1)-√n) = 2(√101 - √2) ≈ 2(10,0499-1,4142) ≈ 17,271</code></pre>
+Donc <code>17,271 < Σ(k=2 à 100) 1/√k < 18</code>, et en ajoutant le premier terme (<code>k=1</code>, valeur 1) :
+<pre><code>18,271 < S < 19</code></pre>
+<code>S</code> est strictement compris entre <code>18,27</code> et <code>19</code>, donc <code>⌊S⌋ = 18</code>.
+</details>
+
+<div class="nav-links">
+  <a href="../02_Analyse/00_nombres_reels.html">← Cours : Les nombres réels</a>
+  <a href="exercices_analyse_feuille2.html">Suite : Feuille 2 (suites) →</a>
+</div>
+
+</div>
+</body>
+</html>
