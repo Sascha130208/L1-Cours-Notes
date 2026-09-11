@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Dérivée d'une fonction</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Analyse — Chapitre 5</span></div>
+<div class="page">
+
+<h1>📉 Chapitre 5 — Dérivée d'une fonction</h1>
+
+<p>Dernier chapitre du bloc « 5 premiers chapitres » : on formalise la dérivée, on apprend à dériver n'importe quelle fonction usuelle, puis on établit les grands théorèmes (Rolle, accroissements finis) qui relient le signe de la dérivée au comportement global de la fonction.</p>
+
+<h2>1️⃣ Dérivée en un point</h2>
+<div class="box info">
+<span class="box-title">📌 Définition 1 — Dérivabilité</span>
+<code>f</code> est <strong>dérivable en x₀</strong> si le taux d'accroissement <code>(f(x)-f(x₀))/(x-x₀)</code> a une limite finie quand <code>x → x₀</code>. Cette limite s'appelle le <strong>nombre dérivé</strong> <code>f'(x₀)</code> :
+<pre><code>f'(x₀) = lim(x→x₀) [f(x) - f(x₀)] / (x - x₀)
+       = lim(h→0)  [f(x₀+h) - f(x₀)] / h</code></pre>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Interprétation géométrique — la tangente</span>
+<code>f'(x₀)</code> est le coefficient directeur de la <strong>tangente</strong> au graphe de <code>f</code> au point <code>(x₀, f(x₀))</code>. Équation de la tangente : <code>y = (x-x₀)f'(x₀) + f(x₀)</code>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 1 — Écriture avec un développement</span>
+<code>f</code> est dérivable en <code>x₀</code> ssi il existe <code>ℓ ∈ R</code> et une fonction <code>ε</code> avec <code>ε(x) → 0</code> quand <code>x → x₀</code>, telles que <code>f(x) = f(x₀) + (x-x₀)ℓ + (x-x₀)ε(x)</code>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 2 — Dérivable ⇒ continue</span>
+Si <code>f</code> est dérivable en <code>x₀</code>, alors <code>f</code> est continue en <code>x₀</code>.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ La réciproque est fausse !</span>
+<code>f(x) = |x|</code> est continue en 0 mais pas dérivable en 0 : le taux d'accroissement vaut <code>+1</code> à droite et <code>-1</code> à gauche — deux « demi-tangentes » de directions différentes, pas de tangente unique.
+</div>
+
+<h2>2️⃣ Calcul des dérivées</h2>
+<div class="box info">
+<span class="box-title">📌 Proposition 3 — Opérations</span>
+<pre><code>(f+g)' = f'+g'          (λf)' = λf'          (f×g)' = f'g + fg'
+(1/f)' = -f'/f²  (f(x)≠0)      (f/g)' = (f'g - fg')/g²  (g(x)≠0)</code></pre>
+</div>
+
+<h3>Formulaire des dérivées usuelles</h3>
+<table>
+<tr><th>Fonction</th><th>Dérivée</th><th>Composée <code>u(x)</code></th><th>Dérivée de la composée</th></tr>
+<tr><td><code>xⁿ</code></td><td><code>nx^(n-1)</code></td><td><code>uⁿ</code></td><td><code>nu'u^(n-1)</code></td></tr>
+<tr><td><code>1/x</code></td><td><code>-1/x²</code></td><td><code>1/u</code></td><td><code>-u'/u²</code></td></tr>
+<tr><td><code>√x</code></td><td><code>1/(2√x)</code></td><td><code>√u</code></td><td><code>u'/(2√u)</code></td></tr>
+<tr><td><code>xᵃ</code></td><td><code>ax^(a-1)</code></td><td><code>uᵃ</code></td><td><code>au'u^(a-1)</code></td></tr>
+<tr><td><code>eˣ</code></td><td><code>eˣ</code></td><td><code>eᵘ</code></td><td><code>u'eᵘ</code></td></tr>
+<tr><td><code>ln x</code></td><td><code>1/x</code></td><td><code>ln u</code></td><td><code>u'/u</code></td></tr>
+<tr><td><code>cos x</code></td><td><code>-sin x</code></td><td><code>cos u</code></td><td><code>-u'sin u</code></td></tr>
+<tr><td><code>sin x</code></td><td><code>cos x</code></td><td><code>sin u</code></td><td><code>u'cos u</code></td></tr>
+<tr><td><code>tan x</code></td><td><code>1+tan²x = 1/cos²x</code></td><td><code>tan u</code></td><td><code>u'(1+tan²u)</code></td></tr>
+</table>
+<div class="box tip">
+<span class="box-title">💡 Astuce mémo</span>
+Toutes les formules pour <code>xⁿ</code>, <code>1/x</code>, <code>√x</code>, <code>xᵃ</code> découlent en fait d'une seule : <code>xᵃ = e^(a ln x)</code>, dérivée par composition. Si tu dois dériver une fonction avec un <strong>exposant variable</strong> (ex. <code>2ˣ</code>), repasse toujours par la forme exponentielle : <code>2ˣ = e^(x ln 2)</code>, donc <code>(2ˣ)' = ln(2)·2ˣ</code>.
+</div>
+
+<h3>Dérivée d'une composée</h3>
+<div class="box info">
+<span class="box-title">📌 Proposition 4</span>
+Si <code>f</code> dérivable en <code>x</code> et <code>g</code> dérivable en <code>f(x)</code>, alors <code>g∘f</code> est dérivable en <code>x</code> :
+<pre><code>(g∘f)'(x) = g'(f(x)) · f'(x)</code></pre>
+</div>
+
+<h3>Dérivée de la bijection réciproque</h3>
+<div class="box info">
+<span class="box-title">📌 Corollaire 1</span>
+Si <code>f : I → J</code> est dérivable et bijective, et <code>f'</code> ne s'annule pas, alors <code>f⁻¹</code> est dérivable et :
+<pre><code>(f⁻¹)'(x) = 1 / f'(f⁻¹(x))</code></pre>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Méthode pour retrouver la formule sans l'apprendre par cœur</span>
+Pars de <code>f(g(x)) = x</code> (avec <code>g = f⁻¹</code>), dérive les deux côtés (composée à gauche) : <code>f'(g(x))·g'(x) = 1</code>, donc <code>g'(x) = 1/f'(g(x))</code>. C'est exactement la méthode déjà utilisée au chapitre 4 pour dériver arccos, arcsin, arctan.
+</div>
+
+<h3>Dérivées successives</h3>
+<div class="box info">
+<span class="box-title">📌 Définition — f⁽ⁿ⁾</span>
+<code>f⁽⁰⁾=f</code>, <code>f⁽¹⁾=f'</code>, <code>f⁽²⁾=f''</code>, et <code>f⁽ⁿ⁺¹⁾ = (f⁽ⁿ⁾)'</code>. Si <code>f⁽ⁿ⁾</code> existe, <code>f</code> est dite <strong>n fois dérivable</strong>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 1 — Formule de Leibniz</span>
+<code>(f·g)⁽ⁿ⁾ = Σ(k=0 à n) C(n,k) f⁽ⁿ⁻ᵏ⁾ · g⁽ᵏ⁾</code>
+</div>
+<div class="box tip">
+<span class="box-title">💡 C'est le binôme de Newton, en version dérivées</span>
+Mêmes coefficients binomiaux <code>C(n,k)</code>. Pour <code>n=1</code> : on retrouve <code>(fg)' = f'g+fg'</code>. Utile quand l'une des deux fonctions a des dérivées qui s'annulent au bout d'un moment (comme un polynôme).
+</div>
+
+<h2>3️⃣ Extremum local, théorème de Rolle</h2>
+<div class="box info">
+<span class="box-title">📌 Définition 3</span>
+<code>x₀</code> est un <strong>point critique</strong> si <code>f'(x₀)=0</code>. <code>f</code> a un <strong>maximum local</strong> en <code>x₀</code> s'il existe un intervalle <code>J</code> contenant <code>x₀</code> tel que <code>f(x) ≤ f(x₀)</code> pour tout <code>x</code> proche. Idem minimum local (avec ≥). <strong>Extremum</strong> = maximum ou minimum local.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 2</span>
+Si <code>f</code> dérivable sur un <strong>intervalle ouvert</strong> et admet un extremum local en <code>x₀</code>, alors <code>f'(x₀) = 0</code>.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Deux pièges classiques</span>
+<ol>
+<li><strong>La réciproque est fausse</strong> : <code>f(x)=x³</code> vérifie <code>f'(0)=0</code> mais 0 n'est ni un max ni un min local (point d'inflexion). Point critique ⇏ extremum.</li>
+<li><strong>L'intervalle doit être ouvert.</strong> Sur <code>[a,b]</code>, un extremum peut se trouver <strong>aux bords</strong> sans que la dérivée s'y annule — il faut toujours comparer les valeurs aux points critiques <em>et</em> aux extrémités a, b.</li>
+</ol>
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 3 — Théorème de Rolle</span>
+Si <code>f</code> est continue sur <code>[a,b]</code>, dérivable sur <code>]a,b[</code>, et <code>f(a) = f(b)</code>, alors <strong>il existe c ∈ ]a,b[ tel que f'(c) = 0</strong>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Interprétation géométrique</span>
+Si une courbe part et revient à la même hauteur, il y a forcément un point où la tangente est horizontale.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Application — les racines de P et P'</span>
+Si <code>P</code> a <code>n</code> racines réelles distinctes <code>α₁ &lt; ... &lt; αₙ</code>, alors <code>P'</code> a au moins <code>n-1</code> racines réelles distinctes (une entre chaque paire de racines consécutives de <code>P</code>, par Rolle appliqué <code>n-1</code> fois).
+</div>
+
+<h2>4️⃣ Théorème des accroissements finis (TAF)</h2>
+<div class="box info">
+<span class="box-title">📌 Théorème 4 — TAF</span>
+Si <code>f</code> continue sur <code>[a,b]</code>, dérivable sur <code>]a,b[</code>, alors il existe <code>c ∈ ]a,b[</code> tel que :
+<pre><code>f(b) - f(a) = f'(c) · (b - a)</code></pre>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Rolle est un cas particulier du TAF</span>
+Le TAF généralise Rolle (qui correspond au cas <code>f(a)=f(b)</code>). Géométriquement : il existe un point où la tangente est <strong>parallèle à la corde</strong> (AB).
+</div>
+
+<h3>Lien croissance / signe de la dérivée</h3>
+<div class="box info">
+<span class="box-title">📌 Corollaire 2 — À connaître par cœur</span>
+Pour <code>f</code> continue sur <code>[a,b]</code>, dérivable sur <code>]a,b[</code> :
+<ul>
+<li><code>f' ≥ 0 sur ]a,b[ ⟺ f croissante</code></li>
+<li><code>f' ≤ 0 sur ]a,b[ ⟺ f décroissante</code></li>
+<li><code>f' = 0 sur ]a,b[ ⟺ f constante</code></li>
+<li><code>f' &gt; 0 sur ]a,b[ ⟹ f strictement croissante</code> (implication seule, pas équivalence !)</li>
+</ul>
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ La réciproque de "f' > 0 ⇒ strict." est fausse</span>
+<code>f(x) = x³</code> est strictement croissante sur R, pourtant <code>f'(0) = 0</code>. Une dérivée positive suffit pour la stricte croissance, mais n'est pas nécessaire (elle peut s'annuler en des points isolés).
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Corollaire 3 — Inégalité des accroissements finis (IAF)</span>
+Si <code>|f'(x)| ≤ M</code> pour tout <code>x ∈ I</code>, alors <code>∀x,y ∈ I, |f(x) - f(y)| ≤ M|x-y|</code>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Exemple emblématique</span>
+Pour <code>f = sin</code>, <code>|f'| = |cos| ≤ 1</code>, donc <code>|sin x - sin y| ≤ |x-y|</code> pour tous <code>x,y</code>. En particulier avec <code>y=0</code> : <code>|sin x| ≤ |x|</code> — une inégalité omniprésente pour majorer des expressions contenant sin près de 0 (théorème des gendarmes).
+</div>
+
+<h3>Règle de l'Hospital</h3>
+<div class="box info">
+<span class="box-title">📌 Corollaire 4 — Règle de l'Hospital</span>
+Si <code>f(x₀)=g(x₀)=0</code>, <code>g'</code> ne s'annule pas près de <code>x₀</code> (sauf en x₀), et <code>lim(x→x₀) f'(x)/g'(x) = ℓ</code>, alors <code>lim(x→x₀) f(x)/g(x) = ℓ</code>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Pour lever une forme indéterminée 0/0</span>
+C'est l'outil réflexe pour calculer une limite du type <code>0/0</code> : on dérive séparément le numérateur et le dénominateur. Exemple : <code>lim(x→1) ln(x²+x-1)/ln(x) = lim (2x+1)/(x²+x-1) × x = 3</code>.
+</div>
+
+<h2>📊 Récapitulatif — la chaîne logique du chapitre</h2>
+<table>
+<tr><th>Résultat</th><th>Ce qu'il donne</th></tr>
+<tr><td>Théorème de Rolle</td><td>Existence d'un point critique entre deux valeurs égales</td></tr>
+<tr><td>TAF</td><td>Généralise Rolle : lien entre f(b)-f(a) et une valeur de f'</td></tr>
+<tr><td>Corollaire (signe de f')</td><td>Traduit le TAF en sens de variation — l'outil le plus utilisé en pratique</td></tr>
+<tr><td>IAF</td><td>Majore |f(x)-f(y)| quand f' est bornée</td></tr>
+<tr><td>Règle de l'Hospital</td><td>Calcule des limites de type 0/0 via les dérivées</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="03_fonctions_usuelles.html">← Fonctions usuelles</a>
+  <span></span>
+</div>
+
+</div>
+</body>
+</html>

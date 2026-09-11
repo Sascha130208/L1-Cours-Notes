@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Introduction à la théorie des graphes</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Graphes (cours L2, Fabien Durand)</span></div>
+<div class="page">
+
+<span class="chip">🎓 Cours de L2</span>
+<h1>🕸️ Théorie des graphes — Définitions, arbres, coloriage</h1>
+
+<div class="box warn">
+<span class="box-title">⚠️ Ce chapitre est un cours de L2, pas de L1</span>
+Contrairement au reste du site, ce polycopié (Fabien Durand, Amiens) est destiné à la <strong>deuxième année</strong>. Il est classé ici parce que tu l'étudies en avance. Ne t'inquiète pas si certaines notations (ensembles, relations) demandent de relire le chapitre <a href="../01_Structures_Fondamentales/05_notion_ensemble.html">Notion d'ensemble</a>.
+</div>
+
+<h2>🌉 Le problème historique : les ponts de Königsberg</h2>
+<div class="box tip">
+<span class="box-title">💡 D'où viennent les graphes ?</span>
+Au XVIIIe siècle, les habitants de Königsberg voulaient se promener en traversant chacun des <strong>sept ponts</strong> de la ville une seule fois. Euler a montré qu'une telle promenade n'existe pas, en modélisant la ville par un <strong>graphe</strong> : les rives et les îles deviennent des sommets, les ponts deviennent des arêtes. C'est l'acte de naissance de la théorie des graphes.
+</div>
+
+<h2>1️⃣ Graphes orientés</h2>
+<div class="box info">
+<span class="box-title">📌 Définition 1 — Graphe orienté</span>
+Un graphe orienté est un couple <code>G = (S, A)</code> où <code>S</code> est l'ensemble des <strong>sommets</strong>, et <code>A ⊂ S×S</code> est l'ensemble des <strong>arcs</strong>. Pour un arc <code>a = (x,y)</code> :
+<ul>
+<li><code>x</code> et <code>y</code> sont les <strong>extrémités</strong> de <code>a</code> ; <code>x</code> l'<strong>origine</strong>, <code>y</code> la <strong>fin</strong> ;</li>
+<li><code>y</code> est un <strong>successeur</strong> de <code>x</code>, <code>x</code> un <strong>prédécesseur</strong> de <code>y</code> ;</li>
+<li si <code>x = y</code>, <code>a</code> est appelé une <strong>boucle</strong>.</li>
+</ul>
+</div>
+<div class="box info">
+<span class="box-title">📌 Degrés</span>
+<code>d⁺(x)</code> = <strong>degré sortant</strong> (nombre d'arcs d'origine x) ; <code>d⁻(x)</code> = <strong>degré entrant</strong> (nombre d'arcs de fin x) ; <code>d(x) = d⁺(x) + d⁻(x)</code>. <strong>Ordre</strong> de G = <code>Card(S)</code> (nb de sommets), <strong>taille</strong> = <code>Card(A)</code> (nb d'arcs).
+</div>
+<p>La <strong>représentation sagittale</strong> dessine les sommets comme des points et les arcs comme des flèches. La <strong>matrice d'adjacence</strong> <code>M</code> (d'ordre n, sommets numérotés 1 à n) a pour coefficient <code>M_(x,y)</code> le nombre de flèches allant de x à y.</p>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 4 — Lemme des poignées de mains</span>
+Pour un graphe orienté de taille m : <code>Σ d⁺(x) = Σ d⁻(x) = m</code> et <code>Σ d(x) = 2m</code>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration</span>
+Chaque arc <code>(x,y)</code> est compté exactement une fois dans <code>d⁺(x)</code> (et dans aucun autre <code>d⁺</code>), donc la somme des <code>d⁺</code> vaut le nombre total d'arcs m. Même argument pour <code>d⁻</code>. En additionnant, <code>Σd(x) = Σd⁺(x) + Σd⁻(x) = 2m</code>.
+</div>
+
+<h2>2️⃣ Graphes non orientés</h2>
+<div class="box info">
+<span class="box-title">📌 Définition 8</span>
+Un graphe non orienté est <code>G = (S,A)</code> où <code>A</code> est un ensemble de parties de <code>S</code> à 1 ou 2 éléments (les <strong>arêtes</strong>). Le degré d'un sommet compte les arêtes incidentes (une boucle <code>{x}</code> compte double).
+</div>
+<div class="box info">
+<span class="box-title">📌 Matrice d'adjacence (non orienté)</span>
+Elle est <strong>symétrique</strong> (<code>M = ᵗM</code>) : c'est ce qui la distingue de la matrice orientée, qui n'a aucune raison d'être symétrique.
+</div>
+
+<h3>Propriétés d'une relation sur un graphe</h3>
+<div class="box info">
+<span class="box-title">📌 Définition 5 — Réflexif, symétrique, antisymétrique, transitif</span>
+Un graphe orienté est : <strong>réflexif</strong> si tout sommet a une boucle ; <strong>symétrique</strong> si <code>(x,y) ∈ A ⟺ (y,x) ∈ A</code> ; <strong>antisymétrique</strong> si <code>(x,y),(y,x) ∈ A ⇒ x=y</code> ; <strong>transitif</strong> si <code>(x,y),(y,z) ∈ A ⇒ (x,z) ∈ A</code>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Lecture directe sur la matrice</span>
+Réflexif : diagonale de M pleine de 1. Symétrique : <code>M = ᵗM</code>. Transitif : <code>M_(x,y)=1</code> et <code>M_(y,z)=1</code> impliquent <code>M_(x,z)=1</code>.
+</div>
+
+<h2>3️⃣ Notions communes : réguliers, complets, bipartis</h2>
+<div class="box info">
+<span class="box-title">📌 Définitions</span>
+<ul>
+<li><strong>Régulier</strong> : tous les sommets ont le même degré (<code>r</code>-régulier si ce degré vaut r). <strong>Théorème 15</strong> : un graphe r-régulier à n sommets a <code>nr/2</code> arêtes.</li>
+<li><strong>Graphe complet</strong> <code>Kₙ</code> : n sommets, toutes les arêtes possibles présentes.</li>
+<li><strong>Biparti</strong> : les sommets se partitionnent en <code>S₁ ∪ S₂</code> tel que chaque arête a une extrémité dans chaque partie. <strong>Biparti complet</strong> <code>K_(n,m)</code> : toutes les arêtes entre les deux parties.</li>
+<li><strong>Graphe partiel</strong> : on retire des arêtes/arcs (mêmes sommets). <strong>Sous-graphe</strong> : on retire des sommets (et les arêtes incidentes).</li>
+<li><strong>Clique</strong> : sous-graphe complet. <strong>Stable</strong> : sous-graphe sans arête.</li>
+</ul>
+</div>
+
+<h2>4️⃣ Chemins, connexité, arbres</h2>
+<div class="box info">
+<span class="box-title">📌 Définition 20 — Chemin</span>
+Un chemin est une liste de sommets <code>(x₀,...,xₖ)</code> reliés successivement par un arc/arête. <strong>Longueur</strong> = nombre d'arcs/arêtes. <strong>Simple</strong> = tous les arcs différents. <strong>Élémentaire</strong> = tous les sommets différents (sauf peut-être début=fin). <strong>Circuit</strong> (orienté) / <strong>cycle</strong> (non orienté) = chemin fermé (retour au départ).
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 21 — Lemme de König</span>
+S'il existe un chemin entre deux sommets distincts, il en existe un <strong>élémentaire</strong>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Idée</span>
+Si le chemin repasse deux fois par le même sommet, on supprime la boucle formée entre les deux passages — on raccourcit jusqu'à ce qu'il soit élémentaire.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 22 — Compter les chemins via la matrice</span>
+Si <code>A</code> est la matrice d'adjacence de G, le coefficient <code>(Aᵏ)ᵢⱼ</code> est le <strong>nombre de chemins de longueur k</strong> du sommet i au sommet j.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 23 — Connexité</span>
+<code>G</code> est <strong>connexe</strong> (non orienté) ou <strong>fortement connexe</strong> (orienté) si pour toute paire de sommets <code>(x,y)</code> il existe un chemin de x vers y.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 24 — Test de connexité par matrice</span>
+Avec <code>B = A + A² + ... + A^(n-1)</code> : <code>G</code> est connexe ⟺ tous les coefficients non diagonaux de B sont strictement positifs.
+</div>
+
+<h3>Arbres</h3>
+<div class="box info">
+<span class="box-title">📌 Définitions 25-27</span>
+Un <strong>arbre</strong> est un graphe non orienté <strong>connexe sans cycle</strong>. Une <strong>feuille</strong> est un sommet de degré 1 (autre que la racine s'il y en a une) ; un <strong>nœud</strong> n'est ni racine ni feuille.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 29</span>
+Dans un arbre à k sommets : (1) deux sommets sont reliés par <strong>exactement un</strong> chemin simple ; (2) l'arbre a exactement <code>k-1</code> arêtes.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 30</span>
+<code>G</code> est un arbre <strong>si et seulement si</strong> il existe un unique chemin élémentaire entre deux sommets quelconques de G.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 31 — Formule de Cayley</span>
+Il y a <code>n^(n-2)</code> arbres différents à n sommets étiquetés de 1 à n.
+</div>
+<div class="box tip">
+<span class="box-title">💡 D'où vient cette formule</span>
+Cayley se démontre via une bijection entre les arbres à n sommets et les <code>(n-2)</code>-uplets d'entiers entre 1 et n (le <strong>code de Prüfer</strong>) : on répète « retirer la feuille de plus petite étiquette, noter l'étiquette de son unique voisin » jusqu'à ce qu'il ne reste que 2 sommets. Cette suite de n-2 valeurs caractérise entièrement l'arbre, et la construction est réversible.
+</div>
+
+<h3>Isomorphisme de graphes</h3>
+<div class="box info">
+<span class="box-title">📌 Définition 33</span>
+<code>G=(V,A)</code> et <code>H=(W,F)</code> sont <strong>isomorphes</strong> s'il existe une bijection <code>Φ : V → W</code> telle que <code>{x,y}</code> (ou <code>(x,y)</code>) est une arête/arc de G ssi <code>{Φ(x),Φ(y)}</code> l'est dans H.
+</div>
+<div class="box tip">
+<span class="box-title">💡 En pratique</span>
+Deux graphes isomorphes sont « le même graphe » à un renommage des sommets près, même si leurs représentations sagittales semblent très différentes. Pour le montrer : trouver une bijection qui respecte les degrés et les connexions ; pour le réfuter : trouver un invariant qui diffère (nombre de sommets, distribution des degrés, nombre de cycles...).
+</div>
+
+<h2>5️⃣ Le problème du coloriage</h2>
+<div class="box info">
+<span class="box-title">📌 Définition 34 — Coloriage, nombre chromatique</span>
+Un <strong>coloriage</strong> est une application <code>c : V → Σ</code>. Il est <strong>propre</strong> si deux sommets voisins ont des couleurs différentes. G est <strong>k-coloriable</strong> s'il existe un coloriage propre à k couleurs. Le <strong>nombre chromatique</strong> <code>χ(G)</code> est le plus petit k possible.
+</div>
+<div class="box info">
+<span class="box-title">📌 Lemme 35 — Faits utiles</span>
+<ul>
+<li>Un graphe avec des boucles n'est pas coloriable proprement.</li>
+<li><code>χ</code> d'une clique d'ordre k = k ; <code>χ(Kₙ) = n</code>.</li>
+<li>Sous-graphe : <code>χ(G') ≤ χ(G)</code>.</li>
+<li><strong>G est biparti ⟺ G est 2-coloriable.</strong></li>
+</ul>
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 36 & Théorème 37 (Brooks, 1941)</span>
+<code>χ(G) ≤ Δ(G) + 1</code> (Δ = degré maximum). Et si G est connexe, pas complet, pas un cycle impair : <code>χ(G) ≤ Δ(G)</code> (admis).
+</div>
+
+<h3>Polynôme chromatique</h3>
+<div class="box info">
+<span class="box-title">📌 Théorème 38</span>
+Pour un graphe simple à n sommets et m arêtes, <code>P_G(k)</code> (nombre de coloriages propres avec k couleurs disponibles) est un polynôme <strong>unitaire de degré n</strong>, dont le coefficient de degré <code>n-1</code> vaut <code>-m</code>.
+</div>
+<p>Exemples : n sommets sans arête → <code>P_G(k) = kⁿ</code> ; un chemin à 3 sommets → <code>k(k-1)²</code> ; un triangle → <code>k(k-1)(k-2)</code> ; <code>Kₙ</code> → <code>k(k-1)...(k-n+1)</code>.</p>
+
+<h3>Algorithmes de coloriage</h3>
+<div class="box tip">
+<span class="box-title">💡 Algorithme glouton</span>
+Parcourir les sommets un par un, attribuer à chacun la plus petite couleur non utilisée par ses voisins déjà coloriés. <strong>Toujours propre</strong>, mais <strong>pas forcément optimal</strong> : ça dépend de l'ordre des sommets (Proposition 40 : il existe toujours un ordre qui rend le glouton optimal, mais il y a n! ordres possibles à essayer).
+</div>
+<div class="box tip">
+<span class="box-title">💡 Algorithme de Welsh-Powell</span>
+Amélioration pratique du glouton : trier d'abord les sommets par degré <strong>décroissant</strong>, puis appliquer une variante du glouton qui colorie en priorité tous les sommets compatibles avec la couleur courante. Meilleur en pratique, mais toujours pas garanti optimal en général.
+</div>
+
+<h2>📊 Récapitulatif</h2>
+<table>
+<tr><th>Notion</th><th>Point clé</th></tr>
+<tr><td>Lemme des poignées de main</td><td>Σ degrés = 2 × nombre d'arêtes</td></tr>
+<tr><td>Arbre à n sommets</td><td>Connexe + sans cycle ⟺ exactement n-1 arêtes ⟺ chemin élémentaire unique entre 2 sommets</td></tr>
+<tr><td>Formule de Cayley</td><td>n^(n-2) arbres étiquetés à n sommets</td></tr>
+<tr><td>G biparti</td><td>⟺ 2-coloriable</td></tr>
+<tr><td>χ(G)</td><td>≤ Δ(G)+1 toujours ; ≤ Δ(G) sauf complet/cycle impair (Brooks)</td></tr>
+</table>
+
+<div class="nav-links">
+  <span></span>
+  <span></span>
+</div>
+
+</div>
+</body>
+</html>
