@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Les nombres réels</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Analyse — Chapitre 1</span></div>
+<div class="page">
+
+<h1>🔢 Chapitre 1 — Les nombres réels</h1>
+
+<p>Ce chapitre pose les fondations de tout le cours d'analyse : qu'est-ce qu'un nombre réel, comment le manipuler (ordre, valeur absolue, partie entière), et la notion-clé de <strong>borne supérieure</strong> qui remplace le maximum quand celui-ci n'existe pas.</p>
+
+<h2>❓ Pourquoi ce chapitre</h2>
+<div class="box tip">
+<span class="box-title">💡 Le fil rouge du cours</span>
+Deux exemples très simples guident tout le chapitre : les nombres <code>√10</code> et <code>1,10^(1/12)</code>. On va apprendre à montrer que <code>√10</code> n'est pas rationnel, puis à l'encadrer entre deux entiers consécutifs — les outils qu'on construit ici (suites, limites, fonctions continues) serviront ensuite à en calculer des centaines de décimales.
+</div>
+
+<h2>1️⃣ L'ensemble des rationnels Q</h2>
+<div class="box info">
+<span class="box-title">📌 Définition — Nombres rationnels</span>
+<code>Q = { p/q | p ∈ Z, q ∈ N* }</code>
+</div>
+<p>Les nombres décimaux (de la forme <code>a/10ⁿ</code> avec <code>a ∈ Z</code>, <code>n ∈ N</code>) sont des exemples de rationnels.</p>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 1</span>
+Un nombre est rationnel <strong>si et seulement s'il</strong> admet une écriture décimale périodique ou finie.
+</div>
+<p>Exemple : <code>3/5 = 0,6</code> (finie), <code>1/3 = 0,333...</code> (périodique).</p>
+
+<h3>√2 n'est pas rationnel</h3>
+<div class="box info">
+<span class="box-title">📌 Proposition 2</span>
+<code>√2 ∉ Q</code>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration (par l'absurde) — à connaître par cœur</span>
+Supposons par l'absurde que <code>√2 ∈ Q</code>. Alors il existe <code>p ∈ Z</code>, <code>q ∈ N*</code> <strong>premiers entre eux</strong> (fraction irréductible) tels que <code>√2 = p/q</code>.<br><br>
+En élevant au carré : <code>2q² = p²</code>. Donc <code>p²</code> est pair, donc <code>p</code> est pair (si p était impair, p² serait impair). On écrit <code>p = 2p'</code>.<br><br>
+En remplaçant : <code>2q² = 4p'²</code>, donc <code>q² = 2p'²</code>. Donc <code>q</code> est pair aussi, par le même argument.<br><br>
+Mais alors <code>p</code> et <code>q</code> sont <strong>tous les deux pairs</strong>, ce qui contredit le fait qu'ils sont premiers entre eux. <strong>Contradiction</strong>, donc <code>√2 ∉ Q</code>.
+</div>
+<p>Les irrationnels apparaissent naturellement en géométrie : la diagonale d'un carré de côté 1 vaut <code>√2</code> ; la circonférence d'un cercle de rayon 1/2 vaut <code>π</code> (irrationnel aussi) ; <code>e = exp(1)</code> également.</p>
+
+<h2>2️⃣ Propriétés de R</h2>
+
+<div class="box info">
+<span class="box-title">📌 Propriété (R1)</span>
+<code>(R, +, ×)</code> est un <strong>corps commutatif</strong> : addition et multiplication usuelles, commutatives, associatives, distributives, avec neutres 0 et 1, opposé et inverse (pour <code>a ≠ 0</code>).
+</div>
+
+<h3>Relation d'ordre</h3>
+<div class="box info">
+<span class="box-title">📌 Définitions — relation d'ordre</span>
+Une relation <code>R</code> sur un ensemble <code>E</code> est une <strong>relation d'ordre</strong> si elle est :
+<ul>
+<li><strong>réflexive</strong> : <code>∀x, xRx</code> ;</li>
+<li><strong>antisymétrique</strong> : <code>(xRy et yRx) ⇒ x = y</code> ;</li>
+<li><strong>transitive</strong> : <code>(xRy et yRz) ⇒ xRz</code>.</li>
+</ul>
+Elle est <strong>totale</strong> si de plus <code>∀x, y ∈ E</code>, on a <code>xRy</code> ou <code>yRx</code> (deux éléments sont toujours comparables).
+</div>
+<div class="box info">
+<span class="box-title">📌 Propriété (R2)</span>
+La relation <code>≤</code> sur <code>R</code> est une relation d'ordre, et elle est totale. Les opérations sont compatibles avec l'ordre : <code>a ≤ b et c ≤ d ⇒ a+c ≤ b+d</code>, <code>a ≤ b et c ≥ 0 ⇒ ac ≤ bc</code>, <code>a ≤ b et c ≤ 0 ⇒ ac ≥ bc</code> (⚠️ on inverse le sens quand on multiplie par un négatif).
+</div>
+
+<h3>Propriété d'Archimède</h3>
+<div class="box info">
+<span class="box-title">📌 Propriété (R3) — Archimède</span>
+<code>R</code> est archimédien : <code>∀x ∈ R, ∃n ∈ N, n > x</code>. Autrement dit, aucun réel n'est « plus grand que tous les entiers ».
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 3 — Partie entière</span>
+Soit <code>x ∈ R</code>. Il existe un <strong>unique</strong> entier relatif, noté <code>E(x)</code> (ou <code>⌊x⌋</code>), tel que <code>E(x) ≤ x < E(x) + 1</code>.
+</div>
+<p><strong>Exemple 1.</strong> <code>E(2,853) = 2</code>, <code>E(π) = 3</code>, <code>E(-3,5) = -4</code> (⚠️ pas -3 ! on arrondit toujours <em>vers le bas</em>).</p>
+<p><strong>Exemple 2 — encadrement.</strong> <code>3² = 9 < 10 < 16 = 4²</code> donc <code>3 < √10 < 4</code>, donc <code>E(√10) = 3</code>.</p>
+
+<h3>Valeur absolue</h3>
+<div class="box info">
+<span class="box-title">📌 Définition — Valeur absolue</span>
+<code>|x| = x</code> si <code>x ≥ 0</code>, <code>|x| = -x</code> si <code>x < 0</code>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 4</span>
+<ol>
+<li><code>|x| ≥ 0</code> ; <code>|-x| = |x|</code> ; <code>|x| > 0 ⟺ x ≠ 0</code></li>
+<li><code>√(x²) = |x|</code></li>
+<li><code>|xy| = |x||y|</code></li>
+<li><strong>Inégalité triangulaire</strong> : <code>|x + y| ≤ |x| + |y|</code></li>
+<li><strong>Seconde inégalité triangulaire</strong> : <code>||x| - |y|| ≤ |x - y|</code></li>
+</ol>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Interprétation géométrique</span>
+<code>|x - y|</code> représente la <strong>distance</strong> entre <code>x</code> et <code>y</code> sur la droite numérique. En particulier <code>|x-a| < r ⟺ x ∈ ]a-r, a+r[</code> : c'est la notion de <strong>voisinage</strong>, essentielle pour définir les limites au chapitre suivant.
+</div>
+
+<h3>Densité de Q dans R</h3>
+<div class="box info">
+<span class="box-title">📌 Théorème 1 — Densité</span>
+<ol>
+<li><code>Q</code> est <strong>dense</strong> dans <code>R</code> : tout intervalle ouvert non vide de <code>R</code> contient une infinité de rationnels.</li>
+<li><code>R \ Q</code> est dense dans <code>R</code> : tout intervalle ouvert non vide contient une infinité d'irrationnels.</li>
+</ol>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Idée de la preuve (rationnel entre a et b)</span>
+Pour trouver un rationnel entre <code>a &lt; b</code> : on choisit <code>q</code> assez grand (Archimède) pour que <code>q(b-a) &gt; 1</code>, puis <code>p = E(aq)+1</code>. On montre que <code>p/q ∈ ]a, b[</code>. Pour un irrationnel, on prend un rationnel <code>r</code> dans <code>]a-√2, b-√2[</code> puis <code>r+√2 ∈ ]a,b[</code> est irrationnel.
+</div>
+
+<h2>3️⃣ Borne supérieure, borne inférieure</h2>
+
+<div class="box warn">
+<span class="box-title">⚠️ Pourquoi ce n'est pas juste "maximum"</span>
+L'intervalle <code>]0, 1[</code> n'a <strong>ni</strong> plus grand ni plus petit élément (pour tout <code>x</code> dans l'intervalle, on trouve toujours un élément plus proche du bord). Pourtant, intuitivement, « 1 » joue un rôle particulier : c'est le plus petit majorant. C'est exactement ce que formalise la borne supérieure.
+</div>
+
+<h3>Majorants, minorants</h3>
+<div class="box info">
+<span class="box-title">📌 Définitions</span>
+Soit <code>A</code> une partie non vide de <code>R</code>.
+<ul>
+<li><code>M</code> est un <strong>majorant</strong> de <code>A</code> si <code>∀x ∈ A, x ≤ M</code>.</li>
+<li><code>m</code> est un <strong>minorant</strong> de <code>A</code> si <code>∀x ∈ A, x ≥ m</code>.</li>
+<li><code>A</code> est <strong>majorée</strong> (resp. <strong>minorée</strong>) si elle admet un majorant (resp. un minorant). <strong>Bornée</strong> = majorée et minorée.</li>
+</ul>
+</div>
+<p><strong>Attention</strong> : il n'y a pas unicité du majorant (tout nombre plus grand qu'un majorant en est aussi un).</p>
+
+<h3>Maximum, minimum</h3>
+<div class="box info">
+<span class="box-title">📌 Définition</span>
+<code>α</code> est le <strong>plus grand élément</strong> (maximum, noté <code>max A</code>) de <code>A</code> si <code>α ∈ A</code> <strong>et</strong> <code>∀x ∈ A, x ≤ α</code>. S'il existe, il est unique.
+</div>
+<p>Exemple : <code>max[a,b] = b</code>. Mais <code>]a,b[</code> n'a ni maximum ni minimum : ils <strong>n'existent pas toujours</strong>.</p>
+
+<h3>La borne supérieure : la solution</h3>
+<div class="box info">
+<span class="box-title">📌 Définition 9 — Borne supérieure / inférieure</span>
+<code>α</code> est la <strong>borne supérieure</strong> de <code>A</code> (notée <code>sup A</code>) si <code>α</code> est un majorant de <code>A</code> et si c'est le <strong>plus petit</strong> des majorants. Idem pour <code>inf A</code>, le plus grand des minorants.
+</div>
+<p><strong>Exemple.</strong> <code>sup ]a,b[ = b</code> (même si <code>b ∉ ]a,b[</code> !), <code>inf ]a,b[ = a</code>.</p>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 2 (R4) — Existence de la borne supérieure</span>
+<strong>Toute partie non vide et majorée de R admet une borne supérieure.</strong> De même, toute partie non vide et minorée admet une borne inférieure.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Pourquoi c'est LE théorème fondamental de ce chapitre</span>
+C'est ce théorème qui fait toute la différence entre <code>Q</code> et <code>R</code> : dans <code>Q</code>, l'ensemble <code>{x ∈ Q : x² ≤ 2}</code> est majoré mais n'a pas de borne supérieure rationnelle (ce serait <code>√2</code>, qui n'est pas dans <code>Q</code>). C'est précisément la propriété qui « bouche les trous » de <code>Q</code> pour construire <code>R</code>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 5 — Caractérisation pratique de sup A</span>
+<code>sup A</code> est l'unique réel vérifiant :
+<ol>
+<li>si <code>x ∈ A</code>, alors <code>x ≤ sup A</code> (c'est un majorant) ;</li>
+<li>pour tout <code>y &lt; sup A</code>, il existe <code>x ∈ A</code> tel que <code>y &lt; x</code> (aucun nombre plus petit n'est majorant).</li>
+</ol>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Exemple rédigé — A = {1 - 1/n | n ∈ N*}</span>
+Montrons que <code>sup A = 1</code> avec la caractérisation.<br><br>
+<strong>(i)</strong> Pour tout <code>n ∈ N*</code>, <code>1 - 1/n &lt; 1</code>, donc 1 est bien un majorant de A.<br><br>
+<strong>(ii)</strong> Soit <code>y &lt; 1</code>. On cherche <code>n</code> tel que <code>y &lt; 1 - 1/n</code>, c'est-à-dire <code>1/n &lt; 1 - y</code>, c'est-à-dire <code>n &gt; 1/(1-y)</code>. Un tel <code>n</code> existe par la propriété d'Archimède (car <code>1-y &gt; 0</code>). Donc <code>x = 1 - 1/n ∈ A</code> convient.<br><br>
+Par la caractérisation, <code>sup A = 1</code>. Et on vérifie que <code>min A = 0</code> (atteint en <code>n=1</code>), mais A n'a <strong>pas de maximum</strong> (on montre par l'absurde qu'aucun <code>u_n</code> ne peut être le plus grand élément).
+</div>
+
+<h2>📊 Tableau récapitulatif</h2>
+<table>
+<tr><th>Notion</th><th>Existe toujours (si A non vide) ?</th></tr>
+<tr><td>Majorant / minorant</td><td>Non — seulement si A est majorée / minorée</td></tr>
+<tr><td>max / min</td><td>Non, même si A est bornée (ex : <code>]0,1[</code>)</td></tr>
+<tr><td>sup / inf</td><td><strong>Oui</strong>, dès que A est majorée / minorée (Théorème R4)</td></tr>
+</table>
+<p>Si <code>max A</code> existe, alors <code>sup A = max A</code>. La borne supérieure généralise le maximum et existe beaucoup plus souvent.</p>
+
+<div class="nav-links">
+  <span></span>
+  <a href="01_suites.html">Suite : Les suites →</a>
+</div>
+
+</div>
+</body>
+</html>

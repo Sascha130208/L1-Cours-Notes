@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Les suites</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Analyse — Chapitre 2</span></div>
+<div class="page">
+
+<h1>📈 Chapitre 2 — Les suites</h1>
+
+<p>Étudier une suite, c'est comprendre comment une séquence de nombres évolue quand l'indice <code>n</code> devient grand. C'est le chapitre le plus dense du semestre — et celui qui revient le plus aux examens (feuilles 2 et 3).</p>
+
+<h2>1️⃣ Définitions de base</h2>
+<div class="box info">
+<span class="box-title">📌 Définition — Suite</span>
+Une suite est une application <code>u : N → R</code>. On note <code>u_n = u(n)</code> le <strong>terme général</strong>, et la suite <code>(u_n)_(n∈N)</code>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Majorée, minorée, bornée</span>
+<code>(u_n)</code> est <strong>majorée</strong> si <code>∃M ∈ R, ∀n, u_n ≤ M</code> ; <strong>minorée</strong> si <code>∃m ∈ R, ∀n, u_n ≥ m</code> ; <strong>bornée</strong> si majorée et minorée, ce qui équivaut à <code>∃M ∈ R, ∀n, |u_n| ≤ M</code>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Croissante, décroissante, monotone</span>
+<code>(u_n)</code> est <strong>croissante</strong> si <code>∀n, u_(n+1) ≥ u_n</code> (strictement si <code>&gt;</code>) ; <strong>décroissante</strong> si <code>∀n, u_(n+1) ≤ u_n</code> (strictement si <code>&lt;</code>) ; <strong>monotone</strong> si croissante ou décroissante.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Astuce pratique</span>
+Pour étudier la monotonie : calcule le signe de <code>u_(n+1) - u_n</code>. Si la suite est à termes strictement positifs, tu peux aussi comparer <code>u_(n+1)/u_n</code> à 1.
+</div>
+
+<h2>2️⃣ Limites</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définition 4 — Limite finie</span>
+<code>(u_n)</code> a pour limite <code>ℓ ∈ R</code> si :
+<pre><code>∀ε > 0, ∃N ∈ N, ∀n ∈ N, (n ≥ N ⇒ |u_n - ℓ| ≤ ε)</code></pre>
+Autrement dit : <code>u_n</code> est proche d'aussi près qu'on veut de <code>ℓ</code>, à partir d'un certain rang.
+</div>
+<div class="box info">
+<span class="box-title">📌 Définition 5 — Limite infinie</span>
+<code>(u_n)</code> tend vers <code>+∞</code> si <code>∀A &gt; 0, ∃N ∈ N, ∀n ≥ N, u_n ≥ A</code>. Idem vers <code>-∞</code> avec <code>u_n ≤ -A</code>.
+</div>
+<p><strong>Convergente</strong> = admet une limite finie ; <strong>divergente</strong> sinon (limite infinie ou pas de limite du tout).</p>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 1 — Unicité de la limite</span>
+Si une suite converge, sa limite est <strong>unique</strong>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration (par l'absurde, à connaître)</span>
+Supposons <code>u_n → ℓ</code> et <code>u_n → ℓ'</code> avec <code>ℓ ≠ ℓ'</code>. Prenons <code>ε = |ℓ-ℓ'|/2</code>. Il existe <code>N₁</code> tel que <code>n ≥ N₁ ⇒ |u_n - ℓ| &lt; ε</code>, et <code>N₂</code> tel que <code>n ≥ N₂ ⇒ |u_n - ℓ'| &lt; ε</code>. Pour <code>N = max(N₁,N₂)</code> :
+<pre><code>|ℓ - ℓ'| ≤ |ℓ - u_N| + |u_N - ℓ'| < ε + ε = |ℓ - ℓ'|</code></pre>
+On obtient <code>|ℓ-ℓ'| &lt; |ℓ-ℓ'|</code>, absurde. Donc <code>ℓ = ℓ'</code>.
+</div>
+
+<h3>Opérations sur les limites</h3>
+<div class="box info">
+<span class="box-title">📌 Proposition 3</span>
+Si <code>u_n → ℓ</code> et <code>v_n → ℓ'</code> (finies), alors <code>u_n + v_n → ℓ+ℓ'</code>, <code>u_n×v_n → ℓ×ℓ'</code>, <code>λu_n → λℓ</code>. Si de plus <code>ℓ ≠ 0</code>, alors <code>1/u_n → 1/ℓ</code>.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Formes indéterminées</span>
+On ne peut rien dire à priori pour <code>∞ - ∞</code>, <code>0 × ∞</code>, <code>∞/∞</code>, <code>0/0</code>, <code>1^∞</code> — il faut étudier au cas par cas (souvent en factorisant par le terme dominant, ou par quantité conjuguée pour les racines).
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 5 — Toute suite convergente est bornée</span>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration</span>
+Avec <code>ε=1</code> dans la définition : il existe <code>N</code> tel que <code>n ≥ N ⇒ |u_n - ℓ| ≤ 1</code>, donc <code>|u_n| ≤ |ℓ|+1</code> pour <code>n ≥ N</code>. En posant <code>M = max(|u_0|,...,|u_(N-1)|, |ℓ|+1)</code>, on a <code>|u_n| ≤ M</code> pour tout <code>n</code>.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ La réciproque est fausse</span>
+<code>u_n = (-1)ⁿ</code> est bornée mais ne converge pas. Bornée ⇏ convergente !
+</div>
+
+<h3>Limites et inégalités</h3>
+<div class="box info">
+<span class="box-title">📌 Proposition 7</span>
+<ol>
+<li>Si <code>u_n ≤ v_n</code> pour tout <code>n</code> et les deux convergent, alors <code>lim u_n ≤ lim v_n</code> (⚠️ pas d'inégalité stricte même si <code>u_n &lt; v_n</code> !).</li>
+<li>Si <code>u_n → +∞</code> et <code>v_n ≥ u_n</code>, alors <code>v_n → +∞</code>.</li>
+<li><strong>Théorème des gendarmes</strong> : si <code>u_n ≤ v_n ≤ w_n</code> et <code>lim u_n = lim w_n = ℓ</code>, alors <code>(v_n)</code> converge et <code>lim v_n = ℓ</code>.</li>
+</ol>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Le théorème des gendarmes en pratique</span>
+C'est l'outil numéro 1 pour prouver qu'une limite vaut une valeur précise quand la suite est « coincée » entre deux suites de même limite. Très utile avec des suites contenant <code>sin</code>, <code>cos</code>, ou <code>(-1)ⁿ</code> (bornés) multipliés par une suite qui tend vers 0.
+</div>
+
+<h2>3️⃣ Exemples remarquables</h2>
+
+<h3>Suite géométrique <code>u_n = aⁿ</code></h3>
+<div class="box info">
+<span class="box-title">📌 Proposition 8</span>
+<table>
+<tr><th>Valeur de a</th><th>Comportement de aⁿ</th></tr>
+<tr><td><code>a = 1</code></td><td><code>u_n = 1</code> constante</td></tr>
+<tr><td><code>a &gt; 1</code></td><td><code>u_n → +∞</code></td></tr>
+<tr><td><code>-1 &lt; a &lt; 1</code></td><td><code>u_n → 0</code></td></tr>
+<tr><td><code>a ≤ -1</code></td><td>diverge (oscille)</td></tr>
+</table>
+</div>
+
+<h3>Série géométrique</h3>
+<div class="box info">
+<span class="box-title">📌 Proposition 9</span>
+Pour <code>a ≠ 1</code> : <code>Σ(k=0 à n) aᵏ = (1 - a^(n+1)) / (1 - a)</code>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Le paradoxe de Zénon</span>
+Pour <code>a = 1/2</code> : <code>1 + 1/2 + 1/4 + 1/8 + ... = 1/(1-1/2) = 2</code>. C'est la résolution moderne du paradoxe de la flèche : une somme infinie de termes peut très bien avoir une valeur finie.
+</div>
+
+<h3>Critère du rapport <code>|u_(n+1)/u_n| &lt; ℓ &lt; 1</code></h3>
+<div class="box info">
+<span class="box-title">📌 Théorème 1</span>
+S'il existe <code>ℓ &lt; 1</code> tel que <code>|u_(n+1)/u_n| &lt; ℓ</code> à partir d'un certain rang, alors <code>u_n → 0</code>.
+</div>
+<p>C'est ce théorème qui donne le résultat classique : <code>lim(n→+∞) aⁿ/n! = 0</code> pour tout <code>a ∈ R</code> (une exponentielle est toujours battue par une factorielle).</p>
+
+<h2>4️⃣ Théorèmes de convergence</h2>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 2 — Suite monotone</span>
+<strong>Toute suite croissante et majorée est convergente.</strong> (De même, toute suite décroissante et minorée est convergente.)
+</div>
+<div class="box tip">
+<span class="box-title">📝 Idée de la démonstration</span>
+L'ensemble <code>A = {u_n | n ∈ N}</code> est non vide et majoré, donc admet une borne supérieure <code>ℓ = sup A</code> (Théorème R4 du chapitre 1 !). Par caractérisation de la borne sup, pour <code>ε &gt; 0</code> il existe <code>u_N</code> tel que <code>ℓ-ε &lt; u_N ≤ ℓ</code>, et comme la suite est croissante, <code>ℓ-ε &lt; u_n ≤ ℓ</code> pour tout <code>n ≥ N</code>. Donc <code>u_n → ℓ</code>.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Et si elle n'est pas majorée ?</span>
+Une suite croissante non majorée tend vers <code>+∞</code> (et symétriquement pour décroissante non minorée vers <code>-∞</code>).
+</div>
+
+<h3>Deux exemples célèbres</h3>
+<div class="box tip">
+<span class="box-title">📝 La suite harmonique diverge — H_n = 1 + 1/2 + ... + 1/n</span>
+<code>(H_n)</code> est croissante. Astuce de groupement par paquets de puissances de 2 :
+<pre><code>H_(2^p) - H_(2^(p-1)) = 1/(2^(p-1)+1) + ... + 1/2^p  (2^(p-1) termes, chacun ≥ 1/2^p)
+                       > 2^(p-1) × 1/2^p = 1/2</code></pre>
+Donc <code>H_(2^p) - 1 = Σ(k=1 à p) (H_(2^k) - H_(2^(k-1))) ≥ p/2 → +∞</code>. Une suite croissante non majorée diverge vers <code>+∞</code>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 La série ζ(2) = 1 + 1/2² + 1/3² + ... converge</span>
+Croissante (évident), et majorée par 2 : par récurrence, <code>u_n ≤ 2 - 1/n</code> (en utilisant <code>1/(n+1)² ≤ 1/(n(n+1)) = 1/n - 1/(n+1)</code>). Donc convergente par le théorème 2 — c'est un exemple où la suite est bornée par une astuce de télescopage plutôt qu'un calcul direct.
+</div>
+
+<h3>Suites adjacentes</h3>
+<div class="box info">
+<span class="box-title">📌 Définition 7 — Suites adjacentes</span>
+<code>(u_n)</code> et <code>(v_n)</code> sont adjacentes si :
+<ol>
+<li><code>(u_n)</code> est croissante et <code>(v_n)</code> est décroissante,</li>
+<li><code>∀n, u_n ≤ v_n</code>,</li>
+<li><code>lim(v_n - u_n) = 0</code>.</li>
+</ol>
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 3</span>
+<strong>Si deux suites sont adjacentes, elles convergent vers la même limite.</strong>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration</span>
+<code>(u_n)</code> est croissante et majorée par <code>v_0</code> (car <code>u_n ≤ v_n ≤ v_0</code>, la deuxième inégalité vient de <code>v_n</code> décroissante), donc converge vers <code>ℓ</code>. De même <code>(v_n)</code> décroissante minorée par <code>u_0</code>, converge vers <code>ℓ'</code>. Comme <code>v_n - u_n → 0</code>, on a <code>ℓ' - ℓ = 0</code>, donc <code>ℓ = ℓ'</code>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Pourquoi c'est un outil puissant</span>
+Les suites adjacentes servent à prouver qu'une limite <strong>existe</strong> sans connaître sa valeur exacte, et donnent en prime un <strong>encadrement</strong> : <code>u_n ≤ ℓ ≤ v_n</code> pour tout n. C'est exactement l'outil de la feuille 3 (exercice 4, exercice 6 — critère spécial des séries alternées).
+</div>
+
+<h3>Sous-suites et Bolzano-Weierstrass</h3>
+<div class="box info">
+<span class="box-title">📌 Définition 8 — Suite extraite (sous-suite)</span>
+C'est une suite de la forme <code>(u_(φ(n)))_(n∈N)</code>, où <code>φ : N → N</code> est strictement croissante.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 12 & Corollaire 2</span>
+Si <code>u_n → ℓ</code>, alors <strong>toute</strong> sous-suite converge aussi vers <code>ℓ</code>. Conséquence (très utilisée pour montrer qu'une suite <strong>diverge</strong>) : si une suite admet deux sous-suites convergeant vers des limites différentes (ou une sous-suite divergente), alors elle diverge.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Exemple classique — u_n = (-1)ⁿ diverge</span>
+<code>(u_(2n))</code> est constante égale à 1, <code>(u_(2n+1))</code> constante égale à -1. Deux sous-suites, deux limites différentes (1 ≠ -1) ⇒ <code>(u_n)</code> diverge.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 4 — Bolzano-Weierstrass</span>
+<strong>Toute suite bornée admet une sous-suite convergente.</strong>
+</div>
+
+<h2>5️⃣ Suites récurrentes <code>u_(n+1) = f(u_n)</code></h2>
+<p>Une suite récurrente est définie par un terme initial <code>u_0</code> et une relation <code>u_(n+1) = f(u_n)</code>. C'est le paragraphe le plus appliqué du chapitre.</p>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 13 — Condition nécessaire sur la limite</span>
+Si <code>f</code> est continue et <code>(u_n) → ℓ</code>, alors <code>ℓ</code> est un <strong>point fixe</strong> de <code>f</code> : <code>f(ℓ) = ℓ</code>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Méthode de résolution générale (à suivre dans cet ordre)</span>
+<ol>
+<li>Étudier <code>f</code> (continuité, dérivabilité, sens de variation) et tracer son graphe avec la droite <code>y = x</code>.</li>
+<li>Trouver un intervalle <code>[a,b]</code> stable par <code>f</code>, c'est-à-dire <code>f([a,b]) ⊂ [a,b]</code>, contenant <code>u_0</code>.</li>
+<li>Résoudre <code>f(ℓ) = ℓ</code> pour trouver les points fixes candidats.</li>
+<li>Selon que <code>f</code> est croissante ou décroissante sur <code>[a,b]</code>, appliquer la proposition 14 ou 15 ci-dessous.</li>
+</ol>
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 14 — Cas f croissante</span>
+Si <code>f : [a,b] → [a,b]</code> continue et <strong>croissante</strong>, alors pour tout <code>u_0 ∈ [a,b]</code>, la suite <code>(u_n)</code> est <strong>monotone</strong> (croissante si <code>u_1 ≥ u_0</code>, décroissante si <code>u_1 ≤ u_0</code>) et converge vers un point fixe <code>ℓ ∈ [a,b]</code>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 15 — Cas f décroissante</span>
+Si <code>f : [a,b] → [a,b]</code> continue et <strong>décroissante</strong>, alors <code>f∘f</code> est croissante, et les deux sous-suites <code>(u_2n)</code> et <code>(u_(2n+1))</code> convergent chacune (vers des limites <code>ℓ, ℓ'</code> vérifiant <code>f∘f(ℓ)=ℓ</code>, <code>f∘f(ℓ')=ℓ'</code> — pas forcément égales !).
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Piège classique</span>
+Dans le cas décroissant, il faut vérifier séparément si <code>ℓ = ℓ'</code> pour conclure que <code>(u_n)</code> converge tout court. Si <code>ℓ ≠ ℓ'</code>, la suite <code>(u_n)</code> elle-même diverge (deux sous-suites, deux limites).
+</div>
+
+<h2>📊 Boîte à outils — quelle technique pour quelle situation</h2>
+<table>
+<tr><th>Situation</th><th>Outil</th></tr>
+<tr><td>Calculer une limite « évidente »</td><td>Opérations sur les limites (prop. 3-4)</td></tr>
+<tr><td>Forme indéterminée</td><td>Factoriser par le terme dominant, quantité conjuguée</td></tr>
+<tr><td>Suite coincée entre deux suites de même limite</td><td>Théorème des gendarmes</td></tr>
+<tr><td>Prouver l'existence d'une limite sans la connaître</td><td>Suite croissante majorée / décroissante minorée</td></tr>
+<tr><td>Encadrer une limite dont on ne connaît pas la valeur exacte</td><td>Suites adjacentes</td></tr>
+<tr><td>Prouver qu'une suite diverge</td><td>Deux sous-suites, limites différentes</td></tr>
+<tr><td>Suite définie par <code>u_(n+1) = f(u_n)</code></td><td>Étudier f, point fixe, croissante/décroissante</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="00_nombres_reels.html">← Les nombres réels</a>
+  <a href="02_limites_fonctions_continues.html">Suite : Limites et fonctions continues →</a>
+</div>
+
+</div>
+</body>
+</html>
