@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Notion d'ensemble</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Structures Fondamentales — Chapitre 3.1-3.2</span></div>
+<div class="page">
+
+<h1>📦 Chapitre 3 — Notion d'ensemble</h1>
+<p>On introduit ici quelques ensembles de base, ainsi que les relations <strong>appartenance</strong> et <strong>inclusion</strong> entre ensembles. Attention à ne pas confondre ces deux notations, qui n'ont pas le même sens.</p>
+
+<h2>🔢 Quelques ensembles usuels</h2>
+<ul>
+<li><code>N = {0, 1, 2, ...}</code> : ensemble des <strong>entiers naturels</strong>.<br>
+<code>N* = N \ {0} = {1, 2, ...}</code>.<br>
+<code>N_n = {k ∈ N | 0 ≤ k ≤ n} = {0, 1, ..., n}</code> et <code>N*_n = {k ∈ N | 1 ≤ k ≤ n} = {1, ..., n}</code>.<br>
+En particulier <code>N*_0 = ∅</code>.</li>
+<li><code>Z = N ∪ (-N)</code> où <code>-N = {-n | n ∈ N}</code> : ensemble des <strong>entiers relatifs</strong>.</li>
+<li><code>Q = {p/q | p ∈ Z et q ∈ N*}</code> : ensemble des <strong>rationnels</strong>.</li>
+<li><code>R</code> : ensemble des <strong>réels</strong>. <code>R \ Q</code> est l'ensemble des <strong>irrationnels</strong>.</li>
+<li><code>C = {x + iy | x, y ∈ R}</code> : ensemble des <strong>nombres complexes</strong>.</li>
+<li><code>R+ = [0, +∞[</code>, utile (entre autres) pour les <strong>longueurs</strong>.</li>
+<li><code>R̄ = [-∞, +∞] = R ∪ {-∞, +∞}</code> : la <strong>droite réelle achevée</strong>.</li>
+<li>L'<strong>ensemble vide</strong> : <code>∅ = {}</code>.</li>
+</ul>
+
+<div class="box info">
+<span class="box-title">📌 Intervalles avec ±∞</span>
+Si <code>a, b ∈ R̄</code> et <code>a ≤ b</code> alors <code>-∞ ≤ a ≤ b ≤ +∞</code>. De plus
+<pre><code>[a, b] = {t ∈ R̄ | a ≤ t ≤ b}
+]a, b] = [a, b] \ {a}
+[a, b[ = [a, b] \ {b}
+]a, b[ = [a, b] \ {a, b}</code></pre>
+</div>
+
+<div class="box tip">
+<span class="box-title">💡 Un ensemble ne se répète pas et n'est pas ordonné</span>
+<code>{1, 2, 3} = {3, 1, 2} = {1, 3, 1, 2}</code>, cet ensemble a pour <strong>cardinal</strong> 3 (il contient 3 éléments distincts, peu importe l'ordre ou les répétitions dans l'écriture).
+</div>
+
+<div class="box warn">
+<span class="box-title">⚠️ Exemples moins usuels mais corrects</span>
+<code>{∅} ≠ ∅</code>, <code>{{∅}}</code>, <code>{∅, {∅}}</code>, <code>N ∪ {N}</code>.<br>
+<code>{∅}</code> n'est <strong>pas</strong> l'ensemble vide : c'est un ensemble qui contient un élément, à savoir <code>∅</code> lui-même. Ne confonds pas « ne rien contenir » et « contenir l'ensemble qui ne contient rien ».
+</div>
+
+<p>On suppose aussi connus <code>Z*</code>, <code>R*</code>, <code>C* = C \ {0}</code>, <code>R*_+</code>, <code>Q*</code>, <code>R_-</code>, etc.</p>
+
+<h2>🧩 Appartenance, inclusion, égalité</h2>
+
+<h3>L'appartenance <code>x ∈ E</code></h3>
+<p>Se lit de plusieurs façons :</p>
+<ul>
+<li><code>x</code> <strong>appartient</strong> à <code>E</code>, ou</li>
+<li><code>x</code> est un <strong>élément</strong> de <code>E</code>, ou moins formellement,</li>
+<li><code>E</code> « contient » <code>x</code>.</li>
+</ul>
+
+<h3>L'inclusion <code>A ⊂ B</code></h3>
+<p>C'est une relation <strong>entre deux ensembles</strong> <code>A</code> et <code>B</code> (on écrit aussi <code>B ⊃ A</code>). Elle signifie que chaque élément de <code>A</code> appartient également à <code>B</code> :</p>
+<pre><code>A ⊂ B  ⟺  ∀x ∈ A, x ∈ B</code></pre>
+<p>Cette relation peut se lire de plusieurs façons :</p>
+<ul>
+<li><code>A</code> est <strong>inclus</strong> dans <code>B</code>,</li>
+<li><code>A</code> est un <strong>sous-ensemble</strong> de <code>B</code>,</li>
+<li><code>A</code> est une <strong>partie</strong> de <code>B</code>,</li>
+<li><code>B</code> contient <code>A</code>.</li>
+</ul>
+
+<div class="box danger">
+<span class="box-title">🚨 Ne pas confondre <code>∈</code> et <code>⊂</code></span>
+<code>∈</code> relie un <strong>élément</strong> à un <strong>ensemble</strong>. <code>⊂</code> relie <strong>deux ensembles</strong> entre eux.<br><br>
+<strong>Exemple :</strong> on a <code>1 ∈ [0, 2]</code> car <code>1</code> est un élément du segment <code>[0, 2]</code>. Mais on écrira <code>{1} ⊂ [0, 2]</code> : ici <code>{1}</code> n'est plus un élément mais un ensemble constitué de l'unique élément <code>1</code>.
+</div>
+
+<h3>L'égalité <code>A = B</code></h3>
+<p>Signifie que <code>A</code> et <code>B</code> sont les mêmes ensembles, c'est-à-dire qu'ils contiennent les mêmes éléments :</p>
+<pre><code>A = B  ⟺  ∀x, (x ∈ A ⇔ x ∈ B)</code></pre>
+<p>ou encore, façon très pratique pour <strong>prouver</strong> une égalité d'ensembles :</p>
+<pre><code>(A = B)  ⟺  (A ⊂ B et B ⊂ A)</code></pre>
+
+<h3>L'inclusion, une relation d'ordre (mais pas totale)</h3>
+<p>L'inclusion vérifie les 3 propriétés qui définissent une <strong>relation d'ordre</strong> :</p>
+<table>
+<tr><th>Propriété</th><th>Énoncé</th></tr>
+<tr><td><strong>Réflexivité</strong></td><td><code>A ⊂ A</code></td></tr>
+<tr><td><strong>Transitivité</strong></td><td><code>(A ⊂ B et B ⊂ C) ⇒ A ⊂ C</code></td></tr>
+<tr><td><strong>Antisymétrie</strong></td><td><code>(A ⊂ B et B ⊂ A) ⇒ A = B</code></td></tr>
+</table>
+
+<div class="box warn">
+<span class="box-title">⚠️ Mais ce n'est pas un ordre total</span>
+Certains ensembles <code>A</code> et <code>B</code> ne sont <strong>pas comparables</strong> : on n'a ni <code>A ⊂ B</code>, ni <code>B ⊂ A</code>.<br><br>
+<strong>Exemple :</strong> <code>{0, 1}</code> et <code>{1, 2}</code> sont <strong>incomparables</strong> — aucun des deux n'est inclus dans l'autre.
+</div>
+
+<div class="nav-links">
+  <a href="../Exercices/exercices_recurrence_raisonnements.html">← Exercices : Récurrence & raisonnements</a>
+  <a href="06_operations_ensembles.html">Suite : Opérations sur les ensembles →</a>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Opérations sur les ensembles</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Structures Fondamentales — Chapitre 3.3</span></div>
+<div class="page">
+
+<span class="chip">📄 Cours vu jusqu'à la page 17</span>
+<h1>🛠️ Chapitre 3 — Opérations sur les ensembles</h1>
+
+<h2>1️⃣ Intersection</h2>
+<p>L'<strong>intersection</strong> entre deux ensembles <code>A</code> et <code>B</code>, notée <code>A ∩ B</code>, est constituée des éléments qui appartiennent <strong>à la fois</strong> à <code>A</code> et à <code>B</code> :</p>
+<pre><code>A ∩ B = {x | x ∈ A et x ∈ B}</code></pre>
+<p>Pour « collecter » les éléments qui appartiennent simultanément à plusieurs ensembles (éventuellement une infinité), indexés par un ensemble <code>I</code> :</p>
+<pre><code>⋂_{i∈I} A_i = {x | ∀i ∈ I, x ∈ A_i}</code></pre>
+<p>C'est donc l'ensemble constitué exactement des éléments <strong>appartenant à tous les</strong> <code>A_i</code>. On observe notamment que pour tout <code>i₀ ∈ I</code> :</p>
+<pre><code>⋂_{i∈I} A_i ⊂ A_{i₀}</code></pre>
+
+<div class="box tip">
+<span class="box-title">💡 Méthode pour prouver une telle inclusion</span>
+Prouver <code>⋂_{i∈I} A_i ⊂ A_{i₀}</code> consiste à montrer que tous les éléments de <code>⋂_{i∈I} A_i</code> sont des éléments de <code>A_{i₀}</code>. On procède ainsi : on prend <code>x ∈ ⋂_{i∈I} A_i</code>. Cet élément appartient à tous les <code>A_i</code>, donc notamment à <code>A_{i₀}</code>. Donc on a <code>x ∈ A_{i₀}</code>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Ensembles disjoints</span>
+On dit que deux ensembles <code>A</code> et <code>B</code> sont <strong>disjoints</strong> lorsque <code>A ∩ B = ∅</code>.
+</div>
+
+<h2>2️⃣ Union</h2>
+<p>L'<strong>union</strong> de deux ensembles <code>A</code> et <code>B</code>, notée <code>A ∪ B</code>, est constituée des éléments qui appartiennent à <code>A</code> <strong>ou</strong> à <code>B</code> (ou aux deux) :</p>
+<pre><code>A ∪ B = {x | x ∈ A ou x ∈ B}</code></pre>
+<p>Pour une famille d'ensembles, éventuellement infinie :</p>
+<pre><code>⋃_{i∈I} A_i = {x | ∃i ∈ I, x ∈ A_i}</code></pre>
+<p>Appartiennent donc à cette réunion ceux qui <strong>appartiennent à au moins un</strong> des <code>A_i</code>. On a par exemple, pour tout <code>i₀ ∈ I</code>, l'inclusion suivante :</p>
+<pre><code>A_{i₀} ⊂ ⋃_{i∈I} A_i</code></pre>
+
+<div class="box warn">
+<span class="box-title">⚠️ Le sens des inclusions est inversé entre ∩ et ∪</span>
+Pour l'intersection, <code>⋂ A_i ⊂ A_{i₀}</code> (l'intersection est « plus petite »). Pour l'union, <code>A_{i₀} ⊂ ⋃ A_i</code> (l'union est « plus grande »). C'est logique : intersecter réduit, unir agrandit.
+</div>
+
+<h2>3️⃣ Différence d'ensembles</h2>
+<p>Lorsque l'on dispose de deux ensembles <code>A</code> et <code>B</code>, on peut considérer l'ensemble constitué des éléments de <code>A</code> qui <strong>ne font pas partie</strong> de <code>B</code>. On le note <code>A \ B</code> :</p>
+<pre><code>A \ B = {x ∈ A | x ∉ B}</code></pre>
+<p>Il n'est pas nécessaire que <code>B</code> soit inclus dans <code>A</code>.</p>
+
+<div class="box info">
+<span class="box-title">📌 Exemple</span>
+Considérons <code>A = [0, 1]</code> et <code>B = [1, 2]</code>. On a <code>A ∩ B = {1}</code>, <code>A ∪ B = [0, 2]</code> et <code>A \ B = [0, 1[</code>.
+</div>
+
+<h2>4️⃣ Complémentaire</h2>
+<p>Lorsque <code>A ⊂ E</code>, on pose <code>C_E(A) = E \ A</code>, appelé le <strong>complémentaire</strong> de <code>A</code> dans <code>E</code>. On le note parfois <code>A^c</code> lorsque <code>E</code> est supposé connu et fixé.</p>
+
+<h2>5️⃣ Famille des parties d'un ensemble</h2>
+<p>La famille <code>P(E)</code> de <strong>tous les sous-ensembles</strong> d'un ensemble donné <code>E</code> est définie par :</p>
+<pre><code>P(E) = {A | A ⊂ E}</code></pre>
+
+<div class="box tip">
+<span class="box-title">💡 Exemple</span>
+Si <code>E = {1, 2, 3}</code> alors
+<pre><code>P(E) = {∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}}</code></pre>
+(8 sous-ensembles, dont <code>∅</code> et <code>E</code> lui-même.)
+</div>
+
+<h2>6️⃣ Produit cartésien</h2>
+<p>On peut définir un produit d'ensembles. L'exemple le plus connu : <code>R²</code>. Suivant le même principe, pour deux ensembles <code>A</code> et <code>B</code>, le produit de <code>A</code> et <code>B</code>, noté <code>A × B</code>, est l'ensemble des <strong>couples</strong> <code>(a, b)</code> avec <code>a ∈ A</code> et <code>b ∈ B</code> :</p>
+<pre><code>A × B = {(a, b) | a ∈ A et b ∈ B}</code></pre>
+<p>On peut évidemment faire le produit de plusieurs ensembles :</p>
+<pre><code>A × B × C = {(a, b, c) | a ∈ A, b ∈ B et c ∈ C}</code></pre>
+<p>ou encore, pour <code>n</code> ensembles :</p>
+<pre><code>E_1 × ... × E_n = {(x_1, ..., x_n) | x_1 ∈ E_1 et ... et x_n ∈ E_n}</code></pre>
+<p>et, si l'on fait <code>n</code> fois le produit du même ensemble <code>E</code> avec lui-même :</p>
+<pre><code>E^n = E × ... × E (n fois) = {(x_1, ..., x_n) | x_1, ..., x_n ∈ E}</code></pre>
+
+<div class="box info">
+<span class="box-title">📌 Égalité de couples et de n-uplets</span>
+Deux couples sont égaux lorsque leurs coordonnées respectives sont égales :
+<pre><code>(a, b) = (a', b')  ⟺  (a = a' et b = b')</code></pre>
+Plus généralement, deux <code>n</code>-uplets sont égaux lorsque leurs coordonnées respectives sont égales :
+<pre><code>(a_1, ..., a_n) = (a'_1, ..., a'_n)  ⟺  (a_1 = a'_1 et ... et a_n = a'_n)</code></pre>
+</div>
+
+<p>Le cas général inclut la possibilité de faire des produits d'un <strong>nombre infini</strong> d'ensembles. Pour une famille d'ensembles <code>(E_i)_{i∈I}</code>, cela se définit ainsi :</p>
+<pre><code>∏_{i∈I} E_i = {(x_i)_{i∈I} | ∀i ∈ I, x_i ∈ E_i}</code></pre>
+<p>Par exemple, on convient d'ordinaire que :</p>
+<pre><code>∏_{i∈{1,2,3}} E_i = E_1 × E_2 × E_3 = ∏_{i=1}^{3} E_i</code></pre>
+
+<div class="box warn">
+<span class="box-title">⏩ À suivre</span>
+Le cours continue au-delà de la page 17 (compléments sur le produit cartésien, puis la notion de relation et d'application au chapitre 4). Cette page sera complétée à la prochaine séance.
+</div>
+
+<div class="nav-links">
+  <a href="05_notion_ensemble.html">← Notion d'ensemble : appartenance, inclusion</a>
+  <a href="../index.html">Retour au sommaire →</a>
+</div>
+
+</div>
+</body>
+</html>
