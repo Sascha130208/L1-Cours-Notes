@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Limites et fonctions continues</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Analyse — Chapitre 3</span></div>
+<div class="page">
+
+<h1>📐 Chapitre 3 — Limites et fonctions continues</h1>
+
+<p>On passe des suites (indexées par <code>n ∈ N</code>) aux fonctions (définies sur un intervalle de <code>R</code>). Beaucoup de définitions et résultats se transposent directement — le vocabulaire des <code>ε</code> reste le même.</p>
+
+<h2>1️⃣ Notions de fonction</h2>
+<div class="box info">
+<span class="box-title">📌 Définition — Fonction, graphe</span>
+Une fonction est une application <code>f : U → R</code> où <code>U ⊂ R</code>. Le <strong>graphe</strong> est <code>Γ_f = {(x, f(x)) | x ∈ U}</code>.
+</div>
+<p><strong>Majorée / minorée / bornée</strong>, <strong>croissante / décroissante / monotone</strong> : mêmes définitions que pour les suites, avec <code>x ≤ y ⇒ f(x) ≤ f(y)</code> (croissante) etc.</p>
+
+<div class="box info">
+<span class="box-title">📌 Parité et périodicité</span>
+<code>f</code> est <strong>paire</strong> si <code>f(-x) = f(x)</code> (graphe symétrique / axe des ordonnées) ; <strong>impaire</strong> si <code>f(-x) = -f(x)</code> (graphe symétrique / origine) ; <strong>périodique de période T</strong> si <code>f(x+T) = f(x)</code> pour tout <code>x</code> (graphe invariant par translation de vecteur <code>T·i</code>).
+</div>
+<p>Exemples : <code>cos</code> est paire, <code>sin</code> est impaire, toutes deux <code>2π</code>-périodiques ; <code>tan</code> est <code>π</code>-périodique.</p>
+
+<h2>2️⃣ Limites</h2>
+<div class="box info">
+<span class="box-title">📌 Définition 7 — Limite finie en x₀</span>
+<code>f</code> a pour limite <code>ℓ</code> en <code>x₀</code> si :
+<pre><code>∀ε > 0, ∃δ > 0, ∀x ∈ I, (|x - x₀| < δ ⇒ |f(x) - ℓ| < ε)</code></pre>
+</div>
+<div class="box info">
+<span class="box-title">📌 Limite infinie, limite en l'infini</span>
+Même principe en remplaçant <code>|x-x₀| &lt; δ</code> par <code>|x| &gt; B</code> (limite en <code>+∞/-∞</code>) et/ou <code>|f(x)-ℓ|&lt;ε</code> par <code>f(x) &gt; A</code> (limite <code>+∞</code>).
+</div>
+<div class="box info">
+<span class="box-title">📌 Limites à gauche / à droite</span>
+Limite de la restriction de <code>f</code> à <code>]x₀,b[</code> (à droite, notée <code>lim_(x₀⁺)</code>) ou à <code>]a,x₀[</code> (à gauche). <strong>f admet une limite en x₀ ⟺ limites à gauche et à droite existent, coïncident</strong> (et valent <code>f(x₀)</code> si f y est définie).
+</div>
+<div class="box tip">
+<span class="box-title">📝 Exemple — la partie entière E n'a pas de limite en 2</span>
+<code>lim_(2⁻) E = 1</code> mais <code>lim_(2⁺) E = 2</code>. Les deux limites latérales diffèrent, donc <code>E</code> n'a pas de limite en <code>x=2</code> (elle a un « saut »).
+</div>
+
+<h3>Limites usuelles</h3>
+<table>
+<tr><th>Fonction</th><th>Limite en +∞</th><th>Limite en -∞</th></tr>
+<tr><td><code>xⁿ</code> (n ≥ 1)</td><td><code>+∞</code></td><td><code>+∞</code> si n pair, <code>-∞</code> si n impair</td></tr>
+<tr><td><code>1/xⁿ</code></td><td>0</td><td>0</td></tr>
+</table>
+<div class="box tip">
+<span class="box-title">💡 Limite d'une fraction rationnelle en ±∞</span>
+Pour <code>P(x)/Q(x)</code> avec <code>deg P = n</code>, <code>deg Q = m</code>, coefficients dominants <code>a_n, b_m</code> : la limite en <code>+∞</code> vaut <code>+∞</code> si <code>n &gt; m</code>, <code>a_n/b_m</code> si <code>n = m</code>, <code>0</code> si <code>n &lt; m</code>. C'est « le terme de plus haut degré qui gagne ».
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 2 & 4 — Opérations et inégalités</span>
+Mêmes règles que pour les suites : combinaisons linéaires, produits, quotients (si dénominateur non nul), composition (<code>Prop. 3 : lim_x₀ g∘f = ℓ'</code> si <code>lim_x₀ f = ℓ</code> et <code>lim_ℓ g = ℓ'</code>), passage à la limite dans une inégalité large, <strong>théorème des gendarmes</strong>.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Formes indéterminées</span>
+<code>+∞-∞</code>, <code>0×∞</code>, <code>∞/∞</code>, <code>0/0</code>, <code>1^∞</code>, <code>∞⁰</code> — étude au cas par cas, exactement comme pour les suites.
+</div>
+
+<h2>3️⃣ Continuité en un point</h2>
+<div class="box info">
+<span class="box-title">📌 Définition 11 — Continuité</span>
+<code>f</code> est <strong>continue en x₀</strong> si <code>f</code> admet une limite en <code>x₀</code> (cette limite vaut alors nécessairement <code>f(x₀)</code>) :
+<pre><code>∀ε > 0, ∃δ > 0, ∀x ∈ I, (|x - x₀| < δ ⇒ |f(x) - f(x₀)| < ε)</code></pre>
+<code>f</code> est <strong>continue sur I</strong> si continue en tout point de I.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Image mentale</span>
+Une fonction est continue sur un intervalle si on peut tracer son graphe « sans lever le crayon » — pas de saut, pas de trou.
+</div>
+<p>Sont continues : les fonctions constantes, <code>√x</code> sur <code>[0,+∞[</code>, <code>sin</code>, <code>cos</code>, <code>exp</code> sur <code>R</code>, <code>ln</code> sur <code>]0,+∞[</code>, les polynômes, les fractions rationnelles (là où le dénominateur ne s'annule pas). La partie entière <code>E</code> n'est <strong>pas</strong> continue aux entiers.</p>
+
+<div class="box info">
+<span class="box-title">📌 Lemme 1 — Signe local</span>
+Si <code>f</code> est continue en <code>x₀</code> et <code>f(x₀) ≠ 0</code>, alors <code>f</code> ne s'annule pas dans un voisinage de <code>x₀</code> (elle garde le signe de <code>f(x₀)</code> autour).
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 5 & 6 — Opérations, composition</span>
+<code>f+g</code>, <code>λf</code>, <code>f×g</code> continues en <code>x₀</code> si <code>f,g</code> le sont ; <code>1/f</code> aussi si <code>f(x₀)≠0</code> ; <code>g∘f</code> continue en <code>x₀</code> si <code>f</code> continue en <code>x₀</code> et <code>g</code> continue en <code>f(x₀)</code>.
+</div>
+
+<h3>Prolongement par continuité</h3>
+<div class="box info">
+<span class="box-title">📌 Définition 12</span>
+Si <code>f : I \ {x₀} → R</code> admet une limite finie <code>ℓ</code> en <code>x₀</code>, on peut la <strong>prolonger</strong> en posant <code>f̃(x₀) = ℓ</code> : <code>f̃</code> est alors continue en <code>x₀</code>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Exemple — f(x) = x sin(1/x) sur R*</span>
+Comme <code>|f(x)| ≤ |x|</code>, on a <code>f(x) → 0</code> quand <code>x → 0</code>. Donc <code>f</code> est prolongeable par continuité en 0, en posant <code>f(0) = 0</code>.
+</div>
+
+<h3>Suites et continuité — le lien fondamental</h3>
+<div class="box info">
+<span class="box-title">📌 Proposition 7 — Caractérisation séquentielle</span>
+<code>f</code> est continue en <code>x₀</code> <strong>si et seulement si</strong> pour <strong>toute</strong> suite <code>(u_n)</code> convergeant vers <code>x₀</code>, la suite <code>(f(u_n))</code> converge vers <code>f(x₀)</code>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 L'outil n°1 pour les suites récurrentes</span>
+C'est exactement ce résultat qui justifie la méthode du chapitre 2 : si <code>u_(n+1) = f(u_n)</code>, <code>f</code> continue, et <code>u_n → ℓ</code>, alors en passant à la limite dans la relation on obtient <code>ℓ = f(ℓ)</code> (point fixe). Retiens ce lien, il est utilisé <strong>tout le temps</strong>.
+</div>
+
+<h2>4️⃣ Continuité sur un intervalle</h2>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 1 — Théorème des valeurs intermédiaires (TVI)</span>
+Soit <code>f : [a,b] → R</code> continue. <strong>Pour tout réel y compris entre f(a) et f(b), il existe c ∈ [a,b] tel que f(c) = y.</strong>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Idée de la démonstration (via la borne sup !)</span>
+On suppose <code>f(a) ≤ y ≤ f(b)</code>. On pose <code>A = {x ∈ [a,b] | f(x) ≤ y}</code>, non vide (<code>a ∈ A</code>) et majoré (par b), donc <code>c = sup A</code> existe (Théorème R4, chapitre 1 — encore lui !). On montre <code>f(c) = y</code> en utilisant la continuité de <code>f</code> en <code>c</code> et la caractérisation de la borne sup.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Corollaire 1 — Version « signe opposé »</span>
+Si <code>f(a)·f(b) &lt; 0</code>, alors il existe <code>c ∈ ]a,b[</code> tel que <code>f(c) = 0</code>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Application classique</span>
+Tout polynôme de <strong>degré impair</strong> possède au moins une racine réelle (car <code>lim_(-∞) P = -∞</code> et <code>lim_(+∞) P = +∞</code> — ou l'inverse — donc P change de signe).
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Corollaire 2 & Théorème 2 — Image d'un intervalle / d'un segment</span>
+Si <code>f</code> continue sur un intervalle <code>I</code>, alors <code>f(I)</code> est un intervalle. Si de plus <code>I = [a,b]</code> est un <strong>segment</strong> (fermé borné), alors <code>f([a,b]) = [m,M]</code> est aussi un segment : <strong>f est bornée et atteint ses bornes</strong> (m = minimum, M = maximum).
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Attention à l'hypothèse "segment"</span>
+Sans la fermeture-bornitude, c'est faux : <code>f(x)=1/x</code> continue sur <code>]0,1]</code> n'est pas bornée. Et <code>f([a,b])</code> n'est <strong>pas</strong> forcément <code>[f(a),f(b)]</code> — la fonction peut osciller entre les deux.
+</div>
+
+<h2>5️⃣ Fonctions monotones et bijections</h2>
+<div class="box info">
+<span class="box-title">📌 Rappels — injective, surjective, bijective</span>
+<code>f</code> injective : <code>f(x)=f(x') ⇒ x=x'</code>. Surjective : <code>∀y ∈ F, ∃x, y=f(x)</code>. Bijective : les deux à la fois — alors il existe une unique <strong>bijection réciproque</strong> <code>f⁻¹</code> telle que <code>f⁻¹∘f = id</code> et <code>f∘f⁻¹ = id</code>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Lecture graphique</span>
+Le graphe de <code>f⁻¹</code> est le symétrique du graphe de <code>f</code> par rapport à la droite <code>y = x</code>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 3 — Théorème de la bijection (à connaître par cœur)</span>
+Si <code>f : I → R</code> est <strong>continue</strong> et <strong>strictement monotone</strong> sur l'intervalle <code>I</code>, alors :
+<ol>
+<li><code>f</code> établit une <strong>bijection</strong> de <code>I</code> vers <code>J = f(I)</code> ;</li>
+<li><code>f⁻¹ : J → I</code> est aussi <strong>continue et strictement monotone</strong>, de même sens de variation que <code>f</code>.</li>
+</ol>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Méthode pratique</span>
+Pour montrer qu'une fonction est bijective sur un intervalle : (1) étudier sa continuité, (2) étudier son sens de variation (souvent via le signe de la dérivée, chapitre 5), (3) si elle est strictement monotone, conclure directement par ce théorème — pas besoin de revérifier injectivité/surjectivité à la main !
+</div>
+<div class="box tip">
+<span class="box-title">📝 Exemple — la fonction racine n-ième</span>
+<code>f : [0,+∞[ → [0,+∞[</code>, <code>f(x) = xⁿ</code> est continue et strictement croissante, et <code>lim(+∞) f = +∞</code>. Donc <code>f</code> est bijective ; sa réciproque est <code>x ↦ x^(1/n) = ⁿ√x</code>, elle aussi continue et strictement croissante.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Restreindre le domaine pour retrouver la bijectivité</span>
+<code>f(x) = x²</code> n'est <strong>pas</strong> injective sur <code>R</code> (car <code>f(-x)=f(x)</code>). Mais en la restreignant à <code>[0,+∞[</code> (ou à <code>]-∞,0]</code>), elle devient strictement monotone donc bijective sur cette moitié. C'est le principe utilisé pour définir toutes les fonctions réciproques usuelles du chapitre suivant (arcsin, arccos, ...).
+</div>
+
+<h2>📊 Récapitulatif des grands théorèmes</h2>
+<table>
+<tr><th>Théorème</th><th>Hypothèses</th><th>Conclusion</th></tr>
+<tr><td>Valeurs intermédiaires</td><td>f continue sur [a,b]</td><td>f prend toute valeur entre f(a) et f(b)</td></tr>
+<tr><td>f continue sur un segment</td><td>f continue sur [a,b]</td><td>f bornée et atteint ses bornes</td></tr>
+<tr><td>Théorème de la bijection</td><td>f continue et strictement monotone sur I</td><td>f : I → f(I) bijective, f⁻¹ continue et monotone</td></tr>
+</table>
+
+<div class="nav-links">
+  <a href="01_suites.html">← Les suites</a>
+  <a href="03_fonctions_usuelles.html">Suite : Fonctions usuelles →</a>
+</div>
+
+</div>
+</body>
+</html>
