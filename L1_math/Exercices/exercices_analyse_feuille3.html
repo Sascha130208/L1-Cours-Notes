@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exercices — Analyse, Feuille 3</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices — Analyse</span></div>
+<div class="page">
+
+<h1>✏️ Analyse — Feuille d'exercices 3</h1>
+<p>UPJV, Analyse 1.1. Sujet : <strong>suites (approfondissement)</strong> — suites adjacentes, critère du rapport, série harmonique, critère spécial des séries alternées. Correspond au <a href="../02_Analyse/01_suites.html">Chapitre 2</a>.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Cherche vraiment avant de regarder</span>
+Cache chaque correction, pose-toi vraiment la question et écris ta réponse avant de cliquer.
+</div>
+
+<h2>Exercice 1 — Vrai ou faux ?</h2>
+
+<p><strong>1.</strong> Soient <code>(u_n)</code> une suite réelle croissante et <code>(v_n)</code> une suite réelle convergente qui vérifient <code>u_n ≤ v_n</code> pour tout <code>n</code>. La suite <code>(u_n)</code> converge-t-elle ?</p>
+<details><summary>Réponse</summary>
+<strong>Vrai.</strong> <code>(v_n)</code> converge donc elle est bornée (Prop. 5, chapitre 2) : il existe <code>M</code> tel que <code>v_n ≤ M</code> pour tout <code>n</code>. Alors <code>u_n ≤ v_n ≤ M</code> : <code>(u_n)</code> est croissante et majorée, donc elle converge (Théorème 2, chapitre 2).
+</details>
+
+<p><strong>2.</strong> Soient <code>(u_n)</code> une suite réelle qui converge et <code>(v_n)</code> une suite réelle qui diverge. La suite <code>(u_nv_n)</code> diverge-t-elle ?</p>
+<details><summary>Réponse</summary>
+<strong>Faux.</strong> Contre-exemple : <code>u_n = 0</code> pour tout <code>n</code> (converge vers 0), <code>v_n = (-1)ⁿ</code> (diverge). Alors <code>u_nv_n = 0</code> pour tout <code>n</code>, qui converge. (Le résultat est vrai si on suppose en plus <code>lim u_n ≠ 0</code>.)
+</details>
+
+<p><strong>3.</strong> Soit <code>(u_n)</code> une suite de réels positifs qui converge vers 0. La suite <code>(u_n)</code> est-elle décroissante à partir d'un certain rang ?</p>
+<details><summary>Réponse</summary>
+<strong>Faux.</strong> Contre-exemple : <code>u_n = (2+(-1)ⁿ)/n</code> pour <code>n≥1</code>. On a bien <code>u_n → 0</code> et <code>u_n &gt; 0</code>. Mais en comparant termes voisins, <code>u_n</code> ne finit jamais par être décroissante : elle « zigzague » indéfiniment entre une branche <code>≈ 3/n</code> (n pair) et une branche <code>≈ 1/n</code> (n impair), avec des alternances de hausse et de baisse à chaque pas, aussi loin qu'on aille dans la suite.
+</details>
+
+<p><strong>4.</strong> Soit <code>(u_n)</code> une suite réelle avec <code>lim(n→+∞)(u_(n+1)-u_n) = 0</code>. La suite <code>(u_n)</code> converge-t-elle ?</p>
+<details><summary>Réponse</summary>
+<strong>Faux.</strong> Contre-exemple : <code>u_n = √n</code>. On a <code>u_(n+1)-u_n = √(n+1)-√n → 0</code> (calcul classique par quantité conjuguée), mais <code>u_n = √n → +∞</code>, donc <code>(u_n)</code> diverge.
+</details>
+
+<h2>Exercice 2 — Critère du rapport (généralisation)</h2>
+<p>Soit <code>(u_n)</code> une suite de réels strictement positifs telle que <code>ℓ = lim(n→+∞) u_(n+1)/u_n ∈ [0,+∞]</code> existe.</p>
+
+<p><strong>1.</strong> Supposons <code>ℓ ∈ [0,1[</code>. Montre que <code>(u_n)</code> est strictement décroissante à partir d'un certain rang puis que <code>lim u_n = 0</code>.</p>
+<details><summary>Solution proposée</summary>
+Choisissons <code>r</code> tel que <code>ℓ &lt; r &lt; 1</code> (par exemple <code>r = (ℓ+1)/2</code>). Comme <code>u_(n+1)/u_n → ℓ &lt; r</code>, il existe <code>N</code> tel que <code>n ≥ N ⇒ u_(n+1)/u_n &lt; r</code>.<br><br>
+<strong>Décroissance.</strong> Comme <code>u_n &gt; 0</code> et <code>r &lt; 1</code>, on a pour <code>n ≥ N</code> : <code>u_(n+1) &lt; r·u_n &lt; u_n</code>. La suite est strictement décroissante à partir du rang N.<br><br>
+<strong>Limite nulle.</strong> Par récurrence, pour <code>n ≥ N</code> : <code>u_n &lt; r^(n-N)·u_N</code>. Comme <code>0 ≤ r &lt; 1</code>, on a <code>r^(n-N) → 0</code> quand <code>n → +∞</code> (Prop. 8, chapitre 2). Comme de plus <code>u_n &gt; 0</code>, on a <code>0 &lt; u_n &lt; r^(n-N)u_N → 0</code>, et par le théorème des gendarmes, <code>u_n → 0</code>. ∎
+</details>
+
+<p><strong>2.</strong> Supposons <code>ℓ ∈ ]1,+∞]</code>. Montre que <code>(u_n)</code> est strictement croissante à partir d'un certain rang puis que <code>lim u_n = +∞</code>.</p>
+<details><summary>Solution proposée</summary>
+Posons <code>w_n = 1/u_n &gt; 0</code>. Alors <code>w_(n+1)/w_n = u_n/u_(n+1) → 1/ℓ</code>. Comme <code>ℓ &gt; 1</code>, on a <code>1/ℓ ∈ [0,1[</code> (y compris si <code>ℓ = +∞</code>, où <code>1/ℓ = 0</code>).<br><br>
+On applique la question 1 à la suite <code>(w_n)</code> : elle est strictement décroissante à partir d'un certain rang, et <code>w_n → 0</code>.<br><br>
+Comme <code>w_n = 1/u_n → 0</code> avec <code>u_n &gt; 0</code>, on en déduit <code>u_n → +∞</code>. Et <code>(w_n)</code> décroissante signifie <code>w_(n+1) &lt; w_n</code>, c'est-à-dire <code>1/u_(n+1) &lt; 1/u_n</code>, donc (les <code>u_n</code> étant positifs) <code>u_(n+1) &gt; u_n</code> : <code>(u_n)</code> est strictement croissante à partir du même rang. ∎
+</details>
+
+<p><strong>3.</strong> En considérant les cas où <code>u_n = n</code> et où <code>u_n = 1/(n+1)</code>, montre qu'on ne peut pas conclure sur le comportement asymptotique de <code>(u_n)</code> lorsque <code>ℓ = 1</code>.</p>
+<details><summary>Solution proposée</summary>
+Pour <code>u_n = n</code> : <code>u_(n+1)/u_n = (n+1)/n → 1</code>, et <code>u_n = n → +∞</code>.<br><br>
+Pour <code>u_n = 1/(n+1)</code> : <code>u_(n+1)/u_n = (n+1)/(n+2) → 1</code>, et <code>u_n → 0</code>.<br><br>
+Les deux suites ont le même <code>ℓ = 1</code>, mais des comportements radicalement différents (<code>+∞</code> contre <code>0</code>). Le critère du rapport ne dit donc <strong>rien</strong> quand <code>ℓ = 1</code> : il faut étudier la suite par une autre méthode dans ce cas.
+</details>
+
+<h2>Exercice 3 — Calculs de limites</h2>
+<p>a) <code>(2n³-n+1)/(n³-n²+1)</code> &nbsp; b) <code>⌊(3n²+(-1)ⁿ)/(n+1)⌋</code> &nbsp; c) <code>2ⁿ/n²⁰²⁶</code> &nbsp; d) <code>2026ⁿ/n!</code></p>
+<details><summary>Réponses</summary>
+<strong>a)</strong> Fraction rationnelle, même degré (3) au numérateur et au dénominateur : la limite est le rapport des coefficients dominants, <code>2/1 = 2</code>.<br><br>
+<strong>b)</strong> <code>(3n²+(-1)ⁿ)/(n+1) → +∞</code> (degré 2 au numérateur contre degré 1 au dénominateur, le <code>(-1)ⁿ</code> borné n'y change rien). Si une suite tend vers <code>+∞</code>, sa partie entière aussi (car <code>⌊x_n⌋ ≥ x_n - 1 → +∞</code>). Donc la limite est <code>+∞</code>.<br><br>
+<strong>c)</strong> <code>2ⁿ/n²⁰²⁶ → +∞</code> : toute exponentielle de base <code>&gt;1</code> écrase n'importe quelle puissance de n (croissances comparées, cf. Chapitre 4).<br><br>
+<strong>d)</strong> <code>2026ⁿ/n! → 0</code> : c'est exactement l'Exemple 9 du chapitre 2 (« <code>aⁿ/n! → 0</code> pour tout <code>a ∈ R</code> ») — la factorielle bat toujours l'exponentielle.
+</details>
+
+<h2>Exercice 4 — ζ(2), via des suites adjacentes</h2>
+<p>Soient <code>(S_n)_(n≥1)</code> et <code>(T_n)_(n≥1)</code> définies par <code>S_n = Σ(k=1 à n) 1/k²</code> et <code>T_n = S_n + 1/n</code>.</p>
+
+<p><strong>1.</strong> Montre que <code>(S_n)</code> et <code>(T_n)</code> sont adjacentes.</p>
+<details><summary>Solution proposée</summary>
+<strong>(S_n) croissante.</strong> <code>S_(n+1) - S_n = 1/(n+1)² &gt; 0</code>. ✓<br><br>
+<strong>(T_n) décroissante.</strong>
+<pre><code>T_(n+1) - T_n = [S_(n+1)+1/(n+1)] - [S_n+1/n]
+              = 1/(n+1)² + 1/(n+1) - 1/n
+              = 1/(n+1)² - [1/n - 1/(n+1)]
+              = 1/(n+1)² - 1/(n(n+1))
+              = [n - (n+1)] / [n(n+1)²]
+              = -1 / [n(n+1)²] < 0</code></pre>
+Donc <code>(T_n)</code> est décroissante. ✓<br><br>
+<strong>S_n ≤ T_n.</strong> <code>T_n - S_n = 1/n &gt; 0</code>, donc <code>S_n &lt; T_n</code>. ✓<br><br>
+<strong>lim(T_n-S_n) = 0.</strong> <code>T_n - S_n = 1/n → 0</code>. ✓<br><br>
+Les trois conditions de la Définition 7 (chapitre 2) sont vérifiées : <code>(S_n)</code> et <code>(T_n)</code> sont adjacentes.
+</details>
+
+<p><strong>2.</strong> En déduire que <code>S = lim(n→+∞) S_n ∈ R</code> existe et que <code>S ≤ 2</code>.</p>
+<details><summary>Solution proposée</summary>
+Par le Théorème 3 (chapitre 2), deux suites adjacentes convergent vers la <strong>même limite</strong> : <code>S = lim S_n = lim T_n</code> existe dans <code>R</code>.<br><br>
+Comme <code>(T_n)</code> est décroissante, <code>T_n ≤ T_1</code> pour tout <code>n ≥ 1</code>. Or <code>T_1 = S_1 + 1/1 = 1 + 1 = 2</code>. Donc <code>S_n ≤ T_n ≤ T_1 = 2</code> pour tout n. En passant à la limite : <code>S ≤ 2</code>. ∎
+<br><br>
+<em>(Remarque : cette limite s'appelle <code>ζ(2)</code>, et vaut en réalité <code>π²/6 ≈ 1,645</code> — un résultat célèbre d'Euler que tu verras probablement plus tard.)</em>
+</details>
+
+<h2>Exercice 5 — La série harmonique diverge</h2>
+<p>Soit <code>(H_n)_(n≥1)</code> définie par <code>H_n = Σ(k=1 à n) 1/k</code>.</p>
+
+<p><strong>1.</strong> Montre que <code>(H_n)</code> est croissante.</p>
+<details><summary>Solution proposée</summary>
+<code>H_(n+1) - H_n = 1/(n+1) &gt; 0</code> pour tout <code>n ≥ 1</code>. Donc <code>(H_n)</code> est (strictement) croissante. ∎
+</details>
+
+<p><strong>2.</strong> Montre que <code>H_(2n) - H_n ≥ 1/2</code> pour tout <code>n ∈ N*</code>.</p>
+<details><summary>Solution proposée</summary>
+<pre><code>H_(2n) - H_n = 1/(n+1) + 1/(n+2) + ... + 1/(2n)</code></pre>
+Cette somme comporte exactement <code>n</code> termes (de <code>k=n+1</code> à <code>k=2n</code>), et <strong>chacun</strong> de ces termes vérifie <code>1/k ≥ 1/(2n)</code> (car <code>k ≤ 2n</code>). Donc :
+<pre><code>H_(2n) - H_n ≥ n × 1/(2n) = 1/2</code></pre>
+∎
+</details>
+
+<p><strong>3.</strong> Montre que <code>lim(n→+∞) H_n = +∞</code>.</p>
+<details><summary>Solution proposée</summary>
+<code>(H_n)</code> est croissante (question 1), donc par le Théorème 2 (chapitre 2), soit elle converge vers une limite finie <code>L</code>, soit elle tend vers <code>+∞</code>.<br><br>
+Supposons par l'absurde qu'elle converge vers <code>L ∈ R</code>. Alors la sous-suite <code>(H_(2n))</code> converge aussi vers <code>L</code> (Prop. 12, chapitre 2 : toute sous-suite d'une suite convergente converge vers la même limite). Donc :
+<pre><code>H_(2n) - H_n → L - L = 0</code></pre>
+Mais d'après la question 2, <code>H_(2n) - H_n ≥ 1/2</code> pour tout <code>n</code>, donc en passant à la limite, <code>0 ≥ 1/2</code> — <strong>contradiction</strong>.<br><br>
+Donc <code>(H_n)</code> ne converge pas vers une limite finie ; étant croissante, elle tend nécessairement vers <code>+∞</code>. ∎
+</details>
+
+<h2>Exercice 6 — Critère spécial des séries alternées</h2>
+<p>Soit <code>(u_n)_(n≥0)</code> une suite décroissante de réels positifs convergeant vers 0, et <code>S_n = Σ(k=0 à n) (-1)ᵏu_k</code>.</p>
+
+<p><strong>1.</strong> Montre que <code>(S_2n)</code> et <code>(S_(2n+1))</code> sont adjacentes.</p>
+<details><summary>Solution proposée</summary>
+<strong>(S_2n) décroissante.</strong>
+<pre><code>S_(2n+2) - S_2n = (-1)^(2n+1)u_(2n+1) + (-1)^(2n+2)u_(2n+2) = -u_(2n+1) + u_(2n+2)</code></pre>
+Comme <code>(u_n)</code> est décroissante, <code>u_(2n+2) ≤ u_(2n+1)</code>, donc <code>-u_(2n+1)+u_(2n+2) ≤ 0</code> : <code>S_(2n+2) ≤ S_2n</code>. ✓<br><br>
+<strong>(S_(2n+1)) croissante.</strong>
+<pre><code>S_(2n+3) - S_(2n+1) = (-1)^(2n+2)u_(2n+2) + (-1)^(2n+3)u_(2n+3) = u_(2n+2) - u_(2n+3)</code></pre>
+Comme <code>(u_n)</code> décroissante, <code>u_(2n+2) ≥ u_(2n+3)</code>, donc cette différence est <code>≥ 0</code> : <code>S_(2n+3) ≥ S_(2n+1)</code>. ✓<br><br>
+<strong>S_(2n+1) ≤ S_2n.</strong> <code>S_2n - S_(2n+1) = -(-1)^(2n+1)u_(2n+1) = u_(2n+1) ≥ 0</code> (car <code>u_n ≥ 0</code>). ✓<br><br>
+<strong>lim(S_2n - S_(2n+1)) = 0.</strong> C'est <code>lim u_(2n+1) = 0</code>, vrai car <code>u_n → 0</code> et une sous-suite d'une suite convergente vers 0 converge aussi vers 0. ✓<br><br>
+Les trois conditions sont réunies (avec <code>(S_(2n+1))</code> croissante ≤ <code>(S_2n)</code> décroissante, différence → 0) : les deux suites sont adjacentes.
+</details>
+
+<p><strong>2.</strong> En déduire que <code>S = lim(n→+∞) S_n ∈ R</code> existe et que <code>S_(2n+1) ≤ S ≤ S_2n</code> pour tout <code>n</code>.</p>
+<details><summary>Solution proposée</summary>
+Par le Théorème 3, <code>(S_2n)</code> et <code>(S_(2n+1))</code> étant adjacentes, elles convergent vers une <strong>même limite</strong> <code>S ∈ R</code>. De plus, pour des suites adjacentes, chaque terme de la suite croissante est <code>≤ S</code> et chaque terme de la suite décroissante est <code>≥ S</code> : <code>S_(2n+1) ≤ S ≤ S_2n</code> pour tout <code>n</code>.<br><br>
+Il reste à voir que la suite <code>(S_n)</code> <strong>elle-même</strong> (pas seulement ses deux sous-suites) converge vers <code>S</code>. Fixons <code>ε &gt; 0</code> : il existe <code>N₁</code> tel que <code>n≥N₁ ⇒ |S_2n - S| &lt; ε</code>, et <code>N₂</code> tel que <code>n≥N₂ ⇒ |S_(2n+1)-S| &lt; ε</code>. En posant <code>N = max(2N₁, 2N₂+1)</code>, tout <code>m ≥ N</code> (pair ou impair) vérifie <code>|S_m - S| &lt; ε</code>. Donc <code>S_n → S</code>. ∎<br><br>
+<em>(C'est le <strong>critère spécial des séries alternées</strong> (critère de Leibniz), une méthode très puissante : elle prouve la convergence — et donne même un encadrement de l'erreur — sans jamais calculer la somme exacte.)</em>
+</details>
+
+<div class="nav-links">
+  <a href="exercices_analyse_feuille2.html">← Feuille 2 (suites, limites)</a>
+  <a href="../02_Analyse/02_limites_fonctions_continues.html">Cours : Limites et fonctions continues →</a>
+</div>
+
+</div>
+</body>
+</html>
