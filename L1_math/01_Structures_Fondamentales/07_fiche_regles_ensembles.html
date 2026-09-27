@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Règles à savoir — Ensembles</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Structures Fondamentales — Fiche révision</span></div>
+<div class="page">
+
+<h1>🧠 Fiche — Petites règles à connaître : Ensembles</h1>
+<p>Cette fiche regroupe les réflexes et pièges essentiels à connaître pour le chapitre sur les ensembles, avec les notations utilisées dans le TD.</p>
+
+<h2>1️⃣ Symboles à connaître</h2>
+<table>
+<tr><th>Notation</th><th>Lecture</th><th>Signification</th></tr>
+<tr><td><code>x ∈ A</code></td><td>x appartient à A</td><td>x est un élément de A</td></tr>
+<tr><td><code>x ∉ A</code></td><td>x n'appartient pas à A</td><td>x n'est pas un élément de A</td></tr>
+<tr><td><code>A ⊂ B</code></td><td>A est inclus dans B</td><td>Tous les éléments de A sont dans B</td></tr>
+<tr><td><code>∅</code></td><td>ensemble vide</td><td>Aucun élément</td></tr>
+<tr><td><code>P(A)</code></td><td>ensemble des parties de A</td><td>Tous les sous-ensembles de A</td></tr>
+</table>
+
+<div class="box danger">
+<span class="box-title">🚨 Piège n°1 : ∈ et ⊂</span>
+<code>∈</code> relie un <strong>élément</strong> à un ensemble.<br>
+<code>⊂</code> relie <strong>deux ensembles</strong>.<br><br>
+Exemple : <code>a ∈ E</code> mais <code>{a} ⊂ E</code>.
+</div>
+
+<h2>2️⃣ L'ensemble vide</h2>
+<p>Règle fondamentale :</p>
+<pre><code>∅ ⊂ A</code></pre>
+<p>est toujours vrai, quel que soit l'ensemble <code>A</code>.</p>
+<p>En revanche :</p>
+<pre><code>∅ ∈ A</code></pre>
+<p>n'est pas forcément vrai.</p>
+
+<h2>3️⃣ Les accolades : ne jamais les négliger</h2>
+<pre><code>a
+{a}
+{{a}}
+
+∅
+{∅}
+{{∅}}</code></pre>
+<ul>
+<li><code>a</code> : un élément.</li>
+<li><code>{a}</code> : un ensemble qui contient a.</li>
+<li><code>{{a}}</code> : un ensemble qui contient l'ensemble {a}.</li>
+<li><code>∅</code> : 0 élément.</li>
+<li><code>{∅}</code> : 1 élément, qui est ∅.</li>
+<li><code>{{∅}}</code> : 1 élément, qui est {∅}.</li>
+</ul>
+
+<div class="box warn">
+<span class="box-title">⚠️ À retenir</span>
+<code>∅ ≠ {∅}</code> et <code>{∅}</code> n'est pas l'ensemble vide.
+</div>
+
+<h2>4️⃣ Vérifier une inclusion</h2>
+<p>Pour montrer :</p>
+<pre><code>B ⊂ A</code></pre>
+<p>il faut vérifier que <strong>tous</strong> les éléments de B appartiennent à A.</p>
+<p>Rédaction type :</p>
+<pre><code>Soit x ∈ B. Montrons que x ∈ A.
+...
+Donc x ∈ A.
+Ainsi B ⊂ A.</code></pre>
+
+<h2>5️⃣ Ensemble des parties P(A)</h2>
+<p><code>P(A)</code> est l'ensemble de <strong>toutes</strong> les parties (sous-ensembles) de A.</p>
+<p>Exemple :</p>
+<pre><code>P({a,b}) = {∅, {a}, {b}, {a,b}}</code></pre>
+<p>Pour un ensemble à <code>n</code> éléments :</p>
+<pre><code>|P(A)| = 2^n</code></pre>
+
+<div class="box tip">
+<span class="box-title">💡 Pour ne pas oublier de parties</span>
+Pour un ensemble {a,b,c}, classe les parties par taille : 0 élément, puis 1, puis 2, puis 3.
+</div>
+
+<h2>6️⃣ Cardinal</h2>
+<p><code>|A|</code> = nombre d'éléments distincts de A.</p>
+<pre><code>|∅| = 0
+|{∅}| = 1</code></pre>
+<p>L'ordre et les répétitions dans l'écriture ne changent pas un ensemble :</p>
+<pre><code>{1,2,3} = {3,1,2} = {1,3,1,2}</code></pre>
+
+<h2>7️⃣ Ensembles usuels</h2>
+<pre><code>N ⊂ Z ⊂ Q ⊂ R</code></pre>
+<p>Avec notamment :</p>
+<ul>
+<li><code>N</code> : entiers naturels</li>
+<li><code>Z</code> : entiers relatifs</li>
+<li><code>Q</code> : rationnels</li>
+<li><code>R</code> : réels</li>
+</ul>
+
+<h2>8️⃣ Décrire un ensemble</h2>
+<p>Dans :</p>
+<pre><code>A = {x ∈ R | condition}</code></pre>
+<p>le symbole <code>|</code> se lit <strong>« tel que »</strong>.</p>
+<p>Exemple :</p>
+<pre><code>{x ∈ R | -1 < x < 3} = ]-1,3[</code></pre>
+
+<h2>9️⃣ Intersection, union et différence</h2>
+<pre><code>A ∩ B = éléments dans A ET dans B
+A ∪ B = éléments dans A OU dans B
+A  B = éléments dans A MAIS PAS dans B</code></pre>
+
+<p><strong>À retenir :</strong></p>
+<pre><code>∩  → ET
+∪  → OU</code></pre>
+
+<h2>🔟 Complémentaire</h2>
+<p>Si <code>A ⊂ E</code> :</p>
+<pre><code>A^c = E  A</code></pre>
+<p>C'est tout ce qui est dans l'univers E mais pas dans A.</p>
+
+<h2>1️⃣1️⃣ Lois de simplification</h2>
+<table>
+<tr><th>Règle</th><th>Résultat</th></tr>
+<tr><td>Union avec soi-même</td><td><code>A ∪ A = A</code></td></tr>
+<tr><td>Intersection avec soi-même</td><td><code>A ∩ A = A</code></td></tr>
+<tr><td>Union avec ∅</td><td><code>A ∪ ∅ = A</code></td></tr>
+<tr><td>Intersection avec ∅</td><td><code>A ∩ ∅ = ∅</code></td></tr>
+<tr><td>Union avec E</td><td><code>A ∪ E = E</code></td></tr>
+<tr><td>Intersection avec E</td><td><code>A ∩ E = A</code></td></tr>
+</table>
+
+<h2>1️⃣2️⃣ Lois de De Morgan</h2>
+<pre><code>(A ∪ B)^c = A^c ∩ B^c
+(A ∩ B)^c = A^c ∪ B^c</code></pre>
+
+<h2>1️⃣3️⃣ Produit cartésien</h2>
+<pre><code>A × B = {(a,b) | a ∈ A et b ∈ B}</code></pre>
+<p>Ce sont des <strong>couples</strong>. Et :</p>
+<pre><code>|A × B| = |A| × |B|</code></pre>
+
+<h2>⭐ Les réflexes à savoir par cœur</h2>
+<ol>
+<li><code>∈</code> = appartient, <code>⊂</code> = est une partie.</li>
+<li><code>∅ ⊂ A</code> est toujours vrai.</li>
+<li><code>∅</code> et <code>{∅}</code> sont différents.</li>
+<li><code>P(A)</code> = toutes les parties de A.</li>
+<li>Si <code>|A| = n</code>, alors <code>|P(A)| = 2^n</code>.</li>
+<li><code>∩</code> = ET, <code>∪</code> = OU, <code>\</code> = dans le premier mais pas dans le second.</li>
+<li>Pour montrer <code>A = B</code>, montrer <code>A ⊂ B</code> et <code>B ⊂ A</code>.</li>
+<li>Pour montrer <code>A ⊂ B</code>, prendre un élément quelconque de A et montrer qu'il est dans B.</li>
+</ol>
+
+<div class="nav-links">
+  <a href="05_notion_ensemble.html">← Notion d'ensemble</a>
+  <a href="06_operations_ensembles.html">Opérations sur les ensembles →</a>
+</div>
+
+</div>
+</body>
+</html>
