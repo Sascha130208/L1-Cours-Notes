@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>TD2 — Ensembles — Corrections et méthodes</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Structures Fondamentales — TD2</span></div>
+<div class="page">
+
+<h1>📘 TD2 — Ensembles : corrections et méthodes</h1>
+<p>Fiche basée sur le TD2 « Ensembles », avec les méthodes utilisées pour les exercices travaillés.</p>
+
+<h2>1️⃣ Appartenance et inclusion</h2>
+<p>Pour E = {a,b,c} :</p>
+<table>
+<tr><th>Proposition</th><th>Réponse</th><th>Pourquoi ?</th></tr>
+<tr><td><code>a ∈ E</code></td><td>Vrai</td><td>a est un élément de E.</td></tr>
+<tr><td><code>a ⊂ E</code></td><td>Faux</td><td>a est un élément, pas un ensemble.</td></tr>
+<tr><td><code>{a} ⊂ E</code></td><td>Vrai</td><td>{a} est un ensemble dont l'unique élément est a.</td></tr>
+<tr><td><code>∅ ∈ E</code></td><td>Faux</td><td>∅ n'est pas l'un des éléments écrits dans E.</td></tr>
+<tr><td><code>∅ ⊂ E</code></td><td>Vrai</td><td>L'ensemble vide est inclus dans tout ensemble.</td></tr>
+<tr><td><code>{∅} ⊂ E</code></td><td>Faux</td><td>Il faudrait que ∅ soit un élément de E.</td></tr>
+</table>
+
+<div class="box danger">
+<span class="box-title">🚨 Réflexe</span>
+<code>∈</code> compare un élément avec un ensemble. <code>⊂</code> compare deux ensembles.
+</div>
+
+<h2>2️⃣ Décrire des ensembles</h2>
+<ul>
+<li><code>E = {n ∈ N | -π &lt; n &lt; π} = {0,1,2,3}</code></li>
+<li><code>F = {x ∈ R | -π &lt; x &lt; π} = ]-π,π[</code></li>
+<li><code>G = {n ∈ N | -2 &lt; n &lt; 3,5} = {0,1,2,3}</code></li>
+<li><code>H = {x | x ≥ 0 et x ≤ 0} = {0}</code></li>
+<li><code>I = {x | x ∈ R et x ∉ R} = ∅</code></li>
+</ul>
+<p>Dans <code>{x | condition}</code>, le symbole <code>|</code> signifie « tel que ».</p>
+
+<h2>3️⃣ Ensemble des parties P(A)</h2>
+<p><code>P(A)</code> contient tous les sous-ensembles de A.</p>
+<pre><code>P({a,b}) = {∅,{a},{b},{a,b}}
+
+P({a,b,c}) =
+{∅,{a},{b},{c},{a,b},{a,c},{b,c},{a,b,c}}
+
+P(∅) = {∅}
+
+P({∅}) = {∅,{∅}}</code></pre>
+
+<h3>Cas avec des accolades imbriquées</h3>
+<p>On a :</p>
+<pre><code>P({a}) = {∅,{a}}</code></pre>
+<p>Donc :</p>
+<pre><code>P(P({a})) = P({∅,{a}})
+             = {∅,{∅},{{a}},{∅,{a}}}</code></pre>
+<p>Le piège est <code>{{a}}</code> : ici <code>{a}</code> est un élément de l'ensemble de départ, donc le singleton qui le contient est <code>{{a}}</code>.</p>
+
+<h2>4️⃣ Simplifications d'ensembles</h2>
+<table>
+<tr><th>N°</th><th>Expression</th><th>Résultat</th></tr>
+<tr><td>1</td><td><code>A ∪ B ∪ C ∪ B ∪ A</code></td><td><code>A ∪ B ∪ C</code></td></tr>
+<tr><td>2</td><td><code>A ∩ (A ∪ B)</code></td><td><code>A</code></td></tr>
+<tr><td>3</td><td><code>A ∩ (A ∩ B)</code></td><td><code>A ∩ B</code></td></tr>
+<tr><td>4</td><td><code>A \ (A ∩ B)</code></td><td><code>A \ B</code></td></tr>
+<tr><td>5</td><td><code>A \ (A ∪ B)</code></td><td><code>∅</code></td></tr>
+<tr><td>6</td><td><code>A \ (B \ A)</code></td><td><code>A</code></td></tr>
+<tr><td>7</td><td><code>A ∪ (B \ A)</code></td><td><code>A ∪ B</code></td></tr>
+<tr><td>8</td><td><code>(A \ B) ∩ (B \ A)</code></td><td><code>∅</code></td></tr>
+</table>
+
+<div class="box tip">
+<span class="box-title">💡 À retenir</span>
+<code>∩</code> = ET ; <code>∪</code> = OU ; <code>A \ B</code> = dans A mais pas dans B.
+</div>
+
+<h2>5️⃣ Cardinal : compter des couples</h2>
+<p>Le cardinal <code>|A|</code> est le nombre d'éléments de A.</p>
+
+<h3>(1) Q ⊂ N²</h3>
+<pre><code>Q = {(a,b) ∈ N² | a²+b² ≤ 9}</code></pre>
+<p>Comme <code>a,b ∈ N</code>, on a <code>0 ≤ a,b ≤ 3</code>.</p>
+<table>
+<tr><th>a</th><th>valeurs de b</th><th>nombre</th></tr>
+<tr><td>0</td><td>0,1,2,3</td><td>4</td></tr>
+<tr><td>1</td><td>0,1,2</td><td>3</td></tr>
+<tr><td>2</td><td>0,1,2</td><td>3</td></tr>
+<tr><td>3</td><td>0</td><td>1</td></tr>
+</table>
+<p>Donc <code>|Q| = 4+3+3+1 = 11</code>.</p>
+
+<h3>(2) D⁺ ⊂ N × Z</h3>
+<pre><code>D⁺ = {(a,b) ∈ N × Z | a²+b² ≤ 9}</code></pre>
+<p>Cette fois a est naturel, mais b peut être négatif.</p>
+<table>
+<tr><th>a</th><th>valeurs de b</th><th>nombre</th></tr>
+<tr><td>0</td><td>-3,-2,-1,0,1,2,3</td><td>7</td></tr>
+<tr><td>1</td><td>-2,-1,0,1,2</td><td>5</td></tr>
+<tr><td>2</td><td>-2,-1,0,1,2</td><td>5</td></tr>
+<tr><td>3</td><td>0</td><td>1</td></tr>
+</table>
+<p>Donc <code>|D⁺| = 7+5+5+1 = 18</code>.</p>
+
+<h3>(3) D ⊂ Z²</h3>
+<pre><code>D = {(a,b) ∈ Z² | a²+b² ≤ 9}</code></pre>
+<p>Cette fois a et b peuvent tous les deux être négatifs.</p>
+<table>
+<tr><th>a</th><th>valeurs possibles de b</th><th>nombre</th></tr>
+<tr><td>-3</td><td>0</td><td>1</td></tr>
+<tr><td>-2</td><td>-2,-1,0,1,2</td><td>5</td></tr>
+<tr><td>-1</td><td>-2,-1,0,1,2</td><td>5</td></tr>
+<tr><td>0</td><td>-3,-2,-1,0,1,2,3</td><td>7</td></tr>
+<tr><td>1</td><td>-2,-1,0,1,2</td><td>5</td></tr>
+<tr><td>2</td><td>-2,-1,0,1,2</td><td>5</td></tr>
+<tr><td>3</td><td>0</td><td>1</td></tr>
+</table>
+<p>Donc <code>|D| = 1+5+5+7+5+5+1 = 29</code>.</p>
+
+<div class="box warn">
+<span class="box-title">⚠️ Méthode</span>
+Ne pas « tester au hasard » : on commence par borner les valeurs grâce à <code>a²+b² ≤ 9</code>, puis on fixe a et on compte les b possibles.
+</div>
+
+<h2>6️⃣ Comparaison par inclusion avec complémentaires</h2>
+<p>Pour les expressions travaillées :</p>
+<pre><code>X = A ∩ (B ∪ C)^c
+Y = (A ∪ B) ∪ C^c
+Z = (A ∩ B) ∪ C^c</code></pre>
+
+<p>Avec De Morgan :</p>
+<pre><code>(B ∪ C)^c = B^c ∩ C^c</code></pre>
+<p>Donc :</p>
+<pre><code>X = A ∩ B^c ∩ C^c</code></pre>
+
+<p>On obtient les inclusions :</p>
+<pre><code>X ⊂ Z ⊂ Y</code></pre>
+
+<h3>Pourquoi X ⊂ Z ?</h3>
+<p>Si <code>x ∈ X</code>, alors :</p>
+<pre><code>x ∈ A
+x ∈ B^c
+x ∈ C^c</code></pre>
+<p>En particulier <code>x ∈ C^c</code>. Or <code>C^c ⊂ (A ∩ B) ∪ C^c</code>, donc <code>x ∈ Z</code>.</p>
+
+<h3>Pourquoi Z ⊂ Y ?</h3>
+<p>On sait que :</p>
+<pre><code>A ∩ B ⊂ A ∪ B</code></pre>
+<p>Donc, en ajoutant le même <code>C^c</code> :</p>
+<pre><code>(A ∩ B) ∪ C^c ⊂ (A ∪ B) ∪ C^c</code></pre>
+
+<div class="box tip">
+<span class="box-title">⭐ Méthode pour prouver une inclusion</span>
+<ol>
+<li>Prendre un élément quelconque : « Soit x ∈ X ».</li>
+<li>Traduire les intersections par « ET » et les unions par « OU ».</li>
+<li>Utiliser les complémentaires : <code>x ∈ A^c ⇔ x ∉ A</code>.</li>
+<li>Montrer que les conditions obtenues donnent <code>x ∈ Y</code>.</li>
+<li>Conclure : <code>X ⊂ Y</code>.</li>
+</ol>
+</div>
+
+</div>
+</body>
+</html>
