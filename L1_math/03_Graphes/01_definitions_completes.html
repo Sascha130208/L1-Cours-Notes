@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graphes — Toutes les définitions du cours</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Graphes — Définitions complètes</span></div>
+<div class="page">
+
+<span class="chip">🎓 Cours L2</span><span class="chip">Référence</span>
+<h1>📘 Graphes — toutes les définitions essentielles, expliquées</h1>
+
+<p>Cette page reprend <strong>chaque définition du polycopié</strong> (F. Durand, UPJV) dans l'ordre du cours, avec à chaque fois : l'énoncé formel, une traduction en français courant, et le piège classique. Les deux pages compagnes sont les <a href="02_flashcards.html">flashcards</a> et les <a href="03_exos_types.html">exos types rédigés</a>.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Comment lire une définition de maths</span>
+Pour chaque définition, demande-toi trois choses : <strong>(1)</strong> de quel objet on parle (un graphe ? un sommet ? un chemin ?), <strong>(2)</strong> quelle condition doit être vérifiée, <strong>(3)</strong> quel est le plus petit exemple qui marche et le plus petit qui ne marche pas. Si tu sais produire ces deux exemples, tu as compris la définition.
+</div>
+
+<h2>🧭 Sommaire</h2>
+<div class="grid-cards">
+<div class="card"><a href="#p1">1. Vocabulaire de base</a><p>Graphe orienté, non orienté, degrés, ordre, taille</p></div>
+<div class="card"><a href="#p2">2. Représentations</a><p>Sagittale, matrice d'adjacence, matrice des valuations</p></div>
+<div class="card"><a href="#p3">3. Familles de graphes</a><p>Simple, valué, régulier, complet, biparti, sous-graphe, clique</p></div>
+<div class="card"><a href="#p4">4. Chemins et connexité</a><p>Chemin, cycle, König, puissances de la matrice, composantes</p></div>
+<div class="card"><a href="#p5">5. Arbres</a><p>Arbre, feuille, Cayley, Prüfer, forêt, arbre couvrant</p></div>
+<div class="card"><a href="#p6">6. Isomorphisme</a><p>Bijection respectant les arêtes, invariants</p></div>
+<div class="card"><a href="#p7">7. Coloriage</a><p>χ(G), Brooks, polynôme chromatique, glouton, Welsh-Powell</p></div>
+<div class="card"><a href="#p8">8. Coloration des arêtes</a><p>χ'(G), Vizing, König</p></div>
+<div class="card"><a href="#p9">9. Planarité</a><p>Faces, formule d'Euler, K₅, K₃,₃, Kuratowski, 4 couleurs</p></div>
+<div class="card"><a href="#p10">10. Eulérien / hamiltonien</a><p>Théorème d'Euler, théorème d'Ore</p></div>
+<div class="card"><a href="#p11">11. Lemme de Hall</a><p>Graphes bipartis, mariages</p></div>
+<div class="card"><a href="#p12">12. Algorithmes</a><p>Parcours, niveaux, Kruskal, Prim, Dijkstra, PERT</p></div>
+</div>
+
+<h2 id="p1">1️⃣ Vocabulaire de base</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définition 1 — Graphe orienté</span>
+Un <strong>graphe orienté</strong> est un couple <code>G = (S, A)</code> où <code>S</code> est un ensemble (les <strong>sommets</strong>) et <code>A ⊂ S×S</code> (les <strong>arcs</strong>).<br>
+Pour un arc <code>a = (x,y)</code> : <code>x</code> et <code>y</code> sont les <strong>extrémités</strong>, <code>x</code> est l'<strong>origine</strong> (ou le début), <code>y</code> la <strong>fin</strong> ; <code>y</code> est un <strong>successeur</strong> de <code>x</code> et <code>x</code> un <strong>prédécesseur</strong> de <code>y</code>. Si <code>x = y</code>, l'arc est une <strong>boucle</strong>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 En clair</span>
+Un graphe orienté, c'est des points et des <em>flèches</em>. Un arc est un <strong>couple</strong> : <code>(x,y)</code> et <code>(y,x)</code> sont deux arcs différents. C'est toute la différence avec le non-orienté, où une arête est un <strong>ensemble</strong> <code>{x,y}</code> et où l'ordre ne compte pas.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Notations associées</span>
+<ul>
+<li><code>G(x)</code> = ensemble des successeurs de x ; <code>G₋₁(x)</code> = ensemble des prédécesseurs de x.</li>
+<li><code>d⁺(x) = Card(G(x))</code> : <strong>degré sortant</strong> (nombre d'arcs partant de x).</li>
+<li><code>d⁻(x) = Card(G₋₁(x))</code> : <strong>degré entrant</strong> (nombre d'arcs arrivant en x).</li>
+<li><code>d(x) = d⁺(x) + d⁻(x)</code> : <strong>degré</strong> de x.</li>
+<li><strong>Ordre</strong> de G = <code>Card(S)</code> = nombre de sommets. <strong>Taille</strong> de G = <code>Card(A)</code> = nombre d'arcs.</li>
+</ul>
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Piège de vocabulaire</span>
+<strong>Ordre = sommets, taille = arêtes.</strong> C'est contre-intuitif et c'est demandé tel quel en examen. Moyen mnémotechnique : on « ordonne » les sommets en les numérotant de 1 à n.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 8 — Graphe non orienté</span>
+Un <strong>graphe non orienté</strong> est <code>G = (S,A)</code> où <code>A ⊂ {B ∈ 𝒫(S) | Card(B) = 1 ou 2}</code> : les éléments de A sont les <strong>arêtes</strong>, parties de S à 1 ou 2 éléments.<br>
+Les extrémités de <code>{x,y}</code> sont x et y ; celles de <code>{x}</code> (une boucle) sont x et x. Le <strong>degré</strong> d'un sommet est le nombre d'arêtes dont il est extrémité, <mark>les boucles comptant double</mark>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Pourquoi les boucles comptent double</span>
+Pour qu'une boucle « entre » et « sorte » du sommet comme n'importe quel aller-retour : si on oriente arbitrairement toutes les arêtes, la boucle contribue 1 au degré entrant et 1 au degré sortant. Cette convention est exactement celle qui fait que le <strong>lemme des poignées de main reste vrai</strong>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 4 / 9 — Lemme des poignées de main</span>
+Pour un graphe de taille <code>m</code> :<br>
+— orienté : <code>Σ d⁺(x) = Σ d⁻(x) = m</code> et <code>Σ d(x) = 2m</code> ;<br>
+— non orienté : <code>Σ d(x) = 2m</code>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration (à savoir refaire, elle tombe souvent)</span>
+Chaque arc <code>(x,y)</code> est compté exactement une fois dans <code>d⁺(x)</code> et dans aucun autre <code>d⁺(x')</code>. Donc en sommant tous les <code>d⁺</code> on compte chaque arc une et une seule fois : <code>Σ d⁺(x) = m</code>. Même raisonnement pour <code>d⁻</code>. En additionnant : <code>Σ d(x) = 2m</code>. ∎<br>
+C'est le <strong>double comptage</strong> : on compte le même ensemble (les arcs) de deux façons.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Conséquence qu'on utilise tout le temps</span>
+<code>Σ d(x) = 2m</code> est un nombre <strong>pair</strong>. Donc <mark>le nombre de sommets de degré impair est toujours pair</mark>. C'est l'argument qui tue la moitié des exercices du type « est-ce possible ? ».
+</div>
+
+<h2 id="p2">2️⃣ Représentations d'un graphe</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définitions 2 et 10 — Représentation sagittale</span>
+Représentation graphique où les sommets sont des points et les arcs <code>(x,y)</code> des flèches de x vers y (cas orienté) ; dans le cas non orienté, les arêtes <code>{x,y}</code> sont des segments de x à y, et <code>{x}</code> une boucle.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Un même graphe a une infinité de dessins</span>
+Deux dessins très différents peuvent représenter <strong>le même graphe</strong>. Le dessin n'est <em>pas</em> le graphe : seul compte « qui est relié à qui ». D'où l'importance de l'isomorphisme (§6) et de la planarité (§9).
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définitions 3 et 11 — Matrice d'adjacence</span>
+Sommets numérotés de 1 à n. La <strong>matrice d'adjacence</strong> <code>M = (M_xy)</code> est la matrice n×n dont le coefficient ligne x, colonne y est :<br>
+— orienté : le nombre de flèches d'origine x et de fin y ;<br>
+— non orienté : le nombre d'arêtes d'extrémités x et y.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Les réflexes de lecture d'une matrice d'adjacence</span>
+<ul>
+<li><strong>Graphe non orienté ⟺ M symétrique</strong> (<code>M = ᵗM</code>).</li>
+<li><strong>Graphe sans boucle ⟺ diagonale nulle.</strong></li>
+<li>La somme de la ligne i (ou de la colonne i) donne le degré du sommet i (cas non orienté).</li>
+<li>Graphe <strong>simple</strong> ⟺ M n'a que des 0 et des 1, avec diagonale nulle.</li>
+<li>Un coefficient ≥ 2 signale des <strong>arêtes multiples</strong> (multigraphe).</li>
+</ul>
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 7 — Lire les propriétés sur la matrice</span>
+<code>G</code> est : <strong>réflexif</strong> ⟺ <code>M_xx = 1</code> pour tout x ; <strong>symétrique</strong> ⟺ <code>M = ᵗM</code> ; <strong>antisymétrique</strong> ⟺ <code>M_xy · M_yx = 0</code> dès que <code>x ≠ y</code> ; <strong>transitif</strong> ⟺ <code>M_xz = 1</code> chaque fois que <code>M_xy = M_yz = 1</code>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 6 — Les mêmes propriétés sur le dessin</span>
+<strong>Réflexif</strong> : tout sommet porte une boucle. <strong>Symétrique</strong> : tous les arcs sont à double sens. <strong>Antisymétrique</strong> : aucun arc n'est à double sens. <strong>Transitif</strong> : pour deux arcs qui s'enchaînent, le « raccourci » existe aussi.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 13 — Graphe valué</span>
+Un <strong>graphe valué</strong> est un triplet <code>G = (S,A,f)</code> avec <code>f : A → ℝ</code>. La <strong>matrice des valuations</strong> <code>V</code> vaut <code>V_xy = f(a)</code> si <code>a = (x,y) ∈ A</code>, et <code>∞</code> sinon.
+</div>
+<div class="box tip">
+<span class="box-title">💡 À quoi ça sert</span>
+Les valuations modélisent des <strong>coûts</strong> : distance en km, temps, prix, débit. Tous les algorithmes d'optimisation (Dijkstra, Kruskal, Prim, PERT) travaillent sur des graphes valués. Le <code>∞</code> pour une arête absente est un choix pratique : « aller directement de x à y coûte infiniment cher », donc l'algorithme ne le choisira jamais.
+</div>
+
+<h2 id="p3">3️⃣ Familles de graphes</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définition 12 — Graphe simple</span>
+Un graphe (orienté ou non) est <strong>simple</strong> s'il est <strong>sans boucle</strong>. Dans tout le cours, « simple » sous-entend aussi en général sans arête multiple : les arêtes forment un <em>ensemble</em> de paires.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 14 — Graphe régulier</span>
+<code>G</code> est <strong>régulier</strong> si tous ses sommets ont le même degré ; il est <strong>r-régulier</strong> si ce degré commun vaut <code>r</code>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 15</span>
+Un graphe <code>r</code>-régulier à <code>n</code> sommets a <code>nr/2</code> arêtes.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration (une ligne)</span>
+La somme des degrés vaut <code>n×r</code> ; par le lemme des poignées de main elle vaut <code>2m</code> ; donc <code>m = nr/2</code>. ∎<br>
+<strong>Corollaire gratuit :</strong> <code>nr</code> doit être pair. Un graphe 3-régulier à 5 sommets est donc <strong>impossible</strong> (15 est impair) — question classique de TD.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 16 — Graphe complet Kₙ</span>
+Le <strong>graphe complet à n sommets</strong>, noté <code>Kₙ</code>, est le graphe simple d'ordre n ayant le plus d'arêtes possible : toutes les paires de sommets distincts sont reliées.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Chiffres à connaître par cœur sur Kₙ</span>
+<code>Kₙ</code> est <code>(n-1)</code>-régulier et possède <code>n(n-1)/2</code> arêtes (par le théorème 15). Son nombre chromatique est <code>n</code>. Il est planaire si et seulement si <code>n ≤ 4</code>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 17 / 67 — Graphe biparti</span>
+<code>G = (S,A)</code> est <strong>biparti</strong> s'il existe une partition <code>S = S₁ ∪ S₂</code>, <code>S₁ ∩ S₂ = ∅</code>, telle que <strong>chaque arête a une extrémité dans S₁ et l'autre dans S₂</strong>.<br>
+Le <strong>biparti complet</strong> <code>K_n,m</code> relie chacun des n sommets du premier ensemble à chacun des m sommets du second.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 68 — Caractérisation des bipartis</span>
+<mark>Un graphe est biparti ⟺ il n'a aucun cycle de longueur impaire.</mark>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration (les deux sens)</span>
+<strong>⇒</strong> Dans un biparti, un cycle alterne forcément <code>S₁, S₂, S₁, S₂, …</code> ; pour revenir au point de départ il faut un nombre pair d'étapes. Donc pas de cycle impair.<br>
+<strong>⇐</strong> Supposons G sans cycle impair et connexe. On choisit un sommet x, on le marque 0, on marque 1 ses voisins, 0 leurs voisins non marqués, etc. (c'est un parcours en largeur). Si deux sommets voisins recevaient la même marque, on obtiendrait un cycle de longueur impaire — exclu. Les sommets marqués 0 forment <code>S₁</code>, ceux marqués 1 forment <code>S₂</code> : c'est une bipartition. Si G n'est pas connexe, on recommence sur chaque composante connexe. ∎
+</div>
+<div class="box tip">
+<span class="box-title">💡 Les trois visages du « biparti »</span>
+<strong>biparti ⟺ 2-coloriable ⟺ sans cycle impair.</strong> Un énoncé qui parle de l'une des trois formulations se résout souvent avec une autre. Un <strong>arbre est toujours biparti</strong> (il n'a aucun cycle).
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 18 — Graphe partiel et sous-graphe</span>
+Soit <code>G = (S,A)</code>.<br>
+— un <strong>graphe partiel</strong> de G est <code>G' = (S, A')</code> avec <code>A' ⊂ A</code> : <strong>on enlève des arêtes, on garde tous les sommets</strong> ;<br>
+— un <strong>sous-graphe</strong> de G est <code>G' = (S', A')</code> avec <code>S' ⊂ S</code> et <code>A' = {(x,y) ∈ A | x ∈ S' et y ∈ S'}</code> : <strong>on enlève des sommets, et toutes les arêtes qui leur étaient incidentes</strong>.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Ne pas confondre</span>
+<strong>Partiel = on coupe des arêtes. Sous-graphe = on supprime des sommets.</strong> Un <em>sous-graphe partiel</em> combine les deux. L'arbre couvrant (§5) est un graphe <em>partiel</em> : il garde tous les sommets.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 19 — Clique et stable</span>
+Une <strong>clique</strong> est un sous-graphe <strong>complet</strong> de G (un paquet de sommets tous reliés deux à deux).<br>
+Un <strong>stable</strong> (ou ensemble indépendant) est un sous-graphe <strong>sans aucune arête</strong> (des sommets deux à deux non reliés).
+</div>
+<div class="box tip">
+<span class="box-title">💡 Les deux notions duales qui servent en coloriage</span>
+Une clique d'ordre k force <code>χ(G) ≥ k</code> (ses k sommets exigent k couleurs différentes). À l'inverse, <strong>chaque classe de couleur est un stable</strong> : colorier G avec k couleurs, c'est exactement partitionner ses sommets en k stables. Ces deux remarques encadrent presque tous les exercices de nombre chromatique.
+</div>
+
+<h2 id="p4">4️⃣ Chemins et connexité</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définition 20 — Chemin et son vocabulaire</span>
+Un <strong>chemin</strong> dans G est une liste de sommets <code>C = (x₀,x₁,…,x_k)</code> telle qu'il existe un arc (resp. une arête) entre chaque couple de sommets consécutifs.<br>
+— <strong>longueur</strong> du chemin : le nombre d'arcs/arêtes (donc <code>k</code>, pas le nombre de sommets) ;<br>
+— <strong>chemin simple</strong> : tous les arcs/arêtes sont différents ;<br>
+— <strong>chemin fermé</strong> : chemin simple avec <code>x₀ = x_k</code> ;<br>
+— <strong>chemin élémentaire</strong> : tous les <em>sommets</em> sont différents (sauf éventuellement le départ et l'arrivée) ;<br>
+— <strong>circuit</strong> : chemin orienté finissant à son point de départ ;<br>
+— <strong>cycle</strong> : idem dans un graphe non orienté.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Simple ≠ élémentaire</span>
+<strong>Simple</strong> : on ne reprend jamais deux fois la même <em>arête</em>. <strong>Élémentaire</strong> : on ne repasse jamais par le même <em>sommet</em>. Élémentaire ⇒ simple, mais pas l'inverse : un chemin peut passer deux fois par un sommet en empruntant des arêtes différentes. Cette distinction est exactement celle qui sépare <strong>eulérien</strong> (arêtes, donc simple) de <strong>hamiltonien</strong> (sommets, donc élémentaire).
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 21 — Lemme de König</span>
+Soient x et y deux sommets distincts de G. <strong>S'il existe un chemin de x à y, alors il existe un chemin élémentaire de x à y.</strong>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration</span>
+Prenons un chemin de x à y non élémentaire : il passe donc deux fois par un même sommet s, il est de la forme <code>C = (x,…,s,…,s,…,y)</code>. On <strong>supprime le morceau entre les deux passages en s</strong> (c'est un cycle/circuit) : on obtient un chemin strictement plus court de x à y. On recommence tant qu'il n'est pas élémentaire ; comme la longueur diminue strictement à chaque fois, le procédé s'arrête. ∎<br>
+<strong>Conséquence pratique :</strong> un chemin élémentaire a au plus n sommets, donc <strong>longueur ≤ n-1</strong>. C'est pour cela qu'on s'arrête à <code>A^(n-1)</code> dans le test de connexité.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 22 — Compter les chemins avec les puissances de la matrice</span>
+Soit <code>A</code> la matrice d'adjacence de G (sommets étiquetés 1..n) et <code>k ∈ ℕ*</code>. Alors <code>(A^k)_ij</code> est le <strong>nombre de chemins de longueur exactement k allant du sommet i au sommet j</strong>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration par récurrence sur k</span>
+<strong>k = 1</strong> : <code>A_ij</code> est le nombre d'arcs de i à j, c'est-à-dire le nombre de chemins de longueur 1. Vrai.<br>
+<strong>Hérédité :</strong> un chemin de longueur k de i à j se décompose de façon unique en un chemin de longueur <code>k-1</code> de i vers un sommet intermédiaire r, suivi d'un arc de r à j. Par hypothèse de récurrence, il y a <code>(A^(k-1))_ir</code> façons pour le premier morceau et <code>A_rj</code> pour le second. En sommant sur tous les r possibles :<br>
+<code>Σ_r (A^(k-1))_ir · A_rj = (A^(k-1)·A)_ij = (A^k)_ij</code>. ∎<br>
+C'est exactement la définition du produit matriciel — d'où l'élégance du résultat.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 23 — Connexité</span>
+<code>G</code> est <strong>connexe</strong> (cas non orienté) ou <strong>fortement connexe</strong> (cas orienté) si pour tout couple de sommets <code>(x,y)</code> il existe un chemin de x vers y.<br>
+Une <strong>composante (fortement) connexe</strong> est un sous-graphe (fortement) connexe <strong>maximal</strong> : on ne peut pas l'agrandir en gardant la propriété.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Image mentale</span>
+Connexe = « le graphe est en un seul morceau ». Les composantes connexes sont les morceaux. Dans le cas orienté, fortement connexe est bien plus exigeant : il faut pouvoir aller de x à y <strong>et</strong> de y à x en suivant le sens des flèches.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 24 — Test matriciel de connexité</span>
+Soit G non orienté à n sommets, A sa matrice d'adjacence. On pose <code>B = A + A² + … + A^(n-1)</code>. Alors <strong>G est connexe ⟺ tous les coefficients non diagonaux de B sont strictement positifs</strong>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Pourquoi ça marche</span>
+<code>B_ij &gt; 0</code> signifie qu'il existe au moins un chemin de longueur <code>k ≤ n-1</code> de i à j (théorème 22). Réciproquement si G est connexe, il y a un chemin de i à j, donc par le lemme de König un chemin <em>élémentaire</em>, qui est de longueur au plus <code>n-1</code> : il est bien compté dans B. ∎
+</div>
+<div class="box tip">
+<span class="box-title">💡 Algorithme « tache d'huile » (plus rapide à la main)</span>
+Partir d'un sommet <code>v₀</code>, poser <code>Composante = {v₀}</code>, puis répéter : ajouter tous les voisins des sommets nouvellement ajoutés, jusqu'à ce qu'il n'y ait plus rien de nouveau. À la fin, si <code>Composante = S</code>, le graphe est connexe ; sinon on a trouvé une composante connexe stricte. C'est un algorithme <strong>glouton</strong> : on avance de proche en proche sans jamais revenir en arrière.
+</div>
+
+<h2 id="p5">5️⃣ Arbres</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définitions 25-27 — Arbre et son vocabulaire</span>
+Un <strong>arbre</strong> est un graphe non orienté <strong>connexe et sans cycle</strong>.<br>
+Un <strong>arbre enraciné</strong> <code>(G,s₀)</code> est un arbre dans lequel on a privilégié un sommet <code>s₀</code>, appelé <strong>racine</strong>.<br>
+— les <strong>feuilles</strong> sont les sommets de degré 1 différents de la racine ;<br>
+— les <strong>nœuds</strong> sont les sommets qui ne sont ni la racine ni des feuilles ;<br>
+— une <strong>branche</strong> est un chemin de la racine vers une feuille.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 28</span>
+Dans un arbre à <code>n ≥ 2</code> sommets, il y a toujours (au moins) une feuille.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration</span>
+Considérons un chemin élémentaire de longueur maximale <code>C = (a, x₂,…, b)</code> (il en existe, l'arbre étant fini). Son extrémité <code>a</code> est de degré 1 : si elle avait un autre voisin <code>v</code>, alors soit <code>v</code> n'est pas sur C et on pourrait prolonger C (contredit la maximalité), soit <code>v</code> est sur C et on obtiendrait un cycle (contredit « sans cycle »). Donc a est une feuille. ∎
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 29 — Les deux propriétés fondamentales</span>
+Soit <code>G</code> un arbre à <code>k</code> sommets.<br>
+<strong>(1)</strong> Toute paire de sommets distincts est reliée par <strong>exactement un</strong> chemin simple.<br>
+<strong>(2)</strong> L'arbre a exactement <code>k - 1</code> arêtes.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration de (2), par récurrence</span>
+<strong>Initialisation :</strong> un arbre à 1 arête a 2 sommets. Vrai.<br>
+<strong>Hérédité :</strong> soit G un arbre à k arêtes. Par la proposition 28, G possède une feuille <code>a</code> (de degré 1). Soit <code>H</code> le graphe obtenu en supprimant <code>a</code> et son unique arête : H est encore connexe et sans cycle, c'est un arbre, avec <code>k-1</code> arêtes et un sommet de moins. Par hypothèse de récurrence H a (nombre de ses sommets − 1) arêtes ; en remettant a et son arête, les deux compteurs augmentent de 1 et l'égalité se conserve. ∎
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 30 — Caractérisation</span>
+<strong>G est un arbre ⟺ il y a exactement un chemin élémentaire entre deux sommets quelconques de G.</strong>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Idée des deux sens</span>
+<strong>⇒</strong> L'existence vient de la connexité ; l'unicité par l'absurde : deux chemins élémentaires distincts entre u et v se recollent en un cycle, interdit dans un arbre.<br>
+<strong>⇐</strong> L'existence d'un chemin entre deux sommets donne la connexité ; et s'il y avait un cycle <code>(v₁,…,v_n,v₁)</code>, il y aurait deux chemins élémentaires distincts entre <code>v₁</code> et <code>v_n</code> (en faisant le tour par la gauche ou par la droite), ce qui contredit l'unicité. ∎
+</div>
+<div class="box tip">
+<span class="box-title">💡 Les caractérisations équivalentes à retenir</span>
+Pour un graphe à n sommets, <strong>deux de ces trois propriétés impliquent la troisième</strong> : connexe / sans cycle / exactement n−1 arêtes. C'est l'outil n°1 des exercices sur les arbres.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 31 — Formule de Cayley</span>
+Il y a exactement <code>n^(n-2)</code> arbres à n sommets étiquetés de 1 à n.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 32 — Le code de Prüfer (preuve de Cayley)</span>
+L'ensemble <code>𝒯ₙ</code> des arbres à n sommets étiquetés est <strong>en bijection</strong> avec l'ensemble <code>ℰₙ</code> des <code>(n-2)</code>-uplets <code>(a₁,…,a_(n-2))</code> d'entiers de 1 à n.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Comment on construit le code de Prüfer (algorithme)</span>
+<strong>Arbre → suite :</strong> répéter <code>n-2</code> fois : prendre la feuille de <strong>plus petite étiquette</strong>, écrire l'étiquette de son unique voisin, puis supprimer cette feuille.<br>
+<strong>Suite → arbre :</strong> à chaque étape, soit <code>i</code> le plus petit élément de l'ensemble des étiquettes restantes qui n'apparaît pas dans la suite restante ; on trace l'arête <code>{i, a₁}</code>, on retire i de l'ensemble et <code>a₁</code> de la suite. On termine en reliant les deux dernières étiquettes restantes.<br>
+Comme <code>Card(ℰₙ) = n^(n-2)</code>, la bijection donne immédiatement Cayley.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définitions 70-74 — Arbre enraciné, forêt, arbre couvrant</span>
+Dans un arbre enraciné <code>(G,s₀)</code>, si <code>(s₀,…,sₙ,s)</code> est l'unique chemin de la racine à <code>s</code>, alors <code>sₙ</code> est le <strong>prédécesseur (ascendant)</strong> de s et s le <strong>successeur (descendant)</strong> de <code>sₙ</code>. Un sommet est une <strong>feuille ⟺ il n'a pas de successeur</strong> (Prop. 71). Si chaque sommet a au plus 2 successeurs, c'est un <strong>arbre binaire</strong>.<br>
+Une <strong>forêt</strong> est un graphe non orienté sans cycle ; c'est exactement un graphe simple dont chaque composante connexe est un arbre (Prop. 73).<br>
+Un <strong>arbre couvrant</strong> de G est un <strong>graphe partiel</strong> de G qui est un arbre (il garde donc tous les sommets).
+</div>
+<div class="box tip">
+<span class="box-title">💡 Conséquence</span>
+Un graphe qui possède un arbre couvrant est nécessairement <strong>connexe</strong> (et réciproquement, tout graphe connexe fini en possède un).
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Définition 75 — Poids</span>
+Dans un graphe valué <code>G = (S,A,f)</code>, le <strong>poids</strong> d'une arête <code>a</code> est <code>f(a)</code>, et le poids du graphe est <code>f(G) = Σ f(a)</code>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 76 — Arbre couvrant optimal</span>
+Dans un graphe non orienté connexe valué, il existe un arbre couvrant de poids maximal (ou minimal) ; on l'obtient par l'<strong>algorithme de Kruskal</strong> ou celui de <strong>Prim</strong> (voir §12).
+</div>
+
+<h2 id="p6">6️⃣ Isomorphisme de graphes</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définition 33 — Graphes isomorphes</span>
+<code>G = (V,E)</code> et <code>H = (W,F)</code> sont <strong>isomorphes</strong> s'il existe une <strong>bijection</strong> <code>Φ : V → W</code> telle que <code>{x,y}</code> est une arête de G <strong>si et seulement si</strong> <code>{Φ(x),Φ(y)}</code> est une arête de H (même chose avec les arcs <code>(x,y)</code> dans le cas orienté).
+</div>
+<div class="box tip">
+<span class="box-title">💡 En clair</span>
+Deux graphes isomorphes sont « le même graphe » à un <strong>renommage des sommets</strong> près. Leurs dessins peuvent être très différents sans que cela change quoi que ce soit.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Méthode : montrer que OUI vs montrer que NON</span>
+<strong>Pour prouver l'isomorphisme :</strong> il faut <strong>exhiber</strong> la bijection Φ (un tableau de correspondance) et vérifier arête par arête. Astuce : apparier d'abord les sommets de même degré, en commençant par les degrés rares.<br>
+<strong>Pour prouver la non-isomorphie :</strong> il suffit d'un <strong>invariant</strong> qui diffère — un nombre qui ne dépend pas du nom des sommets :
+<ul>
+<li>nombre de sommets, nombre d'arêtes ;</li>
+<li><strong>suite des degrés</strong> triée (invariant le plus utilisé) ;</li>
+<li>nombre de composantes connexes ;</li>
+<li>longueur du plus petit cycle, nombre de triangles, existence d'une clique d'ordre k ;</li>
+<li>biparti ou non, planaire ou non, nombre chromatique.</li>
+</ul>
+<strong>Attention :</strong> une suite des degrés identique ne <em>prouve pas</em> l'isomorphisme — c'est une condition nécessaire, pas suffisante.
+</div>
+
+<h2 id="p7">7️⃣ Le problème du coloriage</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définition 34 — Coloriage, nombre chromatique</span>
+Soit <code>G = (V,E)</code>. Un <strong>coloriage</strong> est une application <code>c : V → Σ</code> avec Σ fini ; <code>c(u)</code> est la <strong>couleur</strong> de u.<br>
+Le coloriage est <strong>propre</strong> si <mark>deux sommets voisins ont toujours des couleurs distinctes</mark>.<br>
+G est <strong>k-coloriable</strong> s'il existe un coloriage propre avec <code>|Σ| = k</code>. Le plus petit tel k est le <strong>nombre chromatique</strong> <code>χ(G)</code>. Un coloriage est <strong>optimal</strong> s'il utilise exactement <code>χ(G)</code> couleurs.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Lemme 35 — Les faits à connaître par cœur</span>
+<ul>
+<li>Un graphe avec des <strong>boucles</strong> n'admet <strong>aucun</strong> coloriage propre.</li>
+<li>Un graphe simple est toujours coloriable, et <code>χ(G) ≤</code> ordre de G.</li>
+<li>Le nombre chromatique d'une <strong>clique</strong> est égal à son ordre ; <code>χ(Kₙ) = n</code>.</li>
+<li>Si <code>G'</code> est un sous-graphe de G alors <code>χ(G') ≤ χ(G)</code>.</li>
+<li>Si G contient une clique d'ordre k alors <code>χ(G) ≥ k</code>.</li>
+<li><mark>G est biparti ⟺ G est 2-coloriable.</mark></li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">💡 La stratégie standard pour calculer χ(G)</span>
+Toujours en <strong>deux temps</strong> — c'est la rédaction attendue :<br>
+<strong>1) Minoration</strong> <code>χ(G) ≥ k</code> : exhiber une clique d'ordre k (ou un argument d'imparité pour un cycle).<br>
+<strong>2) Majoration</strong> <code>χ(G) ≤ k</code> : <strong>exhiber un coloriage propre explicite</strong> à k couleurs (le lister sommet par sommet).<br>
+On conclut <code>χ(G) = k</code>. Sans les deux moitiés, la réponse n'est pas démontrée.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 36 et Théorème 37 (Brooks, 1941)</span>
+Soit <code>Δ(G)</code> le degré maximum d'un sommet. Alors <code>χ(G) ≤ Δ(G) + 1</code>.<br>
+De plus (Brooks, admis) : si <code>G</code> est <strong>connexe</strong>, et n'est <strong>ni un graphe complet ni un cycle impair</strong>, alors <code>χ(G) ≤ Δ(G)</code>.
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration de χ(G) ≤ Δ(G)+1 (par contraposée)</span>
+Soit <code>k &gt; Δ(G)+1</code> et supposons G k-coloriable par <code>c : V → {1,…,k}</code>. On fabrique une coloration à <code>k-1</code> couleurs : on garde <code>c'(x) = c(x)</code> si <code>c(x) &lt; k</code> ; si <code>c(x) = k</code>, comme x a au plus <code>Δ(G) &lt; k-1</code> voisins, il reste au moins une couleur <code>l ≤ k-1</code> non utilisée par ses voisins, et on pose <code>c'(x) = l</code>. Donc <code>χ(G) ≤ k-1 &lt; k</code>. ∎<br>
+Autrement dit : avec <code>Δ+1</code> couleurs, un sommet a toujours une couleur libre, puisqu'il a au plus Δ voisins.
+</div>
+
+<h3>Polynôme chromatique</h3>
+<div class="box info">
+<span class="box-title">📌 Définition 39 et Théorème 38</span>
+<code>P_G(k)</code> = nombre de colorations propres de G utilisant n'importe lesquelles parmi <code>k</code> couleurs données ; c'est le <strong>polynôme chromatique</strong> de G.<br>
+Si G est simple à n sommets et m arêtes, <code>P_G(k)</code> est un <strong>polynôme unitaire de degré n</strong> dont le coefficient de degré <code>n-1</code> vaut <code>-m</code>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Exemples à savoir calculer directement</span>
+<ul>
+<li>n sommets sans aucune arête : <code>P_G(k) = kⁿ</code>.</li>
+<li>Chemin <code>a—b—c</code> : on colorie b (k choix), puis a et c librement sauf la couleur de b : <code>P_G(k) = k(k-1)²</code>.</li>
+<li>Triangle : <code>k(k-1)(k-2)</code>.</li>
+<li><code>Kₙ</code> : <code>k(k-1)(k-2)…(k-n+1)</code>.</li>
+<li>Pour <code>k &lt; χ(G)</code> on a évidemment <code>P_G(k) = 0</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Idée de la preuve du théorème 38 (suppression-contraction)</span>
+Soit <code>e = {x,y}</code> une arête. <code>H</code> = G privé de e ; <code>K</code> = G où l'on a <strong>fusionné</strong> x et y en un seul sommet. Les colorations propres de H se répartissent en celles qui donnent des couleurs différentes à x et y (= les colorations de G) et celles qui leur donnent la même (= les colorations de K). D'où <code>P_H(k) = P_G(k) + P_K(k)</code>, c'est-à-dire <code>P_G(k) = P_H(k) - P_K(k)</code>, et on conclut par récurrence sur le nombre d'arêtes.
+</div>
+
+<h3>Algorithmes de coloriage</h3>
+<div class="box info">
+<span class="box-title">📌 Algorithme glouton</span>
+<pre><code>couleur courante = 1
+pour tout sommet x de G faire
+    V = liste des voisins de x
+    couleur = plus petite couleur non encore utilisée dans V
+    si couleur ≤ couleur courante alors colorier x avec cette couleur
+    sinon incrémenter la couleur courante et colorier x avec
+fin faire</code></pre>
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Le glouton est propre mais pas optimal</span>
+Le résultat dépend de <strong>l'ordre des sommets</strong>. Contre-exemple du cours : sur le chemin <code>x₁—x₃—x₄—x₂</code> parcouru dans l'ordre des indices, le glouton utilise 3 couleurs alors que <code>χ = 2</code>.<br>
+<strong>Proposition 40 :</strong> il existe toujours une numérotation des sommets pour laquelle le glouton est optimal — mais il y a <code>n!</code> numérotations possibles, donc ce n'est pas un algorithme exploitable.
+</div>
+<div class="box info">
+<span class="box-title">📌 Algorithme de Welsh-Powell</span>
+<pre><code>L = liste des sommets classés par degré DÉCROISSANT
+couleur courante = 0
+tant que L ≠ ∅ faire
+    incrémenter la couleur courante
+    colorier s = premier sommet de L avec la couleur courante
+    éliminer s de L ; V = liste des voisins de s dans L
+    pour tout x dans L faire
+        si x ∉ V alors colorier x avec la couleur courante
+                      ajouter les voisins de x dans L à V
+    fin faire
+    éliminer de L les sommets coloriés
+fin faire</code></pre>
+En clair : on trie par degré décroissant, puis on remplit <strong>une couleur à la fois</strong>, en lui donnant le plus de sommets deux à deux non voisins possible.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Welsh-Powell non plus n'est pas optimal</span>
+Le cours donne un contre-exemple : un graphe biparti (donc <code>χ = 2</code>) sur lequel les deux algorithmes trouvent 4 couleurs. Un algorithme donne donc toujours une <strong>majoration</strong> de χ(G), jamais sa valeur garantie.
+</div>
+
+<h2 id="p8">8️⃣ Coloration des arêtes</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définition 41 — Indice chromatique</span>
+Une <strong>coloration des arêtes</strong> est une application <code>c : E → Σ</code>. Elle est <strong>propre</strong> si deux arêtes <strong>incidentes</strong> (ayant une extrémité commune) reçoivent des couleurs différentes.<br>
+L'<strong>indice chromatique</strong> <code>χ'(G)</code> est le plus petit nombre de couleurs permettant une coloration propre des arêtes.
+</div>
+<div class="box info">
+<span class="box-title">📌 Encadrement et théorèmes</span>
+<ul>
+<li>Toujours : <code>Δ(G) ≤ χ'(G)</code> (les Δ arêtes du sommet de degré max sont deux à deux incidentes).</li>
+<li><strong>Théorème 42 (Vizing, 1964)</strong> : pour tout graphe simple, <code>χ'(G) ≤ Δ(G) + 1</code>. Il n'y a donc que <strong>deux valeurs possibles</strong> : Δ ou Δ+1.</li>
+<li><strong>Théorème 45 (König, 1916)</strong> : si G est <strong>biparti</strong>, alors <code>χ'(G) = Δ(G)</code>.</li>
+<li><strong>Proposition 43</strong> : pour le cycle <code>Cₙ</code> (n ≥ 3), <code>χ'(Cₙ) = 2</code> si n pair, <code>3</code> si n impair.</li>
+<li><strong>Proposition 44</strong> : pour <code>Kₙ</code>, <code>χ'(Kₙ) = n-1</code> si n est pair, <code>n</code> si n est impair.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Où ça sert concrètement</span>
+Les problèmes d'<strong>emploi du temps</strong> « examinateur ↔ étudiant » sont exactement des colorations d'arêtes d'un graphe biparti : une couleur = un créneau horaire, et König donne directement la réponse <code>Δ(G)</code>.
+</div>
+
+<h2 id="p9">9️⃣ Graphes planaires</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définition 46 — Graphe planaire</span>
+<code>G</code> est <strong>planaire</strong> s'il <strong>existe</strong> un diagramme sagittal de G où aucun arc ou arête n'en coupe un autre.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ « Existe », pas « tout dessin »</span>
+Un graphe peut être planaire tout en étant <em>dessiné</em> avec des croisements. Pour montrer qu'un graphe <strong>est</strong> planaire : il suffit d'en <strong>donner un dessin sans croisement</strong>. Pour montrer qu'il <strong>ne l'est pas</strong> : il faut un argument général (formule d'Euler ou Kuratowski), jamais « je n'y arrive pas ».
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Faces</span>
+Une représentation planaire divise le plan en régions délimitées par les arêtes : les <strong>faces</strong> de G. Une seule n'est pas bornée : la <strong>face extérieure</strong>.<br>
+<strong>Définition 48 :</strong> le <strong>degré d'une face</strong> <code>d(f)</code> est le nombre d'arêtes qui la bordent, <mark>en comptant 2 fois les arêtes qui ne sont pas dans un cycle</mark> (les « ponts » que l'on longe des deux côtés).
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 47 — Formule d'Euler</span>
+Pour un graphe <strong>planaire connexe</strong> à <code>s</code> sommets, <code>a</code> arêtes et <code>f</code> faces :
+<p style="text-align:center;font-size:1.3em"><code>s - a + f = 2</code></p>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Démonstration par récurrence sur le nombre de faces</span>
+<strong>f = 1 :</strong> le graphe n'a qu'une face infinie, donc aucun cycle : c'est un arbre, et <code>s = a+1</code> (Prop. 29), d'où <code>s-a+f = 1+1 = 2</code>. ✔<br>
+<strong>f ≥ 2 :</strong> il existe un cycle ; soit <code>e</code> une arête de ce cycle, frontière entre deux faces A et B. En supprimant e, A et B fusionnent : on obtient un graphe planaire connexe à <code>s</code> sommets, <code>a-1</code> arêtes et <code>f-1</code> faces. Par hypothèse de récurrence <code>s-(a-1)+(f-1) = 2</code>, soit <code>s-a+f = 2</code>. ∎<br>
+<strong>Corollaire :</strong> toutes les représentations planaires d'un même graphe ont <strong>le même nombre de faces</strong>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Lemmes 49, 50 et Corollaire 51</span>
+<ul>
+<li><strong>Lemme 49 (poignées de main des faces)</strong> : <code>Σ d(f) = 2a</code>.</li>
+<li><strong>Lemme 50</strong> : dans un graphe simple connexe à au moins 3 sommets, toute face est de degré <code>≥ 3</code>.</li>
+<li><strong>Inégalité fondamentale</strong> : pour un graphe planaire simple connexe à <code>n ≥ 3</code> sommets, <code>m ≤ 3n - 6</code>.</li>
+<li><strong>Corollaire 51</strong> : tout graphe planaire simple connexe contient un sommet de degré <code>≤ 5</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">📝 D'où vient m ≤ 3n - 6 (à savoir refaire)</span>
+Chaque face a un degré ≥ 3 (Lemme 50), et <code>Σ d(f) = 2a</code> (Lemme 49), donc <code>3f ≤ 2a</code>. La formule d'Euler donne <code>f = a - n + 2</code>, d'où <code>3(a-n+2) ≤ 2a</code>, soit <code>a ≤ 3n - 6</code>. ∎<br>
+<strong>C'est le test de non-planarité le plus rapide :</strong> si un graphe simple vérifie <code>m &gt; 3n-6</code>, il n'est pas planaire. (Attention : la réciproque est fausse — <code>K₃,₃</code> vérifie l'inégalité et n'est pourtant pas planaire ; pour les graphes bipartis sans triangle on utilise le raffinement <code>m ≤ 2n-4</code>.)
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Propositions 52 et 53 — Les deux graphes interdits</span>
+<ul>
+<li><code>Kₙ</code> est planaire <strong>si et seulement si n ≤ 4</strong>. En particulier <strong><code>K₅</code> n'est pas planaire</strong>.</li>
+<li><code>K_p,q</code> est planaire si <code>p ≤ 2</code> ou <code>q ≤ 2</code>, et non planaire dès que <code>p &gt; 2</code> et <code>q &gt; 2</code>. En particulier <strong><code>K₃,₃</code> n'est pas planaire</strong>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Preuve que K₅ n'est pas planaire (par l'absurde, à connaître)</span>
+<code>K₅</code> a <code>n = 5</code> sommets et <code>m = 10</code> arêtes. S'il était planaire, Euler donnerait <code>f = m+2-n = 7</code> faces. Par le Lemme 49, <code>Σ d(f) = 2m = 20</code>. Mais chaque face est de degré ≥ 3, donc <code>Σ d(f) ≥ 3×7 = 21 &gt; 20</code>. Contradiction. ∎<br>
+<strong>Pour K₃,₃ :</strong> même schéma, <code>n=6, m=9, f = 5</code>, <code>Σ d(f) = 18</code> ; mais K₃,₃ est biparti donc tous ses cycles sont de longueur paire, donc <strong>toute face est de degré ≥ 4</strong>, d'où <code>Σ d(f) ≥ 20 &gt; 18</code>. Contradiction. ∎
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 54 (Kuratowski, 1928)</span>
+Un graphe est planaire <strong>si et seulement si</strong> il n'a pas de sous-graphe partiel se <strong>contractant</strong> en <code>K₅</code> ou <code>K₃,₃</code>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Contraction d'une arête</span>
+Contracter l'arête <code>{x,y}</code> consiste à remplacer x et y par un unique sommet <code>xy</code>, relié à tous les anciens voisins de x et de y. Un graphe obtenu par un nombre fini de contractions est une <strong>contraction</strong> de G.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorèmes 55-58 — Coloriage des graphes planaires</span>
+<ul>
+<li><strong>Théorème des 4 couleurs</strong> (Appel &amp; Haken, 1976) : le nombre chromatique d'un graphe planaire simple est <strong>au plus 4</strong>. (Première preuve de l'histoire nécessitant l'ordinateur : 1478 cas critiques, 1200 h de calcul.)</li>
+<li><strong>Corollaire 57</strong> : si <code>χ(G) ≥ 5</code> alors G <strong>n'est pas planaire</strong>.</li>
+<li><strong>Théorème 58 (6 couleurs)</strong> — démontrable facilement : tout graphe planaire est 6-coloriable.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">📝 Preuve du théorème des 6 couleurs</span>
+Par récurrence. Le Corollaire 51 donne un sommet <code>v</code> de degré <code>≤ 5</code>. On l'enlève : le graphe restant est planaire, donc 6-coloriable par hypothèse de récurrence. On remet <code>v</code> : il a au plus 5 voisins, donc au plus 5 couleurs interdites — la 6ᵉ est libre. ∎
+</div>
+
+<h2 id="p10">🔟 Chemins eulériens et hamiltoniens</h2>
+
+<div class="box info">
+<span class="box-title">📌 Définitions 59-61 — Les quatre notions</span>
+<ul>
+<li><strong>Eulérien</strong> : il existe un circuit/cycle <strong>simple</strong> <code>(x₀,…,x₀)</code> passant par <strong>toutes les arêtes</strong> (problème de l'explorateur : chaque route une fois, retour au départ).</li>
+<li><strong>Semi-eulérien</strong> : il existe un chemin simple <code>(x₀,…,x_k)</code>, avec <code>x₀ ≠ x_k</code>, passant par toutes les arêtes.</li>
+<li><strong>Hamiltonien</strong> : il existe un circuit/cycle <strong>élémentaire</strong> passant par <strong>tous les sommets</strong> (problème du voyageur de commerce : chaque ville une fois, retour au départ).</li>
+<li><strong>Semi-hamiltonien</strong> : chemin élémentaire <code>(x₀,…,x_k)</code>, <code>x₀ ≠ x_k</code>, passant par tous les sommets.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Comment ne jamais les confondre</span>
+<strong>E</strong>ulérien → <strong>a</strong>rêtes (toutes les routes). <strong>H</strong>amiltonien → sommets (toutes les villes, <em>H</em> comme <em>habitations</em>). « Semi- » = on ne revient pas au point de départ.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 62 (d'Euler) — la caractérisation complète</span>
+Soit G un graphe <strong>connexe</strong>.<br>
+— G orienté : <strong>G est eulérien ⟺ pour tout sommet, <code>d⁺(x) = d⁻(x)</code></strong> ;<br>
+— G non orienté : <strong>G est eulérien ⟺ tout sommet est de degré pair</strong>.<br>
+Dans les deux cas, si <strong>exactement deux sommets</strong> ne vérifient pas la condition, G est <strong>semi-eulérien</strong> (et ces deux sommets sont obligatoirement le départ et l'arrivée).
+</div>
+<div class="box tip">
+<span class="box-title">📝 Le sens facile (⇒), à savoir rédiger</span>
+À chaque fois que le parcours <strong>entre</strong> dans un sommet par une arête, il doit pouvoir en <strong>repartir</strong> par une autre, non encore utilisée. Les arêtes incidentes à un sommet sont donc appariées (entrée/sortie) : leur nombre est pair, donc <code>d(x)</code> est pair. (Pour le sommet de départ, l'arête de départ est appariée avec celle du retour final.) ∎
+</div>
+<div class="box tip">
+<span class="box-title">💡 Königsberg réglé en deux lignes</span>
+Dans le multigraphe des sept ponts, les quatre sommets sont de degré impair (3, 3, 3, 5). Il y en a plus de deux, donc le graphe n'est <strong>ni eulérien ni semi-eulérien</strong> : la promenade demandée n'existe pas. C'est la réponse d'Euler de 1736.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Proposition 63 — Rendre un graphe eulérien</span>
+Si G n'est pas (semi-)eulérien, on peut toujours le rendre tel en lui ajoutant des arcs/arêtes, voire des sommets. Pour deux sommets x, y de degré impair : s'il n'y a pas d'arête entre eux, on en ajoute une ; s'il y en a déjà une, on ajoute un sommet z et les arêtes <code>{x,z}</code> et <code>{z,y}</code>. On recommence — c'est toujours possible car le <strong>nombre de sommets de degré impair est pair</strong>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 64 (Ore, cas non orienté)</span>
+Soit G simple non orienté à <code>n ≥ 3</code> sommets. Si pour <strong>tout couple <code>(v,w)</code> de sommets NON reliés par une arête</strong> on a <code>d(v) + d(w) ≥ n</code>, alors <strong>G est hamiltonien</strong>.<br>
+<strong>Corollaire 65 (Dirac)</strong> : si tout sommet vérifie <code>d(v) ≥ n/2</code>, alors G est hamiltonien.<br>
+<strong>Théorème 66 (Ore, cas orienté)</strong> : si pour tout couple non relié par un arc, <code>d⁺(v) + d⁻(w) ≥ n</code>, alors G est hamiltonien.
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Condition SUFFISANTE seulement</span>
+Ore ne donne qu'une condition suffisante : un graphe peut être hamiltonien sans la vérifier (un cycle <code>Cₙ</code> pour n grand, par exemple, est hamiltonien alors que ses degrés valent 2). <strong>Il n'existe à ce jour aucune caractérisation simple des graphes hamiltoniens</strong> — c'est un sujet de recherche actuel, et trouver un cycle hamiltonien de poids minimal est le fameux <strong>problème du voyageur de commerce</strong>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Résultats simples à réutiliser</span>
+<ul>
+<li><code>Kₙ</code> est hamiltonien pour <code>n ≥ 3</code> (prendre <code>(1,2,…,n,1)</code>).</li>
+<li>Un cycle <code>Cₙ</code> est hamiltonien.</li>
+<li>Un graphe simple à au plus 2 sommets n'est pas hamiltonien.</li>
+<li>Un <strong>graphe biparti avec un nombre impair de sommets n'est jamais hamiltonien</strong> : un cycle hamiltonien alternerait entre les deux parts, ce qui impose un nombre pair de sommets.</li>
+</ul>
+</div>
+
+<h2 id="p11">1️⃣1️⃣ Lemme de mariage de Hall</h2>
+
+<div class="box info">
+<span class="box-title">📌 Le problème</span>
+<code>n</code> garçons et <code>n</code> filles ; chacun apprécie certaines personnes de l'autre groupe. Peut-on marier tout le monde de façon que chaque couple formé s'apprécie mutuellement ?<br>
+On modélise par un graphe biparti <code>G = (S,A,B)</code> : A = garçons, B = filles, une arête = « ils s'apprécient ». Un mariage général = une <strong>bijection <code>f : A → B</code> telle que chaque <code>a</code> soit adjacent à <code>f(a)</code></strong>.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Théorème 69 — Lemme de mariage de Hall (1935)</span>
+Soit <code>G = (S,A,B)</code> biparti avec <code>Card A = Card B</code>. Pour <code>S ⊂ A</code>, on note <code>V(S) ⊂ B</code> l'ensemble des voisins de S.<br>
+<strong>Une telle bijection existe ⟺ pour tout <code>S ⊂ A</code>, <code>Card V(S) ≥ Card S</code>.</strong>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Traduction</span>
+« Tout groupe de k garçons doit collectivement apprécier au moins k filles. » Le sens <strong>⇒</strong> est évident (si k garçons n'apprécient que <code>k-1</code> filles, deux d'entre eux devraient épouser la même) ; c'est le sens <strong>⇐</strong> qui est le vrai théorème, démontré par récurrence sur <code>Card A</code>.<br>
+<strong>Comment répondre « non » à un exercice de ce type :</strong> il suffit d'exhiber <strong>un seul</strong> ensemble S violant la condition. C'est toujours ainsi qu'on rédige.
+</div>
+
+<h2 id="p12">1️⃣2️⃣ Algorithmes du cours</h2>
+
+<h3>Parcours d'un graphe</h3>
+<div class="box info">
+<span class="box-title">📌 Parcours en largeur (BFS) et en profondeur (DFS)</span>
+Un <strong>parcours</strong> visite chaque sommet une seule fois, à partir d'un sommet de départ x ; son résultat est un <strong>arbre couvrant</strong> de racine x (l'arbre de parcours), décrit par la liste des prédécesseurs P.<br>
+— <strong>en largeur</strong> : un sommet y est marqué <strong>avant</strong> le traitement de ses successeurs ; on gère les sommets à traiter dans une <strong>file</strong> (on ajoute à la fin, on sort au début) → on explore niveau par niveau ;<br>
+— <strong>en profondeur</strong> : un sommet y n'est marqué qu'<strong>après</strong> le début du traitement de ses successeurs ; on gère une <strong>pile</strong> (on ajoute au début, on sort au début) → on fonce le plus loin possible puis on revient en arrière.
+</div>
+<div class="box info">
+<span class="box-title">📌 Définition 77 — Distance et diamètre</span>
+<code>d(x,y)</code> = longueur du <strong>plus court chemin</strong> de x à y (<code>∞</code> s'il n'existe pas, et <code>d(x,x) = 0</code>). Le <strong>diamètre</strong> de G est la plus grande distance entre deux sommets.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorème 78 — À quoi sert le BFS</span>
+Dans le parcours en largeur depuis x, le <strong>niveau</strong> de chaque sommet dans l'arbre de parcours est exactement sa <strong>distance</strong> à x. C'est la méthode standard de calcul des distances dans un graphe non valué.
+</div>
+
+<h3>Arbre couvrant optimal</h3>
+<div class="box info">
+<span class="box-title">📌 Algorithme de Kruskal</span>
+<pre><code>Sommets de T = sommets de G ; Arêtes de T = ∅
+pour chaque arête {x,y} par ordre de poids DÉCROISSANT faire
+    si {x,y} connecte deux composantes connexes de T
+        alors l'ajouter à T</code></pre>
+Donne l'arbre couvrant de poids <strong>maximal</strong> ; en parcourant les arêtes par poids <strong>croissant</strong>, on obtient celui de poids <strong>minimal</strong>.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Pourquoi ça marche (schéma de la preuve)</span>
+On vérifie quatre points : (1) l'algorithme <strong>s'arrête</strong> (nombre fini d'arêtes) ; (2) T est <strong>sans cycle</strong> (on n'ajoute une arête que si elle relie deux composantes <em>distinctes</em>) ; (3) T est <strong>connexe</strong> (sinon la première arête de G reliant deux composantes de T aurait été ajoutée) ; (4) T est <strong>de poids maximal</strong> (argument d'échange : si un autre arbre maximal T' différait, échanger une arête donnerait un arbre aussi lourd mais plus proche de T, contradiction).<br>
+Kruskal est un algorithme <strong>glouton</strong> : à chaque étape il prend le meilleur choix immédiat sans anticiper.
+</div>
+<div class="box info">
+<span class="box-title">📌 Algorithme de Prim</span>
+<pre><code>poids = 0 ; marquer le sommet 1
+tant qu'il reste des sommets non marqués faire
+    {x,y} = arête de coût minimal joignant un sommet marqué x
+                          et un sommet non marqué y
+    marquer y, ajouter {x,y} à T, poids = poids + W(x,y)
+fin faire</code></pre>
+Différence avec Kruskal : Prim fait <strong>grossir un seul arbre</strong> depuis un sommet, Kruskal assemble des morceaux éparpillés.
+</div>
+
+<h3>Graphes sans circuit : décomposition en niveaux</h3>
+<div class="box info">
+<span class="box-title">📌 Proposition 79 — Décomposition en niveaux (tri topologique)</span>
+Si G est un graphe orienté <strong>sans circuit</strong>, on peut attribuer à chaque sommet un <strong>niveau</strong> :<br>
+— les sommets <strong>sans prédécesseur</strong> sont de niveau 0 ;<br>
+— <code>niveau(x) = max niveau(y) + 1</code> sur les prédécesseurs y de x.<br>
+<strong>Réciproquement</strong>, un graphe avec un circuit n'admet pas de décomposition en niveaux (on aurait <code>niveau(x₀) &lt; niveau(x₁) &lt; … &lt; niveau(x₀)</code>, absurde).
+</div>
+<div class="box tip">
+<span class="box-title">💡 Méthode à la main</span>
+Niveau 0 = sommets de degré entrant nul. On les « supprime » (ce qui retire leurs arcs sortants), les nouveaux sommets de degré entrant nul forment le niveau 1, etc. Si à un moment aucun sommet n'a un degré entrant nul alors qu'il en reste : <strong>le graphe a un circuit</strong>.
+</div>
+
+<h3>Plus courts chemins</h3>
+<div class="box info">
+<span class="box-title">📌 Définition 80 — Longueur relative à f</span>
+Dans un graphe valué, <code>Longueur_f(C) = Σ f(x_i, x_(i+1))</code>. <code>Distmin(x,y)</code> = minimum de ces longueurs sur tous les chemins de x à y.
+</div>
+<div class="box info">
+<span class="box-title">📌 Proposition 81 — Quand le plus court chemin existe</span>
+Il existe un plus court (resp. plus long) chemin entre deux sommets d'une même composante connexe <strong>si et seulement s'il n'existe pas de circuit de longueur négative (resp. positive)</strong> relativement à f.
+</div>
+<div class="box tip">
+<span class="box-title">💡 Pourquoi</span>
+Avec un circuit de poids négatif accessible, on peut tourner indéfiniment dedans et faire tendre la longueur vers <code>-∞</code> : il n'y a plus de minimum.
+</div>
+
+<div class="box info">
+<span class="box-title">📌 Les quatre algorithmes et leur domaine d'emploi</span>
+<table>
+<tr><th>Algorithme</th><th>Hypothèses</th><th>Calcule</th><th>Coût</th></tr>
+<tr><td><strong>Floyd-Warshall-Roy</strong></td><td>aucune (tous graphes)</td><td>distances entre <strong>tous</strong> les couples (matrices Dist et Pred)</td><td>≈ n³, gourmand en mémoire</td></tr>
+<tr><td><strong>Bellman-Ford-Kalaba</strong></td><td>aucune (poids négatifs OK)</td><td>distances depuis <strong>un</strong> sommet</td><td>≈ n²×m</td></tr>
+<tr><td><strong>Dijkstra-Moore</strong></td><td><mark>valuations positives ou nulles</mark>, plus courts chemins seulement</td><td>distances depuis un sommet</td><td>≈ n², rapide</td></tr>
+<tr><td><strong>Bellman simplifié</strong></td><td><mark>graphe décomposable en niveaux</mark> (donc sans circuit)</td><td>distances depuis un sommet, plus court ou plus long</td><td>≈ n², rapide</td></tr>
+</table>
+</div>
+<div class="box info">
+<span class="box-title">📌 Algorithme de Dijkstra</span>
+<pre><code>Dist = +∞ partout sauf Dist(s) = 0 ; Pred = 0
+C = {1,…,n} (sommets restants) ; D = ∅ (traités)
+tant que C ≠ ∅ faire
+    x = sommet de C le plus proche de s
+    retirer x de C et le mettre dans D
+    pour tout sommet y de C faire
+        si Dist(x) + W(x,y) &lt; Dist(y)
+           alors Dist(y) = Dist(x)+W(x,y) et Pred(y) = x
+    fin faire
+fin faire</code></pre>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Justification de Dijkstra (invariant)</span>
+À chaque étape, pour tout x déjà traité, <code>Dist(x)</code> est <strong>définitivement</strong> la plus petite distance de s à x. Preuve par récurrence : s'il existait un chemin plus court de s à x passant par un sommet y non traité, on aurait <code>Dist(s,y) + Dist(y,x) ≤ Dist(s,x)</code> ; comme <mark>les valuations sont positives</mark>, <code>Dist(y,x) ≥ 0</code> donc <code>Dist(s,y) ≤ Dist(s,x)</code> — mais alors l'algorithme aurait traité y <em>avant</em> x. Contradiction. ∎<br>
+<strong>C'est exactement ici que l'hypothèse « poids positifs » est indispensable</strong> : avec un poids négatif, l'argument tombe. Le protocole de routage OSPF repose sur Dijkstra.
+</div>
+
+<h3>Ordonnancement et réseaux PERT</h3>
+<div class="box info">
+<span class="box-title">📌 Modélisation d'un projet</span>
+Un <strong>projet</strong> = un ensemble de <strong>tâches</strong> <code>𝒯ᵢ</code> de durées <code>dᵢ</code> et de dates de commencement <code>tᵢ</code>, plus des <strong>contraintes</strong>. Un <strong>ordonnancement</strong> est un choix des <code>tᵢ</code> compatible avec les contraintes.<br>
+Les trois types de contraintes :
+<ul>
+<li><strong>au plus tôt</strong> : <code>𝒯ⱼ</code> commence au plus tôt δ après le début de <code>𝒯ᵢ</code> → <code>tⱼ - tᵢ ≥ δ</code> ;</li>
+<li><strong>au plus tard</strong> : <code>tⱼ - tᵢ ≤ δ</code> ;</li>
+<li><strong>implicite</strong> : toute tâche démarre après le début du projet et finit avant sa fin.</li>
+</ul>
+</div>
+<div class="box info">
+<span class="box-title">📌 Graphe potentiel-tâche (réseau PERT)</span>
+On associe au projet un graphe orienté valué <code>G = (S,A,f)</code> : <strong>un sommet par tâche</strong>, et <strong>un arc <code>(xᵢ,xⱼ)</code> de valuation <code>d</code> pour chaque contrainte <code>tⱼ - tᵢ ≥ d</code></strong>.
+</div>
+<div class="box info">
+<span class="box-title">📌 Théorèmes 82 et 83 — Les deux ordonnancements</span>
+<ul>
+<li><strong>Au plus tôt :</strong> calculer les <strong>chemins les plus LONGS</strong> depuis le sommet « début de projet ». <code>tᵢ</code> = distance (maximale) du début à <code>xᵢ</code> ; la durée minimale du projet est <code>t_n</code>.</li>
+<li><strong>Au plus tard (pour une durée T) :</strong> calculer les chemins les plus longs dans le graphe <strong>inversé</strong> <code>G⁻¹</code> depuis la tâche de fin ; alors <code>tᵢ = T - dist(xᵢ)</code>.</li>
+</ul>
+</div>
+<div class="box info">
+<span class="box-title">📌 Chemin critique, marge, contrainte redondante</span>
+<ul>
+<li>Le <strong>chemin critique</strong> est le chemin le plus long du début à la fin du projet : <strong>tout retard sur une de ses tâches retarde le projet entier</strong>. Il n'est pas forcément unique.</li>
+<li>La <strong>marge</strong> d'une tâche = date de début au plus tard − date de début au plus tôt. Les tâches critiques ont une marge nulle.</li>
+<li>Une contrainte est <strong>redondante</strong> si l'arc <code>(xᵢ,xⱼ)</code> qu'elle impose est déjà « impliqué » par un chemin plus long de <code>xᵢ</code> à <code>xⱼ</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">💡 Pourquoi « le plus long » et pas « le plus court »</span>
+Une tâche ne peut commencer que lorsque <strong>toutes</strong> les contraintes qui la précèdent sont satisfaites : c'est donc la plus contraignante — le chemin le plus long — qui fixe sa date de début. D'où l'intérêt de l'algorithme de Bellman simplifié, qui gère indifféremment chemins minimaux et maximaux dès que le graphe est sans circuit.
+</div>
+
+<h2>📊 Fiche de révision express</h2>
+<table>
+<tr><th>Formule / résultat</th><th>Énoncé</th></tr>
+<tr><td>Poignées de main</td><td><code>Σ d(x) = 2m</code> ⇒ le nombre de sommets de degré impair est pair</td></tr>
+<tr><td>Graphe r-régulier</td><td><code>m = nr/2</code></td></tr>
+<tr><td><code>Kₙ</code></td><td><code>n(n-1)/2</code> arêtes, <code>χ = n</code>, planaire ⟺ n ≤ 4, hamiltonien si n ≥ 3</td></tr>
+<tr><td>Comptage de chemins</td><td><code>(A^k)_ij</code> = nombre de chemins de longueur k de i à j</td></tr>
+<tr><td>Connexité</td><td><code>B = A+A²+…+A^(n-1)</code> : coefficients non diagonaux &gt; 0</td></tr>
+<tr><td>Arbre</td><td>connexe + sans cycle ⟺ n−1 arêtes (+ l'une des deux) ⟺ chemin élémentaire unique</td></tr>
+<tr><td>Cayley</td><td><code>n^(n-2)</code> arbres étiquetés (code de Prüfer)</td></tr>
+<tr><td>Biparti</td><td>⟺ 2-coloriable ⟺ aucun cycle impair</td></tr>
+<tr><td>Nombre chromatique</td><td>clique d'ordre k ⇒ <code>χ ≥ k</code> ; <code>χ ≤ Δ+1</code> ; Brooks : <code>χ ≤ Δ</code> sauf complet/cycle impair</td></tr>
+<tr><td>Indice chromatique</td><td><code>Δ ≤ χ' ≤ Δ+1</code> (Vizing) ; biparti ⇒ <code>χ' = Δ</code> (König)</td></tr>
+<tr><td>Euler (planaire connexe)</td><td><code>s - a + f = 2</code> ; <code>Σ d(f) = 2a</code> ; <code>m ≤ 3n-6</code></td></tr>
+<tr><td>Non planaires de base</td><td><code>K₅</code> et <code>K₃,₃</code> (Kuratowski) ; 4 couleurs suffisent si planaire</td></tr>
+<tr><td>Eulérien</td><td>connexe + tous degrés pairs (orienté : <code>d⁺ = d⁻</code>) ; exactement 2 impairs ⇒ semi-eulérien</td></tr>
+<tr><td>Hamiltonien</td><td>Ore : <code>d(v)+d(w) ≥ n</code> pour tout couple non relié ⇒ hamiltonien (suffisant seulement)</td></tr>
+<tr><td>Hall</td><td>mariage possible ⟺ <code>Card V(S) ≥ Card S</code> pour tout <code>S ⊂ A</code></td></tr>
+<tr><td>Plus courts chemins</td><td>Dijkstra si poids ≥ 0 ; Bellman-Ford sinon ; Bellman simplifié si sans circuit ; Floyd pour tous les couples</td></tr>
+<tr><td>PERT</td><td>au plus tôt = chemins les plus <strong>longs</strong> ; chemin critique = marge nulle</td></tr>
+</table>
+
+<div class="nav-links">
+  <span><a href="00_introduction_graphes.html">← Introduction</a></span>
+  <span><a href="02_flashcards.html">Flashcards →</a></span>
+</div>
+
+</div>
+</body>
+</html>

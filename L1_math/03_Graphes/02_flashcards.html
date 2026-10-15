@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graphes — Flashcards</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Graphes — Flashcards</span></div>
+<div class="page">
+
+<span class="chip">🎓 Cours L2</span><span class="chip">Auto-évaluation</span>
+<h1>🃏 Graphes — Flashcards</h1>
+
+<p>Deux paquets de cartes. Le <strong>paquet A</strong> teste les définitions et les théorèmes : tu dois pouvoir les réciter. Le <strong>paquet B</strong> est plus important pour les partiels : on te donne un <strong>énoncé d'exercice</strong> et tu dois deviner <strong>quel outil du cours l'ouvre</strong>, sans le résoudre.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Mode d'emploi</span>
+Réponds <strong>à voix haute ou sur un papier</strong> avant de cliquer sur « Réponse ». Si tu lis la réponse sans avoir essayé, la carte ne t'apprend rien — c'est l'effort de récupération en mémoire qui fait l'apprentissage, pas la relecture. Repasse les cartes ratées le lendemain.
+</div>
+
+<h2>🅰️ Paquet A — Définitions et théorèmes</h2>
+
+<h3>Vocabulaire de base</h3>
+
+<details><summary>Qu'est-ce que l'<strong>ordre</strong> et la <strong>taille</strong> d'un graphe ?</summary>
+<strong>Ordre</strong> = <code>Card(S)</code> = nombre de <strong>sommets</strong>. <strong>Taille</strong> = <code>Card(A)</code> = nombre d'<strong>arcs/arêtes</strong>.<br>
+⚠️ C'est le piège de vocabulaire n°1 : la « taille » ne compte pas les sommets.
+</details>
+
+<details><summary>Définition précise d'un <strong>graphe orienté</strong> et d'un <strong>graphe non orienté</strong> — quelle est la différence formelle ?</summary>
+<strong>Orienté :</strong> <code>G = (S,A)</code> avec <code>A ⊂ S×S</code> — les arcs sont des <strong>couples</strong> <code>(x,y)</code>, donc l'ordre compte.<br>
+<strong>Non orienté :</strong> <code>G = (S,A)</code> avec A un ensemble de <strong>parties de S à 1 ou 2 éléments</strong> — les arêtes sont des <strong>ensembles</strong> <code>{x,y}</code>, donc l'ordre ne compte pas, et <code>{x}</code> est une boucle.
+</details>
+
+<details><summary>Dans un graphe non orienté, combien une <strong>boucle</strong> compte-t-elle dans le degré ? Pourquoi ?</summary>
+Elle compte <strong>double</strong>. Raison : si on oriente arbitrairement les arêtes, la boucle contribue 1 au degré entrant et 1 au degré sortant. C'est exactement la convention qui rend le <strong>lemme des poignées de main</strong> encore vrai.
+</details>
+
+<details><summary>Énonce le <strong>lemme des poignées de main</strong> (cas orienté et non orienté).</summary>
+Pour un graphe de taille m :<br>
+— orienté : <code>Σ d⁺(x) = Σ d⁻(x) = m</code> et <code>Σ d(x) = 2m</code> ;<br>
+— non orienté : <code>Σ d(x) = 2m</code>.
+</details>
+
+<details><summary>Démonstration du lemme des poignées de main ?</summary>
+<strong>Double comptage.</strong> Chaque arc <code>(x,y)</code> est compté exactement une fois dans <code>d⁺(x)</code> et dans aucun autre <code>d⁺</code>. Donc <code>Σ d⁺(x) = m</code>. Idem <code>Σ d⁻(x) = m</code>. En additionnant : <code>Σ d(x) = 2m</code>. ∎
+</details>
+
+<details><summary>Quelle conséquence immédiate du lemme utilise-t-on sans arrêt ?</summary>
+<code>Σ d(x) = 2m</code> est <strong>pair</strong>, donc le <strong>nombre de sommets de degré impair est pair</strong>.<br>
+C'est l'argument qui règle la plupart des questions « une telle situation est-elle possible ? ».
+</details>
+
+<h3>Matrices</h3>
+
+<details><summary>Définition de la <strong>matrice d'adjacence</strong> ?</summary>
+Sommets numérotés 1..n. <code>M_xy</code> = nombre de flèches d'origine x et de fin y (cas orienté), ou nombre d'arêtes d'extrémités x et y (cas non orienté).
+</details>
+
+<details><summary>Quatre choses que tu lis d'un coup d'œil sur une matrice d'adjacence ?</summary>
+<strong>(1)</strong> Symétrique ⟺ graphe non orienté. <strong>(2)</strong> Diagonale nulle ⟺ pas de boucle. <strong>(3)</strong> Somme de la ligne i = degré de i (non orienté). <strong>(4)</strong> Un coefficient ≥ 2 = arêtes multiples (multigraphe) ; que des 0/1 avec diagonale nulle = graphe simple.
+</details>
+
+<details><summary>Que représente <code>(A^k)_ij</code> ? (Théorème 22)</summary>
+Le <strong>nombre de chemins de longueur exactement k</strong> allant du sommet i au sommet j.
+</details>
+
+<details><summary>Comment tester la <strong>connexité</strong> avec la matrice ? (Théorème 24)</summary>
+On pose <code>B = A + A² + … + A^(n-1)</code>. Alors <strong>G est connexe ⟺ tous les coefficients non diagonaux de B sont strictement positifs</strong>.<br>
+Pourquoi s'arrêter à <code>n-1</code> ? Parce qu'un chemin élémentaire a au plus n sommets, donc longueur ≤ n−1 (lemme de König).
+</details>
+
+<details><summary>Comment reconnaît-on sur la matrice qu'un graphe est <strong>réflexif / symétrique / antisymétrique / transitif</strong> ?</summary>
+<strong>Réflexif</strong> : <code>M_xx = 1</code> pour tout x (diagonale pleine).<br>
+<strong>Symétrique</strong> : <code>M = ᵗM</code>.<br>
+<strong>Antisymétrique</strong> : <code>M_xy · M_yx = 0</code> dès que <code>x ≠ y</code> (jamais deux sens).<br>
+<strong>Transitif</strong> : <code>M_xz = 1</code> chaque fois que <code>M_xy = M_yz = 1</code>.
+</details>
+
+<h3>Familles de graphes</h3>
+
+<details><summary>Un graphe <strong>r-régulier</strong> à n sommets a combien d'arêtes ? Démonstration ?</summary>
+<code>m = nr/2</code>. Preuve : la somme des degrés vaut <code>nr</code>, et elle vaut <code>2m</code> par les poignées de main. ∎<br>
+<strong>Conséquence :</strong> <code>nr</code> doit être pair — un graphe 3-régulier à 5 sommets est impossible.
+</details>
+
+<details><summary>Tout sur <code>Kₙ</code> : régularité, nombre d'arêtes, χ, planarité, hamiltonicité.</summary>
+<code>Kₙ</code> est <code>(n-1)</code>-régulier, a <code>n(n-1)/2</code> arêtes, <code>χ(Kₙ) = n</code>, il est planaire <strong>ssi n ≤ 4</strong>, et hamiltonien dès que <code>n ≥ 3</code>. (Et <code>χ'(Kₙ) = n-1</code> si n pair, <code>n</code> si n impair.)
+</details>
+
+<details><summary>Définition d'un <strong>graphe biparti</strong>, et ses deux caractérisations équivalentes ?</summary>
+Il existe une partition <code>S = S₁ ∪ S₂</code> telle que chaque arête ait une extrémité dans chaque part.<br>
+<strong>biparti ⟺ 2-coloriable ⟺ aucun cycle de longueur impaire</strong> (Théorème 68).
+</details>
+
+<details><summary>Preuve que « biparti ⇒ pas de cycle impair » ?</summary>
+Un cycle dans un biparti alterne forcément <code>S₁, S₂, S₁, S₂, …</code>. Pour revenir au point de départ (donc dans la part d'origine) il faut un nombre <strong>pair</strong> d'étapes. Donc aucun cycle impair. ∎
+</details>
+
+<details><summary><strong>Graphe partiel</strong> vs <strong>sous-graphe</strong> : la différence ?</summary>
+<strong>Partiel</strong> : on enlève des <strong>arêtes</strong>, on garde <strong>tous</strong> les sommets.<br>
+<strong>Sous-graphe</strong> : on enlève des <strong>sommets</strong> (et toutes leurs arêtes incidentes).<br>
+Mnémo : un arbre <em>couvrant</em> « couvre » tous les sommets → c'est un graphe <em>partiel</em>.
+</details>
+
+<details><summary><strong>Clique</strong> et <strong>stable</strong> ?</summary>
+<strong>Clique</strong> = sous-graphe complet (tous reliés deux à deux). <strong>Stable</strong> = sous-graphe sans aucune arête.<br>
+Lien avec le coloriage : une clique d'ordre k force <code>χ ≥ k</code> ; et chaque classe de couleur est un stable.
+</details>
+
+<h3>Chemins</h3>
+
+<details><summary>Chemin <strong>simple</strong> vs chemin <strong>élémentaire</strong> ?</summary>
+<strong>Simple</strong> : tous les <strong>arcs/arêtes</strong> sont différents. <strong>Élémentaire</strong> : tous les <strong>sommets</strong> sont différents (sauf éventuellement départ = arrivée).<br>
+Élémentaire ⇒ simple, pas l'inverse. C'est exactement la distinction eulérien (arêtes/simple) vs hamiltonien (sommets/élémentaire).
+</details>
+
+<details><summary>Énonce et démontre le <strong>lemme de König</strong> (Théorème 21).</summary>
+<strong>Énoncé :</strong> s'il existe un chemin de x à y, il existe un chemin <strong>élémentaire</strong> de x à y.<br>
+<strong>Preuve :</strong> si le chemin repasse deux fois par un sommet s, on supprime le morceau entre les deux passages (c'est un cycle). Le chemin raccourcit strictement ; on recommence jusqu'à ce qu'il soit élémentaire, ce qui finit par arriver. ∎
+</details>
+
+<details><summary>Différence entre <strong>connexe</strong> et <strong>fortement connexe</strong> ?</summary>
+<strong>Connexe</strong> (non orienté) : il existe un chemin entre tout couple de sommets.<br>
+<strong>Fortement connexe</strong> (orienté) : il existe un chemin de x <em>vers</em> y pour tout couple — donc dans les <strong>deux sens</strong>, en respectant les flèches. Bien plus exigeant.
+</details>
+
+<h3>Arbres</h3>
+
+<details><summary>Définition d'un <strong>arbre</strong>, et les trois propriétés dont deux impliquent la troisième ?</summary>
+Un arbre est un graphe non orienté <strong>connexe et sans cycle</strong>.<br>
+Pour un graphe à n sommets, <strong>deux de ces trois propriétés impliquent la troisième</strong> : connexe / sans cycle / exactement <code>n-1</code> arêtes.
+</details>
+
+<details><summary>Démonstration que « arbre à k sommets ⇒ k−1 arêtes » ?</summary>
+Récurrence. <strong>Base :</strong> un arbre à 1 arête a 2 sommets. ✔<br>
+<strong>Hérédité :</strong> un arbre à n ≥ 2 sommets a une <strong>feuille</strong> a (Prop. 28). On supprime a et son unique arête : on obtient encore un arbre, avec un sommet et une arête de moins. L'hypothèse de récurrence s'applique, et en remettant a les deux compteurs augmentent de 1 : l'égalité se conserve. ∎
+</details>
+
+<details><summary>Pourquoi un arbre à <code>n ≥ 2</code> sommets a-t-il toujours une feuille ? (Prop. 28)</summary>
+On prend un chemin élémentaire de <strong>longueur maximale</strong>. Son extrémité a est de degré 1 : un autre voisin de a serait soit hors du chemin (on pourrait le prolonger — contredit la maximalité), soit sur le chemin (on créerait un cycle — contredit « sans cycle »). ∎
+</details>
+
+<details><summary>Caractérisation d'un arbre par les chemins (Théorème 30) ?</summary>
+<strong>G est un arbre ⟺ il existe exactement un chemin élémentaire entre deux sommets quelconques.</strong>
+</details>
+
+<details><summary>Formule de <strong>Cayley</strong> et l'idée de sa preuve ?</summary>
+Il y a <code>n^(n-2)</code> arbres à n sommets étiquetés de 1 à n.<br>
+<strong>Preuve :</strong> bijection avec les <code>(n-2)</code>-uplets d'entiers de 1 à n — le <strong>code de Prüfer</strong> : on retire <code>n-2</code> fois la feuille de plus petite étiquette en notant l'étiquette de son unique voisin. Comme il y a <code>n^(n-2)</code> uplets, c'est fini.
+</details>
+
+<details><summary>Qu'est-ce qu'un <strong>arbre couvrant</strong> ? Qu'implique son existence ?</summary>
+Un <strong>graphe partiel</strong> de G qui est un arbre (il garde tous les sommets de G).<br>
+S'il en existe un, G est nécessairement <strong>connexe</strong> — et réciproquement tout graphe connexe fini en possède un.
+</details>
+
+<h3>Isomorphisme</h3>
+
+<details><summary>Définition de deux graphes <strong>isomorphes</strong> ?</summary>
+Il existe une <strong>bijection</strong> <code>Φ : V → W</code> telle que <code>{x,y}</code> est une arête de G <strong>si et seulement si</strong> <code>{Φ(x),Φ(y)}</code> est une arête de H.
+</details>
+
+<details><summary>Cite cinq <strong>invariants</strong> utiles pour réfuter un isomorphisme.</summary>
+Nombre de sommets ; nombre d'arêtes ; <strong>suite des degrés triée</strong> ; nombre de composantes connexes ; longueur du plus petit cycle (ou nombre de triangles). Également : biparti ou non, planaire ou non, nombre chromatique.<br>
+⚠️ La même suite de degrés ne <strong>prouve pas</strong> l'isomorphisme — condition nécessaire, pas suffisante.
+</details>
+
+<h3>Coloriage</h3>
+
+<details><summary>Coloriage <strong>propre</strong>, <strong>k-coloriable</strong>, <strong>nombre chromatique</strong> ?</summary>
+<strong>Propre</strong> : deux sommets voisins ont toujours des couleurs différentes.<br>
+<strong>k-coloriable</strong> : il existe un coloriage propre à k couleurs.<br>
+<strong>χ(G)</strong> : le plus petit tel k.
+</details>
+
+<details><summary>Les six faits du Lemme 35 ?</summary>
+(1) Un graphe avec boucle n'est pas coloriable proprement. (2) Un graphe simple l'est toujours, avec <code>χ ≤</code> ordre. (3) <code>χ</code>(clique) = son ordre, <code>χ(Kₙ) = n</code>. (4) <code>G'</code> sous-graphe ⇒ <code>χ(G') ≤ χ(G)</code>. (5) Clique d'ordre k dans G ⇒ <code>χ(G) ≥ k</code>. (6) <strong>biparti ⟺ 2-coloriable</strong>.
+</details>
+
+<details><summary>Encadrement de <code>χ(G)</code> par le degré maximum (Prop. 36 et Brooks) ?</summary>
+Toujours <code>χ(G) ≤ Δ(G) + 1</code>.<br>
+<strong>Brooks (1941)</strong> : si G est connexe et n'est <strong>ni complet ni un cycle impair</strong>, alors <code>χ(G) ≤ Δ(G)</code>.
+</details>
+
+<details><summary>Pourquoi <code>χ(G) ≤ Δ(G)+1</code> ? (argument en une phrase)</summary>
+Chaque sommet a au plus Δ voisins, donc au plus Δ couleurs lui sont interdites : avec <code>Δ+1</code> couleurs disponibles, il en reste toujours une de libre.
+</details>
+
+<details><summary>Définition du <strong>polynôme chromatique</strong> et le Théorème 38 ?</summary>
+<code>P_G(k)</code> = nombre de colorations propres de G avec k couleurs disponibles.<br>
+<strong>Thm 38 :</strong> pour G simple à n sommets et m arêtes, <code>P_G(k)</code> est un polynôme <strong>unitaire de degré n</strong> dont le coefficient de degré <code>n-1</code> vaut <code>-m</code>.
+</details>
+
+<details><summary><code>P_G(k)</code> pour : n sommets isolés, un chemin a—b—c, un triangle, <code>Kₙ</code> ?</summary>
+<code>kⁿ</code> ; <code>k(k-1)²</code> ; <code>k(k-1)(k-2)</code> ; <code>k(k-1)(k-2)…(k-n+1)</code>.
+</details>
+
+<details><summary>Glouton vs Welsh-Powell : quelle différence, et que garantissent-ils ?</summary>
+<strong>Glouton</strong> : on parcourt les sommets dans un ordre quelconque, chacun reçoit la plus petite couleur libre chez ses voisins.<br>
+<strong>Welsh-Powell</strong> : on trie d'abord par degré <strong>décroissant</strong>, puis on remplit une couleur à la fois.<br>
+Les deux donnent un coloriage <strong>propre</strong>, donc une <strong>majoration</strong> de χ(G) — mais <strong>aucun n'est optimal</strong> en général.
+</details>
+
+<details><summary><strong>Indice chromatique</strong> <code>χ'(G)</code> : définition, encadrement, cas biparti ?</summary>
+Plus petit nombre de couleurs pour colorier les <strong>arêtes</strong> de sorte que deux arêtes incidentes diffèrent.<br>
+<strong>Vizing :</strong> <code>Δ ≤ χ' ≤ Δ+1</code> — seulement deux valeurs possibles.<br>
+<strong>König :</strong> si G est biparti, <code>χ'(G) = Δ(G)</code> exactement.
+</details>
+
+<h3>Planarité</h3>
+
+<details><summary>Définition d'un graphe <strong>planaire</strong> — attention au quantificateur.</summary>
+<strong>Il EXISTE</strong> un dessin du graphe sans aucun croisement d'arêtes. Un graphe planaire peut très bien être dessiné avec des croisements : ça ne change rien.
+</details>
+
+<details><summary>Formule d'<strong>Euler</strong> et ses hypothèses ?</summary>
+<code>s - a + f = 2</code> pour un graphe <strong>planaire ET connexe</strong> (s sommets, a arêtes, f faces, face extérieure comprise).
+</details>
+
+<details><summary>Démonstration de la formule d'Euler ?</summary>
+Récurrence sur f. <strong>f = 1</strong> : pas de cycle, donc c'est un arbre, <code>s = a+1</code>, d'où <code>s-a+f = 2</code>. ✔<br>
+<strong>f ≥ 2</strong> : il y a un cycle ; on supprime une de ses arêtes, ce qui fusionne deux faces → <code>s</code>, <code>a-1</code>, <code>f-1</code>. L'hypothèse de récurrence donne <code>s-(a-1)+(f-1) = 2</code>, soit <code>s-a+f = 2</code>. ∎
+</details>
+
+<details><summary>Démontre <code>m ≤ 3n - 6</code> (graphe planaire simple connexe, <code>n ≥ 3</code>).</summary>
+Toute face a un degré ≥ 3 (Lemme 50) et <code>Σ d(f) = 2a</code> (Lemme 49), donc <code>3f ≤ 2a</code>. Euler donne <code>f = a-n+2</code>, d'où <code>3(a-n+2) ≤ 2a</code>, soit <code>a ≤ 3n-6</code>. ∎
+</details>
+
+<details><summary>Preuve que <code>K₅</code> n'est pas planaire ?</summary>
+<code>n=5, m=10</code>. S'il était planaire : <code>f = 10+2-5 = 7</code> faces, et <code>Σ d(f) = 2m = 20</code>. Mais chaque face est de degré ≥ 3, donc <code>Σ d(f) ≥ 21 &gt; 20</code>. Contradiction. ∎
+</details>
+
+<details><summary>Preuve que <code>K₃,₃</code> n'est pas planaire — pourquoi le même calcul que pour K₅ ne suffit pas ?</summary>
+<code>n=6, m=9</code> : <code>m ≤ 3n-6 = 12</code> est vérifiée, donc ce test ne conclut pas.<br>
+On raffine : <code>K₃,₃</code> est <strong>biparti</strong>, donc sans cycle impair, donc toute face est de degré <strong>≥ 4</strong>. Euler donne <code>f = 5</code>, et <code>Σ d(f) = 18</code> ; or <code>Σ d(f) ≥ 4×5 = 20 &gt; 18</code>. Contradiction. ∎
+</details>
+
+<details><summary>Théorème de <strong>Kuratowski</strong> ?</summary>
+Un graphe est planaire <strong>ssi</strong> il n'a pas de sous-graphe partiel se <strong>contractant</strong> en <code>K₅</code> ou <code>K₃,₃</code>.
+</details>
+
+<details><summary>Théorème des <strong>4 couleurs</strong>, et sa contraposée utile ?</summary>
+Tout graphe planaire simple vérifie <code>χ(G) ≤ 4</code> (Appel &amp; Haken, 1976, preuve assistée par ordinateur).<br>
+<strong>Contraposée :</strong> si <code>χ(G) ≥ 5</code>, alors G n'est <strong>pas</strong> planaire.
+</details>
+
+<details><summary>Preuve du théorème des <strong>6 couleurs</strong> ?</summary>
+Par récurrence. Tout graphe planaire simple connexe a un sommet <code>v</code> de degré ≤ 5 (Cor. 51). On le retire, on colorie le reste avec 6 couleurs (hyp. de récurrence), on remet v : il a au plus 5 voisins, donc au plus 5 couleurs interdites — la 6ᵉ est libre. ∎
+</details>
+
+<h3>Eulérien et hamiltonien</h3>
+
+<details><summary>Eulérien vs hamiltonien : définitions et moyen mnémotechnique ?</summary>
+<strong>Eulérien</strong> : un cycle <strong>simple</strong> passant par toutes les <strong>arêtes</strong> (E → arêtes, l'explorateur et ses routes).<br>
+<strong>Hamiltonien</strong> : un cycle <strong>élémentaire</strong> passant par tous les <strong>sommets</strong> (H → habitations, le voyageur de commerce et ses villes).<br>
+« Semi- » : on ne revient pas au point de départ.
+</details>
+
+<details><summary>Théorème d'<strong>Euler</strong> (Thm 62) — les deux cas et la condition « semi » ?</summary>
+Pour G <strong>connexe</strong> :<br>
+— non orienté : eulérien ⟺ <strong>tout sommet est de degré pair</strong> ;<br>
+— orienté : eulérien ⟺ <code>d⁺(x) = d⁻(x)</code> pour tout x.<br>
+Si <strong>exactement deux</strong> sommets violent la condition : G est <strong>semi-eulérien</strong>, et ces deux sommets sont le départ et l'arrivée.
+</details>
+
+<details><summary>Pourquoi « eulérien ⇒ tous les degrés pairs » ?</summary>
+Chaque fois que le parcours entre dans un sommet par une arête, il doit en ressortir par une autre, encore inutilisée. Les arêtes incidentes sont donc appariées entrée/sortie : leur nombre est pair. ∎
+</details>
+
+<details><summary>Théorème d'<strong>Ore</strong> — énoncé et piège ?</summary>
+G simple, <code>n ≥ 3</code>. Si pour <strong>tout couple de sommets NON reliés</strong> on a <code>d(v)+d(w) ≥ n</code>, alors G est <strong>hamiltonien</strong>.<br>
+⚠️ Condition <strong>suffisante seulement</strong> : un graphe peut être hamiltonien sans la vérifier (exemple : un grand cycle <code>Cₙ</code>). Il n'existe aucune caractérisation simple connue des graphes hamiltoniens.
+</details>
+
+<details><summary>Pourquoi un graphe <strong>biparti à nombre impair de sommets</strong> n'est-il jamais hamiltonien ?</summary>
+Un cycle hamiltonien alternerait entre les deux parts, ce qui impose autant de sommets d'un côté que de l'autre, donc un nombre <strong>pair</strong> de sommets. Contradiction. ∎
+</details>
+
+<h3>Hall et algorithmes</h3>
+
+<details><summary><strong>Lemme de mariage de Hall</strong> — énoncé exact ?</summary>
+<code>G = (S,A,B)</code> biparti avec <code>Card A = Card B</code>. Une bijection <code>f : A → B</code> avec chaque <code>a</code> adjacent à <code>f(a)</code> existe <strong>⟺ pour tout <code>S ⊂ A</code>, <code>Card V(S) ≥ Card S</code></strong>.<br>
+En clair : tout groupe de k garçons doit collectivement apprécier au moins k filles.
+</details>
+
+<details><summary>Parcours en <strong>largeur</strong> vs en <strong>profondeur</strong> : structure de données et usage ?</summary>
+<strong>Largeur (BFS)</strong> : <strong>file</strong> (premier entré, premier sorti) → explore niveau par niveau ; le niveau d'un sommet est sa <strong>distance</strong> au départ (Thm 78).<br>
+<strong>Profondeur (DFS)</strong> : <strong>pile</strong> (dernier entré, premier sorti) → fonce le plus loin possible puis revient en arrière.
+</details>
+
+<details><summary><strong>Kruskal</strong> vs <strong>Prim</strong> : la différence de principe ?</summary>
+<strong>Kruskal</strong> trie <em>toutes</em> les arêtes par poids et les ajoute si elles relient deux composantes distinctes — plusieurs morceaux grandissent en parallèle.<br>
+<strong>Prim</strong> fait grossir <strong>un seul arbre</strong> depuis un sommet, en ajoutant à chaque étape l'arête la moins chère vers un sommet non encore atteint.<br>
+Les deux sont <strong>gloutons</strong> et donnent un arbre couvrant optimal.
+</details>
+
+<details><summary><strong>Décomposition en niveaux</strong> : définition et condition d'existence ?</summary>
+Niveau 0 = sommets <strong>sans prédécesseur</strong> ; <code>niveau(x) = max(niveau des prédécesseurs) + 1</code>.<br>
+Elle existe <strong>ssi le graphe est sans circuit</strong> (un circuit donnerait <code>niveau(x₀) &lt; … &lt; niveau(x₀)</code>, absurde).
+</details>
+
+<details><summary>Les quatre algorithmes de plus courts chemins et leurs hypothèses ?</summary>
+<strong>Floyd-Warshall-Roy</strong> : tous graphes, tous les couples, coût ≈ n³.<br>
+<strong>Bellman-Ford-Kalaba</strong> : tous graphes (poids négatifs OK), depuis un sommet.<br>
+<strong>Dijkstra</strong> : <mark>poids ≥ 0 uniquement</mark>, plus courts chemins seulement, rapide (≈ n²).<br>
+<strong>Bellman simplifié</strong> : <mark>graphe sans circuit</mark> (décomposable en niveaux), plus court <em>ou</em> plus long chemin.
+</details>
+
+<details><summary>Où exactement l'hypothèse « poids positifs » intervient-elle dans Dijkstra ?</summary>
+Dans l'invariant : si un chemin plus court passait par un sommet y non encore traité, on aurait <code>Dist(s,y) + Dist(y,x) ≤ Dist(s,x)</code> ; comme <code>Dist(y,x) ≥ 0</code>, on en déduit <code>Dist(s,y) ≤ Dist(s,x)</code>, donc y aurait été traité <em>avant</em> x — contradiction. Avec un poids négatif, cette déduction tombe.
+</details>
+
+<details><summary>Dans un réseau PERT, l'ordonnancement <strong>au plus tôt</strong> se calcule avec quels chemins ? Pourquoi ?</summary>
+Les chemins les <strong>plus LONGS</strong> depuis le sommet « début du projet ».<br>
+Raison : une tâche ne peut démarrer que lorsque <strong>toutes</strong> ses contraintes sont satisfaites ; c'est donc la plus contraignante — la plus longue chaîne de prérequis — qui fixe sa date.
+</details>
+
+<details><summary><strong>Chemin critique</strong> et <strong>marge</strong> ?</summary>
+<strong>Chemin critique</strong> = chemin le plus long du début à la fin : tout retard sur une de ses tâches retarde le projet entier (pas forcément unique).<br>
+<strong>Marge</strong> d'une tâche = date de début au plus tard − date de début au plus tôt. Les tâches critiques ont une marge <strong>nulle</strong>.
+</details>
+
+<h2>🅱️ Paquet B — Quel outil utiliser ?</h2>
+
+<div class="box warn">
+<span class="box-title">⚠️ Ces cartes-là sont les plus utiles</span>
+En partiel, la difficulté n'est presque jamais de <em>connaître</em> le théorème : c'est de <strong>reconnaître lequel sort</strong> à la lecture de l'énoncé. Pour chaque carte, dis à voix haute le nom de l'outil et la première ligne de ta rédaction — <strong>sans faire le calcul</strong>.
+</div>
+
+<details><summary><strong>1.</strong> « Dans un groupe de 9 amis, chacun serre la main à 3 autres. Montrer que c'est impossible. »</summary>
+<strong>Outil :</strong> lemme des <strong>poignées de main</strong>, version parité.<br>
+<strong>Première ligne :</strong> « On modélise par le graphe des poignées de main : 9 sommets, tous de degré 3. La somme des degrés vaut <code>9×3 = 27</code>, un nombre impair — or elle doit valoir <code>2m</code>, qui est pair. Contradiction. »
+</details>
+
+<details><summary><strong>2.</strong> « Combien y a-t-il de chemins de longueur 3 entre les sommets 1 et 4 ? »</summary>
+<strong>Outil :</strong> <strong>Théorème 22</strong>, puissances de la matrice d'adjacence.<br>
+<strong>Première ligne :</strong> « On écrit la matrice d'adjacence A, on calcule <code>A³</code>, et on lit le coefficient <code>(A³)₁₄</code>. »
+</details>
+
+<details><summary><strong>3.</strong> « Ce dessin peut-il être tracé d'un seul trait sans lever le crayon et sans repasser sur un trait ? »</summary>
+<strong>Outil :</strong> <strong>Théorème d'Euler</strong> (eulérien / semi-eulérien).<br>
+<strong>Première ligne :</strong> « On calcule le degré de chaque sommet et on compte ceux de degré impair : 0 → cycle eulérien (possible, retour au départ) ; exactement 2 → semi-eulérien (possible, en partant de l'un des deux) ; plus de 2 → impossible. »
+</details>
+
+<details><summary><strong>4.</strong> « Peut-on relier 5 châteaux deux à deux par des routes qui ne se croisent pas ? »</summary>
+<strong>Outil :</strong> non-planarité de <code>K₅</code> (Prop. 52), via la formule d'Euler.<br>
+<strong>Première ligne :</strong> « La question revient à savoir si <code>K₅</code> est planaire. Il ne l'est pas : s'il l'était, Euler donnerait <code>f = 7</code> faces, donc <code>Σ d(f) ≥ 21</code>, alors que <code>Σ d(f) = 2m = 20</code>. »
+</details>
+
+<details><summary><strong>5.</strong> « Trois villas doivent être reliées au gaz, à l'eau et à l'électricité sans que les canalisations se croisent. Possible ? »</summary>
+<strong>Outil :</strong> non-planarité de <code>K₃,₃</code> (Prop. 53).<br>
+<strong>Première ligne :</strong> « C'est exactement <code>K₃,₃</code>. Comme il est biparti, toutes ses faces seraient de degré ≥ 4 ; Euler donne <code>f = 5</code> donc <code>Σ d(f) ≥ 20</code>, alors que <code>Σ d(f) = 2m = 18</code>. Impossible. »
+</details>
+
+<details><summary><strong>6.</strong> « Combien faut-il au minimum d'aquariums pour 8 poissons dont certains ne peuvent cohabiter ? »</summary>
+<strong>Outil :</strong> <strong>nombre chromatique</strong>. Sommets = poissons, arête = « ne peuvent pas cohabiter », couleur = aquarium.<br>
+<strong>Première ligne :</strong> « On cherche <code>χ(G)</code>. Minoration par une clique, majoration par un coloriage explicite (Welsh-Powell pour trouver un candidat). »<br>
+<strong>Même schéma pour :</strong> emplois du temps d'examens, longueurs d'onde de stations radio, groupes de TP d'étudiants qui ne s'entendent pas, tables d'un banquet.
+</details>
+
+<details><summary><strong>7.</strong> « Quel est le plus grand nombre de personnes qu'on peut inviter sans conflit ? »</summary>
+<strong>Outil :</strong> <strong>clique</strong> ou <strong>stable</strong> — attention au sens des arêtes de ton modèle !<br>
+Si l'arête signifie « <em>peuvent</em> être invités ensemble » → on cherche la <strong>clique maximale</strong>. Si l'arête signifie « <em>ne s'entendent pas</em> » → on cherche le <strong>stable maximal</strong>. C'est le même problème vu dans le graphe complémentaire.
+</details>
+
+<details><summary><strong>8.</strong> « Trouver un parcours qui visite chaque ville une seule fois et revient au départ. »</summary>
+<strong>Outil :</strong> cycle <strong>hamiltonien</strong> ; pour garantir l'existence, <strong>théorème d'Ore</strong> (ou son corollaire de Dirac <code>d(v) ≥ n/2</code>).<br>
+⚠️ Si Ore n'est pas vérifié, ça ne prouve rien : il faut alors soit <strong>exhiber</strong> un cycle, soit trouver un argument d'impossibilité (par exemple biparti à nombre impair de sommets).
+</details>
+
+<details><summary><strong>9.</strong> « Montrer que ces deux graphes ne sont pas isomorphes. »</summary>
+<strong>Outil :</strong> un <strong>invariant</strong> qui diffère.<br>
+<strong>Première ligne :</strong> « Comparons la suite des degrés triée : l'un a <code>(3,3,2,2,1)</code>, l'autre <code>(3,2,2,2,2)</code>. Un isomorphisme préservant les degrés, ils ne peuvent pas être isomorphes. »<br>
+Si les suites coïncident, on passe au nombre de triangles, à la longueur du plus petit cycle, ou à la connexité.
+</details>
+
+<details><summary><strong>10.</strong> « Montrer que ces deux graphes SONT isomorphes. »</summary>
+<strong>Outil :</strong> exhiber explicitement la <strong>bijection Φ</strong>.<br>
+<strong>Rédaction :</strong> un tableau de correspondance <code>Φ</code>, puis la vérification « arête par arête » : chaque arête de G est envoyée sur une arête de H, et comme les deux graphes ont le même nombre d'arêtes, la réciproque suit.<br>
+<strong>Astuce de construction :</strong> commencer par apparier les sommets dont le degré est le plus rare.
+</details>
+
+<details><summary><strong>11.</strong> « Un arbre n'a que des sommets de degré 1 ou 3. S'il a 10 sommets de degré 3, combien a-t-il de feuilles ? »</summary>
+<strong>Outil :</strong> poignées de main <strong>+</strong> « arbre à n sommets ⇒ n−1 arêtes ».<br>
+<strong>Première ligne :</strong> « Notons <code>f</code> le nombre de feuilles. On a <code>n = f + 10</code> sommets et donc <code>m = n-1</code> arêtes. La somme des degrés vaut <code>f×1 + 10×3 = 2m</code> — on résout. »
+</details>
+
+<details><summary><strong>12.</strong> « Ce graphe (donné par sa matrice d'adjacence) est-il connexe ? »</summary>
+<strong>Outil :</strong> deux options.<br>
+<strong>(a) Rapide à la main :</strong> algorithme « tache d'huile » — partir d'un sommet, ajouter les voisins de proche en proche, voir si on atteint tout le monde.<br>
+<strong>(b) Méthode du cours :</strong> Théorème 24, calculer <code>B = A + A² + … + A^(n-1)</code> et vérifier que tous les coefficients non diagonaux sont &gt; 0.
+</details>
+
+<details><summary><strong>13.</strong> « Combien de longueurs d'onde faut-il pour 7 stations radio qui interfèrent à moins de 100 km ? »</summary>
+<strong>Outil :</strong> <strong>coloriage de sommets</strong>. On trace une arête entre deux stations distantes de moins de 100 km, et on cherche <code>χ(G)</code>.<br>
+<strong>Première étape de rédaction :</strong> construire le graphe à partir du tableau de distances, en listant explicitement les arêtes retenues.
+</details>
+
+<details><summary><strong>14.</strong> « 5 étudiants passent des oraux d'une heure avec 5 examinateurs ; trouver la durée minimale. »</summary>
+<strong>Outil :</strong> <strong>coloration des ARÊTES</strong> d'un graphe biparti → <strong>théorème de König</strong> : <code>χ'(G) = Δ(G)</code>.<br>
+<strong>Première ligne :</strong> « Sommets = étudiants d'un côté, examinateurs de l'autre ; une arête par oral à faire passer. Un créneau horaire = une couleur d'arête. Le graphe étant biparti, <code>χ' = Δ</code>, donc la durée minimale est le degré maximum. »<br>
+⚠️ Ici c'est bien les <strong>arêtes</strong> qu'on colorie, pas les sommets — c'est ce qui distingue cet exercice du n°6.
+</details>
+
+<details><summary><strong>15.</strong> « Relier toutes les villes par un réseau de câbles de coût total minimal. »</summary>
+<strong>Outil :</strong> <strong>arbre couvrant de poids minimal</strong> → algorithme de <strong>Kruskal</strong> (arêtes par poids croissant) ou de <strong>Prim</strong>.<br>
+<strong>Vérification finale :</strong> l'arbre obtenu doit avoir exactement <code>n-1</code> arêtes.
+</details>
+
+<details><summary><strong>16.</strong> « Trouver le trajet le plus court entre deux villes dans ce réseau valué. »</summary>
+<strong>Outil :</strong> <strong>Dijkstra</strong> si toutes les valuations sont <strong>positives ou nulles</strong> (cas le plus fréquent : distances, durées, prix).<br>
+Sinon → Bellman-Ford-Kalaba. Si le graphe est sans circuit → Bellman simplifié. Si on veut <em>tous</em> les couples → Floyd-Warshall-Roy.
+</details>
+
+<details><summary><strong>17.</strong> « Voici les tâches d'un projet et leurs contraintes : quelle est la durée minimale ? »</summary>
+<strong>Outil :</strong> <strong>réseau PERT</strong> (graphe potentiel-tâche) + ordonnancement <strong>au plus tôt</strong>.<br>
+<strong>Plan de rédaction :</strong> (1) traduire chaque contrainte en inéquation <code>tⱼ - tᵢ ≥ d</code> ; (2) tracer le graphe, un sommet par tâche, un arc valué par contrainte ; (3) décomposer en niveaux ; (4) appliquer Bellman simplifié pour les chemins les <strong>plus longs</strong> ; (5) la durée minimale est <code>t</code> de la tâche finale, et le chemin critique est le chemin le plus long.
+</details>
+
+<details><summary><strong>18.</strong> « Peut-on marier n garçons et n filles de façon que chaque couple s'apprécie ? »</summary>
+<strong>Outil :</strong> <strong>lemme de Hall</strong> sur un graphe biparti.<br>
+<strong>Pour répondre NON :</strong> exhiber <strong>un seul</strong> ensemble <code>S</code> de k garçons qui n'apprécient collectivement que <code>&lt; k</code> filles.<br>
+<strong>Pour répondre OUI :</strong> soit vérifier la condition de Hall pour tout S, soit (plus simple en pratique) exhiber directement un appariement complet.
+</details>
+
+<details><summary><strong>19.</strong> « Montrer que ce graphe est biparti. »</summary>
+<strong>Outil :</strong> deux rédactions possibles.<br>
+<strong>(a)</strong> Exhiber la <strong>partition</strong> <code>S₁ / S₂</code> et vérifier qu'aucune arête n'a ses deux extrémités dans la même part (la plus courte).<br>
+<strong>(b)</strong> Montrer qu'il n'a <strong>aucun cycle de longueur impaire</strong> (Théorème 68) — utile quand le graphe est donné abstraitement.<br>
+En pratique on construit la partition par l'algorithme de marquage 0/1 en largeur.
+</details>
+
+<details><summary><strong>20.</strong> « Un graphe simple a 15 arêtes, 3 sommets de degré 4, et tous les autres de degré 3. Combien a-t-il de sommets ? »</summary>
+<strong>Outil :</strong> poignées de main, en posant l'inconnue.<br>
+<strong>Première ligne :</strong> « Soit n le nombre de sommets ; il y a alors <code>n-3</code> sommets de degré 3. La somme des degrés vaut <code>3×4 + (n-3)×3 = 2×15 = 30</code> — on résout en n. »
+</details>
+
+<details><summary><strong>21.</strong> « La suite <code>(6,5,5,4,3,3,2,2,2)</code> est-elle la suite des degrés d'un graphe simple ? »</summary>
+<strong>Outils :</strong> d'abord les <strong>tests de rejet rapides</strong> : somme impaire ? un degré ≥ n ? trop de sommets de degré élevé ?<br>
+Puis l'<strong>algorithme d'Havel-Hakimi</strong> (c'est l'exercice 6/14 du TD1) : on retire le plus grand degré s en décrémentant de 1 les s degrés suivants, et on recommence ; si on arrive à une suite de zéros, la suite est graphique — et la construction se lit à rebours.
+</details>
+
+<details><summary><strong>22.</strong> « Montrer que dans un groupe de n personnes, deux au moins ont le même nombre d'amis. »</summary>
+<strong>Outil :</strong> <strong>principe des tiroirs</strong> appliqué aux degrés.<br>
+<strong>Idée :</strong> les degrés sont dans <code>{0,1,…,n-1}</code>, ce qui fait n valeurs pour n sommets. Mais <code>0</code> et <code>n-1</code> ne peuvent pas coexister (quelqu'un d'ami avec tout le monde interdit quelqu'un d'ami avec personne) : il ne reste donc que <code>n-1</code> valeurs possibles pour n sommets — deux sommets partagent un degré.
+</details>
+
+<details><summary><strong>23.</strong> « Combien de faces a une représentation planaire de ce graphe 4-régulier connexe à 6 sommets ? »</summary>
+<strong>Outil :</strong> poignées de main <strong>puis</strong> formule d'Euler.<br>
+<strong>Première ligne :</strong> « 4-régulier à 6 sommets ⇒ <code>a = nr/2 = 12</code> arêtes. Euler : <code>f = 2 - s + a = 2 - 6 + 12 = 8</code> faces. »<br>
+Remarque : la réponse ne dépend pas du dessin choisi — c'est le corollaire de la formule d'Euler.
+</details>
+
+<details><summary><strong>24.</strong> « Montrer que si tout sommet vérifie <code>deg(v) ≥ (n-1)/2</code>, alors G est connexe. »</summary>
+<strong>Outil :</strong> raisonnement <strong>par l'absurde</strong> + comptage sur les composantes connexes.<br>
+<strong>Idée :</strong> si G n'est pas connexe, il a au moins deux composantes ; la plus petite a au plus <code>n/2</code> sommets, donc un de ses sommets a un degré ≤ <code>n/2 - 1 &lt; (n-1)/2</code>. Contradiction.
+</details>
+
+<details><summary><strong>25.</strong> « Dessiner tous les arbres à 2 sommets, puis à 3 sommets. Combien y en a-t-il à n sommets étiquetés ? »</summary>
+<strong>Outil :</strong> propriété « <code>n-1</code> arêtes » pour les dessiner, puis <strong>formule de Cayley</strong> <code>n^(n-2)</code> pour le comptage.<br>
+Vérification : <code>n=2 → 2⁰ = 1</code> arbre ; <code>n=3 → 3¹ = 3</code> arbres (celui où le sommet central est 1, 2 ou 3).
+</details>
+
+<div class="box tip">
+<span class="box-title">🎯 Le réflexe à installer</span>
+Devant n'importe quel énoncé, pose-toi trois questions dans cet ordre :<br>
+<strong>1.</strong> Est-ce une question de <strong>comptage</strong> (degrés, arêtes, faces) ? → poignées de main, <code>nr/2</code>, Euler.<br>
+<strong>2.</strong> Est-ce une question de <strong>possible / impossible</strong> ? → parité, <code>m ≤ 3n-6</code>, <code>K₅</code>/<code>K₃,₃</code>, Hall, degrés impairs.<br>
+<strong>3.</strong> Est-ce une question de <strong>minimum à trouver</strong> ? → coloriage (sommets ou arêtes), arbre couvrant, plus court chemin, PERT.
+</div>
+
+<div class="nav-links">
+  <span><a href="01_definitions_completes.html">← Définitions complètes</a></span>
+  <span><a href="03_exos_types.html">Exos types →</a></span>
+</div>
+
+</div>
+</body>
+</html>

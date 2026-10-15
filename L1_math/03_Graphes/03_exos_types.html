@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graphes — Exos types et rédactions</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Graphes — Exos types</span></div>
+<div class="page">
+
+<span class="chip">🎓 Cours L2</span><span class="chip">Rédaction type</span>
+<h1>✍️ Graphes — un exo type par notion, avec la rédaction attendue</h1>
+
+<p>Un exercice modèle pour <strong>chaque notion du cours</strong>. À chaque fois : l'énoncé, <strong>ce qu'il faut reconnaître</strong> (sans la solution), puis la <strong>rédaction type complète</strong> — celle que tu dois pouvoir produire sur ta copie. Les énoncés sont calqués sur le poly et sur les feuilles de TD 1 et 2.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Comment travailler cette page</span>
+Lis l'énoncé, <strong>cache la suite</strong> et cherche au brouillon. Puis ouvre « Ce qu'il faut reconnaître » seulement si tu bloques sur le point de départ. N'ouvre la rédaction qu'après avoir écrit la tienne — et compare non pas les résultats, mais <strong>la façon de rédiger</strong> : c'est là que se jouent les points.
+</div>
+
+<h2>🧭 Les notions couvertes</h2>
+<table>
+<tr><th>#</th><th>Exercice</th><th>Notion travaillée</th></tr>
+<tr><td>1</td><td>Matrice d'adjacence</td><td>Représentation, degrés, ordre/taille</td></tr>
+<tr><td>2</td><td>C'est possible ou pas ?</td><td>Lemme des poignées de main, parité</td></tr>
+<tr><td>3</td><td>Suite graphique</td><td>Suite des degrés, Havel-Hakimi</td></tr>
+<tr><td>4</td><td>Compter les chemins</td><td>Puissances de la matrice (Thm 22)</td></tr>
+<tr><td>5</td><td>Le graphe est-il connexe ?</td><td>Connexité, composantes</td></tr>
+<tr><td>6</td><td>Isomorphisme : oui et non</td><td>Bijection, invariants</td></tr>
+<tr><td>7</td><td>Compter les feuilles d'un arbre</td><td>Arbres, n−1 arêtes</td></tr>
+<tr><td>8</td><td>Code de Prüfer</td><td>Cayley, bijection arbres/uplets</td></tr>
+<tr><td>9</td><td>Inviter des amis fâchés</td><td>Clique, stable, nombre chromatique</td></tr>
+<tr><td>10</td><td>Glouton et Welsh-Powell</td><td>Algorithmes de coloriage</td></tr>
+<tr><td>11</td><td>Compter les faces</td><td>Formule d'Euler</td></tr>
+<tr><td>12</td><td>Montrer la non-planarité</td><td>m ≤ 3n−6, K₅, K₃,₃</td></tr>
+<tr><td>13</td><td>Tracer d'un seul trait</td><td>Eulérien / semi-eulérien</td></tr>
+<tr><td>14</td><td>Tournée du voyageur</td><td>Hamiltonien, théorème d'Ore</td></tr>
+<tr><td>15</td><td>Répartir des projets</td><td>Lemme de Hall</td></tr>
+<tr><td>16</td><td>Réseau de câbles minimal</td><td>Arbre couvrant, Kruskal</td></tr>
+<tr><td>17</td><td>Trajet le plus court</td><td>Dijkstra</td></tr>
+<tr><td>18</td><td>Planifier un projet</td><td>Niveaux, PERT, chemin critique</td></tr>
+</table>
+
+<h2>1️⃣ Exercice type — Matrice d'adjacence</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Soit <code>G</code> le graphe non orienté de sommets <code>{1,2,3,4,5}</code> et d'arêtes <code>{1,2}, {1,5}, {2,3}, {2,4}, {3,4}, {4,5}</code>.<br>
+<strong>1.</strong> Donner sa matrice d'adjacence. <strong>2.</strong> Donner l'ordre, la taille et le degré de chaque sommet. <strong>3.</strong> Vérifier le lemme des poignées de main.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Pur exercice de définition. Le seul réflexe : la matrice d'un graphe <strong>non orienté</strong> doit sortir <strong>symétrique</strong>, et sans boucle la <strong>diagonale est nulle</strong>. Ces deux vérifications te disent immédiatement si tu t'es trompé.
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> On numérote les sommets de 1 à 5 et on place <code>M_xy = 1</code> lorsque <code>{x,y}</code> est une arête :
+<pre><code>      1  2  3  4  5
+  1 [ 0  1  0  0  1 ]
+  2 [ 1  0  1  1  0 ]
+  3 [ 0  1  0  1  0 ]
+  4 [ 0  1  1  0  1 ]
+  5 [ 1  0  0  1  0 ]</code></pre>
+<strong>Contrôle :</strong> la matrice est bien symétrique (graphe non orienté) et de diagonale nulle (pas de boucle).<br><br>
+<strong>2.</strong> L'<strong>ordre</strong> de G est <code>Card(S) = 5</code> et sa <strong>taille</strong> est <code>Card(A) = 6</code>. Les degrés se lisent en sommant chaque ligne :<br>
+<code>d(1) = 2, d(2) = 3, d(3) = 2, d(4) = 3, d(5) = 2</code>.<br><br>
+<strong>3.</strong> <code>Σ d(x) = 2+3+2+3+2 = 12 = 2×6 = 2m</code>. Le lemme des poignées de main est bien vérifié.
+</details>
+
+<h2>2️⃣ Exercice type — « Est-ce possible ? »</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+<strong>1.</strong> Un groupe de 9 amis se disent bonjour le matin. Chacun serre la main à exactement 3 autres. Montrer que cette situation est impossible.<br>
+<strong>2.</strong> Un graphe simple non orienté a 15 arêtes, 3 sommets de degré 4 et tous les autres de degré 3. Combien a-t-il de sommets ?
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Dès qu'un énoncé donne <strong>des degrés et demande un nombre</strong> (ou demande de montrer une impossibilité), c'est le <strong>lemme des poignées de main</strong>. Deux usages : la <strong>parité</strong> (pour l'impossibilité) et l'<strong>équation</strong> <code>Σ d(x) = 2m</code> avec une inconnue (pour le comptage).
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> Modélisons la situation par le graphe <code>G</code> des poignées de main : les sommets sont les 9 personnes, et on relie deux personnes qui se serrent la main. Par hypothèse, <code>d(x) = 3</code> pour les 9 sommets.<br>
+Par le lemme des poignées de main, <code>Σ d(x) = 2m</code>, donc la somme des degrés est <strong>paire</strong>.<br>
+Or ici <code>Σ d(x) = 9 × 3 = 27</code>, qui est <strong>impair</strong>. Contradiction.<br>
+Donc une telle situation est impossible. ∎<br>
+<div class="box tip" style="margin-top:10px">
+<span class="box-title">💡 La formulation générale</span>
+Ce qu'on vient de démontrer est le fait général : <strong>le nombre de sommets de degré impair est toujours pair</strong>. Ici on aurait 9 sommets de degré impair : impossible.
+</div>
+<strong>2.</strong> Notons <code>n</code> le nombre de sommets. Il y a 3 sommets de degré 4 et <code>n-3</code> sommets de degré 3. Donc
+<code>Σ d(x) = 3×4 + (n-3)×3 = 12 + 3n - 9 = 3n + 3</code>.<br>
+Le lemme des poignées de main donne <code>Σ d(x) = 2m = 2×15 = 30</code>, d'où
+<code>3n + 3 = 30</code>, soit <code>n = 9</code>.<br>
+Le graphe a donc <strong>9 sommets</strong>.<br>
+<strong>Contrôle de cohérence :</strong> avec 9 sommets, un graphe simple a au plus <code>9×8/2 = 36</code> arêtes, et les degrés (4 et 3) sont bien <code>≤ 8</code> : rien n'interdit l'existence d'un tel graphe.
+</details>
+
+<h2>3️⃣ Exercice type — Suite graphique</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Une suite finie d'entiers naturels est dite <strong>graphique</strong> si c'est la suite des degrés des sommets d'un graphe simple.<br>
+<strong>1.</strong> Existe-t-il un graphe de suite de degrés <code>(1,2,3,4)</code> ? Un graphe <em>simple</em> ?<br>
+<strong>2.</strong> Montrer que <code>(6,5,5,4,3,3,2,2,2)</code> est graphique.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Trois tests de rejet <strong>dans cet ordre</strong>, avant tout calcul : <strong>(a)</strong> la somme est-elle paire ? <strong>(b)</strong> un degré dépasse-t-il <code>n-1</code> (impossible dans un graphe simple à n sommets) ? <strong>(c)</strong> sinon, on déroule l'<strong>algorithme d'Havel-Hakimi</strong> : on retire le plus grand degré <code>s</code> en décrémentant de 1 les <code>s</code> degrés suivants, on retrie, et on recommence.
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> La somme vaut <code>1+2+3+4 = 10</code>, qui est paire : le graphe aurait <code>m = 10/2 = 5</code> arêtes et <code>n = 4</code> sommets.<br>
+<strong>Un tel graphe existe si l'on autorise les arêtes multiples :</strong> sur les sommets <code>a,b,c,d</code> de degrés respectifs 1, 2, 3, 4, on peut prendre les arêtes <code>{a,d}, {b,c}, {b,d}, {c,d}, {c,d}</code> — le sommet d est d'extrémité de 3 arêtes dont une double… (il suffit d'ajuster ; l'essentiel est le point suivant).<br>
+<strong>En revanche, aucun graphe SIMPLE ne convient :</strong> dans un graphe simple à <code>n = 4</code> sommets, un sommet est relié à au plus <code>n-1 = 3</code> autres sommets, donc <code>d(x) ≤ 3</code> pour tout x. Or la suite contient le degré 4. Contradiction. ∎<br><br>
+<strong>2.</strong> La suite <code>(6,5,5,4,3,3,2,2,2)</code> a 9 termes, de somme <code>32</code> (paire) et de maximum <code>6 ≤ 8 = n-1</code> : aucun test de rejet ne s'applique. On déroule Havel-Hakimi.
+<pre><code>(6,5,5,4,3,3,2,2,2)
+  on retire le 6, on décrémente les 6 suivants :
+    (5,5,4,3,3,2) → (4,4,3,2,2,1),   reste (2,2)
+  après tri :      (4,4,3,2,2,2,2,1)
+  on retire le 4 :
+    (4,3,2,2) → (3,2,1,1),           reste (2,2,1)
+  après tri :      (3,2,2,2,1,1,1)
+  on retire le 3 : (2,2,2) → (1,1,1), reste (1,1,1)
+  après tri :      (1,1,1,1,1,1)
+  on retire les 1 deux par deux :     (0,0,0,0,0,0)</code></pre>
+On aboutit à la suite nulle, qui est bien graphique (le graphe sans arête). Donc, en remontant les étapes, <code>(6,5,5,4,3,3,2,2,2)</code> est <strong>graphique</strong>. ∎<br>
+<strong>Remarque :</strong> la remontée n'est pas qu'un argument — elle <strong>construit</strong> le graphe : à chaque étape on relie le sommet retiré aux sommets dont on avait décrémenté le degré.
+</details>
+
+<h2>4️⃣ Exercice type — Compter les chemins</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Soit <code>C₄</code> le cycle de sommets 1, 2, 3, 4 et d'arêtes <code>{1,2}, {2,3}, {3,4}, {4,1}</code>.<br>
+Combien y a-t-il de chemins de longueur 3 allant du sommet 1 au sommet 2 ? Les énumérer pour vérifier.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+« Nombre de chemins de longueur <code>k</code> » est la signature du <strong>Théorème 22</strong> : la réponse est le coefficient <code>(A^k)_ij</code>. Attention : il s'agit de <strong>chemins quelconques</strong>, pas forcément élémentaires — on a le droit de repasser par un sommet.
+</details>
+<details><summary>✅ Rédaction type</summary>
+La matrice d'adjacence de <code>C₄</code> est
+<pre><code>      1  2  3  4
+  1 [ 0  1  0  1 ]
+  2 [ 1  0  1  0 ]
+  3 [ 0  1  0  1 ]
+  4 [ 1  0  1  0 ]</code></pre>
+On calcule <code>A²</code> :
+<pre><code>A² = [ 2  0  2  0 ]
+     [ 0  2  0  2 ]
+     [ 2  0  2  0 ]
+     [ 0  2  0  2 ]</code></pre>
+puis <code>A³ = A²·A</code>, dont la première ligne vaut <code>2×(ligne 1 de A) + 2×(ligne 3 de A) = (0, 4, 0, 4)</code>.<br>
+Donc <code>(A³)₁₂ = 4</code> : par le théorème 22, il y a <strong>4 chemins de longueur 3 du sommet 1 au sommet 2</strong>.<br><br>
+<strong>Vérification par énumération :</strong>
+<code>(1,2,1,2)</code>, <code>(1,4,1,2)</code>, <code>(1,2,3,2)</code>, <code>(1,4,3,2)</code>. On en compte bien 4.<br>
+<strong>Observation :</strong> aucun de ces chemins n'est élémentaire — ils repassent tous par un sommet. C'est normal : dans <code>C₄</code>, les sommets 1 et 2 sont à distance 1, et on ne peut les relier en 3 pas qu'en faisant un détour.
+</details>
+
+<h2>5️⃣ Exercice type — Connexité</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Le graphe défini par la matrice d'adjacence suivante est-il connexe ?
+<pre><code>[ 0  0  0  1  0 ]
+[ 0  0  1  0  0 ]
+[ 0  1  0  0  0 ]
+[ 1  0  0  0  1 ]
+[ 0  0  0  1  0 ]</code></pre>
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Deux méthodes légitimes : le <strong>théorème 24</strong> (calculer <code>B = A+A²+A³+A⁴</code>), ou l'algorithme « <strong>tache d'huile</strong> ». En devoir, la tache d'huile est bien plus rapide et parfaitement rigoureuse — réserve le calcul matriciel aux cas où l'énoncé l'exige explicitement.
+</details>
+<details><summary>✅ Rédaction type</summary>
+La matrice est symétrique de diagonale nulle : le graphe est non orienté et simple. On lit ses arêtes : <code>{1,4}, {2,3}, {4,5}</code>.<br><br>
+<strong>Algorithme de la tache d'huile depuis le sommet 1 :</strong>
+<pre><code>Composante = {1}
+voisins de 1 : 4          → Composante = {1,4}
+voisins de 4 : 1, 5       → Composante = {1,4,5}
+voisins de 5 : 4          → rien de nouveau, on s'arrête</code></pre>
+La composante connexe de 1 est <code>{1,4,5} ≠ S</code>.<br>
+Donc le graphe <strong>n'est pas connexe</strong> : il a exactement <strong>deux composantes connexes</strong>, <code>{1,4,5}</code> et <code>{2,3}</code>. ∎<br>
+<strong>Contrôle :</strong> il n'existe effectivement aucun chemin du sommet 1 au sommet 2, puisque aucune arête ne relie <code>{1,4,5}</code> à <code>{2,3}</code>.
+</details>
+
+<h2>6️⃣ Exercice type — Isomorphisme</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+<strong>1.</strong> <code>G</code> a pour sommets <code>s,p,t,r,q</code> et pour arêtes <code>{s,p},{p,q},{s,t},{t,q},{s,r},{r,q}</code>. <code>H</code> a pour sommets <code>1,…,5</code> et pour arêtes <code>{1,3},{1,4},{1,5},{2,3},{2,4},{2,5}</code>. Montrer que <code>G</code> et <code>H</code> sont isomorphes.<br>
+<strong>2.</strong> Le cycle <code>C₆</code> et la réunion disjointe de deux triangles sont-ils isomorphes ?
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Les deux questions appellent des rédactions <strong>opposées</strong> : pour <strong>oui</strong> il faut <strong>construire</strong> une bijection explicite ; pour <strong>non</strong> il suffit d'<strong>un seul invariant</strong> qui diffère. Commence toujours par comparer les suites de degrés : soit elles diffèrent et tu as fini, soit elles coïncident et elles t'indiquent quels sommets apparier.
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> Calculons d'abord les degrés.<br>
+Dans <code>G</code> : <code>d(s) = 3</code> (p, t, r), <code>d(q) = 3</code> (p, t, r), et <code>d(p) = d(t) = d(r) = 2</code>.<br>
+Dans <code>H</code> : <code>d(1) = d(2) = 3</code>, et <code>d(3) = d(4) = d(5) = 2</code>.<br>
+Les suites de degrés coïncident : <code>(3,3,2,2,2)</code>. On apparie les sommets de degré 3 entre eux et ceux de degré 2 entre eux. Posons
+<pre><code>  Φ(s) = 1    Φ(q) = 2    Φ(p) = 3    Φ(t) = 4    Φ(r) = 5</code></pre>
+<code>Φ</code> est bien une <strong>bijection</strong> de <code>{s,p,t,r,q}</code> sur <code>{1,…,5}</code>. Vérifions qu'elle transporte les arêtes :
+<table>
+<tr><th>Arête de G</th><th>Image par Φ</th><th>Arête de H ?</th></tr>
+<tr><td>{s,p}</td><td>{1,3}</td><td>oui</td></tr>
+<tr><td>{s,t}</td><td>{1,4}</td><td>oui</td></tr>
+<tr><td>{s,r}</td><td>{1,5}</td><td>oui</td></tr>
+<tr><td>{p,q}</td><td>{3,2}</td><td>oui</td></tr>
+<tr><td>{t,q}</td><td>{4,2}</td><td>oui</td></tr>
+<tr><td>{r,q}</td><td>{5,2}</td><td>oui</td></tr>
+</table>
+Les 6 arêtes de G ont pour images les 6 arêtes de H, et les deux graphes ont le même nombre d'arêtes : l'équivalence « <code>{x,y}</code> arête de G ⟺ <code>{Φ(x),Φ(y)}</code> arête de H » est donc vérifiée dans les deux sens.<br>
+Donc <code>G</code> et <code>H</code> sont <strong>isomorphes</strong>. ∎<br>
+<strong>Remarque :</strong> les deux sont en fait le graphe biparti complet <code>K₂,₃</code>, de parts <code>{s,q}</code> et <code>{p,t,r}</code> d'un côté, <code>{1,2}</code> et <code>{3,4,5}</code> de l'autre.<br><br>
+<strong>2.</strong> Les deux graphes ont 6 sommets, 6 arêtes, et la même suite de degrés <code>(2,2,2,2,2,2)</code> : ces invariants-là ne permettent pas de conclure.<br>
+En revanche, <code>C₆</code> est <strong>connexe</strong> (une composante connexe), tandis que la réunion de deux triangles en a <strong>deux</strong>. Or le nombre de composantes connexes est un invariant par isomorphisme : une bijection qui préserve les arêtes préserve l'existence des chemins.<br>
+Donc ces deux graphes ne sont <strong>pas isomorphes</strong>. ∎<br>
+<div class="box warn" style="margin-top:10px">
+<span class="box-title">⚠️ L'erreur classique</span>
+Écrire « ils ont la même suite de degrés donc ils sont isomorphes ». C'est <strong>faux</strong> : cet exemple en est précisément le contre-exemple. La suite des degrés est une condition <strong>nécessaire</strong>, jamais suffisante.
+</div>
+</details>
+
+<h2>7️⃣ Exercice type — Arbres et comptage</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Soit <code>T</code> un arbre dont tous les sommets sont de degré 1 ou 3. Si <code>T</code> a 10 sommets de degré 3, combien a-t-il de sommets de degré 1 ?
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Un exercice où l'on <strong>combine deux formules</strong> : les poignées de main (<code>Σ d = 2m</code>) et la propriété caractéristique des arbres (<code>m = n-1</code>). C'est cette combinaison qui ferme le système : une équation, une inconnue.
+</details>
+<details><summary>✅ Rédaction type</summary>
+Notons <code>f</code> le nombre de sommets de degré 1 (les feuilles). Tous les sommets étant de degré 1 ou 3, le nombre total de sommets est
+<code>n = f + 10</code>.<br>
+Comme <code>T</code> est un arbre, il a exactement <code>n - 1</code> arêtes (Proposition 29) :
+<code>m = f + 9</code>.<br>
+Le lemme des poignées de main donne alors
+<pre><code>Σ d(x) = f×1 + 10×3 = f + 30
+Σ d(x) = 2m = 2(f + 9) = 2f + 18</code></pre>
+D'où <code>f + 30 = 2f + 18</code>, c'est-à-dire <code>f = 12</code>.<br>
+L'arbre a donc <strong>12 sommets de degré 1</strong> (et 22 sommets en tout, pour 21 arêtes). ∎<br>
+<strong>Contrôle :</strong> <code>Σ d = 12 + 30 = 42 = 2×21</code> ✔
+</details>
+
+<h2>8️⃣ Exercice type — Code de Prüfer</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Soit l'arbre <code>T</code> à 8 sommets d'arêtes <code>{1,2}, {1,3}, {1,6}, {3,4}, {4,5}, {6,7}, {6,8}</code>.<br>
+<strong>1.</strong> Déterminer son code de Prüfer. <strong>2.</strong> Combien y a-t-il d'arbres à 8 sommets étiquetés ?
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Mécanique pure, mais il faut appliquer la règle <strong>à la lettre</strong> : à chaque étape, on prend la <strong>feuille de plus petite étiquette</strong> (pas le plus petit sommet, pas une feuille au hasard) et on écrit <strong>l'étiquette de son voisin</strong> (pas la sienne). On s'arrête quand il reste 2 sommets, donc après <code>n-2</code> étapes.
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> L'arbre a <code>n = 8</code> sommets, son code aura donc <code>n - 2 = 6</code> termes. On applique l'algorithme :
+<table>
+<tr><th>Étape</th><th>Feuilles</th><th>Plus petite</th><th>Son voisin → code</th></tr>
+<tr><td>1</td><td>2, 5, 7, 8</td><td>2</td><td>1</td></tr>
+<tr><td>2</td><td>5, 7, 8</td><td>5</td><td>4</td></tr>
+<tr><td>3</td><td>4, 7, 8</td><td>4</td><td>3</td></tr>
+<tr><td>4</td><td>3, 7, 8</td><td>3</td><td>1</td></tr>
+<tr><td>5</td><td>1, 7, 8</td><td>1</td><td>6</td></tr>
+<tr><td>6</td><td>7, 8</td><td>7</td><td>6</td></tr>
+</table>
+Il ne reste que les sommets 6 et 8 : on s'arrête. Le code de Prüfer de <code>T</code> est <strong><code>(1, 4, 3, 1, 6, 6)</code></strong>.<br>
+<strong>Contrôle utile :</strong> un sommet apparaît dans le code <code>d(x) - 1</code> fois. Ici 1 apparaît 2 fois (<code>d(1) = 3</code> ✔), 6 apparaît 2 fois (<code>d(6) = 3</code> ✔), 3 et 4 une fois (degré 2 ✔), et 2, 5, 7, 8 jamais (ce sont bien les feuilles ✔).<br><br>
+<strong>2.</strong> Par la formule de Cayley, il y a <code>n^(n-2) = 8⁶ = 262 144</code> arbres à 8 sommets étiquetés de 1 à 8.<br>
+C'est exactement le nombre de 6-uplets d'entiers de 1 à 8 — la bijection de Prüfer étant précisément ce qui démontre la formule.
+</details>
+
+<h2>9️⃣ Exercice type — Clique, stable et nombre chromatique</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Une personne souhaite inviter six amis <code>1,…,6</code>. Certains ont des relations difficiles :<br>
+1 avec 2 ; 2 avec 1, 5, 6 ; 3 avec 5 ; 4 avec 5 ; 5 avec 2, 3, 4, 6 ; 6 avec 2, 5.<br>
+<strong>1.</strong> Représenter la situation par un graphe où deux personnes pouvant être invitées <em>ensemble</em> sont reliées.<br>
+<strong>2.</strong> Chercher la clique ayant le plus grand nombre de sommets.<br>
+<strong>3.</strong> Combien de personnes au maximum peut-on inviter sans ambiance difficile ? Lesquelles ?
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Le piège est dans l'énoncé : il demande un graphe de <strong>compatibilité</strong>, alors que les données sont des <strong>incompatibilités</strong>. Il faut donc travailler dans le <strong>graphe complémentaire</strong>. Ensuite, « le plus grand groupe tous compatibles » = <strong>clique maximale</strong> dans le graphe de compatibilité (= stable maximal dans le graphe des conflits).
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> Notons <code>D</code> le graphe des relations <em>difficiles</em>, d'arêtes
+<code>{1,2}, {2,5}, {2,6}, {3,5}, {4,5}, {5,6}</code> (6 arêtes).<br>
+Le graphe demandé <code>C</code> est son <strong>complémentaire</strong> : on relie deux personnes lorsqu'elles <em>peuvent</em> être invitées ensemble. Comme il y a <code>6×5/2 = 15</code> paires au total, <code>C</code> a <code>15 - 6 = 9</code> arêtes :
+<pre><code>C : {1,3} {1,4} {1,5} {1,6} {2,3} {2,4} {3,4} {3,6} {4,6}</code></pre>
+<strong>2.</strong> Cherchons une clique de <code>C</code>, c'est-à-dire un groupe de personnes <strong>deux à deux compatibles</strong>.<br>
+Considérons <code>{1, 3, 4, 6}</code> et vérifions les 6 paires :
+<code>{1,3}</code> ✔, <code>{1,4}</code> ✔, <code>{1,6}</code> ✔, <code>{3,4}</code> ✔, <code>{3,6}</code> ✔, <code>{4,6}</code> ✔.<br>
+C'est donc une <strong>clique d'ordre 4</strong>.<br>
+<strong>Elle est maximale :</strong> une clique d'ordre 5 contiendrait 2 ou 5. Or 2 n'est compatible qu'avec 3 et 4 (deux sommets seulement), donc 2 ne peut appartenir qu'à une clique d'ordre ≤ 3 ; et 5 n'est compatible qu'avec 1, donc à une clique d'ordre ≤ 2. Aucune clique d'ordre 5 n'existe.<br><br>
+<strong>3.</strong> Inviter un groupe sans ambiance difficile, c'est exactement choisir une clique de <code>C</code>. Le maximum est donc de <strong>4 personnes</strong> : <strong>1, 3, 4 et 6</strong>. ∎<br>
+<div class="box tip" style="margin-top:10px">
+<span class="box-title">💡 Les deux points de vue</span>
+<code>{1,3,4,6}</code> est une <strong>clique</strong> de <code>C</code> et, de façon équivalente, un <strong>stable</strong> de <code>D</code> : aucune des 6 paires n'est une relation difficile. Selon la façon dont tu as modélisé, tu cherches l'un ou l'autre — mais c'est le même calcul.
+</div>
+</details>
+
+<h2>🔟 Exercice type — Glouton et Welsh-Powell</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+On reprend le graphe <code>D</code> des relations difficiles de l'exercice 9 : arêtes <code>{1,2}, {2,5}, {2,6}, {3,5}, {4,5}, {5,6}</code>.<br>
+<strong>1.</strong> Colorier <code>D</code> par l'algorithme glouton (ordre naturel des sommets), puis par Welsh-Powell.<br>
+<strong>2.</strong> En déduire <code>χ(D)</code>, en justifiant la valeur exacte.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Un algorithme de coloriage ne donne jamais qu'une <strong>majoration</strong> de <code>χ</code>. Pour conclure à la valeur exacte, il faut <strong>toujours</strong> ajouter une <strong>minoration</strong> — presque toujours en exhibant une <strong>clique</strong> (ici, chercher un triangle).
+</details>
+<details><summary>✅ Rédaction type</summary>
+Les degrés sont : <code>d(1)=1, d(2)=3, d(3)=1, d(4)=1, d(5)=4, d(6)=2</code>.<br><br>
+<strong>1a. Algorithme glouton</strong>, sommets dans l'ordre 1, 2, 3, 4, 5, 6 :
+<table>
+<tr><th>Sommet</th><th>Couleurs des voisins déjà coloriés</th><th>Couleur attribuée</th></tr>
+<tr><td>1</td><td>—</td><td>c1</td></tr>
+<tr><td>2</td><td>1 → c1</td><td>c2</td></tr>
+<tr><td>3</td><td>— (5 non colorié)</td><td>c1</td></tr>
+<tr><td>4</td><td>— (5 non colorié)</td><td>c1</td></tr>
+<tr><td>5</td><td>2 → c2 ; 3 → c1 ; 4 → c1</td><td>c3</td></tr>
+<tr><td>6</td><td>2 → c2 ; 5 → c3</td><td>c1</td></tr>
+</table>
+Le glouton utilise <strong>3 couleurs</strong> : <code>c1 = {1,3,4,6}</code>, <code>c2 = {2}</code>, <code>c3 = {5}</code>.<br><br>
+<strong>1b. Algorithme de Welsh-Powell.</strong> On trie par degré décroissant : <code>5 (4), 2 (3), 6 (2), 1 (1), 3 (1), 4 (1)</code>.
+<pre><code>Couleur 1 : on colorie 5 ; on écarte ses voisins 2, 3, 4, 6.
+            reste 1, non voisin de 5 → couleur 1.
+            → couleur 1 = {5, 1}
+Couleur 2 : liste restante 2, 6, 3, 4. On colorie 2 ;
+            6 est voisin de 2 → écarté ; 3 et 4 ne le sont pas → couleur 2.
+            → couleur 2 = {2, 3, 4}
+Couleur 3 : il ne reste que 6.   → couleur 3 = {6}</code></pre>
+Welsh-Powell utilise lui aussi <strong>3 couleurs</strong>, mais la répartition est différente.<br><br>
+<strong>2. Valeur exacte de <code>χ(D)</code> — en deux temps.</strong><br>
+<strong>Majoration.</strong> Les deux algorithmes produisent un coloriage propre à 3 couleurs, donc <code>χ(D) ≤ 3</code>.<br>
+<strong>Minoration.</strong> Les sommets 2, 5 et 6 sont deux à deux reliés (<code>{2,5}, {5,6}, {2,6}</code> sont des arêtes) : ils forment une <strong>clique d'ordre 3</strong>. Ils exigent donc 3 couleurs distinctes, d'où <code>χ(D) ≥ 3</code>.<br>
+<strong>Conclusion :</strong> <code>χ(D) = 3</code>. Les deux coloriages trouvés sont donc <strong>optimaux</strong>. ∎<br>
+<div class="box warn" style="margin-top:10px">
+<span class="box-title">⚠️ Ne te fie pas au seul algorithme</span>
+Ici les algorithmes tombent juste, mais ce n'est pas garanti : le cours donne un graphe biparti (<code>χ = 2</code>) sur lequel les deux en trouvent 4. <strong>Sans la minoration par la clique, l'exercice n'est pas traité.</strong>
+</div>
+</details>
+
+<h2>1️⃣1️⃣ Exercice type — Formule d'Euler</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+<strong>1.</strong> Soit <code>G</code> un graphe simple, connexe, planaire, 4-régulier à 6 sommets. Combien y a-t-il de faces dans une représentation planaire de <code>G</code> ?<br>
+<strong>2.</strong> Soit <code>G</code> un graphe planaire à <code>a</code> arêtes, <code>s</code> sommets et <code>f</code> faces, avec <code>s ≥ 3</code>. Montrer que <code>f ≤ 2a/3</code>, puis que <code>2 - s + a/3 ≤ 0</code>.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Dès qu'on parle de <strong>faces</strong>, c'est Euler. Le schéma est presque toujours le même : on obtient le nombre d'arêtes par les <strong>poignées de main</strong>, puis on injecte dans <code>s - a + f = 2</code>. Pour la question 2, le couple d'outils est <strong>Lemme 49</strong> (<code>Σ d(f) = 2a</code>) + <strong>Lemme 50</strong> (<code>d(f) ≥ 3</code>).
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> <code>G</code> est 4-régulier à <code>s = 6</code> sommets, donc par le théorème 15
+<code>a = s×r/2 = 6×4/2 = 12</code> arêtes.<br>
+<code>G</code> étant planaire et connexe, la formule d'Euler s'applique : <code>s - a + f = 2</code>, d'où
+<code>f = 2 - s + a = 2 - 6 + 12 = 8</code>.<br>
+Toute représentation planaire de <code>G</code> a donc <strong>8 faces</strong> (face extérieure comprise). ∎<br>
+<strong>Remarque importante :</strong> la réponse ne dépend pas du dessin choisi — c'est le corollaire de la formule d'Euler. Un tel graphe existe bien : c'est l'octaèdre.<br><br>
+<strong>2.</strong> Comme <code>s ≥ 3</code>, le Lemme 50 assure que toute face est de degré <code>≥ 3</code>. En sommant sur les <code>f</code> faces :
+<code>Σ_f d(f) ≥ 3f</code>.<br>
+Or le Lemme 49 donne <code>Σ_f d(f) = 2a</code>. Donc <code>3f ≤ 2a</code>, c'est-à-dire
+<p style="text-align:center"><code>f ≤ 2a/3</code>.</p>
+Par la formule d'Euler, <code>f = 2 - s + a</code>. En reportant dans l'inégalité :
+<code>2 - s + a ≤ 2a/3</code>, soit <code>2 - s + a - 2a/3 ≤ 0</code>, c'est-à-dire
+<p style="text-align:center"><code>2 - s + a/3 ≤ 0</code>.</p>
+∎<br>
+<strong>Lecture :</strong> en multipliant par 3 on retrouve <code>a ≤ 3s - 6</code>, l'inégalité fondamentale de planarité.
+</details>
+
+<h2>1️⃣2️⃣ Exercice type — Non-planarité</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+<strong>1.</strong> Il était une fois un roi qui avait 5 fils. Il souhaita que chacun construise son château, et que ces châteaux soient tous reliés deux à deux par des routes qui ne se coupent pas. Est-ce possible ?<br>
+<strong>2.</strong> Trois villas doivent être reliées au gaz, à l'électricité et à l'eau. Peut-on construire ces canalisations sans qu'elles se chevauchent ?
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Ce sont les deux énoncés folkloriques des deux graphes interdits : « tous reliés deux à deux » → <code>K₅</code> ; « chaque villa à chaque usine » → <code>K₃,₃</code>. Dans les deux cas on raisonne <strong>par l'absurde avec la formule d'Euler</strong>. Pour <code>K₃,₃</code>, attention : l'inégalité <code>m ≤ 3n-6</code> <strong>ne suffit pas</strong>, il faut utiliser la bipartition.
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> La question revient à savoir si <code>K₅</code> est planaire. Supposons qu'il le soit.<br>
+<code>K₅</code> a <code>s = 5</code> sommets et <code>a = 5×4/2 = 10</code> arêtes. Il est connexe, donc la formule d'Euler donne
+<code>f = 2 - s + a = 2 - 5 + 10 = 7</code> faces.<br>
+Par le Lemme 49, <code>Σ_f d(f) = 2a = 20</code>.<br>
+Mais <code>K₅</code> est simple avec <code>s ≥ 3</code>, donc chaque face est de degré <code>≥ 3</code> (Lemme 50), d'où
+<code>Σ_f d(f) ≥ 3×7 = 21 &gt; 20</code>. <strong>Contradiction.</strong><br>
+Donc <code>K₅</code> n'est pas planaire : <strong>il est impossible de relier les 5 châteaux deux à deux sans croisement</strong>. ∎<br><br>
+<strong>2.</strong> Le graphe de la situation est <code>K₃,₃</code> (3 villas d'un côté, 3 sources de l'autre, chaque villa reliée à chaque source). Supposons-le planaire.<br>
+<code>K₃,₃</code> a <code>s = 6</code> sommets et <code>a = 3×3 = 9</code> arêtes, donc
+<code>f = 2 - 6 + 9 = 5</code> faces, et <code>Σ_f d(f) = 2a = 18</code>.<br>
+<strong>Ici, le Lemme 50 (degré ≥ 3) ne suffit pas</strong> : il donnerait seulement <code>Σ d(f) ≥ 15</code>, ce qui est compatible avec 18.<br>
+Mais <code>K₃,₃</code> est <strong>biparti</strong>, donc tous ses cycles sont de longueur <strong>paire</strong> (Théorème 68) ; une face étant bordée par un cycle, son degré est pair et <code>≥ 3</code>, donc <code>≥ 4</code>. D'où
+<code>Σ_f d(f) ≥ 4×5 = 20 &gt; 18</code>. <strong>Contradiction.</strong><br>
+Donc <code>K₃,₃</code> n'est pas planaire : <strong>le réseau de canalisations demandé est impossible</strong>. ∎<br>
+<div class="box tip" style="margin-top:10px">
+<span class="box-title">💡 Le réflexe de vérification</span>
+Avant de te lancer, teste <code>m ≤ 3n-6</code> : pour <code>K₅</code>, <code>10 &gt; 3×5-6 = 9</code> → conclusion immédiate. Pour <code>K₃,₃</code>, <code>9 ≤ 3×6-6 = 12</code> → le test échoue, il faut passer par la bipartition. C'est exactement ce qui distingue les deux cas.
+</div>
+</details>
+
+<h2>1️⃣3️⃣ Exercice type — Tracer d'un seul trait</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Soit le graphe de sommets <code>A, B, C, D, E</code> et d'arêtes
+<code>{A,B}, {B,C}, {C,D}, {D,A}, {A,C}, {B,D}, {A,E}, {B,E}</code>.<br>
+Peut-on le tracer d'un seul trait, sans lever le crayon et sans repasser deux fois sur un trait déjà tracé ? Si oui, donner un tel tracé.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+« D'un seul trait sans repasser » = chemin passant une fois par chaque <strong>arête</strong> = <strong>eulérien ou semi-eulérien</strong>. Le théorème d'Euler se vérifie en comptant simplement les sommets de <strong>degré impair</strong> : 0 → cycle eulérien, 2 → chemin semi-eulérien (qui doit partir de l'un et finir à l'autre), plus de 2 → impossible.
+</details>
+<details><summary>✅ Rédaction type</summary>
+Le graphe est connexe (tout sommet est relié à A ou B, eux-mêmes reliés). Calculons les degrés :
+<table>
+<tr><th>Sommet</th><th>Voisins</th><th>Degré</th><th>Parité</th></tr>
+<tr><td>A</td><td>B, D, C, E</td><td>4</td><td>pair</td></tr>
+<tr><td>B</td><td>A, C, D, E</td><td>4</td><td>pair</td></tr>
+<tr><td>C</td><td>B, D, A</td><td>3</td><td><strong>impair</strong></td></tr>
+<tr><td>D</td><td>C, A, B</td><td>3</td><td><strong>impair</strong></td></tr>
+<tr><td>E</td><td>A, B</td><td>2</td><td>pair</td></tr>
+</table>
+<strong>Contrôle :</strong> <code>Σ d = 4+4+3+3+2 = 16 = 2×8</code> ✔ (8 arêtes).<br><br>
+Il y a <strong>exactement deux sommets de degré impair</strong> : <code>C</code> et <code>D</code>. Le graphe étant connexe, le théorème d'Euler assure qu'il est <strong>semi-eulérien</strong> : le tracé existe, mais il ne peut <strong>pas</strong> revenir à son point de départ — il doit nécessairement <strong>partir de C et finir en D</strong> (ou l'inverse).<br><br>
+<strong>Un tracé explicite :</strong>
+<pre><code>C — A — E — B — A — D — B — C — D
+  (AC) (AE) (BE) (AB) (AD) (BD) (BC) (CD)</code></pre>
+Les 8 arêtes sont utilisées une fois chacune, le tracé part de C et arrive en D. ✔ ∎<br>
+<div class="box tip" style="margin-top:10px">
+<span class="box-title">💡 Si l'énoncé exigeait un retour au point de départ</span>
+Il faudrait rendre le graphe eulérien. Par la Proposition 63 : C et D sont de degré impair et l'arête <code>{C,D}</code> existe déjà, donc on ajoute un sommet <code>z</code> et les deux arêtes <code>{C,z}</code> et <code>{z,D}</code>. Tous les degrés deviennent pairs.
+</div>
+</details>
+
+<h2>1️⃣4️⃣ Exercice type — Cycle hamiltonien</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Soit <code>G</code> le graphe de sommets <code>1,…,5</code> et d'arêtes
+<code>{1,2}, {2,3}, {3,4}, {4,5}, {5,1}, {1,3}, {2,4}</code>.<br>
+<strong>1.</strong> Montrer, à l'aide du théorème d'Ore, que <code>G</code> est hamiltonien. <strong>2.</strong> Exhiber un cycle hamiltonien.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Ore ne se vérifie que sur les <strong>couples de sommets NON reliés</strong> — c'est l'erreur n°1 que de tester tous les couples. Il faut donc d'abord <strong>lister les paires non adjacentes</strong>, puis vérifier <code>d(v) + d(w) ≥ n</code> pour chacune.
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1.</strong> <code>G</code> est simple, non orienté, avec <code>n = 5 ≥ 3</code>. Calculons les degrés :<br>
+<code>d(1) = 3</code> (2, 5, 3), <code>d(2) = 3</code> (1, 3, 4), <code>d(3) = 3</code> (2, 4, 1), <code>d(4) = 3</code> (3, 5, 2), <code>d(5) = 2</code> (4, 1).<br>
+Les paires <strong>non reliées</strong> sont <code>{1,4}</code>, <code>{2,5}</code> et <code>{3,5}</code> (les 7 arêtes couvrent les 7 autres paires sur les 10 possibles). Vérifions la condition d'Ore pour chacune :
+<table>
+<tr><th>Paire non reliée</th><th>d(v) + d(w)</th><th>≥ n = 5 ?</th></tr>
+<tr><td>{1,4}</td><td>3 + 3 = 6</td><td>oui</td></tr>
+<tr><td>{2,5}</td><td>3 + 2 = 5</td><td>oui</td></tr>
+<tr><td>{3,5}</td><td>3 + 2 = 5</td><td>oui</td></tr>
+</table>
+Pour tout couple <code>(v,w)</code> de sommets non reliés par une arête, <code>d(v) + d(w) ≥ 5 = n</code>. Par le <strong>théorème 64 (Ore)</strong>, <code>G</code> est <strong>hamiltonien</strong>. ∎<br><br>
+<strong>2.</strong> Le cycle <code>(1, 2, 3, 4, 5, 1)</code> convient : ses arêtes <code>{1,2}, {2,3}, {3,4}, {4,5}, {5,1}</code> appartiennent toutes à <code>G</code>, et il passe une et une seule fois par chacun des 5 sommets avant de revenir au départ. C'est donc un <strong>cycle hamiltonien</strong>. ∎<br>
+<div class="box warn" style="margin-top:10px">
+<span class="box-title">⚠️ Si Ore n'était pas vérifié</span>
+On ne pourrait <strong>rien</strong> conclure : la condition est <strong>suffisante, pas nécessaire</strong>. Il faudrait alors soit exhiber un cycle à la main, soit démontrer l'impossibilité par un autre argument (par exemple : un graphe biparti à nombre impair de sommets n'est jamais hamiltonien).
+</div>
+</details>
+
+<h2>1️⃣5️⃣ Exercice type — Lemme de Hall</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Quatre étudiants <code>a₁, a₂, a₃, a₄</code> doivent se voir attribuer chacun un projet distinct parmi <code>p₁, p₂, p₃, p₄</code>. Les vœux sont :<br>
+<code>a₁ : {p₁}</code> ; <code>a₂ : {p₁}</code> ; <code>a₃ : {p₁, p₂}</code> ; <code>a₄ : {p₂, p₃, p₄}</code>.<br>
+Peut-on satisfaire tout le monde ? Et si <code>a₂</code> acceptait aussi <code>p₃</code> ?
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Appariement un-à-un entre deux groupes = <strong>lemme de Hall</strong> sur un graphe biparti. Pour répondre <strong>non</strong>, il suffit d'exhiber <strong>un seul</strong> ensemble <code>S</code> qui viole la condition — inutile de les tester tous. Pour répondre <strong>oui</strong>, le plus rapide est d'exhiber directement l'appariement.
+</details>
+<details><summary>✅ Rédaction type</summary>
+Modélisons par le graphe biparti <code>G = (S, A, B)</code> avec <code>A = {a₁,a₂,a₃,a₄}</code>, <code>B = {p₁,p₂,p₃,p₄}</code>, et une arête <code>{aᵢ, pⱼ}</code> lorsque <code>aᵢ</code> accepte <code>pⱼ</code>. Satisfaire tout le monde, c'est trouver une <strong>bijection <code>f : A → B</code></strong> avec <code>aᵢ</code> adjacent à <code>f(aᵢ)</code>.<br><br>
+<strong>Cas initial : c'est impossible.</strong><br>
+Prenons <code>S = {a₁, a₂, a₃}</code>. L'ensemble de ses voisins est
+<code>V(S) = {p₁} ∪ {p₁} ∪ {p₁, p₂} = {p₁, p₂}</code>.<br>
+Donc <code>Card V(S) = 2 &lt; 3 = Card S</code> : la condition de Hall est <strong>violée</strong>.<br>
+Par le théorème 69, aucune bijection convenable n'existe : <strong>on ne peut pas satisfaire tout le monde</strong>. ∎<br>
+<strong>En clair :</strong> trois étudiants se partagent seulement deux projets acceptables — deux d'entre eux devraient recevoir le même projet.<br><br>
+<strong>Cas modifié : <code>a₂ : {p₁, p₃}</code>.</strong><br>
+Exhibons directement un appariement :
+<pre><code>f(a₁) = p₁    f(a₂) = p₃    f(a₃) = p₂    f(a₄) = p₄</code></pre>
+Chaque étudiant reçoit un projet qu'il accepte (<code>p₁ ∈ {p₁}</code> ✔, <code>p₃ ∈ {p₁,p₃}</code> ✔, <code>p₂ ∈ {p₁,p₂}</code> ✔, <code>p₄ ∈ {p₂,p₃,p₄}</code> ✔), et les quatre projets attribués sont deux à deux distincts : <code>f</code> est bien une bijection.<br>
+Donc <strong>tout le monde peut être satisfait</strong>. ∎<br>
+<div class="box tip" style="margin-top:10px">
+<span class="box-title">💡 Pourquoi exhiber plutôt que vérifier Hall</span>
+Vérifier la condition de Hall « pour tout <code>S ⊂ A</code> » demande d'examiner <code>2⁴ - 1 = 15</code> sous-ensembles. Exhiber une bijection prouve la même chose en trois lignes. On réserve Hall au sens « impossible », où un seul contre-exemple suffit.
+</div>
+</details>
+
+<h2>1️⃣6️⃣ Exercice type — Arbre couvrant minimal (Kruskal)</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+On veut relier cinq villes <code>A, B, C, D, E</code> par un réseau de câbles de coût total minimal. Les liaisons possibles et leurs coûts :<br>
+<code>AC = 1, BC = 2, DE = 3, AB = 4, BD = 5, AE = 7, CD = 8, CE = 10</code>.<br>
+Déterminer un réseau de coût minimal et son coût total.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+« Tout relier au coût minimal » = <strong>arbre couvrant de poids minimal</strong> → Kruskal (arêtes par poids <strong>croissant</strong>) ou Prim. Le réflexe de contrôle : l'arbre obtenu doit avoir exactement <code>n - 1</code> arêtes.
+</details>
+<details><summary>✅ Rédaction type</summary>
+On applique l'<strong>algorithme de Kruskal</strong> en parcourant les arêtes par poids <strong>croissant</strong>, et en n'ajoutant une arête que si elle relie deux composantes connexes <strong>distinctes</strong> de l'arbre en construction (sinon elle créerait un cycle).
+<table>
+<tr><th>Arête</th><th>Poids</th><th>Décision</th><th>Composantes après</th></tr>
+<tr><td>AC</td><td>1</td><td>ajoutée</td><td>{A,C} {B} {D} {E}</td></tr>
+<tr><td>BC</td><td>2</td><td>ajoutée</td><td>{A,B,C} {D} {E}</td></tr>
+<tr><td>DE</td><td>3</td><td>ajoutée</td><td>{A,B,C} {D,E}</td></tr>
+<tr><td>AB</td><td>4</td><td><strong>rejetée</strong> (A et B déjà connectés → cycle)</td><td>inchangé</td></tr>
+<tr><td>BD</td><td>5</td><td>ajoutée</td><td>{A,B,C,D,E}</td></tr>
+</table>
+Tous les sommets sont désormais dans une seule composante : l'algorithme s'arrête (les arêtes restantes AE, CD, CE créeraient des cycles).<br><br>
+<strong>Arbre couvrant minimal :</strong> <code>{A,C}, {B,C}, {D,E}, {B,D}</code>.<br>
+<strong>Coût total :</strong> <code>1 + 2 + 3 + 5 = 11</code>.<br><br>
+<strong>Contrôles :</strong>
+<ul>
+<li>l'arbre a <strong>4 arêtes</strong> pour 5 sommets, soit bien <code>n - 1</code> ✔</li>
+<li>il est connexe et sans cycle : c'est bien un arbre ✔</li>
+<li>il contient tous les sommets : c'est bien un graphe <strong>partiel</strong> couvrant ✔</li>
+</ul>
+∎<br>
+<div class="box tip" style="margin-top:10px">
+<span class="box-title">💡 Avec Prim, depuis A</span>
+<code>A → C</code> (1), puis <code>C → B</code> (2), puis <code>B → D</code> (5), puis <code>D → E</code> (3). Mêmes arêtes, même coût 11, mais dans un ordre différent : Prim fait grossir un seul arbre, Kruskal recolle des morceaux.
+</div>
+</details>
+
+<h2>1️⃣7️⃣ Exercice type — Plus court chemin (Dijkstra)</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Soit le graphe orienté valué de sommets <code>s, a, b, c, t</code> et d'arcs :<br>
+<code>s→a (2), s→b (5), a→b (1), a→c (4), b→c (1), b→t (6), c→t (2)</code>.<br>
+Déterminer le plus court chemin de <code>s</code> à <code>t</code> et sa longueur.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Plus court chemin depuis <strong>un</strong> sommet, avec des valuations <strong>toutes positives</strong> → <strong>Dijkstra</strong>. Il faut le dire explicitement dans la rédaction : « les valuations étant positives, l'algorithme de Dijkstra s'applique ». Et il faut tenir <strong>deux tableaux</strong> : <code>Dist</code> et <code>Pred</code> — c'est <code>Pred</code> qui permet de reconstruire le chemin à la fin.
+</details>
+<details><summary>✅ Rédaction type</summary>
+Toutes les valuations sont positives : l'algorithme de <strong>Dijkstra</strong> s'applique. On initialise <code>Dist(s) = 0</code> et <code>Dist(x) = +∞</code> ailleurs.
+<table>
+<tr><th>Étape</th><th>Sommet traité</th><th>Mises à jour</th><th>Dist (s,a,b,c,t)</th></tr>
+<tr><td>0</td><td>—</td><td>initialisation</td><td>(0, ∞, ∞, ∞, ∞)</td></tr>
+<tr><td>1</td><td>s (0)</td><td>a ← 0+2 = 2 ; b ← 0+5 = 5</td><td>(0, 2, 5, ∞, ∞)</td></tr>
+<tr><td>2</td><td>a (2)</td><td>b ← min(5, 2+1) = <strong>3</strong> ; c ← 2+4 = 6</td><td>(0, 2, 3, 6, ∞)</td></tr>
+<tr><td>3</td><td>b (3)</td><td>c ← min(6, 3+1) = <strong>4</strong> ; t ← 3+6 = 9</td><td>(0, 2, 3, 4, 9)</td></tr>
+<tr><td>4</td><td>c (4)</td><td>t ← min(9, 4+2) = <strong>6</strong></td><td>(0, 2, 3, 4, 6)</td></tr>
+<tr><td>5</td><td>t (6)</td><td>—</td><td>(0, 2, 3, 4, 6)</td></tr>
+</table>
+Tableau des prédécesseurs à la fin : <code>Pred(a) = s</code>, <code>Pred(b) = a</code>, <code>Pred(c) = b</code>, <code>Pred(t) = c</code>.<br><br>
+<strong>Reconstruction du chemin</strong>, en remontant depuis <code>t</code> :
+<code>t ← c ← b ← a ← s</code>, soit le chemin <strong><code>s → a → b → c → t</code></strong>.<br>
+<strong>Longueur :</strong> <code>2 + 1 + 1 + 2 = 6</code>, ce qui coïncide bien avec <code>Dist(t) = 6</code>. ∎<br>
+<div class="box tip" style="margin-top:10px">
+<span class="box-title">💡 Ce qu'il faut remarquer</span>
+Le chemin optimal n'emprunte <strong>aucun</strong> des deux arcs « directs » (<code>s→b</code> à 5 et <code>b→t</code> à 6) : il passe par quatre petits arcs. C'est exactement ce que Dijkstra sait trouver et qu'un choix glouton naïf « je prends toujours l'arc le moins cher » manquerait.
+</div>
+</details>
+
+<h2>1️⃣8️⃣ Exercice type — Ordonnancement et PERT</h2>
+<div class="box info">
+<span class="box-title">📄 Énoncé</span>
+Un projet comporte les tâches suivantes :
+<table>
+<tr><th>Tâche</th><th>Durée (jours)</th><th>Contraintes</th></tr>
+<tr><td>1 — début</td><td>0</td><td>aucune</td></tr>
+<tr><td>2</td><td>3</td><td>après le début</td></tr>
+<tr><td>3</td><td>2</td><td>après le début</td></tr>
+<tr><td>4</td><td>4</td><td>après la fin de 2</td></tr>
+<tr><td>5</td><td>1</td><td>après la fin de 3 et la fin de 4</td></tr>
+<tr><td>6 — fin</td><td>0</td><td>après la fin de 5</td></tr>
+</table>
+<strong>1.</strong> Construire le graphe potentiel-tâche. <strong>2.</strong> Décomposer en niveaux. <strong>3.</strong> Donner l'ordonnancement au plus tôt et la durée minimale. <strong>4.</strong> Donner le chemin critique et la marge de la tâche 3.
+</div>
+<details><summary>🔎 Ce qu'il faut reconnaître</summary>
+Tâches + contraintes + durée minimale = <strong>réseau PERT</strong>. Le point à ne jamais oublier : l'ordonnancement au plus tôt se calcule avec les <strong>chemins les plus LONGS</strong>, pas les plus courts. Et la valuation de l'arc <code>(i, j)</code> est la <strong>durée de la tâche i</strong> (celle qui doit s'achever), pas celle de j.
+</details>
+<details><summary>✅ Rédaction type</summary>
+<strong>1. Traduction en inéquations puis en graphe.</strong><br>
+« <code>𝒯ⱼ</code> commence après la fin de <code>𝒯ᵢ</code> » s'écrit <code>tⱼ - tᵢ ≥ dᵢ</code>. D'où :
+<pre><code>t₂ - t₁ ≥ 0      t₃ - t₁ ≥ 0
+t₄ - t₂ ≥ 3      t₅ - t₃ ≥ 2      t₅ - t₄ ≥ 4
+t₆ - t₅ ≥ 1</code></pre>
+On construit le graphe potentiel-tâche : un sommet par tâche, et un arc <code>(i,j)</code> valué par le second membre pour chaque contrainte.
+<pre><code>        1 --0--> 2 --3--> 4 --4--> 5 --1--> 6
+        |                           ^
+        +--0--> 3 --------2---------+</code></pre>
+<strong>2. Décomposition en niveaux.</strong> Le graphe est sans circuit, la décomposition existe (Prop. 79).
+<pre><code>niveau 0 : {1}        (aucun prédécesseur)
+niveau 1 : {2, 3}     (seul prédécesseur : 1)
+niveau 2 : {4}        (prédécesseur 2, de niveau 1)
+niveau 3 : {5}        (prédécesseurs 3 niv.1 et 4 niv.2 → max = 2, +1)
+niveau 4 : {6}</code></pre>
+<strong>3. Ordonnancement au plus tôt</strong> (Théorème 82 : chemins les plus <strong>longs</strong> depuis la tâche 1, traités niveau par niveau avec Bellman simplifié) :
+<table>
+<tr><th>Tâche</th><th>Calcul</th><th>tᵢ</th></tr>
+<tr><td>1</td><td>origine</td><td>0</td></tr>
+<tr><td>2</td><td>t₁ + 0</td><td>0</td></tr>
+<tr><td>3</td><td>t₁ + 0</td><td>0</td></tr>
+<tr><td>4</td><td>t₂ + 3</td><td>3</td></tr>
+<tr><td>5</td><td>max(t₃ + 2, t₄ + 4) = max(2, 7)</td><td><strong>7</strong></td></tr>
+<tr><td>6</td><td>t₅ + 1</td><td>8</td></tr>
+</table>
+La <strong>durée minimale du projet est de 8 jours</strong>.<br><br>
+<strong>4. Chemin critique et marge.</strong><br>
+Le chemin critique est le chemin le plus long de 1 à 6 :
+<p style="text-align:center"><code>1 → 2 → 4 → 5 → 6</code>, de longueur <code>0 + 3 + 4 + 1 = 8</code>.</p>
+Tout retard sur l'une des tâches 2, 4 ou 5 retarde donc l'ensemble du projet : leur <strong>marge est nulle</strong>.<br><br>
+Pour la tâche 3 : le projet durant <code>T = 8</code> jours, la tâche 5 commençant au plus tard à la date 7, la tâche 3 doit être finie à cette date, donc commencer au plus tard à <code>7 - 2 = 5</code>. Sa date au plus tôt étant 0 :
+<p style="text-align:center"><strong>marge de la tâche 3 = 5 - 0 = 5 jours.</strong></p>
+On peut donc retarder la tâche 3 de 5 jours sans allonger le projet. ∎<br>
+<div class="box warn" style="margin-top:10px">
+<span class="box-title">⚠️ L'erreur à ne pas commettre</span>
+Prendre <code>t₅ = 2</code> parce que la tâche 3 finit à la date 2. Non : la tâche 5 attend <strong>toutes</strong> ses contraintes, donc la plus tardive — d'où le <code>max</code>, et d'où le fait qu'on calcule des chemins <strong>maximaux</strong>.
+</div>
+</details>
+
+<h2>🎯 Checklist de rédaction</h2>
+<div class="box tip">
+<span class="box-title">✅ Les réflexes qui rapportent des points</span>
+<ul>
+<li><strong>Modéliser explicitement.</strong> « On note G le graphe dont les sommets sont … et où l'on relie x et y lorsque … » — cette phrase vaut des points à elle seule.</li>
+<li><strong>Nombre chromatique : toujours deux temps.</strong> Minoration par une clique, majoration par un coloriage explicite.</li>
+<li><strong>Planaire : « il existe un dessin ».</strong> Pour prouver que oui → dessiner. Pour prouver que non → Euler ou Kuratowski, jamais « je n'y arrive pas ».</li>
+<li><strong>Vérifier la somme des degrés.</strong> <code>Σ d = 2m</code> détecte la plupart des erreurs de recopie, gratuitement.</li>
+<li><strong>Arbre : contrôler <code>n-1</code> arêtes</strong> à la fin de tout Kruskal ou Prim.</li>
+<li><strong>Citer l'hypothèse des algorithmes.</strong> « Les valuations étant positives, Dijkstra s'applique » — un correcteur attend cette phrase.</li>
+<li><strong>Conditions suffisantes.</strong> Ore ou Brooks non vérifiés ne permettent <strong>jamais</strong> de conclure à la négative.</li>
+</ul>
+</div>
+
+<div class="nav-links">
+  <span><a href="02_flashcards.html">← Flashcards</a></span>
+  <span><a href="01_definitions_completes.html">Définitions complètes →</a></span>
+</div>
+
+</div>
+</body>
+</html>
