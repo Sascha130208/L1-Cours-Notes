@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercices : Chapitre 2 (Logique, quantificateurs, raisonnements) — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices ch. 2 — Logique</span></div>
+<div class="page">
+<span class="chip">✍️ Exercices corrigés</span><span class="chip">Structures fondamentales</span>
+<h1>Exercices : Chapitre 2 (Logique, quantificateurs, raisonnements)</h1>
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul><li><a href="#categorie-a-logique-propositionnelle">Catégorie A : Logique propositionnelle</a><ul><li><a href="#a-1-assertion-ou-pas-td1-n1">A.1 Assertion ou pas ? <strong>[TD1 n°1]</strong></a></li><li><a href="#a-2-tables-de-verite">A.2 Tables de vérité</a></li><li><a href="#a-3-td1-n3-a-une-identite-remarquable-de-logique">A.3 <strong>[TD1 n°3(a)]</strong> Une identité remarquable de logique</a></li><li><a href="#a-4-td1-n3-b-implication-et-ou">A.4 <strong>[TD1 n°3(b)]</strong> Implication et « ou »</a></li><li><a href="#a-5-td1-n4-resoudre-des-conditions">A.5 <strong>[TD1 n°4]</strong> Résoudre des conditions</a></li><li><a href="#a-6-td1-n5-vrai-ou-faux-prouver-ou-donner-un-contre-exemple">A.6 <strong>[TD1 n°5]</strong> Vrai ou faux ? Prouver ou donner un contre-exemple</a></li><li><a href="#a-7-condition-necessaire-suffisante-td1-n6-extraits-a-et-c">A.7 Condition nécessaire / suffisante <strong>[TD1 n°6, extraits a) et c)]</strong></a></li></ul></li><li><a href="#categorie-b-quantificateurs-et-negations">Catégorie B : Quantificateurs et négations</a><ul><li><a href="#b-1-ecrire-la-negation-en-francais-td1-n2">B.1 Écrire la négation en français <strong>[TD1 n°2]</strong></a></li><li><a href="#b-2-negations-formelles-td1-n8-extraits">B.2 Négations formelles <strong>[TD1 n°8, extraits]</strong></a></li><li><a href="#b-3-traduire-en-quantificateurs-td1-n9">B.3 Traduire en quantificateurs <strong>[TD1 n°9]</strong></a></li><li><a href="#b-4-l-ordre-des-quantificateurs">B.4 L'ordre des quantificateurs</a></li><li><a href="#b-5-les-reciproques-fausses-distributivite">B.5 Les réciproques fausses (distributivité)</a></li><li><a href="#b-6-la-definition-de">B.6 La définition de \(\exists !\)</a></li></ul></li><li><a href="#categorie-c-raisonnements">Catégorie C : Raisonnements</a><ul><li><a href="#c-1-par-l-absurde-td1-n10-b">C.1 Par l'absurde <strong>[TD1 n°10(b)]</strong></a></li><li><a href="#c-2-par-l-absurde-arithmetique-td1-n10-a">C.2 Par l'absurde, arithmétique <strong>[TD1 n°10(a)]</strong></a></li><li><a href="#c-3-par-l-absurde-irrationnel-td1-n10-c">C.3 Par l'absurde : \(\sqrt 2\) irrationnel <strong>[TD1 n°10(c)]</strong></a></li><li><a href="#c-4-td1-n11">C.4 « \(\forall \varepsilon\) » <strong>[TD1 n°11]</strong></a></li><li><a href="#c-5-par-contraposee-td1-n12">C.5 Par contraposée <strong>[TD1 n°12]</strong></a></li><li><a href="#c-6-contraposee-cas-piegeux-td1-n12-b">C.6 Contraposée, cas piégeux <strong>[TD1 n°12(b)]</strong></a></li><li><a href="#c-7-equivalence-et-reciproque-td1-n13">C.7 Équivalence et réciproque <strong>[TD1 n°13]</strong></a></li><li><a href="#c-8-recurrence-avec-piege-td1-n14">C.8 Récurrence avec piège <strong>[TD1 n°14]</strong></a></li><li><a href="#c-9-recurrence-inegalite-de-bernoulli-td1-n15">C.9 Récurrence (inégalité de Bernoulli) <strong>[TD1 n°15]</strong></a></li><li><a href="#c-10-recurrence-somme-cours-entrainement">C.10 Récurrence : somme <strong>[Cours + entraînement]</strong></a></li></ul></li><li><a href="#categorie-d-logique-appliquee-inspiree-des-tests-de-positionnement-td1-n16">Catégorie D : Logique appliquée (inspirée des tests de positionnement) <strong>[TD1 n°16]</strong></a><ul><li><a href="#d-1-tests-de-deduction">D.1 Tests de déduction</a></li><li><a href="#auto-evaluation-finale">Auto-évaluation finale</a></li></ul></li></ul></details></nav>
+<blockquote>
+<p><strong>Mode d'emploi.</strong> Pour chaque exercice : <strong>1)</strong> cherche sur papier, <strong>2)</strong> rédige <strong>comme en examen</strong> (sujet + verbe, définitions citées), <strong>3)</strong> seulement après, déplie la correction.
+Les exercices marqués <strong>[TD1 n°x]</strong> sont ceux de ta fiche de TD ; les autres sont des entraînements supplémentaires.
+Règle : si tu bloques plus d'<strong>1 heure</strong>, lis la correction <em>en cherchant ton blocage</em> (conseil du cours).</p>
+</blockquote>
+<hr />
+<h2 id="categorie-a-logique-propositionnelle">Catégorie A : Logique propositionnelle</h2>
+<h3 id="a-1-assertion-ou-pas-td1-n1">A.1 Assertion ou pas ? <strong>[TD1 n°1]</strong></h3>
+<p>Parmi les énoncés suivants, lesquels sont des assertions ?
+(a) « Les poules ont des dents. » (b) « Des étudiants si charmants ! » (c) « Quand les poules auront des dents. » (d) « Soit \(n\) un entier pair. » (e) « 5 est un entier impair. » (f) « L'entier \(n\) est un diviseur de 5. »
+(g) « Si 6 est un entier impair, alors il existe un entier naturel \(n\) tel que \(6 = 2n+1\). »</p>
+<details><summary>Correction</summary>
+<ul>
+<li>(a) <strong>Oui</strong> : assertion (fausse).</li>
+<li>(b) <strong>Non</strong> : exclamation.</li>
+<li>(c) <strong>Non</strong> : proposition subordonnée, pas une phrase complète qui affirme quelque chose.</li>
+<li>(d) <strong>Non</strong> : consigne qui fixe un objet.</li>
+<li>(e) <strong>Oui</strong> : assertion (vraie).</li>
+<li>(f) <strong>Non</strong> (tant que \(n\) n'est pas fixé) : c'est un prédicat \(P(n)\).</li>
+<li>(g) <strong>Oui</strong> : c'est une implication entre deux assertions. Elle est <strong>vraie</strong> car l'hypothèse « 6 est impair » est fausse (vraie à vide).</li>
+</ul>
+<p><em>Idée à retenir : une assertion peut être fausse ; ce qui compte, c'est qu'elle soit <strong>vraie ou fausse</strong>.</em></p>
+</details>
+<h3 id="a-2-tables-de-verite">A.2 Tables de vérité</h3>
+<p>Montrer par table de vérité que \(\neg(P \Rightarrow Q) \Leftrightarrow (P \wedge \neg Q)\).</p>
+<details><summary>Correction</summary>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>\(P\)</th>
+<th>\(Q\)</th>
+<th>\(P \Rightarrow Q\)</th>
+<th>\(\neg(P\Rightarrow Q)\)</th>
+<th>\(\neg Q\)</th>
+<th>\(P \wedge \neg Q\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V</td>
+<td>V</td>
+<td>V</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>V</td>
+<td>F</td>
+<td>F</td>
+<td>V</td>
+<td>V</td>
+<td>V</td>
+</tr>
+<tr>
+<td>F</td>
+<td>V</td>
+<td>V</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>V</td>
+<td>F</td>
+<td>V</td>
+<td>F</td>
+</tr>
+</tbody>
+</table></div>
+<p>Les colonnes 4 et 6 sont <strong>identiques</strong> pour les 4 cas possibles. Donc les deux assertions ont toujours la même valeur de vérité : elles sont équivalentes. \(\square\)</p>
+<p><strong>Variante par calcul :</strong> \(P \Rightarrow Q\) est par définition \(Q \vee \neg P\). Donc \(\neg(P \Rightarrow Q) = \neg(Q \vee \neg P) = \neg Q \wedge \neg\neg P = \neg Q \wedge P\) (De Morgan puis double négation). \(\square\)</p>
+</details>
+<h3 id="a-3-td1-n3-a-une-identite-remarquable-de-logique">A.3 <strong>[TD1 n°3(a)]</strong> Une identité remarquable de logique</h3>
+<p>Soient \(A, B\) des assertions. Montrer que « \((\neg A \Rightarrow B)\) et \((\neg A \Rightarrow \neg B)\) » a <strong>même valeur de vérité</strong> que \(A\).</p>
+<details><summary>Correction</summary>
+<p><strong>Par calcul.</strong> Par définition, \(\neg A \Rightarrow B\) s'écrit \(B \vee \neg\neg A = B \vee A\), et \(\neg A \Rightarrow \neg B\) s'écrit \(\neg B \vee A\). Donc l'assertion est
+\[(A \vee B) \wedge (A \vee \neg B) \ \Leftrightarrow\ A \vee (B \wedge \neg B)\]
+par distributivité de \(\vee\) sur \(\wedge\). Or \(B \wedge \neg B\) est toujours fausse, donc \(A \vee (B \wedge \neg B)\) a la valeur de \(A\). \(\square\)</p>
+<p><strong>Interprétation.</strong> C'est exactement le <strong>raisonnement par l'absurde</strong> : si en supposant \(\neg A\) on obtient à la fois \(B\) et \(\neg B\), alors \(A\) est vraie.</p>
+</details>
+<h3 id="a-4-td1-n3-b-implication-et-ou">A.4 <strong>[TD1 n°3(b)]</strong> Implication et « ou »</h3>
+<p>Comparer \(A \Rightarrow (B \vee C)\) et \((A \Rightarrow B) \vee (A \Rightarrow C)\).
+<em>(Remarque : l'énoncé du TD est probablement mal recopié, il écrit \((A \Rightarrow B)\) deux fois. On traite la version avec \(C\), puis on regarde l'autre.)</em></p>
+<details><summary>Correction</summary>
+<p><strong>Version avec \(C\) : équivalentes.</strong> \((A \Rightarrow B) \vee (A \Rightarrow C) = (B \vee \neg A) \vee (C \vee \neg A) = B \vee C \vee \neg A\), qui est exactement \(A \Rightarrow (B \vee C)\). Elles ont toujours la même valeur de vérité. \(\square\)</p>
+<p><strong>Version littérale \((A \Rightarrow B) \vee (A \Rightarrow B)\)</strong>, c'est-à-dire simplement \(A \Rightarrow B\). Alors \(A \Rightarrow (B \vee C)\) est <strong>plus faible</strong> : l'implication \((A \Rightarrow B) \Rightarrow (A \Rightarrow (B\vee C))\) est vraie, mais pas la réciproque.
+<em>Exemple concret où elles diffèrent</em> : \(A\) : « \(x\) est un entier », \(B\) : « \(x\) est pair », \(C\) : « \(x\) est impair ». Alors \(A \Rightarrow (B \vee C)\) est <strong>vraie</strong> (tout entier est pair ou impair), alors que \(A \Rightarrow B\) est <strong>fausse</strong> (3 est un entier non pair).</p>
+</details>
+<h3 id="a-5-td1-n4-resoudre-des-conditions">A.5 <strong>[TD1 n°4]</strong> Résoudre des conditions</h3>
+<p>Sur \(\mathbb{R}\), soit \(A(x) : x \le 1\) ou \(x \ge 4\) et \(B(x) : -1 \le x \le 2\). Déterminer l'ensemble des \(x\) tels que : (a) \(A(x)\) ou \(B(x)\) ; (b) \(A(x)\) et \(B(x)\) ; (c) \(A(x)\) ou \(\neg B(x)\).</p>
+<details><summary>Correction</summary>
+<p>On identifie \(A = ]-\infty, 1] \cup [4, +\infty[\) et \(B = [-1, 2]\).</p>
+<ul>
+<li>(a) <strong>Union</strong> : \(A \cup B = ]-\infty, 2] \cup [4, +\infty[\). (Car \(]-\infty,1] \cup [-1,2] = ]-\infty,2]\).)</li>
+<li>(b) <strong>Intersection</strong> : \(A \cap B = [-1, 1]\). (Car \([4,+\infty[ \cap [-1,2] = \emptyset\) et \(]-\infty,1] \cap [-1,2] = [-1,1]\).)</li>
+<li>(c) \(\neg B(x)\) : \(x &lt; -1\) ou \(x &gt; 2\), d'ensemble \(]-\infty,-1[ \cup ]2,+\infty[\). Donc \(A \cup (\text{non } B) = ]-\infty, 1] \cup ]2, +\infty[ = \mathbb{R} \setminus\, ]1, 2]\).</li>
+</ul>
+<p><em>Lien du cours : « ou » \(\leftrightarrow\) \(\cup\), « et » \(\leftrightarrow\) \(\cap\), « non » \(\leftrightarrow\) complémentaire.</em></p>
+</details>
+<h3 id="a-6-td1-n5-vrai-ou-faux-prouver-ou-donner-un-contre-exemple">A.6 <strong>[TD1 n°5]</strong> Vrai ou faux ? Prouver ou donner un contre-exemple</h3>
+<p>Pour chaque cas, déterminer si \(A \Rightarrow B\) est vraie.
+a) \(A : -2 &lt; x &lt; 1\), \(B : -2 \le x \le 2\) b) \(A : xy = 0\), \(B : x^2+y^2 = 0\)
+c) \(A : |x+y| &gt; x+y\), \(B : xy &lt; 0\) d) \(A : x^2 = 4\), \(B : x^3 = 4x\)</p>
+<details><summary>Correction</summary>
+<ul>
+<li><strong>a) Vraie.</strong> Soit \(x\) tel que \(-2 &lt; x &lt; 1\). Alors \(-2 \le x\) (car \(-2 &lt; x\)) et \(x &lt; 1 \le 2\) donc \(x \le 2\). Ainsi \(-2 \le x \le 2\).</li>
+<li><strong>b) Fausse.</strong> Contre-exemple : \(x = 0\), \(y = 1\). Alors \(xy = 0\) mais \(x^2 + y^2 = 1 \ne 0\).</li>
+<li><strong>c) Fausse.</strong> Contre-exemple : \(x = y = -1\). Alors \(|x+y| = 2 &gt; -2 = x+y\), mais \(xy = 1 \not&lt; 0\).
+<em>(Remarque : \(|x+y| &gt; x+y \Leftrightarrow x + y &lt; 0\), ce qui n'oblige pas \(x, y\) à être de signes opposés.)</em></li>
+<li><strong>d) Vraie.</strong> Supposons \(x^2 = 4\). Alors \(x^3 - 4x = x(x^2 - 4) = x \cdot 0 = 0\), donc \(x^3 = 4x\).</li>
+</ul>
+<p><em>Méthode : pour chaque implication, on cherche d'abord un contre-exemple (tests numériques), et si on n'en trouve pas, on rédige la preuve générale.</em></p>
+</details>
+<h3 id="a-7-condition-necessaire-suffisante-td1-n6-extraits-a-et-c">A.7 Condition nécessaire / suffisante <strong>[TD1 n°6, extraits a) et c)]</strong></h3>
+<p>Pour \(x,y,z \in \mathbb{R}\), dire si l'une des deux assertions est une condition <strong>suffisante mais non nécessaire</strong> pour l'autre (et laquelle).
+a) \(A : xyz = 0\), \(B : xy = 0\) c) \(A : x+y\) est rationnel, \(B : x\) et \(y\) sont rationnels</p>
+<details><summary>Correction</summary>
+<p>Rappel : « \(U\) est <strong>suffisante</strong> pour \(V\) » signifie \(U \Rightarrow V\) ; « \(U\) est <strong>non nécessaire</strong> pour \(V\) » signifie que \(V \Rightarrow U\) est <strong>fausse</strong>.</p>
+<ul>
+<li><strong>a)</strong> \(B \Rightarrow A\) : si \(xy = 0\) alors \(xyz = (xy)z = 0\). La réciproque \(A \Rightarrow B\) est fausse (contre-exemple : \(x = 1\), \(y = 1\), \(z = 0\)). Donc <strong>\(B\) est suffisante mais non nécessaire pour \(A\)</strong> (et \(A\) est nécessaire mais non suffisante pour \(B\)).</li>
+<li><strong>c)</strong> \(B \Rightarrow A\) : une somme de deux rationnels est rationnelle. La réciproque est fausse (\(x = \sqrt2\), \(y = -\sqrt2\) : \(x+y = 0 \in \mathbb{Q}\) mais \(x, y \notin \mathbb{Q}\)). Donc <strong>\(B\) est suffisante mais non nécessaire pour \(A\)</strong>.</li>
+</ul>
+<p><em>Piège : lire le <strong>sens</strong> de l'implication avant de répondre.</em></p>
+</details>
+<hr />
+<h2 id="categorie-b-quantificateurs-et-negations">Catégorie B : Quantificateurs et négations</h2>
+<h3 id="b-1-ecrire-la-negation-en-francais-td1-n2">B.1 Écrire la négation en français <strong>[TD1 n°2]</strong></h3>
+<p>(a) « Tout coupable aura la tête tranchée. »
+(b) « Toutes les Anglaises sont rousses et grandes. »
+(c) « Les étudiants qui ne travaillent pas valideront tous leurs examens. »
+(d) « Pour tout \(x \in \mathbb{R}\), \(x^2 + 1 &gt; 0\) et \(x^2 \ge 0\). »
+(e) « Il existe \(x \in \mathbb{R}\) tel que \(x \ge 2\) ou \(x &gt; 5\). »</p>
+<details><summary>Correction</summary>
+<ul>
+<li>(a) <strong>« Il existe un coupable qui n'aura pas la tête tranchée. »</strong> (nier \(\forall\) : \(\exists\) + nier la fin)</li>
+<li>(b) <strong>« Il existe une Anglaise qui n'est pas rousse ou qui n'est pas grande. »</strong> (De Morgan : \(\neg(\text{rousse} \wedge \text{grande}) = \neg\text{rousse} \vee \neg\text{grande}\)) — <strong>pas</strong> « aucune Anglaise n'est rousse et grande » !</li>
+<li>(c) « Tout étudiant qui ne travaille pas valide tous ses examens » est \(\forall e,\ (\neg\text{travaille}(e) \Rightarrow \text{valide tout}(e))\). Négation : <strong>« Il existe un étudiant qui ne travaille pas et qui ne valide pas tous ses examens. »</strong> (utilise \(\neg(P\Rightarrow Q) = P \wedge \neg Q\), et nier « tous » : « au moins un examen non validé »)</li>
+<li>(d) \(\forall x \in \mathbb{R},\ (x^2+1&gt;0 \text{ et } x^2\ge 0)\). Négation : <strong>\(\exists x \in \mathbb{R},\ x^2 + 1 \le 0 \text{ ou } x^2 &lt; 0\).</strong> (Cette négation est fausse, donc l'assertion initiale est vraie.)</li>
+<li>(e) \(\exists x \in \mathbb{R},\ (x \ge 2 \text{ ou } x &gt; 5)\). Négation : <strong>\(\forall x \in \mathbb{R},\ x &lt; 2 \text{ et } x \le 5\)</strong>, soit \(\forall x \in \mathbb{R},\ x &lt; 2\) (qui est faux : \(x=3\)).</li>
+</ul>
+</details>
+<h3 id="b-2-negations-formelles-td1-n8-extraits">B.2 Négations formelles <strong>[TD1 n°8, extraits]</strong></h3>
+<p>Écrire la négation (le \(\neg\) doit s'appliquer directement aux assertions \(A, B, C\) ou à leur variables) :
+(a) \(A \Rightarrow B\) ; (b) \(\exists x \mid (A \Rightarrow B(x))\) ; (c) \(\forall x,\ \exists y \mid (A(y) \Rightarrow B(y))\) ; (d) \(\forall x,\ \forall y,\ \exists z \mid (A(x) \Rightarrow B(y,z))\).</p>
+<details><summary>Correction</summary>
+<p>On applique : \(\neg(\forall) = \exists\neg\) ; \(\neg(\exists) = \forall\neg\) ; \(\neg(P \Rightarrow Q) = P \wedge \neg Q\) ; De Morgan.</p>
+<ul>
+<li>(a) \(A \wedge \neg B\).</li>
+<li>(b) \(\forall x,\ (A \wedge \neg B(x))\).</li>
+<li>(c) \(\exists x,\ \forall y,\ (A(y) \wedge \neg B(y))\).</li>
+<li>(d) \(\exists x,\ \exists y,\ \forall z,\ (A(x) \wedge \neg B(y,z))\).</li>
+</ul>
+<p><em>Remarque : en (b), la phrase « \(\exists x \mid A \Rightarrow B(x)\) » signifie \(\exists x\,(A \Rightarrow B(x))\) avec la convention de portée du cours.</em></p>
+</details>
+<h3 id="b-3-traduire-en-quantificateurs-td1-n9">B.3 Traduire en quantificateurs <strong>[TD1 n°9]</strong></h3>
+<p>Soient \(f, g : \mathbb{R} \to \mathbb{R}\). Écrire avec quantificateurs, puis <strong>nier</strong> :
+(a) \(f\) et \(g\) sont égales. (b) L'équation \(f(x) = g(x)\) admet au moins une solution. (c) \(f\) est croissante sur \(\mathbb{R}\). (d) \(f\) est constante.</p>
+<details><summary>Correction</summary>
+<ul>
+<li>(a) \(\forall x \in \mathbb{R},\ f(x) = g(x)\). <strong>Négation</strong> : \(\exists x \in \mathbb{R},\ f(x) \ne g(x)\).</li>
+<li>(b) \(\exists x \in \mathbb{R},\ f(x) = g(x)\). <strong>Négation</strong> : \(\forall x \in \mathbb{R},\ f(x) \ne g(x)\) (c'est exactement « l'équation n'a pas de solution »).</li>
+<li>(c) \(\forall x_1, x_2 \in \mathbb{R},\ x_1 \le x_2 \Rightarrow f(x_1) \le f(x_2)\). <strong>Négation</strong> : \(\exists x_1, x_2 \in \mathbb{R},\ x_1 \le x_2 \text{ et } f(x_1) &gt; f(x_2)\).</li>
+<li>(d) \(\exists a \in \mathbb{R},\ \forall x \in \mathbb{R},\ f(x) = a\). <strong>Négation</strong> : \(\forall a \in \mathbb{R},\ \exists x \in \mathbb{R},\ f(x) \ne a\).</li>
+</ul>
+<p><em>Attention à l'ordre en (d) : « \(\exists a\,\forall x\) » (constante) \(\ne\) « \(\forall x\,\exists a\) » (toujours vrai : prendre \(a = f(x)\)).</em></p>
+</details>
+<h3 id="b-4-l-ordre-des-quantificateurs">B.4 L'ordre des quantificateurs</h3>
+<p>Dire si chaque assertion est vraie ou fausse (dans \(\mathbb{R}\)), et justifier.
+(i) \(\forall x,\ \exists y,\ y^2 = x\) (ii) \(\exists y,\ \forall x,\ y \le x^2\) (iii) \(\forall x,\ \exists y,\ x + y = 0\) (iv) \(\exists y,\ \forall x,\ x + y = 0\)</p>
+<details><summary>Correction</summary>
+<ul>
+<li>(i) <strong>Fausse.</strong> Contre-exemple : \(x = -1\), car aucun réel \(y\) ne vérifie \(y^2 = -1\).</li>
+<li>(ii) <strong>Vraie.</strong> Prendre \(y = 0\) : pour tout \(x\), \(0 \le x^2\).</li>
+<li>(iii) <strong>Vraie.</strong> Soit \(x \in \mathbb{R}\) ; posons \(y = -x\) ; alors \(x + y = 0\).</li>
+<li>(iv) <strong>Fausse.</strong> Par l'absurde, si un tel \(y\) existait, en prenant \(x = 0\) on aurait \(y = 0\), puis \(x = 1\) donnerait \(1 + 0 = 0\), absurde.</li>
+</ul>
+<p><em>(iii) vs (iv) : seul l'ordre des quantificateurs change, et la vérité change.</em></p>
+</details>
+<h3 id="b-5-les-reciproques-fausses-distributivite">B.5 Les réciproques fausses (distributivité)</h3>
+<p>Donner un contre-exemple à chacune de ces implications réciproques :
+(a) \(\big((\exists x, P(x)) \wedge (\exists x, Q(x))\big) \Rightarrow \exists x,\ (P(x) \wedge Q(x))\)
+(b) \(\big(\forall x,\ (P(x) \vee Q(x))\big) \Rightarrow \big((\forall x, P(x)) \vee (\forall x, Q(x))\big)\)</p>
+<details><summary>Correction</summary>
+<ul>
+<li>(a) \(E = \mathbb{R}\), \(P(x) : x &gt; 0\), \(Q(x) : x &lt; 0\). Les deux \(\exists\) sont vrais (\(x=1\) et \(x=-1\)), mais aucun \(x\) n'est à la fois \(&gt;0\) et \(&lt;0\).</li>
+<li>(b) \(E = \mathbb{N}\), \(P(x) : x\) pair, \(Q(x) : x\) impair. Chaque entier est pair ou impair, mais <strong>tous</strong> les entiers ne sont ni pairs ni impairs : (\(\forall x, P\)) est fausse (\(1\)) et (\(\forall x, Q\)) est fausse (\(2\)).</li>
+</ul>
+</details>
+<h3 id="b-6-la-definition-de">B.6 La définition de \(\exists !\)</h3>
+<p>Prouver : \(\exists !\, x \in \mathbb{R} \mid 2x + 3 = 7\).</p>
+<details><summary>Correction</summary>
+<p><strong>Existence.</strong> Posons \(x = 2\) : \(2\cdot 2 + 3 = 7\) ✓.
+<strong>Unicité.</strong> Soient \(x, x' \in \mathbb{R}\) tels que \(2x + 3 = 7\) et \(2x' + 3 = 7\). Alors \(2x + 3 = 2x' + 3\), donc \(2x = 2x'\), donc \(x = x'\). \(\square\)</p>
+<p><em>Piège : montrer seulement l'existence ne suffit pas pour \(\exists!\).</em></p>
+</details>
+<hr />
+<h2 id="categorie-c-raisonnements">Catégorie C : Raisonnements</h2>
+<h3 id="c-1-par-l-absurde-td1-n10-b">C.1 Par l'absurde <strong>[TD1 n°10(b)]</strong></h3>
+<p>Montrer par l'absurde : si \(x \in \mathbb{R}_+\) et \(\forall y &gt; 0,\ x \le y\), alors \(x = 0\).</p>
+<details><summary>Correction</summary>
+<p>Raisonnons par l'absurde. Supposons \(x \in \mathbb{R}_+\), \(\forall y &gt; 0,\ x \le y\), et \(x \ne 0\). Comme \(x \ge 0\) et \(x \ne 0\), on a \(x &gt; 0\). Appliquons l'hypothèse à \(y = \dfrac{x}{2}\), qui est bien \(&gt; 0\) : on obtient \(x \le \dfrac{x}{2}\), donc \(\dfrac{x}{2} \le 0\), donc \(x \le 0\). Cela contredit \(x &gt; 0\). Donc \(x = 0\). \(\square\)</p>
+<p><em>Le truc : choisir le <strong>bon \(y\)</strong> dans l'hypothèse universelle (\(y = x/2\)). C'est la fameuse stratégie « \(\varepsilon = a/2\) » de l'analyse.</em></p>
+</details>
+<h3 id="c-2-par-l-absurde-arithmetique-td1-n10-a">C.2 Par l'absurde, arithmétique <strong>[TD1 n°10(a)]</strong></h3>
+<p>Montrer par l'absurde : si \(a, b, c \in \mathbb{N}\) vérifient \(a^2 + b^2 = c^2\), alors \(a\) est pair ou \(b\) est pair.</p>
+<details><summary>Correction</summary>
+<p>Supposons que \(a^2 + b^2 = c^2\) et que <strong>ni \(a\) ni \(b\) ne soit pair</strong> (négation de « \(a\) pair ou \(b\) pair »). Alors \(a = 2k+1\) et \(b = 2l+1\) avec \(k, l \in \mathbb{N}\). Donc
+\[a^2 + b^2 = 4k^2 + 4k + 1 + 4l^2 + 4l + 1 = 4(k^2 + k + l^2 + l) + 2,\]
+qui est congru à \(2\) modulo \(4\).
+Or un carré est congru à \(0\) ou \(1\) modulo \(4\) : si \(c = 2m\), \(c^2 = 4m^2 \equiv 0\) ; si \(c = 2m+1\), \(c^2 = 4(m^2+m)+1 \equiv 1\). Donc \(c^2 \not\equiv 2 \pmod 4\). Contradiction. \(\square\)</p>
+</details>
+<h3 id="c-3-par-l-absurde-irrationnel-td1-n10-c">C.3 Par l'absurde : \(\sqrt 2\) irrationnel <strong>[TD1 n°10(c)]</strong></h3>
+<details><summary>Correction</summary>
+<p>Voir la preuve complète dans la <a href="fiche_ch5_construction_nombres.html">fiche du chapitre 5, B3</a>. Squelette : supposer \(\sqrt2 = a/b\) <strong>irréductible</strong> ; \(a^2 = 2b^2 \Rightarrow a\) pair ; \(a = 2k \Rightarrow b^2 = 2k^2 \Rightarrow b\) pair ; contradiction avec l'irréductibilité.</p>
+</details>
+<h3 id="c-4-td1-n11">C.4 « \(\forall \varepsilon\) » <strong>[TD1 n°11]</strong></h3>
+<p>Soit \(a\) vérifiant \(\forall \varepsilon &gt; 0,\ 0 \le a &lt; \varepsilon\).</p>
+<ol>
+<li>Montrer que \(a = 0\).</li>
+<li>La conclusion reste-t-elle vraie avec \(0 \le a \le \varepsilon\) ?</li>
+<li>Que dire de \(b, c\) vérifiant \(\forall \varepsilon &gt; 0,\ c - \varepsilon \le b \le c + \varepsilon\) ?</li>
+</ol>
+<details><summary>Correction</summary>
+<ol>
+<li>Par l'absurde : supposons \(a \ne 0\). Comme \(a \ge 0\), \(a &gt; 0\). Prenons \(\varepsilon = a &gt; 0\) : l'hypothèse donne \(a &lt; a\), absurde. Donc \(a = 0\).</li>
+<li><strong>Oui.</strong> Si \(a \ne 0\) alors \(a &gt; 0\). Prenons \(\varepsilon = \dfrac a2 &gt; 0\) : l'hypothèse donne \(a \le \dfrac a2\), donc \(a \le 0\), absurde. (Le « \(\le\) » à la place de « \(&lt;\) » ne change rien, mais il faut prendre <strong>\(a/2\)</strong> et non \(a\).)</li>
+<li>L'hypothèse dit \(|b - c| \le \varepsilon\) pour tout \(\varepsilon &gt; 0\). D'après 2. (appliqué à \(a = |b-c|\)), \(|b - c| = 0\), donc <strong>\(b = c\)</strong>.</li>
+</ol>
+</details>
+<h3 id="c-5-par-contraposee-td1-n12">C.5 Par contraposée <strong>[TD1 n°12]</strong></h3>
+<p>Montrer par contraposée : (a) pour tout entier \(n\), si \(8 \nmid n^2 - 1\) alors \(n\) est pair. (b) pour tout \(x \in \mathbb{R}\), \((x^7 = 2 \Rightarrow x &lt; 2)\).</p>
+<details><summary>Correction</summary>
+<p><strong>(a)</strong> Contraposée : « si \(n\) est impair, alors \(8 \mid n^2 - 1\) ». Soit \(n\) impair, \(n = 2k+1\). Alors \(n^2 - 1 = 4k^2 + 4k = 4k(k+1)\). Or \(k(k+1)\) est pair (produit de deux entiers consécutifs, disjonction de cas : \(k\) pair ou \(k+1\) pair), disons \(k(k+1) = 2m\). Donc \(n^2 - 1 = 8m\), multiple de 8. \(\square\)</p>
+<p><strong>(b)</strong> Contraposée : « si \(x \ge 2\), alors \(x^7 \ne 2\) ». Soit \(x \ge 2\). Alors \(x &gt; 0\) et \(t \mapsto t^7\) est croissante sur \(\mathbb{R}_+\), donc \(x^7 \ge 2^7 = 128 &gt; 2\). Donc \(x^7 \ne 2\). \(\square\)</p>
+<p><em>Pourquoi la contraposée ? Parce que « \(x \ge 2\) » donne une information <strong>directe et calculable</strong>, alors que « \(x^7 = 2\) » obligerait à résoudre une équation de degré 7.</em></p>
+</details>
+<h3 id="c-6-contraposee-cas-piegeux-td1-n12-b">C.6 Contraposée, cas piégeux <strong>[TD1 n°12(b)]</strong></h3>
+<p>Pour tout entier \(n\), si \(n^2 + n + 1\) est pair, alors \(n\) est pair. Que remarque-t-on ?</p>
+<details><summary>Correction</summary>
+<p>Contraposée : \(n\) impair \(\Rightarrow\) \(n^2+n+1\) impair. Mais on peut faire mieux : \(n^2 + n = n(n+1)\) est <strong>toujours pair</strong> (deux entiers consécutifs), donc \(n^2 + n + 1\) est <strong>toujours impair</strong>, quel que soit \(n\). L'hypothèse « \(n^2+n+1\) est pair » n'est <strong>jamais</strong> vérifiée : l'implication est <strong>vraie à vide</strong>.</p>
+<p><em>C'est un très bon exemple de la définition de \(\Rightarrow\) : on peut prouver une implication dont l'hypothèse est toujours fausse.</em></p>
+</details>
+<h3 id="c-7-equivalence-et-reciproque-td1-n13">C.7 Équivalence et réciproque <strong>[TD1 n°13]</strong></h3>
+<p>Montrer que si \(a, b\) sont des entiers impairs consécutifs, alors \(4 \mid a + b\). La réciproque est-elle vraie ?</p>
+<details><summary>Correction</summary>
+<p>Soient \(a, b\) impairs consécutifs : \(b = a + 2\) (quitte à échanger). Alors \(a + b = 2a + 2 = 2(a+1)\). Comme \(a\) est impair, \(a + 1\) est pair, \(a+1 = 2m\), donc \(a + b = 4m\). \(\square\)</p>
+<p><strong>Réciproque : fausse.</strong> Contre-exemple : \(a = 1\), \(b = 7\). Ils sont impairs et \(a + b = 8\) est divisible par 4, mais ils ne sont pas consécutifs. (Ou encore \(a = 0\), \(b = 4\).)</p>
+</details>
+<h3 id="c-8-recurrence-avec-piege-td1-n14">C.8 Récurrence avec piège <strong>[TD1 n°14]</strong></h3>
+<p>(a) Montrer : \(\forall n \in \mathbb{N}\), si \(10^n + 7\) est multiple de 9, alors \(10^{n+1} + 7\) l'est aussi. (b) Que peut-on en déduire ?</p>
+<details><summary>Correction</summary>
+<p>(a) Soit \(n \in \mathbb{N}\) ; supposons \(10^n + 7 = 9k\) avec \(k \in \mathbb{Z}\). Alors
+\[10^{n+1} + 7 = 10(10^n + 7) - 63 = 90k - 63 = 9(10k - 7),\]
+multiple de 9. \(\square\)</p>
+<p>(b) <strong>Rien</strong> sur la vérité de « \(10^n + 7\) multiple de 9 » : on a prouvé l'<strong>hérédité</strong> mais <strong>pas l'initialisation</strong>. En fait la propriété est <strong>fausse pour tout \(n\)</strong> : \(10^n \equiv 1 \pmod 9\), donc \(10^n + 7 \equiv 8 \pmod 9\). <strong>L'hérédité seule ne prouve rien</strong>, il faut une initialisation vraie.</p>
+</details>
+<h3 id="c-9-recurrence-inegalite-de-bernoulli-td1-n15">C.9 Récurrence (inégalité de Bernoulli) <strong>[TD1 n°15]</strong></h3>
+<p>Démontrer par récurrence : \(\forall n \in \mathbb{N},\ \forall x &gt; 0,\ (1+x)^n \ge 1 + nx\). (a) Sur quelle variable porte la récurrence ? (b) Formuler l'hypothèse de récurrence. (c) Rédiger.</p>
+<details><summary>Correction</summary>
+<p>(a) Sur <strong>\(n\)</strong> uniquement. Le réel \(x &gt; 0\) est <strong>fixé quelconque</strong> au départ et ne change pas.</p>
+<p>(b) L'hypothèse de récurrence est \(P(n) : (1+x)^n \ge 1 + nx\) (pour le \(x\) fixé).</p>
+<p>(c) <strong>Rédaction.</strong> Soit \(x &gt; 0\) fixé. Pour \(n \in \mathbb{N}\), notons \(P(n) : (1+x)^n \ge 1 + nx\).
+<em>Initialisation.</em> Pour \(n = 0\) : \((1+x)^0 = 1 \ge 1 + 0 = 1\). \(P(0)\) est vraie.
+<em>Hérédité.</em> Soit \(n \in \mathbb{N}\) ; supposons \(P(n)\). Comme \(1 + x &gt; 0\), on peut multiplier l'inégalité \(P(n)\) par \(1+x\) :
+\[(1+x)^{n+1} \ge (1+x)(1+nx) = 1 + (n+1)x + nx^2 \ge 1 + (n+1)x,\]
+la dernière inégalité car \(nx^2 \ge 0\). Donc \(P(n+1)\) est vraie.
+<em>Conclusion.</em> Par récurrence, \(P(n)\) est vraie pour tout \(n\). Comme \(x &gt; 0\) était quelconque, la propriété est démontrée. \(\square\)</p>
+<p><em>Point technique : on <strong>multiplie</strong> une inégalité par un nombre <strong>strictement positif</strong> (sinon le sens changerait).</em></p>
+</details>
+<h3 id="c-10-recurrence-somme-cours-entrainement">C.10 Récurrence : somme <strong>[Cours + entraînement]</strong></h3>
+<p>Montrer : \(\forall n \in \mathbb{N},\ \displaystyle\sum_{i=0}^{n} i = \dfrac{n(n+1)}{2}\).</p>
+<details><summary>Correction</summary>
+<p>Notons \(P(n) : \sum_{i=0}^{n} i = \dfrac{n(n+1)}{2}\).
+<em>Initialisation.</em> \(n=0\) : le membre de gauche vaut \(0\) et celui de droite \(\frac{0\cdot 1}{2} = 0\). ✓
+<em>Hérédité.</em> Soit \(n \in \mathbb{N}\) ; supposons \(P(n)\). Alors
+\[\sum_{i=0}^{n+1} i = \sum_{i=0}^{n} i + (n+1) = \frac{n(n+1)}{2} + (n+1) = \frac{(n+1)(n+2)}{2},\]
+ce qui est \(P(n+1)\). <em>Conclusion.</em> \(P(n)\) est vraie pour tout \(n \in \mathbb{N}\). \(\square\)</p>
+</details>
+<hr />
+<h2 id="categorie-d-logique-appliquee-inspiree-des-tests-de-positionnement-td1-n16">Catégorie D : Logique appliquée (inspirée des tests de positionnement) <strong>[TD1 n°16]</strong></h2>
+<h3 id="d-1-tests-de-deduction">D.1 Tests de déduction</h3>
+<p><strong>Q24.</strong> Dans un groupe d'amis, ceux qui utilisent un Dell utilisent tous un appareil photo numérique. Que peut-on en déduire ? A) un utilisateur d'appareil photo utilise un Dell ; B) un utilisateur d'appareil photo n'utilise pas de Dell ; C) quelqu'un sans appareil photo n'utilise pas de Dell ; D) quelqu'un sans Dell n'utilise pas d'appareil photo.</p>
+<p><strong>Q25.</strong> On ajoute : ceux qui utilisent l'éditeur vi utilisent tous un Dell. Que peut-on en déduire ? A) vi \(\Rightarrow\) appareil photo ; B) pas d'appareil photo \(\Rightarrow\) pas de vi ; C) pas de vi \(\Rightarrow\) pas d'appareil photo ; D) appareil photo \(\Rightarrow\) vi.</p>
+<details><summary>Correction</summary>
+<p>Notation : \(D\) = « utilise un Dell », \(N\) = « utilise un appareil photo numérique », \(V\) = « utilise vi ».</p>
+<p><strong>Q24.</strong> On a \(D \Rightarrow N\). Seule la <strong>contraposée</strong> \(\neg N \Rightarrow \neg D\) est garantie. <strong>Réponse : C.</strong>
+A est la <strong>réciproque</strong> (non garantie) ; B et D n'ont aucun lien avec \(D \Rightarrow N\).</p>
+<p><strong>Q25.</strong> On a \(V \Rightarrow D\) et \(D \Rightarrow N\). Par <strong>transitivité</strong> : \(V \Rightarrow N\) (<strong>A</strong> vraie). Par <strong>contraposition</strong> : \(\neg N \Rightarrow \neg V\) (<strong>B</strong> vraie). C et D sont des <strong>réciproques</strong> non garanties. <strong>Réponses : A et B.</strong></p>
+<p><em>Toujours la même stratégie : écrire les implications avec des lettres, puis ne garder que ce qui s'obtient par <strong>transitivité</strong> et <strong>contraposée</strong>.</em></p>
+</details>
+<hr />
+<h3 id="auto-evaluation-finale">Auto-évaluation finale</h3>
+<ul>
+<li>[ ] Je sais <strong>nier</strong> n'importe quelle phrase quantifiée sans hésiter.</li>
+<li>[ ] Je sais <strong>choisir</strong> entre direct / contraposée / absurde / contre-exemple / récurrence.</li>
+<li>[ ] Je sais écrire une <strong>récurrence</strong> complète (initialisation, hérédité avec « Soit \(n\) ; supposons \(P(n)\) », conclusion).</li>
+<li>[ ] Je ne confonds plus <strong>\(\Rightarrow\)</strong> et <strong>donc</strong>, ni <strong>réciproque</strong> et <strong>contraposée</strong>.</li>
+</ul>
+
+<div class="nav-links"><span><a href="fiche_ch2_logique.html">← Fiche ch. 2 — Logique</a></span><span><a href="fiche_ch3_ensembles.html">Fiche ch. 3 — Ensembles →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="revision.js"></script>
+</body>
+</html>

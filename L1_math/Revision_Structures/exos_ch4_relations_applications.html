@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercices : Chapitre 4 (Relations, applications, cardinal) — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices ch. 4 — Relations et applications</span></div>
+<div class="page">
+<span class="chip">✍️ Exercices corrigés</span><span class="chip">Structures fondamentales</span>
+<h1>Exercices : Chapitre 4 (Relations, applications, cardinal)</h1>
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul><li><a href="#categorie-a-relations">Catégorie A : Relations</a><ul><li><a href="#a-1-proprietes-de-relations-sur-td2-n15">A.1 Propriétés de relations sur \(\mathbb{R}\) <strong>[TD2 n°15]</strong></a></li><li><a href="#a-2-diagramme-sagittal-td2-n14">A.2 Diagramme sagittal <strong>[TD2 n°14]</strong></a></li><li><a href="#a-3-etudier-une-relation-maison">A.3 Étudier une relation « maison »</a></li><li><a href="#a-4-bornes-dans-td2-n16">A.4 Bornes dans \(\mathbb{R}\) <strong>[TD2 n°16]</strong></a></li><li><a href="#a-5-inclusion-comme-ordre-td2-n17">A.5 Inclusion comme ordre <strong>[TD2 n°17]</strong></a></li></ul></li><li><a href="#categorie-b-injectivite-surjectivite-bijectivite">Catégorie B : Injectivité, surjectivité, bijectivité</a><ul><li><a href="#b-1-un-tableau-complet-td2-n18">B.1 Un tableau complet <strong>[TD2 n°18]</strong></a></li><li><a href="#b-2-resoudre-pour-prouver-la-bijectivite-td2-n21">B.2 Résoudre \(f(x) = y\) pour prouver la bijectivité <strong>[TD2 n°21]</strong></a></li><li><a href="#b-3-une-involution-td2-n19">B.3 Une involution <strong>[TD2 n°19]</strong></a></li><li><a href="#b-4-composition-qui-porte-l-injectivite-td2-n20">B.4 Composition : qui porte l'injectivité ? <strong>[TD2 n°20]</strong></a></li><li><a href="#b-5-une-bijection-de-dans-td2-n22">B.5 Une bijection de \(\mathbb{N}^2\) dans \(\mathbb{N}\) <strong>[TD2 n°22]</strong></a></li></ul></li><li><a href="#categorie-c-images-directes-et-reciproques">Catégorie C : Images directes et réciproques</a><ul><li><a href="#c-1-calculs-d-images-td2-n23-et-n25">C.1 Calculs d'images <strong>[TD2 n°23 et n°25]</strong></a></li><li><a href="#c-2-unions-et-intersections-td2-n26">C.2 Unions et intersections <strong>[TD2 n°26]</strong></a></li><li><a href="#c-3-caracterisations-par-les-images-td2-n27-1-et-2">C.3 Caractérisations par les images <strong>[TD2 n°27 (1) et (2)]</strong></a></li></ul></li><li><a href="#categorie-d-denombrabilite-cardinal-et-combinatoire">Catégorie D : Dénombrabilité, cardinal et combinatoire</a><ul><li><a href="#d-1-ensembles-denombrables-td2-n28">D.1 Ensembles dénombrables <strong>[TD2 n°28]</strong></a></li><li><a href="#d-2-cantor-et-suites-de-0-et-1-td2-n30">D.2 Cantor et suites de 0 et 1 <strong>[TD2 n°30]</strong></a></li><li><a href="#d-3-symetrie-et-pascal-td2-n29-et-n33">D.3 Symétrie et Pascal <strong>[TD2 n°29 et n°33]</strong></a></li><li><a href="#d-4-binome-de-newton-par-recurrence-td2-n31">D.4 Binôme de Newton par récurrence <strong>[TD2 n°31]</strong></a></li><li><a href="#d-5-vandermonde-par-double-comptage-td2-n32">D.5 Vandermonde par double comptage <strong>[TD2 n°32]</strong></a></li><li><a href="#auto-evaluation-finale">Auto-évaluation finale</a></li></ul></li></ul></details></nav>
+<blockquote>
+<p><strong>Mode d'emploi.</strong> Cherche, rédige comme en examen, puis déplie la correction.
+<strong>[TD2 n°x]</strong> = exercice de ta fiche de TD n°2. Les autres sont des entraînements.</p>
+</blockquote>
+<hr />
+<h2 id="categorie-a-relations">Catégorie A : Relations</h2>
+<h3 id="a-1-proprietes-de-relations-sur-td2-n15">A.1 Propriétés de relations sur \(\mathbb{R}\) <strong>[TD2 n°15]</strong></h3>
+<p>Étudier réflexivité, symétrie, antisymétrie, transitivité des relations suivantes sur \(\mathbb{R}\) :
+(a) \(x R_- y \iff xy \le 0\) ; (b) \(x R_+ y \iff xy \ge 0\) ; (c) \(x R^*_+ y \iff xy &gt; 0\) ; (d) \(x R y \iff \sin x - \sin y = 0\).</p>
+<details><summary>Correction</summary>
+<p><strong>(a) \(xy \le 0\).</strong></p>
+<ul>
+<li><em>Réflexive ?</em> <strong>Non</strong> : \(1 \cdot 1 = 1 &gt; 0\), donc \(1 \not R_- 1\).</li>
+<li><em>Symétrique ?</em> <strong>Oui</strong> : \(xy = yx\).</li>
+<li><em>Antisymétrique ?</em> <strong>Non</strong> : \(1 \cdot (-1) = -1 \le 0\) donc \(1 R_- (-1)\) et \((-1) R_- 1\), mais \(1 \ne -1\).</li>
+<li><em>Transitive ?</em> <strong>Non</strong> : \(1 R_- 0\) (car \(1\cdot0 = 0 \le 0\)) et \(0 R_- 1\), mais \(1 R_- 1\) est faux.</li>
+</ul>
+<p><strong>(b) \(xy \ge 0\).</strong></p>
+<ul>
+<li><em>Réflexive</em> : <strong>oui</strong>, \(x \cdot x = x^2 \ge 0\).</li>
+<li><em>Symétrique</em> : <strong>oui</strong>.</li>
+<li><em>Antisymétrique</em> : <strong>non</strong> : \(1 R_+ 2\) et \(2 R_+ 1\) mais \(1 \ne 2\).</li>
+<li><em>Transitive</em> : <strong>non</strong> : \(1 R_+ 0\) et \(0 R_+ (-1)\) (produits nuls \(\ge 0\)) mais \(1 \cdot (-1) = -1 &lt; 0\).</li>
+</ul>
+<p><strong>(c) \(xy &gt; 0\).</strong></p>
+<ul>
+<li><em>Réflexive</em> : <strong>non</strong> (\(x = 0\) : \(0 \cdot 0 = 0 \not&gt; 0\)).</li>
+<li><em>Symétrique</em> : <strong>oui</strong>.</li>
+<li><em>Antisymétrique</em> : <strong>non</strong> (\(1\) et \(2\)).</li>
+<li><em>Transitive</em> : <strong>oui</strong>. Soient \(x, y, z\) avec \(xy &gt; 0\) et \(yz &gt; 0\). Alors \(y \ne 0\) et \(x\), \(y\) sont de <strong>même signe</strong>, et \(y\), \(z\) de même signe, donc \(x\) et \(z\) ont le même signe : \(xz &gt; 0\). (Ou : \(xy \cdot yz = xz\, y^2 &gt; 0\) avec \(y^2 &gt; 0\), donc \(xz &gt; 0\).)
+<em>Cette relation est une équivalence <strong>sur \(\mathbb{R}^*\)</strong>, mais pas sur \(\mathbb{R}\) (à cause de 0).</em></li>
+</ul>
+<p><strong>(d) \(\sin x = \sin y\).</strong></p>
+<ul>
+<li><em>Réflexive</em>, <em>symétrique</em>, <em>transitive</em> : <strong>oui</strong>, car elles se ramènent aux propriétés de l'<strong>égalité</strong> dans \(\mathbb{R}\). C'est une <strong>relation d'équivalence</strong>.</li>
+<li><em>Antisymétrique</em> : <strong>non</strong> (\(\sin 0 = \sin \pi = 0\), mais \(0 \ne \pi\)).</li>
+</ul>
+</details>
+<h3 id="a-2-diagramme-sagittal-td2-n14">A.2 Diagramme sagittal <strong>[TD2 n°14]</strong></h3>
+<p>Sur \(E = \{a,b,c,d\}\), soit \(R = \{(a,a),(b,a),(b,d),(d,c)\}\). Dessiner le diagramme sagittal et dire quelles propriétés \(R\) vérifie.</p>
+<details><summary>Correction</summary>
+<p><em>Flèches :</em> \(a \to a\) (boucle), \(b \to a\), \(b \to d\), \(d \to c\).</p>
+<ul>
+<li><em>Réflexive ?</em> <strong>Non</strong> : \(b\), \(c\), \(d\) n'ont pas de boucle (par ex. \((b,b) \notin R\)).</li>
+<li><em>Symétrique ?</em> <strong>Non</strong> : \((b,a) \in R\) mais \((a,b) \notin R\).</li>
+<li><em>Antisymétrique ?</em> <strong>Oui</strong> : il n'y a aucun couple \((x,y)\) avec \(x\neq y\) tel que \((y,x)\) soit aussi dans \(R\). La seule boucle est \((a,a)\), où \(x = y\).</li>
+<li><em>Transitive ?</em> <strong>Non</strong> : \((b,d) \in R\) et \((d,c) \in R\) mais \((b,c) \notin R\).</li>
+</ul>
+</details>
+<h3 id="a-3-etudier-une-relation-maison">A.3 Étudier une relation « maison »</h3>
+<p>Sur \(\mathbb{Z}\), on pose \(x \sim y \iff x - y\) est pair. Montrer que c'est une relation d'équivalence.</p>
+<details><summary>Correction</summary>
+<ul>
+<li><em>Réflexive.</em> Soit \(x \in \mathbb{Z}\). \(x - x = 0 = 2 \cdot 0\) est pair, donc \(x \sim x\).</li>
+<li><em>Symétrique.</em> Soient \(x, y \in \mathbb{Z}\) avec \(x \sim y\) : \(x - y = 2k\), \(k \in \mathbb{Z}\). Alors \(y - x = 2(-k)\) est pair, donc \(y \sim x\).</li>
+<li><em>Transitive.</em> Soient \(x,y,z\) avec \(x \sim y\) et \(y \sim z\) : \(x - y = 2k\) et \(y - z = 2l\). Alors \(x - z = (x-y) + (y-z) = 2(k+l)\) est pair, donc \(x \sim z\). \(\square\)</li>
+</ul>
+<p><em>C'est l'équivalence « avoir la même parité ». Elle découpe \(\mathbb{Z}\) en deux paquets : pairs et impairs.</em></p>
+</details>
+<h3 id="a-4-bornes-dans-td2-n16">A.4 Bornes dans \(\mathbb{R}\) <strong>[TD2 n°16]</strong></h3>
+<p>Pour \(A = [0,1[\), \(B = [0,1]\), \(C = ]0,+\infty[\), \(D = \mathbb{N}\), \(E = \mathbb{Z}\) (avec l'ordre \(\le\)), donner si possible : un majorant, un minorant, le plus grand élément, le plus petit élément, la borne supérieure, la borne inférieure.</p>
+<details><summary>Correction</summary>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Partie</th>
+<th>Majorant</th>
+<th>Minorant</th>
+<th>Plus grand</th>
+<th>Plus petit</th>
+<th>\(\sup\)</th>
+<th>\(\inf\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(A = [0,1[\)</td>
+<td>\(1\) (ou \(5\)…)</td>
+<td>\(0\) (ou \(-3\)…)</td>
+<td><strong>aucun</strong></td>
+<td>\(0\)</td>
+<td>\(1\) (\(\notin A\))</td>
+<td>\(0\)</td>
+</tr>
+<tr>
+<td>\(B = [0,1]\)</td>
+<td>\(1\)</td>
+<td>\(0\)</td>
+<td>\(1\)</td>
+<td>\(0\)</td>
+<td>\(1\)</td>
+<td>\(0\)</td>
+</tr>
+<tr>
+<td>\(C = ]0,+\infty[\)</td>
+<td><strong>aucun</strong></td>
+<td>\(0\) (ou \(-1\)…)</td>
+<td>aucun</td>
+<td><strong>aucun</strong></td>
+<td><strong>aucun</strong></td>
+<td>\(0\) (\(\notin C\))</td>
+</tr>
+<tr>
+<td>\(D = \mathbb{N}\)</td>
+<td><strong>aucun</strong></td>
+<td>\(0\)</td>
+<td>aucun</td>
+<td>\(0\)</td>
+<td>aucun</td>
+<td>\(0\)</td>
+</tr>
+<tr>
+<td>\(E = \mathbb{Z}\)</td>
+<td>aucun</td>
+<td><strong>aucun</strong></td>
+<td>aucun</td>
+<td>aucun</td>
+<td>aucun</td>
+<td>aucun</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Justifications clés.</em></p>
+<ul>
+<li>\(A\) : \(\sup A = 1\) car \(1\) est un majorant, et tout \(M &lt; 1\) n'est pas un majorant (il existe \(a \in A\) avec \(M &lt; a &lt; 1\), par exemple \(a = \max(0, \frac{M+1}2)\)). Mais \(1 \notin A\) donc il n'y a pas de plus grand élément.</li>
+<li>\(C\) : \(\inf C = 0\) car \(0\) est un minorant, et tout \(m &gt; 0\) ne l'est pas (\(m/2 \in C\) et \(m/2 &lt; m\)). Mais \(0 \notin C\).</li>
+<li><strong>Moralité</strong> : plus grand élément \(\Rightarrow\) borne sup ; la réciproque est fausse.</li>
+</ul>
+</details>
+<h3 id="a-5-inclusion-comme-ordre-td2-n17">A.5 Inclusion comme ordre <strong>[TD2 n°17]</strong></h3>
+<p>Soit \(E = \{a,b,c,d,e\}\). Est-ce que \((\mathcal{P}(E), \subset)\) est totalement ordonné ? Pour \(\mathcal{A} = \{\emptyset, \{a,c\}, \{b,c,d\}\}\), donner majorants, minorants, plus grand/petit élément, \(\sup\), \(\inf\).</p>
+<details><summary>Correction</summary>
+<p><strong>Non totalement ordonné</strong> : \(\{a\}\) et \(\{b\}\) sont incomparables (aucun n'est inclus dans l'autre).</p>
+<p>Pour \(\mathcal{A} = \{\emptyset, \{a,c\}, \{b,c,d\}\}\) :</p>
+<ul>
+<li><em>Majorants</em> : les parties \(M\) contenant \(\{a,c\}\) et \(\{b,c,d\}\), donc contenant \(\{a,b,c,d\}\) : \(\{a,b,c,d\}\) et \(E\).</li>
+<li><em>Minorants</em> : les parties contenues dans \(\emptyset\), \(\{a,c\}\) <strong>et</strong> \(\{b,c,d\}\), donc dans \(\emptyset\) : seulement \(\emptyset\).</li>
+<li><em>Plus grand élément</em> : <strong>aucun</strong> (aucun majorant n'appartient à \(\mathcal{A}\)).</li>
+<li><em>Plus petit élément</em> : \(\emptyset\).</li>
+<li><em>Borne sup</em> : le plus petit majorant : \(\{a,b,c,d\}\) (c'est l'<strong>union</strong> des éléments de \(\mathcal{A}\)).</li>
+<li><em>Borne inf</em> : \(\emptyset\) (c'est l'<strong>intersection</strong>).</li>
+</ul>
+<p><em>Remarque : dans la fiche, \(\mathcal{B} = \{\{a\}, \{a,c\}, \{a,c,f\}\}\) contient \(\{a,c,f\}\) avec \(f \notin E\) : ce n'est pas une partie de \(\mathcal{P}(E)\) (probable coquille, peut-être \(e\) à la place de \(f\)). Avec \(\{a,c,e\}\) : plus petit élément \(\{a\}\) \(=\inf\), plus grand \(\{a,c,e\}\) \(=\sup\).</em></p>
+</details>
+<hr />
+<h2 id="categorie-b-injectivite-surjectivite-bijectivite">Catégorie B : Injectivité, surjectivité, bijectivité</h2>
+<h3 id="b-1-un-tableau-complet-td2-n18">B.1 Un tableau complet <strong>[TD2 n°18]</strong></h3>
+<p>Pour chaque correspondance, dire si c'est une fonction (domaine), une application, et si c'est injective / surjective / bijective.
+(1) \(x \mapsto 2x+3\), \(\mathbb{R}\to\mathbb{R}\) ; (2) \(x \mapsto x^2 + 1\), \(\mathbb{R}_+ \to \mathbb{R}\) ; (3) \(x \mapsto \frac{1}{x+1}\), \(\mathbb{R} \to \mathbb{R}\) ; (4) \(x \mapsto \frac{x}{x+2}\), \(\mathbb{R}\setminus\{-2\} \to \mathbb{R}\) ; (5) \(\tan : ]-\frac\pi2,\frac\pi2[ \to \mathbb{R}\) ; (6) \(x \mapsto \frac1x\), \(\mathbb{R}_+^* \to \mathbb{R}_+^*\) ; (7) \(\cos : \mathbb{R}\to\mathbb{R}\) ; (8) \(\cos: \mathbb{R}\to[-1,1]\) ; (9) \(\tan : \mathbb{R}\to\mathbb{R}\).</p>
+<details><summary>Correction</summary>
+<ol>
+<li><strong>Application, bijective.</strong> Injective : \(2x+3 = 2x'+3 \Rightarrow x = x'\). Surjective : pour \(y\), \(x = \frac{y-3}{2}\) convient. Réciproque \(y \mapsto \frac{y-3}{2}\).</li>
+<li><strong>Application</strong>, <strong>injective</strong> (si \(x^2+1 = x'^2+1\) avec \(x,x'\ge0\) alors \(x^2=x'^2\) donc \(x=x'\) car \(x,x'\ge0\)), <strong>non surjective</strong> (par ex. \(y = 0\) n'est pas atteint car \(x^2 + 1 \ge 1\) ; l'image est \([1,+\infty[\)).</li>
+<li><strong>Fonction</strong> seulement, de domaine \(\mathbb{R}\setminus\{-1\}\) (pas définie en \(-1\)) ; <strong>pas</strong> une application sur \(\mathbb{R}\).</li>
+<li><strong>Application</strong>. Injective : \(\frac{x}{x+2} = 1 - \frac{2}{x+2}\), et \(\frac{2}{x+2}\) prend des valeurs distinctes pour des \(x\) distincts ; <strong>non surjective</strong> : \(y=1\) n'est pas atteint (il faudrait \(\frac{2}{x+2} = 0\)). Image \(= \mathbb{R}\setminus\{1\}\).</li>
+<li><strong>Application, bijective</strong> (continue, strictement croissante, limites \(\mp\infty\) aux bornes) ; réciproque \(\arctan\).</li>
+<li><strong>Application, bijective</strong> : pour \(y &gt; 0\) l'unique antécédent est \(1/y &gt; 0\). Elle est <strong>égale à sa propre réciproque</strong>.</li>
+<li><strong>Application</strong>, ni injective (\(\cos 0 = \cos 2\pi\)) ni surjective (\(2\) n'est pas atteint).</li>
+<li><strong>Application</strong>, <strong>surjective</strong>, non injective.</li>
+<li><strong>Fonction</strong> seulement : \(\tan\) n'est pas définie en \(\frac\pi2 + k\pi\) ; domaine \(\mathbb{R}\setminus\{\frac\pi2 + k\pi \mid k \in \mathbb{Z}\}\) ; <strong>pas</strong> une application de \(\mathbb{R}\) dans \(\mathbb{R}\).</li>
+</ol>
+<p><em>Leçon : changer l'ensemble de départ/arrivée change tout (7 vs 8, 5 vs 9).</em></p>
+</details>
+<h3 id="b-2-resoudre-pour-prouver-la-bijectivite-td2-n21">B.2 Résoudre \(f(x) = y\) pour prouver la bijectivité <strong>[TD2 n°21]</strong></h3>
+<p>(a) Montrer que \(f : \mathbb{R}^2 \to \mathbb{R}^2\), \((x,y) \mapsto (2x+3y, x-y)\) est bijective. (b) Calculer sa réciproque.</p>
+<details><summary>Correction</summary>
+<p>Soit \((u, v) \in \mathbb{R}^2\). Cherchons les \((x,y)\) tels que \(f(x,y) = (u,v)\), c'est-à-dire
+\[\begin{cases} 2x + 3y = u \\ x - y = v \end{cases}.\]
+De la deuxième équation, \(x = v + y\). En remplaçant : \(2v + 2y + 3y = u\), soit \(5y = u - 2v\), donc \(y = \frac{u - 2v}{5}\) puis \(x = v + \frac{u-2v}{5} = \frac{u + 3v}{5}\).
+Le système a donc <strong>exactement une solution</strong> \((x,y) = \left(\frac{u+3v}{5}, \frac{u-2v}{5}\right)\) (on a procédé par conditions nécessaires, puis on vérifie : \(2x+3y = \frac{2u+6v+3u-6v}{5} = u\) ✓ et \(x - y = \frac{u+3v-u+2v}{5} = v\) ✓).
+Tout \((u,v)\) a donc <strong>un et un seul antécédent</strong> : \(f\) est <strong>bijective</strong>, et
+\[f^{-1}(u,v) = \left(\frac{u+3v}{5}, \frac{u-2v}{5}\right). \qquad\square\]</p>
+</details>
+<h3 id="b-3-une-involution-td2-n19">B.3 Une involution <strong>[TD2 n°19]</strong></h3>
+<p>Soient \(a,b,c \in \mathbb{R}\), \(c \ne 0\) et \(a^2 + bc \ne 0\). On pose \(f(x) = \dfrac{ax+b}{cx-a}\) sur \(\mathbb{R}\setminus\{a/c\}\). (a) Justifier que \(f : \mathbb{R}\setminus\{a/c\} \to \mathbb{R}\setminus\{a/c\}\) est bien définie. (b) Calculer \(f \circ f\). (c) En déduire que \(f\) est bijective et donner \(f^{-1}\).</p>
+<details><summary>Correction</summary>
+<p><strong>(a)</strong> Pour \(x \ne a/c\), \(cx - a \ne 0\) donc \(f(x)\) existe. Il faut aussi que \(f(x) \ne a/c\) : supposons \(f(x) = \frac ac\). Alors \(c(ax+b) = a(cx - a)\), soit \(acx + bc = acx - a^2\), donc \(a^2 + bc = 0\), <strong>contradiction</strong> avec l'hypothèse. Donc \(f(x) \in \mathbb{R}\setminus\{a/c\}\).</p>
+<p><strong>(b)</strong> Pour \(x \ne a/c\) :
+\[f(f(x)) = \frac{a\frac{ax+b}{cx-a} + b}{c\frac{ax+b}{cx-a} - a} = \frac{a(ax+b) + b(cx-a)}{c(ax+b) - a(cx-a)} = \frac{(a^2+bc)x}{a^2 + bc} = x.\]
+(On a multiplié numérateur et dénominateur par \(cx - a \ne 0\) ; au numérateur \(a^2x + ab + bcx - ab\), au dénominateur \(acx + bc - acx + a^2\).)
+Donc \(f \circ f = \operatorname{Id}\).</p>
+<p><strong>(c)</strong> Comme \(f \circ f = \operatorname{Id}\), on a \(g \circ f = \operatorname{Id}\) et \(f \circ g = \operatorname{Id}\) avec \(g = f\). Par la <strong>Prop. 6</strong>, \(f\) est bijective de réciproque \(f^{-1} = f\). \(\square\) <em>(On dit que \(f\) est une <strong>involution</strong>.)</em></p>
+</details>
+<h3 id="b-4-composition-qui-porte-l-injectivite-td2-n20">B.4 Composition : qui porte l'injectivité ? <strong>[TD2 n°20]</strong></h3>
+<p>Soient \(f : E\to F\), \(g : F \to G\). (a) Si \(g\circ f\) est injective et \(f\) est surjective, montrer que \(g\) est injective. (b) Si \(g\circ f\) est surjective et \(g\) est injective, montrer que \(f\) est surjective.</p>
+<details><summary>Correction</summary>
+<p><strong>(a)</strong> Soient \(y, y' \in F\) tels que \(g(y) = g(y')\). Comme \(f\) est surjective, il existe \(x, x' \in E\) avec \(f(x) = y\) et \(f(x') = y'\). Alors \(g(f(x)) = g(f(x'))\), c'est-à-dire \((g\circ f)(x) = (g\circ f)(x')\). Comme \(g\circ f\) est injective, \(x = x'\), donc \(y = f(x) = f(x') = y'\). Donc \(g\) est injective. \(\square\)</p>
+<p><strong>(b)</strong> Soit \(y \in F\). Alors \(g(y) \in G\). Comme \(g \circ f\) est surjective, il existe \(x \in E\) tel que \(g(f(x)) = g(y)\). Comme \(g\) est injective, \(f(x) = y\). Donc \(y\) a un antécédent par \(f\) : \(f\) est surjective. \(\square\)</p>
+<p><em>Remarque : sans l'hypothèse supplémentaire, on a seulement « \(g \circ f\) injective \(\Rightarrow\) \(f\) injective » et « \(g \circ f\) surjective \(\Rightarrow\) \(g\) surjective ».</em></p>
+</details>
+<h3 id="b-5-une-bijection-de-dans-td2-n22">B.5 Une bijection de \(\mathbb{N}^2\) dans \(\mathbb{N}\) <strong>[TD2 n°22]</strong></h3>
+<p>Montrer que \(\pi : \mathbb{N}^2 \to \mathbb{N}\), \(\pi(m,n) = \dfrac{(m+n)(m+n+1)}{2} + n\) est bijective.</p>
+<details><summary>Correction</summary>
+<p><strong>Idée géométrique.</strong> On numérote les points de \(\mathbb{N}^2\) <strong>diagonale par diagonale</strong> : la diagonale \(s = m + n\) contient les \(s+1\) points \((s,0), (s-1,1), \dots, (0,s)\). Le nombre de points sur les diagonales \(0, \dots, s-1\) est \(1 + 2 + \dots + s = T(s) = \frac{s(s+1)}{2}\). Donc \(\pi(m,n) = T(s) + n\) avec \(0 \le n \le s\).</p>
+<p><strong>Preuve.</strong> Posons \(T(s) = \frac{s(s+1)}{2}\) ; \(T\) est <strong>strictement croissante</strong> sur \(\mathbb{N}\), \(T(0) = 0\), et \(T(s+1) = T(s) + s + 1\).</p>
+<p><em>Surjectivité.</em> Soit \(N \in \mathbb{N}\). L'ensemble \(\{s \in \mathbb{N} \mid T(s) \le N\}\) est non vide (contient \(0\)) et majoré (car \(T(s) \ge s\)), donc a un plus grand élément \(s\) ; alors \(T(s) \le N &lt; T(s+1) = T(s) + s + 1\). Posons \(n = N - T(s) \in \{0, \dots, s\}\) et \(m = s - n \in \mathbb{N}\). Alors \(m + n = s\) et \(\pi(m,n) = T(s) + n = N\).</p>
+<p><em>Injectivité.</em> Supposons \(\pi(m,n) = \pi(m',n')\). Notons \(s = m+n\), \(s' = m'+n'\) ; alors \(T(s) + n = T(s')+n'\) avec \(0 \le n \le s\) et \(0 \le n' \le s'\). Si par exemple \(s &lt; s'\), alors \(\pi(m,n) \le T(s) + s &lt; T(s+1) \le T(s') \le \pi(m',n')\), contradiction. Donc \(s = s'\), d'où \(n = n'\) puis \(m = m'\). \(\square\)</p>
+<p><em>Application : c'est la « bijection de Cantor », preuve que \(\mathbb{N}^2\) est dénombrable.</em></p>
+</details>
+<hr />
+<h2 id="categorie-c-images-directes-et-reciproques">Catégorie C : Images directes et réciproques</h2>
+<h3 id="c-1-calculs-d-images-td2-n23-et-n25">C.1 Calculs d'images <strong>[TD2 n°23 et n°25]</strong></h3>
+<p>(1) Soient \(f : n \mapsto 2n+1\) et \(g : n \mapsto 2n\) de \(\mathbb{N}\) dans \(\mathbb{N}\). \(f,g\) injectives ? surjectives ? Donner \(f(\mathbb{N})\), \(f^{-1}(\mathbb{N})\), \(f(I)\), \(f^{-1}(I)\), \(f(P)\), \(f^{-1}(P)\) (\(I\) = impairs, \(P\) = pairs). Comparer \(\operatorname{card} I\) et \(\operatorname{card}\mathbb{N}\).
+(2) Pour \(\sin : \mathbb{R}\to\mathbb{R}\), donner l'image directe de \(\mathbb{R}\), \([-\frac\pi2,\frac\pi2]\), \([0,\frac\pi2]\), \([0,\pi]\) et l'image réciproque de \(\mathbb{R}\), \([-3,-2]\), \([-1,1]\), \([0,1]\).</p>
+<details><summary>Correction</summary>
+<p><strong>(1)</strong> \(f\) et \(g\) sont <strong>injectives</strong> (si \(2n+1 = 2n'+1\) alors \(n = n'\), idem pour \(g\)) et <strong>non surjectives</strong> (\(0\) n'a pas d'antécédent par \(f\) car \(2n+1 \ge 1\) ; \(1\) n'a pas d'antécédent par \(g\) car \(2n\) est pair).</p>
+<ul>
+<li>\(f(\mathbb{N}) = \{2n+1\} = I\) (les impairs).</li>
+<li>\(f^{-1}(\mathbb{N}) = \{n \in \mathbb{N} \mid 2n+1 \in \mathbb{N}\} = \mathbb{N}\).</li>
+<li>\(f(I)\) : \(n = 2k+1\) donne \(f(n) = 4k+3\) : \(f(I) = \{4k+3 \mid k \in \mathbb{N}\}\).</li>
+<li>\(f^{-1}(I) = \{n \mid 2n+1 \text{ impair}\} = \mathbb{N}\) (toujours).</li>
+<li>\(f(P)\) : \(n = 2k\) donne \(4k+1\) : \(f(P) = \{4k+1 \mid k \in \mathbb{N}\}\).</li>
+<li>\(f^{-1}(P) = \emptyset\) (\(2n+1\) n'est jamais pair).</li>
+<li><strong>Cardinal</strong> : \(f\) réalise une <strong>bijection</strong> \(\mathbb{N} \to I\) (injective, et surjective sur son image \(f(\mathbb{N}) = I\)), donc \(I \sim \mathbb{N}\) : \(\operatorname{card} I = \operatorname{card}\mathbb{N}\), <strong>bien que \(I \subsetneq \mathbb{N}\)</strong> (phénomène propre aux ensembles infinis).</li>
+</ul>
+<p><strong>(2)</strong></p>
+<ul>
+<li>\(\sin(\mathbb{R}) = [-1,1]\) ; \(\sin([-\frac\pi2,\frac\pi2]) = [-1,1]\) ; \(\sin([0,\frac\pi2]) = [0,1]\) ; \(\sin([0,\pi]) = [0,1]\).</li>
+<li>\(\sin^{-1}(\mathbb{R}) = \mathbb{R}\) ; \(\sin^{-1}([-3,-2]) = \emptyset\) (le sinus est \(\ge -1\)) ; \(\sin^{-1}([-1,1]) = \mathbb{R}\) ; \(\sin^{-1}([0,1]) = \bigcup_{k\in\mathbb{Z}} [2k\pi, (2k+1)\pi]\).</li>
+</ul>
+</details>
+<h3 id="c-2-unions-et-intersections-td2-n26">C.2 Unions et intersections <strong>[TD2 n°26]</strong></h3>
+<p>Soit \(f : E \to F\). (a) Montrer \(f(A_1\cup A_2) = f(A_1)\cup f(A_2)\) et \(f(A_1\cap A_2) \subset f(A_1)\cap f(A_2)\). (b) Montrer \(f^{-1}(B_1\cup B_2) = f^{-1}(B_1)\cup f^{-1}(B_2)\) et \(f^{-1}(B_1 \cap B_2) = f^{-1}(B_1)\cap f^{-1}(B_2)\). (c) Montrer \(f^{-1}(F\setminus B) = E \setminus f^{-1}(B)\). (d) Donner un exemple où l'inclusion de (a) est stricte.</p>
+<details><summary>Correction</summary>
+<p><strong>(a)</strong> Soit \(y \in F\).
+\(y \in f(A_1 \cup A_2) \iff \exists x \in A_1\cup A_2,\ f(x) = y \iff (\exists x \in A_1, f(x) = y) \text{ ou } (\exists x \in A_2, f(x) = y) \iff y \in f(A_1)\cup f(A_2)\). (On a utilisé que \(\exists\) distribue sur « ou ».)
+<em>Inclusion pour \(\cap\)</em> : soit \(y \in f(A_1 \cap A_2)\) : il existe \(x \in A_1 \cap A_2\) avec \(f(x) = y\). Alors \(x \in A_1\) donc \(y \in f(A_1)\), et \(x \in A_2\) donc \(y \in f(A_2)\). Donc \(y \in f(A_1)\cap f(A_2)\). \(\square\)</p>
+<p><strong>(b)</strong> Soit \(x \in E\). \(x \in f^{-1}(B_1 \cup B_2) \iff f(x) \in B_1\cup B_2 \iff f(x)\in B_1 \text{ ou } f(x) \in B_2 \iff x \in f^{-1}(B_1)\cup f^{-1}(B_2)\). Même chose avec « et » pour l'intersection (c'est une <strong>égalité</strong>, plus fort que l'inclusion demandée dans le TD). \(\square\)</p>
+<p><strong>(c)</strong> \(x \in f^{-1}(F\setminus B) \iff f(x) \in F\setminus B \iff f(x) \notin B \iff x \notin f^{-1}(B) \iff x \in E\setminus f^{-1}(B)\). \(\square\)</p>
+<p><strong>(d)</strong> \(f : \mathbb{R}\to\mathbb{R}\) constante égale à \(0\), \(A_1 = \{1\}\), \(A_2 = \{2\}\). Alors \(A_1 \cap A_2 = \emptyset\) donc \(f(A_1\cap A_2) = \emptyset\), mais \(f(A_1) \cap f(A_2) = \{0\}\cap\{0\} = \{0\} \ne \emptyset\).</p>
+</details>
+<h3 id="c-3-caracterisations-par-les-images-td2-n27-1-et-2">C.3 Caractérisations par les images <strong>[TD2 n°27 (1) et (2)]</strong></h3>
+<p>(1) \(f\) surjective \(\iff\) \(\forall B \subset F,\ f(f^{-1}(B)) = B\). (2) \(f\) injective \(\iff\) \(\forall A \subset E,\ f^{-1}(f(A)) = A\).</p>
+<details><summary>Correction</summary>
+<p><em>Fait préalable (toujours vrai) :</em> \(f(f^{-1}(B)) \subset B\) (si \(y = f(x)\) avec \(f(x) \in B\) alors \(y \in B\)) et \(A \subset f^{-1}(f(A))\) (si \(x \in A\) alors \(f(x) \in f(A)\)).</p>
+<p><strong>(1)</strong> (\(\Rightarrow\)) Supposons \(f\) surjective. Soit \(B \subset F\). L'inclusion \(\subset\) est toujours vraie. Réciproquement, soit \(y \in B\) ; par surjectivité, il existe \(x \in E\) avec \(f(x) = y \in B\), donc \(x \in f^{-1}(B)\) et \(y = f(x) \in f(f^{-1}(B))\). D'où l'égalité.
+(\(\Leftarrow\)) Supposons \(f(f^{-1}(B)) = B\) pour tout \(B\). Soit \(y \in F\). Prenons \(B = \{y\}\) : \(f(f^{-1}(\{y\})) = \{y\}\) est <strong>non vide</strong>, donc \(f^{-1}(\{y\})\) est non vide : il existe \(x\) avec \(f(x) = y\). Donc \(f\) est surjective. \(\square\)</p>
+<p><strong>(2)</strong> (\(\Rightarrow\)) Supposons \(f\) injective. Soit \(A \subset E\). L'inclusion \(A \subset f^{-1}(f(A))\) est toujours vraie. Réciproquement, soit \(x \in f^{-1}(f(A))\) : \(f(x) \in f(A)\), donc \(f(x) = f(a)\) avec \(a \in A\) ; par injectivité \(x = a \in A\).
+(\(\Leftarrow\)) Supposons \(f^{-1}(f(A)) = A\) pour tout \(A\). Soient \(x, x'\) avec \(f(x) = f(x')\). Prenons \(A = \{x\}\) : \(x' \in f^{-1}(\{f(x)\}) = f^{-1}(f(A)) = A = \{x\}\), donc \(x' = x\). Donc \(f\) est injective. \(\square\)</p>
+</details>
+<hr />
+<h2 id="categorie-d-denombrabilite-cardinal-et-combinatoire">Catégorie D : Dénombrabilité, cardinal et combinatoire</h2>
+<h3 id="d-1-ensembles-denombrables-td2-n28">D.1 Ensembles dénombrables <strong>[TD2 n°28]</strong></h3>
+<p>Montrer que sont dénombrables : (1) \(2\mathbb{N}\) ; (2) \(\mathbb{Z}\) ; (3) \(\mathbb{N}^2\) ; (4) \(\mathbb{Q}\).</p>
+<details><summary>Correction</summary>
+<p><strong>(1)</strong> \(n \mapsto 2n\) est une bijection de \(\mathbb{N}\) sur \(2\mathbb{N}\) (injective ; surjective par définition de \(2\mathbb{N}\)).</p>
+<p><strong>(2)</strong> Définissons \(\varphi : \mathbb{N}\to\mathbb{Z}\) par \(\varphi(n) = \frac n2\) si \(n\) pair et \(\varphi(n) = -\frac{n+1}{2}\) si \(n\) impair (suite \(0,-1,1,-2,2,\dots\)). <em>Injective</em> : les pairs donnent des entiers \(\ge 0\) distincts, les impairs des entiers \(&lt; 0\) distincts, et aucun recoupement. <em>Surjective</em> : \(k \ge 0\) vaut \(\varphi(2k)\) ; \(k &lt; 0\) vaut \(\varphi(-2k-1)\). Donc \(\mathbb{Z}\sim\mathbb{N}\).</p>
+<p><strong>(3)</strong> La bijection \(\pi : \mathbb{N}^2\to\mathbb{N}\) de l'exercice B.5 convient. (Autre bijection : \((a,b) \mapsto 2^a(2b+1) - 1\) ; l'unicité de l'écriture \(m = 2^a(2b+1)\) pour \(m \ge 1\) la rend bijective.)</p>
+<p><strong>(4)</strong> Tout rationnel s'écrit de façon <strong>unique</strong> \(\frac pq\) avec \(p \in \mathbb{Z}\), \(q \in \mathbb{N}^*\) premiers entre eux. L'application \(\mathbb{Q}\to\mathbb{Z}\times\mathbb{N}^*\), \(\frac pq \mapsto (p,q)\) est <strong>injective</strong>. Par (2) et (3) (et les équipotences), \(\mathbb{Z}\times\mathbb{N}^*\) s'injecte dans \(\mathbb{N}\). Par composition, il existe une injection \(\iota : \mathbb{Q} \to \mathbb{N}\), donc \(\mathbb{Q}\) est équipotent à \(\iota(\mathbb{Q}) \subset \mathbb{N}\), qui est dénombrable (Prop. 10). Comme \(\mathbb{Q}\) est infini (\(\mathbb{N}\subset \mathbb{Q}\)), il est équipotent à \(\mathbb{N}\). \(\square\)</p>
+</details>
+<h3 id="d-2-cantor-et-suites-de-0-et-1-td2-n30">D.2 Cantor et suites de 0 et 1 <strong>[TD2 n°30]</strong></h3>
+<p>L'ensemble \(\{0,1\}^{\mathbb{N}}\) des suites infinies de \(0\) et de \(1\) est-il dénombrable ?</p>
+<details><summary>Correction</summary>
+<p><strong>Non.</strong> Construisons une <strong>bijection</strong> \(\Phi : \mathcal{P}(\mathbb{N}) \to \{0,1\}^{\mathbb{N}}\) : à \(A \subset \mathbb{N}\) on associe sa <strong>suite indicatrice</strong> \(u_n = 1\) si \(n \in A\), \(u_n = 0\) sinon. Elle est injective (deux parties distinctes ont des suites distinctes) et surjective (à une suite \(u\) on associe \(A = \{n \mid u_n = 1\}\)).
+Si \(\{0,1\}^{\mathbb{N}}\) était dénombrable (donc équipotent à \(\mathbb{N}\), car infini), alors \(\mathcal{P}(\mathbb{N}) \sim \mathbb{N}\), et il existerait une surjection \(\mathbb{N}\to\mathcal{P}(\mathbb{N})\), ce qui <strong>contredit le théorème de Cantor</strong>. Donc \(\{0,1\}^{\mathbb{N}}\) n'est pas dénombrable. \(\square\)</p>
+</details>
+<h3 id="d-3-symetrie-et-pascal-td2-n29-et-n33">D.3 Symétrie et Pascal <strong>[TD2 n°29 et n°33]</strong></h3>
+<p>Pour \(n \ge 1\) et \(0\le k\le n\) : (a) \(\binom nk = \binom n{n-k}\). (b) \(\binom nk = \binom{n-1}{k-1} + \binom{n-1}{k}\) pour \(1 \le k \le n-1\).</p>
+<details><summary>Correction</summary>
+<p><strong>(a) Par la formule :</strong> \(\binom{n}{n-k} = \frac{n!}{(n-k)!\,(n-(n-k))!} = \frac{n!}{(n-k)!\,k!} = \binom nk\).
+<strong>Par bijection (plus conceptuel) :</strong> \(A \mapsto E\setminus A\) est une bijection de l'ensemble des parties à \(k\) éléments de \(E\) sur celui des parties à \(n-k\) éléments (elle est sa propre réciproque). Donc leurs cardinaux sont égaux. \(\square\)</p>
+<p><strong>(b)</strong> Soit \(E = \{1,\dots,n\}\). Les parties à \(k\) éléments de \(E\) se répartissent en <strong>deux paquets disjoints</strong> :</p>
+<ul>
+<li>celles qui <strong>contiennent</strong> \(n\) : on choisit les \(k-1\) autres éléments dans \(\{1,\dots,n-1\}\) : \(\binom{n-1}{k-1}\) ;</li>
+<li>celles qui <strong>ne contiennent pas</strong> \(n\) : on choisit \(k\) éléments dans \(\{1,\dots,n-1\}\) : \(\binom{n-1}{k}\).
+Par additivité du cardinal sur une union disjointe, \(\binom nk = \binom{n-1}{k-1} + \binom{n-1}{k}\). \(\square\)</li>
+</ul>
+</details>
+<h3 id="d-4-binome-de-newton-par-recurrence-td2-n31">D.4 Binôme de Newton par récurrence <strong>[TD2 n°31]</strong></h3>
+<p>Montrer : \(\forall n \in \mathbb{N},\ (a+b)^n = \sum_{k=0}^{n}\binom nk a^kb^{n-k}\).</p>
+<details><summary>Correction</summary>
+<p>Notons \(P(n)\) cette égalité.
+<em>Initialisation.</em> \(n = 0\) : \((a+b)^0 = 1\) et la somme vaut \(\binom00a^0b^0 = 1\). ✓
+<em>Hérédité.</em> Soit \(n \in \mathbb{N}\) ; supposons \(P(n)\). Alors
+\[(a+b)^{n+1} = (a+b)\sum_{k=0}^{n}\binom nk a^kb^{n-k} = \sum_{k=0}^{n}\binom nk a^{k+1}b^{n-k} + \sum_{k=0}^{n}\binom nk a^kb^{n+1-k}.\]
+Dans la première somme on pose \(j = k+1\) : \(\sum_{j=1}^{n+1}\binom n{j-1}a^jb^{n+1-j}\). On obtient, en regroupant (avec \(\binom{n}{-1} = \binom{n}{n+1} = 0\)) :
+\[(a+b)^{n+1} = \sum_{j=0}^{n+1}\left[\binom n{j-1} + \binom nj\right]a^jb^{n+1-j} = \sum_{j=0}^{n+1}\binom{n+1}{j}a^jb^{n+1-j}\]
+par la formule de Pascal. C'est \(P(n+1)\). <em>Conclusion.</em> \(P(n)\) est vraie pour tout \(n\). \(\square\)</p>
+</details>
+<h3 id="d-5-vandermonde-par-double-comptage-td2-n32">D.5 Vandermonde par double comptage <strong>[TD2 n°32]</strong></h3>
+<p>Soient \(E, F\) disjoints de cardinaux \(m\) et \(n\). Montrer \(\sum_{k=0}^{r}\binom mk\binom n{r-k} = \binom{m+n}{r}\).</p>
+<details><summary>Correction</summary>
+<p>Comptons de deux façons le nombre de <strong>parties à \(r\) éléments de \(E \cup F\)</strong> (ensemble à \(m+n\) éléments, car \(E \cap F = \emptyset\)).</p>
+<ul>
+<li><strong>Façon 1 (directe).</strong> Il y en a \(\binom{m+n}{r}\).</li>
+<li><strong>Façon 2 (classement selon \(k\)).</strong> Une partie \(S\) à \(r\) éléments contient \(k\) éléments de \(E\) et \(r-k\) éléments de \(F\), avec \(0 \le k \le r\). Pour \(k\) fixé, on choisit \(k\) éléments dans \(E\) (\(\binom mk\) façons) et \(r-k\) éléments dans \(F\) (\(\binom n{r-k}\) façons) : \(\binom mk\binom n{r-k}\) parties. Les classes pour des \(k\) différents sont disjointes, donc le total vaut \(\sum_{k=0}^r\binom mk\binom n{r-k}\).
+Les deux comptages décrivent le <strong>même</strong> ensemble : égalité. \(\square\)</li>
+</ul>
+<p><em>Réflexe : prouver une identité de coefficients binomiaux = compter la même chose de deux manières.</em></p>
+</details>
+<hr />
+<h3 id="auto-evaluation-finale">Auto-évaluation finale</h3>
+<ul>
+<li>[ ] Je sais <strong>prouver ET réfuter</strong> chacune des 4 propriétés d'une relation.</li>
+<li>[ ] Je sais prouver qu'une application est <strong>injective / surjective / bijective</strong> (en résolvant \(f(x) = y\)).</li>
+<li>[ ] Je sais donner un <strong>contre-exemple</strong> quand une application n'est pas injective ou surjective.</li>
+<li>[ ] Je sais calculer <strong>images directes et réciproques</strong> et démontrer leurs propriétés avec « Soit \(x\)… ».</li>
+<li>[ ] Je connais la preuve du <strong>théorème de Cantor</strong>.</li>
+<li>[ ] Je sais prouver une identité de <strong>dénombrement</strong> par bijection ou double comptage.</li>
+</ul>
+
+<div class="nav-links"><span><a href="fiche_ch4_relations_applications.html">← Fiche ch. 4 — Relations et applications</a></span><span><a href="fiche_ch5_construction_nombres.html">Fiche ch. 5 — Construction des nombres →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="revision.js"></script>
+</body>
+</html>

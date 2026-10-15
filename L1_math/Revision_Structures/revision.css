@@ -1,0 +1,47 @@
+/* Pages de révision (fiches / exercices) — complète ../style.css */
+
+.page blockquote {
+  background: var(--info-bg); border-left: 6px solid var(--info-border);
+  border-radius: 8px; padding: 4px 18px; margin: 1.2em 0; color: var(--info-text);
+}
+.page blockquote p { margin: .5em 0; color: inherit; }
+.page blockquote strong { color: var(--info-border); }
+
+.page hr { border: 0; border-top: 2px solid var(--border); margin: 2.2em 0; }
+.page li { margin: .3em 0; }
+.page h4 { color: var(--primary); margin-top: 1.4em; }
+
+.tablewrap { overflow-x: auto; margin: 1.2em 0; }
+.tablewrap table { margin: 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+
+.fc-note { color: var(--muted); font-size: .92rem; }
+
+/* sommaire de la page */
+.toc { margin: 1.2em 0; }
+.toc details { background: var(--card); }
+.toc ul { margin: .3em 0; padding-left: 1.2em; }
+.toc > details > ul { padding-left: 1em; }
+.toc li { margin: .15em 0; font-size: .95em; }
+.toc a { color: var(--primary); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+/* bouton tout déplier / replier */
+.rev-tools { display: flex; gap: 10px; flex-wrap: wrap; margin: 1em 0; }
+.rev-tools button {
+  border: 2px solid var(--border); background: var(--card); color: var(--primary);
+  border-radius: 10px; padding: 8px 16px; font: inherit; font-weight: 700; cursor: pointer;
+}
+.rev-tools button:hover { border-color: var(--primary); }
+
+/* corrections : bien visibles quand elles sont ouvertes */
+details > summary { list-style-position: inside; }
+details[open] { border-color: var(--accent); }
+
+/* retrouver la bonne position quand on arrive par un lien #ancre sous la barre du haut */
+h2[id], h3[id] { scroll-margin-top: 16px; }
+
+.katex-wide { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: bottom; }
+
+/* le texte caché de KaTeX (accessibilité) est positionné en absolu : on l enferme dans le cadre défilant */
+.tablewrap, .katex-display, .katex-wide { position: relative; }

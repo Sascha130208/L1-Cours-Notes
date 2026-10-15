@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 2 : Logique, quantificateurs, raisonnements — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Fiche ch. 2 — Logique</span></div>
+<div class="page">
+<span class="chip">📘 Fiche de cours</span><span class="chip">Structures fondamentales</span>
+<h1>Chapitre 2 : Logique, quantificateurs, raisonnements</h1>
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul><li><a href="#categorie-a-logique-propositionnelle">Catégorie A : Logique propositionnelle</a><ul><li><a href="#a1-assertion-proposition">A1. Assertion (proposition)</a></li><li><a href="#a2-les-connecteurs-de-base-non-et-ou">A2. Les connecteurs de base : NON, ET, OU</a></li><li><a href="#a3-l-implication">A3. L'implication \(P \Rightarrow Q\)</a></li><li><a href="#a4-l-equivalence">A4. L'équivalence \(P \Leftrightarrow Q\)</a></li><li><a href="#a5-les-equivalences-logiques-a-connaitre-preuves-par-calcul-ou-table-de-verite">A5. Les équivalences logiques à connaître (preuves par calcul ou table de vérité)</a></li></ul></li><li><a href="#categorie-b-quantificateurs">Catégorie B : Quantificateurs</a><ul><li><a href="#b1-predicat">B1. Prédicat \(P(x)\)</a></li><li><a href="#b2-les-deux-quantificateurs">B2. Les deux quantificateurs</a></li><li><a href="#b3-negation-des-quantificateurs-a-connaitre-parfaitement">B3. Négation des quantificateurs <em>(à connaître PARFAITEMENT)</em></a></li><li><a href="#b4-l-ordre-des-quantificateurs-piege-n1-des-l1">B4. L'ordre des quantificateurs <em>(piège n°1 des L1)</em></a></li><li><a href="#b5-lettres-muettes-et-lettres-affectees">B5. Lettres muettes et lettres affectées</a></li><li><a href="#b6-quantificateurs-et-connecteurs-distributivite-ce-qui-marche-ce-qui-ne-marche-pas">B6. Quantificateurs et connecteurs (distributivité : ce qui marche, ce qui ne marche pas)</a></li><li><a href="#b7-le-cas-de-l-ensemble-vide">B7. Le cas de l'ensemble vide</a></li><li><a href="#b8-il-existe-un-et-un-seul">B8. \(\exists !\) (« il existe un et un seul »)</a></li><li><a href="#b9-les-3-redactions-types-du-cours">B9. Les 3 rédactions types du cours</a></li></ul></li><li><a href="#categorie-c-raisonnements-classiques">Catégorie C : Raisonnements classiques</a><ul><li><a href="#c1-raisonnement-direct">C1. Raisonnement direct</a></li><li><a href="#c2-raisonnement-par-contraposee">C2. Raisonnement par contraposée</a></li><li><a href="#c3-raisonnement-par-l-absurde">C3. Raisonnement par l'absurde</a></li><li><a href="#c4-raisonnement-par-equivalence">C4. Raisonnement par équivalence</a></li><li><a href="#c5-raisonnement-par-contre-exemple">C5. Raisonnement par contre-exemple</a></li><li><a href="#c6-disjonction-de-cas">C6. Disjonction de cas</a></li><li><a href="#c7-raisonnement-par-recurrence">C7. Raisonnement par récurrence</a></li><li><a href="#recapitulatif-quelle-preuve-choisir">Récapitulatif : quelle preuve choisir ?</a></li></ul></li></ul></details></nav>
+<blockquote>
+<p>Fiches par notion. Chaque fiche : <strong>Définition</strong> → <strong>Intuition</strong> → <strong>Comment prouver / utiliser</strong> → <strong>Pièges</strong> → <strong>Exemple</strong>.
+Liens : TD1 (fiche n°1 Logique) · <a href="exos_ch2_logique.html">Exercices corrigés</a> · <a href="../Flashcards/structures_fondamentales.html">Flashcards</a></p>
+</blockquote>
+<hr />
+<h2 id="categorie-a-logique-propositionnelle">Catégorie A : Logique propositionnelle</h2>
+<h3 id="a1-assertion-proposition">A1. Assertion (proposition)</h3>
+<ul>
+<li><strong>Définition.</strong> Un énoncé mathématique <strong>susceptible d'être vrai ou faux</strong> (logique bivalente : exactement une des deux valeurs).</li>
+<li><strong>Intuition.</strong> Une assertion « parle de vérité ». Un souhait, un ordre, une question ne sont <strong>pas</strong> des assertions.</li>
+<li><strong>Exemples.</strong>
+<ul>
+<li>« \(2+2=4\) » : assertion (vraie). « \(0=1\) » : assertion (fausse).</li>
+<li>« Des étudiants si charmants ! » : <strong>pas</strong> une assertion (exclamation).</li>
+<li>« Soit \(n\) un entier pair. » : <strong>pas</strong> une assertion (c'est une consigne qui <em>fixe</em> un objet).</li>
+<li>« L'entier \(n\) est un diviseur de 5. » : <strong>pas</strong> une assertion tant que \(n\) n'est pas fixé (c'est un <strong>prédicat</strong> \(P(n)\)).</li>
+</ul>
+</li>
+<li><strong>Piège.</strong> Une assertion peut être <strong>fausse</strong> et rester une assertion. « Les poules ont des dents » en est une.</li>
+</ul>
+<h3 id="a2-les-connecteurs-de-base-non-et-ou">A2. Les connecteurs de base : NON, ET, OU</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>\(P\)</th>
+<th>\(Q\)</th>
+<th>\(\neg P\)</th>
+<th>\(P \wedge Q\)</th>
+<th>\(P \vee Q\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V</td>
+<td>V</td>
+<td>F</td>
+<td>V</td>
+<td>V</td>
+</tr>
+<tr>
+<td>V</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>V</td>
+</tr>
+<tr>
+<td>F</td>
+<td>V</td>
+<td>V</td>
+<td>F</td>
+<td>V</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>V</td>
+<td>F</td>
+<td>F</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Négation</strong> \(\neg P\) (« non \(P\) ») : change la valeur de vérité.</li>
+<li><strong>Conjonction</strong> \(P \wedge Q\) : vraie <strong>seulement</strong> si les deux sont vraies.</li>
+<li><strong>Disjonction</strong> \(P \vee Q\) : vraie dès qu'<strong>au moins une</strong> est vraie. <strong>Le « ou » mathématique est inclusif</strong> (contrairement au « fromage ou dessert »).</li>
+<li><strong>Deux faits-clés</strong> : \(P \vee \neg P\) est <strong>toujours vraie</strong> (tiers exclu) ; \(P \wedge \neg P\) est <strong>toujours fausse</strong>.</li>
+<li><strong>Piège.</strong> « \(x \le 1\) ou \(x \ge 1\) » est vrai pour <strong>tout</strong> réel, et « \(x=1\) » rend les deux vraies à la fois : c'est permis.</li>
+</ul>
+<h3 id="a3-l-implication">A3. L'implication \(P \Rightarrow Q\)</h3>
+<ul>
+<li><strong>Définition (cours).</strong> \(P \Rightarrow Q\) est, <strong>par définition</strong>, l'expression \(Q \vee \neg P\).</li>
+</ul>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>\(P\)</th>
+<th>\(Q\)</th>
+<th>\(P \Rightarrow Q\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V</td>
+<td>V</td>
+<td>V</td>
+</tr>
+<tr>
+<td>V</td>
+<td>F</td>
+<td><strong>F</strong></td>
+</tr>
+<tr>
+<td>F</td>
+<td>V</td>
+<td>V</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>V</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Intuition (la plus importante du chapitre).</strong> L'implication n'est fausse que dans <strong>un seul</strong> cas : on part du vrai et on arrive au faux. <strong>Promesse :</strong> « <em>s'il pleut, je prends mon parapluie</em> ». La promesse n'est brisée que s'il pleut et que je n'ai pas de parapluie. S'il ne pleut pas, la promesse n'est <strong>jamais</strong> brisée, quoi que je fasse.</li>
+<li><strong>Conséquence.</strong> Si \(P\) est faux, \(P \Rightarrow Q\) est <strong>vrai</strong> (on dit « vrai à vide »). Exemple : \((0=1) \Rightarrow (2&lt;5)\) est vraie.</li>
+<li><strong>Vocabulaire.</strong>
+<ul>
+<li><strong>Réciproque</strong> de \(P \Rightarrow Q\) : \(Q \Rightarrow P\). (<strong>Pas</strong> équivalente en général.)</li>
+<li><strong>Contraposée</strong> : \(\neg Q \Rightarrow \neg P\). (<strong>Équivalente</strong> à l'originale.)</li>
+<li>\(P\) <strong>suffisant</strong> pour \(Q\) : \(P \Rightarrow Q\). \(Q\) <strong>nécessaire</strong> pour \(P\) : même chose.</li>
+</ul>
+</li>
+<li><strong>Prouver</strong> \(P \Rightarrow Q\) : « Supposons \(P\). » puis on déduit \(Q\).</li>
+<li><strong>Piège n°1 : \(\Rightarrow\) n'est PAS « donc ».</strong>
+<ul>
+<li>\((1=2) \Rightarrow (6&gt;7)\) : vraie (et inutile).</li>
+<li>« \(1=2\) donc \(6&gt;7\) » : affirme <em>deux fausses</em> choses + une causalité.</li>
+<li>\(f\) dérivable \(\Rightarrow\) \(f\) continue <strong>n'affirme</strong> ni la dérivabilité ni la continuité.</li>
+</ul>
+</li>
+<li><strong>Piège n°2.</strong> On confond \(P \Rightarrow Q\) et \(Q \Rightarrow P\). « S'il pleut, la rue est mouillée » ne dit <strong>rien</strong> sur « la rue est mouillée donc il pleut ».</li>
+</ul>
+<h3 id="a4-l-equivalence">A4. L'équivalence \(P \Leftrightarrow Q\)</h3>
+<ul>
+<li><strong>Définition.</strong> \(P \Leftrightarrow Q\) représente \((P \Rightarrow Q) \wedge (Q \Rightarrow P)\).</li>
+<li><strong>Intuition.</strong> \(P\) et \(Q\) ont <strong>toujours la même valeur de vérité</strong> : toutes deux vraies, ou toutes deux fausses.</li>
+<li><strong>Prouver</strong> : on prouve <strong>deux</strong> implications : « Montrons \(P \Rightarrow Q\). Réciproquement, montrons \(Q \Rightarrow P\). »</li>
+<li><strong>Utiliser</strong> : pour savoir si \(P\) est vraie, on peut étudier \(Q\) à la place (si elle est plus simple).</li>
+<li><strong>Piège.</strong> « \((1=2) \Leftrightarrow (2=4)\) » est <strong>vraie</strong> (les deux sont fausses), mais « \(1=2\), c'est-à-dire \(2=4\) » est une phrase <strong>fausse</strong>.</li>
+</ul>
+<h3 id="a5-les-equivalences-logiques-a-connaitre-preuves-par-calcul-ou-table-de-verite">A5. Les équivalences logiques à connaître (preuves par calcul ou table de vérité)</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Nom</th>
+<th>Énoncé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Double négation</td>
+<td>\(P \Leftrightarrow \neg(\neg P)\)</td>
+</tr>
+<tr>
+<td><strong>De Morgan (et)</strong></td>
+<td>\(\neg(P \wedge Q) \Leftrightarrow (\neg P) \vee (\neg Q)\)</td>
+</tr>
+<tr>
+<td><strong>De Morgan (ou)</strong></td>
+<td>\(\neg(P \vee Q) \Leftrightarrow (\neg P) \wedge (\neg Q)\)</td>
+</tr>
+<tr>
+<td><strong>Négation d'une implication</strong></td>
+<td>\(\neg(P \Rightarrow Q) \Leftrightarrow (P \wedge \neg Q)\)</td>
+</tr>
+<tr>
+<td><strong>Contraposition</strong></td>
+<td>\((P \Rightarrow Q) \Leftrightarrow (\neg Q \Rightarrow \neg P)\)</td>
+</tr>
+<tr>
+<td>Contraposée d'équivalence</td>
+<td>\((P \Leftrightarrow Q) \Leftrightarrow (\neg P \Leftrightarrow \neg Q)\)</td>
+</tr>
+<tr>
+<td><strong>Absurde</strong></td>
+<td>\(\big((\neg P) \Rightarrow (Q \wedge \neg Q)\big) \Rightarrow P\)</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Preuves types (à savoir refaire)</h4>
+<p><strong>Contraposition, par calcul.</strong> On utilise la définition \(A \Rightarrow B := B \vee \neg A\).</p>
+<ul>
+<li>\(P \Rightarrow Q\) s'écrit \(Q \vee \neg P\).</li>
+<li>\(\neg Q \Rightarrow \neg P\) s'écrit \(\neg P \vee \neg(\neg Q)\), c'est-à-dire \(\neg P \vee Q\) (double négation).</li>
+<li>Or \(Q \vee \neg P\) et \(\neg P \vee Q\) sont identiques (commutativité de \(\vee\)). <strong>Donc</strong> équivalentes. \(\square\)</li>
+</ul>
+<p><strong>Négation d'une implication.</strong> \(\neg(P \Rightarrow Q) = \neg(Q \vee \neg P) = (\neg Q) \wedge (\neg\neg P) = P \wedge \neg Q\) (De Morgan puis double négation). \(\square\)</p>
+<p><strong>Justification de l'absurde.</strong> Posons \(R = Q \wedge \neg Q\) (toujours fausse). L'implication \((\neg P) \Rightarrow R\) s'écrit \(R \vee \neg(\neg P) = R \vee P\). Comme \(R\) est toujours fausse, \(R \vee P\) a la valeur de \(P\). Donc \((\neg P \Rightarrow R)\) <strong>équivaut</strong> à \(P\) : si on prouve l'implication, \(P\) est vraie. \(\square\)</p>
+<p><strong>De Morgan (et), par table de vérité.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>\(P\)</th>
+<th>\(Q\)</th>
+<th>\(P \wedge Q\)</th>
+<th>\(\neg(P \wedge Q)\)</th>
+<th>\(\neg P\)</th>
+<th>\(\neg Q\)</th>
+<th>\(\neg P \vee \neg Q\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V</td>
+<td>V</td>
+<td>V</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+</tr>
+<tr>
+<td>V</td>
+<td>F</td>
+<td>F</td>
+<td>V</td>
+<td>F</td>
+<td>V</td>
+<td>V</td>
+</tr>
+<tr>
+<td>F</td>
+<td>V</td>
+<td>F</td>
+<td>V</td>
+<td>V</td>
+<td>F</td>
+<td>V</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F</td>
+<td>F</td>
+<td>V</td>
+<td>V</td>
+<td>V</td>
+<td>V</td>
+</tr>
+</tbody>
+</table></div>
+<p>Les colonnes 4 et 7 sont égales, donc équivalence. \(\square\)</p>
+<hr />
+<h2 id="categorie-b-quantificateurs">Catégorie B : Quantificateurs</h2>
+<h3 id="b1-predicat">B1. Prédicat \(P(x)\)</h3>
+<ul>
+<li><strong>Définition.</strong> Une proposition qui <strong>dépend d'une variable</strong> \(x \in E\) est vue comme une fonction \(P : E \to \{\text{Vrai}, \text{Faux}\}\).</li>
+<li><strong>Exemple.</strong> \(P(x) : x^2 - 4x + 2 &lt; 0\) sur \(\mathbb{R}\). Alors \(P(1)\) = Vrai (\(1-4+2 = -1 &lt; 0\)) et \(P(4)\) = Faux (\(16-16+2 = 2 &gt; 0\)).</li>
+<li><strong>Trois façons d'utiliser \(P\).</strong>
+<ol>
+<li><strong>Supposer</strong> \(P(x_0)\) vraie (ex. pour une récurrence).</li>
+<li><strong>Affirmer</strong> \(P(x_0)\) : « ainsi \(P(x_0)\) est vraie ».</li>
+<li><strong>Quantifier</strong> : \(\forall x\) ou \(\exists x\).</li>
+</ol>
+</li>
+</ul>
+<h3 id="b2-les-deux-quantificateurs">B2. Les deux quantificateurs</h3>
+<ul>
+<li>\(\forall x \in E,\ P(x)\) : « pour tout \(x\) de \(E\), \(P(x)\) est vraie ».</li>
+<li>\(\exists x \in E \mid P(x)\) : « il existe \(x\) dans \(E\) tel que \(P(x)\) ». Le « \(\mid\) » se lit « tel que » (on peut écrire « tq » ou une virgule).</li>
+<li><strong>Convention.</strong> \(\forall x, y \in E\) signifie \(\forall x \in E,\ \forall y \in E\). Idem pour \(\exists\).</li>
+<li><strong>Règle de portée.</strong> Un \(x\) quantifié doit satisfaire <strong>tout ce qui est écrit à sa droite</strong>. Les parenthèses sont <strong>obligatoires</strong> pour lever l'ambiguïté.</li>
+<li><strong>Intuition.</strong> \(\forall\) = « un <em>adversaire</em> choisit \(x\), et je dois gagner pour <strong>n'importe lequel</strong> ». \(\exists\) = « c'est <strong>moi</strong> qui choisis \(x\) ».</li>
+</ul>
+<h3 id="b3-negation-des-quantificateurs-a-connaitre-parfaitement">B3. Négation des quantificateurs <em>(à connaître PARFAITEMENT)</em></h3>
+<p>\[\neg\big(\exists x \in E,\ P(x)\big) \Leftrightarrow \forall x \in E,\ \neg P(x)\]
+\[\neg\big(\forall x \in E,\ P(x)\big) \Leftrightarrow \exists x \in E \mid \neg P(x)\]</p>
+<ul>
+<li><strong>Recette mécanique.</strong> Pour nier une phrase quantifiée : (1) \(\forall \leftrightarrow \exists\) ; (2) on <strong>garde l'ordre</strong> ; (3) on <strong>nie la fin</strong> de la phrase.</li>
+<li><strong>Ce qui se passe avec les connecteurs</strong> (rappel De Morgan + implication) : \(\wedge \leftrightarrow \vee\) ; \(\neg(A \Rightarrow B) = A \wedge \neg B\).</li>
+<li><strong>Exemple complet</strong> (très important pour l'analyse). Convergence de \((u_n)\) vers \(\ell\) :
+\[\forall \varepsilon &gt; 0,\ \exists n_0 \in \mathbb{N},\ \forall n \ge n_0,\ |u_n - \ell| &lt; \varepsilon\]
+Négation : \[\exists \varepsilon &gt; 0,\ \forall n_0 \in \mathbb{N},\ \exists n \ge n_0,\ |u_n - \ell| \ge \varepsilon\]
+(On a nié « \(&lt;\) » en « \(\ge\) ».)</li>
+<li><strong>Piège.</strong> Nier « tous les \(x\) vérifient \(P\) » <strong>n'est pas</strong> « aucun \(x\) ne vérifie \(P\) » mais « <strong>au moins un</strong> \(x\) ne vérifie pas \(P\) ».</li>
+</ul>
+<h3 id="b4-l-ordre-des-quantificateurs-piege-n1-des-l1">B4. L'ordre des quantificateurs <em>(piège n°1 des L1)</em></h3>
+<ul>
+<li><strong>\(\forall x\, \exists y\) n'est PAS \(\exists y\, \forall x\).</strong>
+<ul>
+<li>\(\forall x \in \mathbb{R},\ \exists y \in \mathbb{R},\ y &gt; x\) : <strong>vrai</strong> (prendre \(y = x+1\) ; \(y\) dépend de \(x\)).</li>
+<li>\(\exists y \in \mathbb{R},\ \forall x \in \mathbb{R},\ y &gt; x\) : <strong>faux</strong> (un \(y\) fixe ne peut pas dépasser tous les réels, car \(x = y\) échoue).</li>
+</ul>
+</li>
+<li><strong>Règle.</strong> Dans \(\forall x\, \exists y\), le \(y\) peut <strong>dépendre</strong> de \(x\). Dans \(\exists y\, \forall x\), \(y\) est choisi <strong>avant</strong> et doit marcher pour <strong>tous</strong> les \(x\).</li>
+<li>Deux \(\forall\) (ou deux \(\exists\)) de suite : l'ordre n'a pas d'importance.</li>
+</ul>
+<h3 id="b5-lettres-muettes-et-lettres-affectees">B5. Lettres muettes et lettres affectées</h3>
+<ul>
+<li><strong>Lettre muette</strong> (non affectée) : \(x\) dans \(\forall x\), \(\exists x\), \(f : x \mapsto 2x+1\), \(\int_1^2 \frac{dx}{x}\), \(\sum_{i=1}^N i^2\). On peut la <strong>renommer</strong> sans changer le sens.</li>
+<li><strong>Lettre affectée</strong> : objet déjà fixé (par « Soit », « Posons », « Fixons »).</li>
+<li><strong>Test.</strong> \(\forall x,\ A(x, y)\) dépend de <strong>\(y\)</strong> mais pas de <strong>\(x\)</strong> (\(x\) est muette). \(\sum_{i=1}^N i^2\) dépend de \(N\) mais pas de \(i\).</li>
+<li><strong>Piège.</strong> Ne jamais <strong>réutiliser</strong> une lettre déjà affectée comme variable muette (ex. écrire \(\forall x\) alors que \(x\) est déjà fixé).</li>
+</ul>
+<h3 id="b6-quantificateurs-et-connecteurs-distributivite-ce-qui-marche-ce-qui-ne-marche-pas">B6. Quantificateurs et connecteurs (distributivité : ce qui marche, ce qui ne marche pas)</h3>
+<p><strong>Équivalences (vraies dans les deux sens)</strong> — très utiles pour <em>découper</em> une preuve :
+\[\big(\forall x,\ P(x) \wedge Q(x)\big) \Leftrightarrow \big((\forall x, P(x)) \wedge (\forall x, Q(x))\big)\]
+\[\big(\exists x,\ P(x) \vee Q(x)\big) \Leftrightarrow \big((\exists x, P(x)) \vee (\exists x, Q(x))\big)\]</p>
+<p><strong>Implications seulement (réciproque FAUSSE, perte d'information) :</strong>
+\[\big(\exists x,\ P(x) \wedge Q(x)\big) \Rightarrow \big((\exists x, P(x)) \wedge (\exists x, Q(x))\big)\]
+\[\big((\forall x, P(x)) \vee (\forall x, Q(x))\big) \Rightarrow \big(\forall x,\ P(x) \vee Q(x)\big)\]</p>
+<p><strong>Contre-exemples des réciproques :</strong></p>
+<ul>
+<li>\(E = \mathbb{R}\), \(P(x) : x&gt;0\), \(Q(x) : x&lt;0\). Alors \(\exists x, P(x)\) et \(\exists x, Q(x)\) sont vraies, mais \(\exists x,\ P(x) \wedge Q(x)\) est <strong>fausse</strong> (aucun réel n'est \(&gt;0\) et \(&lt;0\)).</li>
+<li>\(E = \mathbb{N}\), \(P(x) : x\) pair, \(Q(x) : x\) impair. Alors \(\forall x,\ P(x) \vee Q(x)\) est <strong>vraie</strong>, mais ni \(\forall x, P(x)\) ni \(\forall x, Q(x)\) ne l'est.</li>
+</ul>
+<p><strong>Mnémo.</strong> \(\forall\) « aime » \(\wedge\) ; \(\exists\) « aime » \(\vee\). Les deux autres combinaisons (\(\exists\wedge\) et \(\forall\vee\)) <strong>perdent</strong> de l'information.</p>
+<h3 id="b7-le-cas-de-l-ensemble-vide">B7. Le cas de l'ensemble vide</h3>
+<ul>
+<li>Si \(E = \emptyset\) alors \(\forall x \in E,\ P(x)\) est <strong>toujours vraie</strong>, et \(\exists x \in E,\ P(x)\) est <strong>toujours fausse</strong>.</li>
+<li><strong>Pourquoi ?</strong> Pour <em>réfuter</em> \(\forall x \in \emptyset, P(x)\) il faudrait exhiber un \(x \in \emptyset\) qui ne vérifie pas \(P\), impossible.</li>
+<li>Même idée que « implication fausse seulement si on part du vrai ».</li>
+</ul>
+<h3 id="b8-il-existe-un-et-un-seul">B8. \(\exists !\) (« il existe un et un seul »)</h3>
+<p>\[\exists !\, x \in E \mid P(x) \ :\Longleftrightarrow\ \big(\exists x \in E \mid P(x)\big) \ \wedge\ \big(\forall x, x' \in E,\ (P(x) \wedge P(x')) \Rightarrow x = x'\big)\]</p>
+<ul>
+<li><strong>Existence</strong> + <strong>unicité</strong>. Pour prouver : on exhibe un \(x\), puis on prend deux candidats \(x, x'\) et on montre \(x = x'\).</li>
+<li><strong>Piège.</strong> Prouver l'existence <strong>seule</strong> ne suffit pas pour \(\exists !\).</li>
+</ul>
+<h3 id="b9-les-3-redactions-types-du-cours">B9. Les 3 rédactions types du cours</h3>
+<ol>
+<li><strong>Prouver \(\forall x \in \mathbb{R},\ x &lt; 1 + x^2\)</strong> : « Choisissons \(x \in \mathbb{R}\). » Puis on prouve l'inégalité pour ce \(x\).</li>
+<li><strong>Utiliser \((A) : \exists x \in \mathbb{R} \mid x^5 - 5x + 1 = 0\)</strong> : « D'après \((A)\), fixons un réel \(x\) vérifiant \(x^5 - 5x + 1 = 0\). »</li>
+<li><strong>Prouver \(\exists x \in \mathbb{R} \mid x &gt; x^2\)</strong> : « Cette proposition est vraie car, par exemple, \(x = \tfrac12\) convient : \(\tfrac12 &gt; \tfrac14\). »</li>
+</ol>
+<hr />
+<h2 id="categorie-c-raisonnements-classiques">Catégorie C : Raisonnements classiques</h2>
+<h3 id="c1-raisonnement-direct">C1. Raisonnement direct</h3>
+<ul>
+<li><strong>Schéma.</strong> <em>Soit</em> (objets) → <em>Supposons</em> (hypothèses) → <em>Alors</em> (calculs) → <em>Donc</em> (définition).</li>
+<li><strong>Exemple.</strong> Montrer : \(\forall x,y \in \mathbb{R},\ x^2 + y^2 \ge 2xy\).
+Soient \(x, y \in \mathbb{R}\). On a \(x^2 + y^2 - 2xy = (x-y)^2 \ge 0\). <strong>Donc</strong> \(x^2+y^2 \ge 2xy\).</li>
+</ul>
+<h3 id="c2-raisonnement-par-contraposee">C2. Raisonnement par contraposée</h3>
+<ul>
+<li><strong>But.</strong> Prouver \(P \Rightarrow Q\).</li>
+<li><strong>Principe.</strong> On prouve l'implication <strong>équivalente</strong> \(\neg Q \Rightarrow \neg P\).</li>
+<li><strong>Quand l'utiliser ?</strong> Quand \(\neg Q\) donne <strong>plus d'information</strong> exploitable que \(P\) (typiquement : « pair », « irrationnel », « n'est pas multiple de… »).</li>
+<li><strong>Exemple (cours).</strong> « \(n^2\) pair \(\Rightarrow\) \(n\) pair ».
+Montrons la contraposée : \(n\) impair \(\Rightarrow\) \(n^2\) impair. Si \(n\) est impair, \(n = 2k+1\) avec \(k \in \mathbb{Z}\). Alors \(n^2 = 4k^2 + 4k + 1 = 2(2k^2+2k) + 1\) est impair. \(\square\)</li>
+<li><strong>Piège.</strong> Contraposée \(\ne\) réciproque. La réciproque de \(P \Rightarrow Q\) est \(Q \Rightarrow P\) ; la contraposée est \(\neg Q \Rightarrow \neg P\).</li>
+</ul>
+<h3 id="c3-raisonnement-par-l-absurde">C3. Raisonnement par l'absurde</h3>
+<ul>
+<li><strong>But.</strong> Prouver qu'une assertion \(P\) est vraie.</li>
+<li><strong>Principe (3 étapes).</strong>
+<ol>
+<li>On <strong>suppose</strong> \(\neg P\).</li>
+<li>On en déduit une <strong>contradiction</strong> : une assertion \(Q\) avec \(Q\) et \(\neg Q\).</li>
+<li>On <strong>conclut</strong> que \(P\) est vraie.</li>
+</ol>
+</li>
+<li><strong>Cas particulier fréquent.</strong> Pour prouver \(A \Rightarrow B\) par l'absurde : on suppose \(A\) <strong>et</strong> \(\neg B\) (c'est \(\neg(A \Rightarrow B)\)), on cherche une contradiction.</li>
+<li><strong>Exemple (cours).</strong> « \(\forall n \in \mathbb{N}\), \(n^2 - 1\) n'est pas le carré d'un entier non nul. »
+Supposons le contraire : \(\exists n \in \mathbb{N}\), \(n^2 - 1 = a^2\) avec \(a \ne 0\). Alors \((n+a)(n-a) = 1\). Un produit de deux entiers vaut 1 ssi ils valent tous deux \(1\) ou tous deux \(-1\). Dans les deux cas \(a = 0\). Contradiction avec \(a \ne 0\). \(\square\)</li>
+<li><strong>Piège.</strong> À la fin, <strong>écrire la contradiction explicitement</strong> (« ce qui contredit… »).</li>
+</ul>
+<h3 id="c4-raisonnement-par-equivalence">C4. Raisonnement par équivalence</h3>
+<ul>
+<li><strong>Deux énoncés</strong> : \(P \Rightarrow Q\) (sens direct) <strong>et</strong> \(Q \Rightarrow P\) (réciproque).</li>
+<li><strong>Trois énoncés</strong> \(P, Q, R\) équivalents : il suffit de prouver le <strong>cycle</strong> \(P \Rightarrow Q\), \(Q \Rightarrow R\), \(R \Rightarrow P\) (3 preuves au lieu de 6).</li>
+<li><strong>Piège.</strong> Ne jamais écrire une chaîne d'équivalences si <strong>un seul</strong> passage n'est qu'une implication.</li>
+</ul>
+<h3 id="c5-raisonnement-par-contre-exemple">C5. Raisonnement par contre-exemple</h3>
+<ul>
+<li><strong>But.</strong> Montrer que « \(\forall x,\ P(x)\) » est <strong>fausse</strong>.</li>
+<li><strong>Principe.</strong> Sa négation est « \(\exists x \mid \neg P(x)\) ». On <strong>exhibe</strong> un \(x_0\) tel que \(P(x_0)\) soit <strong>faux</strong>.</li>
+<li><strong>Exemple (cours).</strong> « \(f(x) = x^2 - x + 1\) est paire » : faux, car \(f(1) = 1 \ne 3 = f(-1)\).</li>
+<li><strong>Exemple (cours).</strong> « Toute fonction est paire ou impaire » : faux, \(f(x) = x+2\) n'est ni l'un ni l'autre.</li>
+<li><strong>Piège.</strong> Un contre-exemple prouve la <strong>fausseté</strong> d'un énoncé universel, mais <strong>un exemple ne prouve jamais</strong> un énoncé universel. À l'inverse, pour prouver un « \(\exists\) », <strong>un exemple suffit</strong>.</li>
+</ul>
+<h3 id="c6-disjonction-de-cas">C6. Disjonction de cas</h3>
+<ul>
+<li><strong>Principe.</strong> Pour prouver \(R\) sachant « \(P\) ou \(Q\) », on prouve \(P \Rightarrow R\) <strong>et</strong> \(Q \Rightarrow R\).</li>
+<li><strong>Exemple.</strong> Pour tout \(n \in \mathbb{Z}\), \(n(n+1)\) est pair : si \(n\) pair, \(n(n+1)\) est pair (facteur pair) ; si \(n\) impair, \(n+1\) est pair donc le produit est pair.</li>
+<li><strong>Piège.</strong> Les cas doivent <strong>couvrir tout</strong> (pair/impair, \(x \ge 0\)/\(x&lt;0\)…).</li>
+</ul>
+<h3 id="c7-raisonnement-par-recurrence">C7. Raisonnement par récurrence</h3>
+<ul>
+<li>
+<p><strong>But.</strong> Prouver \(\forall n \ge n_0,\ P(n)\) (avec \(n_0 \in \mathbb{Z}\), souvent \(0\) ou \(1\)).</p>
+</li>
+<li>
+<p><strong>Principe.</strong></p>
+<ol>
+<li><strong>Initialisation</strong> : prouver \(P(n_0)\).</li>
+<li><strong>Hérédité</strong> : prouver \(\forall n \ge n_0,\ P(n) \Rightarrow P(n+1)\) (on <strong>fixe</strong> \(n\), on <strong>suppose</strong> \(P(n)\), on prouve \(P(n+1)\)).</li>
+<li><strong>Conclusion</strong> : par le principe de récurrence, \(\forall n \ge n_0,\ P(n)\).</li>
+</ol>
+</li>
+<li>
+<p><strong>Récurrence forte.</strong> On peut supposer \(P(k)\) vraie pour <strong>tout</strong> \(k\) tel que \(n_0 \le k \le n\) (et pas seulement \(k=n\)) pour prouver \(P(n+1)\).</p>
+</li>
+<li>
+<p><strong>Pourquoi ça marche ?</strong> (Proposition 1) <strong>Toute partie non vide de \(\mathbb{N}\) admet un plus petit élément</strong> (\(\mathbb{N}\) est <em>bien ordonné</em>). <strong>Preuve par l'absurde de la récurrence</strong> : si \(P\) n'était pas toujours vraie, l'ensemble \(\{n \ge n_0 \mid P(n) \text{ faux}\}\) serait non vide, donc aurait un plus petit élément \(m\). Comme \(P(n_0)\) est vraie, \(m &gt; n_0\), donc \(m-1 \ge n_0\) et \(P(m-1)\) est vraie. Par hérédité \(P(m)\) est vraie : contradiction.</p>
+</li>
+<li>
+<p><strong>Piège n°1 : l'hérédité sans initialisation ne prouve rien.</strong> Exemple : \(P(n)\) : « \(10^n + 7\) est multiple de 9 ». L'hérédité est vraie (\(10^{n+1}+7 = 10(10^n + 7) - 63\) et \(63 = 9 \times 7\)), pourtant \(P(n)\) est fausse pour <strong>tout</strong> \(n\) (\(10^n + 7 \equiv 1 + 7 = 8 \pmod 9\)).</p>
+</li>
+<li>
+<p><strong>Piège n°2.</strong> Dans l'hérédité, <strong>ne pas supposer</strong> ce qu'on veut prouver (\(P(n+1)\)) ; on suppose \(P(n)\) pour un \(n\) <strong>fixé quelconque</strong>.</p>
+</li>
+<li>
+<p><strong>Piège n°3.</strong> Savoir <strong>sur quelle variable</strong> porte la récurrence. Ex. « \(\forall n \in \mathbb{N},\ \forall x &gt; 0,\ (1+x)^n \ge 1+nx\) » : récurrence <strong>sur \(n\)</strong>, \(x\) reste fixé.</p>
+</li>
+<li>
+<p><strong>Exemple rédigé (cours).</strong> \(\displaystyle \forall N \in \mathbb{N},\ \sum_{n=0}^{N} n^2 = \frac{N(N+1)(2N+1)}{6}\).</p>
+<p><em>Initialisation.</em> Pour \(N=0\) : les deux membres valent \(0\).
+<em>Hérédité.</em> Soit \(N \in \mathbb{N}\) ; supposons \(P(N)\). Alors
+\[\sum_{n=0}^{N+1} n^2 = \frac{N(N+1)(2N+1)}{6} + (N+1)^2 = \frac{2N^3 + 9N^2 + 13N + 6}{6},\]
+et d'autre part \(\dfrac{(N+1)(N+2)(2N+3)}{6} = \dfrac{(N^2+3N+2)(2N+3)}{6} = \dfrac{2N^3+9N^2+13N+6}{6}\).
+Donc \(P(N+1)\) est vraie. <em>Conclusion.</em> \(P(N)\) est vraie pour tout \(N \in \mathbb{N}\). \(\square\)</p>
+</li>
+</ul>
+<hr />
+<h3 id="recapitulatif-quelle-preuve-choisir">Récapitulatif : quelle preuve choisir ?</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Si l'énoncé est…</th>
+<th>Premier réflexe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(\forall x, P(x)\)</td>
+<td>« Soit \(x\) quelconque » (direct)</td>
+</tr>
+<tr>
+<td>\(\exists x, P(x)\)</td>
+<td>Exhiber un \(x\)</td>
+</tr>
+<tr>
+<td>\(P \Rightarrow Q\) avec \(\neg Q\) plus parlant que \(P\)</td>
+<td><strong>Contraposée</strong></td>
+</tr>
+<tr>
+<td>Énoncé du type « ne peut pas exister », « est irrationnel »</td>
+<td><strong>Absurde</strong></td>
+</tr>
+<tr>
+<td>\(\forall x, P(x)\) <strong>soupçonné faux</strong></td>
+<td><strong>Contre-exemple</strong></td>
+</tr>
+<tr>
+<td>\(\forall n \ge n_0\) avec un lien \(n \to n+1\)</td>
+<td><strong>Récurrence</strong></td>
+</tr>
+<tr>
+<td>\(P \Leftrightarrow Q\)</td>
+<td>Double implication</td>
+</tr>
+<tr>
+<td>Plusieurs cas possibles</td>
+<td>Disjonction de cas</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="nav-links"><span><a href="methode.html">← Méthode de rédaction</a></span><span><a href="exos_ch2_logique.html">Exercices ch. 2 — Logique →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="revision.js"></script>
+</body>
+</html>

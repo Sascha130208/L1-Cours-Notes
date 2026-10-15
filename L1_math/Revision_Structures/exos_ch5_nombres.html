@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercices : Chapitre 5 (Construction des nombres, densité) — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices ch. 5 — Nombres</span></div>
+<div class="page">
+<span class="chip">✍️ Exercices corrigés</span><span class="chip">Structures fondamentales</span>
+<h1>Exercices : Chapitre 5 (Construction des nombres, densité)</h1>
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul><li><a href="#categorie-a-relations-d-equivalence-des-constructions">Catégorie A : Relations d'équivalence des constructions</a><ul><li><a href="#a-1-la-relation-qui-construit">A.1 La relation qui construit \(\mathbb{Z}\)</a></li><li><a href="#a-2-la-relation-qui-construit">A.2 La relation qui construit \(\mathbb{Q}\)</a></li><li><a href="#a-3-les-entiers-de-von-neumann">A.3 Les entiers de von Neumann</a></li></ul></li><li><a href="#categorie-b-irrationnels">Catégorie B : Irrationnels</a><ul><li><a href="#b-1-n-est-pas-rationnel">B.1 \(\sqrt 2\) n'est pas rationnel</a></li><li><a href="#b-2-operations-avec-des-irrationnels">B.2 Opérations avec des irrationnels</a></li><li><a href="#b-3-un-irrationnel-entre-deux-rationnels">B.3 Un irrationnel entre deux rationnels</a></li></ul></li><li><a href="#categorie-c-partie-entiere-archimede-densite">Catégorie C : Partie entière, Archimède, densité</a><ul><li><a href="#c-1-calculs-de-parties-entieres">C.1 Calculs de parties entières</a></li><li><a href="#c-2-propriete-de-la-partie-entiere">C.2 Propriété de la partie entière</a></li><li><a href="#c-3-approximation-decimale">C.3 Approximation décimale</a></li><li><a href="#c-4-densite-le-theoreme-en-action">C.4 Densité : le théorème en action</a></li></ul></li><li><a href="#categorie-d-questions-de-comprehension-a-repondre-en-une-phrase">Catégorie D : Questions de compréhension (à répondre en une phrase)</a><ul></ul></li></ul></details></nav>
+<blockquote>
+<p><strong>Mode d'emploi.</strong> Cherche, rédige comme en examen, puis déplie la correction.
+Ce chapitre n'a pas de fiche de TD : ces exercices sont des <strong>entraînements</strong> construits sur le cours (§1 à §5). Les constructions sont « culture », mais <strong>vérifier qu'une relation est une équivalence</strong> est un exercice classique de L1.</p>
+</blockquote>
+<hr />
+<h2 id="categorie-a-relations-d-equivalence-des-constructions">Catégorie A : Relations d'équivalence des constructions</h2>
+<h3 id="a-1-la-relation-qui-construit">A.1 La relation qui construit \(\mathbb{Z}\)</h3>
+<p>Sur \(\mathbb{N}\times\mathbb{N}\), on pose \((n,m)\,R\,(n',m') \iff n + m' = n' + m\). Montrer que \(R\) est une relation d'équivalence. Quels couples sont en relation avec \((2,0)\) ?</p>
+<details><summary>Correction</summary>
+<ul>
+<li><em>Réflexive.</em> Soit \((n,m) \in \mathbb{N}^2\). \(n + m = n + m\), donc \((n,m)\,R\,(n,m)\).</li>
+<li><em>Symétrique.</em> Supposons \((n,m)\,R\,(n',m')\), i.e. \(n + m' = n' + m\). Alors \(n' + m = n + m'\), ce qui est exactement \((n',m')\,R\,(n,m)\).</li>
+<li><em>Transitive.</em> Supposons \((n,m)\,R\,(n',m')\) et \((n',m')\,R\,(n'',m'')\), i.e. \(n + m' = n' + m\) et \(n' + m'' = n'' + m'\). En additionnant :
+\[n + m' + n' + m'' = n' + m + n'' + m'.\]
+On <strong>simplifie</strong> par \(m' + n'\) (c'est permis dans \(\mathbb{N}\) : \(a + c = b + c \Rightarrow a = b\)) : \(n + m'' = m + n''\), soit \(n + m'' = n'' + m\). Donc \((n,m)\,R\,(n'',m'')\). \(\square\)</li>
+</ul>
+<p><strong>Couples en relation avec \((2,0)\)</strong> : \((n',m')\) tel que \(2 + m' = n' + 0\), i.e. \(n' = m' + 2\) : \((2,0), (3,1), (4,2), \dots\) — tous les couples « de différence 2 », qui représentent bien l'entier \(2\).</p>
+</details>
+<h3 id="a-2-la-relation-qui-construit">A.2 La relation qui construit \(\mathbb{Q}\)</h3>
+<p>Sur \(\mathbb{Z}\times\mathbb{N}^*\), on pose \((a,b)\,R\,(c,d) \iff ad = cb\). Montrer la <strong>transitivité</strong>. Où utilise-t-on que les dénominateurs sont \(\ne 0\) ?</p>
+<details><summary>Correction</summary>
+<p>Supposons \((a,b)\,R\,(c,d)\) et \((c,d)\,R\,(e,f)\), i.e. \(ad = cb\) et \(cf = ed\). On veut \(af = eb\).
+Multiplions la première égalité par \(f\) : \(adf = cbf\). Or \(cf = ed\), donc \(cbf = b(cf) = b(ed) = bed\). Donc \(adf = bed\), soit \(d\,(af) = d\,(eb)\).
+Comme <strong>\(d \ne 0\)</strong> (\(d \in \mathbb{N}^*\)), on <strong>simplifie par \(d\)</strong> : \(af = eb\). Donc \((a,b)\,R\,(e,f)\). \(\square\)</p>
+<p><em>L'hypothèse \(d \ne 0\) est essentielle : si on autorisait \(d = 0\), tous les couples \((a,b)\) seraient en relation avec \((0,0)\), et la transitivité s'effondrerait : c'est pourquoi on ne divise pas par \(0\).</em></p>
+</details>
+<h3 id="a-3-les-entiers-de-von-neumann">A.3 Les entiers de von Neumann</h3>
+<p>Avec \(0 = \emptyset\) et \(n+1 = n \cup \{n\}\), écrire \(0, 1, 2, 3\) comme ensembles, puis compter leurs éléments. Montrer par récurrence que \(\operatorname{card}(n) = n\).</p>
+<details><summary>Correction</summary>
+<ul>
+<li>\(0 = \emptyset\), \(1 = \{\emptyset\}\), \(2 = \{\emptyset, \{\emptyset\}\}\), \(3 = \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}\). Cardinaux : \(0, 1, 2, 3\).</li>
+<li><em>Récurrence.</em> \(P(n) : \operatorname{card}(n) = n\). <em>Initialisation</em> : \(\operatorname{card}(\emptyset) = 0\). <em>Hérédité</em> : supposons \(P(n)\). Alors \(n+1 = n \cup \{n\}\), et \(n \notin n\) (c'est un fait de la construction : aucun entier n'est élément de lui-même), donc l'union est <strong>disjointe</strong> et \(\operatorname{card}(n+1) = \operatorname{card}(n) + \operatorname{card}\{n\} = n + 1\). \(\square\)</li>
+</ul>
+<p><em>Remarque : le cours écrit (par coquille) \(4 = \{0,1,3,4\}\) ; la bonne définition est \(4 = \{0,1,2,3\}\).</em></p>
+</details>
+<hr />
+<h2 id="categorie-b-irrationnels">Catégorie B : Irrationnels</h2>
+<h3 id="b-1-n-est-pas-rationnel">B.1 \(\sqrt 2\) n'est pas rationnel</h3>
+<details><summary>Correction</summary>
+<p>Supposons par l'absurde \(\sqrt2 \in \mathbb{Q}\) : \(\sqrt 2 = \frac ab\) avec \(a \in \mathbb{N}\), \(b \in \mathbb{N}^*\) <strong>premiers entre eux</strong>. Alors \(a^2 = 2b^2\), donc \(a^2\) est pair. <strong>Par contraposée</strong>, si \(a\) était impair, \(a^2\) le serait ; donc \(a\) est pair : \(a = 2k\). Alors \(4k^2 = 2b^2\), soit \(b^2 = 2k^2\), donc \(b^2\) pair, donc \(b\) pair. Ainsi \(2\) divise à la fois \(a\) et \(b\), ce qui contredit « \(a, b\) premiers entre eux ». Donc \(\sqrt2 \notin \mathbb{Q}\). \(\square\)</p>
+</details>
+<h3 id="b-2-operations-avec-des-irrationnels">B.2 Opérations avec des irrationnels</h3>
+<p>(a) Si \(r \in \mathbb{Q}^*\), montrer que \(r\sqrt2 \notin \mathbb{Q}\). (b) Si \(q \in \mathbb{Q}\), montrer que \(q + \sqrt 2 \notin \mathbb{Q}\). (c) Donner deux irrationnels dont la <strong>somme</strong> est rationnelle, et deux dont le <strong>produit</strong> est rationnel.</p>
+<details><summary>Correction</summary>
+<p>(a) Par l'absurde : si \(r\sqrt2 = s \in \mathbb{Q}\), alors \(\sqrt 2 = \frac sr \in \mathbb{Q}\) (quotient de rationnels, \(r \ne 0\)), ce qui contredit B.1.
+(b) Par l'absurde : si \(q + \sqrt2 = s \in \mathbb{Q}\), alors \(\sqrt2 = s - q \in \mathbb{Q}\), contradiction.
+(c) \(\sqrt2 + (-\sqrt2) = 0 \in \mathbb{Q}\) ; \(\sqrt 2 \cdot \sqrt2 = 2 \in \mathbb{Q}\). (On peut aussi prendre \(\sqrt2 \cdot \frac{1}{\sqrt2}\).) <em>Conclusion : la somme ou le produit de deux irrationnels <strong>peut</strong> être rationnel ; la somme/produit rationnel-irrationnel (non nul) est irrationnel.</em></p>
+</details>
+<h3 id="b-3-un-irrationnel-entre-deux-rationnels">B.3 Un irrationnel entre deux rationnels</h3>
+<p>Trouver explicitement un irrationnel dans l'intervalle \(]0{,}1\;;\;0{,}2[\).</p>
+<details><summary>Correction</summary>
+<p>Cherchons de la forme \(y = q\sqrt2\) avec \(q \in \mathbb{Q}^*\). On veut \(0{,}1 &lt; q\sqrt 2 &lt; 0{,}2\), donc \(\frac{0{,}1}{\sqrt2} &lt; q &lt; \frac{0{,}2}{\sqrt2}\), c'est-à-dire environ \(0{,}0707 &lt; q &lt; 0{,}1414\). Prenons \(q = 0{,}1\). Alors \(y = 0{,}1\sqrt2 \approx 0{,}1414\), qui est irrationnel par B.2(a), et vérifie \(0{,}1 &lt; 0{,}1\sqrt2 &lt; 0{,}2\) car \(1 &lt; \sqrt2 &lt; 2\). \(\square\)</p>
+<p><em>(C'est exactement la méthode du cours pour la densité : on se ramène à un rationnel multiplié par \(\sqrt2\).)</em></p>
+</details>
+<hr />
+<h2 id="categorie-c-partie-entiere-archimede-densite">Catégorie C : Partie entière, Archimède, densité</h2>
+<h3 id="c-1-calculs-de-parties-entieres">C.1 Calculs de parties entières</h3>
+<p>Calculer \(E(\pi)\), \(E(-\pi)\), \(E(5)\), \(E(-0{,}1)\), \(E(\sqrt2)\), \(E(-\sqrt 2)\).</p>
+<details><summary>Correction</summary>
+<p>On cherche l'<strong>unique entier \(n\) avec \(n \le x &lt; n+1\)</strong>.</p>
+<ul>
+<li>\(E(\pi) = 3\) (car \(3 \le \pi &lt; 4\)).</li>
+<li>\(E(-\pi) = -4\) (car \(-4 \le -\pi \approx -3{,}14 &lt; -3\)).</li>
+<li>\(E(5) = 5\) (car \(5 \le 5 &lt; 6\)).</li>
+<li>\(E(-0{,}1) = -1\) (car \(-1 \le -0{,}1 &lt; 0\)).</li>
+<li>\(E(\sqrt2) = 1\) (car \(1 \le 1{,}41\ldots &lt; 2\)).</li>
+<li>\(E(-\sqrt2) = -2\) (car \(-2 \le -1{,}41\ldots &lt; -1\)).</li>
+</ul>
+<p><em>Piège : pour un négatif non entier, \(E\) n'est pas « on enlève les décimales » mais « l'entier immédiatement en dessous ».</em></p>
+</details>
+<h3 id="c-2-propriete-de-la-partie-entiere">C.2 Propriété de la partie entière</h3>
+<p>Montrer que pour tout \(x \in \mathbb{R}\) et tout \(k \in \mathbb{Z}\), \(E(x + k) = E(x) + k\).</p>
+<details><summary>Correction</summary>
+<p>Soit \(n = E(x)\), donc \(n \le x &lt; n+1\). En ajoutant \(k\) : \(n + k \le x + k &lt; n + k + 1\). Comme \(n + k \in \mathbb{Z}\), c'est <strong>exactement</strong> la caractérisation de \(E(x+k)\) (unique entier \(m\) avec \(m \le x + k &lt; m+1\)). Donc \(E(x+k) = n + k = E(x) + k\). \(\square\)</p>
+</details>
+<h3 id="c-3-approximation-decimale">C.3 Approximation décimale</h3>
+<p>Pour \(x = \sqrt2\), calculer \(r_n = \dfrac{E(nx)}{n}\) pour \(n = 1, 10, 100\) et vérifier \(0 \le x - r_n &lt; \frac1n\).</p>
+<details><summary>Correction</summary>
+<p>\(\sqrt2 = 1{,}41421\ldots\)</p>
+<ul>
+<li>\(n = 1\) : \(E(1{,}414\ldots) = 1\), \(r_1 = 1\) ; \(x - r_1 \approx 0{,}414 &lt; 1\) ✓.</li>
+<li>\(n = 10\) : \(E(14{,}142\ldots) = 14\), \(r_{10} = 1{,}4\) ; \(x - r_{10} \approx 0{,}0142 &lt; 0{,}1\) ✓.</li>
+<li>\(n = 100\) : \(E(141{,}42\ldots) = 141\), \(r_{100} = 1{,}41\) ; \(x - r_{100} \approx 0{,}0042 &lt; 0{,}01\) ✓.</li>
+</ul>
+<p><em>Pour \(n = 10^q\), \(r_n\) est l'approximation décimale <strong>par défaut</strong> d'ordre \(q\).</em></p>
+</details>
+<h3 id="c-4-densite-le-theoreme-en-action">C.4 Densité : le théorème en action</h3>
+<p>(a) Trouver un rationnel dans \(]\sqrt2, \sqrt 2 + 0{,}01[\). (b) Soient \(a &lt; b\). Montrer qu'il existe \(n \in \mathbb{N}^*\) tel que \(\frac1n &lt; b - a\). En déduire (sans la preuve du cours) qu'il existe un rationnel de la forme \(\frac{p}{n}\) dans \(]a, b[\).</p>
+<details><summary>Correction</summary>
+<p>(a) \(r_{1000} = \frac{E(1000\sqrt2)}{1000} = \frac{1414}{1000} = 1{,}414\) est dans \([\sqrt2 - 0{,}001, \sqrt2]\), donc en dessous de \(\sqrt 2\). Pour être <strong>au-dessus</strong>, prenons \(r_{1000} + \frac1{1000} = 1{,}415\) : comme \(x &lt; r_n + \frac1n\) et \(r_n \le x\), on a \(\sqrt2 &lt; 1{,}415 \le \sqrt2 + \frac1{1000} &lt; \sqrt2 + 0{,}01\). ✓</p>
+<p>(b) <em>Archimède</em> (forme : \(\forall\varepsilon&gt;0,\ \forall y,\ \exists n \in \mathbb{N},\ y \le n\varepsilon\)) avec \(\varepsilon = b - a &gt; 0\) et \(y = 1\) : il existe \(n\) avec \(1 \le n(b-a)\) ; quitte à remplacer \(n\) par \(n+1\), on a \(n \ge 1\) et \(\frac1n &lt; b - a\). Posons \(p = E(na) + 1\) ; alors \(E(na) \le na &lt; p\), donc \(a &lt; \frac pn\), et \(p \le na + 1\), donc \(\frac pn \le a + \frac1n &lt; b\). Ainsi \(a &lt; \frac pn &lt; b\) avec \(\frac pn \in \mathbb{Q}\). \(\square\)</p>
+<p><em>On a utilisé : Archimède (pour fabriquer \(n\) assez grand) et la partie entière (pour fabriquer \(p\)). C'est exactement la mécanique de la preuve de densité.</em></p>
+</details>
+<hr />
+<h2 id="categorie-d-questions-de-comprehension-a-repondre-en-une-phrase">Catégorie D : Questions de compréhension (à répondre en une phrase)</h2>
+<ol>
+<li>Pourquoi ne peut-on pas définir \(\mathbb{Z}\) simplement en « inventant \(-n\) » ?</li>
+<li>Pourquoi doit-on <strong>quotienter</strong> lors de la construction de \(\mathbb{Z}\) ?</li>
+<li>Pourquoi \(\mathbb{Q}\) est-il à la fois <strong>dense</strong> dans \(\mathbb{R}\) et <strong>dénombrable</strong>, alors que \(\mathbb{R}\) ne l'est pas ?</li>
+<li>Quelle propriété de \(\mathbb{R}\) manque à \(\mathbb{Q}\) ?</li>
+</ol>
+<details><summary>Réponses</summary>
+<ol>
+<li>Parce que « \(-\) » n'a pas de sens dans la théorie des ensembles de départ : on n'a que \(\emptyset\), les ensembles et les produits. On remplace donc « \(-n\) » par des <strong>couples</strong> \((n,m)\) censés représenter \(n-m\).</li>
+<li>Parce qu'un même entier relatif a <strong>plusieurs</strong> représentants \((n,m)\) (\(2\) est \((2,0)\), \((3,1)\), …) ; le passage au quotient les <strong>identifie</strong> pour qu'il n'y ait qu'<strong>un</strong> objet par entier.</li>
+<li><strong>Dense</strong> : il y a des rationnels aussi près qu'on veut de tout réel (partie entière). <strong>Dénombrable</strong> : on peut numéroter tous les rationnels. Mais \(\mathbb{R}\) est <strong>trop gros</strong> pour être numéroté (diagonale de Cantor) : la densité parle de <strong>position</strong>, la dénombrabilité parle de <strong>taille</strong>. Ce sont deux notions indépendantes.</li>
+<li>La <strong>complétude</strong> : toute suite de Cauchy (ou toute suite croissante majorée) y converge. Dans \(\mathbb{Q}\), les approximations décimales de \(\sqrt2\) forment une suite de Cauchy <strong>sans limite</strong> dans \(\mathbb{Q}\).</li>
+</ol>
+</details>
+
+<div class="nav-links"><span><a href="fiche_ch5_construction_nombres.html">← Fiche ch. 5 — Construction des nombres</a></span><span><a href="index.html">Accueil révisions →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="revision.js"></script>
+</body>
+</html>

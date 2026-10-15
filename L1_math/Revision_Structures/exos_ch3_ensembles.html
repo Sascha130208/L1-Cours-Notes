@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercices : Chapitre 3 (Ensembles) — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Exercices ch. 3 — Ensembles</span></div>
+<div class="page">
+<span class="chip">✍️ Exercices corrigés</span><span class="chip">Structures fondamentales</span>
+<h1>Exercices : Chapitre 3 (Ensembles)</h1>
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul><li><a href="#categorie-a-appartenance-inclusion-ensembles-de-parties">Catégorie A : Appartenance, inclusion, ensembles de parties</a><ul><li><a href="#a-1-ou-td2-n1">A.1 \(\in\) ou \(\subset\) ? <strong>[TD2 n°1]</strong></a></li><li><a href="#a-2-decrire-autrement-td2-n2">A.2 Décrire autrement <strong>[TD2 n°2]</strong></a></li><li><a href="#a-3-ensembles-de-parties-td2-n3">A.3 Ensembles de parties <strong>[TD2 n°3]</strong></a></li></ul></li><li><a href="#categorie-b-calculs-d-ensembles">Catégorie B : Calculs d'ensembles</a><ul><li><a href="#b-1-simplifier-td2-n4">B.1 Simplifier <strong>[TD2 n°4]</strong></a></li><li><a href="#b-2-cardinaux-de-disques-td2-n5">B.2 Cardinaux de « disques » <strong>[TD2 n°5]</strong></a></li><li><a href="#b-3-regler-une-equation-d-ensembles-td2-n10">B.3 Régler une équation d'ensembles <strong>[TD2 n°10]</strong></a></li></ul></li><li><a href="#categorie-c-preuves-d-egalites-et-d-implications">Catégorie C : Preuves d'égalités et d'implications</a><ul><li><a href="#c-1-un-classique-seule-seule-les-deux-td2-n7">C.1 Un classique : \(\cap\) seule, \(\cup\) seule, les deux <strong>[TD2 n°7]</strong></a></li><li><a href="#c-2-difference-et-complementaire-td2-n8">C.2 Différence et complémentaire <strong>[TD2 n°8]</strong></a></li><li><a href="#c-3-une-implication-entre-egalites-td2-n9">C.3 Une implication entre égalités <strong>[TD2 n°9]</strong></a></li><li><a href="#c-4-associativite-et-distributivite-demandees-par-le-cours">C.4 Associativité et distributivité (demandées par le cours)</a></li><li><a href="#c-5-images-avec-produit-cartesien-td2-n13-extrait">C.5 Images avec produit cartésien <strong>[TD2 n°13, extrait]</strong></a></li></ul></li><li><a href="#categorie-d-denombrement-elementaire">Catégorie D : Dénombrement élémentaire</a><ul><li><a href="#d-1-inclusion-exclusion-a-deux-ensembles">D.1 Inclusion-exclusion à deux ensembles</a></li><li><a href="#d-2-compter-des-paires-de-parties-td2-n34">D.2 Compter des paires de parties <strong>[TD2 n°34]</strong></a></li><li><a href="#auto-evaluation-finale">Auto-évaluation finale</a></li></ul></li></ul></details></nav>
+<blockquote>
+<p><strong>Mode d'emploi.</strong> Cherche, rédige comme en examen, puis déplie la correction.
+<strong>[TD2 n°x]</strong> = exercice de ta fiche de TD n°2. Les autres sont des entraînements.
+<strong>Rappel de la méthode :</strong> toute preuve sur les ensembles = « Soit \(x\) ... » + traduction en logique + double inclusion.</p>
+</blockquote>
+<hr />
+<h2 id="categorie-a-appartenance-inclusion-ensembles-de-parties">Catégorie A : Appartenance, inclusion, ensembles de parties</h2>
+<h3 id="a-1-ou-td2-n1">A.1 \(\in\) ou \(\subset\) ? <strong>[TD2 n°1]</strong></h3>
+<p>Soit \(E = \{a, b, c\}\). Peut-on écrire : a) \(a \in E\) b) \(a \subset E\) c) \(\{a\} \subset E\) d) \(\emptyset \in E\) e) \(\emptyset \subset E\) f) \(\{\emptyset\} \subset E\) ?</p>
+<details><summary>Correction</summary>
+<ul>
+<li>a) <strong>Vrai</strong> : \(a\) est un élément de \(E\).</li>
+<li>b) <strong>Faux</strong> (n'a pas de sens ici) : \(\subset\) relie deux <strong>ensembles</strong> ; \(a\) est un élément.</li>
+<li>c) <strong>Vrai</strong> : tout élément de \(\{a\}\) (c'est \(a\)) est dans \(E\).</li>
+<li>d) <strong>Faux</strong> : les éléments de \(E\) sont \(a, b, c\) ; \(\emptyset\) n'en fait pas partie.</li>
+<li>e) <strong>Vrai</strong> : \(\forall x \in \emptyset,\ x \in E\) est vraie à vide.</li>
+<li>f) <strong>Faux</strong> : \(\{\emptyset\} \subset E\) signifie \(\emptyset \in E\), ce qui est faux (cf. d).</li>
+</ul>
+</details>
+<h3 id="a-2-decrire-autrement-td2-n2">A.2 Décrire autrement <strong>[TD2 n°2]</strong></h3>
+<p>Décrire par énumération : \(E = \{n \in \mathbb{N} \mid -\pi &lt; n &lt; \pi\}\) ; \(G = \{n \in \mathbb{N} \mid -2 &lt; n &lt; 3{,}5\}\) ; \(H = \{x \mid x \ge 0 \text{ et } x \le 0\}\) ; \(I = \{x \mid x \in \mathbb{R} \text{ et } x \notin \mathbb{R}\}\).</p>
+<details><summary>Correction</summary>
+<ul>
+<li>\(E\) : entiers naturels \(n\) avec \(n &lt; \pi \approx 3{,}14\) : <strong>\(E = \{0, 1, 2, 3\}\)</strong>.</li>
+<li>\(G\) : entiers naturels \(n &lt; 3{,}5\) : <strong>\(G = \{0, 1, 2, 3\}\)</strong> (aussi \(= E\)).</li>
+<li>\(H\) : \(x \ge 0\) et \(x \le 0\) \(\Leftrightarrow\) \(x = 0\) : <strong>\(H = \{0\}\)</strong>.</li>
+<li>\(I\) : aucun \(x\) n'est à la fois dans \(\mathbb{R}\) et hors de \(\mathbb{R}\) : <strong>\(I = \emptyset\)</strong>.</li>
+</ul>
+<p><em>(Dans le TD, \(F\) est écrit avec « \(-\pi &lt; n &lt; \pi\) » pour la variable \(x\) : sans doute une coquille ; si c'est \(\{x \in \mathbb{R} \mid -\pi &lt; x &lt; \pi\}\), c'est l'intervalle \(]-\pi, \pi[\).)</em></p>
+</details>
+<h3 id="a-3-ensembles-de-parties-td2-n3">A.3 Ensembles de parties <strong>[TD2 n°3]</strong></h3>
+<p>Décrire \(\mathcal{P}(\{a,b\})\), \(\mathcal{P}(\emptyset)\), \(\mathcal{P}(\{\emptyset\})\) et \(\mathcal{P}(\mathcal{P}(\{a\}))\). Combien d'éléments chacun a-t-il ?</p>
+<details><summary>Correction</summary>
+<ul>
+<li>\(\mathcal{P}(\{a,b\}) = \{\emptyset, \{a\}, \{b\}, \{a,b\}\}\) : <strong>4</strong> éléments (\(2^2\)).</li>
+<li>\(\mathcal{P}(\emptyset) = \{\emptyset\}\) : <strong>1</strong> élément (\(2^0\)).</li>
+<li>\(\mathcal{P}(\{\emptyset\}) = \{\emptyset, \{\emptyset\}\}\) : <strong>2</strong> éléments (\(2^1\)).</li>
+<li>\(\mathcal{P}(\{a\}) = \{\emptyset, \{a\}\}\) (2 éléments), donc
+\(\mathcal{P}(\mathcal{P}(\{a\})) = \{\emptyset,\ \{\emptyset\},\ \{\{a\}\},\ \{\emptyset, \{a\}\}\}\) : <strong>4</strong> éléments (\(2^2\)).</li>
+</ul>
+<p><em>Vérification : \(\operatorname{card}\mathcal{P}(E) = 2^{\operatorname{card}E}\).</em></p>
+</details>
+<hr />
+<h2 id="categorie-b-calculs-d-ensembles">Catégorie B : Calculs d'ensembles</h2>
+<h3 id="b-1-simplifier-td2-n4">B.1 Simplifier <strong>[TD2 n°4]</strong></h3>
+<p>Simplifier : (1) \(A \cup B \cup C \cup B \cup A\) ; (2) \(A \cap (A \cup B)\) ; (3) \(A \cap (A \cap B)\) ; (4) \(A \setminus (A \cap B)\) ; (5) \(A \setminus (A \cup B)\) ; (6) \(A \setminus (B \setminus A)\) ; (7) \(A \cup (B \setminus A)\) ; (8) \((A \setminus B) \cap (B \setminus A)\).</p>
+<details><summary>Correction</summary>
+<p>On raisonne avec un élément \(x\) quelconque.</p>
+<ol>
+<li><strong>\(A \cup B \cup C\)</strong> (idempotence : les doublons ne comptent pas).</li>
+<li><strong>\(A\)</strong> (absorption) : \(\subset\) : \(A \cap (\cdot) \subset A\) ; \(\supset\) : si \(x\in A\) alors \(x \in A\cup B\) donc \(x \in A \cap (A\cup B)\).</li>
+<li><strong>\(A \cap B\)</strong> (associativité et idempotence : \(A \cap A \cap B\)).</li>
+<li><strong>\(A \setminus B\)</strong> : \(x \in A\) et \(x \notin A \cap B\) \(\Leftrightarrow\) \(x \in A\) et (\(x \notin A\) ou \(x \notin B\)) \(\Leftrightarrow\) \(x \in A\) et \(x \notin B\).</li>
+<li><strong>\(\emptyset\)</strong> : \(x \in A\) et \(x \notin A \cup B\) est impossible (\(x \in A \subset A\cup B\)).</li>
+<li><strong>\(A\)</strong> : \(x \in A \setminus (B \setminus A) \Leftrightarrow x \in A\) et \(\neg(x \in B \text{ et } x \notin A)\). Comme \(x \in A\), la parenthèse « \(x \in B\) et \(x \notin A\) » est fausse, donc sa négation est vraie : on garde \(x \in A\).</li>
+<li><strong>\(A \cup B\)</strong> : si \(x \in A \cup B\), soit \(x \in A\), soit (\(x \in B\) et \(x \notin A\)), soit \(x \in B \setminus A\).</li>
+<li><strong>\(\emptyset\)</strong> : un élément de \(A \setminus B\) est dans \(A\), un élément de \(B \setminus A\) n'est pas dans \(A\) : impossible d'être dans les deux.</li>
+</ol>
+</details>
+<h3 id="b-2-cardinaux-de-disques-td2-n5">B.2 Cardinaux de « disques » <strong>[TD2 n°5]</strong></h3>
+<p>Déterminer le cardinal de : (1) \(Q = \{(a,b) \in \mathbb{N}^2 \mid a^2 + b^2 \le 9\}\) ; (2) \(D^+ = \{(a,b) \in \mathbb{N} \times \mathbb{Z} \mid a^2 + b^2 \le 9\}\) ; (3) \(D = \{(a,b) \in \mathbb{Z}^2 \mid a^2 + b^2 \le 9\}\).</p>
+<details><summary>Correction</summary>
+<p>On <strong>dénombre par valeur de \(a\)</strong> (somme d'ensembles disjoints, Prop. 17). Pour \(a\) fixé, \(b^2 \le 9 - a^2\).</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>\(a\)</th>
+<th>\(9 - a^2\)</th>
+<th>\(b \in \mathbb{N}\) possibles</th>
+<th>nb</th>
+<th>\(b \in \mathbb{Z}\) possibles</th>
+<th>nb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>9</td>
+<td>0, 1, 2, 3</td>
+<td>4</td>
+<td>\(-3, \dots, 3\)</td>
+<td>7</td>
+</tr>
+<tr>
+<td>1</td>
+<td>8</td>
+<td>0, 1, 2</td>
+<td>3</td>
+<td>\(-2, \dots, 2\)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>0, 1, 2</td>
+<td>3</td>
+<td>\(-2, \dots, 2\)</td>
+<td>5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>(1) \(\operatorname{card} Q = 4 + 3 + 3 + 1 = \mathbf{11}\).</li>
+<li>(2) \(a \in \mathbb{N}\) : \(\operatorname{card} D^+ = 7 + 5 + 5 + 1 = \mathbf{18}\).</li>
+<li>(3) \(a \in \mathbb{Z}\) : \(a = 0\) donne 7 ; \(a = \pm1\) donne \(5 + 5\) ; \(a = \pm 2\) donne \(5 + 5\) ; \(a = \pm 3\) donne \(1 + 1\). Donc \(\operatorname{card} D = 7 + 10 + 10 + 2 = \mathbf{29}\).</li>
+</ul>
+<p><em>Contrôle par symétrie : \(D\) s'obtient depuis \(D^+\) en ajoutant les \(a&lt;0\), qui répètent les \(a&gt;0\) : \(18 + (5 + 5 + 1) = 29\) ✓.</em></p>
+</details>
+<h3 id="b-3-regler-une-equation-d-ensembles-td2-n10">B.3 Régler une équation d'ensembles <strong>[TD2 n°10]</strong></h3>
+<p>Soient \(A, B \in \mathcal{P}(E)\). Discuter et résoudre l'équation d'inconnue \(X \in \mathcal{P}(E)\) : (a) \(A \cup X = B\) ; (b) \(A \cap X = B\).</p>
+<details><summary>Correction</summary>
+<p><strong>(a) \(A \cup X = B\).</strong>
+<em>Condition nécessaire.</em> Si une solution existe, \(A \subset A \cup X = B\). Donc <strong>il faut \(A \subset B\)</strong>.
+<em>Supposons \(A \subset B\) et cherchons les solutions.</em> Si \(A \cup X = B\), alors \(X \subset B\) et tout élément de \(B \setminus A\) doit être dans \(X\) (il est dans \(A\cup X\) mais pas dans \(A\)). Donc \(B \setminus A \subset X \subset B\).
+<em>Réciproque.</em> Si \(B \setminus A \subset X \subset B\) (et \(A \subset B\)), alors \(A \cup X \subset B\), et pour \(x \in B\), soit \(x \in A\) soit \(x \in B \setminus A \subset X\), donc \(x \in A \cup X\).
+<strong>Bilan :</strong> pas de solution si \(A \not\subset B\) ; si \(A \subset B\), les solutions sont <strong>exactement</strong> les \(X\) tels que \(B \setminus A \subset X \subset B\).</p>
+<p><strong>(b) \(A \cap X = B\).</strong>
+<em>Condition nécessaire.</em> \(B = A \cap X \subset A\). Donc <strong>il faut \(B \subset A\)</strong>.
+<em>Supposons \(B \subset A\).</em> Si \(A \cap X = B\), alors \(B \subset X\) et \(X \cap A = B\) signifie que la partie de \(X\) située dans \(A\) est exactement \(B\), donc \(X = B \cup Y\) avec \(Y = X \setminus A \subset E \setminus A\).
+<em>Réciproque.</em> Si \(X = B \cup Y\) avec \(Y \subset A^c\), alors \(A \cap X = (A \cap B) \cup (A \cap Y) = B \cup \emptyset = B\) (car \(B \subset A\) et \(Y \cap A = \emptyset\)).
+<strong>Bilan :</strong> pas de solution si \(B \not\subset A\) ; si \(B \subset A\), les solutions sont les \(X = B \cup Y\) avec \(Y \subset E \setminus A\) quelconque.</p>
+</details>
+<hr />
+<h2 id="categorie-c-preuves-d-egalites-et-d-implications">Catégorie C : Preuves d'égalités et d'implications</h2>
+<h3 id="c-1-un-classique-seule-seule-les-deux-td2-n7">C.1 Un classique : \(\cap\) seule, \(\cup\) seule, les deux <strong>[TD2 n°7]</strong></h3>
+<p>Soient \(A, B, C \subset E\). (a) \(A \cap B = A \cap C \Rightarrow B = C\) ? (b) \(A \cup B = A \cup C \Rightarrow B = C\) ? (c) \(A \cap B = A \cap C\) <strong>et</strong> \(A \cup B = A \cup C\) \(\Rightarrow B = C\) ?</p>
+<details><summary>Correction</summary>
+<p><strong>(a) Non.</strong> Contre-exemple : \(A = \emptyset\), \(B = \{1\}\), \(C = \{2\}\). Alors \(A \cap B = \emptyset = A \cap C\) mais \(B \ne C\).</p>
+<p><strong>(b) Non.</strong> Contre-exemple : \(A = E = \{1,2\}\), \(B = \{1\}\), \(C = \{2\}\). Alors \(A \cup B = E = A \cup C\) mais \(B \ne C\).</p>
+<p><strong>(c) Oui.</strong> Montrons \(B \subset C\) ; l'autre inclusion est symétrique.
+Soit \(x \in B\).</p>
+<ul>
+<li><em>Cas \(x \in A\)</em> : alors \(x \in A \cap B = A \cap C\), donc \(x \in C\).</li>
+<li><em>Cas \(x \notin A\)</em> : comme \(x \in B \subset A \cup B = A \cup C\) et \(x \notin A\), on a \(x \in C\).
+Dans les deux cas \(x \in C\). Donc \(B \subset C\). En échangeant les rôles de \(B\) et \(C\), \(C \subset B\). Ainsi \(B = C\). \(\square\)</li>
+</ul>
+<p><em>Moralité : \(\cap\) et \(\cup\) ne sont pas « simplifiables » seuls, mais ensemble ils le sont (disjonction de cas sur \(x \in A\)).</em></p>
+</details>
+<h3 id="c-2-difference-et-complementaire-td2-n8">C.2 Différence et complémentaire <strong>[TD2 n°8]</strong></h3>
+<p>Pour \(A, B, C \in \mathcal{P}(E)\), montrer : (1) \(A \setminus (B \cap C) = (A \setminus B) \cup (A \setminus C)\) ; (2) \(\complement_E A \setminus \complement_E B = B \setminus A\).</p>
+<details><summary>Correction</summary>
+<p><strong>(1)</strong> Soit \(x\) quelconque. On traduit :
+\[x \in A \setminus (B \cap C) \iff x \in A \text{ et } \neg(x \in B \text{ et } x \in C) \iff x \in A \text{ et } (x \notin B \text{ ou } x \notin C).\]
+Par distributivité de « et » sur « ou » :
+\[\iff (x \in A \text{ et } x \notin B) \text{ ou } (x \in A \text{ et } x \notin C) \iff x \in (A \setminus B) \cup (A \setminus C). \qquad\square\]</p>
+<p><strong>(2)</strong> Soit \(x \in E\).
+\[x \in \complement_E A \setminus \complement_E B \iff x \notin A \text{ et } \neg(x \notin B) \iff x \notin A \text{ et } x \in B \iff x \in B \setminus A. \qquad\square\]
+(On a utilisé la double négation.)</p>
+</details>
+<h3 id="c-3-une-implication-entre-egalites-td2-n9">C.3 Une implication entre égalités <strong>[TD2 n°9]</strong></h3>
+<p>Soient \(A, B \in \mathcal{P}(E)\). Montrer : \((A \cap B = A \cup B) \Rightarrow (A = B)\).</p>
+<details><summary>Correction</summary>
+<p>Supposons \(A \cap B = A \cup B\). On a toujours \(A \cap B \subset A\) et \(A \subset A \cup B\).</p>
+<ul>
+<li>Donc \(A \subset A \cup B = A \cap B \subset B\) : on obtient \(A \subset B\).</li>
+<li>De même \(B \subset A \cup B = A \cap B \subset A\) : on obtient \(B \subset A\).</li>
+</ul>
+<p>Par double inclusion, \(A = B\). \(\square\)</p>
+<p><em>Remarque : la réciproque est vraie aussi (si \(A = B\) alors \(A \cap B = A = A \cup B\)), donc \(A \cap B = A \cup B \iff A = B\).</em></p>
+</details>
+<h3 id="c-4-associativite-et-distributivite-demandees-par-le-cours">C.4 Associativité et distributivité (demandées par le cours)</h3>
+<p>Prouver : (a) \(A \cup (B \cup C) = (A \cup B) \cup C\) ; (b) \(A \cap (B \cup C) = (A \cap B) \cup (A \cap C)\) ; (c) \(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)\).</p>
+<details><summary>Correction</summary>
+<p>Soit \(x\) quelconque. On utilise que « ou » et « et » sont associatifs et que chacun se distribue sur l'autre (tables de vérité).</p>
+<p><strong>(a)</strong> \(x \in A \cup (B \cup C) \iff x \in A \text{ ou } (x \in B \text{ ou } x \in C) \iff (x \in A \text{ ou } x \in B) \text{ ou } x \in C \iff x \in (A\cup B) \cup C\). \(\square\)</p>
+<p><strong>(b)</strong> \(x \in A \cap (B \cup C) \iff x \in A \text{ et } (x \in B \text{ ou } x \in C) \iff (x \in A \text{ et } x \in B) \text{ ou } (x \in A \text{ et } x \in C) \iff x \in (A \cap B) \cup (A \cap C)\). \(\square\)</p>
+<p><strong>(c)</strong> \(x \in A \cup (B \cap C) \iff x \in A \text{ ou } (x \in B \text{ et } x \in C) \iff (x \in A \text{ ou } x\in B) \text{ et } (x \in A \text{ ou } x \in C) \iff x \in (A\cup B)\cap(A\cup C)\). \(\square\)</p>
+</details>
+<h3 id="c-5-images-avec-produit-cartesien-td2-n13-extrait">C.5 Images avec produit cartésien <strong>[TD2 n°13, extrait]</strong></h3>
+<p>Soient \(E, F\) des ensembles, \(A \subset E\), \(B \subset F\). Comparer \(\complement_{E \times F}(A \times B)\) et \((\complement_E A \times F) \cup (E \times \complement_F B)\).</p>
+<details><summary>Correction</summary>
+<p>Soit \((x, y) \in E \times F\).
+\[(x,y) \notin A \times B \iff \neg(x \in A \text{ et } y \in B) \iff x \notin A \text{ ou } y \notin B \iff (x,y) \in (\complement_E A \times F) \cup (E \times \complement_F B).\]
+Donc les deux ensembles sont <strong>égaux</strong>. \(\square\)</p>
+<p><em>Attention : \(\complement_E A \times \complement_F B\) est <strong>strictement plus petit</strong> en général (il n'exige « \(x \notin A\) ET \(y \notin B\) »). On a \(\complement_E A \times \complement_F B \subset \complement_{E\times F}(A \times B)\), avec inclusion stricte dès que \(A \ne E\) et \(B \ne \emptyset\) par exemple.</em></p>
+</details>
+<hr />
+<h2 id="categorie-d-denombrement-elementaire">Catégorie D : Dénombrement élémentaire</h2>
+<h3 id="d-1-inclusion-exclusion-a-deux-ensembles">D.1 Inclusion-exclusion à deux ensembles</h3>
+<p>Montrer, pour \(E, F\) finis : \(\operatorname{card}(E \cup F) + \operatorname{card}(E \cap F) = \operatorname{card}E + \operatorname{card}F\).</p>
+<details><summary>Correction</summary>
+<p>On partitionne : \(E \cup F = E \sqcup (F \setminus E)\) (union <strong>disjointe</strong>) et \(F = (F \setminus E) \sqcup (E \cap F)\) (union <strong>disjointe</strong>). Par la Prop. 17 :
+\[\operatorname{card}(E\cup F) = \operatorname{card}E + \operatorname{card}(F \setminus E), \qquad \operatorname{card}F = \operatorname{card}(F \setminus E) + \operatorname{card}(E \cap F).\]
+On en tire \(\operatorname{card}(F\setminus E) = \operatorname{card}F - \operatorname{card}(E \cap F)\), puis en remplaçant dans la première :
+\[\operatorname{card}(E \cup F) = \operatorname{card}E + \operatorname{card}F - \operatorname{card}(E \cap F). \qquad\square\]</p>
+</details>
+<h3 id="d-2-compter-des-paires-de-parties-td2-n34">D.2 Compter des paires de parties <strong>[TD2 n°34]</strong></h3>
+<p>Soit \(E\) fini de cardinal \(n\). Dénombrer : \(\mathcal{A}_1 = \{(A,B) \in \mathcal{P}(E)^2 \mid A \subset B\}\) et \(\mathcal{A}_2 = \{(A,B) \in \mathcal{P}(E)^2 \mid A \cup B = E\}\).</p>
+<details><summary>Correction</summary>
+<p><strong>Idée : se donner \((A, B)\) revient à décider, pour chaque élément \(x \in E\), de sa « situation » par rapport à \(A\) et \(B\).</strong> Ces \(n\) choix sont <strong>indépendants</strong>.</p>
+<ul>
+<li><strong>\(\mathcal{A}_1\)</strong> (\(A \subset B\)) : pour chaque \(x\), trois situations possibles : \(x \notin B\) (donc \(x \notin A\)) ; \(x \in B \setminus A\) ; \(x \in A\) (donc \(x \in B\)). La situation « \(x \in A\) et \(x \notin B\) » est interdite. Donc \(3\) choix par élément : <strong>\(\operatorname{card}\mathcal{A}_1 = 3^n\)</strong>.</li>
+<li><strong>\(\mathcal{A}_2\)</strong> (\(A \cup B = E\)) : pour chaque \(x\), il doit être dans \(A\) ou dans \(B\) (ou les deux) : \(x \in A \setminus B\), ou \(x \in B \setminus A\), ou \(x \in A \cap B\). La situation « dans aucun des deux » est interdite. Donc \(3\) choix par élément : <strong>\(\operatorname{card}\mathcal{A}_2 = 3^n\)</strong>.</li>
+</ul>
+<p><em>Vérification pour \(n=1\), \(E=\{x\}\) : \(\mathcal{A}_1 = \{(\emptyset,\emptyset), (\emptyset,E), (E,E)\}\), 3 éléments ✓.</em></p>
+<p><em>(Les deux ensembles ont même cardinal car \((A,B) \mapsto (A^c, B)\) est une bijection de \(\mathcal{A}_1\) sur \(\mathcal{A}_2\) : en effet \(A \subset B \iff A^c \cup B = E\). À prouver en exercice !)</em></p>
+</details>
+<hr />
+<h3 id="auto-evaluation-finale">Auto-évaluation finale</h3>
+<ul>
+<li>[ ] Je ne confonds plus <strong>\(\in\)</strong> et <strong>\(\subset\)</strong>.</li>
+<li>[ ] Je démarre <strong>toute</strong> preuve d'ensembles par « Soit \(x\)… » et je sais passer à la <strong>logique</strong>.</li>
+<li>[ ] Je sais faire une <strong>double inclusion</strong> proprement.</li>
+<li>[ ] Je sais trouver un <strong>contre-exemple</strong> à une égalité d'ensembles fausse.</li>
+<li>[ ] Je sais <strong>compter</strong> en traitant les éléments un par un et en multipliant les choix.</li>
+</ul>
+
+<div class="nav-links"><span><a href="fiche_ch3_ensembles.html">← Fiche ch. 3 — Ensembles</a></span><span><a href="fiche_ch4_relations_applications.html">Fiche ch. 4 — Relations et applications →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="revision.js"></script>
+</body>
+</html>

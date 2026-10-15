@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitre 4 : Relations et applications — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Fiche ch. 4 — Relations et applications</span></div>
+<div class="page">
+<span class="chip">📘 Fiche de cours</span><span class="chip">Structures fondamentales</span>
+<h1>Chapitre 4 : Relations et applications</h1>
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul><li><a href="#categorie-a-relations">Catégorie A : Relations</a><ul><li><a href="#a1-relation-binaire">A1. Relation binaire</a></li><li><a href="#a2-les-4-proprietes-d-une-relation-interne-sur">A2. Les 4 propriétés d'une relation interne sur \(E\)</a></li><li><a href="#a3-relation-d-equivalence">A3. Relation d'équivalence</a></li><li><a href="#a4-relation-d-ordre">A4. Relation d'ordre</a></li><li><a href="#a5-vocabulaire-des-ordres-pour-le-td2-ex-16-17">A5. Vocabulaire des ordres (pour le TD2, ex. 16-17)</a></li></ul></li><li><a href="#categorie-b-fonctions-et-applications">Catégorie B : Fonctions et applications</a><ul><li><a href="#b1-fonction-application">B1. Fonction, application</a></li></ul></li><li><a href="#categorie-c-injection-surjection-bijection">Catégorie C : Injection, surjection, bijection</a><ul><li><a href="#c1-definitions-les-3-plus-importantes-du-chapitre">C1. Définitions <em>(les 3 plus importantes du chapitre)</em></a></li><li><a href="#c2-comment-prouver">C2. Comment PROUVER</a></li><li><a href="#c3-comment-refuter">C3. Comment RÉFUTER</a></li><li><a href="#c4-le-point-crucial-depart-et-arrivee-font-partie-de-la-fonction">C4. Le point crucial : <em>départ et arrivée font partie de la fonction</em></a></li></ul></li><li><a href="#categorie-d-composition">Catégorie D : Composition</a><ul><li><a href="#d1-definition">D1. Définition</a></li><li><a href="#d2-proposition-5-composition-et-proprietes-preuves-completes">D2. Proposition 5 : composition et propriétés (preuves complètes)</a></li><li><a href="#d3-proposition-6-caracterisation-par-l-identite">D3. Proposition 6 : caractérisation par l'identité</a></li><li><a href="#d4-deux-resultats-pieges-classiques-td2-ex-20">D4. Deux résultats « pièges classiques » (TD2 ex. 20)</a></li></ul></li><li><a href="#categorie-e-image-directe-image-reciproque-restriction">Catégorie E : Image directe, image réciproque, restriction</a><ul><li><a href="#e1-definitions">E1. Définitions</a></li><li><a href="#e2-pieges-majeurs">E2. Pièges majeurs</a></li><li><a href="#e3-proprietes-td2-ex-26-27">E3. Propriétés (TD2 ex. 26-27)</a></li></ul></li><li><a href="#categorie-f-cardinal-equipotence-denombrabilite">Catégorie F : Cardinal, équipotence, dénombrabilité</a><ul><li><a href="#f1-equipotence">F1. Équipotence</a></li><li><a href="#f2-ensembles-finis-cardinal">F2. Ensembles finis, cardinal</a></li><li><a href="#f3-proposition-11-ensembles-finis">F3. Proposition 11 (ensembles finis)</a></li><li><a href="#f4-denombrabilite">F4. Dénombrabilité</a></li><li><a href="#f5-theoreme-de-cantor-le-grand-classique">F5. Théorème de Cantor <em>(le grand classique)</em></a></li><li><a href="#f6-theoreme-de-cantor-bernstein-theoreme-16">F6. Théorème de Cantor-Bernstein (Théorème 16)</a></li><li><a href="#f7-culture-russell-et-l-incompletude-non-exigible">F7. Culture : Russell et l'incomplétude (non exigible)</a></li></ul></li><li><a href="#categorie-g-analyse-combinatoire-denombrement">Catégorie G : Analyse combinatoire (dénombrement)</a><ul><li><a href="#g1-les-formules-prop-17-21">G1. Les formules (Prop. 17-21)</a></li><li><a href="#g2-identites-a-savoir-prouver">G2. Identités à savoir prouver</a></li></ul></li></ul></details></nav>
+<blockquote>
+<p>Liens : TD2 (fiche n°2, parties 1 et 2) · <a href="exos_ch4_relations_applications.html">Exercices corrigés</a> · <a href="../Flashcards/structures_fondamentales.html">Flashcards</a></p>
+</blockquote>
+<hr />
+<h2 id="categorie-a-relations">Catégorie A : Relations</h2>
+<h3 id="a1-relation-binaire">A1. Relation binaire</h3>
+<ul>
+<li><strong>Définition.</strong> Une relation \(R\) de \(E\) (départ) vers \(F\) (arrivée) est donnée par une partie \(\operatorname{Gr}(R) \subset E \times F\) (le <strong>graphe</strong>). On note \(xRy\) quand \((x,y) \in \operatorname{Gr}(R)\) : « \(x\) est en relation avec \(y\) ».</li>
+<li><strong>Intuition.</strong> Une relation = la <strong>liste des couples</strong> « reliés ». Rien de plus.</li>
+<li><strong>Relation interne</strong> : quand \(E = F\). C'est le cas qui nous intéresse.</li>
+<li><strong>Diagramme sagittal</strong> : on dessine les points de \(E\) et une flèche \(x \to y\) pour chaque \(xRy\).
+Ex. (TD2 ex. 14) \(E = \{a,b,c,d\}\), \(R = \{(a,a), (b,a), (b,d), (d,c)\}\) : flèches \(a \to a\) (boucle), \(b \to a\), \(b \to d\), \(d \to c\).</li>
+</ul>
+<h3 id="a2-les-4-proprietes-d-une-relation-interne-sur">A2. Les 4 propriétés d'une relation interne sur \(E\)</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Propriété</th>
+<th>Formule</th>
+<th>Lecture dans le diagramme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Réflexive</strong></td>
+<td>\(\forall x \in E,\ xRx\)</td>
+<td><strong>chaque</strong> point a une boucle</td>
+</tr>
+<tr>
+<td><strong>Symétrique</strong></td>
+<td>\(\forall x, y \in E,\ (xRy \Leftrightarrow yRx)\)</td>
+<td>chaque flèche a sa flèche retour</td>
+</tr>
+<tr>
+<td><strong>Antisymétrique</strong></td>
+<td>\(\forall x, y,\ ((xRy \text{ et } yRx) \Rightarrow x = y)\)</td>
+<td>pas de flèche aller-retour entre deux points <strong>distincts</strong></td>
+</tr>
+<tr>
+<td><strong>Transitive</strong></td>
+<td>\(\forall x,y,z,\ ((xRy \text{ et } yRz) \Rightarrow xRz)\)</td>
+<td>tout chemin de 2 flèches a son raccourci</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Comment PROUVER une propriété</strong> : « Soient \(x, y, z \in E\) quelconques. Supposons… Alors… ».</li>
+<li><strong>Comment RÉFUTER</strong> : <strong>un</strong> contre-exemple explicite (donner les valeurs).</li>
+<li><strong>Piège n°1 : symétrique \(\ne\) antisymétrique.</strong> Elles ne sont <strong>pas</strong> opposées. La relation d'égalité \(=\) est <strong>les deux</strong>. Une relation peut n'être <strong>ni l'une ni l'autre</strong>.</li>
+<li><strong>Piège n°2 :</strong> pour réfuter la réflexivité, il suffit d'<strong>un</strong> \(x\) sans boucle (même \(x = 0\) !).</li>
+</ul>
+<h3 id="a3-relation-d-equivalence">A3. Relation d'équivalence</h3>
+<ul>
+<li><strong>Définition.</strong> Relation interne <strong>réflexive + symétrique + transitive</strong>.</li>
+<li><strong>Intuition.</strong> « Avoir la même propriété que » : même couleur, même reste modulo \(n\), même sinus. Elle <strong>regroupe</strong> les éléments en paquets (classes d'équivalence, pas au programme de ce cours).</li>
+<li><strong>Exemple.</strong> \(x R y \Leftrightarrow \sin x = \sin y\) sur \(\mathbb{R}\).
+<ul>
+<li>Réflexive : \(\sin x = \sin x\).</li>
+<li>Symétrique : \(\sin x = \sin y \Rightarrow \sin y = \sin x\).</li>
+<li>Transitive : \(\sin x = \sin y\) et \(\sin y = \sin z \Rightarrow \sin x = \sin z\).
+Toujours le même schéma : <strong>tout vient de l'égalité</strong>.</li>
+</ul>
+</li>
+<li><strong>Autre exemple important :</strong> l'<strong>équipotence</strong> \(E \sim F\) (existence d'une bijection) est une relation d'équivalence entre ensembles (Prop. 7).</li>
+</ul>
+<h3 id="a4-relation-d-ordre">A4. Relation d'ordre</h3>
+<ul>
+<li><strong>Définition.</strong> Relation interne <strong>réflexive + antisymétrique + transitive</strong>. On dit alors que \((E, \preceq)\) est un <strong>ensemble ordonné</strong>.</li>
+<li><strong>Ordre total</strong> : en plus, \(\forall x,y \in E,\ (xRy \text{ ou } yRx)\) (deux éléments quelconques sont <strong>comparables</strong>).</li>
+<li><strong>Ordre strict</strong> : \(xRy \Rightarrow x \ne y\) (ex. \(&lt;\), \(&gt;\)).</li>
+<li><strong>Exemples.</strong> \(\le\), \(\ge\) : ordres <strong>totaux</strong> sur \(\mathbb{R}\). L'inclusion \(\subset\) sur \(\mathcal{P}(E)\) : ordre <strong>non total</strong> (dès que \(E\) a \(\ge 2\) éléments).</li>
+<li><strong>La divisibilité</strong> sur \(\mathbb{N}^*\) est aussi un ordre non total (2 et 3 incomparables).</li>
+<li><strong>Piège.</strong> « Ordre strict » <strong>ne vérifie pas</strong> la réflexivité (\(x &lt; x\) est faux). Au sens strict du cours, \(&lt;\) <strong>n'est pas</strong> réflexive ; le cours le range tout de même parmi les « relations d'ordre strictes ».</li>
+</ul>
+<h3 id="a5-vocabulaire-des-ordres-pour-le-td2-ex-16-17">A5. Vocabulaire des ordres (pour le TD2, ex. 16-17)</h3>
+<p>Soit \((E, \le)\) ordonné et \(A \subset E\).</p>
+<ul>
+<li>\(M \in E\) est un <strong>majorant</strong> de \(A\) : \(\forall a \in A,\ a \le M\). Un <strong>minorant</strong> : \(\forall a \in A,\ m \le a\).</li>
+<li><strong>Plus grand élément</strong> de \(A\) : un majorant <strong>qui appartient à \(A\)</strong>. <strong>Plus petit élément</strong> : un minorant qui appartient à \(A\).</li>
+<li><strong>Borne supérieure</strong> \(\sup A\) : le <strong>plus petit des majorants</strong> (s'il existe). <strong>Borne inférieure</strong> \(\inf A\) : le <strong>plus grand des minorants</strong>.</li>
+<li><strong>Dictionnaire visuel.</strong>
+<ul>
+<li>\(A = [0,1[\) : majorants \([1, +\infty[\) ; minorants \(]-\infty, 0]\) ; <strong>pas</strong> de plus grand élément ; plus petit \(= 0\) ; \(\sup = 1\) (<strong>\(\notin A\)</strong>) ; \(\inf = 0\).</li>
+<li>\(B = [0,1]\) : plus grand \(1\), plus petit \(0\), \(\sup = 1\), \(\inf = 0\).</li>
+<li>\(C = ]0,+\infty[\) : pas de majorant ; minorants \(]-\infty,0]\) ; pas de plus petit ; \(\inf = 0\) ; pas de \(\sup\) dans \(\mathbb{R}\).</li>
+<li>\(D = \mathbb{N}\) : pas de majorant, plus petit \(0 = \inf\). \(E = \mathbb{Z}\) : ni majoré ni minoré.</li>
+</ul>
+</li>
+<li><strong>Piège.</strong> « Plus grand élément » \(\Rightarrow\) borne sup, mais la <strong>réciproque est fausse</strong> (\([0,1[\) a un sup sans plus grand élément).</li>
+<li><strong>Dans \((\mathcal{P}(E), \subset)\)</strong> : \(\sup\) d'une famille = <strong>union</strong>, \(\inf\) = <strong>intersection</strong> (tant qu'on reste dans \(\mathcal{P}(E)\)).</li>
+</ul>
+<hr />
+<h2 id="categorie-b-fonctions-et-applications">Catégorie B : Fonctions et applications</h2>
+<h3 id="b1-fonction-application">B1. Fonction, application</h3>
+<ul>
+<li><strong>Fonction</strong> \(f : E \to F\) : donnée de \(E\) (départ), \(F\) (arrivée) et d'une relation qui associe à tout \(x \in E\) <strong>au plus un</strong> \(y \in F\) (l'<strong>image</strong> \(f(x)\)).</li>
+<li><strong>Domaine de définition</strong> \(\operatorname{Dom}(f)\) : l'ensemble des \(x \in E\) qui <strong>ont</strong> une image.</li>
+<li><strong>Application</strong> : fonction dont <strong>tout</strong> \(x \in E\) a une image : \(\operatorname{Dom}(f) = E\).</li>
+<li><strong>Fonction vs application — l'idée.</strong> « Au plus un » (fonction) / « exactement un » (application).
+<ul>
+<li>\(x \mapsto \frac{1}{x+1}\) de \(\mathbb{R}\) dans \(\mathbb{R}\) : <strong>fonction</strong> (pas définie en \(-1\)). Restreinte à \(\mathbb{R} \setminus \{-1\}\) : <strong>application</strong>.</li>
+<li>\(x \mapsto \sqrt{x}\) de \(\mathbb{R}\) dans \(\mathbb{R}\) : fonction de domaine \(\mathbb{R}_+ = [0,+\infty[\) (le cours écrit \(]0,+\infty[\) par coquille : \(\sqrt 0 = 0\) existe bien).</li>
+</ul>
+</li>
+<li><strong>Graphe</strong> : \(\operatorname{Gr}(f) = \{(x, f(x)) \mid x \in \operatorname{Dom}(f)\}\).</li>
+<li><strong>Égalité de deux fonctions</strong> : même domaine, même ensemble d'arrivée et \(\forall x \in D,\ f(x) = g(x)\).
+<ul>
+<li>Formellement \(x \mapsto \sqrt x\) de \(\mathbb{R}_+ \to \mathbb{R}\) et \(x \mapsto \sqrt x\) de \(\mathbb{R}_+ \to \mathbb{R}_+\) <strong>ne sont pas égales</strong> (ensembles d'arrivée différents), mais le cours insiste peu sur cette subtilité.</li>
+</ul>
+</li>
+<li><strong>Fonction numérique</strong> : \(F = \mathbb{R}\) ou \(\mathbb{C}\). <strong>Suite</strong> : fonction définie sur \(\{n \in \mathbb{Z} \mid n \ge n_0\}\).</li>
+</ul>
+<hr />
+<h2 id="categorie-c-injection-surjection-bijection">Catégorie C : Injection, surjection, bijection</h2>
+<p>Soit \(f : E \to F\) une application. Pour \(y \in F\), l'équation \(f(x) = y\) d'inconnue \(x \in E\) : un \(x\) solution est un <strong>antécédent</strong> de \(y\).</p>
+<h3 id="c1-definitions-les-3-plus-importantes-du-chapitre">C1. Définitions <em>(les 3 plus importantes du chapitre)</em></h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Propriété</th>
+<th>Mot-clé</th>
+<th>Formule</th>
+<th>Équation \(f(x) = y\) a…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Injective</strong></td>
+<td>« au plus un »</td>
+<td>\(\forall x, x' \in E,\ f(x) = f(x') \Rightarrow x = x'\)</td>
+<td><strong>au plus</strong> 1 solution</td>
+</tr>
+<tr>
+<td><strong>Surjective</strong></td>
+<td>« au moins un »</td>
+<td>\(\forall y \in F,\ \exists x \in E,\ f(x) = y\)</td>
+<td><strong>au moins</strong> 1 solution</td>
+</tr>
+<tr>
+<td><strong>Bijective</strong></td>
+<td>« exactement un »</td>
+<td>injective <strong>et</strong> surjective</td>
+<td><strong>exactement</strong> 1 solution</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Forme équivalente de l'injectivité (par contraposition) : \(x \ne x' \Rightarrow f(x) \ne f(x')\).</li>
+<li><strong>Bijection réciproque</strong> : si \(f\) bijective, \(f^{-1}(y)\) := l'unique antécédent de \(y\). Alors \(f^{-1} : F \to E\) est bijective.</li>
+<li><strong>Identité</strong> \(\operatorname{Id}_E : x \mapsto x\) : bijective, égale à sa propre réciproque.</li>
+</ul>
+<h3 id="c2-comment-prouver">C2. Comment PROUVER</h3>
+<ul>
+<li><strong>Injective</strong> : « Soient \(x, x' \in E\) tels que \(f(x) = f(x')\). [calcul] Donc \(x = x'\). »</li>
+<li><strong>Surjective</strong> : « Soit \(y \in F\). Cherchons \(x \in E\) tel que \(f(x) = y\) : [on <strong>résout</strong> l'équation]. Posons \(x = \dots\) ; on a bien \(x \in E\) et \(f(x) = y\). »
+<strong>Ne pas oublier de vérifier que \(x \in E\)</strong> (l'ensemble de départ !).</li>
+<li><strong>Bijective</strong> : prouver les deux, <strong>ou</strong> exhiber \(g\) avec \(g \circ f = \operatorname{Id}_E\) et \(f \circ g = \operatorname{Id}_F\) (Prop. 6), <strong>ou</strong> résoudre « \(f(x) = y\) » et montrer une <strong>unique</strong> solution dans \(E\).</li>
+</ul>
+<h3 id="c3-comment-refuter">C3. Comment RÉFUTER</h3>
+<ul>
+<li><strong>Non injective</strong> : exhiber \(x \ne x'\) avec \(f(x) = f(x')\). Ex. \(x \mapsto x^2\) sur \(\mathbb{R}\) : \(f(-1) = f(1)\).</li>
+<li><strong>Non surjective</strong> : exhiber \(y \in F\) sans antécédent. Ex. \(x \mapsto x^2\) de \(\mathbb{R}\) dans \(\mathbb{R}\) : \(y = -1\).</li>
+</ul>
+<h3 id="c4-le-point-crucial-depart-et-arrivee-font-partie-de-la-fonction">C4. Le point crucial : <em>départ et arrivée font partie de la fonction</em></h3>
+<p>Une même formule peut être inj./surj./bij. selon les ensembles choisis.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Injective ?</th>
+<th>Surjective ?</th>
+<th>Bijective ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(x \mapsto x^2\), \(\mathbb{R} \to \mathbb{R}\)</td>
+<td>non</td>
+<td>non</td>
+<td>non</td>
+</tr>
+<tr>
+<td>\(x \mapsto x^2\), \(\mathbb{R} \to \mathbb{R}_+\)</td>
+<td>non</td>
+<td><strong>oui</strong></td>
+<td>non</td>
+</tr>
+<tr>
+<td>\(x \mapsto x^2\), \(\mathbb{R}_+ \to \mathbb{R}\)</td>
+<td><strong>oui</strong></td>
+<td>non</td>
+<td>non</td>
+</tr>
+<tr>
+<td>\(x \mapsto x^2\), \(\mathbb{R}_+ \to \mathbb{R}_+\)</td>
+<td>oui</td>
+<td>oui</td>
+<td><strong>oui</strong></td>
+</tr>
+<tr>
+<td>\(\cos : \mathbb{R} \to \mathbb{R}\)</td>
+<td>non</td>
+<td>non</td>
+<td>non</td>
+</tr>
+<tr>
+<td>\(\cos : \mathbb{R} \to [-1,1]\)</td>
+<td>non</td>
+<td>oui</td>
+<td>non</td>
+</tr>
+<tr>
+<td>\(\tan : ]-\frac{\pi}{2}, \frac{\pi}{2}[ \to \mathbb{R}\)</td>
+<td>oui</td>
+<td>oui</td>
+<td><strong>oui</strong></td>
+</tr>
+<tr>
+<td>\(x \mapsto \frac1x\), \(\mathbb{R}_+^* \to \mathbb{R}_+^*\)</td>
+<td>oui</td>
+<td>oui</td>
+<td><strong>oui</strong> (égale à sa réciproque)</td>
+</tr>
+<tr>
+<td>\(x \mapsto 2x+3\), \(\mathbb{R} \to \mathbb{R}\)</td>
+<td>oui</td>
+<td>oui</td>
+<td><strong>oui</strong>, réciproque \(y \mapsto \frac{y-3}{2}\)</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Réflexe de doctorant.</strong> Pour qu'une application soit <strong>surjective</strong>, on peut <strong>toujours</strong> modifier l'ensemble d'arrivée pour que ça marche (le remplacer par \(\operatorname{Im} f\)). Pour qu'elle soit <strong>injective</strong>, on restreint l'<strong>ensemble de départ</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="categorie-d-composition">Catégorie D : Composition</h2>
+<h3 id="d1-definition">D1. Définition</h3>
+<ul>
+<li>Si \(f : E \to F\) et \(g : F \to G\) (l'arrivée de \(f\) = le départ de \(g\)), alors \(g \circ f : E \to G\), \(\ (g \circ f)(x) = g(f(x))\). On lit « \(g\) rond \(f\) » (on applique <strong>\(f\) d'abord</strong>).</li>
+<li><strong>Associativité</strong> : \(h \circ (g \circ f) = (h \circ g) \circ f\) (on note \(h \circ g \circ f\)).</li>
+<li><strong>Pas commutative</strong> en général : \(g \circ f \ne f \circ g\).</li>
+</ul>
+<h3 id="d2-proposition-5-composition-et-proprietes-preuves-completes">D2. Proposition 5 : composition et propriétés (preuves complètes)</h3>
+<p>Soient \(f : E \to F\), \(g : F \to G\).</p>
+<p><strong>1) \(f, g\) surjectives \(\Rightarrow\) \(g \circ f\) surjective.</strong>
+Soit \(z \in G\). Comme \(g\) est surjective, il existe \(y \in F\) tel que \(g(y) = z\). Comme \(f\) est surjective, il existe \(x \in E\) tel que \(f(x) = y\). Alors \((g \circ f)(x) = g(f(x)) = g(y) = z\). \(\square\)</p>
+<p><strong>2) \(f, g\) injectives \(\Rightarrow\) \(g \circ f\) injective.</strong>
+Soient \(x, x' \in E\) avec \((g \circ f)(x) = (g \circ f)(x')\), c'est-à-dire \(g(f(x)) = g(f(x'))\). Comme \(g\) est injective, \(f(x) = f(x')\). Comme \(f\) est injective, \(x = x'\). \(\square\)</p>
+<p><strong>3) \(f, g\) bijectives \(\Rightarrow\) \(g \circ f\) bijective et \((g \circ f)^{-1} = f^{-1} \circ g^{-1}\).</strong>
+Bijective par 1) et 2). Pour la réciproque : \((f^{-1} \circ g^{-1}) \circ (g \circ f) = f^{-1} \circ (g^{-1} \circ g) \circ f = f^{-1} \circ f = \operatorname{Id}_E\), et de même de l'autre côté. \(\square\)
+<strong>Mnémo : on enlève les chaussettes avant les chaussures</strong> (on défait dans l'ordre inverse).</p>
+<h3 id="d3-proposition-6-caracterisation-par-l-identite">D3. Proposition 6 : caractérisation par l'identité</h3>
+<p>Soient \(f : E \to F\) et \(g : F \to E\).</p>
+<ol>
+<li>Si \(g \circ f = \operatorname{Id}_E\) <strong>et</strong> \(f \circ g = \operatorname{Id}_F\), alors \(f\) est bijective de réciproque \(g\).</li>
+<li>Si \(f\) est bijective et (\(g \circ f = \operatorname{Id}_E\) <strong>ou</strong> \(f \circ g = \operatorname{Id}_F\)), alors \(g = f^{-1}\).</li>
+</ol>
+<blockquote>
+<p>Interprétation algébrique : \(\operatorname{Id}_E\) est l'<strong>élément neutre</strong> de la composition, et \(f^{-1}\) est l'<strong>inverse</strong> de \(f\). C'est exactement la structure de <strong>groupe</strong> (ch. 7).</p>
+</blockquote>
+<h3 id="d4-deux-resultats-pieges-classiques-td2-ex-20">D4. Deux résultats « pièges classiques » (TD2 ex. 20)</h3>
+<ul>
+<li><strong>\(g \circ f\) injective \(\Rightarrow\) \(f\) injective</strong> (c'est \(f\) qui « porte » l'injectivité). Contre-exemple pour \(g\) : on n'a pas \(g\) injective.</li>
+<li><strong>\(g \circ f\) surjective \(\Rightarrow\) \(g\) surjective</strong> (c'est \(g\) qui « porte » la surjectivité).</li>
+<li><strong>(a)</strong> \(g \circ f\) injective <strong>et</strong> \(f\) surjective \(\Rightarrow\) \(g\) injective. <strong>(b)</strong> \(g \circ f\) surjective <strong>et</strong> \(g\) injective \(\Rightarrow\) \(f\) surjective. (Preuves dans les exercices.)</li>
+</ul>
+<hr />
+<h2 id="categorie-e-image-directe-image-reciproque-restriction">Catégorie E : Image directe, image réciproque, restriction</h2>
+<p>Soit \(f : E \to F\), \(A \subset E\), \(B \subset F\).</p>
+<h3 id="e1-definitions">E1. Définitions</h3>
+<ul>
+<li><strong>Image directe</strong> : \(f(A) = \{f(a) \mid a \in A\} = \{y \in F \mid \exists x \in A,\ f(x) = y\}\).</li>
+<li><strong>Image réciproque</strong> : \(f^{-1}(B) = \{x \in E \mid f(x) \in B\}\).</li>
+<li><strong>Ensemble image</strong> : \(\operatorname{Im} f = f(E)\). <strong>\(f\) surjective \(\Leftrightarrow\) \(\operatorname{Im} f = F\).</strong></li>
+<li><strong>Restriction</strong> : si \(f(A) \subset B\), \(f\) induit \(f_{A \to B} : A \to B\), \(x \mapsto f(x)\). Si \(B = F\) on note \(f_{|A}\) (restriction à \(A\)).</li>
+<li><strong>Si \(f\) injective</strong>, elle induit une <strong>bijection</strong> \(E \to f(E)\).</li>
+</ul>
+<h3 id="e2-pieges-majeurs">E2. Pièges majeurs</h3>
+<ul>
+<li><strong>\(f^{-1}(B)\) n'exige PAS que \(f\) soit bijective.</strong> Ici « \(f^{-1}\) » désigne un <strong>ensemble</strong> (les antécédents), pas une fonction. Ex. \(f =\) carré : \(f^{-1}(\{4\}) = \{-2, 2\}\).</li>
+<li><strong>\(f^{-1}(B)\) peut être vide.</strong> Ex. \(\sin^{-1}([-3,-2]) = \emptyset\).</li>
+<li><strong>Image directe et réciproque ne sont pas inverses l'une de l'autre</strong> (sauf si \(f\) est bijective).</li>
+</ul>
+<h3 id="e3-proprietes-td2-ex-26-27">E3. Propriétés (TD2 ex. 26-27)</h3>
+<ul>
+<li>\(f(A_1 \cup A_2) = f(A_1) \cup f(A_2)\).</li>
+<li>\(f(A_1 \cap A_2) \subset f(A_1) \cap f(A_2)\) <strong>(inclusion seulement !)</strong> ; égalité pour tous \(A_1, A_2\) \(\Leftrightarrow\) \(f\) injective.</li>
+<li>\(f^{-1}(B_1 \cup B_2) = f^{-1}(B_1) \cup f^{-1}(B_2)\).</li>
+<li>\(f^{-1}(B_1 \cap B_2) = f^{-1}(B_1) \cap f^{-1}(B_2)\) (<strong>égalité</strong>, plus fort que ce qu'on demande en TD).</li>
+<li>\(f^{-1}(F \setminus B) = E \setminus f^{-1}(B)\).</li>
+<li><strong>Toujours</strong> : \(f(f^{-1}(B)) \subset B\) et \(A \subset f^{-1}(f(A))\).</li>
+<li><strong>Caractérisations :</strong>
+<ul>
+<li>\(f\) surjective \(\Leftrightarrow\) \(\forall B \subset F,\ f(f^{-1}(B)) = B\).</li>
+<li>\(f\) injective \(\Leftrightarrow\) \(\forall A \subset E,\ f^{-1}(f(A)) = A\).</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Mnémo.</strong> Les images <strong>directes</strong> préservent les <strong>unions</strong>, les images <strong>réciproques</strong> préservent <strong>tout</strong> (unions, intersections, complémentaires). C'est pour ça que l'image réciproque est la plus « gentille ».</p>
+</blockquote>
+<hr />
+<h2 id="categorie-f-cardinal-equipotence-denombrabilite">Catégorie F : Cardinal, équipotence, dénombrabilité</h2>
+<h3 id="f1-equipotence">F1. Équipotence</h3>
+<ul>
+<li><strong>Définition.</strong> \(E \sim F\) (équipotents) s'il existe une <strong>bijection</strong> \(E \to F\).</li>
+<li><strong>Prop. 7 :</strong> c'est une relation d'<strong>équivalence</strong> : \(E \sim E\) (\(\operatorname{Id}_E\)) ; \(E \sim F \Rightarrow F \sim E\) (la réciproque) ; \(E \sim F\) et \(F \sim G \Rightarrow E \sim G\) (composée).</li>
+<li><strong>Idée.</strong> « Même taille » = on peut <strong>apparier</strong> parfaitement les éléments.</li>
+</ul>
+<h3 id="f2-ensembles-finis-cardinal">F2. Ensembles finis, cardinal</h3>
+<ul>
+<li><strong>Définition.</strong> \(E\) est <strong>fini</strong> s'il est vide ou si \(E \sim \{1, \dots, n\}\) pour un \(n \in \mathbb{N}^*\). Ce \(n\) est <strong>unique</strong> (preuve = exercice) : le <strong>cardinal</strong> \(\operatorname{card} E\) (ou \(\#E\)). \(\operatorname{card} \emptyset = 0\).</li>
+<li><strong>Infini</strong> : non fini.</li>
+<li><strong>Conventions :</strong> « \(\operatorname{card} A \ge n\) » signifie <em>fini de cardinal \(\ge n\)</em> <strong>ou infini</strong> ; « \(\operatorname{card} A \le n\) » signifie <em>fini</em> et de cardinal \(\le n\).</li>
+<li><strong>Exemples.</strong> \(\operatorname{card}\{0, \dots, n\} = n+1\) ; \(\operatorname{card}\{-n, \dots, n\} = 2n+1\). \(\mathbb{N}\), \(\mathbb{R}\), \([0,1]\) sont infinis.</li>
+</ul>
+<h3 id="f3-proposition-11-ensembles-finis">F3. Proposition 11 (ensembles finis)</h3>
+<p>Soit \(E\) <strong>fini</strong>, \(F\) quelconque.</p>
+<ol>
+<li>\(\operatorname{card} E = \operatorname{card} F \Leftrightarrow E \sim F\).</li>
+<li>\(E \subsetneq F \Rightarrow \operatorname{card} E &lt; \operatorname{card} F\).</li>
+<li>Soit \(f : E \to F\).
+<ul>
+<li>\(f\) <strong>injective</strong> \(\Rightarrow\) \(\operatorname{card} E \le \operatorname{card} F\).</li>
+<li>\(f\) <strong>surjective</strong> \(\Rightarrow\) \(\operatorname{card} E \ge \operatorname{card} F\).</li>
+<li>Si \(\operatorname{card} E = \operatorname{card} F\) : <strong>injective \(\Leftrightarrow\) surjective \(\Leftrightarrow\) bijective</strong> (principe des tiroirs !).</li>
+</ul>
+</li>
+<li>\(E = \{e_1, \dots, e_n\} \Rightarrow \operatorname{card} E \le n\) ; si les \(e_i\) sont deux à deux distincts, \(\operatorname{card} E \ge n\) (donc \(= n\)).</li>
+</ol>
+<blockquote>
+<p><strong>⚠️ Attention.</strong> L'équivalence « injective \(\Leftrightarrow\) surjective » est <strong>fausse pour les ensembles infinis</strong> : \(n \mapsto n+1\) de \(\mathbb{N}\) dans \(\mathbb{N}\) est injective, non surjective.</p>
+</blockquote>
+<h3 id="f4-denombrabilite">F4. Dénombrabilité</h3>
+<ul>
+<li><strong>Définition.</strong> \(E\) est <strong>dénombrable</strong> s'il est <strong>fini ou équipotent à \(\mathbb{N}\)</strong>. (« On peut numéroter ses éléments par les entiers. »)</li>
+<li><strong>Exemples dénombrables :</strong> \(2\mathbb{N}\), \(\mathbb{Z}\), \(\mathbb{N}^2\), \(\mathbb{Q}\).</li>
+<li><strong>Prop. 10.</strong> Tout sous-ensemble de \(\mathbb{N}\) est dénombrable.
+<strong>Idée de la preuve</strong> (à bien comprendre) : si \(E \subset \mathbb{N}\) est infini, on le <strong>numérote dans l'ordre croissant</strong>. On pose \(e(0) = \min E\), puis \(e(1) = \min(E \setminus \{e(0)\})\), etc. (Possible car toute partie non vide de \(\mathbb{N}\) a un plus petit élément.) La fonction \(e : \mathbb{N} \to E\) est <strong>injective</strong> (par construction, on retire à chaque fois ce qu'on a pris) et <strong>surjective</strong> (si \(k \in E\), comme \(e(k) \ge k\), l'élément \(k\) a forcément été retiré à une étape \(j \le k\), donc \(e(j) = k\)). \(\square\)</li>
+<li><strong>Prop. 12.</strong> Si \(E \ne \emptyset\) : (il existe une injection \(E \to F\)) \(\Leftrightarrow\) (il existe une surjection \(F \to E\)).</li>
+<li><strong>Conséquence pratique.</strong> Pour montrer que \(E\) est dénombrable, il suffit d'une <strong>injection de \(E\) dans \(\mathbb{N}\)</strong> (ou une surjection de \(\mathbb{N}\) sur \(E\)).</li>
+</ul>
+<h3 id="f5-theoreme-de-cantor-le-grand-classique">F5. Théorème de Cantor <em>(le grand classique)</em></h3>
+<p><strong>Énoncé.</strong> Pour tout ensemble \(E\), il <strong>n'existe pas de surjection</strong> \(E \to \mathcal{P}(E)\).</p>
+<p><strong>Preuve (par l'absurde, argument diagonal).</strong>
+Supposons qu'il existe une surjection \(f : E \to \mathcal{P}(E)\). Chaque \(f(x)\) est donc une <strong>partie</strong> de \(E\). Posons
+\[P = \{x \in E \mid x \notin f(x)\}.\]
+C'est bien une partie de \(E\), donc \(P \in \mathcal{P}(E)\). Comme \(f\) est surjective, il existe \(a \in E\) tel que \(f(a) = P\). Alors :</p>
+<ul>
+<li>
+<p>si \(a \in P\), par définition de \(P\), \(a \notin f(a) = P\) : contradiction ;</p>
+</li>
+<li>
+<p>si \(a \notin P\), alors \(a \notin f(a)\), donc \(a\) vérifie la condition définissant \(P\), soit \(a \in P\) : contradiction.
+Dans les deux cas \(a \in P \Leftrightarrow a \notin P\), absurde. \(\square\)</p>
+</li>
+<li>
+<p><strong>Conséquence.</strong> \(\operatorname{card} E &lt; \operatorname{card} \mathcal{P}(E)\) : <strong>il n'existe pas de « plus grand infini »</strong>.</p>
+</li>
+<li>
+<p><strong>Corollaire 15 : \(\mathbb{R}\) n'est pas dénombrable</strong> (ni même \([0,1]\)).
+<strong>Diagonale de Cantor</strong> : on suppose \(f : \mathbb{N} \to \mathbb{R}\) bijective. On construit \(x\) en changeant le \(n\)-ième chiffre décimal de \(f(n)\) (en évitant les suites ultimement égales à 9). Alors \(x\) diffère de chaque \(f(n)\) au \(n\)-ième chiffre, donc \(x \notin f(\mathbb{N}) = \mathbb{R}\), contradiction.</p>
+</li>
+<li>
+<p><strong>Lien</strong> avec TD2 ex. 30 : \(\{0,1\}^{\mathbb{N}}\) est <strong>non dénombrable</strong> car il est en bijection avec \(\mathcal{P}(\mathbb{N})\) (une suite \(u\) de 0 et 1 \(\leftrightarrow\) la partie \(\{n \mid u_n = 1\}\)).</p>
+</li>
+</ul>
+<h3 id="f6-theoreme-de-cantor-bernstein-theoreme-16">F6. Théorème de Cantor-Bernstein (Théorème 16)</h3>
+<p>S'il existe une <strong>injection \(E \to F\)</strong> et une <strong>injection \(F \to E\)</strong>, alors \(E \sim F\) (il existe une bijection).</p>
+<ul>
+<li><strong>Intérêt.</strong> Pour prouver que deux ensembles ont « la même taille », on peut ne construire que deux <strong>injections</strong> (souvent bien plus faciles qu'une bijection).</li>
+</ul>
+<h3 id="f7-culture-russell-et-l-incompletude-non-exigible">F7. Culture : Russell et l'incomplétude (non exigible)</h3>
+<ul>
+<li><strong>Paradoxe de Russell.</strong> \(E = \{A \mid A \notin A\}\). Alors \(E \in E \Leftrightarrow E \notin E\) : absurde. <strong>Donc</strong> la théorie des ensembles ne doit <strong>pas</strong> permettre de former « l'ensemble de tous les ensembles qui ne se contiennent pas eux-mêmes ».</li>
+<li><strong>Hypothèse du continu</strong> : il n'y a pas de cardinal strictement entre \(\operatorname{card}\mathbb{N}\) et \(\operatorname{card}\mathbb{R}\) ; elle est <strong>indécidable</strong> (ni prouvable ni réfutable dans la théorie usuelle).</li>
+<li><strong>Gödel</strong> : toute théorie raisonnable contient des énoncés indécidables.</li>
+</ul>
+<hr />
+<h2 id="categorie-g-analyse-combinatoire-denombrement">Catégorie G : Analyse combinatoire (dénombrement)</h2>
+<h3 id="g1-les-formules-prop-17-21">G1. Les formules (Prop. 17-21)</h3>
+<p>Soient \(E, F\) finis, \(n = \operatorname{card} E\), \(m = \operatorname{card} F\).</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Quantité</th>
+<th>Formule</th>
+<th>Pourquoi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Union d'ensembles <strong>disjoints</strong></td>
+<td>\(\operatorname{card}(A_1 \cup \dots \cup A_k) = \sum \operatorname{card} A_i\)</td>
+<td>on compte chaque paquet</td>
+</tr>
+<tr>
+<td>Union (cas général, 2 ens.)</td>
+<td>\(\operatorname{card}(E \cup F) + \operatorname{card}(E \cap F) = \operatorname{card} E + \operatorname{card} F\)</td>
+<td>on compte deux fois l'intersection</td>
+</tr>
+<tr>
+<td>Produit cartésien</td>
+<td>\(\operatorname{card}(E \times F) = nm\)</td>
+<td>\(n\) choix puis \(m\) choix</td>
+</tr>
+<tr>
+<td>Puissance</td>
+<td>\(\operatorname{card}(E^p) = n^p\)</td>
+<td>\(p\) choix indépendants</td>
+</tr>
+<tr>
+<td>Applications \(E \to F\)</td>
+<td>\(\operatorname{card} \mathcal{F}(E,F) = m^n\)</td>
+<td>choisir \(f(e_1), \dots, f(e_n)\) dans \(F\)</td>
+</tr>
+<tr>
+<td>Parties de \(E\)</td>
+<td>\(\operatorname{card} \mathcal{P}(E) = 2^n\)</td>
+<td>chaque élément est « dedans » ou « dehors »</td>
+</tr>
+<tr>
+<td>Arrangements (\(p \le n\))</td>
+<td>\(A_n^p = \dfrac{n!}{(n-p)!}\)</td>
+<td>\(p\)-uplets d'éléments <strong>distincts</strong> : \(n(n-1)\cdots(n-p+1)\)</td>
+</tr>
+<tr>
+<td>Permutations</td>
+<td>\(n! = A_n^n\)</td>
+<td>bijections de \(E\) dans \(E\)</td>
+</tr>
+<tr>
+<td>Combinaisons (\(p \le n\))</td>
+<td>\(\dbinom{n}{p} = \dfrac{n!}{p!(n-p)!}\)</td>
+<td><strong>parties</strong> à \(p\) éléments (l'ordre ne compte pas)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Convention :</strong> \(0! = 1! = 1\).</li>
+<li><strong>Lien arrangements / combinaisons :</strong> \(A_n^p = p! \cdot \binom{n}{p}\) (chaque partie à \(p\) éléments se range de \(p!\) façons).</li>
+</ul>
+<h3 id="g2-identites-a-savoir-prouver">G2. Identités à savoir prouver</h3>
+<ul>
+<li><strong>Symétrie :</strong> \(\dbinom{n}{k} = \dbinom{n}{n-k}\).
+<em>Preuve par bijection</em> : \(A \mapsto E \setminus A\) envoie les parties à \(k\) éléments sur les parties à \(n-k\) éléments, et c'est sa propre réciproque. Donc elles sont équipotentes, d'où l'égalité de cardinaux. \(\square\)</li>
+<li><strong>Pascal :</strong> \(\dbinom{n}{k} = \dbinom{n-1}{k-1} + \dbinom{n-1}{k}\).
+<em>Preuve par partition</em> : les parties à \(k\) éléments de \(\{1, \dots, n\}\) se séparent en celles qui <strong>contiennent</strong> \(n\) (on choisit alors \(k-1\) éléments parmi \(n-1\)) et celles qui <strong>ne contiennent pas</strong> \(n\) (on choisit \(k\) éléments parmi \(n-1\)). Les deux paquets sont disjoints. \(\square\)</li>
+<li><strong>Binôme de Newton :</strong> \((a+b)^n = \displaystyle\sum_{k=0}^{n} \binom{n}{k} a^k b^{n-k}\).
+<em>Idée</em> : en développant \((a+b)(a+b)\cdots(a+b)\), pour obtenir \(a^k b^{n-k}\) il faut choisir \(a\) dans \(k\) des \(n\) parenthèses : \(\binom{n}{k}\) façons.</li>
+<li><strong>Vandermonde :</strong> \(\displaystyle\sum_{k=0}^{r} \binom{m}{k}\binom{n}{r-k} = \binom{m+n}{r}\).
+<em>Idée</em> : on choisit \(r\) éléments dans \(E \sqcup F\) (\(\operatorname{card} E = m\), \(\operatorname{card} F = n\)) en classant selon le nombre \(k\) d'éléments pris dans \(E\).</li>
+<li><strong>Cardinal de \(\mathcal{P}(E)\)</strong> : \(2^n = \sum_{k=0}^n \binom{n}{k}\) (binôme avec \(a=b=1\)).</li>
+</ul>
+<blockquote>
+<p><strong>Réflexe de doctorant : prouver une égalité de dénombrement = compter la même chose de deux façons.</strong> C'est la méthode de la <strong>double comptage</strong> : plus élégante et plus rapide qu'une récurrence.</p>
+</blockquote>
+
+<div class="nav-links"><span><a href="exos_ch3_ensembles.html">← Exercices ch. 3 — Ensembles</a></span><span><a href="exos_ch4_relations_applications.html">Exercices ch. 4 — Relations et applications →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="revision.js"></script>
+</body>
+</html>

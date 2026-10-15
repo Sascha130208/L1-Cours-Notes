@@ -1,0 +1,155 @@
+Qu'est-ce qu'une <b>assertion</b> (proposition) ?	Un énoncé mathématique <b>susceptible d'être vrai ou faux</b>. Un souhait, un ordre, une question, une exclamation n'en sont pas.	Ch2_Logique
+« Soit \(n\) un entier pair. » est-ce une assertion ?	<b>Non</b> : c'est une consigne qui <b>fixe</b> un objet, pas un énoncé vrai ou faux.	Ch2_Logique
+Table de vérité de \(P \wedge Q\) ?	Vraie <b>seulement</b> si \(P\) et \(Q\) sont toutes deux vraies.	Ch2_Logique
+Table de vérité de \(P \vee Q\) ? Le « ou » est-il exclusif ?	Vraie dès qu'<b>au moins une</b> est vraie. En maths le « ou » est <b>inclusif</b>.	Ch2_Logique
+Quelles assertions sont <b>toujours</b> vraie / <b>toujours</b> fausse : \(P \vee \neg P\) et \(P \wedge \neg P\) ?	\(P \vee \neg P\) : <b>toujours vraie</b> (tiers exclu). \(P \wedge \neg P\) : <b>toujours fausse</b>.	Ch2_Logique
+<b>Définition</b> de l'implication \(P \Rightarrow Q\) dans le cours ?	\(P \Rightarrow Q\) est, par définition, l'expression \(Q \vee \neg P\).	Ch2_Logique
+Quand \(P \Rightarrow Q\) est-elle <b>fausse</b> ?	<b>Uniquement</b> quand \(P\) est vraie et \(Q\) est fausse.	Ch2_Logique
+\(P\) est fausse. Que vaut \(P \Rightarrow Q\) ?	<b>Vraie</b> (« vraie à vide »). Ex. \((0=1) \Rightarrow (2<5)\) est vraie.	Ch2_Logique
+Différence entre \(\Rightarrow\) et « donc » ?	\((1=2) \Rightarrow (6>7)\) est <b>vraie</b>. « \(1=2\) donc \(6>7\) » affirme <b>deux faussetés</b> et une causalité. \(\Rightarrow\) n'affirme rien sur \(P\) ni \(Q\).	Ch2_Logique
+Réciproque vs contraposée de \(P \Rightarrow Q\) ?	Réciproque : \(Q \Rightarrow P\) (<b>pas</b> équivalente). Contraposée : \(\neg Q \Rightarrow \neg P\) (<b>équivalente</b>).	Ch2_Logique
+Définition de \(P \Leftrightarrow Q\) ?	\((P \Rightarrow Q) \wedge (Q \Rightarrow P)\) : \(P\) et \(Q\) ont <b>toujours la même valeur de vérité</b>.	Ch2_Logique
+Lois de De Morgan ?	\(\neg(P \wedge Q) \Leftrightarrow (\neg P) \vee (\neg Q)\) et \(\neg(P \vee Q) \Leftrightarrow (\neg P) \wedge (\neg Q)\).	Ch2_Logique
+Négation de \(P \Rightarrow Q\) ?	\(P \wedge \neg Q\) (car \(\neg(Q \vee \neg P) = \neg Q \wedge P\)).	Ch2_Logique
+Règle de <b>contraposition</b> ?	\((P \Rightarrow Q) \Leftrightarrow (\neg Q \Rightarrow \neg P)\).	Ch2_Logique
+Quelle formule <b>justifie</b> le raisonnement par l'absurde ?	\(\big((\neg P) \Rightarrow (Q \wedge \neg Q)\big) \Rightarrow P\).	Ch2_Logique
+Un prédicat \(P(x)\) sur \(E\), c'est quoi ?	Une <b>fonction</b> \(P : E \to \{\text{Vrai}, \text{Faux}\}\), \(x \mapsto P(x)\).	Ch2_Logique
+Lire : \(\forall x \in E,\ P(x)\) et \(\exists x \in E \mid P(x)\)	« Pour tout \(x\) de \(E\), \(P(x)\) » ; « il existe \(x\) dans \(E\) tel que \(P(x)\) ».	Ch2_Logique
+Négation de \(\forall x \in E,\ P(x)\) ?	\(\exists x \in E \mid \neg P(x)\).	Ch2_Logique
+Négation de \(\exists x \in E \mid P(x)\) ?	\(\forall x \in E,\ \neg P(x)\).	Ch2_Logique
+Recette pour <b>nier</b> une phrase quantifiée ?	1) \(\forall \leftrightarrow \exists\) ; 2) on <b>garde l'ordre</b> ; 3) on <b>nie la fin</b>.	Ch2_Logique
+Négation de « \(\forall \varepsilon>0,\ \exists n_0,\ \forall n \ge n_0,\ |u_n-\ell|<\varepsilon\) » ?	\(\exists \varepsilon>0,\ \forall n_0,\ \exists n \ge n_0,\ |u_n-\ell| \ge \varepsilon\).	Ch2_Logique
+\(\forall x\, \exists y\) est-il équivalent à \(\exists y\, \forall x\) ?	<b>Non.</b> Dans \(\forall x\,\exists y\), \(y\) peut <b>dépendre de \(x\)</b>. Ex. \(\forall x \in \mathbb{R},\exists y,\ y>x\) est vrai, mais \(\exists y,\forall x,\ y>x\) est faux.	Ch2_Logique
+Si \(E=\emptyset\), que valent \(\forall x\in E, P(x)\) et \(\exists x \in E, P(x)\) ?	\(\forall\) : <b>toujours vraie</b> ; \(\exists\) : <b>toujours fausse</b>.	Ch2_Logique
+Définition de \(\exists !\, x \in E \mid P(x)\) ?	<b>Existence</b> (\(\exists x, P(x)\)) <b>et unicité</b> (\(\forall x,x',\ (P(x) \wedge P(x')) \Rightarrow x = x'\)).	Ch2_Logique
+\(\forall\) distribue sur quel connecteur (en équivalence) ? \(\exists\) sur lequel ?	\(\forall\) sur <b>\(\wedge\)</b> ; \(\exists\) sur <b>\(\vee\)</b>.	Ch2_Logique
+Contre-exemple de \((\exists x,P(x))\wedge(\exists x,Q(x)) \Rightarrow \exists x, P(x) \wedge Q(x)\) ?	\(E=\mathbb{R}\), \(P(x): x>0\), \(Q(x): x<0\). Les deux \(\exists\) sont vrais, mais aucun \(x\) n'est \(>0\) et \(<0\).	Ch2_Logique
+Contre-exemple de \(\forall x,(P(x)\vee Q(x)) \Rightarrow (\forall x,P(x))\vee(\forall x,Q(x))\) ?	\(E=\mathbb{N}\), \(P\): pair, \(Q\): impair. Tout entier est pair ou impair, mais ni tous pairs ni tous impairs.	Ch2_Logique
+Lettre <b>muette</b> vs lettre <b>affectée</b> ?	Muette : liée par \(\forall,\exists\), \(\sum\), \(\int\), \(x\mapsto\)… (renommable). Affectée : fixée par « Soit », « Posons », « Fixons ».	Ch2_Logique
+Comment <b>prouver</b> \(\forall x \in E, P(x)\) ?	« <b>Soit \(x \in E\)</b> quelconque. » puis on prouve \(P(x)\).	Ch2_Logique
+Comment <b>prouver</b> \(\exists x \in E \mid P(x)\) ?	On <b>exhibe</b> un \(x_0\) : « \(x_0 = \dots\) convient car… ».	Ch2_Logique
+Comment <b>utiliser</b> \(\exists x, P(x)\) (déjà vrai) ?	« D'après (A), <b>fixons</b> un \(x\) tel que \(P(x)\). »	Ch2_Logique
+Comment <b>utiliser</b> \(\forall x, P(x)\) (déjà vrai) ?	On <b>choisit</b> le \(x_0\) qui nous arrange : \(P(x_0)\) est vrai.	Ch2_Logique
+Comment <b>prouver</b> \(P \Rightarrow Q\) en rédaction ?	« <b>Supposons \(P\).</b> » puis on prouve \(Q\) à l'aide de cette hypothèse.	Ch2_Logique
+Comment <b>prouver</b> \(P \Leftrightarrow Q\) ?	Deux étapes : « Montrons \(P \Rightarrow Q\). » puis la <b>réciproque</b> \(Q \Rightarrow P\).	Ch2_Logique
+Squelette d'une démonstration en 4 mots ?	<b>Soit</b> (fixer) → <b>Supposons</b> (hypothèses) → <b>Alors</b> (calcul) → <b>Donc</b> (conclure en citant la définition).	Ch2_Logique
+Règle d'or : prouver vs réfuter une propriété ?	<b>Prouver</b> : calcul avec \(x,y,z\) <b>quelconques</b>. <b>Réfuter</b> : <b>contre-exemple</b> avec valeurs précises. Tester avec des nombres ne prouve rien.	Ch2_Logique
+Principe du raisonnement <b>par l'absurde</b> ?	On suppose \(\neg P\), on en déduit une contradiction (\(Q\) et \(\neg Q\)), donc \(P\) est vraie.	Ch2_Logique
+Principe du raisonnement <b>par contraposée</b> ?	Pour prouver \(P \Rightarrow Q\), on prouve \(\neg Q \Rightarrow \neg P\).	Ch2_Logique
+Trois énoncés \(P,Q,R\) équivalents : combien d'implications à prouver ?	<b>Trois</b> (un cycle) : \(P\Rightarrow Q\), \(Q\Rightarrow R\), \(R\Rightarrow P\).	Ch2_Logique
+Principe du <b>contre-exemple</b> ?	Pour réfuter \(\forall x, P(x)\) on exhibe \(x_0\) avec \(P(x_0)\) <b>faux</b> (négation : \(\exists x \mid \neg P(x)\)).	Ch2_Logique
+Un exemple suffit-il à prouver un énoncé universel ? un énoncé existentiel ?	Universel (\(\forall\)) : <b>non, jamais</b>. Existentiel (\(\exists\)) : <b>oui</b>, un exemple suffit.	Ch2_Logique
+Trois étapes d'une <b>récurrence</b> ?	1) <b>Initialisation</b> \(P(n_0)\) ; 2) <b>hérédité</b> : \(\forall n\ge n_0\), \(P(n)\Rightarrow P(n+1)\) ; 3) <b>conclusion</b>.	Ch2_Logique
+En quoi consiste la récurrence <b>forte</b> ?	Pour prouver \(P(n+1)\) on suppose \(P(k)\) pour <b>tous</b> les \(k\) avec \(n_0\le k\le n\).	Ch2_Logique
+Quelle propriété de \(\mathbb{N}\) <b>fonde</b> la récurrence ?	<b>Toute partie non vide de \(\mathbb{N}\) a un plus petit élément</b> (bon ordre).	Ch2_Logique
+\(10^n+7\) multiple de 9 est héréditaire. Que peut-on en conclure ?	<b>Rien</b> sans initialisation : en fait \(10^n+7 \equiv 8 \pmod 9\), c'est faux pour tout \(n\).	Ch2_Logique
+Pourquoi \(]0,1[\) n'est-il pas bien ordonné ?	Non vide, minoré, majoré mais <b>sans plus petit élément</b> ni plus grand.	Ch2_Logique
+Définition de \(A \subset B\) (formule) ?	\(\forall x \in A,\ x \in B\).	Ch3_Ensembles
+Définition de \(A = B\) (formule) ? Version pratique ?	\(\forall x,\ (x\in A \Leftrightarrow x \in B)\). Pratique : \((A \subset B\) <b>et</b> \(B \subset A)\) = <b>double inclusion</b>.	Ch3_Ensembles
+Différence entre \(\in\) et \(\subset\) ?	\(\in\) : <b>élément</b> \(\leftrightarrow\) ensemble. \(\subset\) : <b>ensemble</b> \(\leftrightarrow\) ensemble. \(1 \in [0,2]\) mais \(\{1\}\subset[0,2]\).	Ch3_Ensembles
+\(\emptyset\) et \(\{\emptyset\}\) sont-ils égaux ?	<b>Non.</b> \(\emptyset\) a 0 élément, \(\{\emptyset\}\) en a <b>1</b> (l'ensemble vide).	Ch3_Ensembles
+L'ordre et les répétitions comptent-ils dans un ensemble ?	<b>Non</b> : \(\{1,2,3\}=\{3,1,2\}=\{1,3,1,2\}\) (cardinal 3). Mais pour les <b>couples</b>, l'ordre compte.	Ch3_Ensembles
+Pour \(E=\{a,b,c\}\) : \(\emptyset \in E\) ? \(\emptyset \subset E\) ? \(\{\emptyset\}\subset E\) ?	\(\emptyset\in E\) : <b>non</b>. \(\emptyset \subset E\) : <b>oui</b>. \(\{\emptyset\}\subset E\) : <b>non</b> (car \(\emptyset \notin E\)).	Ch3_Ensembles
+Pourquoi \(\emptyset \subset A\) pour tout \(A\) ?	« \(\forall x \in \emptyset, x \in A\) » est <b>vraie à vide</b> (aucun \(x\) à tester).	Ch3_Ensembles
+Les trois propriétés qui font de \(\subset\) un <b>ordre</b> ?	Réflexivité \(A\subset A\) ; transitivité ; antisymétrie (\(A\subset B\) et \(B\subset A \Rightarrow A=B\)).	Ch3_Ensembles
+L'inclusion est-elle un ordre <b>total</b> ?	<b>Non.</b> \(\{0,1\}\) et \(\{1,2\}\) sont incomparables.	Ch3_Ensembles
+Définition de \(A \cap B\) et de \(\bigcap_{i\in I} A_i\) ?	\(A\cap B=\{x \mid x\in A \text{ et } x\in B\}\) ; \(\bigcap_i A_i=\{x\mid \forall i\in I, x\in A_i\}\).	Ch3_Ensembles
+Définition de \(A \cup B\) et de \(\bigcup_{i\in I} A_i\) ?	\(A\cup B=\{x \mid x\in A \text{ ou } x\in B\}\) ; \(\bigcup_i A_i=\{x\mid \exists i\in I, x\in A_i\}\).	Ch3_Ensembles
+Définition de \(A \setminus B\) ? Faut-il \(B\subset A\) ?	\(A\setminus B=\{x\in A \mid x\notin B\}\). <b>Non</b>, pas besoin que \(B \subset A\).	Ch3_Ensembles
+Complémentaire \(\complement_E(A)\) : définition et notation ?	Si \(A\subset E\) : \(\complement_E(A)=E\setminus A\), noté aussi \(A^c\).	Ch3_Ensembles
+Lois de De Morgan pour les ensembles ?	\((A\cup B)^c=A^c\cap B^c\) et \((A\cap B)^c=A^c\cup B^c\).	Ch3_Ensembles
+Distributivité de \(\cap\) sur \(\cup\) ?	\(A\cap(B\cup C)=(A\cap B)\cup(A\cap C)\).	Ch3_Ensembles
+Absorption : \(A\cap(A\cup B)\) et \(A\cup(A\cap B)\) ?	Les deux valent \(A\).	Ch3_Ensembles
+La différence \(\setminus\) est-elle commutative / associative ?	<b>Non</b> dans les deux cas : elle « se comporte moins bien ».	Ch3_Ensembles
+Définition de \(\mathcal{P}(E)\) ?	\(\mathcal{P}(E)=\{A \mid A\subset E\}\) : l'ensemble de <b>toutes les parties</b> de \(E\).	Ch3_Ensembles
+Que valent \(\mathcal{P}(\emptyset)\) et \(\mathcal{P}(\{\emptyset\})\) ?	\(\mathcal{P}(\emptyset)=\{\emptyset\}\) ; \(\mathcal{P}(\{\emptyset\})=\{\emptyset,\{\emptyset\}\}\).	Ch3_Ensembles
+Cardinal de \(\mathcal{P}(E)\) si \(\operatorname{card}E=n\) ?	\(2^n\) (chaque élément est dedans ou dehors).	Ch3_Ensembles
+Définition de la différence symétrique \(A\,\Delta\, B\) ?	\((A\setminus B)\cup(B\setminus A)\) : éléments dans <b>exactement un</b> des deux (« ou exclusif »).	Ch3_Ensembles
+Définition de \(A\times B\) et égalité de deux couples ?	\(A\times B=\{(a,b)\mid a\in A, b\in B\}\) ; \((a,b)=(a',b')\Leftrightarrow a=a'\) <b>et</b> \(b=b'\).	Ch3_Ensembles
+Définition de \(E^n\) ?	\(E\times\dots\times E\) (\(n\) fois) \(=\{(x_1,\dots,x_n)\mid x_1,\dots,x_n\in E\}\).	Ch3_Ensembles
+Énoncé de l'<b>axiome du choix</b> (version du cours) ?	Pour toute famille \((E_i)_{i\in I}\) d'ensembles <b>non vides</b>, le produit \(\prod_{i\in I}E_i\) est <b>non vide</b>.	Ch3_Ensembles
+Comment <b>prouver</b> \(A\subset B\) ?	« <b>Soit \(x\in A\).</b> … Donc \(x\in B\). »	Ch3_Ensembles
+Comment <b>prouver</b> \(A=B\) ?	<b>Double inclusion</b> : \(A\subset B\) puis \(B\subset A\) (ou chaîne d'équivalences si tout est réversible).	Ch3_Ensembles
+Dictionnaire logique ↔ ensembles ?	\(\wedge\leftrightarrow\cap\) ; \(\vee\leftrightarrow\cup\) ; \(\neg\leftrightarrow\) complémentaire ; \(\Rightarrow\leftrightarrow\subset\) ; \(\Leftrightarrow\leftrightarrow =\) ; \(\forall\leftrightarrow\bigcap\) ; \(\exists\leftrightarrow\bigcup\).	Ch3_Ensembles
+\(A\cap B=A\cap C\) implique-t-il \(B=C\) ? Et \(A\cup B=A\cup C\) ? Et les deux ensemble ?	Seul : <b>non</b> (\(A=\emptyset\) pour \(\cap\) ; \(A=E\) pour \(\cup\)). <b>Les deux ensemble : oui.</b>	Ch3_Ensembles
+Définition d'une <b>relation binaire</b> de \(E\) vers \(F\) ?	Donnée d'une partie \(\operatorname{Gr}(R)\subset E\times F\) (le <b>graphe</b>). \(xRy\) ssi \((x,y)\in\operatorname{Gr}(R)\).	Ch4_Relations
+Définition de <b>réflexive</b> ?	\(\forall x\in E,\ xRx\).	Ch4_Relations
+Définition de <b>symétrique</b> ?	\(\forall x,y\in E,\ (xRy \Leftrightarrow yRx)\).	Ch4_Relations
+Définition d'<b>antisymétrique</b> ?	\(\forall x,y\in E,\ ((xRy\text{ et }yRx)\Rightarrow x=y)\).	Ch4_Relations
+Définition de <b>transitive</b> ?	\(\forall x,y,z\in E,\ ((xRy\text{ et }yRz)\Rightarrow xRz)\).	Ch4_Relations
+Symétrique et antisymétrique sont-elles contraires ?	<b>Non.</b> L'égalité est les deux ; une relation peut n'être <b>ni l'une ni l'autre</b>.	Ch4_Relations
+Définition d'une <b>relation d'équivalence</b> ?	Relation interne <b>réflexive + symétrique + transitive</b>.	Ch4_Relations
+Définition d'une <b>relation d'ordre</b> ?	Relation interne <b>réflexive + antisymétrique + transitive</b>. \((E,\preceq)\) est un ensemble <b>ordonné</b>.	Ch4_Relations
+Ordre <b>total</b> ? ordre <b>strict</b> ?	Total : \(\forall x,y,\ xRy\) <b>ou</b> \(yRx\). Strict : \(xRy\Rightarrow x\neq y\).	Ch4_Relations
+Majorant, minorant d'une partie \(A\) ?	Majorant \(M\) : \(\forall a\in A, a\le M\). Minorant \(m\) : \(\forall a\in A, m\le a\).	Ch4_Relations
+Plus grand élément vs borne supérieure ?	Plus grand élément : majorant <b>appartenant à \(A\)</b>. Borne sup : <b>plus petit des majorants</b> (peut être \(\notin A\), ex. \(\sup[0,1[=1\)).	Ch4_Relations
+Borne sup et borne inf dans \((\mathcal{P}(E),\subset)\) ?	\(\sup\) = <b>union</b>, \(\inf\) = <b>intersection</b> (des éléments de la famille).	Ch4_Relations
+\(xRy\Leftrightarrow\sin x=\sin y\) sur \(\mathbb{R}\) : quelle nature ?	Relation d'<b>équivalence</b> (réflexive, symétrique, transitive, par propriétés de \(=\)). Pas antisymétrique (\(0\) et \(\pi\)).	Ch4_Relations
+<b>Fonction</b> vs <b>application</b> ?	Fonction : à tout \(x\) <b>au plus un</b> \(y\). Application : fonction avec \(\operatorname{Dom}(f)=E\) (<b>exactement un</b> \(y\)).	Ch4_Applications
+Domaine de définition \(\operatorname{Dom}(f)\) ?	L'ensemble des \(x\in E\) qui <b>ont une image</b> par \(f\).	Ch4_Applications
+Graphe d'une fonction \(f\) ?	\(\operatorname{Gr}(f)=\{(x,f(x))\mid x\in\operatorname{Dom}(f)\}\).	Ch4_Applications
+Quand deux fonctions \(f,g\) <b>coïncident</b>-elles ?	Même domaine, même ensemble d'arrivée et \(\forall x\in D,\ f(x)=g(x)\).	Ch4_Applications
+Définition d'<b>antécédent</b> ?	\(x\) est un antécédent de \(y\) par \(f\) si \(f(x)=y\).	Ch4_Applications
+Définition de <b>injective</b> (en formule) ?	\(\forall x,x'\in E,\ f(x)=f(x')\Rightarrow x=x'\) (<b>au plus un</b> antécédent).	Ch4_Applications
+Définition de <b>surjective</b> (en formule) ?	\(\forall y\in F,\ \exists x\in E,\ f(x)=y\) (<b>au moins un</b> antécédent). Équivaut à \(\operatorname{Im}f=F\).	Ch4_Applications
+Définition de <b>bijective</b> ?	<b>Injective et surjective</b> : tout \(y\in F\) a <b>exactement un</b> antécédent.	Ch4_Applications
+Comment <b>prouver</b> qu'une application est injective ?	« Soient \(x,x'\in E\) tels que \(f(x)=f(x')\). [calcul] Donc \(x=x'\). »	Ch4_Applications
+Comment <b>prouver</b> qu'une application est surjective ?	« Soit \(y\in F\). <b>Résolvons</b> \(f(x)=y\) ; posons \(x=\dots\). On a \(x\in E\) et \(f(x)=y\). » Vérifier que \(x\in E\) !	Ch4_Applications
+Comment <b>réfuter</b> injective / surjective ?	Injective : exhiber \(x\ne x'\) avec \(f(x)=f(x')\). Surjective : exhiber un \(y\in F\) <b>sans antécédent</b>.	Ch4_Applications
+Bijection réciproque : définition et propriétés ?	\(f^{-1}(y)\) = l'unique antécédent de \(y\). \(f^{-1}:F\to E\) est bijective, \(f^{-1}\circ f=\operatorname{Id}_E\), \(f\circ f^{-1}=\operatorname{Id}_F\).	Ch4_Applications
+Composée \(g\circ f\) : définition, condition, ordre ?	\(f:E\to F\), \(g:F\to G\) ; \((g\circ f)(x)=g(f(x))\) : on applique <b>\(f\) d'abord</b>.	Ch4_Applications
+Associativité et commutativité de \(\circ\) ?	\(h\circ(g\circ f)=(h\circ g)\circ f\) ✓. Commutativité : <b>non</b>, en général.	Ch4_Applications
+\(f,g\) surjectives / injectives / bijectives : que dire de \(g\circ f\) ?	Surjective / injective / bijective, et \((g\circ f)^{-1}=f^{-1}\circ g^{-1}\).	Ch4_Applications
+\(g\circ f=\operatorname{Id}_E\) et \(f\circ g=\operatorname{Id}_F\) : conclusion ?	\(f\) est <b>bijective</b> de réciproque \(g\) (Prop. 6).	Ch4_Applications
+\(g\circ f\) injective : qui est forcément injective ? \(g\circ f\) surjective ?	\(g\circ f\) injective \(\Rightarrow\) <b>\(f\)</b> injective. \(g\circ f\) surjective \(\Rightarrow\) <b>\(g\)</b> surjective.	Ch4_Applications
+\(g\circ f\) injective <b>et</b> \(f\) surjective : que dire de \(g\) ?	\(g\) est <b>injective</b>.	Ch4_Applications
+\(g\circ f\) surjective <b>et</b> \(g\) injective : que dire de \(f\) ?	\(f\) est <b>surjective</b>.	Ch4_Applications
+Définition de l'<b>image directe</b> \(f(A)\) ?	\(f(A)=\{f(a)\mid a\in A\}=\{y\in F\mid\exists x\in A, f(x)=y\}\).	Ch4_Applications
+Définition de l'<b>image réciproque</b> \(f^{-1}(B)\) ?	\(f^{-1}(B)=\{x\in E\mid f(x)\in B\}\). <b>Aucune</b> hypothèse de bijectivité requise.	Ch4_Applications
+Définition de \(\operatorname{Im} f\) ? Lien avec la surjectivité ?	\(\operatorname{Im}f=f(E)\). \(f\) surjective \(\Leftrightarrow\operatorname{Im}f=F\).	Ch4_Applications
+Restriction de \(f\) à \(A\) ?	\(f_{|A}:A\to F\), \(x\mapsto f(x)\). Si \(f(A)\subset B\), on a aussi \(f_{A\to B}:A\to B\).	Ch4_Applications
+Si \(f\) est injective, quelle bijection en déduit-on ?	\(E\to f(E)\), \(x\mapsto f(x)\).	Ch4_Applications
+Image directe d'une union / d'une intersection ?	\(f(A_1\cup A_2)=f(A_1)\cup f(A_2)\) ; \(f(A_1\cap A_2)\subset f(A_1)\cap f(A_2)\) (<b>seulement</b> une inclusion).	Ch4_Applications
+Image réciproque d'une union / intersection / complémentaire ?	\(f^{-1}(B_1\cup B_2)=f^{-1}(B_1)\cup f^{-1}(B_2)\) ; idem pour \(\cap\) ; \(f^{-1}(F\setminus B)=E\setminus f^{-1}(B)\) (<b>égalités</b>).	Ch4_Applications
+Caractérisations de l'injectivité et de la surjectivité par les images ?	Surjective \(\Leftrightarrow f(f^{-1}(B))=B\ \forall B\). Injective \(\Leftrightarrow f^{-1}(f(A))=A\ \forall A\).	Ch4_Applications
+Toujours vrai : \(f(f^{-1}(B))\ ?\ B\) et \(A\ ?\ f^{-1}(f(A))\)	\(f(f^{-1}(B))\subset B\) et \(A\subset f^{-1}(f(A))\).	Ch4_Applications
+Définition de l'<b>équipotence</b> \(E\sim F\) ?	Il existe une <b>bijection</b> \(E\to F\). C'est une relation d'<b>équivalence</b> entre ensembles.	Ch4_Cardinal
+Définition d'un ensemble <b>fini</b> et de son <b>cardinal</b> ?	Vide, ou équipotent à \(\{1,\dots,n\}\) ; l'entier \(n\) (unique) est \(\operatorname{card}E\).	Ch4_Cardinal
+Que signifie « \(\operatorname{card}A\ge n\) » ? et « \(\operatorname{card}A\le n\) » ?	\(\ge n\) : fini de cardinal \(\ge n\) <b>ou infini</b>. \(\le n\) : <b>fini</b> de cardinal \(\le n\).	Ch4_Cardinal
+\(E\) fini, \(f:E\to F\) injective / surjective : conséquence sur les cardinaux ?	Injective \(\Rightarrow\operatorname{card}E\le\operatorname{card}F\) ; surjective \(\Rightarrow\operatorname{card}E\ge\operatorname{card}F\).	Ch4_Cardinal
+Si \(\operatorname{card}E=\operatorname{card}F\) finis : que dire de injective, surjective, bijective ?	Elles sont <b>équivalentes</b> (principe des tiroirs). <b>Faux</b> pour les ensembles infinis.	Ch4_Cardinal
+Définition d'un ensemble <b>dénombrable</b> ?	<b>Fini ou équipotent à \(\mathbb{N}\)</b>.	Ch4_Cardinal
+Quels ensembles sont dénombrables ? lesquels ne le sont pas ?	Dénombrables : \(2\mathbb{N}\), \(\mathbb{Z}\), \(\mathbb{N}^2\), \(\mathbb{Q}\), toute partie de \(\mathbb{N}\). <b>Non</b> : \(\mathbb{R}\), \([0,1]\), \(\mathcal{P}(\mathbb{N})\), \(\{0,1\}^{\mathbb{N}}\).	Ch4_Cardinal
+Idée de la preuve : « toute partie de \(\mathbb{N}\) est dénombrable » ?	On numérote \(E\) <b>dans l'ordre croissant</b> : \(e(0)=\min E\), \(e(1)=\min(E\setminus\{e(0)\})\), … (bon ordre). \(e\) est injective par construction, surjective car \(e(k)\ge k\).	Ch4_Cardinal
+Énoncé du théorème de <b>Cantor</b> ?	Pour tout ensemble \(E\), il <b>n'existe pas de surjection</b> \(E\to\mathcal{P}(E)\).	Ch4_Cardinal
+Preuve du théorème de Cantor : quelle partie \(P\) construit-on ?	\(P=\{x\in E\mid x\notin f(x)\}\). Si \(P=f(a)\) alors \(a\in P\Leftrightarrow a\notin P\) : <b>absurde</b>.	Ch4_Cardinal
+Conséquence du théorème de Cantor sur les cardinaux ?	\(\operatorname{card}E<\operatorname{card}\mathcal{P}(E)\) : <b>pas de plus grand infini</b>.	Ch4_Cardinal
+Idée de la preuve de « \(\mathbb{R}\) non dénombrable » (diagonale) ?	Si \(f:\mathbb{N}\to\mathbb{R}\) était bijective, on construit \(x\) dont le \(n\)-ième chiffre décimal <b>diffère</b> de celui de \(f(n)\) : \(x\notin f(\mathbb{N})\), contradiction.	Ch4_Cardinal
+Théorème de <b>Cantor-Bernstein</b> ?	Si \(\exists\) une injection \(E\to F\) <b>et</b> une injection \(F\to E\), alors \(E\sim F\).	Ch4_Cardinal
+Paradoxe de <b>Russell</b> ?	\(E=\{A\mid A\notin A\}\) : alors \(E\in E\Leftrightarrow E\notin E\). Donc cet « ensemble » ne doit pas exister dans la théorie.	Ch4_Cardinal
+<b>Hypothèse du continu</b> ?	Il n'y a <b>aucun cardinal</b> strictement entre \(\operatorname{card}\mathbb{N}\) et \(\operatorname{card}\mathbb{R}\). Elle est <b>indécidable</b>.	Ch4_Cardinal
+\(\operatorname{card}(E\cup F)+\operatorname{card}(E\cap F)\) vaut ?	\(\operatorname{card}E+\operatorname{card}F\) (formule du crible pour 2 ensembles).	Ch4_Combinatoire
+\(\operatorname{card}(A_1\times\dots\times A_n)\) et \(\operatorname{card}(A^n)\) ?	\(\prod\operatorname{card}A_i\) ; \((\operatorname{card}A)^n\).	Ch4_Combinatoire
+Nombre d'applications d'un ensemble à \(n\) éléments vers un ensemble à \(m\) éléments ?	\(m^n\).	Ch4_Combinatoire
+Nombre d'<b>arrangements</b> \(A_n^p\) ?	\(\dfrac{n!}{(n-p)!}\) : \(p\)-uplets d'éléments <b>deux à deux distincts</b>.	Ch4_Combinatoire
+Nombre de <b>permutations</b> d'un ensemble à \(n\) éléments ?	\(n!\) (nombre de bijections \(E\to E\)).	Ch4_Combinatoire
+Nombre de <b>combinaisons</b> \(\binom{n}{p}\) ?	\(\dfrac{n!}{p!(n-p)!}\) : nombre de <b>parties à \(p\) éléments</b>.	Ch4_Combinatoire
+Formule de Pascal ?	\(\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}\) (parties contenant \(n\) / ne le contenant pas).	Ch4_Combinatoire
+Symétrie des coefficients binomiaux ?	\(\binom{n}{k}=\binom{n}{n-k}\) (bijection \(A\mapsto E\setminus A\)).	Ch4_Combinatoire
+Binôme de Newton ?	\((a+b)^n=\sum_{k=0}^{n}\binom{n}{k}a^kb^{n-k}\).	Ch4_Combinatoire
+Formule de Vandermonde ?	\(\sum_{k=0}^{r}\binom{m}{k}\binom{n}{r-k}=\binom{m+n}{r}\).	Ch4_Combinatoire
+Valeurs de \(0!\) et \(1!\) ?	\(0!=1!=1\).	Ch4_Combinatoire
+Comment construit-on les entiers (idée de von Neumann) ?	\(0=\emptyset\), \(1=\{0\}\), \(2=\{0,1\}\), … : \(n+1=n\cup\{n\}\). L'ensemble \(\mathbb{N}\) exige l'<b>axiome de l'infini</b>.	Ch5_Nombres
+Quelle relation d'équivalence sur \(\mathbb{N}\times\mathbb{N}\) construit \(\mathbb{Z}\) ?	\((n,m)R(n',m')\Leftrightarrow n+m'=n'+m\) (idée : \(n-m=n'-m'\) sans soustraction).	Ch5_Nombres
+Quelle relation d'équivalence sur \(\mathbb{Z}\times\mathbb{N}^*\) construit \(\mathbb{Q}\) ?	\((a,b)R(c,d)\Leftrightarrow ad=cb\).	Ch5_Nombres
+Qu'est-ce que le <b>passage au quotient</b> ?	Identifier des éléments « pareils » via une <b>relation d'équivalence</b> : on travaille avec les classes.	Ch5_Nombres
+Définition d'une suite de <b>Cauchy</b> ?	\(\forall\varepsilon>0,\ \exists n_0,\ \forall n,m\ge n_0,\ |r_n-r_m|<\varepsilon\).	Ch5_Nombres
+Comment construit-on \(\mathbb{R}\) (Cantor/Méray) ?	Suites de Cauchy de rationnels, quotientées par \((u_n)R(v_n)\Leftrightarrow\lim(u_n-v_n)=0\).	Ch5_Nombres
+Propriété-clé de \(\mathbb{R}\) (admise) ?	Toute suite <b>croissante majorée</b> converge vers un réel.	Ch5_Nombres
+<b>Propriété d'Archimède</b> ?	\(\forall\varepsilon>0,\forall y\in\mathbb{R},\exists n\in\mathbb{N},\ y\le n\varepsilon\). (Pas d'infiniment petit ni grand.)	Ch5_Nombres
+Définition de la <b>partie entière</b> \(E(x)\) ? \(E(\pi)\) ? \(E(-\pi)\) ?	L'unique \(n\in\mathbb{Z}\) avec \(n\le x<n+1\). \(E(\pi)=3\), \(E(-\pi)=-4\).	Ch5_Nombres
+Preuve que \(\sqrt2\notin\mathbb{Q}\) : trame ?	Absurde : \(\sqrt2=a/b\) <b>irréductible</b> ; \(a^2=2b^2\Rightarrow a\) pair ; \(a=2k\Rightarrow b^2=2k^2\Rightarrow b\) pair : contradiction.	Ch5_Nombres
+Si \(r\in\mathbb{Q}^*\), que dire de \(r\sqrt2\) ?	Il est <b>irrationnel</b> (sinon \(\sqrt2=q/r\in\mathbb{Q}\)).	Ch5_Nombres
+Énoncé de la <b>densité</b> de \(\mathbb{Q}\) et \(\mathbb{R}\setminus\mathbb{Q}\) ?	Tout intervalle ouvert non vide \(]a,b[\) contient un rationnel <b>et</b> un irrationnel ; tout réel est limite de rationnels et d'irrationnels.	Ch5_Nombres
+Suite de rationnels qui converge vers \(x\) ?	\(r_n=\dfrac{E(nx)}{n}\) : on a \(0\le x-r_n<\dfrac1n\).	Ch5_Nombres
+Définition d'un <b>nombre décimal</b> ?	Réel de la forme \(\dfrac{p}{10^q}\), \(p\in\mathbb{Z}\), \(q\in\mathbb{N}\) (rationnel, ensemble dense dans \(\mathbb{R}\)).	Ch5_Nombres

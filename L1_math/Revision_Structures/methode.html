@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Méthode : comment rédiger une démonstration — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Méthode de rédaction</span></div>
+<div class="page">
+<span class="chip">📐 Méthode</span><span class="chip">Structures fondamentales</span>
+<h1>Méthode : comment rédiger une démonstration</h1>
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul><li><a href="#1-le-squelette-en-4-mots">1. Le squelette en 4 mots</a><ul></ul></li><li><a href="#2-le-tableau-qui-resume-toute-la-logique-de-la-redaction">2. Le tableau qui résume toute la logique de la rédaction</a><ul></ul></li><li><a href="#3-les-5-grandes-familles-de-preuves">3. Les 5 grandes familles de preuves</a><ul></ul></li><li><a href="#4-exigences-de-redaction-extraites-du-cours">4. Exigences de rédaction (extraites du cours)</a><ul></ul></li><li><a href="#5-phrases-types-a-connaitre-par-cur">5. Phrases types à connaître par cœur</a><ul></ul></li><li><a href="#6-checklist-avant-de-rendre-une-copie">6. Checklist avant de rendre une copie</a><ul></ul></li></ul></details></nav>
+<blockquote>
+<p>Source : cours <em>Structures Fondamentales</em> (F. Durand, UPJV 2026-2027), chapitres 1-2. Cette fiche est la <strong>clé de tout le reste</strong> : chaque preuve du semestre est une variation de ces 4 mots.</p>
+</blockquote>
+<hr />
+<h2 id="1-le-squelette-en-4-mots">1. Le squelette en 4 mots</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Mot</th>
+<th>Rôle</th>
+<th>Ce qu'on écrit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Soit</strong></td>
+<td>Fixer les objets</td>
+<td>« Soit \(x, y \in E\) quelconques. »</td>
+</tr>
+<tr>
+<td><strong>Supposons</strong></td>
+<td>Poser les hypothèses</td>
+<td>On recopie les hypothèses sous forme d'égalités ou d'inégalités.</td>
+</tr>
+<tr>
+<td><strong>Alors</strong></td>
+<td>Calculer</td>
+<td>On transforme avec des règles <strong>déjà connues</strong>, une étape = une justification.</td>
+</tr>
+<tr>
+<td><strong>Donc</strong></td>
+<td>Conclure</td>
+<td>On cite <strong>la définition</strong> de la propriété qu'on voulait prouver.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Règle d'or</strong></p>
+<ul>
+<li><strong>Prouver</strong> une propriété : calcul avec \(x, y, z\) <strong>quelconques</strong>, jamais avec des nombres précis.</li>
+<li><strong>Réfuter</strong> une propriété : un <strong>contre-exemple</strong> avec des nombres précis.</li>
+<li>Tester avec des nombres pour <em>deviner</em> est permis, mais <strong>ne prouve rien</strong>.</li>
+</ul>
+<hr />
+<h2 id="2-le-tableau-qui-resume-toute-la-logique-de-la-redaction">2. Le tableau qui résume toute la logique de la rédaction</h2>
+<p>Il y a 2 gestes pour chaque quantificateur : <strong>prouver</strong> l'énoncé, ou <strong>utiliser</strong> l'énoncé quand on l'a déjà.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Prouver</strong> l'énoncé</th>
+<th><strong>Utiliser</strong> l'énoncé (déjà vrai)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(\forall x \in E,\ P(x)\)</td>
+<td>« Soit \(x \in E\) quelconque. » puis on prouve \(P(x)\)</td>
+<td>On <strong>choisit</strong> le \(x_0\) qui nous arrange : \(P(x_0)\) est vrai</td>
+</tr>
+<tr>
+<td>\(\exists x \in E \mid P(x)\)</td>
+<td>On <strong>exhibe</strong> un \(x_0\) : « \(x_0 = \dots\) convient car… »</td>
+<td>« D'après (A), <strong>fixons</strong> un \(x\) tel que \(P(x)\). »</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Prouver</strong> l'énoncé</th>
+<th><strong>Utiliser</strong> l'énoncé (déjà vrai)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(P \Rightarrow Q\)</td>
+<td>« Supposons \(P\). » puis on prouve \(Q\)</td>
+<td>Si on sait \(P\), alors on a \(Q\) (modus ponens)</td>
+</tr>
+<tr>
+<td>\(P \Leftrightarrow Q\)</td>
+<td>Deux implications : \(P \Rightarrow Q\) puis \(Q \Rightarrow P\)</td>
+<td>On peut remplacer \(P\) par \(Q\)</td>
+</tr>
+<tr>
+<td>\(P \text{ ou } Q\)</td>
+<td>Cas : si \(P\) faux alors prouver \(Q\)</td>
+<td><strong>Disjonction de cas</strong> : on traite « \(P\) » puis « \(Q\) »</td>
+</tr>
+<tr>
+<td>\(P \text{ et } Q\)</td>
+<td>On prouve \(P\), puis on prouve \(Q\)</td>
+<td>On a <strong>les deux</strong> à disposition</td>
+</tr>
+<tr>
+<td>\(\neg P\)</td>
+<td>Par l'absurde, ou on utilise la négation (voir fiche ch. 2)</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Réflexe de doctorant.</strong> Avant d'écrire la moindre ligne, demande-toi : « Quelle est la <strong>forme logique</strong> de ce que je dois montrer ? » Elle te dit <em>exactement</em> par quelle phrase commencer.</p>
+</blockquote>
+<hr />
+<h2 id="3-les-5-grandes-familles-de-preuves">3. Les 5 grandes familles de preuves</h2>
+<ol>
+<li><strong>Direct</strong> : Soit... Supposons... Alors... Donc...</li>
+<li><strong>Contraposée</strong> : pour \(P \Rightarrow Q\), on prouve \(\neg Q \Rightarrow \neg P\).</li>
+<li><strong>Absurde</strong> : pour prouver \(P\), on suppose \(\neg P\) et on déduit \(Q\) <strong>et</strong> \(\neg Q\).</li>
+<li><strong>Contre-exemple</strong> : pour réfuter \(\forall x, P(x)\), on exhibe \(x_0\) avec \(P(x_0)\) faux.</li>
+<li><strong>Récurrence</strong> : pour \(\forall n \ge n_0\), \(P(n)\) : initialisation + hérédité.</li>
+</ol>
+<hr />
+<h2 id="4-exigences-de-redaction-extraites-du-cours">4. Exigences de rédaction (extraites du cours)</h2>
+<ul>
+<li>Une solution contient <strong>toujours au moins un sujet et un verbe</strong>. Écrire seulement le résultat = <strong>0 point</strong>.</li>
+<li>Même si le résultat est un nombre, il faut <strong>expliquer comment</strong> on l'a obtenu.</li>
+<li>La preuve doit être <strong>lisible par un camarade</strong> et <strong>convaincante</strong>.</li>
+<li><strong>Pas de \(\Rightarrow\) à la place de « donc »</strong> : \((1=2) \Rightarrow (6&gt;7)\) est <strong>vrai</strong> ; « \(1=2\) donc \(6&gt;7\) » affirme deux faussetés.</li>
+<li><strong>Pas de quantificateurs comme abréviations</strong> au milieu d'une phrase française (en rédaction d'exercice ou d'examen). On les écrit sur des lignes séparées pour exprimer une proposition vraie ou ce qu'on veut prouver.</li>
+<li>Conjonctions à privilégier : <em>donc, or, car, c'est-à-dire, ainsi, d'où</em>.</li>
+</ul>
+<hr />
+<h2 id="5-phrases-types-a-connaitre-par-cur">5. Phrases types à connaître par cœur</h2>
+<ul>
+<li>« Soit \(x \in E\). » / « Fixons \(x &gt; a\). » / « Posons \(x = \dots\). »</li>
+<li>« Supposons \(P(x)\) et montrons \(Q(x)\). »</li>
+<li>« Montrons par double inclusion que \(A = B\). »</li>
+<li>« Raisonnons par l'absurde et supposons que… »</li>
+<li>« Raisonnons par contraposée : montrons que \(\neg Q \Rightarrow \neg P\). »</li>
+<li>« Montrons \(P \Rightarrow Q\). Réciproquement, montrons \(Q \Rightarrow P\). »</li>
+<li>« Procédons par récurrence sur \(n\). Considérons la propriété \(P(n)\) : … »</li>
+<li>« Cette proposition est vraie car, par exemple, \(x_0 = \frac12\) convient. »</li>
+<li>« D'après (A), fixons un réel \(x\) vérifiant \(x^5 - 5x + 1 = 0\). »</li>
+<li>« Ceci est une contradiction avec… donc… »</li>
+<li>« Ainsi, \(P(n)\) est vraie pour tout \(n \ge n_0\). »</li>
+</ul>
+<hr />
+<h2 id="6-checklist-avant-de-rendre-une-copie">6. Checklist avant de rendre une copie</h2>
+<ul>
+<li>[ ] J'ai identifié la <strong>forme logique</strong> de ce qu'on me demande.</li>
+<li>[ ] J'ai écrit « Soit… » pour <strong>chaque</strong> objet quelconque.</li>
+<li>[ ] Chaque ligne de calcul est <strong>justifiée</strong> ou évidente.</li>
+<li>[ ] Je <strong>cite la définition</strong> à la conclusion.</li>
+<li>[ ] Je n'ai <strong>testé aucun nombre précis</strong> dans une preuve universelle.</li>
+<li>[ ] Pour une réfutation : mon contre-exemple est <strong>explicite et vérifié</strong>.</li>
+<li>[ ] Il y a des <strong>verbes et des sujets</strong> dans mes phrases.</li>
+</ul>
+
+<div class="nav-links"><span><a href="index.html">← Accueil révisions</a></span><span><a href="fiche_ch2_logique.html">Fiche ch. 2 — Logique →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="revision.js"></script>
+</body>
+</html>
