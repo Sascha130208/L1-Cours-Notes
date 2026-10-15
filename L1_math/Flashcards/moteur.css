@@ -1,0 +1,83 @@
+/* Lecteur de flashcards — utilise les variables de ../style.css */
+
+.fc { max-width: 780px; margin: 0 auto; }
+
+.fc h2.fc-h { display: block; background: none; padding: 0; margin: 1.4em 0 .5em; font-size: 1.15rem; }
+
+.fc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: .6em 0 1em; }
+.fc-chip {
+  border: 2px solid var(--border); background: var(--card); color: var(--text);
+  border-radius: 999px; padding: 6px 14px; cursor: pointer; font: inherit; font-size: .92rem;
+}
+.fc-chip small { color: var(--muted); margin-left: 4px; }
+.fc-chip[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+.fc-chip[aria-pressed="true"] small { color: #dfe0ff; }
+
+.fc-opts { display: grid; gap: 6px; margin: .8em 0 1.2em; }
+.fc-opts label { cursor: pointer; }
+
+.fc-btn {
+  border: 0; border-radius: 10px; padding: 12px 22px; font: inherit; font-weight: 700;
+  cursor: pointer; background: var(--primary); color: #fff;
+}
+.fc-btn:hover:not(:disabled) { filter: brightness(1.08); }
+.fc-btn:disabled { opacity: .4; cursor: not-allowed; }
+.fc-btn.ghost { background: var(--card); color: var(--primary); border: 2px solid var(--border); }
+.fc-btn.ko { background: var(--danger-bg); color: var(--danger-text); border: 2px solid var(--danger-border); }
+.fc-btn.ok { background: var(--tip-bg); color: var(--tip-text); border: 2px solid var(--tip-border); }
+.fc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 1em 0; }
+
+.fc-note { color: var(--muted); font-size: .92rem; }
+
+/* barre de progression */
+.fc-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: .92rem; color: var(--muted); }
+.fc-bar { height: 8px; background: var(--primary-light); border-radius: 999px; overflow: hidden; margin: 8px 0 4px; }
+.fc-bar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width .3s; }
+.fc-score b.ok { color: var(--tip-border); }
+.fc-score b.ko { color: var(--danger-border); }
+
+/* la carte */
+.fc-card { perspective: 1400px; cursor: pointer; margin: 14px 0 10px; outline: none; -webkit-tap-highlight-color: transparent; }
+.fc-inner { display: grid; transition: transform .55s; transform-style: preserve-3d; border-radius: 16px; }
+.fc-card:focus-visible .fc-inner { box-shadow: 0 0 0 3px var(--primary); }
+.fc-card.flipped .fc-inner { transform: rotateY(180deg); }
+.fc-face {
+  grid-area: 1 / 1; position: relative; min-height: 290px;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  background: var(--card); border: 2px solid var(--border); border-radius: 16px;
+  padding: 34px 26px 26px; box-shadow: 0 3px 14px rgba(40, 40, 90, .09);
+  display: flex; flex-direction: column; justify-content: center; overflow-wrap: anywhere;
+}
+.fc-front { align-items: center; text-align: center; font-size: 1.22rem; }
+.fc-back { transform: rotateY(180deg); border-color: var(--accent); font-size: 1.02rem; }
+.fc-back > .fc-body { width: 100%; }
+.fc-tag {
+  position: absolute; top: 10px; left: 14px; font-size: .74rem; font-weight: 700;
+  color: var(--primary); background: var(--primary-light); border-radius: 999px; padding: 1px 10px;
+}
+.fc-lbl { position: absolute; top: 10px; right: 14px; font-size: .74rem; color: var(--muted); }
+.fc-back .box { font-size: .95rem; }
+.fc-back table { font-size: .92rem; }
+.fc-back pre { white-space: pre-wrap; }
+
+.fc-hint { text-align: center; color: var(--muted); font-size: .9rem; margin: 4px 0 12px; min-height: 1.4em; }
+.fc-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fc-actions .fc-btn { padding: 16px 10px; font-size: 1.05rem; }
+.fc-undo { margin-top: 14px; text-align: center; }
+.fc-undo button { background: none; border: 0; color: var(--muted); cursor: pointer; font: inherit; text-decoration: underline; }
+.fc-undo button:disabled { opacity: .35; cursor: default; text-decoration: none; }
+
+/* fin de tour */
+.fc-end { text-align: center; background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 30px 20px; margin: 18px 0; }
+.fc-end .big { font-size: 2.2rem; margin: 0; }
+.fc-end .stats { font-size: 1.2rem; margin: .4em 0 1em; }
+.fc-miss { text-align: left; margin-top: 1em; }
+.fc-miss li { margin: .3em 0; }
+
+@media (max-width: 560px) {
+  .fc-face { padding: 36px 16px 20px; min-height: 250px; }
+  .fc-front { font-size: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fc-inner, .fc-bar > i { transition: none; }
+}
