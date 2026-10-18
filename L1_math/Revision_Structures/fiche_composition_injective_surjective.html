@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Composition : injective et surjective — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<style>
+.schema{width:100%;max-width:640px;display:block;margin:14px auto;background:#fff;border:1px solid var(--border);border-radius:12px;padding:6px}
+figure{margin:18px 0}
+figcaption{font-size:.93em;color:var(--muted);text-align:center;max-width:640px;margin:0 auto}
+details.quiz{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:10px 0}
+details.quiz summary{cursor:pointer;font-weight:600}
+table.recap td,table.recap th{text-align:center}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire</a><span>Fiche — Composition, injective, surjective</span></div>
+<div class="page">
+<span class="chip">📘 Explication guidée</span><span class="chip">Structures fondamentales — ch. 4</span>
+<h1>Pourquoi \(g\circ f\) injective \(\Rightarrow f\) injective, et \(g\circ f\) surjective \(\Rightarrow g\) surjective ?</h1>
+
+<p>Ces deux implications reviennent tout le temps (TD2, ex. 20). Beaucoup d'étudiants les apprennent par cœur sans les « voir ». Ici on les <strong>voit</strong> sur des schémas, on les <strong>prouve</strong>, puis on comprend pourquoi les réciproques sont fausses.</p>
+
+<h2>0. L'idée en une phrase</h2>
+<p>\(g\circ f\) = <strong>deux flèches à la suite</strong> : d'abord \(f\) (de \(E\) vers \(F\)), puis \(g\) (de \(F\) vers \(G\)). On « oublie » l'escale \(F\) et on regarde seulement le trajet complet \(E\to G\) :</p>
+<pre><code>(g∘f)(x) = g( f(x) )        x ∈ E  ⟶  f(x) ∈ F  ⟶  g(f(x)) ∈ G</code></pre>
+
+<div class="box info"><span class="box-title">Les deux mots, version « dessin »</span>
+<strong>Injective</strong> : <em>jamais deux flèches ne tombent sur la même case</em> (pas de collision).<br>
+<strong>Surjective</strong> : <em>chaque case d'arrivée reçoit au moins une flèche</em> (aucune case oubliée).</div>
+
+<p>Dans les schémas : <span style="color:#4338ca"><strong>bleu</strong></span> = flèches de \(f\), <span style="color:#0d9488"><strong>vert</strong></span> = flèches de \(g\), <span style="color:#d63a30"><strong>rouge</strong></span> = collision, <span style="color:#e08a00"><strong>orange</strong></span> = chemin à suivre. Un point entouré de <strong>pointillés orange</strong> = une case que personne ne vise.</p>
+
+<h2>1. Si \(g\circ f\) est injective, alors \(f\) est injective</h2>
+<h3>Le dessin : que se passe-t-il si \(f\) « colle » deux points ?</h3>
+<figure>
+<svg class="schema" viewBox="0 0 640 275" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="af1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4338ca"/></marker>
+<marker id="ag1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker>
+<marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e08a00"/></marker>
+<marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d63a30"/></marker>
+</defs>
+<ellipse cx="95" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="95" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">E</text>
+<ellipse cx="320" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="320" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">F</text>
+<ellipse cx="545" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="545" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">G</text>
+<circle cx="320" cy="175" r="19" fill="none" stroke="#e08a00" stroke-width="2" stroke-dasharray="4 3"/>
+<line x1="112.0" y1="105.0" x2="301.0" y2="105.0" stroke="#d63a30" stroke-width="3.5" marker-end="url(#ar1)"/>
+<line x1="111.2" y1="169.9" x2="301.9" y2="110.6" stroke="#d63a30" stroke-width="3.5" marker-end="url(#ar1)"/>
+<line x1="336.8" y1="107.6" x2="526.2" y2="137.1" stroke="#0d9488" stroke-width="2" marker-end="url(#ag1)"/>
+<line x1="336.8" y1="172.4" x2="526.2" y2="142.9" stroke="#0d9488" stroke-width="2" marker-end="url(#ag1)"/>
+<circle cx="95" cy="105" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="110" text-anchor="middle" font-size="15" fill="#1e2230">1</text>
+<circle cx="95" cy="175" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="180" text-anchor="middle" font-size="15" fill="#1e2230">2</text>
+<circle cx="320" cy="105" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="110" text-anchor="middle" font-size="15" fill="#1e2230">a</text>
+<circle cx="320" cy="175" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="180" text-anchor="middle" font-size="15" fill="#1e2230">b</text>
+<circle cx="545" cy="140" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="545" y="145" text-anchor="middle" font-size="15" fill="#1e2230">α</text>
+<text x="208" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#4338ca">f</text><text x="432" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#0d9488">g</text>
+</svg>
+<figcaption>Ici \(f\) n'est pas injective : \(1\) et \(2\) arrivent tous les deux en \(a\). Que fait \(g\) ensuite ? Elle part de \(a\)… donc \(1\) et \(2\) finissent <strong>forcément</strong> au même endroit \(\alpha\).</figcaption>
+</figure>
+<p><strong>Le point-clé :</strong> une fonction est <em>déterministe</em>. Une fois que \(1\) et \(2\) sont collés en \(a\), \(g\) ne peut pas les « redécoller », puisqu'elle ne voit que \(a\). Donc \(g\circ f\) colle aussi \(1\) et \(2\) : elle n'est pas injective.</p>
+<p>Donc : <strong>si \(f\) n'est pas injective, alors \(g\circ f\) ne l'est pas non plus.</strong> C'est la <em>contraposée</em> de l'énoncé voulu, et une implication et sa contraposée disent la même chose.</p>
+
+<h3>La preuve rédigée (directe)</h3>
+<div class="box tip"><span class="box-title">Proposition</span>Soient \(f:E\to F\) et \(g:F\to G\). Si \(g\circ f\) est injective, alors \(f\) est injective.</div>
+<p><strong>Preuve.</strong> On suppose \(g\circ f\) injective. Pour montrer que \(f\) est injective, on prend deux éléments de \(E\) qui ont la même image par \(f\) et on montre qu'ils sont égaux.</p>
+<ol>
+<li>Soient \(x,x'\in E\) tels que \(f(x)=f(x')\).</li>
+<li>On applique \(g\) aux deux membres : \(g(f(x))=g(f(x'))\), c'est-à-dire \((g\circ f)(x)=(g\circ f)(x')\).</li>
+<li>Comme \(g\circ f\) est injective, on conclut \(x=x'\).</li>
+</ol>
+<p>Donc \(f\) est injective. \(\square\)</p>
+
+<div class="box warn"><span class="box-title">Remarque sur la preuve</span>On n'a utilisé aucune hypothèse sur \(g\) : <strong>\(g\) n'a pas besoin d'être injective</strong>. Seule \(f\) est concernée, parce que c'est elle qui « commence » le trajet.</div>
+
+<h2>2. Si \(g\circ f\) est surjective, alors \(g\) est surjective</h2>
+<h3>Le dessin : on choisit une case d'arrivée et on remonte</h3>
+<figure>
+<svg class="schema" viewBox="0 0 640 275" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="af2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4338ca"/></marker>
+<marker id="ag2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker>
+<marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e08a00"/></marker>
+<marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d63a30"/></marker>
+</defs>
+<ellipse cx="95" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="95" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">E</text>
+<ellipse cx="320" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="320" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">F</text>
+<ellipse cx="545" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="545" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">G</text>
+<circle cx="320" cy="205" r="19" fill="none" stroke="#e08a00" stroke-width="2" stroke-dasharray="4 3"/>
+<line x1="112.0" y1="75.0" x2="301.0" y2="75.0" stroke="#4338ca" stroke-width="2" marker-end="url(#af2)"/>
+<line x1="112.0" y1="140.0" x2="301.0" y2="140.0" stroke="#4338ca" stroke-width="2" marker-end="url(#af2)"/>
+<line x1="111.3" y1="200.3" x2="301.7" y2="145.3" stroke="#4338ca" stroke-width="2" marker-end="url(#af2)"/>
+<line x1="336.9" y1="77.2" x2="526.2" y2="102.5" stroke="#0d9488" stroke-width="2" marker-end="url(#ag2)"/>
+<line x1="336.8" y1="142.6" x2="526.2" y2="172.1" stroke="#e08a00" stroke-width="3.5" marker-end="url(#ah2)"/>
+<line x1="336.9" y1="202.8" x2="526.2" y2="177.5" stroke="#0d9488" stroke-width="2" marker-end="url(#ag2)"/>
+<circle cx="95" cy="75" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="80" text-anchor="middle" font-size="15" fill="#1e2230">1</text>
+<circle cx="95" cy="140" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="145" text-anchor="middle" font-size="15" fill="#1e2230">2</text>
+<circle cx="95" cy="205" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="210" text-anchor="middle" font-size="15" fill="#1e2230">3</text>
+<circle cx="320" cy="75" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="80" text-anchor="middle" font-size="15" fill="#1e2230">a</text>
+<circle cx="320" cy="140" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="145" text-anchor="middle" font-size="15" fill="#1e2230">b</text>
+<circle cx="320" cy="205" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="210" text-anchor="middle" font-size="15" fill="#1e2230">c</text>
+<circle cx="545" cy="105" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="545" y="110" text-anchor="middle" font-size="15" fill="#1e2230">α</text>
+<circle cx="545" cy="175" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="545" y="180" text-anchor="middle" font-size="15" fill="#1e2230">β</text>
+<text x="208" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#4338ca">f</text><text x="432" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#0d9488">g</text>
+</svg>
+<figcaption>Ici \(g\circ f\) est surjective : \(1\mapsto\alpha\), \(2\mapsto\beta\), \(3\mapsto\beta\). Prenons la case \(\beta\) de \(G\). Elle est atteinte depuis \(E\) (par exemple par \(2\)), en passant par \(b=f(2)\). Donc \(\beta\) a un antécédent par \(g\) : c'est \(b\) (flèche orange).</figcaption>
+</figure>
+<p><strong>Le point-clé :</strong> si <em>tout</em> point de \(G\) est atteint par le trajet complet, il est atteint en particulier par la <strong>dernière</strong> flèche \(g\) (la dernière marche avant l'arrivée). Chaque point de \(G\) a donc un antécédent par \(g\) : le point de l'escale par lequel on est passé.</p>
+
+<h3>La preuve rédigée</h3>
+<div class="box tip"><span class="box-title">Proposition</span>Soient \(f:E\to F\) et \(g:F\to G\). Si \(g\circ f\) est surjective, alors \(g\) est surjective.</div>
+<p><strong>Preuve.</strong> On suppose \(g\circ f\) surjective. Pour montrer que \(g\) est surjective, on prend un élément quelconque de \(G\) et on lui trouve un antécédent par \(g\).</p>
+<ol>
+<li>Soit \(z\in G\).</li>
+<li>Comme \(g\circ f\) est surjective, il existe \(x\in E\) tel que \((g\circ f)(x)=z\), c'est-à-dire \(g(f(x))=z\).</li>
+<li>Posons \(y=f(x)\in F\). Alors \(g(y)=z\).</li>
+</ol>
+<p>Donc \(z\) a un antécédent par \(g\) (c'est \(y\)). Comme \(z\) était quelconque, \(g\) est surjective. \(\square\)</p>
+
+<div class="box warn"><span class="box-title">Remarque sur la preuve</span>On n'a utilisé aucune hypothèse sur \(f\) : <strong>\(f\) n'a pas besoin d'être surjective</strong>. Sur le schéma, la case \(c\) de \(F\) n'est jamais visée par \(f\), et ça n'empêche pas \(g\circ f\) d'être surjective.</div>
+
+<h2>3. Pourquoi les réciproques sont fausses</h2>
+<p>On cherche un exemple où <strong>\(g\circ f\) est parfaite</strong> (injective <em>et</em> surjective) mais où \(f\) n'est pas surjective et \(g\) n'est pas injective.</p>
+<figure>
+<svg class="schema" viewBox="0 0 640 275" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="af3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4338ca"/></marker>
+<marker id="ag3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker>
+<marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e08a00"/></marker>
+<marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d63a30"/></marker>
+</defs>
+<ellipse cx="95" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="95" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">E</text>
+<ellipse cx="320" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="320" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">F</text>
+<ellipse cx="545" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="545" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">G</text>
+<circle cx="320" cy="205" r="19" fill="none" stroke="#e08a00" stroke-width="2" stroke-dasharray="4 3"/>
+<line x1="111.9" y1="102.8" x2="301.2" y2="77.5" stroke="#4338ca" stroke-width="2" marker-end="url(#af3)"/>
+<line x1="111.8" y1="172.4" x2="301.2" y2="142.9" stroke="#4338ca" stroke-width="2" marker-end="url(#af3)"/>
+<line x1="336.9" y1="77.2" x2="526.2" y2="102.5" stroke="#0d9488" stroke-width="2" marker-end="url(#ag3)"/>
+<line x1="336.8" y1="142.6" x2="526.2" y2="172.1" stroke="#0d9488" stroke-width="2" marker-end="url(#ag3)"/>
+<line x1="335.5" y1="198.1" x2="527.6" y2="112.7" stroke="#0d9488" stroke-width="2" marker-end="url(#ag3)"/>
+<circle cx="95" cy="105" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="110" text-anchor="middle" font-size="15" fill="#1e2230">1</text>
+<circle cx="95" cy="175" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="180" text-anchor="middle" font-size="15" fill="#1e2230">2</text>
+<circle cx="320" cy="75" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="80" text-anchor="middle" font-size="15" fill="#1e2230">a</text>
+<circle cx="320" cy="140" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="145" text-anchor="middle" font-size="15" fill="#1e2230">b</text>
+<circle cx="320" cy="205" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="210" text-anchor="middle" font-size="15" fill="#1e2230">c</text>
+<circle cx="545" cy="105" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="545" y="110" text-anchor="middle" font-size="15" fill="#1e2230">α</text>
+<circle cx="545" cy="175" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="545" y="180" text-anchor="middle" font-size="15" fill="#1e2230">β</text>
+<text x="208" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#4338ca">f</text><text x="432" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#0d9488">g</text>
+</svg>
+<figcaption>\(f(1)=a,\ f(2)=b\) ; \(g(a)=\alpha,\ g(b)=\beta,\ g(c)=\alpha\).</figcaption>
+</figure>
+<ul>
+<li>\(g\circ f\) : \(1\mapsto\alpha\), \(2\mapsto\beta\). Deux départs, deux arrivées différentes, tout \(G\) est atteint : <strong>bijective</strong>.</li>
+<li>\(f\) n'est <strong>pas surjective</strong> : \(c\) n'est atteint par personne (point en pointillés).</li>
+<li>\(g\) n'est <strong>pas injective</strong> : \(a\) et \(c\) vont tous les deux en \(\alpha\).</li>
+</ul>
+<p>Le trajet \(g\circ f\) <em>ne passe jamais par \(c\)</em>. La collision de \(g\) (\(a\) et \(c\) en \(\alpha\)) a lieu dans une zone que le trajet n'utilise pas : elle est invisible pour \(g\circ f\).</p>
+
+<h3>Pourquoi cette asymétrie ?</h3>
+<table class="recap">
+<tr><th></th><th>Ce que \(g\circ f\) « voit »</th><th>Conséquence</th></tr>
+<tr><td><strong>Injectivité</strong></td><td>Elle vérifie que les points de \(E\) ne se collent pas, <em>à travers les deux flèches</em>.</td><td>\(f\) (la 1<sup>re</sup> flèche) est obligée d'être injective. \(g\) peut coller, mais seulement hors de \(f(E)\).</td></tr>
+<tr><td><strong>Surjectivité</strong></td><td>Elle vérifie que tout point de \(G\) est atteint, <em>à la fin du trajet</em>.</td><td>\(g\) (la dernière flèche) est obligée d'être surjective. \(f\) peut ne pas tout atteindre : il suffit que \(g\) couvre \(G\) à partir de \(f(E)\).</td></tr>
+</table>
+
+<div class="box tip"><span class="box-title">À retenir</span>
+L'<strong>injectivité « remonte »</strong> vers la <strong>première</strong> fonction \(f\).<br>
+La <strong>surjectivité « descend »</strong> vers la <strong>dernière</strong> fonction \(g\).<br><br>
+Conséquence : si \(g\circ f\) est bijective, alors \(f\) est injective et \(g\) est surjective (et on ne peut rien dire de plus sans hypothèse supplémentaire).</div>
+
+<h2>4. Un second exemple pour fixer l'idée (contraposée)</h2>
+<figure>
+<svg class="schema" viewBox="0 0 640 275" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="af4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4338ca"/></marker>
+<marker id="ag4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker>
+<marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e08a00"/></marker>
+<marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d63a30"/></marker>
+</defs>
+<ellipse cx="95" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="95" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">E</text>
+<ellipse cx="320" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="320" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">F</text>
+<ellipse cx="545" cy="140" rx="52" ry="105" fill="#f3f4fb" stroke="#9aa0bd" stroke-width="1.5"/>
+<text x="545" y="14" text-anchor="middle" font-weight="700" font-size="17" fill="#1e2230">G</text>
+<line x1="111.9" y1="77.2" x2="301.2" y2="102.5" stroke="#d63a30" stroke-width="3.5" marker-end="url(#ar4)"/>
+<line x1="111.8" y1="137.4" x2="301.2" y2="107.9" stroke="#d63a30" stroke-width="3.5" marker-end="url(#ar4)"/>
+<line x1="111.9" y1="202.8" x2="301.2" y2="177.5" stroke="#4338ca" stroke-width="2" marker-end="url(#af4)"/>
+<line x1="337.0" y1="105.0" x2="526.0" y2="105.0" stroke="#0d9488" stroke-width="2" marker-end="url(#ag4)"/>
+<line x1="337.0" y1="175.0" x2="526.0" y2="175.0" stroke="#0d9488" stroke-width="2" marker-end="url(#ag4)"/>
+<circle cx="95" cy="75" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="80" text-anchor="middle" font-size="15" fill="#1e2230">1</text>
+<circle cx="95" cy="140" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="145" text-anchor="middle" font-size="15" fill="#1e2230">2</text>
+<circle cx="95" cy="205" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="95" y="210" text-anchor="middle" font-size="15" fill="#1e2230">3</text>
+<circle cx="320" cy="105" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="110" text-anchor="middle" font-size="15" fill="#1e2230">a</text>
+<circle cx="320" cy="175" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="320" y="180" text-anchor="middle" font-size="15" fill="#1e2230">b</text>
+<circle cx="545" cy="105" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="545" y="110" text-anchor="middle" font-size="15" fill="#1e2230">α</text>
+<circle cx="545" cy="175" r="15" fill="#fff" stroke="#1e2230" stroke-width="1.6"/><text x="545" y="180" text-anchor="middle" font-size="15" fill="#1e2230">β</text>
+<text x="208" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#4338ca">f</text><text x="432" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#0d9488">g</text>
+</svg>
+<figcaption>\(f\) colle \(1\) et \(2\) en \(a\). Alors \(g\circ f\) envoie \(1\) et \(2\) sur la même case \(\alpha\) : elle n'est pas injective, <em>quelle que soit</em> \(g\).</figcaption>
+</figure>
+<p>On a pris ici une \(g\) très gentille (bijective de \(\{a,b\}\) vers \(\{\alpha,\beta\}\)) et ça ne sauve rien : <strong>c'est \(f\) qui a fait la collision, et rien après ne peut la défaire.</strong></p>
+
+<h2>5. Comment rédiger à l'examen</h2>
+<div class="box info"><span class="box-title">Squelette type</span>
+<strong>« \(g\circ f\) injective \(\Rightarrow f\) injective »</strong> : « Soient \(x,x'\in E\) tels que \(f(x)=f(x')\). Alors \(g(f(x))=g(f(x'))\), donc \((g\circ f)(x)=(g\circ f)(x')\). Or \(g\circ f\) est injective, donc \(x=x'\). »<br><br>
+<strong>« \(g\circ f\) surjective \(\Rightarrow g\) surjective »</strong> : « Soit \(z\in G\). Comme \(g\circ f\) est surjective, il existe \(x\in E\) tel que \(g(f(x))=z\). Donc \(f(x)\) est un antécédent de \(z\) par \(g\). »<br><br>
+<strong>Pour réfuter une réciproque</strong> : donner un contre-exemple avec des petits ensembles (ceux de la partie 3), puis vérifier à la main chaque propriété.</div>
+
+<h2>6. À toi de jouer</h2>
+<p>Essaie d'abord sur papier avant de déplier la réponse.</p>
+
+<details class="quiz"><summary>Q1. Vrai ou faux : si \(g\circ f\) est bijective, alors \(f\) est injective et \(g\) est surjective.</summary>
+<p><strong>Vrai.</strong> \(g\circ f\) bijective est en particulier injective, donc \(f\) est injective (partie 1), et surjective, donc \(g\) est surjective (partie 2).</p></details>
+
+<details class="quiz"><summary>Q2. Donne un exemple avec \(g\circ f\) surjective et \(f\) non surjective.</summary>
+<p>Celui de la partie 3 : \(E=\{1,2\}\), \(F=\{a,b,c\}\), \(G=\{\alpha,\beta\}\), avec \(f(1)=a,\ f(2)=b\) et \(g(a)=\alpha,\ g(b)=\beta,\ g(c)=\alpha\). Un exemple plus petit : \(E=G=\{1\}\), \(F=\{a,b\}\), \(f(1)=a\), \(g(a)=g(b)=1\).</p></details>
+
+<details class="quiz"><summary>Q3. Sur le schéma de la partie 4, \(g\circ f\) est-elle injective ? Justifie.</summary>
+<p><strong>Non.</strong> \((g\circ f)(1)=g(a)=\alpha\) et \((g\circ f)(2)=g(a)=\alpha\), avec \(1\ne2\).</p></details>
+
+<details class="quiz"><summary>Q4. Si \(E\) a 3 éléments et \(G\) en a 2, peut-on avoir \(g\circ f\) injective ?</summary>
+<p><strong>Non.</strong> Une application injective envoie des éléments distincts sur des éléments distincts : il faudrait au moins 3 éléments dans \(G\) (principe des tiroirs).</p></details>
+
+<details class="quiz"><summary>Q5. On suppose \(g\circ f\) injective <em>et</em> \(f\) surjective. Montre que \(g\) est injective.</summary>
+<p>Soient \(y,y'\in F\) tels que \(g(y)=g(y')\). Comme \(f\) est surjective, il existe \(x,x'\in E\) avec \(f(x)=y\) et \(f(x')=y'\). Alors \(g(f(x))=g(f(x'))\), donc \((g\circ f)(x)=(g\circ f)(x')\). Comme \(g\circ f\) est injective, \(x=x'\), donc \(y=f(x)=f(x')=y'\). Donc \(g\) est injective. \(\square\)</p></details>
+
+<div class="nav-links"><span><a href="fiche_ch4_relations_applications.html#categorie-d-composition">← Fiche ch. 4 : composition</a></span><span><a href="exos_ch4_relations_applications.html">Exercices ch. 4 →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="revision.js"></script>
+</body>
+</html>
