@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Méthode : injection, surjection, bijection — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../Revision_Structures/revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Méthodes</a><span>Injection, surjection, bijection</span></div>
+<div class="page">
+<span class="chip">🛠️ Fiche méthode</span><span class="chip">TD2 n°18 à 22</span>
+<h1>Injection, surjection, bijection</h1>
+
+<div class="box info">
+<span class="box-title">Le réflexe en 3 lignes</span>
+<ul>
+<li><strong>Injectif</strong> = je pars de <strong>deux entrées</strong> et je montre qu'elles sont égales.</li>
+<li><strong>Surjectif</strong> = je pars d'<strong>une sortie</strong> et je construis son entrée.</li>
+<li><strong>Bijectif</strong> = les deux. Une seule résolution peut suffire (existence + unicité).</li>
+</ul>
+</div>
+
+<p>📄 Version PDF imprimable : <a href="pdf/Methode_injection_surjection_bijection.pdf">Methode_injection_surjection_bijection.pdf</a> (4 pages). Pour calculer la réciproque une fois la bijection prouvée : <a href="reciproque.html"><strong>fiche « Calculer une réciproque »</strong></a>.</p>
+
+<h2>A. Les 3 définitions</h2>
+<p>Soit \(f : E \to F\) une application. Tout se joue sur le <strong>nombre d'antécédents</strong> de chaque \(y \in F\).</p>
+<div class="tablewrap"><table>
+<tr><th>Notion</th><th>Définition formelle</th><th>En français</th><th>Antécédents de \(y \in F\)</th></tr>
+<tr><td><strong>Injective</strong></td><td>\(\forall x,x' \in E,\ f(x)=f(x') \Rightarrow x=x'\)</td><td>Même image ⇒ mêmes éléments. Pas de « collision ».</td><td>au plus 1 (0 ou 1)</td></tr>
+<tr><td><strong>Surjective</strong></td><td>\(\forall y \in F,\ \exists x \in E,\ f(x)=y\)</td><td>Tout élément de \(F\) est atteint.</td><td>au moins 1</td></tr>
+<tr><td><strong>Bijective</strong></td><td>injective <strong>ET</strong> surjective</td><td>Chaque \(y\) de \(F\) est atteint exactement une fois.</td><td>exactement 1</td></tr>
+</table></div>
+<div class="box tip">
+<span class="box-title">À savoir</span>
+<ul>
+<li><strong>Contraposée de l'injectivité</strong> : \(x \neq x' \Rightarrow f(x) \neq f(x')\). Deux éléments différents ont des images différentes.</li>
+<li><strong>« Surjective » dépend de \(F\)</strong> : \(x \mapsto x^2\) est surjective de \(\mathbb{R}\) dans \(\mathbb{R}_+\) mais pas de \(\mathbb{R}\) dans \(\mathbb{R}\). Toujours relire « de quel ensemble vers quel ensemble ? ».</li>
+</ul>
+</div>
+
+<h2>B. Prouver qu'une application est <em>injective</em></h2>
+<p>On ne calcule pas de valeurs : on part d'une <strong>égalité d'images</strong> et on déduit que les antécédents sont égaux.</p>
+<ol>
+<li>Prendre deux éléments quelconques \(u\) et \(v\) de l'ensemble de départ \(E\).</li>
+<li><strong>Supposer</strong> \(f(u)=f(v)\).</li>
+<li>Traduire en équations (pour des couples : <em>une équation par coordonnée</em>).</li>
+<li>Manipuler pour obtenir \(u=v\) : additionner, soustraire, simplifier, factoriser.</li>
+<li>Conclure : « donc \(u=v\), donc \(f\) est injective ».</li>
+</ol>
+<div class="box tip">
+<span class="box-title">✍️ Modèle de rédaction à recopier</span>
+Soient \(u, v \in E\) tels que \(f(u)=f(v)\). Montrons que \(u=v\). [calculs]. Donc \(u=v\). Ainsi \(f\) est injective.
+</div>
+<div class="tablewrap"><table>
+<tr><th>Type de fonction</th><th>Astuce</th></tr>
+<tr><td>Système linéaire (ℝ² → ℝ²)</td><td>Combiner les lignes (L1 − L2, L1 + L2) pour faire disparaître une inconnue, puis remplacer dans l'autre ligne.</td></tr>
+<tr><td>Fonction de ℝ dans ℝ</td><td>Factoriser \(f(x)-f(x') = (x-x')\times(\dots)\) et montrer que « quelque chose » ne s'annule pas.</td></tr>
+<tr><td>Strictement monotone</td><td>Strictement croissante (ou décroissante) sur \(E\) ⇒ injective.</td></tr>
+<tr><td>Dérivable</td><td>\(f'>0\) (ou \(f'<0\)) sur un intervalle ⇒ strictement monotone ⇒ injective.</td></tr>
+<tr><td>Composée \(g\circ f\)</td><td>\(f\) et \(g\) injectives ⇒ \(g\circ f\) injective.</td></tr>
+</table></div>
+<p><strong>Exemple.</strong> \(f(x)=x^3+x\). Si \(f(x)=f(x')\), alors \((x-x')(x^2+xx'+x'^2+1)=0\). Le second facteur est strictement positif, donc \(x=x'\).</p>
+
+<h2>C. Prouver qu'une application est <em>surjective</em></h2>
+<p>Problème d'<strong>existence</strong> : on part d'un élément de l'arrivée et on <strong>exhibe un antécédent</strong>.</p>
+<ol>
+<li>Prendre \(y\) quelconque dans \(F\) (pour un couple : \(y=(a,b)\), \(a\) et \(b\) quelconques).</li>
+<li>Poser \(f(x)=y\), avec \(x\) l'inconnue.</li>
+<li>Résoudre en exprimant \(x\) en fonction de \(y\).</li>
+<li><strong>Vérifier que \(x \in E\)</strong> et que \(f(x)=y\) (on remplace).</li>
+<li>Conclure : « \(y\) a un antécédent, \(y\) était quelconque, donc \(f\) est surjective ».</li>
+</ol>
+<div class="box tip">
+<span class="box-title">✍️ Modèle de rédaction à recopier</span>
+Soit \(y \in F\). Cherchons \(x \in E\) tel que \(f(x)=y\). [résolution]. Posons \(x=\) [expression en \(y\)]. Alors \(x \in E\) et \(f(x)=y\). Donc \(f\) est surjective.
+</div>
+<div class="box warn">
+<span class="box-title">Points de vigilance</span>
+<ul>
+<li><strong>Vérifier \(x \in E\)</strong> : erreur n°1. Pour \(f:\mathbb{R}\to\mathbb{R},\ x\mapsto x^2\), \(y=4\) marche (\(x=\pm2\)) mais \(y=-1\) n'a aucun antécédent réel.</li>
+<li>Le résultat doit marcher <strong>pour tout \(y\)</strong>, pas pour quelques valeurs.</li>
+<li><strong>TVI</strong> : \(f\) continue sur un intervalle ⇒ \(f(I)\) est un intervalle. Avec les limites en \(\pm\infty\), on obtient la surjectivité (polynôme de degré impair : surjectif de \(\mathbb{R}\) dans \(\mathbb{R}\)).</li>
+</ul>
+</div>
+
+<h2>D. Prouver qu'une application est <em>bijective</em></h2>
+<div class="tablewrap"><table>
+<tr><th>Chemin 1 : deux preuves</th><th>Chemin 2 : existence + unicité (souvent plus rapide)</th></tr>
+<tr><td>1. \(f\) injective (catégorie B)<br>2. \(f\) surjective (catégorie C)<br>3. Donc \(f\) bijective.</td><td>1. \(y\) quelconque dans \(F\)<br>2. Résoudre \(f(x)=y\), \(x \in E\)<br>3. <strong>Une et une seule</strong> solution : existence = surjectivité, unicité = injectivité.</td></tr>
+</table></div>
+<p><strong>Bijection réciproque.</strong> Avec le chemin 2, la solution \(x=g(y)\) trouvée est exactement \(f^{-1}(y)\). Si \(f\) est bijective, \(f^{-1}\) est l'unique application \(F\to E\) telle que
+\[ f^{-1}(f(x)) = x \ \ (\forall x \in E) \qquad\text{et}\qquad f(f^{-1}(y)) = y \ \ (\forall y \in F). \]
+Réciproquement, s'il existe \(g : F \to E\) avec \(g\circ f = \mathrm{id}_E\) et \(f\circ g=\mathrm{id}_F\), alors \(f\) est bijective et \(g=f^{-1}\).</p>
+<p><strong>Cas linéaire \(\mathbb{R}^2\to\mathbb{R}^2\)</strong> : \(f(x,y)=(ax+by,\ cx+dy)\) est bijective si et seulement si \(ad-bc \neq 0\). Bon moyen de <em>vérifier</em>, mais l'énoncé veut en général la preuve directe.</p>
+
+<h2>E. Exemple complet rédigé</h2>
+<p><strong>Énoncé.</strong> Montrer que \(f : \mathbb{R}^2\to\mathbb{R}^2,\ (x,y)\mapsto(x+3y,\ x+y)\) est une bijection.</p>
+<p><strong>Injectivité.</strong> Soient \((x,y)\) et \((x',y')\) tels que \(f(x,y)=f(x',y')\). Deux couples sont égaux ssi leurs coordonnées le sont :</p>
+\[ (L_1)\ x+3y = x'+3y' \qquad (L_2)\ x+y = x'+y'. \]
+<p>\(L_1 - L_2\) donne \(2y=2y'\), donc \(y=y'\). Dans \(L_2\) : \(x=x'\). Donc \((x,y)=(x',y')\) : \(f\) est injective.</p>
+<p><strong>Surjectivité.</strong> Soit \((a,b)\in\mathbb{R}^2\). On cherche \((x,y)\) tel que \(x+3y=a\) et \(x+y=b\). Première ligne moins seconde : \(2y=a-b\), donc \(y=\frac{a-b}{2}\). Puis \(x=b-y=\frac{3b-a}{2}\). Vérification : \(x+3y=\frac{3b-a}{2}+\frac{3(a-b)}{2}=a\) et \(x+y=\frac{3b-a}{2}+\frac{a-b}{2}=b\). \(f\) est surjective.</p>
+<p><strong>Conclusion.</strong> \(f\) est injective et surjective, donc bijective, de réciproque \(f^{-1}(a,b)=\left(\frac{3b-a}{2},\ \frac{a-b}{2}\right)\).<br>
+<em>Contrôle</em> : matrice \(\begin{pmatrix}1&3\\1&1\end{pmatrix}\), déterminant \(1\times1-3\times1=-2\neq0\). Cohérent.</p>
+
+<h2>F. Prouver qu'une application n'est <em>PAS</em> injective ou <em>PAS</em> surjective</h2>
+<p>Pour réfuter, <strong>un contre-exemple suffit</strong>. On nie la définition :</p>
+<div class="tablewrap"><table>
+<tr><th>Réfuter</th><th>Négation de la définition</th><th>Ce qu'il faut exhiber</th></tr>
+<tr><td>Pas injective</td><td>\(\exists x,x' \in E,\ f(x)=f(x')\) et \(x\neq x'\)</td><td>Deux éléments différents de même image.</td></tr>
+<tr><td>Pas surjective</td><td>\(\exists y\in F,\ \forall x\in E,\ f(x)\neq y\)</td><td>Un \(y\) de \(F\) sans antécédent.</td></tr>
+</table></div>
+<div class="tablewrap"><table>
+<tr><th>Application</th><th>Injective ?</th><th>Surjective ?</th></tr>
+<tr><td>\(f:\mathbb{R}\to\mathbb{R},\ x\mapsto x^2\)</td><td>Non : \(f(2)=f(-2)=4\)</td><td>Non : \(y=-1\), car \(x^2\ge0\)</td></tr>
+<tr><td>\(f:\mathbb{N}\to\mathbb{N},\ n\mapsto n+1\)</td><td>Oui : \(n+1=m+1\Rightarrow n=m\)</td><td>Non : \(0\) n'a pas d'antécédent</td></tr>
+<tr><td>\(f:\mathbb{R}^2\to\mathbb{R},\ (x,y)\mapsto x+y\)</td><td>Non : \(f(1,0)=f(0,1)=1\)</td><td>Oui : \((a,0)\) est un antécédent de \(a\)</td></tr>
+</table></div>
+<div class="box info">
+<span class="box-title">À retenir</span>
+<ul>
+<li><strong>Linéaire</strong> : si le noyau contient \(v\neq0\) (\(f(v)=0=f(0)\)), alors \(f\) n'est pas injective.</li>
+<li><strong>Règle d'or</strong> : un contre-exemple demande une valeur <em>précise et vérifiée</em>, jamais un « on peut trouver ».</li>
+<li><strong>Rédaction</strong> : « \(f\) n'est pas injective car \(f(a)=f(b)=\) [valeur] alors que \(a\neq b\). » / « \(f\) n'est pas surjective car \(y=\) [valeur] n'a pas d'antécédent : [raison]. »</li>
+</ul>
+</div>
+
+<h2>G. Pièges classiques</h2>
+<div class="tablewrap"><table>
+<tr><th>Piège</th><th>Correction</th></tr>
+<tr><td>Confondre injective et surjective</td><td>Injective : \(f(x)=f(x')\Rightarrow x=x'\). Surjective : tout \(y\) de \(F\) est atteint.</td></tr>
+<tr><td>Partir de \(x=x'\) pour l'injectivité</td><td>C'est l'inverse : on part de \(f(x)=f(x')\) et on conclut \(x=x'\).</td></tr>
+<tr><td>Tester quelques valeurs</td><td>Un exemple ne prouve rien pour tout \(x\). Il ne sert qu'à <em>réfuter</em>.</td></tr>
+<tr><td>Oublier \(x\in E\)</td><td>Pour la surjectivité, l'antécédent construit doit être dans l'ensemble de départ.</td></tr>
+<tr><td>Ne pas relire \(E\) et \(F\)</td><td>La surjectivité (donc la bijectivité) dépend de l'ensemble d'arrivée \(F\).</td></tr>
+<tr><td>Conclure « bijective » trop vite</td><td>Il faut injective <strong>ET</strong> surjective.</td></tr>
+</table></div>
+
+<h2>✅ Check-list avant de rendre la copie</h2>
+<ul>
+<li>[ ] J'ai écrit ce que je dois montrer (« montrons que \(f\) est injective »).</li>
+<li>[ ] Injectivité : deux éléments quelconques, je pars de \(f(u)=f(v)\).</li>
+<li>[ ] Surjectivité : \(y\) quelconque, \(x\) exprimé en fonction de \(y\).</li>
+<li>[ ] J'ai vérifié \(f(x)=y\) en remplaçant, et \(x\in E\).</li>
+<li>[ ] Conclusion écrite avec les bons mots (« donc \(f\) est bijective »).</li>
+<li>[ ] Si on demande \(f^{-1}\), je l'ai donnée explicitement.</li>
+</ul>
+
+<h2>🔗 S'entraîner</h2>
+<ul>
+<li><a href="../Revision_Structures/exos_ch4_relations_applications.html#b-1-un-tableau-complet-td2-n18">TD2 n°18 — tableau complet</a> · <a href="../Revision_Structures/exos_ch4_relations_applications.html#b-3-une-involution-td2-n19">n°19 — involution</a> · <a href="../Revision_Structures/exos_ch4_relations_applications.html#b-4-composition-qui-porte-l-injectivite-td2-n20">n°20 — composition</a> · <a href="../Revision_Structures/exos_ch4_relations_applications.html#b-2-resoudre-pour-prouver-la-bijectivite-td2-n21">n°21 — résoudre f(x)=y</a> · <a href="../Revision_Structures/exos_ch4_relations_applications.html#b-5-une-bijection-de-dans-td2-n22">n°22 — ℕ² → ℕ</a></li>
+<li><a href="../Revision_Structures/fiche_composition_injective_surjective.html">Fiche illustrée : composition, injective et surjective</a></li>
+<li><a href="../Revision_Structures/fiche_ch4_relations_applications.html#categorie-c-injection-surjection-bijection">Fiche de cours ch. 4 (partie injection/surjection/bijection)</a></li>
+</ul>
+
+<div class="nav-links"><span><a href="index.html">← Toutes les méthodes</a></span><span><a href="reciproque.html">Calculer une réciproque →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="../Revision_Structures/revision.js"></script>
+</body>
+</html>

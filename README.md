@@ -38,8 +38,12 @@ L1_info/
 └── Revisions/
 
 L1_math/
-├── index.html                  ← sommaire
-├── 01_Structures_Fondamentales/
+├── index.html                  ← sommaire (commence ici)
+├── Methodes_SF/                ← 🛠️ quel exercice de TD → quelle méthode
+├── Revision_Structures/        ← fiches, exercices corrigés (ch. 2 à 5)
+├── Flashcards/                 ← cartes à retourner
+├── 01_Structures_Fondamentales/  ← cours détaillé
+├── 02_Analyse/  03_Graphes/
 └── Exercices/
 ```
 

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Méthode : calculer une réciproque — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../Revision_Structures/revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Méthodes</a><span>Calculer une réciproque</span></div>
+<div class="page">
+<span class="chip">🛠️ Fiche méthode</span><span class="chip">TD2 n°18 à 22</span>
+<h1>Calculer une réciproque</h1>
+
+<div class="box info">
+<span class="box-title">L'idée en 2 lignes</span>
+Calculer la réciproque, c'est <strong>résoudre l'équation \(f(x)=y\)</strong> d'inconnue \(x\), avec \(y\) quelconque. La solution \(x\), écrite en fonction de \(y\), est \(f^{-1}(y)\).<br>
+Ici « réciproque » veut dire <strong>bijection réciproque</strong> \(f^{-1}\) (pas la réciproque d'une implication).
+</div>
+
+<p>📄 Version PDF imprimable : <a href="pdf/Methode_calculer_une_reciproque.pdf">Methode_calculer_une_reciproque.pdf</a> (4 pages). Pour <em>prouver</em> d'abord que \(f\) est bijective : <a href="injection_surjection_bijection.html"><strong>fiche « Injection, surjection, bijection »</strong></a>.</p>
+
+<h2>A. La méthode universelle (valable pour tous les cas)</h2>
+<p><strong>Condition</strong> : \(f^{-1}\) n'existe que si \(f\) est bijective. En pratique, la résolution de \(f(x)=y\) te le dit : <em>une seule solution pour tout \(y\)</em> ⇒ bijective ; <em>aucune ou plusieurs</em> ⇒ pas bijective sur ces ensembles.</p>
+<ol>
+<li><strong>Poser</strong> \(f(x)=y\), avec \(y\) quelconque dans l'ensemble d'arrivée \(F\) (pour des couples : \(f(x,y)=(a,b)\)).</li>
+<li><strong>Résoudre</strong> pour exprimer \(x\) en fonction de \(y\) (pour des couples : \(x\) et \(y\) en fonction de \(a\) et \(b\)).</li>
+<li><strong>Contrôler</strong> que la solution est unique et qu'elle appartient bien à \(E\) pour tout \(y\) de \(F\).</li>
+<li><strong>Écrire la conclusion</strong> avec les ensembles : \(f^{-1}:F\to E,\ f^{-1}(y)=\) [expression].</li>
+<li><strong>Vérifier</strong> (30 secondes) avec un petit exemple, ou par \(f(f^{-1}(y))=y\).</li>
+</ol>
+<div class="box tip">
+<span class="box-title">✍️ Modèle de rédaction à recopier</span>
+Comme \(f\) est bijective, elle admet une réciproque. Soit \(y\in F\). Résolvons \(f(x)=y\) d'inconnue \(x\in E\). [résolution]. Donc \(f^{-1}:F\to E\) est définie par \(f^{-1}(y)=\) [expression].
+</div>
+
+<h3>Quel cas ? Quelle technique ?</h3>
+<div class="tablewrap"><table>
+<tr><th>Quel cas ?</th><th>Technique</th><th>Voir</th></tr>
+<tr><td>Système (ℝ² → ℝ²)</td><td>Résoudre le système (combinaisons de lignes) ; ou matrice inverse si linéaire</td><td><a href="#cas1">Cas 1, 2, 3</a></td></tr>
+<tr><td>Droite (affine)</td><td>Isoler \(x\) : un seul calcul</td><td><a href="#cas4">Cas 4</a></td></tr>
+<tr><td>Fraction (homographique)</td><td>Multiplier par le dénominateur, regrouper les \(x\), factoriser</td><td><a href="#cas5">Cas 5</a></td></tr>
+<tr><td>Carré, racine, puissance</td><td>Fonction usuelle inverse ; choisir le bon signe selon \(E\)</td><td><a href="#cas6">Cas 6</a></td></tr>
+<tr><td>Exponentielle, logarithme</td><td>Appliquer \(\ln\) ou \(\exp\) des deux côtés</td><td><a href="#cas7">Cas 7</a></td></tr>
+<tr><td>Définition par morceaux</td><td>Inverser chaque morceau, avec la bonne condition sur \(y\)</td><td><a href="#cas8">Cas 8</a></td></tr>
+<tr><td>Ensemble fini (tableau)</td><td>Retourner les flèches</td><td><a href="#cas9">Cas 9</a></td></tr>
+<tr><td>Composée \(g\circ f\)</td><td>\((g\circ f)^{-1}=f^{-1}\circ g^{-1}\)</td><td><a href="#cas10">Cas 10</a></td></tr>
+</table></div>
+
+<h2>B. Fonctions de ℝ² dans ℝ²</h2>
+
+<h3 id="cas1">Cas 1 — Système linéaire : \(f(x,y)=(x+3y,\ x+y)\)</h3>
+<ol>
+<li>Poser \(f(x,y)=(a,b)\), soit \(x+3y=a\) et \(x+y=b\).</li>
+<li>Résoudre : \((L_1)-(L_2)\) donne \(2y=a-b\), donc \(y=\frac{a-b}{2}\). Dans \((L_2)\) : \(x=b-y=b-\frac{a-b}{2}\), donc \(x=\frac{3b-a}{2}\).</li>
+<li>Unique pour tout \((a,b)\in\mathbb{R}^2\), donc \(f\) est bijective.</li>
+<li>Conclusion : \(f^{-1}:\mathbb{R}^2\to\mathbb{R}^2,\ f^{-1}(a,b)=\left(\frac{3b-a}{2},\ \frac{a-b}{2}\right)\).</li>
+</ol>
+<p><em>Test</em> : \(f(1,1)=(4,2)\) et \(f^{-1}(4,2)=\left(\frac{6-4}{2},\frac{4-2}{2}\right)=(1,1)\) ✓.</p>
+<div class="box warn"><span class="box-title">Piège vu en TD</span>En multipliant par 2 une égalité, on multiplie <strong>chaque terme</strong>, y compris le \(x\) « tout seul » (\(2x\) et non \(x\)).</div>
+
+<h3 id="cas2">Cas 2 — Par la matrice inverse (si \(f\) est linéaire)</h3>
+<p>Si \(f(x,y)=(px+qy,\ rx+sy)\), sa matrice est \(A=\begin{pmatrix}p&q\\r&s\end{pmatrix}\). \(f\) est bijective ⇔ \(ps-qr\neq0\), et :</p>
+\[ A^{-1}=\frac{1}{ps-qr}\begin{pmatrix}s&-q\\-r&p\end{pmatrix} \]
+<p>(on échange \(p\) et \(s\), on change le signe de \(q\) et \(r\), on divise par le déterminant).</p>
+<p>Sur l'exemple : \(A=\begin{pmatrix}1&3\\1&1\end{pmatrix}\), déterminant \(1-3=-2\). \(A^{-1}=\frac{1}{-2}\begin{pmatrix}1&-3\\-1&1\end{pmatrix}=\begin{pmatrix}-\frac12&\frac32\\ \frac12&-\frac12\end{pmatrix}\). Donc \(f^{-1}(a,b)=\left(\frac{-a+3b}{2},\frac{a-b}{2}\right)\) : même résultat que le Cas 1 ✓.</p>
+<p><strong>Quand l'utiliser</strong> : surtout pour <em>vérifier</em>, ou si le système est plus gros. L'énoncé demande souvent la résolution directe : fais-la d'abord.</p>
+
+<h3 id="cas3">Cas 3 — Non linéaire « triangulaire » : \(f(x,y)=(x,\ y+x^2)\)</h3>
+<ol>
+<li>Poser \(f(x,y)=(a,b)\), soit \(x=a\) et \(y+x^2=b\).</li>
+<li>La première équation donne \(x=a\) directement. On remplace dans la seconde : \(y=b-x^2\), donc \(y=b-a^2\).</li>
+<li>Conclusion : \(f^{-1}:\mathbb{R}^2\to\mathbb{R}^2,\ f^{-1}(a,b)=(a,\ b-a^2)\).</li>
+</ol>
+<p><em>Test</em> : \(f(1,1)=(1,2)\) et \(f^{-1}(1,2)=(1,2-1)=(1,1)\) ✓.</p>
+<p><strong>Astuce</strong> : si une équation donne une variable toute seule, on commence par elle puis on remplace dans l'autre.</p>
+
+<h2>C. Fonctions de ℝ dans ℝ (ou d'une partie de ℝ)</h2>
+
+<h3 id="cas4">Cas 4 — Affine : \(f(x)=3x-5\), de ℝ dans ℝ</h3>
+<p>Poser \(y=3x-5\). Isoler \(x\) : \(3x=y+5\), donc \(x=\frac{y+5}{3}\). Conclusion : \(f^{-1}:\mathbb{R}\to\mathbb{R},\ f^{-1}(y)=\frac{y+5}{3}\). <em>Test</em> : \(f(2)=1\) et \(f^{-1}(1)=\frac63=2\) ✓.</p>
+<p><strong>Règle</strong> : \(f(x)=mx+p\) avec \(m\neq0\) est toujours bijective de ℝ dans ℝ, de réciproque \(\frac{y-p}{m}\). Si \(m=0\), \(f\) est constante : pas bijective.</p>
+
+<h3 id="cas5">Cas 5 — Fraction (homographique) : \(f(x)=\dfrac{2x+1}{x-3}\)</h3>
+<p><strong>Ensembles</strong> : \(f:\mathbb{R}\setminus\{3\}\to\mathbb{R}\setminus\{2\}\). (La valeur 2 n'est jamais atteinte : on la retire de l'arrivée.)</p>
+<ol>
+<li>Poser \(y=\frac{2x+1}{x-3}\), avec \(x\neq3\).</li>
+<li>Multiplier par \((x-3)\) : \(y(x-3)=2x+1\), soit \(yx-3y=2x+1\).</li>
+<li>Regrouper les \(x\) : \(yx-2x=3y+1\), donc \(x(y-2)=3y+1\). On divise par \((y-2)\), possible car \(y\neq2\) : \(x=\frac{3y+1}{y-2}\).</li>
+<li>Conclusion : \(f^{-1}:\mathbb{R}\setminus\{2\}\to\mathbb{R}\setminus\{3\},\ f^{-1}(y)=\frac{3y+1}{y-2}\).</li>
+</ol>
+<p><em>Test</em> : \(f(4)=9\) et \(f^{-1}(9)=\frac{28}{7}=4\) ✓.</p>
+<div class="box warn"><span class="box-title">Piège</span>Toujours préciser les ensembles (valeur interdite au départ, valeur jamais atteinte à l'arrivée). Pour \(f(x)=\frac{ax+b}{cx+d}\) : bijective de \(\mathbb{R}\setminus\{-d/c\}\) vers \(\mathbb{R}\setminus\{a/c\}\) si \(ad-bc\neq0\).</div>
+
+<h3 id="cas6">Cas 6 — Carré, racine, puissance : le choix du signe dépend de \(E\)</h3>
+<ul>
+<li>\(f(x)=x^2\) de \(\mathbb{R}_+\) dans \(\mathbb{R}_+\) : \(y=x^2\) avec \(x\ge0\) donne \(x=\sqrt y\) (on rejette \(-\sqrt y\) car \(x\ge0\)). \(f^{-1}(y)=\sqrt y\).</li>
+<li>\(f(x)=x^2\) de \(\mathbb{R}\) dans \(\mathbb{R}\) : <strong>pas bijective</strong> (\(f(2)=f(-2)\), et \(y<0\) sans antécédent). Pas de réciproque.</li>
+<li>\(f(x)=x^2+1\) de \(\mathbb{R}_+\) dans \([1,+\infty[\) : \(y=x^2+1\), donc \(x^2=y-1\), donc \(x=\sqrt{y-1}\) (possible car \(y\ge1\), et \(x\ge0\)).</li>
+<li>\(f(x)=x^3\) de \(\mathbb{R}\) dans \(\mathbb{R}\) : bijective, réciproque = racine cubique (\(x=y^{1/3}\) si \(y\ge0\), et \(-(-y)^{1/3}\) si \(y<0\)).</li>
+</ul>
+<p><strong>Règle</strong> : \(x^2=c\) a deux solutions \(\pm\sqrt c\) ; c'est l'ensemble de départ \(E\) qui décide laquelle garder.</p>
+
+<h3 id="cas7">Cas 7 — Exponentielle et logarithme : \(f(x)=3e^x-1\)</h3>
+<p><strong>Ensembles</strong> : \(e^x>0\), donc \(3e^x-1>-1\). \(f:\mathbb{R}\to\,]-1,+\infty[\).</p>
+<ol>
+<li>Poser \(y=3e^x-1\).</li>
+<li>Isoler : \(e^x=\frac{y+1}{3}\).</li>
+<li>Appliquer \(\ln\) (possible car \(\frac{y+1}{3}>0\)) : \(x=\ln\left(\frac{y+1}{3}\right)\).</li>
+<li>Conclusion : \(f^{-1}:\,]-1,+\infty[\,\to\mathbb{R},\ f^{-1}(y)=\ln\left(\frac{y+1}{3}\right)\).</li>
+</ol>
+<p><em>Test</em> : \(f(0)=2\) et \(f^{-1}(2)=\ln\frac33=\ln1=0\) ✓. <strong>À retenir</strong> : \(\exp\) et \(\ln\) sont réciproques l'une de l'autre (\(\ln(e^x)=x\) et \(e^{\ln y}=y\) pour \(y>0\)).</p>
+
+<h3 id="cas8">Cas 8 — Définition par morceaux : \(f(x)=\begin{cases}x&\text{si }x\ge0\\2x&\text{si }x<0\end{cases}\)</h3>
+<p><strong>Idée</strong> : on inverse chaque morceau et on traduit la condition sur \(x\) en condition sur \(y\).</p>
+<ul>
+<li>Morceau 1 : si \(x\ge0\), \(y=x\ge0\). Donc pour \(y\ge0\) : \(x=y\).</li>
+<li>Morceau 2 : si \(x<0\), \(y=2x<0\). Donc pour \(y<0\) : \(x=\frac y2\).</li>
+</ul>
+<p>Conclusion : \(f^{-1}(y)=y\) si \(y\ge0\), et \(\frac y2\) si \(y<0\). Les deux conditions (\(y\ge0\) et \(y<0\)) couvrent tout ℝ sans se chevaucher : \(f\) est bijective. <em>Test</em> : \(f(-3)=-6\) et \(f^{-1}(-6)=-3\) ✓.</p>
+
+<h2>D. Cas particuliers</h2>
+
+<h3 id="cas9">Cas 9 — Ensemble fini donné par un tableau</h3>
+<p>\(f:\{1,2,3\}\to\{a,b,c\}\) avec \(f(1)=b,\ f(2)=c,\ f(3)=a\). Chaque élément d'arrivée est atteint une fois : \(f\) est bijective. On <strong>retourne les flèches</strong> : \(f^{-1}(b)=1,\ f^{-1}(c)=2,\ f^{-1}(a)=3\).</p>
+<p>Si deux éléments ont la même image, ou si un élément d'arrivée n'est pas atteint : pas de réciproque.</p>
+
+<h3 id="cas10">Cas 10 — Réciproque d'une composée</h3>
+<p>Si \(f:E\to F\) et \(g:F\to G\) sont bijectives, alors \(g\circ f\) est bijective et
+\[ (g\circ f)^{-1}=f^{-1}\circ g^{-1}. \]
+<strong>L'ordre s'inverse</strong> : on enfile des chaussettes (\(f\)) puis des chaussures (\(g\)) ; pour défaire, on enlève d'abord les chaussures (\(g^{-1}\)), puis les chaussettes (\(f^{-1}\)).</p>
+<p><em>Exemple</em> : \(f(x)=x+1\), \(g(x)=2x\). \((g\circ f)(x)=2x+2\), de réciproque \(\frac{y-2}{2}\). Et \(f^{-1}(g^{-1}(y))=f^{-1}(y/2)=\frac y2-1=\frac{y-2}{2}\) ✓.</p>
+
+<h2>E. Vérifier, pièges et check-list</h2>
+<p>Deux vérifications possibles (<strong>une suffit</strong> si \(f\) est bijective) :</p>
+<div class="tablewrap"><table>
+<tr><th>Vérification</th><th>Ce qu'on calcule</th><th>Quand ?</th></tr>
+<tr><td>\(f(f^{-1}(y))=y\)</td><td>On remplace \(x\) par ta formule dans \(f\) et on doit retrouver \(y\)</td><td>La plus rapide pour un système ou une formule</td></tr>
+<tr><td>\(f^{-1}(f(x))=x\)</td><td>On applique ta formule à \(f(x)\) et on doit retrouver \(x\)</td><td>Équivalente</td></tr>
+<tr><td>Test numérique</td><td>Un petit \((x,y)\) : calculer \(f\), puis \(f^{-1}\) du résultat</td><td>Toujours : 30 secondes, détecte les erreurs de calcul</td></tr>
+</table></div>
+<div class="tablewrap"><table>
+<tr><th>Piège</th><th>Correction</th></tr>
+<tr><td>Confondre \(f^{-1}\) et \(1/f\)</td><td>\(f^{-1}\) désigne la réciproque, pas l'inverse multiplicatif : \(f^{-1}(y)\neq1/f(y)\).</td></tr>
+<tr><td>Oublier de multiplier tous les termes</td><td>Multiplier par 2 : chaque terme, y compris le \(x\) « tout seul » (\(2x\)).</td></tr>
+<tr><td>Oublier de diviser à la fin</td><td>\(2x=3b-a\) donne \(x=\frac{3b-a}{2}\), pas \(x=3b-a\).</td></tr>
+<tr><td>Ne pas écrire de conclusion</td><td>La réponse est la ligne « \(f^{-1}(a,b)=\dots\) » avec les ensembles.</td></tr>
+<tr><td>Garder le mauvais signe d'une racine</td><td>Le signe se choisit avec l'ensemble de départ \(E\).</td></tr>
+<tr><td>Oublier les valeurs interdites</td><td>Fractions et logarithmes : préciser les ensembles de départ et d'arrivée.</td></tr>
+<tr><td>Chercher une réciproque sans bijection</td><td>Pas bijective (ex. \(x^2\) sur ℝ) : pas de réciproque. Restreindre \(E\) ou \(F\) si l'énoncé le permet.</td></tr>
+</table></div>
+
+<h2>✅ Check-list avant de rendre la copie</h2>
+<ul>
+<li>[ ] J'ai posé \(f(x)=y\) avec \(y\) quelconque dans l'ensemble d'arrivée.</li>
+<li>[ ] J'ai exprimé \(x\) en fonction de \(y\) (ou \(x\) et \(y\) en fonction de \(a\) et \(b\)).</li>
+<li>[ ] J'ai vérifié que la solution est unique et dans \(E\).</li>
+<li>[ ] J'ai écrit la conclusion « \(f^{-1}:F\to E,\ f^{-1}(y)=\dots\) » avec les ensembles.</li>
+<li>[ ] J'ai fait un test numérique ou \(f(f^{-1}(y))=y\).</li>
+</ul>
+
+<h2>🔗 S'entraîner</h2>
+<ul>
+<li><a href="../Revision_Structures/exos_ch4_relations_applications.html#b-1-un-tableau-complet-td2-n18">TD2 n°18</a> (réciproques demandées dans le tableau) · <a href="../Revision_Structures/exos_ch4_relations_applications.html#b-2-resoudre-pour-prouver-la-bijectivite-td2-n21">TD2 n°21 — résoudre \(f(x)=y\)</a> · <a href="../Revision_Structures/exos_ch4_relations_applications.html#b-3-une-involution-td2-n19">TD2 n°19 — involution</a></li>
+</ul>
+
+<div class="nav-links"><span><a href="injection_surjection_bijection.html">← Injection, surjection, bijection</a></span><span><a href="index.html">Toutes les méthodes →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="../Revision_Structures/revision.js"></script>
+</body>
+</html>
