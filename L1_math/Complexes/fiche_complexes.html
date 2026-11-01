@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les nombres complexes expliqués : à quoi ça sert, comment s'en servir — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../Revision_Structures/revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="../index.html">← Sommaire des maths</a><span>Nombres complexes (chap. 6)</span></div>
+<div class="page">
+<span class="chip">📘 Fiche expliquée</span><span class="chip">Chapitre 6 du polycopié</span>
+<h1>Les nombres complexes : à quoi ça sert et comment s'en servir</h1>
+
+<p>Cette fiche suit le <strong>chapitre 6</strong> du polycopié (pages 31 à 40). Pour chaque notion tu as : <strong>ce que c'est</strong>, <strong>à quoi ça sert</strong> (dans quel type d'exercice on la sort), et <strong>un exemple calculé</strong>. Les exercices à faire seul avec correction sont dans <a href="exos_complexes.html">la page d'exercices types</a>.</p>
+
+<div class="box info">
+<span class="box-title">🧭 L'idée en 30 secondes</span>
+Un nombre complexe, c'est <strong>un point du plan</strong>. On l'écrit \(z = x + iy\) où \(x\) et \(y\) sont des réels et où \(i\) est un nombre « inventé » tel que \(i^2 = -1\).
+<ul>
+<li>Pour <strong>additionner</strong> et <strong>développer</strong> : on utilise la forme \(x + iy\) (forme algébrique).</li>
+<li>Pour <strong>multiplier, diviser, mettre à une puissance</strong> : on utilise la forme \(r e^{i\theta}\) (forme exponentielle). Les modules se multiplient, les angles s'additionnent.</li>
+<li>Pour <strong>faire disparaître \(i\) d'un dénominateur</strong> ou savoir si un nombre est réel : on utilise le <strong>conjugué</strong> \(\bar z\).</li>
+<li>Pour <strong>mesurer une distance</strong> : on utilise le <strong>module</strong> \(|z|\).</li>
+</ul>
+</div>
+
+<div class="toc">
+<h2>Sommaire</h2>
+<ol>
+<li><a href="#pourquoi">Pourquoi inventer les nombres complexes ?</a></li>
+<li><a href="#algebrique">Forme algébrique : calculer</a></li>
+<li><a href="#conjugue">Le conjugué : diviser, tester « réel »</a></li>
+<li><a href="#module">Le module : mesurer</a></li>
+<li><a href="#trigo">Forme trigonométrique et exponentielle : multiplier, puissances</a></li>
+<li><a href="#euler">Euler, De Moivre, linéarisation</a></li>
+<li><a href="#second">Équations du second degré</a></li>
+<li><a href="#unite">Racines de l'unité et équations \(z^n = a\)</a></li>
+<li><a href="#fondamental">Théorème fondamental de l'algèbre</a></li>
+<li><a href="#recap">Tableau final : « je vois ça, je pense à ça »</a></li>
+</ol>
+</div>
+
+<h2 id="pourquoi">1. Pourquoi inventer les nombres complexes ?</h2>
+<p>Dans \(\mathbb{R}\), l'équation \(x^2 + 1 = 0\) n'a pas de solution : un carré est toujours \(\ge 0\), donc \(x^2 + 1 \ge 1\). On <strong>ajoute</strong> alors un nombre \(i\) avec \(i^2 = -1\). Résultat : cette équation a une solution (\(i^2 + 1 = 0\)), et on gagne bien plus :</p>
+<div class="tablewrap"><table>
+<tr><th>Ce que ça permet</th><th>Exemple</th></tr>
+<tr><td><strong>Résoudre toutes les équations polynomiales</strong></td><td>\(z^2 + z + 1 = 0\) n'a pas de racine réelle, mais en a deux dans \(\mathbb{C}\). Le <a href="#fondamental">théorème fondamental</a> dit que ça marche pour <em>tout</em> polynôme.</td></tr>
+<tr><td><strong>Faire de la géométrie par le calcul</strong></td><td>Une rotation du plan = une multiplication par \(e^{i\theta}\). Un cercle = une équation \(|z - a| = r\).</td></tr>
+<tr><td><strong>Simplifier la trigonométrie</strong></td><td>Les formules \(\cos(a+b)\), \(\cos^3 x\), \(\cos 3x\)… se retrouvent en quelques lignes grâce à \(e^{i\theta}\).</td></tr>
+<tr><td><strong>Calculer des puissances énormes</strong></td><td>\((1+i)^{20}\) se calcule de tête en forme exponentielle (voir §5).</td></tr>
+</table></div>
+
+<h2 id="algebrique">2. Forme algébrique : calculer</h2>
+<h3>Ce que c'est</h3>
+<p>Formellement, \(\mathbb{C}\) est l'ensemble des couples \((x,y)\) de réels avec
+\((x,y)+(x',y') = (x+x',\,y+y')\) et \((x,y)\cdot(x',y') = (xx'-yy',\,xy'+yx')\).
+On note \(i = (0,1)\) et on vérifie \(i^2 = (0,1)(0,1) = (-1,0) = -1\). Au lieu de \((x,y)\) on écrit \(x + iy\). Le point \((x,y)\) du plan s'appelle l'<strong>affixe</strong> de \(z\).</p>
+<ul>
+<li>\(\operatorname{Re}(z) = x\) : partie réelle. \(\operatorname{Im}(z) = y\) : partie imaginaire (c'est un <strong>réel</strong>, sans le \(i\)).</li>
+<li>\(z\) est <strong>réel</strong> si \(\operatorname{Im}(z) = 0\), <strong>imaginaire pur</strong> si \(\operatorname{Re}(z) = 0\).</li>
+<li>Addition, multiplication : commutatives, associatives, distributives, comme avec les réels. Il y a un neutre (\(0\) et \(1\)), un opposé, et un inverse pour tout \(z \ne 0\). Donc \(\mathbb{C}\) est un <strong>corps</strong>.</li>
+</ul>
+
+<h3>À quoi ça sert</h3>
+<p>Dès qu'on te demande <strong>« calculer »</strong>, « écrire sous forme \(a + ib\) », « donner la partie réelle ». La règle unique : <strong>on développe comme d'habitude, et on remplace \(i^2\) par \(-1\)</strong>.</p>
+
+<div class="box tip">
+<span class="box-title">Exemple (du cours)</span>
+\[(1+2i)(3+4i) = 3 + 4i + 6i + 8i^2 = (3-8) + i(4+6) = -5 + 10i.\]
+</div>
+
+<h3>Les puissances de \(i\)</h3>
+<p>\(i^0 = 1,\ i^1 = i,\ i^2 = -1,\ i^3 = -i,\ i^4 = 1\), puis ça recommence <strong>tous les 4</strong>. Pour \(i^n\) : on divise \(n\) par 4 et on regarde le reste. Exemple : \(2025 = 4\times 506 + 1\), donc \(i^{2025} = i\).</p>
+
+<div class="box warn">
+<span class="box-title">⚠️ Pièges</span>
+<ul>
+<li>\(i^2 = -1\), pas \(+1\). Et \(i\) n'est <strong>pas</strong> « \(\sqrt{-1}\) » à écrire dans les calculs : \(\sqrt{-1}\cdot\sqrt{-1}\ne\sqrt{(-1)(-1)}\). On travaille avec \(i\).</li>
+<li>Il n'y a <strong>pas d'ordre</strong> dans \(\mathbb{C}\) : écrire \(z \le z'\) ou « \(i > 0\) » n'a aucun sens. On ne compare que des <em>modules</em> ou des parties réelles.</li>
+</ul>
+</div>
+
+<h2 id="conjugue">3. Le conjugué : diviser, tester « réel »</h2>
+<h3>Ce que c'est</h3>
+<p>Le conjugué de \(z = x + iy\) est \(\bar z = x - iy\) : <strong>symétrique par rapport à l'axe des réels</strong>. Exemples : \(\bar i = -i\), \(\bar 2 = 2\), \(\overline{3+4i} = 3-4i\).</p>
+<p>Propriétés (proposition 28), pour tous \(z, z'\) :</p>
+<ul>
+<li>\(\bar{\bar z} = z\)</li>
+<li>\(\overline{z+z'} = \bar z + \bar z'\), \(\overline{zz'} = \bar z\,\bar z'\), \(\overline{z^n} = \bar z^{\,n}\) : le conjugué « passe » dans les sommes, produits, puissances.</li>
+<li>\(\operatorname{Re}(z) = \dfrac{z+\bar z}{2}\), \(\operatorname{Im}(z) = \dfrac{z-\bar z}{2i}\)</li>
+<li><strong>\(z\bar z = x^2 + y^2\)</strong> : toujours un réel \(\ge 0\). C'est LA formule à retenir.</li>
+</ul>
+
+<h3>À quoi ça sert</h3>
+<p><strong>Usage n°1 : supprimer \(i\) au dénominateur.</strong> On multiplie en haut et en bas par le conjugué du dénominateur, car \(z\bar z\) est réel :</p>
+<div class="box tip">
+<span class="box-title">Exemple (du cours)</span>
+\[\frac{2+i}{1-i} = \frac{(2+i)(1+i)}{(1-i)(1+i)} = \frac{2 + 2i + i + i^2}{1^2 + 1^2} = \frac{1+3i}{2}.\]
+</div>
+<p><strong>Usage n°2 : savoir si un nombre est réel ou imaginaire pur sans calculer.</strong></p>
+<ul>
+<li>\(z\) est réel \(\iff z = \bar z\).</li>
+<li>\(z\) est imaginaire pur \(\iff z = -\bar z\).</li>
+</ul>
+<p><strong>Usage n°3 : résoudre une équation qui contient \(z\) <em>et</em> \(\bar z\).</strong> On pose \(z = x+iy\), on remplace, et on identifie parties réelle et imaginaire (deux équations réelles).</p>
+
+<h2 id="module">4. Le module : mesurer</h2>
+<h3>Ce que c'est</h3>
+<p>\(|z| = \sqrt{x^2+y^2} = \sqrt{z\bar z}\). C'est la <strong>distance entre l'origine et le point \(z\)</strong> (théorème de Pythagore). Plus généralement \(|z - z'|\) est la <strong>distance entre les points \(z\) et \(z'\)</strong>.</p>
+<p>Inverse : si \(z\ne 0\), \(z^{-1} = \dfrac{\bar z}{|z|^2}\).</p>
+<p>Propriétés (proposition 31) :</p>
+<ul>
+<li>\(|\bar z| = |z|\) ; \(|z| = 0 \iff z = 0\)</li>
+<li>\(|zz'| = |z||z'|\) ; \(\left|\dfrac{z}{z'}\right| = \dfrac{|z|}{|z'|}\) ; \(|z^n| = |z|^n\) : <strong>le module se comporte bien avec \(\times\), \(/\), puissances</strong>.</li>
+<li>\(|\operatorname{Re}(z)| \le |z|\) et \(|\operatorname{Im}(z)| \le |z|\)</li>
+<li><strong>Inégalité triangulaire</strong> : \(\big||z| - |z'|\big| \le |z - z'| \le |z| + |z'|\).</li>
+</ul>
+<div class="box warn">
+<span class="box-title">⚠️ Piège</span>
+Le module ne se comporte <strong>pas</strong> bien avec la somme : \(|z+z'| \ne |z|+|z'|\) en général (c'est seulement \(\le\)). Exemple : \(|1 + (-1)| = 0 \ne 2\).
+</div>
+
+<h3>À quoi ça sert</h3>
+<ul>
+<li><strong>Décrire des ensembles de points</strong> : \(|z - a| = r\) est le <strong>cercle</strong> de centre \(a\) et de rayon \(r\) ; \(|z-a| = |z-b|\) est la <strong>médiatrice</strong> de \([a,b]\).</li>
+<li><strong>Encadrer</strong> une quantité (inégalité triangulaire). Exemple : si \(|z| = 2\), alors \(1 \le |z+1| \le 3\).</li>
+<li><strong>Calculer un module d'un gros produit</strong> sans développer : \(|(1+i)^{10}| = |1+i|^{10} = (\sqrt2)^{10} = 32\).</li>
+</ul>
+
+<h2 id="trigo">5. Forme trigonométrique et exponentielle : multiplier, puissances</h2>
+<h3>Ce que c'est</h3>
+<p>Un point du plan peut se repérer par ses <strong>coordonnées cartésiennes</strong> \((x,y)\) ou par ses <strong>coordonnées polaires</strong> \((r,\theta)\) : \(r = |z|\) est la distance à l'origine, et \(\theta\) l'<strong>argument</strong> (l'angle avec l'axe des réels, défini à \(2\pi\) près). Alors :</p>
+<p>\[z = r(\cos\theta + i\sin\theta) = r e^{i\theta}\quad\text{avec}\quad e^{i\theta} = \cos\theta + i\sin\theta.\]</p>
+<p>Le point \(e^{i\theta}\) est sur le <strong>cercle unité</strong> (module 1). Règles de calcul (elles sont exactement celles de l'exponentielle) :</p>
+<ul>
+<li>\(re^{i\theta}\cdot r'e^{i\theta'} = rr'\,e^{i(\theta+\theta')}\) : <strong>on multiplie les modules, on additionne les angles</strong>.</li>
+<li>\(\dfrac{re^{i\theta}}{r'e^{i\theta'}} = \dfrac{r}{r'}e^{i(\theta-\theta')}\) : on divise les modules, on soustrait les angles.</li>
+<li>\((re^{i\theta})^n = r^n e^{in\theta}\).</li>
+<li>\(\overline{e^{i\theta}} = e^{-i\theta}\).</li>
+</ul>
+
+<svg viewBox="0 0 360 240" role="img" aria-label="Plan complexe : le point z a pour module r et pour argument theta" style="max-width:420px;width:100%;display:block;margin:1em auto">
+<line x1="30" y1="200" x2="340" y2="200" stroke="currentColor" stroke-width="1.5"/>
+<line x1="60" y1="225" x2="60" y2="15" stroke="currentColor" stroke-width="1.5"/>
+<line x1="60" y1="200" x2="250" y2="70" stroke="#4338ca" stroke-width="3"/>
+<line x1="250" y1="70" x2="250" y2="200" stroke="currentColor" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="60" y1="70" x2="250" y2="70" stroke="currentColor" stroke-width="1" stroke-dasharray="5 4"/>
+<circle cx="250" cy="70" r="5" fill="#4338ca"/>
+<path d="M 100 200 A 40 40 0 0 0 95 178" fill="none" stroke="#0d9488" stroke-width="2"/>
+<text x="258" y="64" fill="currentColor" font-size="15">z = x + iy</text>
+<text x="132" y="120" fill="#4338ca" font-size="15" font-weight="bold">r = |z|</text>
+<text x="106" y="193" fill="#0d9488" font-size="15">θ</text>
+<text x="246" y="218" fill="currentColor" font-size="14">x</text>
+<text x="38" y="75" fill="currentColor" font-size="14">y</text>
+<text x="44" y="215" fill="currentColor" font-size="13">0</text>
+</svg>
+
+<h3>Comment trouver \(r\) et \(\theta\) (méthode en 3 étapes)</h3>
+<ol>
+<li>Calculer \(r = |z| = \sqrt{x^2+y^2}\).</li>
+<li>Factoriser : \(z = r\left(\dfrac{x}{r} + i\dfrac{y}{r}\right)\). On cherche \(\theta\) tel que \(\cos\theta = \dfrac{x}{r}\) <strong>et</strong> \(\sin\theta = \dfrac{y}{r}\).</li>
+<li>Reconnaître l'angle avec le tableau des valeurs usuelles (ci-dessous), en regardant le <strong>signe</strong> de \(\cos\) et de \(\sin\) pour savoir dans quel quadrant on est.</li>
+</ol>
+
+<div class="tablewrap"><table>
+<tr><th>\(\theta\)</th><th>\(0\)</th><th>\(\pi/6\)</th><th>\(\pi/4\)</th><th>\(\pi/3\)</th><th>\(\pi/2\)</th><th>\(\pi\)</th></tr>
+<tr><td>\(\cos\theta\)</td><td>\(1\)</td><td>\(\frac{\sqrt3}{2}\)</td><td>\(\frac{\sqrt2}{2}\)</td><td>\(\frac12\)</td><td>\(0\)</td><td>\(-1\)</td></tr>
+<tr><td>\(\sin\theta\)</td><td>\(0\)</td><td>\(\frac12\)</td><td>\(\frac{\sqrt2}{2}\)</td><td>\(\frac{\sqrt3}{2}\)</td><td>\(1\)</td><td>\(0\)</td></tr>
+</table></div>
+
+<div class="box tip">
+<span class="box-title">Exemples</span>
+<ul>
+<li>\(z = 2+2i\) : \(r = \sqrt{8} = 2\sqrt2\). \(\cos\theta = \sin\theta = \frac{2}{2\sqrt2} = \frac{\sqrt2}{2}\), donc \(\theta = \frac\pi4\). D'où \(z = 2\sqrt2\,e^{i\pi/4}\) (exemple du cours).</li>
+<li>\(z = 1 + i\sqrt3\) : \(r = 2\). \(\cos\theta = \frac12\), \(\sin\theta = \frac{\sqrt3}{2}\), donc \(\theta = \frac\pi3\). D'où \(z = 2e^{i\pi/3}\).</li>
+<li>\(z = -1 + i\) : \(r = \sqrt2\). \(\cos\theta = -\frac{\sqrt2}{2}\), \(\sin\theta = \frac{\sqrt2}{2}\) : on est dans le 2ᵉ quadrant, \(\theta = \frac{3\pi}{4}\). D'où \(z = \sqrt2\,e^{3i\pi/4}\).</li>
+<li>\(z = -i\) : \(r = 1\), \(\cos\theta = 0\), \(\sin\theta = -1\), donc \(\theta = -\frac\pi2\). D'où \(z = e^{-i\pi/2}\).</li>
+</ul>
+</div>
+<div class="box warn">
+<span class="box-title">⚠️ Piège classique</span>
+Ne retiens pas aveuglément « \(\theta = \arctan(y/x)\) » : la calculatrice donne un angle dans \(]-\pi/2,\pi/2[\), donc <strong>faux quand \(x < 0\)</strong>. Pour \(-1+i\) : \(\arctan(-1) = -\frac\pi4\), mais le vrai argument est \(\frac{3\pi}{4}\). Vérifie toujours le <em>signe de \(\cos\)</em> <strong>et</strong> de \(\sin\).
+</div>
+
+<h3>À quoi ça sert</h3>
+<ul>
+<li><strong>Calculer des puissances</strong> : \((1+i)^{20}\). On écrit \(1+i = \sqrt2\,e^{i\pi/4}\), donc \((1+i)^{20} = (\sqrt2)^{20}e^{i\,20\pi/4} = 2^{10}e^{5i\pi} = 1024\times(-1) = -1024\). En forme algébrique ce serait un cauchemar.</li>
+<li><strong>Dire quand une puissance est réelle / imaginaire pure</strong> : \((1+i)^n\) est réel \(\iff n\frac\pi4 \equiv 0 \pmod\pi \iff n\) multiple de \(4\).</li>
+<li><strong>Calculer un quotient</strong> : on divise les modules et on soustrait les angles.</li>
+<li><strong>Interpréter géométriquement</strong> : multiplier par \(e^{i\theta}\) = <strong>tourner</strong> de l'angle \(\theta\) autour de \(0\) ; multiplier par un réel \(r>0\) = <strong>agrandir</strong> par le facteur \(r\). Donc multiplier par \(re^{i\theta}\) = tourner <em>et</em> agrandir (une similitude).</li>
+<li><strong>Retrouver des valeurs de \(\cos\) et \(\sin\) exotiques</strong> : on écrit un même nombre sous les deux formes et on identifie (voir l'exercice \(\cos\frac{5\pi}{12}\) dans <a href="exos_complexes.html">les exos</a>).</li>
+</ul>
+<p>Rappel : \(\arg(zz') = \arg z + \arg z'\) et \(\arg(z/z') = \arg z - \arg z'\), toujours <strong>modulo \(2\pi\)</strong>.</p>
+
+<h2 id="euler">6. Euler, De Moivre, linéarisation</h2>
+<h3>Formules d'Euler</h3>
+<p>\[\cos\theta = \frac{e^{i\theta}+e^{-i\theta}}{2},\qquad \sin\theta = \frac{e^{i\theta}-e^{-i\theta}}{2i}.\]</p>
+<p><strong>À quoi ça sert :</strong> transformer du \(\cos\) / \(\sin\) en exponentielles (et inversement). C'est l'outil de la linéarisation.</p>
+
+<h3>Formule de De Moivre</h3>
+<p>\[(\cos\theta + i\sin\theta)^n = \cos(n\theta) + i\sin(n\theta).\]</p>
+<p>Preuve en une ligne : \((e^{i\theta})^n = e^{in\theta}\). <strong>À quoi ça sert :</strong> exprimer \(\cos(n\theta)\) ou \(\sin(n\theta)\) <em>en fonction de</em> \(\cos\theta\), \(\sin\theta\) (on développe le membre de gauche avec le binôme, puis on prend partie réelle / imaginaire).</p>
+<div class="box tip">
+<span class="box-title">Exemple : \(\cos 3\theta\) en fonction de \(\cos\theta\)</span>
+\((\cos\theta + i\sin\theta)^3 = \cos^3\theta + 3i\cos^2\theta\sin\theta - 3\cos\theta\sin^2\theta - i\sin^3\theta\).
+On prend la partie réelle : \(\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta = \cos^3\theta - 3\cos\theta(1-\cos^2\theta) = 4\cos^3\theta - 3\cos\theta\).
+</div>
+
+<h3>Linéariser \(\cos(x)^p\sin(x)^q\)</h3>
+<p><strong>But :</strong> transformer un <em>produit de puissances</em> de \(\cos\) et \(\sin\) en une <em>somme</em> de \(\cos(nx)\), \(\sin(mx)\) et de constantes. <strong>À quoi ça sert :</strong> surtout à <strong>intégrer</strong> (on sait intégrer \(\cos(nx)\), pas \(\cos^4 x\)) et à simplifier.</p>
+<p><strong>Méthode :</strong></p>
+<ol>
+<li>Écrire \(\cos x = \frac{e^{ix}+e^{-ix}}{2}\) et \(\sin x = \frac{e^{ix}-e^{-ix}}{2i}\), puis élever à la puissance voulue.</li>
+<li>Développer (binôme de Newton).</li>
+<li>Simplifier avec \(e^{ikx}e^{i\ell x} = e^{i(k+\ell)x}\).</li>
+<li><strong>Regrouper les termes opposés</strong> : \(e^{inx}+e^{-inx} = 2\cos(nx)\) et \(e^{inx}-e^{-inx} = 2i\sin(nx)\).</li>
+</ol>
+<div class="box tip">
+<span class="box-title">Exemples (du cours)</span>
+\[\cos^2 x = \frac14\left(e^{2ix} + 2 + e^{-2ix}\right) = \frac{\cos 2x}{2} + \frac12.\]
+\[\sin^3 x = -\frac{1}{8i}\left(e^{3ix} - 3e^{ix} + 3e^{-ix} - e^{-3ix}\right) = -\frac{\sin 3x}{4} + \frac34\sin x.\]
+</div>
+<div class="box info">
+<span class="box-title">Bonus : formules d'addition</span>
+De \(e^{i(a\pm b)} = e^{ia}e^{\pm ib}\) on déduit en prenant parties réelle et imaginaire : \(\cos(a+b) = \cos a\cos b - \sin a\sin b\), \(\sin(a+b) = \sin a\cos b + \cos a\sin b\), etc. Les formules « somme en produit » (\(\cos a + \cos b = 2\cos\frac{a+b}{2}\cos\frac{a-b}{2}\)…) s'en déduisent.
+</div>
+
+<h2 id="second">7. Équations du second degré</h2>
+<p>Soit \((E)\) : \(az^2 + bz + c = 0\) avec \(a \ne 0\) (les coefficients peuvent même être complexes). On pose \(\Delta = b^2 - 4ac\) et on met sous forme canonique :</p>
+<p>\[az^2+bz+c = a\left(\left(z+\frac{b}{2a}\right)^2 - \frac{\Delta}{4a^2}\right).\]</p>
+<div class="tablewrap"><table>
+<tr><th>Cas</th><th>Solutions</th></tr>
+<tr><td>\(\Delta\) réel \(> 0\)</td><td>deux solutions : \(\dfrac{-b\pm\sqrt\Delta}{2a}\)</td></tr>
+<tr><td>\(\Delta = 0\)</td><td>une racine double : \(\dfrac{-b}{2a}\)</td></tr>
+<tr><td>\(\Delta\) réel \(< 0\)</td><td>deux solutions <strong>complexes conjuguées</strong> (si \(a,b,c\) réels) : \(\dfrac{-b\pm i\sqrt{-\Delta}}{2a}\)</td></tr>
+<tr><td>\(\Delta\) complexe non réel</td><td>deux solutions \(\dfrac{-b\pm\delta}{2a}\) où \(\delta\) est une <strong>racine carrée de \(\Delta\)</strong> (\(\delta^2 = \Delta\))</td></tr>
+</table></div>
+<p>Dans tous les cas il y a <strong>exactement deux solutions</strong> (comptées avec multiplicité), et \(az^2+bz+c = a(z-z_1)(z-z_2)\).</p>
+
+<div class="box tip">
+<span class="box-title">Exemple : \(z^2 + z + 1 = 0\)</span>
+\(\Delta = 1 - 4 = -3 = (i\sqrt3)^2\). Solutions : \(z = \dfrac{-1 \pm i\sqrt3}{2}\). Ce sont les deux racines cubiques de l'unité autres que \(1\) (voir §8).
+</div>
+
+<h3>Comment trouver \(\delta\) quand \(\Delta\) est complexe</h3>
+<p><strong>Méthode du cours (polaire) :</strong> on écrit \(\Delta = re^{i\theta}\) et on prend \(\delta = \sqrt r\,e^{i\theta/2}\). Alors \(\delta^2 = re^{i\theta} = \Delta\). ✓</p>
+<p><strong>Méthode algébrique (souvent plus simple à la main) :</strong> on pose \(\delta = u+iv\) et on écrit \(\delta^2 = \Delta = a+ib\), ce qui donne le système
+\[u^2 - v^2 = a,\qquad 2uv = b,\qquad u^2+v^2 = |\Delta|\]
+(la 3ᵉ vient de \(|\delta|^2 = |\Delta|\) ; elle permet de trouver \(u^2\) et \(v^2\) directement par somme et différence).</p>
+<div class="box tip">
+<span class="box-title">Exemple : \(z^2 - 3z + (3 - i) = 0\)</span>
+\(\Delta = 9 - 4(3-i) = -3 + 4i\), \(|\Delta| = 5\). Système : \(u^2 - v^2 = -3\), \(u^2+v^2 = 5\), donc \(u^2 = 1\), \(v^2 = 4\). Avec \(2uv = 4 > 0\), \(u\) et \(v\) ont le même signe : \(\delta = 1+2i\). Alors \(z = \dfrac{3\pm(1+2i)}{2}\), soit \(z_1 = 2+i\) et \(z_2 = 1-i\).<br>
+<strong>Vérification</strong> : somme \(= 3\) ✓ (égale à \(-b/a\)), produit \((2+i)(1-i) = 3-i\) ✓ (égal à \(c/a\)).
+</div>
+<p><strong>À quoi ça sert :</strong> résoudre « toute » équation du second degré, factoriser un polynôme (par exemple \(X^2+X+1 = (X-j)(X-\bar j)\)), et vérifier ses réponses avec somme et produit des racines.</p>
+
+<h2 id="unite">8. Racines de l'unité et équations \(z^n = a\)</h2>
+<h3>Ce que c'est</h3>
+<p>Une <strong>racine \(n\)-ième de l'unité</strong> est un complexe \(z\) tel que \(z^n = 1\). Pour les trouver on écrit \(z = re^{i\theta}\), donc \(z^n = r^ne^{in\theta} = 1\) :</p>
+<ul>
+<li>module : \(r^n = 1\) avec \(r>0\), donc \(r = 1\) ;</li>
+<li>angle : \(e^{in\theta} = 1 \iff n\theta = 2k\pi\), donc \(\theta = \dfrac{2k\pi}{n}\).</li>
+</ul>
+<p>Il y en a exactement \(n\) : \[\omega_k = e^{2ik\pi/n},\qquad k = 0,1,\dots,n-1.\]</p>
+
+<svg viewBox="0 0 280 280" role="img" aria-label="Les six racines sixièmes de l'unité forment un hexagone régulier sur le cercle unité" style="max-width:300px;width:100%;display:block;margin:1em auto">
+<circle cx="140" cy="140" r="100" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<line x1="20" y1="140" x2="262" y2="140" stroke="currentColor" stroke-width="1" opacity=".5"/>
+<line x1="140" y1="260" x2="140" y2="20" stroke="currentColor" stroke-width="1" opacity=".5"/>
+<polygon points="240,140 190,53.4 90,53.4 40,140 90,226.6 190,226.6" fill="rgba(67,56,202,.10)" stroke="#4338ca" stroke-width="2"/>
+<g fill="#4338ca">
+<circle cx="240" cy="140" r="5"/><circle cx="190" cy="53.4" r="5"/><circle cx="90" cy="53.4" r="5"/>
+<circle cx="40" cy="140" r="5"/><circle cx="90" cy="226.6" r="5"/><circle cx="190" cy="226.6" r="5"/>
+</g>
+<g fill="currentColor" font-size="13">
+<text x="246" y="136">ω₀ = 1</text><text x="194" y="48">ω₁</text><text x="68" y="48">ω₂</text>
+<text x="4" y="136">ω₃ = −1</text><text x="66" y="244">ω₄</text><text x="194" y="244">ω₅</text>
+</g>
+</svg>
+<p style="text-align:center"><em>Racines 6ᵉ de l'unité : sommets d'un hexagone régulier inscrit dans le cercle unité (angle \(2\pi/6 = \pi/3\) entre deux voisines).</em></p>
+
+<h3>Interprétation géométrique</h3>
+<p>Elles ont toutes un module \(1\) (cercle unité) et sont <strong>régulièrement réparties</strong> : deux voisines forment un angle \(\frac{2\pi}{n}\). Ce sont les <strong>sommets d'un polygone régulier à \(n\) côtés</strong> inscrit dans le cercle unité.</p>
+
+<h3>Exemples (du cours)</h3>
+<ul>
+<li>\(z^3 = 1\) : \(\omega_0 = 1\), \(\omega_1 = e^{2i\pi/3} = -\frac12 + i\frac{\sqrt3}{2}\), \(\omega_2 = e^{4i\pi/3} = -\frac12 - i\frac{\sqrt3}{2}\). Triangle équilatéral.</li>
+<li>\(z^4 = 1\) : \(1,\ i,\ -1,\ -i\). Carré.</li>
+</ul>
+
+<h3>Propriétés (avec \(\omega = e^{2i\pi/n}\))</h3>
+<p>Les \(n\) racines sont \(1,\omega,\omega^2,\dots,\omega^{n-1}\).</p>
+<ul>
+<li><strong>Somme</strong> : pour \(n \ge 2\), \(1+\omega+\dots+\omega^{n-1} = 0\). Preuve : somme géométrique de raison \(\omega\ne1\), donc \(\dfrac{1-\omega^n}{1-\omega} = \dfrac{1-1}{1-\omega} = 0\).</li>
+<li><strong>Factorisation</strong> : \(X^n - 1 = \prod_{k=0}^{n-1}(X-\omega^k)\). Pour \(n=4\) : \(X^4-1 = (X-1)(X-i)(X+1)(X+i) = (X^2-1)(X^2+1)\).</li>
+<li><strong>Produit</strong> : \(\prod_{k=0}^{n-1}\omega^k = (-1)^{n+1}\).</li>
+</ul>
+
+<h3>À quoi ça sert : résoudre \(z^n = a\)</h3>
+<p>Même méthode que pour \(z^n = 1\), avec \(a = \rho e^{i\alpha}\) : on cherche \(z = re^{i\theta}\) avec \(r^n = \rho\) et \(n\theta = \alpha + 2k\pi\). Donc
+\[z_k = \rho^{1/n}\,e^{i(\alpha+2k\pi)/n},\qquad k = 0,\dots,n-1.\]
+Il y a toujours <strong>exactement \(n\) solutions</strong> (pour \(a\ne0\)), réparties comme un polygone régulier.</p>
+<div class="box tip">
+<span class="box-title">Exemple : \(z^3 = i\)</span>
+\(i = e^{i\pi/2}\), donc \(\rho = 1\), \(\alpha = \frac\pi2\) et \(\theta = \dfrac{\pi/2 + 2k\pi}{3} = \dfrac\pi6 + \dfrac{2k\pi}{3}\) :
+<ul>
+<li>\(k=0\) : \(e^{i\pi/6} = \frac{\sqrt3}{2} + \frac i2\)</li>
+<li>\(k=1\) : \(e^{5i\pi/6} = -\frac{\sqrt3}{2} + \frac i2\)</li>
+<li>\(k=2\) : \(e^{3i\pi/2} = -i\)</li>
+</ul>
+Vérification pour \(-i\) : \((-i)^3 = -i^3 = -(-i) = i\) ✓.
+</div>
+
+<h2 id="fondamental">9. Théorème fondamental de l'algèbre</h2>
+<p><strong>Théorème (d'Alembert–Gauss).</strong> Tout polynôme \(a_nz^n + \dots + a_1z + a_0\) de degré \(n \ge 1\) à coefficients complexes (ou réels) admet <strong>au moins une racine dans \(\mathbb{C}\)</strong>.</p>
+<p><strong>Corollaire.</strong> Un polynôme de degré \(n\) a <strong>au plus \(n\) racines</strong> dans \(\mathbb{C}\), et exactement \(n\) si on les compte avec leur multiplicité.</p>
+<p><strong>À quoi ça sert :</strong> savoir <em>combien</em> de solutions on doit trouver (et donc savoir quand on a fini). Par exemple \(x^4 + 6x^3 - 7 = 0\) a au plus 4 racines complexes ; \(z^n = 1\) en a exactement \(n\), donc les \(\omega_k\) sont <em>toutes</em> les solutions, pas besoin d'en chercher d'autres.</p>
+<div class="box info">
+<span class="box-title">Pour la culture</span>
+Le théorème dit qu'une racine <em>existe</em>, pas qu'on sait la calculer. Galois a montré que pour \(n \ge 5\) il n'existe en général <strong>aucune formule</strong> (avec \(+,\times\), complexes et racines \(n\)-ièmes) donnant les solutions.
+</div>
+
+<h2 id="recap">10. Tableau final : « je vois ça, je pense à ça »</h2>
+<div class="tablewrap"><table>
+<tr><th>Tu vois dans l'énoncé…</th><th>Tu penses…</th></tr>
+<tr><td>« Écrire sous forme \(a+ib\) » / développer un produit</td><td>Forme algébrique, \(i^2=-1\)</td></tr>
+<tr><td>Un quotient avec \(i\) en bas</td><td>Multiplier haut et bas par le <strong>conjugué</strong> du dénominateur</td></tr>
+<tr><td>« Montrer que \(z\) est réel » / « imaginaire pur »</td><td>\(z=\bar z\) / \(z=-\bar z\)</td></tr>
+<tr><td>Équation avec \(z\) et \(\bar z\)</td><td>Poser \(z=x+iy\), identifier les parties réelle et imaginaire</td></tr>
+<tr><td>Cercle, distance, « \(|z-a|=\dots\) »</td><td>Module = distance ; poser \(z=x+iy\) et élever au carré</td></tr>
+<tr><td>Encadrer \(|z+a|\)</td><td>Inégalité triangulaire</td></tr>
+<tr><td>Grosse puissance, produit ou quotient</td><td><strong>Forme exponentielle</strong> : modules ×, angles +</td></tr>
+<tr><td>« Pour quels \(n\) est-ce réel ? »</td><td>Forme exponentielle, angle \(\equiv 0\) ou \(\pi\) (mod \(2\pi\))</td></tr>
+<tr><td>\(\cos^p x\sin^q x\) à simplifier ou intégrer</td><td>Euler + linéarisation</td></tr>
+<tr><td>\(\cos(nx)\) en fonction de \(\cos x\)</td><td>De Moivre + partie réelle</td></tr>
+<tr><td>\(az^2+bz+c=0\)</td><td>\(\Delta\), et racine carrée complexe si besoin</td></tr>
+<tr><td>\(z^n = a\)</td><td>Forme exponentielle de \(a\), \(n\) solutions \(z_k\)</td></tr>
+<tr><td>« Combien de solutions au plus ? »</td><td>Théorème fondamental : degré du polynôme</td></tr>
+</table></div>
+
+<div class="box warn">
+<span class="box-title">Les 5 erreurs qui reviennent le plus</span>
+<ol>
+<li>Écrire \(i^2 = 1\) au lieu de \(-1\).</li>
+<li>Oublier que \(\operatorname{Im}(z)\) est un réel (c'est \(y\), pas \(iy\)).</li>
+<li>Trouver l'argument avec \(\arctan(y/x)\) sans vérifier le quadrant.</li>
+<li>Écrire \(|z+z'| = |z|+|z'|\) (c'est seulement \(\le\)), ou \(z^2 = |z|^2\) (faux : \(z=i\)).</li>
+<li>Oublier des solutions : \(z^n=a\) en a <strong>\(n\)</strong>, pas une seule.</li>
+</ol>
+</div>
+
+<div class="nav-links"><span><a href="../index.html">← Sommaire des maths</a></span><span><a href="exos_complexes.html">Exercices types corrigés →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="../Revision_Structures/revision.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercice des associations : double comptage et bijection — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../Revision_Structures/revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Méthodes</a><span>Exercice des associations</span></div>
+<div class="page">
+<span class="chip">🛠️ Exercice corrigé</span><span class="chip">Dénombrement</span>
+<h1>Personnes et associations : double comptage + bijection</h1>
+
+<div class="box info">
+<span class="box-title">Énoncé (exercice 11)</span>
+Un groupe de personnes est tel que :
+<ul>
+<li>chaque personne est membre d'exactement <strong>deux</strong> associations ;</li>
+<li>chaque association comprend exactement <strong>trois</strong> membres ;</li>
+<li>deux associations quelconques ont toujours <strong>exactement un</strong> membre en commun.</li>
+</ul>
+Combien y a-t-il de personnes ? d'associations ?
+</div>
+
+<div class="box tip">
+<span class="box-title">Réponse</span>
+<strong>4 associations et 6 personnes.</strong>
+</div>
+
+<h2>A. Notations et dessin</h2>
+<p>Soit \(p\) le nombre de personnes et \(n\) le nombre d'associations (on suppose \(n \ge 1\)). On les voit comme un <strong>graphe biparti</strong> : personnes à gauche, associations à droite, un trait entre une personne et chaque association dont elle est membre.</p>
+<ul>
+<li>Chaque personne a <strong>degré 2</strong> (condition 1).</li>
+<li>Chaque association a <strong>degré 3</strong> (condition 2).</li>
+<li>Deux associations ont <strong>exactement un voisin commun</strong> (condition 3).</li>
+</ul>
+
+<h2>B. Équation 1 : double comptage des traits</h2>
+<p>On compte les couples (personne, association dont elle est membre), c'est-à-dire les traits du graphe, de deux façons.</p>
+<ul>
+<li>Par les personnes : \(p\) personnes, 2 traits chacune, donc \(2p\).</li>
+<li>Par les associations : \(n\) associations, 3 traits chacune, donc \(3n\).</li>
+</ul>
+<p>Ce sont les mêmes traits, donc \(\boxed{2p = 3n}\).</p>
+
+<h2>C. Équation 2 : bijection personnes ↔ paires d'associations</h2>
+<p>À chaque personne on associe <strong>la paire</strong> des deux associations dont elle est membre (possible car elle est dans exactement 2).</p>
+<ul>
+<li><strong>Injective</strong> : si deux personnes avaient la même paire \(\{A,B\}\), alors \(A\) et \(B\) auraient 2 membres en commun. Impossible (condition 3).</li>
+<li><strong>Surjective</strong> : pour deux associations \(A \neq B\), la condition 3 donne un membre commun. Sa paire est \(\{A,B\}\).</li>
+</ul>
+<p>C'est donc une bijection entre l'ensemble des personnes et l'ensemble des paires d'associations. Le nombre de paires parmi \(n\) associations est \(\binom{n}{2} = \dfrac{n(n-1)}{2}\) (1ᵉʳ choix : \(n\), 2ᵉ choix : \(n-1\), on divise par 2 car l'ordre ne compte pas). Donc \(\boxed{p = \dfrac{n(n-1)}{2}}\).</p>
+
+<h2>D. Résolution</h2>
+<p>On remplace \(p\) dans \(2p = 3n\) :</p>
+<p>\(2 \times \dfrac{n(n-1)}{2} = 3n \;\Rightarrow\; n(n-1) = 3n\).</p>
+<p>Comme \(n \neq 0\), on divise par \(n\) : \(n - 1 = 3\), donc \(n = 4\). Puis \(p = \dfrac{4 \times 3}{2} = 6\).</p>
+<p><strong>Vérification</strong> avec l'autre équation : \(2p = 12 = 3 \times 4\) ✓.</p>
+
+<h2>E. Réciproque : la situation existe</h2>
+<p>Sans cette étape on a seulement montré « si la situation existe, alors \(n=4\) et \(p=6\) ». Pour la construire, on donne une personne à chaque paire :</p>
+<div class="tablewrap"><table>
+<tr><th>Personne</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+<tr><td>Ses associations</td><td>A, B</td><td>A, C</td><td>A, D</td><td>B, C</td><td>B, D</td><td>C, D</td></tr>
+</table></div>
+<div class="tablewrap"><table>
+<tr><th>Association</th><th>Membres</th></tr>
+<tr><td>A</td><td>1, 2, 3</td></tr>
+<tr><td>B</td><td>1, 4, 5</td></tr>
+<tr><td>C</td><td>2, 4, 6</td></tr>
+<tr><td>D</td><td>3, 5, 6</td></tr>
+</table></div>
+<ul>
+<li>Chaque association a 3 membres ✓</li>
+<li>Chaque numéro apparaît exactement 2 fois, donc chaque personne est dans 2 associations ✓</li>
+<li>A∩B={1}, A∩C={2}, A∩D={3}, B∩C={4}, B∩D={5}, C∩D={6} : chaque paire a exactement un membre commun ✓</li>
+</ul>
+
+<div class="box tip">
+<span class="box-title">✍️ Rédaction courte à recopier</span>
+Soit \(p\) le nombre de personnes et \(n\) le nombre d'associations. En comptant de deux façons les couples (personne, association dont elle est membre) : \(2p = 3n\). À une personne on associe la paire des deux associations dont elle est membre : c'est une bijection entre les personnes et les paires d'associations (injective car deux associations n'ont qu'un membre commun, surjective car deux associations en ont au moins un). Donc \(p = \binom{n}{2} = n(n-1)/2\). Ainsi \(n(n-1) = 3n\), et comme \(n \neq 0\), \(n = 4\), puis \(p = 6\). Réciproquement, le tableau ci-dessus vérifie les trois conditions.
+</div>
+
+<h2>F. Les réflexes qui mènent à cette méthode</h2>
+<div class="tablewrap"><table>
+<tr><th>Tu vois dans l'énoncé…</th><th>Tu penses…</th></tr>
+<tr><td>« chaque X est dans exactement k Y » (deux fois, croisé)</td><td><strong>Double comptage</strong> des liens : une équation entre les deux effectifs</td></tr>
+<tr><td>« exactement un… »</td><td><strong>Bijection</strong> : existence + unicité (surjective + injective)</td></tr>
+<tr><td>une condition qui porte sur des <strong>paires</strong></td><td>Compter les paires : \(\binom{n}{2} = n(n-1)/2\)</td></tr>
+<tr><td>« combien ? » avec deux inconnues</td><td>Il faut <strong>deux équations</strong> indépendantes, puis on remplace</td></tr>
+</table></div>
+
+<h2>G. Méthode alternative (sans combinaison)</h2>
+<p>Fixons une association \(A\). Ses 3 membres sont chacun dans exactement une autre association. Ces 3 autres associations sont distinctes (sinon elles auraient 2 membres communs avec \(A\)) et ce sont toutes les autres (toute association partage un membre avec \(A\)). Donc \(n = 4\), puis \(2p = 12\) et \(p = 6\).</p>
+
+<h2>H. Pièges</h2>
+<ul>
+<li>Oublier de justifier que \(n \neq 0\) avant de diviser par \(n\).</li>
+<li>Oublier la réciproque (le tableau).</li>
+<li>Croire que \(\binom{n}{k}\) vaut toujours \(n(n-1)/2\) : c'est vrai seulement pour \(k=2\). En général \(\binom{n}{k} = \dfrac{n!}{k!\,(n-k)!}\).</li>
+<li>Ne pas voir que l'équation \(2p = 3n\) seule ne suffit pas (elle a plusieurs solutions) : il faut la condition 3.</li>
+</ul>
+
+<div class="nav-links"><span><a href="index.html">← Toutes les méthodes</a></span><span><a href="injection_surjection_bijection.html">Injection, surjection, bijection →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="../Revision_Structures/revision.js"></script>
+</body>
+</html>

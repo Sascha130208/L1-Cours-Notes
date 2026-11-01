@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nombres complexes : exercices types corrigés — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../Revision_Structures/revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="fiche_complexes.html">← Fiche complexes</a><span>Nombres complexes : exercices types</span></div>
+<div class="page">
+<span class="chip">🛠️ Exercices corrigés</span><span class="chip">Chapitre 6 du polycopié</span>
+<h1>Nombres complexes : les exercices types, avec l'outil à sortir</h1>
+
+<p>Chaque exercice est rangé par <strong>type</strong>. Avant de regarder la correction : lis l'énoncé, repère l'outil dans la ligne <em>🎯 Outil</em> (ou, mieux, devine-le avant de la lire), cherche sur papier, puis ouvre la correction. Les explications détaillées de chaque outil sont dans la <a href="fiche_complexes.html">fiche expliquée</a>.</p>
+
+<div class="toc">
+<h2>Sommaire</h2>
+<ol>
+<li><a href="#a">A. Calculer en forme algébrique</a></li>
+<li><a href="#b">B. Conjugué : réel, imaginaire pur</a></li>
+<li><a href="#c">C. Module et inégalité triangulaire</a></li>
+<li><a href="#d">D. Forme exponentielle, puissances, valeurs exactes de cos et sin</a></li>
+<li><a href="#e">E. Linéarisation, De Moivre, intégrales</a></li>
+<li><a href="#f">F. Équations du second degré</a></li>
+<li><a href="#g">G. Racines de l'unité, équations \(z^n=a\)</a></li>
+<li><a href="#h">H. Géométrie dans le plan complexe</a></li>
+<li><a href="#i">I. Vrai ou faux ?</a></li>
+<li><a href="#j">J. Teste-toi (réponses courtes)</a></li>
+</ol>
+</div>
+
+<h2 id="a">A. Calculer en forme algébique</h2>
+
+<h3>A.1 Produit</h3>
+<p>Écrire \((2-3i)(1+4i)\) sous la forme \(a+ib\).</p>
+<p><em>🎯 Outil : développer comme d'habitude, puis \(i^2=-1\).</em></p>
+<details><summary>Correction</summary>
+\[(2-3i)(1+4i) = 2 + 8i - 3i - 12i^2 = 2 + 5i + 12 = 14 + 5i.\]
+</details>
+
+<h3>A.2 Quotient</h3>
+<p>Écrire \(\dfrac{3+i}{2-i}\) sous la forme \(a+ib\).</p>
+<p><em>🎯 Outil : multiplier haut et bas par le conjugué du dénominateur (\(z\bar z\) est réel).</em></p>
+<details><summary>Correction</summary>
+Le conjugué de \(2-i\) est \(2+i\), et \((2-i)(2+i) = 4+1 = 5\).
+\[\frac{3+i}{2-i} = \frac{(3+i)(2+i)}{(2-i)(2+i)} = \frac{6 + 3i + 2i + i^2}{5} = \frac{5+5i}{5} = 1+i.\]
+<strong>Vérification</strong> : \((1+i)(2-i) = 2 - i + 2i - i^2 = 3 + i\) ✓.
+</details>
+
+<h3>A.3 Puissances de \(i\)</h3>
+<p>Calculer \(i^{2025}\) et \(i^{2026}\).</p>
+<p><em>🎯 Outil : les puissances de \(i\) se répètent tous les 4 (\(i^4 = 1\)) : reste de la division par 4.</em></p>
+<details><summary>Correction</summary>
+\(2025 = 4\times506 + 1\), donc \(i^{2025} = (i^4)^{506}\cdot i = i\).
+\(2026 = 4\times506 + 2\), donc \(i^{2026} = i^2 = -1\).
+</details>
+
+<h3>A.4 Équation avec \(z\) et \(\bar z\)</h3>
+<p>Résoudre dans \(\mathbb{C}\) : \(z + 2\bar z = 3 + i\).</p>
+<p><em>🎯 Outil : poser \(z=x+iy\) avec \(x,y\) réels, puis identifier parties réelle et imaginaire.</em></p>
+<details><summary>Correction</summary>
+Soit \(z = x+iy\). Alors \(\bar z = x - iy\) et
+\(z + 2\bar z = (x+2x) + i(y-2y) = 3x - iy\).
+L'équation devient \(3x - iy = 3 + i\). Deux complexes sont égaux si et seulement si leurs parties réelles et imaginaires sont égales :
+\(3x = 3\) et \(-y = 1\), donc \(x = 1\), \(y = -1\).
+<strong>Solution : \(z = 1 - i\).</strong> Vérification : \((1-i) + 2(1+i) = 3 + i\) ✓.
+</details>
+
+<h2 id="b">B. Conjugué : réel, imaginaire pur</h2>
+
+<h3>B.1 Un nombre est-il imaginaire pur ?</h3>
+<p>Montrer que \(z = \dfrac{1+i}{1-i}\) est un imaginaire pur.</p>
+<p><em>🎯 Outil : supprimer le \(i\) du dénominateur, puis lire la partie réelle.</em></p>
+<details><summary>Correction</summary>
+\[z = \frac{(1+i)(1+i)}{(1-i)(1+i)} = \frac{1 + 2i + i^2}{2} = \frac{2i}{2} = i.\]
+Donc \(\operatorname{Re}(z) = 0\) : \(z\) est un imaginaire pur (c'est même \(i\)).
+</details>
+
+<h3>B.2 Utiliser « réel \(\iff z=\bar z\) »</h3>
+<p>Montrer que pour tout \(z\in\mathbb{C}\), \(z+\bar z\) est réel et \(z-\bar z\) est imaginaire pur.</p>
+<p><em>🎯 Outil : \(w\) réel \(\iff w=\bar w\) ; \(w\) imaginaire pur \(\iff w=-\bar w\).</em></p>
+<details><summary>Correction</summary>
+Soit \(z\in\mathbb{C}\) quelconque et \(w = z+\bar z\). Alors \(\bar w = \bar z + \bar{\bar z} = \bar z + z = w\), donc \(w\) est réel.
+Soit \(w' = z - \bar z\). Alors \(\bar{w'} = \bar z - z = -w'\), donc \(w'\) est imaginaire pur.
+(Autre façon : \(z+\bar z = 2\operatorname{Re}(z)\) et \(z-\bar z = 2i\operatorname{Im}(z)\).)
+</details>
+
+<h2 id="c">C. Module et inégalité triangulaire</h2>
+
+<h3>C.1 Calculs de modules</h3>
+<p>Calculer \(|3-4i|\), \(|(1+i)^{10}|\) et \(\left|\dfrac{3+4i}{1-i}\right|\).</p>
+<p><em>🎯 Outil : \(|z|=\sqrt{x^2+y^2}\) et \(|zz'| = |z||z'|\), \(|z/z'| = |z|/|z'|\), \(|z^n| = |z|^n\) (pas besoin de développer).</em></p>
+<details><summary>Correction</summary>
+<ul>
+<li>\(|3-4i| = \sqrt{9+16} = 5\).</li>
+<li>\(|(1+i)^{10}| = |1+i|^{10} = (\sqrt2)^{10} = 2^5 = 32\).</li>
+<li>\(\left|\dfrac{3+4i}{1-i}\right| = \dfrac{|3+4i|}{|1-i|} = \dfrac{5}{\sqrt2} = \dfrac{5\sqrt2}{2}\).</li>
+</ul>
+</details>
+
+<h3>C.2 Encadrer avec l'inégalité triangulaire</h3>
+<p>Soit \(z\in\mathbb{C}\) avec \(|z| = 2\). Montrer que \(1 \le |z+1| \le 3\).</p>
+<p><em>🎯 Outil : \(\big||z|-|z'|\big| \le |z-z'| \le |z|+|z'|\) avec le bon choix de \(z'\).</em></p>
+<details><summary>Correction</summary>
+On applique l'inégalité triangulaire avec \(z' = -1\) (donc \(z - z' = z+1\), \(|z'| = 1\)) :
+\[\big||z| - 1\big| \le |z+1| \le |z| + 1.\]
+Avec \(|z| = 2\) : \(1 \le |z+1| \le 3\). ∎
+Les bornes sont atteintes : \(z=2\) donne \(|z+1| = 3\) et \(z=-2\) donne \(|z+1| = 1\).
+</details>
+
+<h2 id="d">D. Forme exponentielle, puissances, valeurs exactes de cos et sin</h2>
+
+<h3>D.1 Mettre sous forme exponentielle</h3>
+<p>Écrire sous la forme \(re^{i\theta}\) : (a) \(-\sqrt3 + i\) ; (b) \(1 - i\) ; (c) \(-3\) ; (d) \(-2i\).</p>
+<p><em>🎯 Outil : \(r=|z|\), puis \(\cos\theta = x/r\) et \(\sin\theta = y/r\) ; regarder les signes pour le quadrant.</em></p>
+<details><summary>Correction</summary>
+<ul>
+<li>(a) \(r = \sqrt{3+1} = 2\). \(\cos\theta = -\frac{\sqrt3}{2}\), \(\sin\theta = \frac12\) : 2ᵉ quadrant, \(\theta = \frac{5\pi}{6}\). Donc \(-\sqrt3+i = 2e^{5i\pi/6}\).</li>
+<li>(b) \(r = \sqrt2\). \(\cos\theta = \frac{\sqrt2}{2}\), \(\sin\theta = -\frac{\sqrt2}{2}\) : \(\theta = -\frac\pi4\). Donc \(1-i = \sqrt2\,e^{-i\pi/4}\).</li>
+<li>(c) \(r=3\), \(\cos\theta=-1\), \(\sin\theta=0\) : \(\theta=\pi\). Donc \(-3 = 3e^{i\pi}\).</li>
+<li>(d) \(r=2\), \(\cos\theta=0\), \(\sin\theta=-1\) : \(\theta=-\frac\pi2\). Donc \(-2i = 2e^{-i\pi/2}\).</li>
+</ul>
+</details>
+
+<h3>D.2 Grosses puissances</h3>
+<p>Calculer \((1+i)^{20}\), \((\sqrt3+i)^{12}\) et \((1-i)^{10}\).</p>
+<p><em>🎯 Outil : forme exponentielle, \((re^{i\theta})^n = r^ne^{in\theta}\).</em></p>
+<details><summary>Correction</summary>
+<ul>
+<li>\(1+i = \sqrt2\,e^{i\pi/4}\), donc \((1+i)^{20} = 2^{10}e^{i\,5\pi} = 1024\,e^{i\pi} = -1024\).</li>
+<li>\(\sqrt3+i = 2e^{i\pi/6}\) (module \(2\), \(\cos=\frac{\sqrt3}2\), \(\sin=\frac12\)), donc \((\sqrt3+i)^{12} = 2^{12}e^{i\,2\pi} = 4096\).</li>
+<li>\(1-i = \sqrt2\,e^{-i\pi/4}\), donc \((1-i)^{10} = 2^5e^{-i\,5\pi/2} = 32\,e^{-i\pi/2} = -32i\) (car \(-\frac{5\pi}{2} \equiv -\frac\pi2 \pmod{2\pi}\)).</li>
+</ul>
+<strong>Contrôle du dernier :</strong> \((1-i)^2 = -2i\), donc \((1-i)^{10} = (-2i)^5 = -32\,i^5 = -32i\) ✓.
+</details>
+
+<h3>D.3 Pour quels \(n\) est-ce réel ?</h3>
+<p>Pour quels entiers \(n\in\mathbb{N}\) le nombre \((1+i)^n\) est-il réel ? imaginaire pur ?</p>
+<p><em>🎯 Outil : forme exponentielle \(\sqrt2^{\,n}e^{in\pi/4}\) et regarder quand l'angle \(n\pi/4\) vaut \(0\) ou \(\pi\) (réel), \(\pm\frac\pi2\) (imaginaire pur) modulo \(\pi\).</em></p>
+<details><summary>Correction</summary>
+\((1+i)^n = (\sqrt2)^n\,\big(\cos\frac{n\pi}{4} + i\sin\frac{n\pi}{4}\big)\), avec \((\sqrt2)^n \ne 0\).
+<ul>
+<li><strong>Réel</strong> \(\iff \sin\frac{n\pi}{4} = 0 \iff \frac{n\pi}{4} = k\pi \iff n = 4k\). Donc \(n\) multiple de 4.</li>
+<li><strong>Imaginaire pur</strong> \(\iff \cos\frac{n\pi}{4} = 0 \iff \frac{n\pi}{4} = \frac\pi2 + k\pi \iff n = 2 + 4k\). Donc \(n \equiv 2 \pmod 4\).</li>
+</ul>
+Contrôle : \((1+i)^2 = 2i\) (imaginaire pur, \(n=2\)) ; \((1+i)^4 = (2i)^2 = -4\) (réel, \(n=4\)) ✓.
+</details>
+
+<h3>D.4 Valeur exacte de \(\cos\frac{5\pi}{12}\)</h3>
+<p>On pose \(z = \dfrac{1+i}{\sqrt3 - i}\). Calculer \(z\) de deux façons et en déduire \(\cos\frac{5\pi}{12}\) et \(\sin\frac{5\pi}{12}\).</p>
+<p><em>🎯 Outil : écrire un même nombre sous forme algébrique <strong>et</strong> exponentielle, puis identifier. C'est le truc pour obtenir des valeurs de \(\cos\) / \(\sin\) qui ne sont pas dans le tableau.</em></p>
+<details><summary>Correction</summary>
+<strong>Forme algébrique.</strong> On multiplie par le conjugué \(\sqrt3 + i\) (et \((\sqrt3-i)(\sqrt3+i) = 3+1 = 4\)) :
+\[z = \frac{(1+i)(\sqrt3+i)}{4} = \frac{\sqrt3 + i + i\sqrt3 + i^2}{4} = \frac{(\sqrt3-1) + i(\sqrt3+1)}{4}.\]
+<strong>Forme exponentielle.</strong> \(1+i = \sqrt2\,e^{i\pi/4}\) et \(\sqrt3 - i = 2e^{-i\pi/6}\). Donc
+\[z = \frac{\sqrt2}{2}\,e^{i(\frac\pi4+\frac\pi6)} = \frac{\sqrt2}{2}\,e^{5i\pi/12} = \frac{\sqrt2}{2}\left(\cos\frac{5\pi}{12} + i\sin\frac{5\pi}{12}\right).\]
+<strong>Identification.</strong> Parties réelles : \(\frac{\sqrt2}{2}\cos\frac{5\pi}{12} = \frac{\sqrt3-1}{4}\), donc \(\cos\frac{5\pi}{12} = \frac{\sqrt3-1}{2\sqrt2} = \dfrac{\sqrt6-\sqrt2}{4}\).
+Parties imaginaires : \(\sin\frac{5\pi}{12} = \dfrac{\sqrt6+\sqrt2}{4}\).
+(Numériquement \(\cos75° \approx 0{,}2588\) ✓.)
+</details>
+
+<h2 id="e">E. Linéarisation, De Moivre, intégrales</h2>
+
+<h3>E.1 Linéariser \(\cos^4 x\)</h3>
+<p>Linéariser \(\cos^4 x\).</p>
+<p><em>🎯 Outil : Euler, binôme, regrouper \(e^{inx}+e^{-inx} = 2\cos nx\).</em></p>
+<details><summary>Correction</summary>
+\[\cos^4 x = \frac{(e^{ix}+e^{-ix})^4}{16} = \frac{e^{4ix} + 4e^{2ix} + 6 + 4e^{-2ix} + e^{-4ix}}{16}.\]
+(Les coefficients \(1,4,6,4,1\) sont ceux du binôme ; \(e^{ix}e^{-ix}=1\) donne le terme constant.)
+On regroupe : \(e^{4ix}+e^{-4ix} = 2\cos4x\) et \(4(e^{2ix}+e^{-2ix}) = 8\cos2x\). Donc
+\[\cos^4 x = \frac{2\cos4x + 8\cos2x + 6}{16} = \frac{\cos 4x + 4\cos 2x + 3}{8}.\]
+<strong>Contrôle en \(x=0\)</strong> : à gauche \(1\), à droite \(\frac{1+4+3}{8} = 1\) ✓.
+</details>
+
+<h3>E.2 Une intégrale grâce à la linéarisation</h3>
+<p>En déduire \(\displaystyle\int_0^{\pi/2}\cos^4 x\,dx\).</p>
+<p><em>🎯 Outil : c'est à ça que sert la linéarisation : on ne sait pas intégrer \(\cos^4\), mais on sait intégrer \(\cos(nx)\).</em></p>
+<details><summary>Correction</summary>
+\[\int_0^{\pi/2}\cos^4x\,dx = \int_0^{\pi/2}\frac{\cos4x + 4\cos2x + 3}{8}\,dx = \left[\frac{\sin4x}{32} + \frac{\sin2x}{4} + \frac{3x}{8}\right]_0^{\pi/2}.\]
+En \(\frac\pi2\) : \(\sin2\pi = 0\), \(\sin\pi = 0\), reste \(\frac{3\pi}{16}\). En \(0\) : tout vaut \(0\). Donc l'intégrale vaut \(\dfrac{3\pi}{16}\).
+</details>
+
+<h3>E.3 De Moivre : \(\sin 3x\) en fonction de \(\sin x\)</h3>
+<p>Exprimer \(\sin 3x\) uniquement à l'aide de \(\sin x\).</p>
+<p><em>🎯 Outil : De Moivre \((\cos x+i\sin x)^3 = \cos3x + i\sin3x\), on développe à gauche et on prend la partie imaginaire.</em></p>
+<details><summary>Correction</summary>
+\[(\cos x + i\sin x)^3 = \cos^3x + 3i\cos^2x\sin x - 3\cos x\sin^2x - i\sin^3x.\]
+Partie imaginaire : \(\sin3x = 3\cos^2x\sin x - \sin^3x\). Avec \(\cos^2x = 1-\sin^2x\) :
+\[\sin 3x = 3(1-\sin^2x)\sin x - \sin^3x = 3\sin x - 4\sin^3x.\]
+<strong>Contrôle</strong> avec \(x=\frac\pi2\) : \(\sin\frac{3\pi}{2} = -1\) et \(3\cdot1 - 4\cdot1 = -1\) ✓.
+(Cette formule est la même que \(\sin^3x = \frac34\sin x - \frac{\sin3x}{4}\) du cours, lue dans l'autre sens.)
+</details>
+
+<h2 id="f">F. Équations du second degré</h2>
+
+<h3>F.1 \(\Delta\) réel négatif</h3>
+<p>Résoudre \(z^2 - 2z + 5 = 0\) et \(2z^2 + 2z + 1 = 0\) dans \(\mathbb{C}\).</p>
+<p><em>🎯 Outil : \(\Delta = b^2-4ac\) ; si \(\Delta<0\), \(\sqrt\Delta = i\sqrt{-\Delta}\).</em></p>
+<details><summary>Correction</summary>
+<ul>
+<li>\(\Delta = 4 - 20 = -16 = (4i)^2\). Solutions : \(z = \dfrac{2\pm4i}{2} = 1\pm2i\).</li>
+<li>\(\Delta = 4 - 8 = -4 = (2i)^2\). Solutions : \(z = \dfrac{-2\pm2i}{4} = \dfrac{-1\pm i}{2}\).</li>
+</ul>
+Comme les coefficients sont réels, les deux solutions sont <strong>conjuguées</strong> (bon réflexe de contrôle). Vérification de la 1ʳᵉ : somme \(=2\) ✓, produit \((1+2i)(1-2i) = 5\) ✓.
+</details>
+
+<h3>F.2 \(\Delta\) complexe non réel</h3>
+<p>Résoudre \(z^2 + 2z + (1 - 2i) = 0\).</p>
+<p><em>🎯 Outil : calculer \(\Delta\), en trouver une racine carrée complexe \(\delta\), puis \(z = \frac{-b\pm\delta}{2a}\).</em></p>
+<details><summary>Correction</summary>
+\(\Delta = 4 - 4(1-2i) = 8i\). On cherche \(\delta\) avec \(\delta^2 = 8i\).
+<strong>Méthode polaire</strong> : \(8i = 8e^{i\pi/2}\), donc \(\delta = \sqrt8\,e^{i\pi/4} = 2\sqrt2\left(\frac{\sqrt2}{2} + i\frac{\sqrt2}{2}\right) = 2+2i\).
+Vérification : \((2+2i)^2 = 4 + 8i - 4 = 8i\) ✓.
+Alors
+\[z = \frac{-2\pm(2+2i)}{2} \quad\Rightarrow\quad z_1 = i,\quad z_2 = -2-i.\]
+<strong>Contrôle</strong> : somme \(= -2 = -b/a\) ✓ ; produit \(i(-2-i) = -2i - i^2 = 1-2i = c/a\) ✓.
+</details>
+
+<h2 id="g">G. Racines de l'unité, équations \(z^n=a\)</h2>
+
+<h3>G.1 Résoudre \(z^4 = -4\)</h3>
+<p>Résoudre dans \(\mathbb{C}\) l'équation \(z^4 = -4\).</p>
+<p><em>🎯 Outil : écrire \(a\) en exponentielle, puis \(r^n=\rho\) et \(n\theta = \alpha+2k\pi\) : il y a exactement \(n\) solutions.</em></p>
+<details><summary>Correction</summary>
+\(-4 = 4e^{i\pi}\). On cherche \(z = re^{i\theta}\) : \(r^4e^{4i\theta} = 4e^{i\pi}\), donc \(r^4 = 4\), soit \(r=\sqrt2\), et \(4\theta = \pi+2k\pi\), soit \(\theta = \frac\pi4 + k\frac\pi2\), \(k=0,1,2,3\).
+<div class="tablewrap"><table>
+<tr><th>\(k\)</th><th>\(\theta\)</th><th>\(z_k=\sqrt2\,e^{i\theta}\)</th></tr>
+<tr><td>0</td><td>\(\frac\pi4\)</td><td>\(1+i\)</td></tr>
+<tr><td>1</td><td>\(\frac{3\pi}{4}\)</td><td>\(-1+i\)</td></tr>
+<tr><td>2</td><td>\(\frac{5\pi}{4}\)</td><td>\(-1-i\)</td></tr>
+<tr><td>3</td><td>\(\frac{7\pi}{4}\)</td><td>\(1-i\)</td></tr>
+</table></div>
+Les 4 solutions sont les sommets d'un carré. <strong>Contrôle</strong> : \((1+i)^4 = ((1+i)^2)^2 = (2i)^2 = -4\) ✓. Et le théorème fondamental dit qu'il n'y en a pas d'autres (degré 4).
+</details>
+
+<h3>G.2 Somme des racines 5ᵉ et un \(\cos\) exact</h3>
+<p>Soit \(\omega = e^{2i\pi/5}\). Montrer que \(1+\omega+\omega^2+\omega^3+\omega^4 = 0\), puis que \(\cos\frac{2\pi}{5} + \cos\frac{4\pi}{5} = -\frac12\).</p>
+<p><em>🎯 Outil : somme géométrique avec \(\omega^5=1\), puis partie réelle.</em></p>
+<details><summary>Correction</summary>
+<strong>Somme.</strong> \(\omega\ne1\), donc \(1+\omega+\dots+\omega^4 = \dfrac{1-\omega^5}{1-\omega} = \dfrac{1-1}{1-\omega} = 0\) (car \(\omega^5 = e^{2i\pi}=1\)).
+<strong>Partie réelle.</strong> \(\omega^k = e^{2ik\pi/5}\), donc \(\operatorname{Re}(\omega^k) = \cos\frac{2k\pi}{5}\) et
+\[1 + \cos\tfrac{2\pi}{5} + \cos\tfrac{4\pi}{5} + \cos\tfrac{6\pi}{5} + \cos\tfrac{8\pi}{5} = 0.\]
+Or \(\frac{6\pi}{5} = 2\pi - \frac{4\pi}{5}\) donc \(\cos\frac{6\pi}{5} = \cos\frac{4\pi}{5}\), et \(\frac{8\pi}{5} = 2\pi-\frac{2\pi}{5}\) donc \(\cos\frac{8\pi}{5} = \cos\frac{2\pi}{5}\). Il reste
+\(1 + 2\cos\frac{2\pi}{5} + 2\cos\frac{4\pi}{5} = 0\), c'est-à-dire \(\cos\frac{2\pi}{5}+\cos\frac{4\pi}{5} = -\frac12\). ∎
+</details>
+
+<h3>G.3 Le nombre \(j\)</h3>
+<p>Soit \(j = e^{2i\pi/3}\). Montrer que \(j^2+j+1=0\), puis calculer \(1 + j^{100} + j^{200}\).</p>
+<p><em>🎯 Outil : \(j^3 = 1\), donc on réduit les exposants modulo 3 ; et la somme des racines de l'unité vaut 0.</em></p>
+<details><summary>Correction</summary>
+\(j\) est une racine cubique de l'unité différente de \(1\) : \(j^3=1\) et \(j^3 - 1 = (j-1)(j^2+j+1) = 0\) avec \(j-1\ne0\), donc \(j^2+j+1=0\).
+\(100 = 3\times33+1\) donc \(j^{100} = j\) ; \(200 = 3\times66+2\) donc \(j^{200} = j^2\). Ainsi
+\[1 + j^{100} + j^{200} = 1 + j + j^2 = 0.\]
+</details>
+
+<h2 id="h">H. Géométrie dans le plan complexe</h2>
+
+<h3>H.1 Ensembles de points</h3>
+<p>Décrire géométriquement les ensembles : (a) \(\{z : |z-i| = 2\}\) ; (b) \(\{z : |z-1| = |z+1|\}\).</p>
+<p><em>🎯 Outil : \(|z-a|\) est la distance entre \(z\) et \(a\). Sinon, poser \(z=x+iy\) et élever au carré.</em></p>
+<details><summary>Correction</summary>
+<ul>
+<li>(a) \(|z-i|\) est la distance de \(z\) au point \(i\). C'est le <strong>cercle de centre \(i\) et de rayon 2</strong>.</li>
+<li>(b) Les points à égale distance de \(1\) et de \(-1\) : la <strong>médiatrice</strong> de ces deux points, c'est-à-dire l'axe imaginaire. Par le calcul : avec \(z=x+iy\), \(|z-1|^2 = (x-1)^2+y^2\) et \(|z+1|^2 = (x+1)^2+y^2\). L'égalité donne \(-2x = 2x\), donc \(x=0\) : \(\{iy : y\in\mathbb{R}\}\).</li>
+</ul>
+</details>
+
+<h3>H.2 Rotation</h3>
+<p>(a) Quelle est l'image du point \(2+i\) par la rotation de centre \(0\) et d'angle \(\frac\pi2\) ? (b) Quelle est l'image du point \(2\) par la rotation de centre \(1\) et d'angle \(\frac\pi2\) ? (c) Montrer que les points \(0\), \(1\) et \(e^{i\pi/3}\) forment un triangle équilatéral.</p>
+<p><em>🎯 Outil : tourner de \(\theta\) autour de \(0\) = multiplier par \(e^{i\theta}\). Autour d'un centre \(c\) : \(z \mapsto c + e^{i\theta}(z-c)\).</em></p>
+<details><summary>Correction</summary>
+<ul>
+<li>(a) \(e^{i\pi/2} = i\). Image : \(i(2+i) = 2i + i^2 = -1+2i\).</li>
+<li>(b) On se ramène au centre \(0\) : \(z' = 1 + i(2-1) = 1+i\).</li>
+<li>(c) \(|e^{i\pi/3}| = 1\) (distance de \(0\) à \(C\)) ; \(|1-0| = 1\) ; et \(\left|e^{i\pi/3}-1\right| = \left|-\frac12+i\frac{\sqrt3}{2}\right| = \sqrt{\frac14+\frac34} = 1\). Les trois côtés valent 1 : équilatéral. ∎</li>
+</ul>
+</details>
+
+<h2 id="i">I. Vrai ou faux ?</h2>
+<p>Pour chaque affirmation : vraie (la prouver) ou fausse (donner <strong>un</strong> contre-exemple précis).</p>
+<ol>
+<li>Pour tout \(z\in\mathbb{C}\), \(z^2 = |z|^2\).</li>
+<li>Pour tout \(z\in\mathbb{C}\), \(|z^2| = |z|^2\).</li>
+<li>Si \(|z| = 1\), alors \(\dfrac1z = \bar z\).</li>
+<li>Pour tous \(z,z'\in\mathbb{C}\), \(|z+z'| = |z|+|z'|\).</li>
+</ol>
+<details><summary>Correction</summary>
+<ol>
+<li><strong>Faux.</strong> Contre-exemple : \(z=i\) : \(z^2=-1\) mais \(|z|^2 = 1\). (C'est vrai exactement quand \(z\) est réel.)</li>
+<li><strong>Vrai.</strong> Soit \(z\) quelconque. \(|z^2| = |z\cdot z| = |z||z|=|z|^2\) (le module est multiplicatif).</li>
+<li><strong>Vrai.</strong> Soit \(z\) avec \(|z|=1\). Alors \(z\bar z = |z|^2 = 1\), donc \(\bar z\) est l'inverse de \(z\) : \(\frac1z=\bar z\). (Utile : sur le cercle unité, inverse = conjugué.)</li>
+<li><strong>Faux.</strong> Contre-exemple : \(z=1\), \(z'=-1\) : \(|z+z'| = 0\) mais \(|z|+|z'| = 2\). On a seulement \(\le\) (inégalité triangulaire).</li>
+</ol>
+</details>
+
+<h2 id="j">J. Teste-toi (réponses courtes)</h2>
+<p>Réponds sur papier, puis déplie.</p>
+<ol>
+<li>Que vaut \(i^7\) ?</li>
+<li>Quel est le module de \(1 - i\sqrt3\) ?</li>
+<li>Quelle est la forme exponentielle de \(-1\) ?</li>
+<li>Combien l'équation \(z^7 = 3\) a-t-elle de solutions dans \(\mathbb{C}\) ?</li>
+<li>Que vaut \(\left(e^{i\pi/3}\right)^6\) ?</li>
+<li>Quel est le conjugué de \(\dfrac{1+3i}{2}\) ?</li>
+</ol>
+<details><summary>Réponses</summary>
+<ol>
+<li>\(i^7 = i^4\cdot i^3 = -i\).</li>
+<li>\(\sqrt{1+3} = 2\).</li>
+<li>\(e^{i\pi}\).</li>
+<li>7 (une par \(k=0,\dots,6\)).</li>
+<li>\(e^{2i\pi} = 1\).</li>
+<li>\(\dfrac{1-3i}{2}\).</li>
+</ol>
+</details>
+
+<div class="nav-links"><span><a href="fiche_complexes.html">← Fiche expliquée</a></span><span><a href="../index.html">Sommaire des maths →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="../Revision_Structures/revision.js"></script>
+</body>
+</html>
