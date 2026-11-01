@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forme exponentielle : trouver r et θ, avec le cercle trigonométrique — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../Revision_Structures/revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="fiche_complexes.html">← Fiche complexes</a><span>Forme exponentielle : r, θ et cercle trigo</span></div>
+<div class="page">
+<span class="chip">📐 Fiche illustrée</span><span class="chip">Chapitre 6, §3</span>
+<h1>Passer de \(a+ib\) à \(r\,e^{i\theta}\) (et retour)</h1>
+
+<div class="box info">
+<span class="box-title">🧭 L'idée en une phrase</span>
+Un nombre complexe \(z\) est <strong>un point du plan</strong>. On peut le repérer par ses coordonnées \((x,y)\), ou par <strong>« à quelle distance de l'origine » (\(r\)) et « dans quelle direction » (\(\theta\))</strong>. Et :
+\[z = r\times\underbrace{(\cos\theta + i\sin\theta)}_{=\,e^{i\theta}\ \text{: un point du cercle de rayon 1}}\]
+Donc \(z\) = le point du cercle unité qui est dans la bonne direction, <strong>agrandi \(r\) fois</strong>.
+</div>
+
+<h2>1. Le schéma, avec l'exemple \(z = 1+i\)</h2>
+
+<svg viewBox="0 0 460 340" role="img" aria-label="Le point z = 1 + i, son module racine de 2 et son argument pi sur 4, avec le point e^(i pi/4) sur le cercle de rayon 1" style="max-width:520px;width:100%;display:block;margin:1em auto">
+<path d="M 30 300 A 160 160 0 0 1 350 300" fill="none" stroke="#0d9488" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="20" y1="300" x2="440" y2="300" stroke="currentColor" stroke-width="1.5"/>
+<line x1="190" y1="330" x2="190" y2="15" stroke="currentColor" stroke-width="1.5"/>
+<line x1="350" y1="140" x2="350" y2="300" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="190" y1="140" x2="350" y2="140" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="303.1" y1="186.9" x2="303.1" y2="300" stroke="#0d9488" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="190" y1="186.9" x2="303.1" y2="186.9" stroke="#0d9488" stroke-width="1" stroke-dasharray="4 4"/>
+<line x1="190" y1="300" x2="350" y2="140" stroke="#4338ca" stroke-width="3.5"/>
+<circle cx="350" cy="140" r="6" fill="#4338ca"/>
+<circle cx="303.1" cy="186.9" r="5" fill="#0d9488"/>
+<path d="M 230 300 A 40 40 0 0 0 218.3 271.7" fill="none" stroke="#d97706" stroke-width="2.5"/>
+<text x="238" y="288" font-size="15" fill="#d97706" font-weight="bold">θ = π/4</text>
+<text x="238" y="132" font-size="16" fill="#4338ca" font-weight="bold">z = 1 + i</text>
+<text x="260" y="210" font-size="15" text-anchor="middle" fill="#4338ca" font-weight="bold" transform="rotate(-45 260 210)">r = √2</text>
+<text x="314" y="202" font-size="13" fill="#0d9488">e^{iπ/4}</text>
+<text x="350" y="318" font-size="13" text-anchor="middle" fill="currentColor">1</text>
+<text x="303" y="318" font-size="12" text-anchor="middle" fill="#0d9488">√2/2</text>
+<text x="176" y="144" font-size="13" text-anchor="end" fill="currentColor">1</text>
+<text x="176" y="191" font-size="12" text-anchor="end" fill="#0d9488">√2/2</text>
+<text x="176" y="316" font-size="13" text-anchor="end" fill="currentColor">0</text>
+<text x="30" y="40" font-size="13" fill="#0d9488">cercle de rayon 1</text>
+<text x="395" y="294" font-size="13" fill="currentColor">axe réel</text>
+</svg>
+<p>Lecture du schéma :</p>
+<ul>
+<li>Le point \(z = 1+i\) est à <strong>1 vers la droite, 1 vers le haut</strong>. La flèche violette est son <strong>module</strong> \(r = |z| = \sqrt{1^2+1^2} = \sqrt2\) (Pythagore).</li>
+<li>L'angle entre l'axe des réels (vers la droite) et la flèche est l'<strong>argument</strong> \(\theta = \frac\pi4\) (45°).</li>
+<li>Le point vert est <strong>sur le cercle de rayon 1</strong>, dans la même direction : c'est \(e^{i\pi/4} = \cos\frac\pi4 + i\sin\frac\pi4 = \frac{\sqrt2}{2} + i\frac{\sqrt2}{2}\).</li>
+<li>Agrandir le point vert \(\sqrt2\) fois donne \(z\) : \(\sqrt2\times\left(\frac{\sqrt2}{2}+i\frac{\sqrt2}{2}\right) = \frac{2}{2} + i\frac22 = 1+i\) ✓.</li>
+</ul>
+
+<h2>2. La recette en 3 étapes (toujours la même)</h2>
+<p>Exemple : \(z = 1+i\). On a \(x = 1\) et \(y = 1\).</p>
+
+<h3>Étape 1 : calculer \(r\)</h3>
+<p>\(r = \sqrt{x^2+y^2} = \sqrt{1+1} = \sqrt2\).</p>
+
+<h3>Étape 2 : diviser par \(r\) pour tomber sur le cercle unité</h3>
+<p>On <strong>factorise</strong> \(r\) :
+\[z = r\left(\frac{x}{r} + i\,\frac{y}{r}\right) = \sqrt2\left(\frac{1}{\sqrt2} + i\,\frac{1}{\sqrt2}\right).\]
+Ce qui est entre parenthèses est maintenant un point du cercle de rayon 1 : donc \(\frac xr = \cos\theta\) et \(\frac yr = \sin\theta\).</p>
+<p>On met \(\frac1{\sqrt2}\) sous la forme du tableau en multipliant le haut et le bas par \(\sqrt2\) (ça revient à multiplier par \(1\)) :
+\[\frac{1}{\sqrt2} = \frac{1\times\sqrt2}{\sqrt2\times\sqrt2} = \frac{\sqrt2}{2}.\]
+Donc \(\cos\theta = \frac{\sqrt2}{2}\) et \(\sin\theta = \frac{\sqrt2}{2}\).</p>
+
+<h3>Étape 3 : lire \(\theta\) sur le cercle trigonométrique</h3>
+<p>On cherche, sur le cercle ci-dessous, le point dont les coordonnées sont \(\left(\frac{\sqrt2}{2}\ ;\ \frac{\sqrt2}{2}\right)\). C'est le point bleu à \(\frac\pi4\) (45°). Donc
+\[z = \sqrt2\left(\cos\frac\pi4 + i\sin\frac\pi4\right) = \sqrt2\,e^{i\pi/4}.\]</p>
+
+<div class="box warn">
+<span class="box-title">⚠️ Il faut regarder cos <u>et</u> sin ensemble</span>
+Le cos tout seul ne suffit pas : \(\cos\theta = \frac{\sqrt2}{2}\) est aussi vrai pour \(-\frac\pi4\) (sous l'axe). Le <strong>signe du sin</strong> dit si on est au-dessus ou en dessous. Il faut donc que le <strong>couple</strong> \((\cos\theta\,;\,\sin\theta)\) corresponde à un point du cercle.
+</div>
+
+<h2>3. Le cercle trigonométrique à connaître</h2>
+<p>Chaque point est donné avec son <strong>angle</strong> (en radians puis en degrés) et ses <strong>coordonnées \((\cos\theta\ ;\ \sin\theta)\)</strong>. Trois familles : <span style="color:#0d9488"><strong>30°</strong></span>, <span style="color:#4338ca"><strong>45°</strong></span>, <span style="color:#d97706"><strong>60°</strong></span>, plus les 4 points des axes.</p>
+
+<svg viewBox="0 0 760 760" role="img" aria-label="Cercle trigonométrique avec les valeurs de cos et sin à connaître" style="max-width:760px;width:100%;display:block;margin:1em auto">
+<circle cx="380" cy="380" r="220" fill="rgba(67,56,202,.04)" stroke="currentColor" stroke-width="2"/>
+<line x1="158" y1="380" x2="602" y2="380" stroke="currentColor" stroke-width="1.5"/>
+<line x1="380" y1="602" x2="380" y2="158" stroke="currentColor" stroke-width="1.5"/>
+<text x="485" y="366" text-anchor="middle" font-size="13" fill="currentColor" opacity=".6">cos + · sin +</text>
+<text x="275" y="366" text-anchor="middle" font-size="13" fill="currentColor" opacity=".6">cos − · sin +</text>
+<text x="275" y="398" text-anchor="middle" font-size="13" fill="currentColor" opacity=".6">cos − · sin −</text>
+<text x="485" y="398" text-anchor="middle" font-size="13" fill="currentColor" opacity=".6">cos + · sin −</text>
+<line x1="380" y1="380" x2="600.0" y2="380.0" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<circle cx="600.0" cy="380.0" r="5.5" fill="currentColor"/>
+<text x="618.0" y="379.0" text-anchor="start" font-size="16" font-weight="bold" fill="currentColor">0 · 0°</text>
+<text x="618.0" y="396.0" text-anchor="start" font-size="14" fill="currentColor">(1 ; 0)</text>
+<line x1="380" y1="380" x2="570.5" y2="270.0" stroke="#0d9488" stroke-width="1" opacity=".35"/>
+<circle cx="570.5" cy="270.0" r="5.5" fill="#0d9488"/>
+<text x="586.1" y="260.0" text-anchor="start" font-size="16" font-weight="bold" fill="#0d9488">π/6 · 30°</text>
+<text x="586.1" y="277.0" text-anchor="start" font-size="14" fill="currentColor">(√3/2 ; 1/2)</text>
+<line x1="380" y1="380" x2="535.6" y2="224.4" stroke="#4338ca" stroke-width="1" opacity=".35"/>
+<circle cx="535.6" cy="224.4" r="5.5" fill="#4338ca"/>
+<text x="548.3" y="210.7" text-anchor="start" font-size="16" font-weight="bold" fill="#4338ca">π/4 · 45°</text>
+<text x="548.3" y="227.7" text-anchor="start" font-size="14" fill="currentColor">(√2/2 ; √2/2)</text>
+<line x1="380" y1="380" x2="490.0" y2="189.5" stroke="#d97706" stroke-width="1" opacity=".35"/>
+<circle cx="490.0" cy="189.5" r="5.5" fill="#d97706"/>
+<text x="499.0" y="172.9" text-anchor="start" font-size="16" font-weight="bold" fill="#d97706">π/3 · 60°</text>
+<text x="499.0" y="189.9" text-anchor="start" font-size="14" fill="currentColor">(1/2 ; √3/2)</text>
+<line x1="380" y1="380" x2="380.0" y2="160.0" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<circle cx="380.0" cy="160.0" r="5.5" fill="currentColor"/>
+<text x="380.0" y="120.0" text-anchor="middle" font-size="16" font-weight="bold" fill="currentColor">π/2 · 90°</text>
+<text x="380.0" y="137.0" text-anchor="middle" font-size="14" fill="currentColor">(0 ; 1)</text>
+<line x1="380" y1="380" x2="270.0" y2="189.5" stroke="#d97706" stroke-width="1" opacity=".35"/>
+<circle cx="270.0" cy="189.5" r="5.5" fill="#d97706"/>
+<text x="261.0" y="172.9" text-anchor="end" font-size="16" font-weight="bold" fill="#d97706">2π/3 · 120°</text>
+<text x="261.0" y="189.9" text-anchor="end" font-size="14" fill="currentColor">(−1/2 ; √3/2)</text>
+<line x1="380" y1="380" x2="224.4" y2="224.4" stroke="#4338ca" stroke-width="1" opacity=".35"/>
+<circle cx="224.4" cy="224.4" r="5.5" fill="#4338ca"/>
+<text x="211.7" y="210.7" text-anchor="end" font-size="16" font-weight="bold" fill="#4338ca">3π/4 · 135°</text>
+<text x="211.7" y="227.7" text-anchor="end" font-size="14" fill="currentColor">(−√2/2 ; √2/2)</text>
+<line x1="380" y1="380" x2="189.5" y2="270.0" stroke="#0d9488" stroke-width="1" opacity=".35"/>
+<circle cx="189.5" cy="270.0" r="5.5" fill="#0d9488"/>
+<text x="173.9" y="260.0" text-anchor="end" font-size="16" font-weight="bold" fill="#0d9488">5π/6 · 150°</text>
+<text x="173.9" y="277.0" text-anchor="end" font-size="14" fill="currentColor">(−√3/2 ; 1/2)</text>
+<line x1="380" y1="380" x2="160.0" y2="380.0" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<circle cx="160.0" cy="380.0" r="5.5" fill="currentColor"/>
+<text x="142.0" y="379.0" text-anchor="end" font-size="16" font-weight="bold" fill="currentColor">π · 180°</text>
+<text x="142.0" y="396.0" text-anchor="end" font-size="14" fill="currentColor">(−1 ; 0)</text>
+<line x1="380" y1="380" x2="189.5" y2="490.0" stroke="#0d9488" stroke-width="1" opacity=".35"/>
+<circle cx="189.5" cy="490.0" r="5.5" fill="#0d9488"/>
+<text x="173.9" y="498.0" text-anchor="end" font-size="16" font-weight="bold" fill="#0d9488">7π/6 · 210°</text>
+<text x="173.9" y="515.0" text-anchor="end" font-size="14" fill="currentColor">(−√3/2 ; −1/2)</text>
+<line x1="380" y1="380" x2="224.4" y2="535.6" stroke="#4338ca" stroke-width="1" opacity=".35"/>
+<circle cx="224.4" cy="535.6" r="5.5" fill="#4338ca"/>
+<text x="211.7" y="547.3" text-anchor="end" font-size="16" font-weight="bold" fill="#4338ca">5π/4 · 225°</text>
+<text x="211.7" y="564.3" text-anchor="end" font-size="14" fill="currentColor">(−√2/2 ; −√2/2)</text>
+<line x1="380" y1="380" x2="270.0" y2="570.5" stroke="#d97706" stroke-width="1" opacity=".35"/>
+<circle cx="270.0" cy="570.5" r="5.5" fill="#d97706"/>
+<text x="261.0" y="585.1" text-anchor="end" font-size="16" font-weight="bold" fill="#d97706">4π/3 · 240°</text>
+<text x="261.0" y="602.1" text-anchor="end" font-size="14" fill="currentColor">(−1/2 ; −√3/2)</text>
+<line x1="380" y1="380" x2="380.0" y2="600.0" stroke="currentColor" stroke-width="1" opacity=".35"/>
+<circle cx="380.0" cy="600.0" r="5.5" fill="currentColor"/>
+<text x="380.0" y="634.0" text-anchor="middle" font-size="16" font-weight="bold" fill="currentColor">3π/2 · 270°</text>
+<text x="380.0" y="651.0" text-anchor="middle" font-size="14" fill="currentColor">(0 ; −1)</text>
+<line x1="380" y1="380" x2="490.0" y2="570.5" stroke="#d97706" stroke-width="1" opacity=".35"/>
+<circle cx="490.0" cy="570.5" r="5.5" fill="#d97706"/>
+<text x="499.0" y="585.1" text-anchor="start" font-size="16" font-weight="bold" fill="#d97706">5π/3 · 300°</text>
+<text x="499.0" y="602.1" text-anchor="start" font-size="14" fill="currentColor">(1/2 ; −√3/2)</text>
+<line x1="380" y1="380" x2="535.6" y2="535.6" stroke="#4338ca" stroke-width="1" opacity=".35"/>
+<circle cx="535.6" cy="535.6" r="5.5" fill="#4338ca"/>
+<text x="548.3" y="547.3" text-anchor="start" font-size="16" font-weight="bold" fill="#4338ca">7π/4 · 315°</text>
+<text x="548.3" y="564.3" text-anchor="start" font-size="14" fill="currentColor">(√2/2 ; −√2/2)</text>
+<line x1="380" y1="380" x2="570.5" y2="490.0" stroke="#0d9488" stroke-width="1" opacity=".35"/>
+<circle cx="570.5" cy="490.0" r="5.5" fill="#0d9488"/>
+<text x="586.1" y="498.0" text-anchor="start" font-size="16" font-weight="bold" fill="#0d9488">11π/6 · 330°</text>
+<text x="586.1" y="515.0" text-anchor="start" font-size="14" fill="currentColor">(√3/2 ; −1/2)</text>
+</svg>
+
+<h3>Pour ne rien apprendre par cœur</h3>
+<p>Entre 0° et 90°, voici les valeurs de \(\sin\) : \(\dfrac{\sqrt0}{2},\ \dfrac{\sqrt1}{2},\ \dfrac{\sqrt2}{2},\ \dfrac{\sqrt3}{2},\ \dfrac{\sqrt4}{2}\), c'est-à-dire \(0,\ \frac12,\ \frac{\sqrt2}{2},\ \frac{\sqrt3}{2},\ 1\). Le \(\cos\) donne la <strong>même liste à l'envers</strong>.</p>
+<div class="tablewrap"><table>
+<tr><th></th><th>0° (0)</th><th>30° (π/6)</th><th>45° (π/4)</th><th>60° (π/3)</th><th>90° (π/2)</th></tr>
+<tr><td>\(\sin\)</td><td>\(\frac{\sqrt0}{2} = 0\)</td><td>\(\frac{\sqrt1}{2} = \frac12\)</td><td>\(\frac{\sqrt2}{2}\)</td><td>\(\frac{\sqrt3}{2}\)</td><td>\(\frac{\sqrt4}{2} = 1\)</td></tr>
+<tr><td>\(\cos\)</td><td>\(\frac{\sqrt4}{2} = 1\)</td><td>\(\frac{\sqrt3}{2}\)</td><td>\(\frac{\sqrt2}{2}\)</td><td>\(\frac{\sqrt1}{2} = \frac12\)</td><td>\(\frac{\sqrt0}{2} = 0\)</td></tr>
+</table></div>
+
+<h3>Retrouver les autres quadrants avec les symétries</h3>
+<p>On ne retient que le premier quadrant, et on en déduit le reste. Pour un angle \(\alpha\) du premier quadrant :</p>
+<div class="tablewrap"><table>
+<tr><th>Angle</th><th>Où ?</th><th>\(\cos\)</th><th>\(\sin\)</th><th>Exemple avec \(\alpha = \frac\pi6\)</th></tr>
+<tr><td>\(\alpha\)</td><td>1ᵉʳ quadrant</td><td>\(\cos\alpha\)</td><td>\(\sin\alpha\)</td><td>\(\frac\pi6\) : \((\frac{\sqrt3}{2},\frac12)\)</td></tr>
+<tr><td>\(\pi - \alpha\)</td><td>2ᵉ quadrant</td><td>\(-\cos\alpha\)</td><td>\(\sin\alpha\)</td><td>\(\frac{5\pi}6\) : \((-\frac{\sqrt3}{2},\frac12)\)</td></tr>
+<tr><td>\(\pi + \alpha\)</td><td>3ᵉ quadrant</td><td>\(-\cos\alpha\)</td><td>\(-\sin\alpha\)</td><td>\(\frac{7\pi}6\) : \((-\frac{\sqrt3}{2},-\frac12)\)</td></tr>
+<tr><td>\(-\alpha\)</td><td>4ᵉ quadrant</td><td>\(\cos\alpha\)</td><td>\(-\sin\alpha\)</td><td>\(-\frac\pi6\) : \((\frac{\sqrt3}{2},-\frac12)\)</td></tr>
+</table></div>
+
+<h2>4. Autres exemples, avec le cercle</h2>
+<div class="tablewrap"><table>
+<tr><th>\(z\)</th><th>\(r\)</th><th>\((\cos\theta\ ;\ \sin\theta)\) = \((x/r\ ;\ y/r)\)</th><th>Point du cercle</th><th>Résultat</th></tr>
+<tr><td>\(1+i\sqrt3\)</td><td>\(2\)</td><td>\((\frac12\ ;\ \frac{\sqrt3}{2})\)</td><td>\(\frac\pi3\)</td><td>\(2e^{i\pi/3}\)</td></tr>
+<tr><td>\(-1+i\)</td><td>\(\sqrt2\)</td><td>\((-\frac{\sqrt2}{2}\ ;\ \frac{\sqrt2}{2})\)</td><td>\(\frac{3\pi}4\) (2ᵉ quadrant)</td><td>\(\sqrt2\,e^{3i\pi/4}\)</td></tr>
+<tr><td>\(\sqrt3 - i\)</td><td>\(2\)</td><td>\((\frac{\sqrt3}{2}\ ;\ -\frac12)\)</td><td>\(-\frac\pi6\) (4ᵉ quadrant)</td><td>\(2e^{-i\pi/6}\)</td></tr>
+<tr><td>\(-i\)</td><td>\(1\)</td><td>\((0\ ;\ -1)\)</td><td>\(-\frac\pi2\) (ou \(\frac{3\pi}2\))</td><td>\(e^{-i\pi/2}\)</td></tr>
+<tr><td>\(-3\)</td><td>\(3\)</td><td>\((-1\ ;\ 0)\)</td><td>\(\pi\)</td><td>\(3e^{i\pi}\)</td></tr>
+</table></div>
+<p><em>Remarque :</em> \(\frac{3\pi}{2}\) et \(-\frac\pi2\) désignent le <strong>même point</strong> (à un tour de \(2\pi\) près), donc les deux écritures sont justes.</p>
+
+<h2>5. Le chemin retour : de \(re^{i\theta}\) à \(a+ib\)</h2>
+<p>On remplace \(e^{i\theta}\) par \(\cos\theta + i\sin\theta\), on lit les valeurs sur le cercle, et on multiplie par \(r\).</p>
+<div class="box tip">
+<span class="box-title">Exemples</span>
+<ul>
+<li>\(\sqrt2\,e^{i\pi/4} = \sqrt2\left(\frac{\sqrt2}{2} + i\frac{\sqrt2}{2}\right) = 1 + i\).</li>
+<li>\(8\,e^{-i\pi/2} = 8(\cos(-\frac\pi2) + i\sin(-\frac\pi2)) = 8(0 - i) = -8i\).</li>
+<li>\(16\,e^{2i\pi} = 16(\cos2\pi + i\sin2\pi) = 16(1+0) = 16\).</li>
+</ul>
+</div>
+
+<h2>6. À retenir</h2>
+<div class="box tip">
+<span class="box-title">Résumé</span>
+<ol>
+<li>\(r = \sqrt{x^2+y^2}\).</li>
+<li>On factorise \(r\) : \(\cos\theta = x/r\), \(\sin\theta = y/r\).</li>
+<li>On trouve sur le cercle le point \((\cos\theta\,;\sin\theta)\), et on lit \(\theta\).</li>
+<li>\(z = r\,e^{i\theta}\). L'angle est défini à \(2\pi\) près.</li>
+<li>Ensuite : produit = modules ×, angles + ; quotient = modules ÷, angles − ; puissance \(n\) = module\(^n\), angle ×\(n\).</li>
+</ol>
+</div>
+
+<div class="nav-links"><span><a href="fiche_complexes.html">← Fiche complexes</a></span><span><a href="exos_complexes.html">Exercices types corrigés →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="../Revision_Structures/revision.js"></script>
+</body>
+</html>
