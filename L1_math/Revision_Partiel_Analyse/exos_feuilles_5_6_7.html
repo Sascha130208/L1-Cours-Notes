@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Analyse — Feuilles 5, 6, 7 corrigées</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Analyse — Feuilles 5, 6, 7</span></div>
+<div class="page">
+
+<h1>✏️ Analyse — Feuilles 5, 6 et 7 corrigées</h1>
+<p>Fonctions : parité, monotonie, limites, continuité, théorème des valeurs intermédiaires. Ce sont les feuilles les plus proches du partiel (il porte jusqu'à la <strong>continuité incluse</strong>). Les feuilles 1 à 3 sont déjà corrigées : <a href="../Exercices/exercices_analyse_feuille1.html">F1</a> · <a href="../Exercices/exercices_analyse_feuille2.html">F2</a> · <a href="../Exercices/exercices_analyse_feuille3.html">F3</a>.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Comment t'en servir</span>
+Cherche d'abord sur papier, <strong>sans notes</strong>, puis ouvre la correction. Les corrections sont rédigées comme tu devrais le faire en copie. Une ligne <strong>🔧 Outil</strong> te dit quel réflexe sortir : c'est ça qu'il faut retenir pour un exercice inconnu.
+</div>
+
+<div class="box warn">
+<span class="box-title">⚠️ Feuille 4</span>
+Je n'ai pas reçu la feuille 4. Envoie-la-moi et je la corrige dans le même format.
+</div>
+
+<!-- ============================ FEUILLE 5 ============================ -->
+<h1>Feuille 5</h1>
+
+<h2>Exercice 1 — Parité et monotonie</h2>
+
+<p><strong>1.</strong> <code>fₙ(x) = xⁿ</code> est-elle paire ou impaire ?</p>
+<details><summary>Réponse</summary>
+<code>fₙ(−x) = (−x)ⁿ = (−1)ⁿ xⁿ</code>.<br>
+• Si <code>n</code> est pair : <code>fₙ(−x) = xⁿ = fₙ(x)</code>, donc <strong>paire</strong>.<br>
+• Si <code>n</code> est impair : <code>fₙ(−x) = −xⁿ = −fₙ(x)</code>, donc <strong>impaire</strong>.<br>
+(Pour <code>n = 0</code>, <code>f₀ = 1</code> est paire.)
+<br><br>🔧 <strong>Outil :</strong> pour la parité, on calcule toujours <code>f(−x)</code> et on compare à <code>f(x)</code> et <code>−f(x)</code>.
+</details>
+
+<p><strong>2.</strong> <code>f</code> et <code>g</code> croissantes : que dire de <code>f+g</code>, <code>f×g</code>, <code>f∘g</code> ?</p>
+<details><summary>Réponse</summary>
+• <strong><code>f+g</code> est croissante.</strong> Si <code>x ≤ y</code>, alors <code>f(x) ≤ f(y)</code> et <code>g(x) ≤ g(y)</code>, on additionne : <code>f(x)+g(x) ≤ f(y)+g(y)</code>.<br>
+• <strong><code>f×g</code> n'est pas forcément monotone.</strong> Contre-exemple : <code>f = g = id</code> (croissantes). Alors <code>f×g : x ↦ x²</code> est décroissante sur <code>]−∞,0]</code> et croissante sur <code>[0,+∞[</code> : ni croissante ni décroissante. (On ne peut pas multiplier des inégalités si les nombres sont négatifs.)<br>
+• <strong><code>f∘g</code> est croissante.</strong> Si <code>x ≤ y</code>, alors <code>g(x) ≤ g(y)</code> (g croissante), puis <code>f(g(x)) ≤ f(g(y))</code> (f croissante).
+<br><br>🔧 <strong>Outil :</strong> « croissante » se prouve avec « soient <code>x ≤ y</code> » ; « pas croissante » se prouve avec un contre-exemple.
+</details>
+
+<p><strong>3.</strong> <code>f</code> et <code>g</code> impaires : <code>f+g</code>, <code>f×g</code>, <code>g∘f</code> ?</p>
+<details><summary>Réponse</summary>
+• <code>(f+g)(−x) = f(−x)+g(−x) = −f(x)−g(x) = −(f+g)(x)</code> : <strong>impaire</strong>.<br>
+• <code>(f×g)(−x) = (−f(x))(−g(x)) = f(x)g(x)</code> : <strong>paire</strong>.<br>
+• <code>(g∘f)(−x) = g(f(−x)) = g(−f(x)) = −g(f(x))</code> : <strong>impaire</strong>.
+</details>
+
+<p><strong>4.</strong> <code>f</code> paire et <code>g</code> impaire : <code>f+g</code>, <code>f×g</code>, <code>g∘f</code> ?</p>
+<details><summary>Réponse</summary>
+• <code>f+g</code> : <strong>en général ni paire ni impaire.</strong> Contre-exemple : <code>f = 1</code> (paire), <code>g(x) = x</code> (impaire). <code>(f+g)(x) = 1+x</code>, mais <code>(f+g)(−1) = 0</code>, alors que <code>(f+g)(1) = 2</code> : pas paire (0 ≠ 2) ni impaire (0 ≠ −2).<br>
+• <code>(f×g)(−x) = f(x)·(−g(x)) = −(f×g)(x)</code> : <strong>impaire</strong>.<br>
+• <code>(g∘f)(−x) = g(f(−x)) = g(f(x)) = (g∘f)(x)</code> : <strong>paire</strong>.
+<br><br>🔧 <strong>Table de signes à retenir :</strong> paire = « +1 », impaire = « −1 ». Pour le produit on multiplie : paire×impaire = impaire, impaire×impaire = paire. Pour la somme, ça marche seulement si les deux ont la même parité.
+</details>
+
+<h2>Exercice 2 — Limites</h2>
+
+<p><strong>a)</strong> <code>lim(x→−∞) (x³+x²−2x+1)/(x²+1)</code></p>
+<details><summary>Réponse</summary>
+On factorise par le terme dominant :
+<code>(x³+x²−2x+1)/(x²+1) = x · (1 + 1/x − 2/x² + 1/x³) / (1 + 1/x²)</code>.<br>
+La fraction tend vers <code>1</code> (tous les <code>1/xᵏ → 0</code>) et <code>x → −∞</code>. Donc la limite vaut <strong>−∞</strong>.<br>
+🔧 Degré num (3) &gt; degré dén (2) : ça tend vers ±∞, le signe est celui de <code>x</code> quand <code>x → −∞</code>.
+</details>
+
+<p><strong>b)</strong> <code>lim(x→1) (2x−2)/(x²+2x−3)</code></p>
+<details><summary>Réponse</summary>
+Forme <code>0/0</code>. On factorise : <code>x²+2x−3 = (x−1)(x+3)</code> (racines 1 et −3), et <code>2x−2 = 2(x−1)</code>.<br>
+Pour <code>x ≠ 1</code> : <code>(2x−2)/(x²+2x−3) = 2/(x+3)</code> <strong>→ 2/4 = 1/2</strong>.<br>
+🔧 <code>0/0</code> en un point = <strong>le facteur <code>(x−x₀)</code> se simplifie</strong>.
+</details>
+
+<p><strong>c)</strong> <code>lim(x→+∞) (2cos(x)+1)/x</code></p>
+<details><summary>Réponse</summary>
+<code>cos</code> n'a pas de limite en +∞, mais elle est bornée. Pour <code>x &gt; 0</code> : <code>|2cos(x)+1| ≤ 3</code>, donc <code>|(2cos x+1)/x| ≤ 3/x → 0</code>. Par le théorème des gendarmes, la limite vaut <strong>0</strong>.<br>
+🔧 <strong>borné ÷ (→ +∞) → 0</strong> : toujours gendarmes avec la majoration de la partie bornée.
+</details>
+
+<h2>Exercice 3 — Preuves sur la parité et la périodicité</h2>
+
+<p><strong>1.</strong> <code>f</code> impaire ⇒ <code>f(0) = 0</code>.</p>
+<details><summary>Preuve</summary>
+Comme <code>f</code> est impaire, <code>f(−0) = −f(0)</code>, c'est-à-dire <code>f(0) = −f(0)</code>. Donc <code>2f(0) = 0</code>, soit <code>f(0) = 0</code>. ∎
+</details>
+
+<p><strong>2.</strong> <code>f</code> paire et croissante ⇒ <code>f</code> constante.</p>
+<details><summary>Preuve</summary>
+Soit <code>x ≥ 0</code>. Comme <code>0 ≤ x</code> et <code>f</code> croissante : <code>f(0) ≤ f(x)</code>.<br>
+Comme <code>−x ≤ 0</code> et <code>f</code> croissante : <code>f(−x) ≤ f(0)</code>. Or <code>f</code> est paire : <code>f(−x) = f(x)</code>. Donc <code>f(x) ≤ f(0)</code>.<br>
+Donc <code>f(x) = f(0)</code> pour tout <code>x ≥ 0</code>. Pour <code>x &lt; 0</code>, <code>f(x) = f(−x) = f(0)</code> (car <code>−x &gt; 0</code>). Donc <code>f</code> est constante égale à <code>f(0)</code>. ∎
+</details>
+
+<p><strong>3.</strong> <code>f</code> périodique et croissante ⇒ <code>f</code> constante.</p>
+<details><summary>Preuve</summary>
+Soit <code>T &gt; 0</code> une période : <code>f(x+T) = f(x)</code> pour tout <code>x</code>, donc par récurrence <code>f(x+nT) = f(x)</code> pour tout <code>n ∈ N</code>.<br>
+Soient <code>x ≤ y</code>. Par Archimède, il existe <code>n ∈ N</code> tel que <code>nT &gt; y − x</code>, i.e. <code>y ≤ x + nT</code>. Comme <code>f</code> est croissante :
+<code>f(x) ≤ f(y) ≤ f(x+nT) = f(x)</code>.
+Donc <code>f(y) = f(x)</code>. Cela vaut pour tout couple <code>x ≤ y</code> : <code>f</code> est constante. ∎
+<br><br>🔧 <strong>Outil :</strong> périodicité + Archimède = on peut « remonter » au-dessus de n'importe quel réel en ajoutant des périodes.
+</details>
+
+<h2>Exercice 4 — « Croissante » : global contre local</h2>
+
+<p><strong>1.</strong> Si <code>∃δ &gt; 0, ∀x, ∀y ∈ [x, x+δ], f(y) ≥ f(x)</code>, alors <code>f</code> est croissante.</p>
+<details><summary>Preuve</summary>
+Le <code>δ</code> est <strong>le même pour tous les <code>x</code></strong>. Fixons-le.<br>
+Soient <code>x ≤ y</code>. Par Archimède, il existe <code>n ∈ N*</code> tel que <code>(y−x)/n ≤ δ</code>. Posons <code>xₖ = x + k(y−x)/n</code> pour <code>k = 0, …, n</code> : on a <code>x₀ = x</code>, <code>xₙ = y</code>, et <code>xₖ₊₁ ∈ [xₖ, xₖ+δ]</code>. L'hypothèse donne <code>f(xₖ₊₁) ≥ f(xₖ)</code> pour chaque <code>k</code>, donc
+<code>f(y) = f(xₙ) ≥ f(xₙ₋₁) ≥ … ≥ f(x₀) = f(x)</code>. ∎
+<br><br>🔧 <strong>Outil :</strong> découper <code>[x,y]</code> en petits pas de taille ≤ δ.
+</details>
+
+<p><strong>2.</strong> Même hypothèse mais avec <code>δ</code> qui dépend de <code>x</code> (<code>∀x, ∃δ</code>). <code>f</code> est-elle forcément croissante ?</p>
+<details><summary>Réponse</summary>
+<strong>Non.</strong> Contre-exemple : <code>f(x) = 1</code> si <code>x &lt; 0</code>, <code>f(x) = 0</code> si <code>x ≥ 0</code>.<br>
+• Pour <code>x &lt; 0</code>, on prend <code>δ = |x|/2</code> : tout <code>y ∈ [x,x+δ]</code> est <code>&lt; 0</code>, donc <code>f(y) = 1 ≥ f(x) = 1</code>.<br>
+• Pour <code>x ≥ 0</code>, on prend <code>δ = 1</code> : <code>f(y) = 0 ≥ f(x) = 0</code>.<br>
+Mais <code>f(−1) = 1 &gt; f(0) = 0</code> avec <code>−1 &lt; 0</code> : <code>f</code> n'est pas croissante.<br>
+💡 <strong>Leçon :</strong> l'ordre des quantificateurs change tout. <code>∃δ ∀x</code> (δ uniforme) ≠ <code>∀x ∃δ</code> (δ dépend de x).
+</details>
+
+<!-- ============================ FEUILLE 6 ============================ -->
+<h1>Feuille 6</h1>
+
+<h2>Exercice 1</h2>
+
+<p><strong>1.</strong> <code>f : R*₊ → R</code> avec <code>f(x) ≥ x</code> pour tout <code>x &gt; 0</code>. Est-elle croissante ?</p>
+<details><summary>Réponse</summary>
+<strong>Non.</strong> Contre-exemple : <code>f(x) = x + 1/x</code>. On a bien <code>f(x) ≥ x</code>, mais <code>f(1/2) = 5/2 &gt; f(1) = 2</code> alors que <code>1/2 &lt; 1</code> : pas croissante.
+</details>
+
+<p><strong>2.</strong> <code>lim(x→+∞) f(x)/x = 1</code>. A-t-on <code>lim f(x) = +∞</code> ?</p>
+<details><summary>Preuve : oui</summary>
+Prenons <code>ε = 1/2</code> dans la définition de <code>f(x)/x → 1</code> : il existe <code>B</code> tel que, pour <code>x ≥ B</code>, <code>|f(x)/x − 1| ≤ 1/2</code>, donc <code>f(x)/x ≥ 1/2</code>. Comme <code>x &gt; 0</code> : <code>f(x) ≥ x/2</code>.<br>
+Soit <code>A &gt; 0</code>. Pour <code>x ≥ max(B, 2A, 1)</code> : <code>f(x) ≥ x/2 ≥ A</code>. Donc <code>f(x) → +∞</code>. ∎<br>
+🔧 <strong>Outil :</strong> « équivalent » à <code>x</code> ⇒ minoré par <code>x/2</code> dès qu'on est assez loin ⇒ comparaison.
+</details>
+
+<h2>Exercice 2 — Dix limites</h2>
+
+<p><strong>a)</strong> <code>lim(x→π) cos(x + 3 sin x)</code></p>
+<details><summary>Réponse</summary>
+Composée de fonctions continues sur R, donc continue : on remplace. <code>cos(π + 3·sin π) = cos(π) = </code><strong>−1</strong>.
+</details>
+
+<p><strong>b)</strong> <code>lim(x→0) ( cos x + 1/sin(x)² )</code></p>
+<details><summary>Réponse</summary>
+<code>cos x → 1</code>. Et <code>sin(x)² → 0</code> par valeurs <strong>strictement positives</strong> (un carré, non nul pour <code>x ≠ 0</code> proche de 0), donc <code>1/sin(x)² → +∞</code>. Somme : <strong>+∞</strong>.
+</details>
+
+<p><strong>c)</strong> <code>lim(x→−∞) (2x⁴−3x²+x)/(x⁴+2x+1)</code></p>
+<details><summary>Réponse</summary>
+Même degré : on divise num. et dén. par <code>x⁴</code> : <code>(2 − 3/x² + 1/x³)/(1 + 2/x³ + 1/x⁴) → 2/1 = </code><strong>2</strong>.
+</details>
+
+<p><strong>d)</strong> <code>lim(x→+∞) (2x − √x + 1)/(x+2)</code></p>
+<details><summary>Réponse</summary>
+On divise par <code>x</code> (pour <code>x &gt; 0</code>) : <code>(2 − 1/√x + 1/x)/(1 + 2/x) → 2/1 = </code><strong>2</strong>. (Car <code>√x/x = 1/√x → 0</code>.)
+</details>
+
+<p><strong>e)</strong> <code>lim(x→2) (x²−x−2)/(x²−3x+2)</code></p>
+<details><summary>Réponse</summary>
+<code>0/0</code>. <code>x²−x−2 = (x−2)(x+1)</code> et <code>x²−3x+2 = (x−1)(x−2)</code>. Pour <code>x ≠ 2</code> : <code>(x+1)/(x−1) → 3/1 = </code><strong>3</strong>.
+</details>
+
+<p><strong>f)</strong> <code>lim(x→1) x/(x−1)</code></p>
+<details><summary>Réponse</summary>
+Le numérateur tend vers 1, le dénominateur vers 0 en changeant de signe.<br>
+• à droite (<code>x → 1⁺</code>) : <code>x−1 → 0⁺</code>, donc <code>x/(x−1) → +∞</code> ;<br>
+• à gauche (<code>x → 1⁻</code>) : <code>x−1 → 0⁻</code>, donc <code>→ −∞</code>.<br>
+Les limites latérales sont différentes : <strong>pas de limite en 1</strong>.
+</details>
+
+<p><strong>g)</strong> <code>lim(x→+∞) ( √(x³+1) − x )</code></p>
+<details><summary>Réponse</summary>
+Forme <code>∞ − ∞</code>, mais ici on peut minorer : pour <code>x ≥ 1</code>, <code>√(x³+1) ≥ √(x³) = x√x</code>, donc
+<code>√(x³+1) − x ≥ x√x − x = x(√x − 1)</code> <strong>→ +∞</strong>. Par comparaison, la limite est <strong>+∞</strong>.<br>
+🔧 La quantité conjuguée marche aussi : <code>= (x³+1−x²)/(√(x³+1)+x)</code>, équivalent à <code>x³/x^(3/2) = x^(3/2)</code>. Mais la minoration directe est plus courte.
+</details>
+
+<p><strong>h)</strong> <code>lim(x→+∞) ( √(4x²+x) − 2√(x²+1) )</code></p>
+<details><summary>Réponse</summary>
+On sépare : <code>√(4x²+x) − 2x</code> et <code>2x − 2√(x²+1)</code>.<br>
+• <code>√(4x²+x) − 2x = (4x²+x−4x²)/(√(4x²+x)+2x) = x/(√(4x²+x)+2x) = 1/(√(4+1/x)+2) → 1/4</code>.<br>
+• <code>2x − 2√(x²+1) = 2(x²−(x²+1))/(x+√(x²+1)) = −2/(x+√(x²+1)) → 0</code>.<br>
+Somme : <strong>1/4</strong>.<br>
+🔧 <strong>Outil :</strong> plusieurs racines ⇒ on les regroupe avec ce qu'il faut pour que chaque morceau se conjugue proprement (ici <code>2x</code> sert de « pivot »).
+</details>
+
+<p><strong>i)</strong> <code>lim(x→+∞) (x sin x + 1)/(2x²+1)</code></p>
+<details><summary>Réponse</summary>
+Pour <code>x &gt; 0</code> : <code>|x sin x + 1| ≤ x + 1</code>, donc <code>|…| ≤ (x+1)/(2x²+1) → 0</code> (degré 1 contre degré 2). Gendarmes : limite <strong>0</strong>.
+</details>
+
+<p><strong>j)</strong> <code>lim(x→0) cos(1/x)</code></p>
+<details><summary>Réponse</summary>
+<strong>Pas de limite.</strong> Deux suites qui tendent vers 0 :<br>
+• <code>xₙ = 1/(2nπ) → 0</code> et <code>cos(1/xₙ) = cos(2nπ) = 1 → 1</code> ;<br>
+• <code>yₙ = 1/(π+2nπ) → 0</code> et <code>cos(1/yₙ) = cos(π+2nπ) = −1 → −1</code>.<br>
+Si une limite <code>ℓ</code> existait, la caractérisation séquentielle donnerait <code>ℓ = 1</code> et <code>ℓ = −1</code> : absurde. ∎<br>
+🔧 <strong>Outil :</strong> « pas de limite » ⇒ deux suites vers le même point avec deux limites d'images différentes.
+</details>
+
+<h2>Exercice 3</h2>
+
+<p><strong>1.</strong> <code>f : [0,1[ → R</code> croissante et majorée, <code>M = sup f([0,1[)</code>. Montrer <code>lim(x→1) f(x) = M</code>.</p>
+<details><summary>Preuve</summary>
+Soit <code>ε &gt; 0</code>. Comme <code>M − ε &lt; M</code>, le réel <code>M−ε</code> n'est pas un majorant de <code>f([0,1[)</code> (caractérisation de la borne sup) : il existe <code>x₀ ∈ [0,1[</code> tel que <code>f(x₀) &gt; M − ε</code>.<br>
+Posons <code>δ = 1 − x₀ &gt; 0</code>. Pour <code>x ∈ ]x₀, 1[</code> (soit <code>|x−1| &lt; δ</code>) : <code>f</code> étant croissante, <code>f(x) ≥ f(x₀) &gt; M − ε</code> ; et <code>f(x) ≤ M</code> car <code>M</code> est un majorant. Donc <code>|f(x) − M| ≤ ε</code>. ∎<br>
+🔧 <strong>Outil :</strong> c'est le théorème de la limite monotone pour les fonctions. Même schéma que pour les suites.
+</details>
+
+<p><strong>2.</strong> <code>f : R → R</code> périodique avec <code>ℓ = lim(x→+∞) f(x) ∈ [−∞,+∞]</code> existante. Montrer que <code>f</code> est constante.</p>
+<details><summary>Preuve</summary>
+Soit <code>T &gt; 0</code> une période. Fixons <code>x ∈ R</code> et posons <code>uₙ = x + nT</code>. Alors <code>uₙ → +∞</code>, donc par la caractérisation séquentielle <code>f(uₙ) → ℓ</code>.<br>
+Mais <code>f(uₙ) = f(x)</code> pour tout <code>n</code> : la suite est constante égale à <code>f(x)</code>, donc converge vers <code>f(x)</code>. Par unicité de la limite : <code>ℓ = f(x)</code> (en particulier <code>ℓ</code> est fini).<br>
+Cela vaut pour tout <code>x</code> : <code>f(x) = ℓ</code> pour tout <code>x ∈ R</code>, <code>f</code> est constante. ∎
+</details>
+
+<p><strong>3.</strong> <code>f</code> continue en 0 et <code>f(2x) = f(x)</code> pour tout <code>x</code>. Montrer <code>f(x) = f(x/2ⁿ)</code> puis que <code>f</code> est constante.</p>
+<details><summary>Preuve</summary>
+<strong>(i) Par récurrence sur <code>n ≥ 1</code>,</strong> pour <code>x</code> fixé : <code>P(n) : f(x) = f(x/2ⁿ)</code>.<br>
+• <code>P(1)</code> : l'hypothèse appliquée à <code>x/2</code> donne <code>f(x) = f(2·(x/2)) = f(x/2)</code>.<br>
+• Hérédité : si <code>f(x) = f(x/2ⁿ)</code>, l'hypothèse appliquée à <code>x/2ⁿ⁺¹</code> donne <code>f(x/2ⁿ) = f(2·x/2ⁿ⁺¹) = f(x/2ⁿ⁺¹)</code>. Donc <code>f(x) = f(x/2ⁿ⁺¹)</code>.<br><br>
+<strong>(ii)</strong> <code>x/2ⁿ → 0</code> et <code>f</code> est continue en 0, donc par la caractérisation séquentielle <code>f(x/2ⁿ) → f(0)</code>. Mais <code>f(x/2ⁿ) = f(x)</code> est constante : sa limite est <code>f(x)</code>. Par unicité : <code>f(x) = f(0)</code>. Ceci pour tout <code>x</code> : <code>f</code> est constante. ∎<br>
+🔧 <strong>Outil :</strong> équation fonctionnelle + continuité en un point ⇒ on itère pour se rapprocher de ce point.
+</details>
+
+<h2>Exercice 4 — <code>f(x) = ⌊cos x⌋</code></h2>
+
+<details><summary>1. Points de discontinuité</summary>
+<code>cos x ∈ [−1, 1]</code>. Donc <code>⌊cos x⌋</code> vaut :<br>
+• <strong>1</strong> si et seulement si <code>cos x = 1</code>, i.e. <code>x = 2kπ</code> ;<br>
+• <strong>0</strong> si <code>cos x ∈ [0, 1[</code>, i.e. <code>x ∈ [−π/2+2kπ, π/2+2kπ]</code> privé de <code>2kπ</code> ;<br>
+• <strong>−1</strong> si <code>cos x ∈ [−1, 0[</code>, i.e. <code>x ∈ ]π/2+2kπ, 3π/2+2kπ[</code>.<br><br>
+Examinons les points où ça change :<br>
+• <code>x = 2kπ</code> : <code>f = 1</code>, mais juste à côté <code>cos x &lt; 1</code> et <code>≥ 0</code> donc <code>f = 0</code> : la limite est 0 ≠ 1 → <strong>discontinue</strong>.<br>
+• <code>x = π/2 + 2kπ</code> : <code>f = 0</code> (car <code>cos = 0</code>) ; à droite <code>cos &lt; 0</code> donc <code>f = −1</code> → limite à droite −1 ≠ 0 → <strong>discontinue</strong>.<br>
+• <code>x = 3π/2 + 2kπ</code> : <code>f = 0</code> ; à gauche <code>cos &lt; 0</code> donc <code>f = −1</code> → <strong>discontinue</strong>.<br>
+• Ailleurs, <code>f</code> est localement constante (par exemple en <code>x = π</code>, <code>cos = −1</code> et <code>f = −1</code> autour) : <strong>continue</strong>.<br><br>
+<strong>Réponse :</strong> <code>f</code> est discontinue exactement sur <code>{2kπ : k ∈ Z} ∪ {π/2 + kπ : k ∈ Z}</code>.
+</details>
+
+<details><summary>2. Graphe (de −π à 3π)</summary>
+<svg viewBox="0 0 560 220" width="100%" style="max-width:620px;background:#fff;border:1px solid #e3e5ef;border-radius:8px" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="12">
+  <!-- axes -->
+  <line x1="60" y1="100" x2="540" y2="100" stroke="#999"/>
+  <line x1="180" y1="20" x2="180" y2="190" stroke="#999"/>
+  <text x="30" y="44" fill="#555">1</text><text x="22" y="104" fill="#555">0</text><text x="22" y="164" fill="#555">−1</text>
+  <line x1="60" y1="40" x2="540" y2="40" stroke="#eee"/><line x1="60" y1="160" x2="540" y2="160" stroke="#eee"/>
+  <!-- ticks: t=-1 -> x=80 ; unit pi = 100 px -->
+  <g fill="#555" text-anchor="middle">
+    <text x="80" y="120">−π</text><text x="130" y="120">−π/2</text><text x="230" y="120">π/2</text><text x="280" y="120">π</text>
+    <text x="330" y="120">3π/2</text><text x="380" y="120">2π</text><text x="430" y="120">5π/2</text><text x="480" y="120">3π</text>
+  </g>
+  <g stroke="#4338ca" stroke-width="3">
+    <line x1="80" y1="160" x2="130" y2="160"/>
+    <line x1="130" y1="100" x2="230" y2="100"/>
+    <line x1="230" y1="160" x2="330" y2="160"/>
+    <line x1="330" y1="100" x2="430" y2="100"/>
+    <line x1="430" y1="160" x2="480" y2="160"/>
+  </g>
+  <!-- filled points -->
+  <g fill="#4338ca">
+    <circle cx="80" cy="160" r="4"/>
+    <circle cx="130" cy="100" r="4"/><circle cx="230" cy="100" r="4"/>
+    <circle cx="330" cy="100" r="4"/><circle cx="430" cy="100" r="4"/>
+    <circle cx="180" cy="40" r="4"/><circle cx="380" cy="40" r="4"/>
+  </g>
+  <!-- open points -->
+  <g fill="#fff" stroke="#4338ca" stroke-width="2">
+    <circle cx="130" cy="160" r="4"/><circle cx="230" cy="160" r="4"/><circle cx="330" cy="160" r="4"/><circle cx="430" cy="160" r="4"/>
+    <circle cx="180" cy="100" r="4"/><circle cx="380" cy="100" r="4"/>
+  </g>
+</svg>
+<p>Lecture : <code>f = 0</code> autour de <code>0</code> et <code>2π</code> (mais avec le point isolé <code>f(0) = f(2π) = 1</code>), <code>f = −1</code> quand <code>cos x &lt; 0</code>. Les points pleins sont les valeurs prises, les ronds vides sont les valeurs non prises.</p>
+</details>
+
+<!-- ============================ FEUILLE 7 ============================ -->
+<h1>Feuille 7 — Théorème des valeurs intermédiaires</h1>
+
+<div class="box info">
+<span class="box-title">📌 Rappel : le TVI et ses deux usages</span>
+<strong>TVI :</strong> <code>f</code> continue sur <code>[a,b]</code>, <code>y</code> entre <code>f(a)</code> et <code>f(b)</code> ⇒ il existe <code>c ∈ [a,b]</code> avec <code>f(c) = y</code>.<br>
+<strong>Usage 1 — « Il existe x tel que… »</strong> : on fabrique <code>φ = (côté gauche) − (côté droit)</code>, on montre <code>φ(a) ≥ 0 ≥ φ(b)</code> (ou l'inverse), TVI ⇒ <code>φ(c) = 0</code>.<br>
+<strong>Usage 2 — « f est surjective »</strong> : <code>f(I)</code> est un intervalle ; si <code>f</code> tend vers <code>−∞</code> d'un côté et <code>+∞</code> de l'autre, <code>f(I) = R</code>.
+</div>
+
+<h2>Exercice 1</h2>
+
+<p><strong>1.</strong> Il existe <code>x ∈ ]0, π/2[</code> tel que <code>cos x = x</code>.</p>
+<details><summary>Preuve</summary>
+Posons <code>h(x) = cos x − x</code>, continue sur <code>[0, π/2]</code>. <code>h(0) = 1 &gt; 0</code> et <code>h(π/2) = −π/2 &lt; 0</code>. Par le TVI, il existe <code>x ∈ [0, π/2]</code> avec <code>h(x) = 0</code>, et comme <code>h(0) ≠ 0 ≠ h(π/2)</code>, on a <code>x ∈ ]0, π/2[</code>. ∎
+</details>
+
+<p><strong>2.</strong> <code>f(x) = (x⁸ − 4x⁶ + x + 1)/(x − 1)</code> sur <code>]1, +∞[</code> est surjective.</p>
+<details><summary>Preuve</summary>
+<code>f</code> est continue sur <code>]1,+∞[</code> (fraction rationnelle, dénominateur non nul). Cherchons ses limites aux bords :<br>
+• en <code>1⁺</code> : numérateur <code>→ 1−4+1+1 = −1</code>, dénominateur <code>→ 0⁺</code>, donc <code>f → −∞</code> ;<br>
+• en <code>+∞</code> : <code>f(x) = x⁷ · (1 − 4/x² + 1/x⁷ + 1/x⁸)/(1 − 1/x) → +∞</code>.<br>
+Soit <code>y ∈ R</code>. Il existe <code>a &gt; 1</code> avec <code>f(a) &lt; y</code> et <code>b &gt; 1</code> avec <code>f(b) &gt; y</code> (par les limites). Comme <code>f</code> est continue sur le segment d'extrémités <code>a</code> et <code>b</code>, le TVI donne un <code>c</code> avec <code>f(c) = y</code>. Donc tout réel a un antécédent : <code>f</code> est surjective. ∎
+</details>
+
+<p><strong>3.</strong> <code>g(x) = x sin x</code> est surjective de <code>R</code> dans <code>R</code>.</p>
+<details><summary>Preuve</summary>
+<code>g</code> est continue sur <code>R</code>. Pour <code>k ∈ N</code> :<br>
+• <code>g(π/2 + 2kπ) = π/2 + 2kπ</code> (car <code>sin = 1</code>) <code>→ +∞</code> ;<br>
+• <code>g(3π/2 + 2kπ) = −(3π/2 + 2kπ)</code> (car <code>sin = −1</code>) <code>→ −∞</code>.<br>
+Soit <code>y ∈ R</code>. On choisit <code>k</code> assez grand pour que <code>a = π/2+2kπ</code> vérifie <code>g(a) &gt; y</code> et <code>b = 3π/2+2kπ</code> vérifie <code>g(b) &lt; y</code>. TVI sur le segment d'extrémités <code>a, b</code> : il existe <code>c</code> avec <code>g(c) = y</code>. ∎<br>
+🔧 <strong>Outil :</strong> si on ne peut pas calculer la limite (ici <code>g</code> n'a pas de limite), on exhibe <strong>deux suites de points</strong> où <code>g</code> est très grand / très négatif.
+</details>
+
+<h2>Exercice 2</h2>
+
+<p><strong>1.</strong> <code>f</code> continue, <code>f(x)² = 1</code> pour tout <code>x</code>. Alors <code>f ≡ 1</code> ou <code>f ≡ −1</code>.</p>
+<details><summary>Preuve</summary>
+Pour tout <code>x</code>, <code>f(x)² = 1</code> donne <code>f(x) ∈ {−1, 1}</code>. Supposons par l'absurde qu'il existe <code>a</code> et <code>b</code> avec <code>f(a) = −1</code> et <code>f(b) = 1</code>. <code>f</code> est continue sur le segment d'extrémités <code>a, b</code>, et <code>0</code> est entre <code>−1</code> et <code>1</code> : le TVI donne <code>c</code> avec <code>f(c) = 0</code>, mais alors <code>f(c)² = 0 ≠ 1</code>. Contradiction. Donc <code>f</code> ne prend qu'une seule des deux valeurs : <code>f ≡ 1</code> ou <code>f ≡ −1</code>. ∎
+</details>
+
+<p><strong>2.</strong> <code>f, g</code> continues avec <code>f(x) ≠ g(x)</code> pour tout <code>x</code>. Alors <code>f &lt; g</code> partout ou <code>f &gt; g</code> partout.</p>
+<details><summary>Preuve</summary>
+Posons <code>h = f − g</code> : continue, et <code>h(x) ≠ 0</code> pour tout <code>x</code>. Si <code>h</code> prenait une valeur <code>&gt; 0</code> en <code>a</code> et une valeur <code>&lt; 0</code> en <code>b</code>, le TVI donnerait un zéro de <code>h</code> entre <code>a</code> et <code>b</code> : contradiction. Donc <code>h &gt; 0</code> partout (<code>f &gt; g</code>) ou <code>h &lt; 0</code> partout (<code>f &lt; g</code>). ∎<br>
+🔧 <strong>Outil :</strong> « continue qui ne s'annule jamais ⇒ signe constant » (sur un intervalle). C'est le cœur de plein d'exercices.
+</details>
+
+<h2>Exercice 3 — Points fixes</h2>
+
+<p><strong>1.</strong> <code>f : [a,b] → [a,b]</code> continue ⇒ il existe <code>x</code> avec <code>f(x) = x</code>.</p>
+<details><summary>Preuve</summary>
+Posons <code>φ(x) = f(x) − x</code>, continue sur <code>[a,b]</code>. Comme <code>f(a) ∈ [a,b]</code>, <code>f(a) ≥ a</code> donc <code>φ(a) ≥ 0</code>. Comme <code>f(b) ≤ b</code>, <code>φ(b) ≤ 0</code>. Donc <code>0</code> est entre <code>φ(b)</code> et <code>φ(a)</code> : le TVI donne <code>x ∈ [a,b]</code> avec <code>φ(x) = 0</code>, c'est-à-dire <code>f(x) = x</code>. ∎
+</details>
+
+<p><strong>2.</strong> <code>f : R → R</code> continue : a-t-on forcément un point fixe ?</p>
+<details><summary>Réponse</summary>
+<strong>Non.</strong> <code>f(x) = x + 1</code> est continue et <code>f(x) = x</code> équivaut à <code>1 = 0</code> : jamais. (On a perdu l'hypothèse « <code>f</code> envoie <code>[a,b]</code> dans lui-même ».)
+</details>
+
+<p><strong>3.</strong> <code>f : R → R</code> continue et décroissante ⇒ un <strong>unique</strong> point fixe.</p>
+<details><summary>Preuve</summary>
+Posons <code>φ(x) = f(x) − x</code> : continue et <strong>strictement décroissante</strong>. En effet si <code>x &lt; y</code> : <code>f(x) ≥ f(y)</code> et <code>−x &gt; −y</code>, donc <code>φ(x) &gt; φ(y)</code>.<br>
+<strong>Existence.</strong> Posons <code>a = min(0, f(0) − 1)</code> et <code>b = max(0, f(0) + 1)</code>. Comme <code>f</code> est décroissante, <code>a ≤ 0 ⇒ f(a) ≥ f(0)</code>, donc <code>φ(a) = f(a) − a ≥ f(0) − a ≥ f(0) − (f(0) − 1) = 1 &gt; 0</code>. De même <code>b ≥ 0 ⇒ f(b) ≤ f(0)</code>, donc <code>φ(b) ≤ f(0) − b ≤ f(0) − (f(0)+1) = −1 &lt; 0</code>. Le TVI sur <code>[a,b]</code> donne <code>x</code> avec <code>φ(x) = 0</code>.<br>
+<strong>Unicité.</strong> <code>φ</code> est strictement monotone donc injective : elle s'annule au plus une fois. ∎
+</details>
+
+<h2>Exercice 4</h2>
+
+<p><strong>1.</strong> <code>φ : [a,b] → R</code> continue avec <code>φ(a) + φ(b) = 0</code> ⇒ <code>φ</code> s'annule.</p>
+<details><summary>Preuve</summary>
+<code>φ(b) = −φ(a)</code> : <code>φ(a)</code> et <code>φ(b)</code> sont opposés (ou nuls), donc <code>0</code> est entre <code>φ(a)</code> et <code>φ(b)</code>. TVI : il existe <code>x ∈ [a,b]</code> avec <code>φ(x) = 0</code>. ∎
+</details>
+
+<p><strong>2.</strong> <code>f : [a,b] → R</code> continue avec <code>f(a) = f(b)</code> ⇒ il existe <code>x ∈ [a, (a+b)/2]</code> tel que <code>f(x) = f(x + (b−a)/2)</code>.</p>
+<details><summary>Preuve</summary>
+Posons <code>ψ(x) = f(x) − f(x + (b−a)/2)</code> pour <code>x ∈ [a, (a+b)/2]</code>. L'argument <code>x + (b−a)/2</code> reste dans <code>[(a+b)/2, b] ⊂ [a,b]</code>, donc <code>ψ</code> est bien définie et continue.<br>
+<code>ψ(a) = f(a) − f((a+b)/2)</code> et <code>ψ((a+b)/2) = f((a+b)/2) − f(b)</code>. Somme : <code>ψ(a) + ψ((a+b)/2) = f(a) − f(b) = 0</code>. La question 1 (appliquée à <code>ψ</code> sur <code>[a, (a+b)/2]</code>) donne <code>x</code> avec <code>ψ(x) = 0</code>. ∎
+</details>
+
+<p><strong>3.</strong> Le randonneur : deux points de même altitude à 36 h d'écart.</p>
+<details><summary>Preuve</summary>
+Soit <code>h : [0, 72] → R</code> l'altitude en fonction du temps (en heures). Elle est continue (il ne se téléporte pas) et <code>h(0) = h(72)</code> (retour au départ). On applique la question 2 avec <code>a = 0</code>, <code>b = 72</code>, <code>(b−a)/2 = 36</code> : il existe <code>t ∈ [0, 36]</code> avec <code>h(t) = h(t + 36)</code>. ∎
+</details>
+
+<div class="box tip">
+<span class="box-title">🧰 Ce qu'on retient de ces trois feuilles</span>
+<ul>
+<li><strong>Preuve d'« il existe… »</strong> → fabrique <code>φ</code> (différence des deux côtés), cherche deux points de signes opposés, TVI.</li>
+<li><strong>Preuve de « surjective »</strong> → continuité + limites (ou deux suites de points) aux deux bouts.</li>
+<li><strong>« Continue qui ne s'annule pas »</strong> → signe constant sur l'intervalle.</li>
+<li><strong>Limite d'une fonction</strong> → factoriser le terme dominant (±∞), simplifier <code>(x−x₀)</code> (0/0), quantité conjuguée (racines), gendarmes (borné × petit).</li>
+<li><strong>« Pas de limite »</strong> → deux suites vers le même point avec deux limites d'images différentes.</li>
+<li><strong>Équations fonctionnelles</strong> (périodique, <code>f(2x) = f(x)</code>) → itérer + caractérisation séquentielle + unicité de la limite.</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

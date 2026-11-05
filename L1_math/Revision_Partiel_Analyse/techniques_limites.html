@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Analyse 1.1 — Drill de limites</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Drill de limites</span></div>
+<div class="page">
+
+<h1>🎯 Drill de limites — « retrouver les limites des feuilles de TD »</h1>
+<p>Le prof exige de la <strong>technique calculatoire</strong> : tu dois savoir retrouver les limites des feuilles de TD. Voici d'abord les 6 réflexes, puis toutes les limites des feuilles (et du sujet blanc) à refaire sur papier ; la réponse et la méthode sont cachées.</p>
+
+<h2>Les 6 réflexes</h2>
+<div class="tablewrap"><table>
+<tr><th>Situation</th><th>Réflexe</th><th>Exemple</th></tr>
+<tr><td>Fraction rationnelle en ±∞</td><td>Factoriser le terme de plus haut degré en haut et en bas</td><td><code>(2x⁴−3x²+x)/(x⁴+2x+1) → 2</code></td></tr>
+<tr><td>Fraction <code>0/0</code> en <code>x₀</code></td><td>Factoriser <code>(x−x₀)</code> et simplifier</td><td><code>(x²−x−2)/(x²−3x+2) → 3</code> en 2</td></tr>
+<tr><td>Différence de racines (∞−∞)</td><td>Quantité conjuguée, puis diviser par la plus grande puissance</td><td><code>√(x²+4x+3) − √(x²+1) → 2</code></td></tr>
+<tr><td>Terme borné (cos, sin, (−1)ⁿ, ⌊·⌋) mélangé</td><td>Encadrer, puis gendarmes ou comparaison</td><td><code>(2cos x + 1)/x → 0</code></td></tr>
+<tr><td>Dénominateur → 0</td><td>Étudier le <strong>signe</strong> à gauche et à droite</td><td><code>x/(x−1)</code> en 1 : pas de limite</td></tr>
+<tr><td>Croissances comparées (suites)</td><td><code>ln n ≪ nᵅ ≪ aⁿ ≪ n!</code> (pour a &gt; 1)</td><td><code>2ⁿ/n²⁰²⁶ → +∞</code>, <code>2026ⁿ/n! → 0</code></td></tr>
+</table></div>
+
+<div class="box warn">
+<span class="box-title">⚠️ Les 4 erreurs qui coûtent des points</span>
+1) Écrire <code>0/0 = 0</code> ou <code>∞/∞ = 1</code> (ce sont des formes indéterminées). 2) Oublier le <strong>signe</strong> d'un <code>0⁺</code> / <code>0⁻</code>. 3) Écrire « la limite vaut ∞ » sans dire <code>+∞</code> ou <code>−∞</code>. 4) Donner une valeur sans <strong>justifier</strong> : on te demande « en justifiant ».
+</div>
+
+<h2>Limites de suites (feuilles 2, 3 et sujet blanc)</h2>
+<ol>
+<li><code>√n</code> <details><summary>réponse</summary><strong>+∞</strong> (définition : <code>√n ≥ A</code> dès que <code>n ≥ A²</code>).</details></li>
+<li><code>n − √n</code> <details><summary>réponse</summary><code>n(1 − 1/√n)</code> avec <code>1 − 1/√n → 1</code> : <strong>+∞</strong>.</details></li>
+<li><code>(n² − n − 2)/(2n + 1)</code> <details><summary>réponse</summary>Degré 2 contre degré 1 : <strong>+∞</strong>.</details></li>
+<li><code>(−1)ⁿ n/(n+1)</code> <details><summary>réponse</summary><strong>Pas de limite</strong> : sous-suite paire → 1, impaire → −1.</details></li>
+<li><code>n + (−1)ⁿ</code> <details><summary>réponse</summary><strong>+∞</strong> : <code>n + (−1)ⁿ ≥ n − 1</code>.</details></li>
+<li><code>√(n+1) − √n</code> <details><summary>réponse</summary>Conjuguée : <code>1/(√(n+1)+√n) → </code><strong>0</strong>.</details></li>
+<li><code>(2n³ − n + 1)/(n³ − n² + 1)</code> <details><summary>réponse</summary><strong>2</strong> (même degré : rapport des coefficients dominants).</details></li>
+<li><code>⌊(3n² + (−1)ⁿ)/(n+1)⌋</code> <details><summary>réponse</summary>L'intérieur → +∞ (degré 2/degré 1), et <code>⌊x⌋ ≥ x − 1</code> : <strong>+∞</strong>.</details></li>
+<li><code>2ⁿ/n²⁰²⁶</code> <details><summary>réponse</summary><strong>+∞</strong> (exponentielle ≫ puissance).</details></li>
+<li><code>2026ⁿ/n!</code> <details><summary>réponse</summary><strong>0</strong> (critère du rapport : <code>2026/(n+1) → 0 &lt; 1</code>).</details></li>
+<li><code>n² − 2n√n cos(n³)</code> <details><summary>réponse</summary>Minorer par <code>n² − 2n√n → </code><strong>+∞</strong>.</details></li>
+</ol>
+
+<h2>Limites de fonctions (feuilles 5, 6 et sujet blanc)</h2>
+<ol>
+<li><code>lim(x→−∞) (x³ + x² − 2x + 1)/(x² + 1)</code> <details><summary>réponse</summary>Équivalent à <code>x</code> : <strong>−∞</strong>.</details></li>
+<li><code>lim(x→1) (2x − 2)/(x² + 2x − 3)</code> <details><summary>réponse</summary><code>2/(x+3)</code> : <strong>1/2</strong>.</details></li>
+<li><code>lim(x→+∞) (2cos x + 1)/x</code> <details><summary>réponse</summary>Gendarmes avec <code>3/x</code> : <strong>0</strong>.</details></li>
+<li><code>lim(x→π) cos(x + 3 sin x)</code> <details><summary>réponse</summary>Continuité : <code>cos π = </code><strong>−1</strong>.</details></li>
+<li><code>lim(x→0) cos x + 1/sin(x)²</code> <details><summary>réponse</summary><strong>+∞</strong> (<code>sin² → 0⁺</code>).</details></li>
+<li><code>lim(x→−∞) (2x⁴ − 3x² + x)/(x⁴ + 2x + 1)</code> <details><summary>réponse</summary><strong>2</strong>.</details></li>
+<li><code>lim(x→+∞) (2x − √x + 1)/(x + 2)</code> <details><summary>réponse</summary><strong>2</strong> (diviser par <code>x</code>).</details></li>
+<li><code>lim(x→2) (x² − x − 2)/(x² − 3x + 2)</code> <details><summary>réponse</summary><code>(x+1)/(x−1)</code> : <strong>3</strong>.</details></li>
+<li><code>lim(x→1) x/(x − 1)</code> <details><summary>réponse</summary>Latérales <code>+∞</code> et <code>−∞</code> : <strong>pas de limite</strong>.</details></li>
+<li><code>lim(x→+∞) √(x³ + 1) − x</code> <details><summary>réponse</summary>Minorer par <code>x(√x − 1)</code> : <strong>+∞</strong>.</details></li>
+<li><code>lim(x→+∞) √(4x² + x) − 2√(x² + 1)</code> <details><summary>réponse</summary>Séparer avec le pivot <code>2x</code> : <code>1/4 + 0 = </code><strong>1/4</strong>.</details></li>
+<li><code>lim(x→+∞) (x sin x + 1)/(2x² + 1)</code> <details><summary>réponse</summary>Gendarmes : <strong>0</strong>.</details></li>
+<li><code>lim(x→0) cos(1/x)</code> <details><summary>réponse</summary><strong>Pas de limite</strong> (suites <code>1/(2nπ)</code> et <code>1/(π+2nπ)</code>).</details></li>
+<li><code>lim(x→−∞) (3x⁵ − 6x⁴ + 2x + 1)/(x² + 2x − 3)</code> <details><summary>réponse</summary>Équivalent à <code>3x³</code> : <strong>−∞</strong>.</details></li>
+<li><code>lim(x→1) (x² + 4x − 5)/(3x² − 9x + 6)</code> <details><summary>réponse</summary><code>(x+5)/(3(x−2))</code> : <strong>−2</strong>.</details></li>
+<li><code>lim(x→+∞) √(x² + 4x + 3) − √(x² + 1)</code> <details><summary>réponse</summary>Conjuguée : <strong>2</strong>.</details></li>
+</ol>
+
+<div class="box tip">
+<span class="box-title">⏱️ Objectif</span>
+Refaire tout ça en moins de 45 minutes, sans regarder, avec une justification d'une à trois lignes pour chaque limite. Les corrections détaillées sont dans <a href="../Exercices/exercices_analyse_feuille2.html">F2</a>, <a href="../Exercices/exercices_analyse_feuille3.html">F3</a>, <a href="exos_feuilles_5_6_7.html">F5-7</a> et le <a href="partiel_blanc_corrige.html">sujet blanc</a>.
+</div>
+
+</div>
+</body>
+</html>

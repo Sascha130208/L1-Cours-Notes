@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Sujet blanc — corrigé</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Sujet d'entraînement — corrigé</span></div>
+<div class="page">
+
+<h1>📝 Sujet d'entraînement au partiel — corrigé détaillé</h1>
+
+<div class="box danger">
+<span class="box-title">🛑 Ne regarde pas tout de suite</span>
+Le prof conseille de faire le sujet <strong>en 2 h, sans notes ni calculatrice</strong>, puis de t'auto-évaluer. Ce corrigé est là pour l'étape « auto-évaluation ». Chaque réponse est cachée : fais d'abord le sujet sur papier.
+Le corrigé manuscrit du prof est sur MesCoursJV (déposé le 2 novembre) : compare avec le sien aussi.
+</div>
+
+<div class="box info">
+<span class="box-title">📊 Barème indicatif du prof (27 points, note max à 20)</span>
+Ex 1 : 1+2+2+2 = 7 · Ex 2 : 1+2+3 = 6 · Ex 3 : 2+3 = 5 · Ex 4 : 1+2 = 3 · Ex 5 : 2+1+3 = 6.<br>
+Les questions de cours (1.1, 1.2) sont « gratuites » si tu connais ton cours. Pas besoin de tout faire pour avoir 20.
+</div>
+
+<h2>Exercice 1 — Cours et suites (7 pts)</h2>
+
+<p><strong>1.</strong> Définition formelle de « <code>lim uₙ = +∞</code> ». <em>(1 pt)</em></p>
+<details><summary>Réponse</summary>
+<code>∀A ∈ R, ∃N ∈ N, ∀n ∈ N, (n ≥ N ⇒ uₙ ≥ A)</code>.<br>
+(Dans le cours on écrit <code>A &gt; 0</code> : c'est équivalent. Ce qu'il faut absolument : <strong>les quantificateurs dans le bon ordre</strong>, et <code>uₙ ≥ A</code> et non <code>|uₙ| ≥ A</code>.)
+</details>
+
+<p><strong>2.</strong> Théorème de la limite monotone (suites croissantes). <em>(2 pts)</em></p>
+<details><summary>Réponse</summary>
+Soit <code>(uₙ)</code> une suite réelle <strong>croissante</strong>.<br>
+• Si <code>(uₙ)</code> est majorée, alors elle converge, et sa limite est <code>sup{uₙ : n ∈ N}</code>.<br>
+• Si <code>(uₙ)</code> n'est pas majorée, alors <code>uₙ → +∞</code>.<br>
+(En particulier une suite croissante a toujours une limite dans <code>R ∪ {+∞}</code>.)
+</details>
+
+<p><strong>3.</strong> <code>uₙ ≤ vₙ</code> pour tout <code>n</code> et <code>uₙ → +∞</code>. A-t-on <code>vₙ → +∞</code> ? <em>(2 pts)</em></p>
+<details><summary>Réponse : oui</summary>
+Soit <code>A ∈ R</code>. Comme <code>uₙ → +∞</code>, il existe <code>N</code> tel que pour tout <code>n ≥ N</code>, <code>uₙ ≥ A</code>. Alors pour <code>n ≥ N</code> : <code>vₙ ≥ uₙ ≥ A</code>. Donc <code>vₙ → +∞</code>. ∎<br>
+⚠️ Ici l'énoncé a « forcément » et laisse croire à un piège. Ce n'est pas un piège : c'est une question de cours (Prop. 7 : <strong>comparaison vers +∞</strong>) à redémontrer avec la définition.
+</details>
+
+<p><strong>4.</strong> <code>lim(n→+∞) ( n² − 2n√n cos(n³) )</code>. <em>(2 pts)</em></p>
+<details><summary>Réponse : +∞</summary>
+<code>cos(n³)</code> n'a aucune raison d'avoir une limite, mais <code>−1 ≤ cos(n³) ≤ 1</code>. On minore donc :
+<code>n² − 2n√n cos(n³) ≥ n² − 2n√n = n√n(√n − 2)</code>.<br>
+Or <code>n√n → +∞</code> et <code>√n − 2 → +∞</code>, donc le produit <code>→ +∞</code>. Par comparaison, la suite tend vers <strong>+∞</strong>.<br>
+<em>Variante :</em> <code>n²(1 − 2cos(n³)/√n)</code>, avec <code>|2cos(n³)/√n| ≤ 2/√n → 0</code> (gendarmes), donc le facteur <code>→ 1</code> et on obtient <code>+∞ × 1 = +∞</code>.<br>
+🔧 <strong>Outil :</strong> un terme borné (cos, sin, (−1)ⁿ) à côté d'un terme qui explose : on borne le cos par ±1 et on compare (ou on factorise le terme dominant).
+</details>
+
+<h2>Exercice 2 — Limites de fonctions (6 pts)</h2>
+
+<p><strong>1.</strong> <code>lim(x→−∞) (3x⁵ − 6x⁴ + 2x + 1)/(x² + 2x − 3)</code> <em>(1 pt)</em></p>
+<details><summary>Réponse : −∞</summary>
+On factorise : numérateur <code>3x⁵(1 − 2/x + …)</code>, dénominateur <code>x²(1 + 2/x − 3/x²)</code>. Donc <code>f(x) = 3x³ · (1 − 2/x + 2/(3x⁴) + 1/(3x⁵)) / (1 + 2/x − 3/x²)</code>. La fraction <code>→ 1</code> et <code>3x³ → −∞</code> (<code>x → −∞</code>, puissance impaire). Limite : <strong>−∞</strong>.
+</details>
+
+<p><strong>2.</strong> <code>lim(x→1) (x² + 4x − 5)/(3x² − 9x + 6)</code> <em>(2 pts)</em></p>
+<details><summary>Réponse : −2</summary>
+En <code>x = 1</code> : <code>1+4−5 = 0</code> et <code>3−9+6 = 0</code> : forme <code>0/0</code>. On factorise : <code>x²+4x−5 = (x−1)(x+5)</code> ; <code>3x²−9x+6 = 3(x²−3x+2) = 3(x−1)(x−2)</code>.<br>
+Pour <code>x ≠ 1</code> : <code>(x+5)/(3(x−2)) → 6/(3·(−1)) = </code><strong>−2</strong>.
+</details>
+
+<p><strong>3.</strong> <code>lim(x→+∞) ( √(x²+4x+3) − √(x²+1) )</code> <em>(3 pts)</em></p>
+<details><summary>Réponse : 2</summary>
+Forme <code>∞ − ∞</code>. Quantité conjuguée :<br>
+<code>√(x²+4x+3) − √(x²+1) = ((x²+4x+3) − (x²+1)) / (√(x²+4x+3) + √(x²+1)) = (4x+2)/(√(x²+4x+3) + √(x²+1))</code>.<br>
+On divise num. et dén. par <code>x</code> (<code>x &gt; 0</code>, donc <code>√(x²+…)/x = √(1+…/x…)</code>) :
+<code>(4 + 2/x) / (√(1 + 4/x + 3/x²) + √(1 + 1/x²)) → 4/(1+1) = </code><strong>2</strong>.<br>
+🔧 <strong>Outil :</strong> différence de racines ⇒ quantité conjuguée, puis diviser par la plus grande puissance.
+</details>
+
+<h2>Exercice 3 — Valeurs intermédiaires (5 pts)</h2>
+
+<p><strong>1.</strong> <code>f : [0,1] → R</code> continue. Montrer que <code>f</code> n'est pas surjective. <em>(2 pts)</em></p>
+<details><summary>Preuve</summary>
+<code>[0,1]</code> est un segment et <code>f</code> est continue, donc <code>f([0,1])</code> est un segment <code>[m, M]</code> (Théorème de l'image d'un segment) : en particulier <code>f</code> est <strong>bornée</strong>. L'image <code>f([0,1]) ⊂ [m,M]</code> ne contient pas <code>M + 1</code>, donc <code>M+1</code> n'a pas d'antécédent : <code>f</code> n'est pas surjective (sur <code>R</code>). ∎<br>
+🔧 <strong>Outil :</strong> « continue sur un segment ⇒ bornée ». Hypothèse « segment » cruciale (sur <code>]0,1]</code>, <code>1/x</code> est continue et non bornée).
+</details>
+
+<p><strong>2.</strong> <code>g(x) = (x⁵ − 3x + 1)/(x² − x)</code> sur <code>]0,1[</code> est surjective. <em>(3 pts)</em></p>
+<details><summary>Preuve</summary>
+<code>x² − x = x(x−1) &lt; 0</code> sur <code>]0,1[</code> (jamais nul), donc <code>g</code> est continue sur <code>]0,1[</code>.<br>
+• en <code>0⁺</code> : numérateur <code>→ 1</code>, dénominateur <code>→ 0⁻</code> ⇒ <code>g → −∞</code> ;<br>
+• en <code>1⁻</code> : numérateur <code>→ 1 − 3 + 1 = −1</code>, dénominateur <code>→ 0⁻</code> ⇒ <code>g → +∞</code>.<br>
+Soit <code>y ∈ R</code>. Il existe <code>a ∈ ]0,1[</code> avec <code>g(a) &lt; y</code> et <code>b ∈ ]0,1[</code> avec <code>g(b) &gt; y</code>. TVI sur <code>[a,b]</code> (<code>a &lt; b</code> ici) : il existe <code>c</code> avec <code>g(c) = y</code>. Donc <code>g</code> est surjective. ∎<br>
+🔧 <strong>Attention au signe</strong> du dénominateur : <code>0⁻</code> et non <code>0⁺</code> : c'est là que les points se perdent.
+</details>
+
+<h2>Exercice 4 — Bornée (3 pts)</h2>
+
+<p><code>f : R → R</code> bornée, <code>g : R → R</code> continue.</p>
+<p><strong>1.</strong> <code>f∘g</code> est bornée. <em>(1 pt)</em></p>
+<details><summary>Preuve</summary>
+Il existe <code>M</code> tel que <code>|f(y)| ≤ M</code> pour <strong>tout</strong> <code>y ∈ R</code>. En particulier <code>|f(g(x))| ≤ M</code> pour tout <code>x</code>. ∎ (La continuité de <code>g</code> ne sert pas.)
+</details>
+
+<p><strong>2.</strong> <code>g∘f</code> est bornée. <em>(2 pts)</em></p>
+<details><summary>Preuve</summary>
+Soit <code>M</code> tel que <code>|f(x)| ≤ M</code> pour tout <code>x</code> : <code>f(R) ⊂ [−M, M]</code>. <code>g</code> est continue sur le <strong>segment</strong> <code>[−M, M]</code>, donc bornée sur ce segment : il existe <code>K</code> tel que <code>|g(y)| ≤ K</code> pour <code>y ∈ [−M, M]</code>. Alors pour tout <code>x</code>, <code>f(x) ∈ [−M, M]</code> donc <code>|g(f(x))| ≤ K</code>. ∎<br>
+⚠️ <strong>Ici la continuité de g est indispensable</strong> et c'est le piège : <code>g</code> continue sur <code>R</code> n'est pas bornée sur <code>R</code> (ex. <code>g(x) = x</code>), c'est le fait que f(R) reste dans un <em>segment</em> qui sauve.
+</details>
+
+<h2>Exercice 5 — Suite récurrente (6 pts)</h2>
+
+<p><code>f : R → R</code> continue, <code>f(0) = 1</code>, <code>f(x) ≠ x</code> pour tout <code>x</code>. <code>uₙ₊₁ = f(uₙ)</code>.</p>
+
+<p><strong>1.</strong> <code>f(x) &gt; x</code> pour tout <code>x ∈ R</code>. <em>(2 pts)</em></p>
+<details><summary>Preuve</summary>
+Posons <code>φ(x) = f(x) − x</code> : continue sur <code>R</code>, et <code>φ(x) ≠ 0</code> pour tout <code>x</code>. De plus <code>φ(0) = f(0) − 0 = 1 &gt; 0</code>.<br>
+Supposons par l'absurde qu'il existe <code>a</code> avec <code>φ(a) &lt; 0</code>. <code>0</code> est entre <code>φ(a)</code> et <code>φ(0)</code> : le TVI donne un point <code>c</code> (entre <code>a</code> et <code>0</code>) où <code>φ(c) = 0</code>, c'est-à-dire <code>f(c) = c</code> : contradiction. Donc <code>φ &gt; 0</code> partout : <code>f(x) &gt; x</code>. ∎<br>
+🔧 <strong>Outil :</strong> « continue, ne s'annule jamais » ⇒ signe constant, fixé par une valeur (ici en 0).
+</details>
+
+<p><strong>2.</strong> <code>(uₙ)</code> est strictement croissante. <em>(1 pt)</em></p>
+<details><summary>Preuve</summary>
+Pour tout <code>n</code> : <code>uₙ₊₁ = f(uₙ) &gt; uₙ</code> d'après la question 1 appliquée à <code>x = uₙ</code>. ∎
+</details>
+
+<p><strong>3.</strong> <code>uₙ → +∞</code>. <em>(3 pts)</em></p>
+<details><summary>Preuve</summary>
+<code>(uₙ)</code> est croissante (question 2). Par le théorème de la limite monotone : soit elle converge, soit elle tend vers <code>+∞</code>.<br>
+Supposons par l'absurde qu'elle converge vers <code>ℓ ∈ R</code>. Comme <code>f</code> est continue en <code>ℓ</code>, la caractérisation séquentielle donne <code>f(uₙ) → f(ℓ)</code>, c'est-à-dire <code>uₙ₊₁ → f(ℓ)</code>. Mais <code>uₙ₊₁ → ℓ</code> aussi (sous-suite d'une suite convergente). Par unicité de la limite, <code>f(ℓ) = ℓ</code> : cela contredit l'hypothèse <code>f(x) ≠ x</code> pour tout <code>x</code>.<br>
+Donc <code>(uₙ)</code> ne converge pas, et étant croissante, <code>uₙ → +∞</code>. ∎<br>
+🔧 <strong>Outil :</strong> suite récurrente <code>uₙ₊₁ = f(uₙ)</code>, f continue : si elle converge, <strong>la limite est un point fixe</strong> (<code>ℓ = f(ℓ)</code>). Pas de point fixe possible ⇒ pas de convergence.
+</details>
+
+<div class="box tip">
+<span class="box-title">✅ Auto-évaluation</span>
+Compte tes points avec le barème, puis note pour chaque question perdue <strong>pourquoi</strong> : (a) définition ou théorème mal su, (b) idée non trouvée, (c) calcul faux, (d) rédaction incomplète. Révise ensuite en fonction de la cause dominante. Pour (a), refais les <a href="fiche_definitions_preuves.html">définitions et preuves à savoir</a> ; pour (c), le <a href="techniques_limites.html">drill de limites</a>.
+</div>
+
+</div>
+</body>
+</html>

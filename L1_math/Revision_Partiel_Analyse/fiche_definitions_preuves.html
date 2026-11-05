@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Analyse 1.1 — Définitions et preuves à connaître</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Définitions et preuves à connaître</span></div>
+<div class="page">
+
+<h1>📚 Analyse 1.1 — Définitions et preuves à connaître</h1>
+<p>Le prof l'a écrit : « vous devez connaître <strong>parfaitement les définitions</strong> et savoir <strong>refaire les démonstrations simples du cours</strong> ». Cette page suit le cours dans l'ordre, depuis le début, jusqu'à la continuité. Pour chaque notion : la définition exacte, puis (si c'est une preuve à savoir) la preuve, cachée pour que tu essaies d'abord.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Méthode d'apprentissage</span>
+1) Lis la définition, cache-la, réécris-la de mémoire. 2) Pour chaque preuve : lis le titre, essaie sur papier, <em>puis</em> ouvre. 3) Une preuve est « sue » quand tu peux l'écrire sans rien regarder <strong>en justifiant chaque ligne</strong>.
+Pour la mise en forme, voir <a href="../Revision_Structures/methode.html">la méthode de rédaction</a>. Cours détaillé : <a href="../02_Analyse/00_nombres_reels.html">ch. 1</a> · <a href="../02_Analyse/01_suites.html">ch. 2</a> · <a href="../02_Analyse/02_limites_fonctions_continues.html">ch. 3</a>.
+</div>
+
+<!-- ========================= CHAPITRE 1 ========================= -->
+<h1>Partie 1 — Les réels</h1>
+
+<h2>1.1 Définitions</h2>
+<div class="box info">
+<span class="box-title">📌 À savoir mot pour mot</span>
+<ul>
+<li><strong>Intervalle</strong> : <code>I ⊂ R</code> est un intervalle si <code>∀a,b ∈ I, ∀x, (a ≤ x ≤ b ⇒ x ∈ I)</code>. <em>Segment</em> = intervalle <code>[a,b]</code> fermé borné.</li>
+<li><strong>Valeur absolue</strong> : <code>|x| = x</code> si <code>x ≥ 0</code>, <code>|x| = −x</code> si <code>x &lt; 0</code>. <strong>Inégalité triangulaire</strong> : <code>|x+y| ≤ |x| + |y|</code>.</li>
+<li><strong>Partie entière</strong> : <code>⌊x⌋</code> est l'unique entier <code>k</code> tel que <code>k ≤ x &lt; k+1</code>.</li>
+<li><strong>Majorant</strong> de <code>A</code> : <code>M</code> tel que <code>∀a ∈ A, a ≤ M</code>. <strong>Minorant</strong> : <code>m</code> tel que <code>∀a ∈ A, a ≥ m</code>. <code>A</code> est <strong>majorée / minorée / bornée</strong> si elle a un majorant / minorant / les deux.</li>
+<li><strong>Plus grand élément</strong> (max) de <code>A</code> : <code>α ∈ A</code> et <code>∀a ∈ A, a ≤ α</code>. Idem plus petit élément.</li>
+<li><strong>Borne supérieure</strong> <code>sup A</code> : le <em>plus petit majorant</em> de <code>A</code>. <strong>Borne inférieure</strong> <code>inf A</code> : le <em>plus grand minorant</em>.</li>
+<li><strong>Axiome / théorème de la borne supérieure</strong> : toute partie <strong>non vide et majorée</strong> de <code>R</code> admet une borne supérieure.</li>
+<li><strong>Propriété d'Archimède</strong> : <code>∀x ∈ R, ∃n ∈ N, n &gt; x</code>.</li>
+<li><strong>Densité de Q</strong> : entre deux réels <code>a &lt; b</code> il y a un rationnel (et un irrationnel).</li>
+</ul>
+</div>
+
+<h2>1.2 Preuves à savoir</h2>
+
+<details><summary><strong>P1.</strong> √2 est irrationnel</summary>
+Supposons par l'absurde <code>√2 = p/q</code> avec <code>p ∈ Z</code>, <code>q ∈ N*</code> premiers entre eux. Alors <code>p² = 2q²</code>, donc <code>p²</code> est pair, donc <code>p</code> est pair (si <code>p</code> était impair, <code>p²</code> serait impair) : <code>p = 2p'</code>. Alors <code>4p'² = 2q²</code>, soit <code>q² = 2p'²</code>, donc <code>q</code> est pair. Alors <code>p</code> et <code>q</code> sont tous deux pairs, ce qui contredit « premiers entre eux ». ∎
+</details>
+
+<details><summary><strong>P2.</strong> Caractérisation de la borne supérieure : <code>M = sup A ⟺ (M majorant) et (∀ε &gt; 0, ∃a ∈ A, a &gt; M − ε)</code></summary>
+(⇒) Si <code>M = sup A</code>, c'est un majorant. Soit <code>ε &gt; 0</code>. Comme <code>M − ε &lt; M</code> et que <code>M</code> est le <em>plus petit</em> majorant, <code>M−ε</code> n'est pas un majorant : il existe <code>a ∈ A</code> avec <code>a &gt; M − ε</code>.<br>
+(⇐) Soit <code>M</code> majorant vérifiant la propriété. Soit <code>M'</code> un majorant avec <code>M' &lt; M</code>. Avec <code>ε = M − M' &gt; 0</code>, il existe <code>a ∈ A</code> avec <code>a &gt; M − ε = M'</code> : <code>M'</code> n'est pas un majorant. Contradiction. Donc tout majorant est <code>≥ M</code> : <code>M = sup A</code>. ∎<br>
+🔧 <strong>Usage :</strong> montrer qu'un nombre est un sup (ex. <code>sup{1 − 1/n} = 1</code> : on prend <code>n &gt; 1/ε</code> par Archimède).
+</details>
+
+<details><summary><strong>P3.</strong> Exercices types sur les sup (feuille 1, ex. 4) : <code>inf(−A) = −sup A</code>, <code>sup(A∪B) = max(sup A, sup B)</code>, <code>sup(A+B) = sup A + sup B</code></summary>
+<strong>Schéma commun :</strong> montrer que le candidat est un <em>majorant</em>, puis qu'on ne peut pas faire plus petit (avec la caractérisation ε).<br><br>
+<strong>Exemple : <code>sup(A+B) = sup A + sup B</code>.</strong> Soit <code>s = sup A + sup B</code>.<br>
+• Majorant : pour <code>a ∈ A, b ∈ B</code>, <code>a + b ≤ sup A + sup B</code>.<br>
+• Plus petit : soit <code>ε &gt; 0</code>. Il existe <code>a ∈ A</code> avec <code>a &gt; sup A − ε/2</code> et <code>b ∈ B</code> avec <code>b &gt; sup B − ε/2</code>. Alors <code>a + b &gt; s − ε</code>. ∎
+</details>
+
+<details><summary><strong>P4.</strong> Inégalité triangulaire et la seconde <code>||x| − |y|| ≤ |x − y|</code></summary>
+On a <code>−|x| ≤ x ≤ |x|</code> et <code>−|y| ≤ y ≤ |y|</code>. En additionnant : <code>−(|x|+|y|) ≤ x+y ≤ |x|+|y|</code>, c'est-à-dire <code>|x+y| ≤ |x|+|y|</code>.<br>
+Seconde : <code>|x| = |(x−y)+y| ≤ |x−y| + |y|</code> donc <code>|x| − |y| ≤ |x−y|</code>. En échangeant <code>x</code> et <code>y</code> : <code>|y| − |x| ≤ |x−y|</code>. Donc <code>||x|−|y|| ≤ |x−y|</code>. ∎
+</details>
+
+<!-- ========================= SUITES ========================= -->
+<h1>Partie 2 — Les suites</h1>
+
+<h2>2.1 Définitions</h2>
+<div class="box info">
+<span class="box-title">📌 À savoir mot pour mot</span>
+<ul>
+<li><strong>Limite finie</strong> : <code>uₙ → ℓ</code> ⟺ <code>∀ε &gt; 0, ∃N ∈ N, ∀n ≥ N, |uₙ − ℓ| ≤ ε</code>.</li>
+<li><strong>Limite +∞</strong> : <code>uₙ → +∞</code> ⟺ <code>∀A, ∃N, ∀n ≥ N, uₙ ≥ A</code>. (−∞ : <code>uₙ ≤ −A</code>.)</li>
+<li><strong>Convergente</strong> : a une limite <em>finie</em>. <strong>Divergente</strong> : sinon (limite infinie <em>ou</em> pas de limite).</li>
+<li><strong>Bornée</strong> : <code>∃M, ∀n, |uₙ| ≤ M</code>. <strong>Croissante</strong> : <code>∀n, uₙ ≤ uₙ₊₁</code>.</li>
+<li><strong>Suite extraite</strong> (sous-suite) : <code>(u_φ(n))</code> avec <code>φ : N → N</code> <em>strictement croissante</em>.</li>
+<li><strong>Suites adjacentes</strong> : <code>(uₙ)</code> croissante, <code>(vₙ)</code> décroissante, <code>uₙ ≤ vₙ</code> pour tout <code>n</code>, et <code>vₙ − uₙ → 0</code>.</li>
+<li><strong>Négation à connaître</strong> : « <code>uₙ</code> ne tend pas vers +∞ » ⟺ <code>∃A, ∀N, ∃n ≥ N, uₙ &lt; A</code>.</li>
+</ul>
+</div>
+
+<h2>2.2 Théorèmes à énoncer</h2>
+<div class="box info">
+<span class="box-title">📌 Énoncés exacts</span>
+<ul>
+<li><strong>Unicité de la limite.</strong></li>
+<li><strong>Convergente ⇒ bornée.</strong> (La réciproque est fausse : <code>(−1)ⁿ</code>.)</li>
+<li><strong>Passage à la limite dans les inégalités larges :</strong> <code>uₙ ≤ vₙ</code> et les deux convergent ⇒ <code>lim uₙ ≤ lim vₙ</code> (pas d'inégalité stricte conservée).</li>
+<li><strong>Comparaison :</strong> <code>uₙ ≤ vₙ</code> et <code>uₙ → +∞</code> ⇒ <code>vₙ → +∞</code>.</li>
+<li><strong>Gendarmes :</strong> <code>uₙ ≤ vₙ ≤ wₙ</code>, <code>uₙ → ℓ</code> et <code>wₙ → ℓ</code> ⇒ <code>vₙ → ℓ</code>.</li>
+<li><strong>Borné × tend vers 0 → 0.</strong></li>
+<li><strong>Limite monotone :</strong> croissante majorée ⇒ converge (vers <code>sup</code>) ; croissante non majorée ⇒ <code>→ +∞</code>.</li>
+<li><strong>Suites adjacentes ⇒ elles convergent vers la même limite</strong>, et <code>uₙ ≤ ℓ ≤ vₙ</code>.</li>
+<li><strong>Sous-suites :</strong> <code>uₙ → ℓ</code> ⇒ toute sous-suite <code>→ ℓ</code>. <strong>Bolzano-Weierstrass :</strong> toute suite bornée a une sous-suite convergente.</li>
+<li><strong>Critère du rapport :</strong> <code>uₙ &gt; 0</code>, <code>uₙ₊₁/uₙ → ℓ &lt; 1</code> ⇒ <code>uₙ → 0</code> (feuille 3). Si <code>ℓ &gt; 1</code> ⇒ <code>+∞</code>. Si <code>ℓ = 1</code> on ne peut pas conclure (<code>n</code> et <code>1/(n+1)</code>).</li>
+<li><strong>Suite géométrique :</strong> <code>aⁿ → 0</code> si <code>|a| &lt; 1</code> ; <code>→ +∞</code> si <code>a &gt; 1</code> ; diverge si <code>a ≤ −1</code>. <strong>Somme :</strong> <code>1 + a + … + aⁿ = (1 − aⁿ⁺¹)/(1 − a)</code>.</li>
+</ul>
+</div>
+
+<h2>2.3 Preuves à savoir</h2>
+
+<details><summary><strong>P5.</strong> Unicité de la limite</summary>
+Supposons <code>uₙ → ℓ</code> et <code>uₙ → ℓ'</code> avec <code>ℓ ≠ ℓ'</code>. Posons <code>ε = |ℓ − ℓ'|/3 &gt; 0</code>. Il existe <code>N₁</code> avec <code>|uₙ − ℓ| ≤ ε</code> pour <code>n ≥ N₁</code> et <code>N₂</code> avec <code>|uₙ − ℓ'| ≤ ε</code> pour <code>n ≥ N₂</code>. Pour <code>n ≥ max(N₁,N₂)</code> : <code>|ℓ − ℓ'| ≤ |ℓ − uₙ| + |uₙ − ℓ'| ≤ 2ε = (2/3)|ℓ − ℓ'|</code>, ce qui donne <code>|ℓ−ℓ'| ≤ (2/3)|ℓ−ℓ'|</code>, impossible car <code>|ℓ−ℓ'| &gt; 0</code>. ∎<br>
+(Avec la définition en « ≤ ε », on prend <code>ε = |ℓ−ℓ'|/3</code> : avec <code>/2</code> on obtiendrait seulement <code>|ℓ−ℓ'| ≤ |ℓ−ℓ'|</code>, pas de contradiction.)
+</details>
+
+<details><summary><strong>P6.</strong> Convergente ⇒ bornée</summary>
+Soit <code>uₙ → ℓ</code>. Avec <code>ε = 1</code> : il existe <code>N</code> tel que <code>n ≥ N ⇒ |uₙ − ℓ| ≤ 1</code>, donc <code>|uₙ| ≤ |ℓ| + 1</code>. Posons <code>M = max(|u₀|, …, |u_{N−1}|, |ℓ|+1)</code> : alors <code>|uₙ| ≤ M</code> pour tout <code>n</code>. ∎
+</details>
+
+<details><summary><strong>P7.</strong> Somme : <code>uₙ → ℓ</code>, <code>vₙ → ℓ'</code> ⇒ <code>uₙ + vₙ → ℓ + ℓ'</code></summary>
+Soit <code>ε &gt; 0</code>. Il existe <code>N₁</code> tel que <code>n ≥ N₁ ⇒ |uₙ − ℓ| ≤ ε/2</code> et <code>N₂</code> tel que <code>n ≥ N₂ ⇒ |vₙ − ℓ'| ≤ ε/2</code>. Pour <code>n ≥ max(N₁, N₂)</code> : <code>|(uₙ+vₙ) − (ℓ+ℓ')| ≤ |uₙ − ℓ| + |vₙ − ℓ'| ≤ ε</code>. ∎
+</details>
+
+<details><summary><strong>P8.</strong> Borné × tend vers 0 → 0 (feuille 2, ex. 3.1)</summary>
+Soit <code>M &gt; 0</code> avec <code>|uₙ| ≤ M</code>. Soit <code>ε &gt; 0</code> ; comme <code>vₙ → 0</code>, il existe <code>N</code> tel que <code>n ≥ N ⇒ |vₙ| ≤ ε/M</code>. Alors <code>|uₙvₙ| ≤ M·ε/M = ε</code>. ∎
+</details>
+
+<details><summary><strong>P9.</strong> Comparaison vers +∞ et gendarmes</summary>
+<strong>Comparaison.</strong> Soit <code>A</code>. Il existe <code>N</code> : <code>n ≥ N ⇒ uₙ ≥ A</code>. Alors <code>vₙ ≥ uₙ ≥ A</code> pour <code>n ≥ N</code>. ∎<br>
+<strong>Gendarmes.</strong> Soit <code>ε &gt; 0</code>. Il existe <code>N</code> tel que pour <code>n ≥ N</code> : <code>ℓ − ε ≤ uₙ</code> et <code>wₙ ≤ ℓ + ε</code>. Alors <code>ℓ − ε ≤ uₙ ≤ vₙ ≤ wₙ ≤ ℓ + ε</code>, soit <code>|vₙ − ℓ| ≤ ε</code>. ∎
+</details>
+
+<details><summary><strong>P10.</strong> Théorème de la limite monotone (croissante majorée converge)</summary>
+Soit <code>A = {uₙ : n ∈ N}</code>, non vide et majorée. Elle a une borne sup <code>ℓ</code> (théorème de la borne supérieure). Soit <code>ε &gt; 0</code>. Par caractérisation (P2), il existe <code>N</code> avec <code>u_N &gt; ℓ − ε</code>. Comme <code>(uₙ)</code> est croissante, pour <code>n ≥ N</code> : <code>ℓ − ε &lt; u_N ≤ uₙ ≤ ℓ</code>. Donc <code>|uₙ − ℓ| ≤ ε</code> : <code>uₙ → ℓ</code>. ∎<br>
+<strong>Non majorée :</strong> pour tout <code>A</code> il existe <code>N</code> avec <code>u_N ≥ A</code>, puis <code>uₙ ≥ u_N ≥ A</code> pour <code>n ≥ N</code> : <code>uₙ → +∞</code>.
+</details>
+
+<details><summary><strong>P11.</strong> Suites adjacentes convergent vers la même limite</summary>
+<code>(uₙ)</code> est croissante et <code>uₙ ≤ vₙ ≤ v₀</code> (car <code>(vₙ)</code> décroissante) : majorée, donc converge vers <code>ℓ</code>. <code>(vₙ)</code> est décroissante et <code>vₙ ≥ uₙ ≥ u₀</code> : minorée, donc converge vers <code>ℓ'</code>. Alors <code>vₙ − uₙ → ℓ' − ℓ</code> ; mais <code>vₙ − uₙ → 0</code>, donc <code>ℓ = ℓ'</code> (unicité). En plus <code>uₙ ≤ ℓ ≤ vₙ</code> (croissante vers ℓ ⇒ <code>uₙ ≤ ℓ</code> ; décroissante vers ℓ ⇒ <code>vₙ ≥ ℓ</code>). ∎
+</details>
+
+<details><summary><strong>P12.</strong> Sous-suite d'une suite convergente ; critère de divergence</summary>
+Comme <code>φ</code> est strictement croissante à valeurs dans N, <code>φ(n) ≥ n</code> (récurrence). Si <code>uₙ → ℓ</code> : pour <code>ε &gt; 0</code>, il existe <code>N</code> avec <code>k ≥ N ⇒ |u_k − ℓ| ≤ ε</code>. Pour <code>n ≥ N</code>, <code>φ(n) ≥ n ≥ N</code> donc <code>|u_φ(n) − ℓ| ≤ ε</code>. ∎<br>
+<strong>Conséquence :</strong> deux sous-suites de limites différentes ⇒ la suite diverge (<code>(−1)ⁿ</code>).
+</details>
+
+<details><summary><strong>P13.</strong> La suite harmonique diverge (feuille 3, ex. 5)</summary>
+<code>Hₙ = 1 + 1/2 + … + 1/n</code> est croissante. <code>H₂ₙ − Hₙ = 1/(n+1) + … + 1/(2n)</code> : <code>n</code> termes, tous <code>≥ 1/(2n)</code>, donc <code>≥ n · 1/(2n) = 1/2</code>. Si <code>Hₙ → L ∈ R</code>, alors <code>H₂ₙ → L</code> aussi (sous-suite) et <code>H₂ₙ − Hₙ → 0</code>, contredisant <code>≥ 1/2</code>. Donc <code>Hₙ</code> diverge, et comme elle est croissante, <code>Hₙ → +∞</code>. ∎
+</details>
+
+<details><summary><strong>P14.</strong> Critère du rapport (feuille 3, ex. 2.1)</summary>
+Soit <code>ℓ &lt; r &lt; 1</code>. À partir d'un rang <code>N</code>, <code>uₙ₊₁/uₙ &lt; r</code>, donc <code>uₙ₊₁ &lt; r uₙ &lt; uₙ</code> (car <code>uₙ &gt; 0</code>, <code>r &lt; 1</code>) : décroissante. Par récurrence <code>0 &lt; uₙ &lt; rⁿ⁻ᴺ u_N → 0</code> (suite géométrique de raison <code>r ∈ [0,1[</code>). Gendarmes : <code>uₙ → 0</code>. ∎
+</details>
+
+<details><summary><strong>P15.</strong> Une suite d'entiers convergente est stationnaire (feuille 2, ex. 3.4)</summary>
+Avec <code>ε = 1/2</code> : pour <code>n, m ≥ N</code>, <code>|uₙ − uₘ| ≤ |uₙ − ℓ| + |ℓ − uₘ| &lt; 1</code>. Or <code>uₙ − uₘ</code> est un <em>entier</em> de valeur absolue <code>&lt; 1</code> : il vaut 0. Donc <code>uₙ = u_N</code> pour tout <code>n ≥ N</code>. ∎
+</details>
+
+<!-- ========================= FONCTIONS ========================= -->
+<h1>Partie 3 — Limites de fonctions et continuité</h1>
+
+<h2>3.1 Définitions</h2>
+<div class="box info">
+<span class="box-title">📌 À savoir mot pour mot</span>
+<ul>
+<li><strong>Paire / impaire</strong> : <code>f(−x) = f(x)</code> / <code>f(−x) = −f(x)</code> pour tout <code>x</code> (domaine symétrique). <strong>Périodique</strong> de période <code>T &gt; 0</code> : <code>f(x+T) = f(x)</code> pour tout <code>x</code>.</li>
+<li><strong>Croissante</strong> : <code>x ≤ y ⇒ f(x) ≤ f(y)</code>. <strong>Strictement croissante</strong> : <code>x &lt; y ⇒ f(x) &lt; f(y)</code>.</li>
+<li><strong>Limite finie en <code>x₀</code></strong> : <code>∀ε &gt; 0, ∃δ &gt; 0, ∀x ∈ I, (|x − x₀| ≤ δ ⇒ |f(x) − ℓ| ≤ ε)</code>.</li>
+<li><strong>Limite <code>+∞</code> en <code>x₀</code></strong> : <code>∀A, ∃δ &gt; 0, ∀x, (|x−x₀| ≤ δ ⇒ f(x) ≥ A)</code>. <strong>Limite en <code>+∞</code></strong> : <code>∀ε, ∃B, ∀x ≥ B, |f(x) − ℓ| ≤ ε</code>.</li>
+<li><strong>Continue en <code>x₀</code></strong> : <code>f</code> a pour limite <code>f(x₀)</code> en <code>x₀</code>. Continue sur <code>I</code> : continue en tout point.</li>
+<li><strong>Prolongement par continuité</strong> en <code>x₀</code> : si <code>f</code> a une limite finie <code>ℓ</code> en <code>x₀</code>, on pose <code>f(x₀) = ℓ</code>.</li>
+<li><strong>Bijection</strong> : injective + surjective. Surjective : <code>∀y, ∃x, f(x) = y</code>.</li>
+</ul>
+</div>
+
+<h2>3.2 Théorèmes à énoncer</h2>
+<div class="box info">
+<span class="box-title">📌 Énoncés exacts</span>
+<ul>
+<li><strong>Caractérisation séquentielle :</strong> <code>f</code> a pour limite <code>ℓ</code> en <code>x₀</code> ⟺ pour toute suite <code>xₙ → x₀</code>, <code>f(xₙ) → ℓ</code>. Même chose pour la continuité (avec <code>ℓ = f(x₀)</code>). <em>Usage :</em> prouver <strong>« pas de limite »</strong> (deux suites) et <strong>« si <code>uₙ → ℓ</code> et <code>f</code> continue, alors <code>f(uₙ) → f(ℓ)</code> »</strong> (suites récurrentes).</li>
+<li><strong>Opérations</strong> (somme, produit, quotient, composée) et <strong>continuité</strong> de ces opérations. Gendarmes pour les fonctions.</li>
+<li><strong>Théorème des valeurs intermédiaires :</strong> <code>f</code> continue sur <code>[a,b]</code>, <code>y</code> entre <code>f(a)</code> et <code>f(b)</code> ⇒ <code>∃c ∈ [a,b], f(c) = y</code>.</li>
+<li><strong>Image d'un intervalle :</strong> <code>f</code> continue sur un intervalle <code>I</code> ⇒ <code>f(I)</code> est un intervalle.</li>
+<li><strong>Image d'un segment :</strong> <code>f</code> continue sur <code>[a,b]</code> ⇒ <code>f([a,b]) = [m, M]</code> : <code>f</code> est <em>bornée</em> et <em>atteint ses bornes</em>.</li>
+<li><strong>Théorème de la bijection :</strong> <code>f</code> continue et strictement monotone sur un intervalle <code>I</code> ⇒ bijection de <code>I</code> sur <code>f(I)</code>, et <code>f⁻¹</code> est continue, strictement monotone de même sens.</li>
+</ul>
+</div>
+
+<h2>3.3 Preuves à savoir</h2>
+
+<details><summary><strong>P16.</strong> Caractérisation séquentielle (⇒) : si <code>f → ℓ</code> en <code>x₀</code> et <code>xₙ → x₀</code>, alors <code>f(xₙ) → ℓ</code></summary>
+Soit <code>ε &gt; 0</code>. Il existe <code>δ &gt; 0</code> tel que <code>|x − x₀| ≤ δ ⇒ |f(x) − ℓ| ≤ ε</code>. Comme <code>xₙ → x₀</code>, il existe <code>N</code> tel que <code>n ≥ N ⇒ |xₙ − x₀| ≤ δ</code>. Alors pour <code>n ≥ N</code> : <code>|f(xₙ) − ℓ| ≤ ε</code>. ∎<br>
+<strong>Corollaire (« pas de limite »)</strong> : si <code>xₙ → x₀</code>, <code>yₙ → x₀</code> avec <code>f(xₙ) → a</code>, <code>f(yₙ) → b</code>, <code>a ≠ b</code>, alors <code>f</code> n'a pas de limite en <code>x₀</code> (par unicité). Exemple : <code>cos(1/x)</code> en 0.
+</details>
+
+<details><summary><strong>P17.</strong> Théorème des valeurs intermédiaires (par la borne supérieure)</summary>
+Supposons <code>f(a) ≤ y ≤ f(b)</code> (sinon on applique le résultat à <code>−f</code>). Soit <code>A = {x ∈ [a,b] : f(x) ≤ y}</code> : non vide (<code>a ∈ A</code>), majorée par <code>b</code>. Soit <code>c = sup A ∈ [a,b]</code>.<br>
+• <strong><code>f(c) ≤ y</code></strong> : par caractérisation de la borne sup, il existe <code>aₙ ∈ A</code> avec <code>aₙ → c</code>. Comme <code>f(aₙ) ≤ y</code> et <code>f</code> est continue en <code>c</code>, <code>f(c) = lim f(aₙ) ≤ y</code>.<br>
+• <strong><code>f(c) ≥ y</code></strong> : si <code>c = b</code>, <code>f(c) = f(b) ≥ y</code>. Si <code>c &lt; b</code>, les points <code>xₙ = c + (b−c)/n</code> sont dans <code>]c,b]</code>, donc hors de <code>A</code> (ce sont des points au-dessus du sup) : <code>f(xₙ) &gt; y</code> ; <code>xₙ → c</code> donc <code>f(c) = lim f(xₙ) ≥ y</code>.<br>
+Donc <code>f(c) = y</code>. ∎
+</details>
+
+<details><summary><strong>P18.</strong> Corollaire : continue, ne s'annule pas sur un intervalle ⇒ signe constant</summary>
+Si <code>f</code> prenait des valeurs <code>&gt; 0</code> en <code>a</code> et <code>&lt; 0</code> en <code>b</code>, le TVI (entre <code>a</code> et <code>b</code>) donnerait un point où <code>f = 0</code>. Contradiction. ∎ <strong>(À savoir refaire : sert dans la feuille 7 et dans le sujet blanc, ex. 5.)</strong>
+</details>
+
+<details><summary><strong>P19.</strong> Image d'un intervalle : <code>f(I)</code> est un intervalle</summary>
+Soient <code>y₁ &lt; y₂</code> dans <code>f(I)</code>, <code>y₁ = f(x₁)</code>, <code>y₂ = f(x₂)</code>, et <code>y ∈ [y₁, y₂]</code>. Le TVI entre <code>x₁</code> et <code>x₂</code> (dans <code>I</code> car c'est un intervalle) donne <code>c</code> avec <code>f(c) = y</code> : <code>y ∈ f(I)</code>. ∎
+</details>
+
+<h2>3.4 Contre-exemples à connaître (typiques du « Vrai ou faux »)</h2>
+<div class="tablewrap"><table>
+<tr><th>Affirmation fausse</th><th>Contre-exemple</th></tr>
+<tr><td>bornée ⇒ convergente</td><td><code>(−1)ⁿ</code></td></tr>
+<tr><td><code>uₙ ≤ vₙ</code> et <code>uₙ → ℓ</code> ⇒ <code>vₙ → ℓ</code></td><td><code>uₙ = 0</code>, <code>vₙ = n</code></td></tr>
+<tr><td><code>|uₙ|</code> converge ⇒ <code>uₙ</code> converge</td><td><code>(−1)ⁿ</code></td></tr>
+<tr><td><code>uₙ₊₁ − uₙ → 0</code> ⇒ <code>uₙ</code> converge</td><td><code>√n</code> ou <code>Hₙ</code></td></tr>
+<tr><td><code>uₙ → 0</code>, positifs ⇒ décroissante à partir d'un rang</td><td><code>(2 + (−1)ⁿ)/n</code></td></tr>
+<tr><td><code>uₙ</code> converge, <code>vₙ</code> diverge ⇒ <code>uₙvₙ</code> diverge</td><td><code>uₙ = 0</code>, <code>vₙ = (−1)ⁿ</code></td></tr>
+<tr><td><code>f(x) ≥ x</code> ⇒ <code>f</code> croissante</td><td><code>x + 1/x</code></td></tr>
+<tr><td><code>f</code>, <code>g</code> croissantes ⇒ <code>fg</code> croissante</td><td><code>f = g = id</code> : <code>x²</code></td></tr>
+<tr><td><code>f</code> continue sur <code>R</code> ⇒ point fixe</td><td><code>x + 1</code></td></tr>
+<tr><td>continue ⇒ image d'un intervalle bornée</td><td><code>1/x</code> sur <code>]0,1]</code></td></tr>
+<tr><td>limite d'une inégalité stricte reste stricte</td><td><code>1/n &gt; 0</code> mais <code>lim = 0</code></td></tr>
+</table></div>
+
+</div>
+</body>
+</html>
