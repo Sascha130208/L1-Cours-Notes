@@ -2,130 +2,156 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>L1 Maths — Sommaire</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  .matieres { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 14px 0 22px; }
+  .matiere { display: block; padding: 16px 18px; border-radius: 12px; text-decoration: none; color: var(--text); background: var(--card); border: 2px solid var(--border); }
+  .matiere:hover { border-color: var(--primary); }
+  .matiere b { display: block; font-size: 18px; margin-bottom: 4px; }
+  .matiere span { font-size: 13.5px; color: var(--muted); }
+  .m-analyse { border-left: 8px solid #4338ca; }
+  .m-sf { border-left: 8px solid #0d9488; }
+  .m-graphes { border-left: 8px solid #f5a623; }
+  .bandeau { margin: 34px 0 6px; padding: 10px 16px; border-radius: 10px; color: #fff; font-size: 22px; font-weight: 700; }
+  .b-analyse { background: #4338ca; }
+  .b-sf { background: #0d9488; }
+  .b-graphes { background: #d98a0b; }
+  .b-autre { background: #5b6172; }
+  h3.sous { margin: 18px 0 6px; font-size: 16.5px; color: var(--primary); }
+</style>
 </head>
 <body>
 <div class="topbar"><span>📐 L1 Maths</span><span>Sommaire</span></div>
 <div class="page">
 
 <h1>🏠 L1 Maths — Sommaire</h1>
+<p>Trois matières, chacune dans sa section. Clique sur ta matière :</p>
+
+<div class="matieres">
+  <a class="matiere m-analyse" href="#analyse"><b>📉 Analyse 1.1</b><span>Réels, suites, limites, continuité · <strong>partiel le 12 novembre</strong></span></a>
+  <a class="matiere m-sf" href="#sf"><b>🧩 Structures fondamentales</b><span>Logique, ensembles, applications, nombres, complexes</span></a>
+  <a class="matiere m-graphes" href="#graphes"><b>🕸️ Théorie des graphes</b><span>Définitions, flashcards, exercices types (cours L2)</span></a>
+</div>
+
+<!-- ===================================================== ANALYSE -->
+<div class="bandeau b-analyse" id="analyse">📉 Analyse 1.1</div>
+
+<div class="box warn">
+<span class="box-title">🎓 Partiel le jeudi 12 novembre, 8h15–10h15</span>
+Programme : chapitres 1, 2 et 3 du livre, jusqu'à la continuité incluse. Commence par le <a href="Revision_Partiel_Analyse/index.html"><strong>plan de révision du partiel</strong></a>.
+</div>
+
+<h3 class="sous">⭐ Révisions du partiel</h3>
+<div class="grid-cards">
+  <div class="card"><a href="Revision_Partiel_Analyse/index.html">⭐ Plan de révision (jour par jour)</a><p>Planning du 5 au 11 novembre, ce que dit le prof, les 5 types de questions</p></div>
+  <div class="card"><a href="Revision_Partiel_Analyse/fiche_definitions_preuves.html">Le cours à connaître par cœur</a><p>Toutes les définitions, tous les théorèmes (numéros du livre), 30 preuves cachées, contre-exemples</p></div>
+  <div class="card"><a href="Revision_Partiel_Analyse/synthese_imprimable.html">🖨️ Synthèse imprimable (2 pages)</a><p>Tout le partiel en 2 colonnes A4</p></div>
+  <div class="card"><a href="Flashcards/analyse_partiel.html">🃏 Flashcards d'analyse</a><p>90 cartes : définitions, théorèmes, preuves, contre-exemples</p></div>
+  <div class="card"><a href="Revision_Partiel_Analyse/techniques_limites.html">🎯 Drill de limites</a><p>Les 6 réflexes + toutes les limites des feuilles</p></div>
+  <div class="card"><a href="Revision_Partiel_Analyse/methode_suites_recurrentes.html">🔁 Suites récurrentes</a><p>Méthode en 6 étapes, 4 exemples corrigés</p></div>
+  <div class="card"><a href="Revision_Partiel_Analyse/partiel_blanc_corrige.html">📝 Sujet blanc corrigé</a><p>À faire en 2 h puis à corriger avec le barème</p></div>
+</div>
+
+<h3 class="sous">📖 Le cours (livre Exo7)</h3>
+<div class="grid-cards">
+  <div class="card"><a href="02_Analyse/00_nombres_reels.html">1. Les nombres réels</a><p>Q, densité, valeur absolue, partie entière, borne supérieure/inférieure</p></div>
+  <div class="card"><a href="02_Analyse/01_suites.html">2. Les suites</a><p>Limites, gendarmes, adjacentes, Bolzano-Weierstrass, suites récurrentes</p></div>
+  <div class="card"><a href="02_Analyse/02_limites_fonctions_continues.html">3. Limites et fonctions continues</a><p>TVI, image d'un segment, théorème de la bijection</p></div>
+  <div class="card"><a href="02_Analyse/03_fonctions_usuelles.html">4. Fonctions usuelles <span class="chip">hors partiel</span></a><p>ln, exp, arccos/arcsin/arctan, ch/sh/th</p></div>
+  <div class="card"><a href="02_Analyse/04_derivees.html">5. Dérivée d'une fonction <span class="chip">hors partiel</span></a><p>Rolle, accroissements finis, règle de l'Hospital</p></div>
+</div>
+
+<h3 class="sous">✏️ Feuilles d'exercices corrigées</h3>
+<div class="grid-cards">
+  <div class="card"><a href="Exercices/exercices_analyse_feuille1.html">Feuille 1 — Nombres réels</a><p>Vrai/faux, intervalles, majorants/minorants, sup/inf, partie entière</p></div>
+  <div class="card"><a href="Exercices/exercices_analyse_feuille2.html">Feuille 2 — Suites, limites</a><p>Convergence, sous-suites, limites usuelles, Cesàro</p></div>
+  <div class="card"><a href="Exercices/exercices_analyse_feuille3.html">Feuille 3 — Suites (approfondissement)</a><p>Adjacentes, série harmonique, séries alternées</p></div>
+  <div class="card"><a href="Revision_Partiel_Analyse/exos_feuilles_5_6_7.html">Feuilles 5, 6, 7</a><p>Parité, limites de fonctions, continuité, TVI</p></div>
+</div>
+
+<!-- ===================================================== STRUCTURES FONDAMENTALES -->
+<div class="bandeau b-sf" id="sf">🧩 Structures fondamentales</div>
+<p>Notes réécrites et mises en couleur à partir du polycopié <strong>« Structures Fondamentales »</strong> (Fabien Durand, UPJV 2026-2027).</p>
 
 <div class="box tip">
-<span class="box-title">🧭 Tu cherches quoi ? Va directement ici</span>
+<span class="box-title">🧭 Tu cherches quoi ?</span>
 <div class="tablewrap"><table>
 <tr><th>Je veux…</th><th>Je clique sur</th></tr>
-<tr><td><strong>Faire un exercice de TD</strong> (savoir quelle méthode utiliser)</td><td><a href="Methodes_SF/index.html">🛠️ Méthodes : quel exercice, quelle méthode ?</a></td></tr>
-<tr><td><strong>Prouver injective / surjective / bijective</strong></td><td><a href="Methodes_SF/injection_surjection_bijection.html">🔀 Fiche méthode</a></td></tr>
-<tr><td><strong>Calculer une réciproque</strong> f⁻¹</td><td><a href="Methodes_SF/reciproque.html">↩️ Fiche méthode</a></td></tr>
-<tr><td><strong>Apprendre le cours</strong> de Structures fondamentales</td><td><a href="Revision_Structures/index.html">🧩 Accueil des révisions</a> (fiches par chapitre)</td></tr>
+<tr><td><strong>Faire un exercice de TD</strong> (savoir quelle méthode utiliser)</td><td><a href="Methodes_SF/index.html">🛠️ Quel exercice, quelle méthode ?</a></td></tr>
+<tr><td><strong>Apprendre le cours</strong></td><td><a href="Revision_Structures/index.html">🧩 Accueil des révisions</a> (fiches par chapitre)</td></tr>
 <tr><td><strong>Me tester</strong></td><td><a href="Flashcards/structures_fondamentales.html">🃏 Flashcards</a> · <a href="Revision_Structures/index.html">exercices corrigés</a></td></tr>
 <tr><td><strong>Rédiger une preuve</strong> proprement</td><td><a href="Revision_Structures/methode.html">📐 Méthode de rédaction</a></td></tr>
+<tr><td><strong>Prouver injective / surjective / bijective</strong></td><td><a href="Methodes_SF/injection_surjection_bijection.html">🔀 Fiche méthode</a></td></tr>
+<tr><td><strong>Calculer une réciproque</strong> f⁻¹</td><td><a href="Methodes_SF/reciproque.html">↩️ Fiche méthode</a></td></tr>
 </table></div>
 </div>
 
-<h2>🛠️ Méthodes pour les TD (Structures fondamentales)</h2>
+<h3 class="sous">🧩 Révisions par chapitre <span class="chip">chapitres 2 à 5</span></h3>
 <div class="grid-cards">
-  <div class="card"><a href="Methodes_SF/index.html">⭐ Quel exercice, quelle méthode ? (TD1 + TD2)</a><p>Tableau exo par exo : méthode à appliquer + lien vers la correction rédigée</p></div>
-  <div class="card"><a href="Methodes_SF/injection_surjection_bijection.html">Injection, surjection, bijection</a><p>Prouver / réfuter, existence + unicité, exemple complet, pièges</p></div>
-  <div class="card"><a href="Methodes_SF/reciproque.html">Calculer une réciproque</a><p>Méthode universelle f(x)=y et 10 cas types</p></div>
-  <div class="card"><a href="Methodes_SF/exo_associations_double_comptage.html">Exercice des associations</a><p>Double comptage + bijection + combinaison : exo 11 corrigé de A à Z</p></div>
-  <div class="card"><a href="Revision_Structures/methode.html">Rédiger une démonstration</a><p>Soit / Supposons / Alors / Donc, phrases types</p></div>
+  <div class="card"><a href="Revision_Structures/index.html">⭐ Accueil des révisions</a><p>Méthode de révision, tous les liens, PDF, import Anki</p></div>
+  <div class="card"><a href="Revision_Structures/methode.html">📐 Méthode de rédaction</a><p>Soit / Supposons / Alors / Donc, phrases types — à lire en premier</p></div>
+  <div class="card"><a href="Revision_Structures/fiche_ch2_logique.html">Ch. 2 · Logique</a><p><a href="Revision_Structures/fiche_ch2_logique.html">Fiche</a> · <a href="Revision_Structures/exos_ch2_logique.html">Exercices corrigés</a></p></div>
+  <div class="card"><a href="Revision_Structures/fiche_ch3_ensembles.html">Ch. 3 · Ensembles</a><p><a href="Revision_Structures/fiche_ch3_ensembles.html">Fiche</a> · <a href="Revision_Structures/exos_ch3_ensembles.html">Exercices corrigés</a></p></div>
+  <div class="card"><a href="Revision_Structures/fiche_ch4_relations_applications.html">Ch. 4 · Relations et applications</a><p><a href="Revision_Structures/fiche_ch4_relations_applications.html">Fiche</a> · <a href="Revision_Structures/exos_ch4_relations_applications.html">Exercices corrigés</a></p></div>
+  <div class="card"><a href="Revision_Structures/fiche_composition_injective_surjective.html">🔍 Composition : injective / surjective</a><p>Avec schémas, preuves et mini-quiz</p></div>
+  <div class="card"><a href="Revision_Structures/fiche_ch5_construction_nombres.html">Ch. 5 · Construction des nombres</a><p><a href="Revision_Structures/fiche_ch5_construction_nombres.html">Fiche</a> · <a href="Revision_Structures/exos_ch5_nombres.html">Exercices corrigés</a></p></div>
+  <div class="card"><a href="Flashcards/structures_fondamentales.html">🃏 Flashcards SF</a><p>155 cartes : logique, ensembles, relations, applications, cardinal, nombres</p></div>
 </div>
 
-<h2>🔢 Nombres complexes (chapitre 6 du polycopié)</h2>
+<h3 class="sous">🛠️ Méthodes pour les TD</h3>
 <div class="grid-cards">
-  <div class="card"><a href="Complexes/fiche_complexes.html">⭐ Fiche expliquée : à quoi ça sert, comment s'en servir</a><p>Forme algébrique, conjugué, module, forme exponentielle, Euler, second degré, racines de l'unité — avec un exemple calculé à chaque fois</p></div>
-  <div class="card"><a href="Complexes/fiche_forme_exponentielle.html">📐 Forme exponentielle + cercle trigonométrique</a><p>Trouver r et θ en 3 étapes (exemple 1+i), schéma, cercle avec toutes les valeurs de cos et sin</p></div>
-  <div class="card"><a href="Complexes/exos_complexes.html">Exercices types corrigés</a><p>Pour chaque type d'exercice : l'outil à sortir + correction rédigée + vérification</p></div>
+  <div class="card"><a href="Methodes_SF/index.html">⭐ Quel exercice, quelle méthode ? (TD1 + TD2)</a><p>Tableau exo par exo : méthode + lien vers la correction</p></div>
+  <div class="card"><a href="Methodes_SF/injection_surjection_bijection.html">Injection, surjection, bijection</a><p>Prouver / réfuter, existence + unicité, pièges</p></div>
+  <div class="card"><a href="Methodes_SF/reciproque.html">Calculer une réciproque</a><p>Méthode universelle et 10 cas types</p></div>
+  <div class="card"><a href="Methodes_SF/exo_associations_double_comptage.html">Exercice des associations</a><p>Double comptage + bijection : exo 11 corrigé</p></div>
 </div>
 
+<h3 class="sous">🔢 Nombres complexes (chapitre 6 du polycopié)</h3>
+<div class="grid-cards">
+  <div class="card"><a href="Complexes/fiche_complexes.html">⭐ Fiche expliquée</a><p>Forme algébrique, conjugué, module, exponentielle, Euler, second degré, racines de l'unité</p></div>
+  <div class="card"><a href="Complexes/fiche_forme_exponentielle.html">📐 Forme exponentielle + cercle trigonométrique</a><p>Trouver r et θ en 3 étapes, schéma, valeurs de cos et sin</p></div>
+  <div class="card"><a href="Complexes/exos_complexes.html">Exercices types corrigés</a><p>Pour chaque type : l'outil + correction rédigée</p></div>
+</div>
 
-<p>Notes réécrites et mises en couleur à partir du polycopié <strong>« Structures Fondamentales »</strong> (Fabien Durand, UPJV 2026-2027). Pour l'instant, le cours est traité jusqu'à la <strong>page 17</strong> du polycopié : <strong>Chapitre 1</strong> (descriptif), <strong>Chapitre 2</strong> en entier (logique, quantificateurs, récurrence, raisonnements classiques) et le début du <strong>Chapitre 3</strong> (notion d'ensemble, jusqu'au produit cartésien).</p>
-
+<h3 class="sous">📖 Le cours, chapitre par chapitre <span class="chip">jusqu'à la p.17</span></h3>
 <div class="box info">
 <span class="box-title">📌 Où en est le cours</span>
-Dernière notion ajoutée : le <strong>produit cartésien</strong> (Chapitre 3, section 3.6, page 17 du polycopié). Les sections marquées <span class="chip">⏩ avance</span> (récurrence, raisonnements classiques) ne sont pas forcément déjà vues en amphi — je les ai ajoutées en avance pour que tu aies une révision prête. La suite (fin du chapitre 3, relations et applications...) sera ajoutée au fur et à mesure — envoie-moi le PDF ou tes notes à chaque nouvelle séance et je complète.
+Dernière notion ajoutée : le <strong>produit cartésien</strong> (chap. 3, p.17). Les pages marquées <span class="chip">⏩ avance</span> (récurrence, raisonnements classiques) ne sont pas forcément vues en amphi : je les ai ajoutées en avance.
 </div>
-
-<h2>📖 Chapitre 1 — Descriptif du cours</h2>
 <div class="grid-cards">
-  <div class="card"><a href="01_Structures_Fondamentales/00_descriptif_cours.html">Descriptif du cours</a><p>Objectifs, mode d'évaluation, méthodes de travail</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/00_descriptif_cours.html">Ch. 1 · Descriptif du cours</a><p>Objectifs, mode d'évaluation, méthodes de travail</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/01_logique_propositionnelle.html">Ch. 2.1 · Logique propositionnelle</a><p>Négation, ET/OU, tables de vérité, implication, De Morgan</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/02_quantificateurs.html">Ch. 2.2 · Quantificateurs</a><p>∀, ∃, négation, variables muettes</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/03_recurrence.html">Ch. 2.3 · Récurrence <span class="chip">⏩ avance</span></a><p>Initialisation, hérédité, récurrence forte</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/04_raisonnements_classiques.html">Ch. 2.4 · Raisonnements classiques <span class="chip">⏩ avance</span></a><p>Absurde, contraposée, contre-exemple</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/05_notion_ensemble.html">Ch. 3.1-3.2 · Ensembles, appartenance, inclusion</a><p>N, Z, Q, R, C, intervalles, ∈ vs ⊂</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/06_operations_ensembles.html">Ch. 3.3 · Opérations sur les ensembles</a><p>Intersection, union, complémentaire, P(E), produit cartésien</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/07_fiche_regles_ensembles.html">🧠 Fiche — Les petites règles</a><p>Symboles, ensemble vide, inclusion, cardinal, De Morgan</p></div>
+  <div class="card"><a href="01_Structures_Fondamentales/08_TD2_ensembles_corrections.html">📘 TD2 — Corrections et méthodes</a><p>Appartenance vs inclusion, P(A), cardinal</p></div>
 </div>
 
-<h2>🧠 Chapitre 2 — Logique propositionnelle, quantificateurs, raisonnements</h2>
+<h3 class="sous">✏️ Exercices</h3>
 <div class="grid-cards">
-  <div class="card"><a href="01_Structures_Fondamentales/01_logique_propositionnelle.html">1. Logique propositionnelle</a><p>Négation, ET/OU, tables de vérité, implication, équivalence, lois de De Morgan</p></div>
-  <div class="card"><a href="01_Structures_Fondamentales/02_quantificateurs.html">2. Les quantificateurs</a><p>∀, ∃, propositions dépendant d'une variable, négation des quantificateurs, variables liées/muettes</p></div>
-  <div class="card"><a href="01_Structures_Fondamentales/03_recurrence.html">3. La récurrence <span class="chip">⏩ avance</span></a><p>Initialisation, hérédité, récurrence forte, exemple rédigé complet</p></div>
-  <div class="card"><a href="01_Structures_Fondamentales/04_raisonnements_classiques.html">4. Raisonnements classiques <span class="chip">⏩ avance</span></a><p>Absurde, contraposée, équivalence, contre-exemple, récurrence — quelle méthode choisir</p></div>
+  <div class="card"><a href="Exercices/exercices_logique.html">Logique &amp; quantificateurs</a><p>Tables de vérité, négations, rédaction de preuves</p></div>
+  <div class="card"><a href="Exercices/exercices_recurrence_raisonnements.html">Récurrence &amp; raisonnements classiques</a><p>Récurrence simple et forte, absurde, contraposée</p></div>
 </div>
 
-<h2>📦 Chapitre 3 — Notion d'ensemble <span class="chip">jusqu'à la p.17</span></h2>
+<!-- ===================================================== GRAPHES -->
+<div class="bandeau b-graphes" id="graphes">🕸️ Théorie des graphes <span class="chip" style="background:#fff3e6">cours L2</span></div>
 <div class="grid-cards">
-  <div class="card"><a href="01_Structures_Fondamentales/05_notion_ensemble.html">1-2. Ensembles usuels, appartenance, inclusion</a><p>N, Z, Q, R, C, intervalles, ∈ vs ⊂, égalité d'ensembles, inclusion = relation d'ordre (non totale)</p></div>
-  <div class="card"><a href="01_Structures_Fondamentales/06_operations_ensembles.html">3. Opérations sur les ensembles</a><p>Intersection, union, différence, complémentaire, parties P(E), produit cartésien</p></div>
-  <div class="card"><a href="01_Structures_Fondamentales/07_fiche_regles_ensembles.html">🧠 Fiche — Les petites règles à connaître</a><p>Symboles, ensemble vide, accolades, vérifier une inclusion, P(A), cardinal, lois de simplification et de De Morgan</p></div>
-  <div class="card"><a href="01_Structures_Fondamentales/08_TD2_ensembles_corrections.html">📘 TD2 — Corrections et méthodes</a><p>Appartenance vs inclusion, description d'ensembles, P(A), simplifications, cardinal, comparaison par complémentaires</p></div>
+  <div class="card"><a href="03_Graphes/00_introduction_graphes.html">0. Introduction — premières définitions</a><p>Graphes orientés/non orientés, degrés, connexité, arbres, coloriage</p></div>
+  <div class="card"><a href="03_Graphes/01_definitions_completes.html">1. ⭐ Toutes les définitions du cours</a><p>83 définitions et théorèmes : matrices, chemins, arbres, coloriage, planarité, Euler/Hamilton, Hall, Dijkstra, PERT</p></div>
+  <div class="card"><a href="Flashcards/graphes.html">2. 🃏 Flashcards</a><p>83 cartes : définitions, démonstrations, et choix de l'outil</p></div>
+  <div class="card"><a href="03_Graphes/03_exos_types.html">3. ✍️ Exos types et rédactions</a><p>18 exercices modèles avec rédaction type et correction</p></div>
 </div>
 
-<h2>🧩 Révisions — Structures fondamentales <span class="chip">chapitres 2 à 5</span></h2>
+<!-- ===================================================== AUTRES -->
+<div class="bandeau b-autre" id="autres">🔗 Ressources et méthode</div>
 <div class="grid-cards">
-  <div class="card"><a href="Revision_Structures/index.html">⭐ Accueil des révisions</a><p>Méthode de révision, tous les liens, PDF, import Anki, coquilles repérées dans les documents sources</p></div>
-  <div class="card"><a href="Revision_Structures/methode.html">📐 Méthode de rédaction</a><p>Le squelette Soit / Supposons / Alors / Donc, la règle d'or, les phrases types — à lire en premier</p></div>
-  <div class="card"><a href="Revision_Structures/fiche_ch2_logique.html">Ch. 2 · Logique</a><p><a href="Revision_Structures/fiche_ch2_logique.html">Fiche</a> · <a href="Revision_Structures/exos_ch2_logique.html">Exercices corrigés</a> · <a href="Flashcards/structures_fondamentales.html">Flashcards</a></p></div>
-  <div class="card"><a href="Revision_Structures/fiche_ch3_ensembles.html">Ch. 3 · Ensembles</a><p><a href="Revision_Structures/fiche_ch3_ensembles.html">Fiche</a> · <a href="Revision_Structures/exos_ch3_ensembles.html">Exercices corrigés</a> · <a href="Flashcards/structures_fondamentales.html">Flashcards</a></p></div>
-  <div class="card"><a href="Revision_Structures/fiche_ch4_relations_applications.html">Ch. 4 · Relations et applications</a><p><a href="Revision_Structures/fiche_ch4_relations_applications.html">Fiche</a> · <a href="Revision_Structures/exos_ch4_relations_applications.html">Exercices corrigés</a> · <a href="Flashcards/structures_fondamentales.html">Flashcards</a></p></div>
-  <div class="card"><a href="Revision_Structures/fiche_composition_injective_surjective.html">🔍 Composition : injective / surjective (avec schémas)</a><p>Pourquoi g∘f injective ⇒ f injective et g∘f surjective ⇒ g surjective, avec dessins, preuves et mini-quiz</p></div>
-  <div class="card"><a href="Revision_Structures/fiche_ch5_construction_nombres.html">Ch. 5 · Construction des nombres</a><p><a href="Revision_Structures/fiche_ch5_construction_nombres.html">Fiche</a> · <a href="Revision_Structures/exos_ch5_nombres.html">Exercices corrigés</a> · <a href="Flashcards/structures_fondamentales.html">Flashcards</a></p></div>
-</div>
-
-<h2>🎓 Partiel d'analyse 1.1 (12 novembre)</h2>
-<div class="grid-cards">
-  <div class="card"><a href="Revision_Partiel_Analyse/index.html">⭐ Plan de révision du partiel</a><p>Planning jour par jour, cours à connaître par cœur (calqué sur le livre), synthèse imprimable, 90 flashcards, drill de limites, suites récurrentes, feuilles 5-6-7 et sujet blanc corrigés</p></div>
-</div>
-
-<h2>📉 Analyse 1 (Exo7, chapitres 1 à 5)</h2>
-<div class="grid-cards">
-  <div class="card"><a href="02_Analyse/00_nombres_reels.html">1. Les nombres réels</a><p>Q, densité, valeur absolue, partie entière, borne supérieure/inférieure</p></div>
-  <div class="card"><a href="02_Analyse/01_suites.html">2. Les suites</a><p>Limites, gendarmes, suites adjacentes, Bolzano-Weierstrass, suites récurrentes</p></div>
-  <div class="card"><a href="02_Analyse/02_limites_fonctions_continues.html">3. Limites et fonctions continues</a><p>TVI, image d'un segment, théorème de la bijection</p></div>
-  <div class="card"><a href="02_Analyse/03_fonctions_usuelles.html">4. Fonctions usuelles</a><p>ln, exp, arccos/arcsin/arctan, ch/sh/th et leurs réciproques</p></div>
-  <div class="card"><a href="02_Analyse/04_derivees.html">5. Dérivée d'une fonction</a><p>Rolle, accroissements finis, règle de l'Hospital</p></div>
-</div>
-
-<h2>🕸️ Graphes <span class="chip">cours L2</span></h2>
-<div class="grid-cards">
-  <div class="card"><a href="03_Graphes/00_introduction_graphes.html">0. Introduction — premières définitions</a><p>Vue d'ensemble : graphes orientés/non orientés, degrés, connexité, arbres, coloriage</p></div>
-  <div class="card"><a href="03_Graphes/01_definitions_completes.html">1. ⭐ Toutes les définitions du cours</a><p>Les 83 définitions et théorèmes du poly, expliqués : matrices, chemins, arbres, coloriage, planarité, Euler/Hamilton, Hall, Dijkstra, PERT</p></div>
-  <div class="card"><a href="Flashcards/graphes.html">2. 🃏 Flashcards</a><p>83 cartes à retourner : définitions, démonstrations, et 25 énoncés où il faut deviner quel outil utiliser</p></div>
-  <div class="card"><a href="03_Graphes/03_exos_types.html">3. ✍️ Exos types et rédactions</a><p>18 exercices modèles, un par notion, avec la rédaction type attendue et la correction complète</p></div>
-</div>
-
-<h2>🃏 Flashcards <span class="chip">cartes à retourner</span></h2>
-<div class="grid-cards">
-  <div class="card"><a href="Flashcards/structures_fondamentales.html">Structures fondamentales</a><p>155 cartes : logique, ensembles, relations, applications, cardinal, nombres. Retourne la carte, « Je sais / Je ne sais pas », refais les ratées</p></div>
-  <div class="card"><a href="Flashcards/graphes.html">Graphes</a><p>83 cartes : définitions, démonstrations, et énoncés où il faut deviner quel outil utiliser</p></div>
-</div>
-
-<h2>✏️ Exercices</h2>
-<div class="grid-cards">
-  <div class="card"><a href="Exercices/exercices_logique.html">Exercices — Logique & quantificateurs</a><p>Tables de vérité, négations, rédaction de preuves, corrections repliables</p></div>
-  <div class="card"><a href="Exercices/exercices_recurrence_raisonnements.html">Exercices — Récurrence & raisonnements classiques</a><p>Récurrence simple et forte, absurde, contraposée, contre-exemple — corrections détaillées et rédigées</p></div>
-  <div class="card"><a href="Exercices/exercices_analyse_feuille1.html">Analyse — Feuille 1 : nombres réels, bornes sup/inf</a><p>Vrai/faux, intervalles, majorants/minorants, partie entière</p></div>
-  <div class="card"><a href="Exercices/exercices_analyse_feuille2.html">Analyse — Feuille 2 : suites, limites</a><p>Convergence, sous-suites, limites usuelles</p></div>
-  <div class="card"><a href="Exercices/exercices_analyse_feuille3.html">Analyse — Feuille 3 : suites (approfondissement)</a><p>Suites adjacentes, série harmonique, critère spécial des séries alternées</p></div>
-</div>
-
-<h2>🔗 S'entraîner avec Exo7</h2>
-<div class="grid-cards">
-  <div class="card"><a href="../ressources.html">⭐ Ressources externes gratuites</a><p>Exo7 (Arnaud Bodin, Univ. Lille) : fiches d'exercices corrigés, livres PDF et vidéos — avec la correspondance exacte pour chacun de mes 4 chapitres</p></div>
-</div>
-
-<h2>🎯 Révisions</h2>
-<div class="box tip">
-<span class="box-title">💡 Comment réviser les maths (différent de l'info !)</span>
-Contrairement à l'algorithmique/Unix qui se pratiquent par les doigts, les maths se révisent en <strong>refaisant les démonstrations sans regarder le cours</strong>, et en <strong>manipulant beaucoup d'exemples concrets</strong>. Va voir la page <a href="../L1_info/Revisions/methodes_revision.html">méthodes de révision</a> pour les idées générales — je détaillerai une version 100% maths une fois qu'on aura plus de chapitres.
+  <div class="card"><a href="../ressources.html">⭐ Ressources externes gratuites</a><p>Exo7 : fiches d'exercices corrigés, livres PDF et vidéos, avec la correspondance pour chaque chapitre</p></div>
+  <div class="card"><a href="../L1_info/Revisions/methodes_revision.html">Méthodes de révision</a><p>Idées générales. En maths : refaire les démonstrations <strong>sans regarder le cours</strong>, et manipuler beaucoup d'exemples</p></div>
 </div>
 
 </div>
