@@ -110,9 +110,83 @@ Soit <code>x ∈ R</code>. Il existe un <strong>unique</strong> entier relatif, 
 <li><code>R \ Q</code> est dense dans <code>R</code> : tout intervalle ouvert non vide contient une infinité d'irrationnels.</li>
 </ol>
 </div>
+<h3>Démonstration détaillée : tout intervalle contient un rationnel</h3>
+<p><strong>À démontrer.</strong> Pour tous réels <code>a &lt; b</code>, il existe <code>r ∈ Q</code> tel que <code>a &lt; r &lt; b</code>.</p>
+
 <div class="box tip">
-<span class="box-title">💡 Idée de la preuve (rationnel entre a et b)</span>
-Pour trouver un rationnel entre <code>a &lt; b</code> : on choisit <code>q</code> assez grand (Archimède) pour que <code>q(b-a) &gt; 1</code>, puis <code>p = E(aq)+1</code>. On montre que <code>p/q ∈ ]a, b[</code>. Pour un irrationnel, on prend un rationnel <code>r</code> dans <code>]a-√2, b-√2[</code> puis <code>r+√2 ∈ ]a,b[</code> est irrationnel.
+<span class="box-title">💡 L'idée en une image : la règle graduée</span>
+Fixons un entier <code>q ≥ 1</code>. Les fractions de dénominateur <code>q</code>, c'est-à-dire les <code>p/q</code> avec <code>p ∈ Z</code>, sont <strong>espacées de 1/q</strong> sur la droite : ce sont les graduations d'une règle.<br>
+Si le pas <code>1/q</code> est <strong>strictement plus petit</strong> que la longueur <code>b − a</code> de l'intervalle, une graduation tombe forcément dans <code>]a, b[</code> : on ne peut pas « sauter par-dessus ».
+</div>
+
+<svg viewBox="0 0 640 230" role="img" aria-label="Droite réelle avec les fractions p/q espacées de 1/q, l'intervalle ]a,b[ de longueur b-a, et la première fraction p/q après a" style="max-width:680px;width:100%;display:block;margin:1em auto">
+<!-- intervalle ]a,b[ -->
+<rect x="190" y="104" width="330" height="12" fill="#4c8dff" opacity=".25"/>
+<!-- droite -->
+<line x1="20" y1="110" x2="625" y2="110" stroke="currentColor" stroke-width="1.5"/>
+<polygon points="625,110 615,105 615,115" fill="currentColor"/>
+<!-- graduations -->
+<g stroke="currentColor" stroke-width="1.5">
+<line x1="40" y1="102" x2="40" y2="118"/><line x1="145" y1="102" x2="145" y2="118"/>
+<line x1="250" y1="102" x2="250" y2="118"/><line x1="355" y1="102" x2="355" y2="118"/>
+<line x1="460" y1="102" x2="460" y2="118"/><line x1="565" y1="102" x2="565" y2="118"/>
+</g>
+<g font-size="14" text-anchor="middle" fill="currentColor">
+<text x="40" y="138">(p−2)/q</text><text x="145" y="138">(p−1)/q</text>
+<text x="355" y="138">(p+1)/q</text><text x="460" y="138">(p+2)/q</text><text x="565" y="138">(p+3)/q</text>
+</g>
+<!-- p/q -->
+<circle cx="250" cy="110" r="6" fill="#e0483f"/>
+<text x="250" y="138" text-anchor="middle" font-size="16" font-weight="bold" fill="#e0483f">p/q</text>
+<!-- a et b -->
+<line x1="190" y1="92" x2="190" y2="128" stroke="#4c8dff" stroke-width="3"/>
+<line x1="520" y1="92" x2="520" y2="128" stroke="#4c8dff" stroke-width="3"/>
+<text x="190" y="84" text-anchor="middle" font-size="18" font-weight="bold" fill="#4c8dff">a</text>
+<text x="520" y="84" text-anchor="middle" font-size="18" font-weight="bold" fill="#4c8dff">b</text>
+<!-- accolade b-a -->
+<path d="M 190 62 Q 190 52 200 52 L 345 52 Q 355 52 355 42 Q 355 52 365 52 L 510 52 Q 520 52 520 62" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<text x="355" y="30" text-anchor="middle" font-size="15" fill="currentColor">longueur b − a</text>
+<!-- accolade 1/q -->
+<path d="M 145 160 Q 145 170 155 170 L 190 170 Q 197.5 170 197.5 180 Q 197.5 170 205 170 L 240 170 Q 250 170 250 160" fill="none" stroke="#0d9488" stroke-width="1.5"/>
+<text x="197" y="203" text-anchor="middle" font-size="15" fill="#0d9488">pas 1/q  (plus petit que b − a)</text>
+</svg>
+
+<p><strong>Étape 1 — choisir q grâce à Archimède.</strong> Comme <code>a &lt; b</code>, on a <code>b − a &gt; 0</code>, donc <code>M = 1/(b−a)</code> est bien un réel. La propriété d'Archimède (« pour tout réel M il existe un entier plus grand que M ») donne un <code>q ∈ N*</code> tel que</p>
+<div class="box info">
+<code>q &gt; 1/(b − a)</code>
+</div>
+<p>On multiplie par <code>b − a &gt; 0</code> (le sens de l'inégalité est conservé) : <code>q(b − a) &gt; 1</code>, soit <strong><code>1/q &lt; b − a</code></strong>. C'est exactement la condition « pas &lt; longueur » du dessin.</p>
+
+<p><strong>Étape 2 — choisir p avec la partie entière.</strong> On pose <code>p = E(aq) + 1</code>. Par définition de la partie entière, <code>E(aq) ≤ aq &lt; E(aq) + 1</code>, donc</p>
+<div class="box info">
+<code>p − 1 ≤ aq &lt; p</code>
+</div>
+<p>Ainsi <code>p</code> est le plus petit entier <em>strictement</em> supérieur à <code>aq</code> : <code>p/q</code> est la <strong>première graduation à droite de a</strong>.</p>
+
+<p><strong>Étape 3 — vérifier que a &lt; p/q &lt; b.</strong></p>
+<ul>
+<li><em>Minoration.</em> On divise <code>aq &lt; p</code> par <code>q &gt; 0</code> : <code>a &lt; p/q</code>.</li>
+<li><em>Majoration.</em> On divise <code>p − 1 ≤ aq</code> par <code>q</code> : <code>p/q − 1/q ≤ a</code>, donc <code>p/q ≤ a + 1/q</code>. Or <code>1/q &lt; b − a</code> (étape 1), d'où <code>p/q ≤ a + 1/q &lt; a + (b − a) = b</code>.</li>
+</ul>
+
+<div class="box tip">
+<span class="box-title">📝 Conclusion</span>
+On a <code>a &lt; p/q &lt; b</code> avec <code>p ∈ Z</code> et <code>q ∈ N*</code>, donc <code>r = p/q ∈ Q</code> convient. ∎<br><br>
+<strong>Résumé en 3 lignes :</strong> (1) Archimède ⇒ <code>q &gt; 1/(b−a)</code>, donc <code>1/q &lt; b−a</code> ; (2) <code>p = E(aq)+1</code> ⇒ <code>p−1 ≤ aq &lt; p</code> ; (3) on en déduit <code>a &lt; p/q ≤ a + 1/q &lt; b</code>.
+</div>
+
+<div class="box warn">
+<span class="box-title">⚠️ Pièges classiques</span>
+<ul>
+<li>On ne dit pas « q est plus petit que 1/(b−a) » : c'est l'inverse, <code>q</code> doit être <strong>plus grand</strong>. Plus <code>q</code> est grand, plus la règle est finement graduée.</li>
+<li>Le <code>+1</code> dans <code>p = E(aq)+1</code> sert à avoir <code>p/q</code> <strong>strictement</strong> plus grand que <code>a</code> (avec <code>p = E(aq)</code> on pourrait avoir <code>p/q = a</code>, ou être à gauche de <code>a</code>).</li>
+<li>Pour la majoration, il faut une inégalité <strong>stricte</strong> quelque part : elle vient de <code>1/q &lt; b − a</code>.</li>
+</ul>
+</div>
+
+<div class="box tip">
+<span class="box-title">💡 Et pour un irrationnel ?</span>
+On prend un rationnel <code>r</code> dans <code>]a − √2, b − √2[</code> (même preuve, l'intervalle a la même longueur <code>b − a &gt; 0</code>), puis <code>r + √2 ∈ ]a, b[</code> est irrationnel (somme d'un rationnel et d'un irrationnel). D'où la densité de <code>R \ Q</code>.
 </div>
 
 <h2>3️⃣ Borne supérieure, borne inférieure</h2>
