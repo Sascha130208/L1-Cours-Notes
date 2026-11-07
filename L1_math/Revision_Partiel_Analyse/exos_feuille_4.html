@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feuille 4 — corrigé (sous-suites, Cauchy, pics)</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Feuille 4 — corrigé</span></div>
+<div class="page">
+
+<h1>📄 Feuille 4 — Sous-suites, critère de Cauchy, pics</h1>
+
+<div class="box info">
+<span class="box-title">Comment l'utiliser</span>
+Cherche d'abord sur papier, puis ouvre la réponse. Cette feuille est <strong>très « partiel »</strong> : l'exercice 2 (sous-suites), l'exercice 3 (Cauchy) et l'exercice 4 (pics ⇒ Bolzano–Weierstrass) sont exactement des démonstrations de cours à savoir refaire. Corrigé rédigé par moi (pas de corrigé officiel pour cette feuille).
+</div>
+
+<h2>Exercice 1 — Limites de suites</h2>
+
+<p><strong>a)</strong> <code>2n / √(n²+1)</code></p>
+<details><summary>Réponse : 2</summary>
+Pour <code>n ≥ 1</code> : <code>√(n²+1) = n·√(1 + 1/n²)</code>, donc <code>2n/√(n²+1) = 2/√(1 + 1/n²) → 2/√1 = </code><strong>2</strong>.<br>
+🔧 <strong>Outil :</strong> factoriser le terme dominant sous la racine (<code>n²</code>), puis la racine sort en <code>n</code>.
+</details>
+
+<p><strong>b)</strong> <code>((−1)ⁿ n² − 3n) / (n+1)</code></p>
+<details><summary>Réponse : pas de limite</summary>
+• <code>n</code> pair : <code>(n² − 3n)/(n+1) = n(1 − 3/n)/(1 + 1/n) → +∞</code>.<br>
+• <code>n</code> impair : <code>(−n² − 3n)/(n+1) = −n(1 + 3/n)/(1 + 1/n) → −∞</code>.<br>
+Les sous-suites <code>(u₂ₙ)</code> et <code>(u₂ₙ₊₁)</code> ont des limites différentes : par le théorème sur les sous-suites, <code>(uₙ)</code> <strong>n'a pas de limite</strong> (elle ne tend ni vers un réel, ni vers +∞, ni vers −∞).<br>
+🔧 <strong>Outil :</strong> un <code>(−1)ⁿ</code> qui multiplie un terme dominant ⇒ séparer pairs / impairs.
+</details>
+
+<p><strong>c)</strong> <code>⌊ n/(n+1) ⌋</code></p>
+<details><summary>Réponse : 0</summary>
+Pour tout <code>n ∈ N</code> : <code>0 ≤ n/(n+1) &lt; 1</code>, donc la partie entière vaut <strong>0</strong>. La suite est <strong>constante égale à 0</strong> : limite 0.<br>
+⚠️ Piège : <code>n/(n+1) → 1</code> mais la partie entière ne passe <strong>pas</strong> à la limite (<code>E</code> n'est pas continue en 1). Le calcul « la limite est ⌊1⌋ = 1 » est faux.
+</details>
+
+<p><strong>d)</strong> <code>√(n²+n+1) − n</code></p>
+<details><summary>Réponse : 1/2</summary>
+Forme <code>∞ − ∞</code> : quantité conjuguée.<br>
+<code>√(n²+n+1) − n = (n² + n + 1 − n²) / (√(n²+n+1) + n) = (n+1)/(√(n²+n+1) + n)</code>.<br>
+On divise par <code>n</code> : <code>(1 + 1/n) / (√(1 + 1/n + 1/n²) + 1) → 1/(1+1) = </code><strong>1/2</strong>.
+</details>
+
+<h2>Exercice 2 — Sous-suites pairs / impairs</h2>
+
+<p><strong>1.</strong> <code>(u₂ₙ)</code> et <code>(u₂ₙ₊₁)</code> convergent vers <code>ℓ</code>. Montrer que <code>uₙ → ℓ</code>.</p>
+<details><summary>Preuve</summary>
+Soit <code>ε &gt; 0</code>. Comme <code>u₂ₖ → ℓ</code>, il existe <code>N₁</code> tel que pour tout <code>k ≥ N₁</code>, <code>|u₂ₖ − ℓ| ≤ ε</code>. Comme <code>u₂ₖ₊₁ → ℓ</code>, il existe <code>N₂</code> tel que pour tout <code>k ≥ N₂</code>, <code>|u₂ₖ₊₁ − ℓ| ≤ ε</code>.<br>
+Posons <code>N = max(2N₁, 2N₂ + 1)</code>. Soit <code>n ≥ N</code>.<br>
+• Si <code>n = 2k</code> est pair : <code>2k ≥ 2N₁</code> donc <code>k ≥ N₁</code> et <code>|uₙ − ℓ| = |u₂ₖ − ℓ| ≤ ε</code>.<br>
+• Si <code>n = 2k+1</code> est impair : <code>2k+1 ≥ 2N₂+1</code> donc <code>k ≥ N₂</code> et <code>|uₙ − ℓ| = |u₂ₖ₊₁ − ℓ| ≤ ε</code>.<br>
+Dans les deux cas <code>|uₙ − ℓ| ≤ ε</code> : <code>uₙ → ℓ</code>. ∎<br>
+🔧 <strong>Outil :</strong> on prend le <strong>max</strong> des deux seuils (en recalant les indices : <code>n = 2k</code> ou <code>2k+1</code>). Réciproque (vraie) : si <code>uₙ → ℓ</code>, toute sous-suite tend vers <code>ℓ</code>.
+</details>
+
+<p><strong>2.</strong> <code>(u₆ₙ)</code> est une sous-suite de <code>(u₂ₙ)</code> et de <code>(u₃ₙ)</code> ; <code>(u₆ₙ₊₃)</code> est une sous-suite de <code>(u₂ₙ₊₁)</code> et de <code>(u₃ₙ)</code>.</p>
+<details><summary>Preuve</summary>
+Une sous-suite de <code>(vₙ)</code> est une suite <code>(v_φ(n))</code> avec <code>φ : N → N</code> <strong>strictement croissante</strong>.<br>
+• <code>6n = 2·(3n)</code> : <code>u₆ₙ = v_φ(n)</code> avec <code>vₘ = u₂ₘ</code> et <code>φ(n) = 3n</code> (strictement croissante).<br>
+• <code>6n = 3·(2n)</code> : <code>vₘ = u₃ₘ</code>, <code>φ(n) = 2n</code>.<br>
+• <code>6n+3 = 2·(3n+1) + 1</code> : <code>vₘ = u₂ₘ₊₁</code>, <code>φ(n) = 3n+1</code>.<br>
+• <code>6n+3 = 3·(2n+1)</code> : <code>vₘ = u₃ₘ</code>, <code>φ(n) = 2n+1</code>. ∎
+</details>
+
+<p><strong>3.</strong> <code>(u₂ₙ)</code>, <code>(u₂ₙ₊₁)</code>, <code>(u₃ₙ)</code> convergent. Montrer que <code>(uₙ)</code> converge.</p>
+<details><summary>Preuve</summary>
+Notons <code>a = lim u₂ₙ</code>, <code>b = lim u₂ₙ₊₁</code>, <code>c = lim u₃ₙ</code>.<br>
+• <code>(u₆ₙ)</code> est une sous-suite de <code>(u₂ₙ)</code> donc <code>u₆ₙ → a</code> ; c'est aussi une sous-suite de <code>(u₃ₙ)</code> donc <code>u₆ₙ → c</code>. Unicité de la limite : <code>a = c</code>.<br>
+• <code>(u₆ₙ₊₃)</code> est une sous-suite de <code>(u₂ₙ₊₁)</code> donc <code>u₆ₙ₊₃ → b</code> ; c'est aussi une sous-suite de <code>(u₃ₙ)</code> donc <code>u₆ₙ₊₃ → c</code>. Donc <code>b = c</code>.<br>
+Ainsi <code>a = b = c</code> : <code>(u₂ₙ)</code> et <code>(u₂ₙ₊₁)</code> ont la même limite, et par la question 1, <code>(uₙ)</code> converge. ∎<br>
+🔧 <strong>Idée :</strong> le troisième morceau (<code>u₃ₙ</code>) fait le <em>pont</em> entre pairs et impairs, car il contient à la fois des indices pairs (<code>6n</code>) et impairs (<code>6n+3</code>).
+</details>
+
+<h2>Exercice 3 — Le critère de Cauchy</h2>
+
+<div class="box info">
+<span class="box-title">Définition à connaître</span>
+<code>(uₙ)</code> est de <strong>Cauchy</strong> si <code>∀ε &gt; 0, ∃N ∈ N, ∀m, n ≥ N, |uₘ − uₙ| ≤ ε</code>.<br>
+<strong>Théorème (critère de Cauchy)</strong> : une suite réelle converge ⟺ elle est de Cauchy.
+</div>
+
+<p><strong>1.</strong> Convergente ⇒ de Cauchy.</p>
+<details><summary>Preuve</summary>
+Soit <code>uₙ → ℓ</code> et <code>ε &gt; 0</code>. Il existe <code>N</code> tel que pour tout <code>n ≥ N</code>, <code>|uₙ − ℓ| ≤ ε/2</code>. Alors pour <code>m, n ≥ N</code> :<br>
+<code>|uₘ − uₙ| = |(uₘ − ℓ) + (ℓ − uₙ)| ≤ |uₘ − ℓ| + |uₙ − ℓ| ≤ ε/2 + ε/2 = ε</code>. ∎<br>
+🔧 <strong>Outil :</strong> inégalité triangulaire en intercalant <code>ℓ</code>, avec <code>ε/2</code>.
+</details>
+
+<p><strong>2.</strong> De Cauchy ⇒ bornée.</p>
+<details><summary>Preuve</summary>
+On prend <code>ε = 1</code> : il existe <code>N</code> tel que pour tous <code>m, n ≥ N</code>, <code>|uₘ − uₙ| ≤ 1</code>. En particulier, pour <code>n ≥ N</code> : <code>|uₙ − u_N| ≤ 1</code>, donc <code>|uₙ| ≤ |u_N| + 1</code>.<br>
+Posons <code>M = max(|u₀|, |u₁|, …, |u_{N−1}|, |u_N| + 1)</code> (maximum d'un nombre <strong>fini</strong> de réels). Alors <code>|uₙ| ≤ M</code> pour tout <code>n</code>. ∎<br>
+🔧 <strong>Outil :</strong> « à partir d'un rang, tout est proche de <code>u_N</code> » + « avant ce rang, il n'y a qu'un nombre fini de termes ».
+</details>
+
+<p><strong>3.</strong> De Cauchy avec une sous-suite convergente ⇒ convergente.</p>
+<details><summary>Preuve</summary>
+Soit <code>φ</code> strictement croissante avec <code>u_φ(k) → ℓ</code>. Soit <code>ε &gt; 0</code>.<br>
+• Cauchy (avec <code>ε/2</code>) : il existe <code>N₁</code> tel que <code>|uₘ − uₙ| ≤ ε/2</code> pour tous <code>m, n ≥ N₁</code>.<br>
+• Convergence de la sous-suite : il existe <code>N₂</code> tel que <code>|u_φ(k) − ℓ| ≤ ε/2</code> pour tout <code>k ≥ N₂</code>.<br>
+Posons <code>k = max(N₁, N₂)</code>. Comme <code>φ</code> est strictement croissante à valeurs dans N, <code>φ(k) ≥ k ≥ N₁</code>. Alors pour tout <code>n ≥ N₁</code> :<br>
+<code>|uₙ − ℓ| ≤ |uₙ − u_φ(k)| + |u_φ(k) − ℓ| ≤ ε/2 + ε/2 = ε</code> (le premier terme car <code>n, φ(k) ≥ N₁</code>). Donc <code>uₙ → ℓ</code>. ∎<br>
+🔧 <strong>Outil :</strong> <code>φ(k) ≥ k</code> pour une extractrice. Un terme de la sous-suite sert de « pivot » entre <code>uₙ</code> et <code>ℓ</code>.
+</details>
+
+<p><strong>4.</strong> Le critère de Cauchy.</p>
+<details><summary>Preuve</summary>
+(⇒) C'est la question 1.<br>
+(⇐) Si <code>(uₙ)</code> est de Cauchy, elle est bornée (question 2). Par le théorème de <strong>Bolzano–Weierstrass</strong>, elle admet une sous-suite convergente. Par la question 3, <code>(uₙ)</code> converge. ∎<br>
+💡 Intérêt : on peut prouver qu'une suite converge <strong>sans connaître sa limite</strong>.
+</details>
+
+<h2>Exercice 4 — Pics et sous-suites monotones</h2>
+
+<div class="box info">
+<span class="box-title">Définition</span>
+Un indice <code>n</code> est un <strong>pic</strong> si <code>u_p &lt; uₙ</code> pour tout <code>p &gt; n</code> (c'est un terme strictement plus grand que <em>tous</em> ceux qui le suivent).
+</div>
+
+<p><strong>1.</strong> Infinité de pics ⇒ sous-suite strictement décroissante.</p>
+<details><summary>Preuve</summary>
+Soient <code>n₀ &lt; n₁ &lt; n₂ &lt; …</code> les pics rangés par ordre croissant (il y en a une infinité, donc on peut les énumérer sans fin). Comme <code>n_k</code> est un pic et <code>n_{k+1} &gt; n_k</code>, on a <code>u_{n_{k+1}} &lt; u_{n_k}</code>. Donc <code>(u_{n_k})</code> est une sous-suite <strong>strictement décroissante</strong> (extractrice <code>k ↦ n_k</code> strictement croissante). ∎
+</details>
+
+<p><strong>2.</strong> Un nombre fini de pics ⇒ sous-suite croissante.</p>
+<details><summary>Preuve</summary>
+Soit <code>N</code> un entier strictement supérieur à tous les pics (possible : il y en a un nombre fini ; s'il n'y en a aucun, <code>N = 0</code>). Aucun indice <code>n ≥ N</code> n'est un pic.<br>
+On construit <code>φ</code> par récurrence : <code>φ(0) = N</code>. Si <code>φ(k) ≥ N</code> est construit, comme <code>φ(k)</code> n'est pas un pic, il existe <code>p &gt; φ(k)</code> avec <code>u_p ≥ u_φ(k)</code> ; on pose <code>φ(k+1) = p</code>.<br>
+Alors <code>φ(k+1) &gt; φ(k)</code> (strictement croissante) et <code>u_φ(k+1) ≥ u_φ(k)</code> : <code>(u_φ(k))</code> est une sous-suite <strong>croissante</strong>. ∎<br>
+🔧 <strong>Idée :</strong> « pas un pic » veut dire « plus loin, il existe un terme au moins aussi grand » : on le prend, et on recommence.
+</details>
+
+<p><strong>3.</strong> Toute suite réelle admet une sous-suite monotone.</p>
+<details><summary>Preuve</summary>
+Deux cas exhaustifs : infinité de pics (question 1 : sous-suite décroissante) ou nombre fini de pics (question 2 : sous-suite croissante). Dans les deux cas, il existe une sous-suite monotone. ∎
+</details>
+
+<p><strong>4.</strong> Nouvelle démonstration de Bolzano–Weierstrass.</p>
+<details><summary>Preuve</summary>
+Soit <code>(uₙ)</code> <strong>bornée</strong>. Par la question 3, elle admet une sous-suite <strong>monotone</strong> <code>(v_k)</code>. Cette sous-suite est elle-même bornée (par la même borne que <code>(uₙ)</code>). Par le <strong>théorème de la limite monotone</strong> : une suite croissante majorée converge (vers son sup) ; une suite décroissante minorée converge (vers son inf). Donc <code>(v_k)</code> converge : <code>(uₙ)</code> admet une sous-suite convergente. ∎<br>
+🔧 <strong>Chaîne à retenir :</strong> <em>bornée ⇒ sous-suite monotone (pics) ⇒ monotone + bornée ⇒ converge (limite monotone)</em>.
+</details>
+
+<div class="box tip">
+<span class="box-title">🧰 Ce que cette feuille t'apprend (à retenir pour le partiel)</span>
+<ul>
+<li><strong>Pairs + impairs de même limite ⇒ convergence</strong> (et le « pont » <code>u₃ₙ</code>).</li>
+<li><strong>Pas de limite</strong> ⇐ deux sous-suites de limites différentes (ex. 1 b).</li>
+<li><strong>Cauchy</strong> : convergente ⇒ Cauchy (<code>ε/2</code>) ; Cauchy ⇒ bornée (<code>ε = 1</code>) ; Cauchy + sous-suite convergente ⇒ convergente ; donc critère de Cauchy avec Bolzano–Weierstrass.</li>
+<li><strong>Pics</strong> : toute suite a une sous-suite monotone ⇒ Bolzano–Weierstrass.</li>
+<li>Ne jamais écrire « la limite de la partie entière est la partie entière de la limite ».</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>
