@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suites récurrentes — méthode</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Suites récurrentes</span></div>
+<div class="page">
+
+<h1>🔁 Suites récurrentes <code>uₙ₊₁ = f(uₙ)</code> — la méthode</h1>
+<p>C'est la fin du chapitre 2 du livre (§5, Prop. 13, 14, 15) et la question typique « difficile » du partiel (ex. 5 du sujet blanc). Elle mélange tout : continuité, limite monotone, point fixe, récurrence.</p>
+
+<div class="box info">
+<span class="box-title">📌 Les trois résultats du cours <span class="chip">🔴 à savoir</span></span>
+<ul>
+<li><strong>Prop. 13</strong> : si <code>f</code> est <strong>continue</strong> et <code>uₙ → ℓ</code>, alors <code>f(ℓ) = ℓ</code> (point fixe). <em>Preuve :</em> <code>uₙ₊₁ → ℓ</code> et <code>f(uₙ) → f(ℓ)</code> (continuité, caractérisation séquentielle), donc <code>ℓ = f(ℓ)</code> par unicité de la limite.</li>
+<li><strong>Prop. 14</strong> : <code>f : [a,b] → [a,b]</code> continue et <strong>croissante</strong> ⇒ pour tout <code>u₀ ∈ [a,b]</code>, <code>(uₙ)</code> est monotone, converge vers <code>ℓ ∈ [a,b]</code> avec <code>f(ℓ) = ℓ</code>. (Si <code>u₁ ≥ u₀</code> : croissante ; si <code>u₁ ≤ u₀</code> : décroissante.)</li>
+<li><strong>Prop. 15</strong> : <code>f : [a,b] → [a,b]</code> continue et <strong>décroissante</strong> ⇒ <code>(u₂ₙ)</code> et <code>(u₂ₙ₊₁)</code> convergent, vers des points fixes de <code>f∘f</code> (qui peuvent être différents).</li>
+</ul>
+</div>
+
+<h2>La méthode en 6 étapes</h2>
+<div class="tablewrap"><table>
+<tr><th>Étape</th><th>Quoi faire</th><th>Outil</th></tr>
+<tr><td><strong>1. Dessiner</strong></td><td>Tracer le graphe de <code>f</code> et la droite <code>y = x</code>, placer <code>u₀, u₁, u₂…</code> (escalier ou escargot) pour <em>conjecturer</em> : monotone ? limite ?</td><td>Brouillon</td></tr>
+<tr><td><strong>2. Intervalle stable</strong></td><td>Trouver <code>[a,b]</code> avec <code>u₀ ∈ [a,b]</code> et <code>f([a,b]) ⊂ [a,b]</code>. Puis prouver <code>∀n, uₙ ∈ [a,b]</code> <strong>par récurrence</strong>.</td><td>Récurrence</td></tr>
+<tr><td><strong>3. Monotonie</strong></td><td>Étudier le signe de <code>f(x) − x</code> sur <code>[a,b]</code>. Si <code>f(x) ≥ x</code> alors <code>uₙ₊₁ = f(uₙ) ≥ uₙ</code> : croissante. Ou bien : <code>f</code> croissante et <code>u₁ ≥ u₀</code> ⇒ croissante par récurrence.</td><td>Signe de <code>f(x)−x</code></td></tr>
+<tr><td><strong>4. Convergence</strong></td><td>Croissante majorée (ou décroissante minorée) ⇒ converge (Théorème 2).</td><td>Limite monotone</td></tr>
+<tr><td><strong>5. Valeur de la limite</strong></td><td><code>f</code> continue ⇒ <code>ℓ = f(ℓ)</code> (Prop. 13). Résoudre, puis <strong>éliminer</strong> les racines incompatibles avec l'intervalle et la monotonie.</td><td>Point fixe</td></tr>
+<tr><td><strong>6. Cas décroissant</strong></td><td>Si <code>f</code> est décroissante, <code>f∘f</code> est croissante : étudier <code>(u₂ₙ)</code> et <code>(u₂ₙ₊₁)</code> séparément (Prop. 15).</td><td><code>f∘f</code></td></tr>
+</table></div>
+
+<div class="box warn">
+<span class="box-title">⚠️ Les 4 pièges</span>
+<ul>
+<li><strong>Oublier de vérifier <code>f([a,b]) ⊂ [a,b]</code></strong> : c'est l'hypothèse « cachée » de la Prop. 14.</li>
+<li><strong>Dire « la limite est un point fixe » avant d'avoir prouvé que la suite converge.</strong> La Prop. 13 est un « si converge alors… ».</li>
+<li><strong>Prendre n'importe quel point fixe.</strong> Il y en a souvent plusieurs : le bon est celui qui est compatible avec la monotonie et les bornes.</li>
+<li><strong>Utiliser la Prop. 13 sans continuité de <code>f</code>.</strong> Toujours écrire « <code>f</code> est continue ».</li>
+</ul>
+</div>
+
+<h2>Exemple 1 — <code>u₀ = 1</code>, <code>uₙ₊₁ = √(2 + uₙ)</code></h2>
+<p>Essaie d'abord : montre que <code>(uₙ)</code> converge et calcule sa limite.</p>
+<details><summary>Correction</summary>
+<strong>Étape 1.</strong> <code>f(x) = √(2+x)</code> est continue et croissante sur <code>[−2,+∞[</code>. Points fixes : <code>√(2+x) = x ⟺ x ≥ 0</code> et <code>x² = 2+x</code>, i.e. <code>x² − x − 2 = 0</code>, i.e. <code>x = 2</code> (l'autre racine <code>−1</code> est négative). On conjecture <code>ℓ = 2</code>.<br>
+<strong>Étape 2.</strong> <code>f([0,2]) ⊂ [0,2]</code> : si <code>0 ≤ x ≤ 2</code>, <code>√2 ≤ f(x) ≤ √4 = 2</code>. Et <code>u₀ = 1 ∈ [0,2]</code>. Par récurrence, <code>uₙ ∈ [0,2]</code> pour tout <code>n</code>.<br>
+<strong>Étape 3.</strong> <code>u₁ = √3 ≥ 1 = u₀</code> et <code>f</code> est croissante : par récurrence, <code>uₙ₊₁ ≥ uₙ</code> pour tout <code>n</code> (si <code>uₙ ≥ uₙ₋₁</code>, alors <code>f(uₙ) ≥ f(uₙ₋₁)</code>). Donc <code>(uₙ)</code> est croissante.<br>
+<strong>Étape 4.</strong> Croissante et majorée par 2 : elle converge vers <code>ℓ ∈ [1,2]</code>.<br>
+<strong>Étape 5.</strong> <code>f</code> est continue, donc <code>f(ℓ) = ℓ</code> : <code>ℓ = 2</code> (seule racine ≥ 0). Donc <code>uₙ → 2</code>. ∎
+</details>
+
+<h2>Exemple 2 — <code>u₀ ∈ [0,1]</code>, <code>uₙ₊₁ = uₙ − uₙ²</code></h2>
+<p>Ici <code>f(x) = x − x²</code> n'est pas croissante sur tout <code>[0,1]</code> : la Prop. 14 ne s'applique pas telle quelle. On fait <strong>directement</strong> les étapes 2 à 5.</p>
+<details><summary>Correction</summary>
+<strong>Bornes.</strong> Pour <code>x ∈ [0,1]</code>, <code>f(x) = x(1−x) ≥ 0</code> et <code>f(x) = x − x² ≤ x ≤ 1</code>. Donc <code>f([0,1]) ⊂ [0,1]</code> et, par récurrence, <code>uₙ ∈ [0,1]</code> pour tout <code>n</code>.<br>
+<strong>Monotonie.</strong> <code>uₙ₊₁ − uₙ = −uₙ² ≤ 0</code> : <code>(uₙ)</code> est décroissante.<br>
+<strong>Convergence.</strong> Décroissante et minorée par 0 : elle converge vers <code>ℓ ∈ [0,1]</code>.<br>
+<strong>Limite.</strong> <code>f</code> est continue : <code>ℓ = ℓ − ℓ²</code>, donc <code>ℓ² = 0</code>, <code>ℓ = 0</code>. ∎<br>
+💡 <strong>Leçon :</strong> pas besoin de la Prop. 14 : <em>borné + monotone</em> suffit, à condition de bien prouver chaque morceau.
+</details>
+
+<h2>Exemple 3 — pas de point fixe : le sujet blanc, ex. 5</h2>
+<p><code>f : R → R</code> continue, <code>f(0) = 1</code>, <code>f(x) ≠ x</code> pour tout <code>x</code>, <code>uₙ₊₁ = f(uₙ)</code>. Montrer que <code>uₙ → +∞</code>.</p>
+<details><summary>Correction (résumé)</summary>
+1. <code>φ(x) = f(x) − x</code> est continue, ne s'annule jamais, et <code>φ(0) = 1 &gt; 0</code> : par TVI, <code>φ &gt; 0</code> partout, i.e. <code>f(x) &gt; x</code>. 2. Alors <code>uₙ₊₁ = f(uₙ) &gt; uₙ</code> : strictement croissante. 3. Si elle convergeait vers <code>ℓ</code>, la Prop. 13 donnerait <code>f(ℓ) = ℓ</code> : impossible. Donc elle ne converge pas, et croissante ⇒ <code>uₙ → +∞</code>. <em>(Correction complète : <a href="partiel_blanc_corrige.html">sujet blanc corrigé</a>.)</em><br>
+💡 <strong>Leçon :</strong> la Prop. 13 sert aussi dans l'autre sens : <em>pas de point fixe ⇒ pas de convergence.</em>
+</details>
+
+<h2>Exemple 4 — <code>f</code> décroissante : <code>uₙ₊₁ = 1 + 1/uₙ</code>, <code>u₀ &gt; 0</code> (livre, exemple 18)</h2>
+<details><summary>Résumé de la méthode</summary>
+<code>f(x) = 1 + 1/x</code> est continue et strictement décroissante sur <code>]0,+∞[</code>. Donc <code>f∘f</code> est croissante, avec <code>f∘f(x) = (2x+1)/(x+1)</code>. Points fixes de <code>f∘f</code> : <code>x² − x − 1 = 0</code>, soit <code>x = (1 ± √5)/2</code> ; le seul positif est <code>ℓ = (1+√5)/2</code>. Si <code>0 &lt; u₀ ≤ ℓ</code> : <code>u₂ ≥ u₀</code> donc <code>(u₂ₙ)</code> est croissante, <code>(u₂ₙ₊₁)</code> décroissante, <code>u₂ₙ ≤ u₂ₙ₊₁</code>, et les deux convergent vers <code>ℓ</code>. Les deux sous-suites ayant la même limite, <code>(uₙ)</code> converge vers <code>(1+√5)/2</code>. <em>(Attention : <code>]0,+∞[</code> n'est pas un segment, le livre fait la vérification à la main.)</em>
+</details>
+
+<h2>À toi : entraînement (livre, mini-exercices du §5)</h2>
+<ol>
+<li><code>u₀ = 0</code>, <code>uₙ₊₁ = (1/9)uₙ³ + 1</code> : montrer <code>uₙ ≥ 0</code>, croissante, puis trouver les points fixes de <code>f(x) = x³/9 + 1</code> et conclure.</li>
+<li><code>u₀ ∈ [0,1]</code>, <code>uₙ₊₁ = uₙ − uₙ²</code> (exemple 2 ci-dessus, à refaire sans regarder).</li>
+<li><code>u₀ = 4</code>, <code>uₙ₊₁ = (uₙ + 2)/4</code> : conjecturer la limite et la prouver.</li>
+</ol>
+
+</div>
+</body>
+</html>

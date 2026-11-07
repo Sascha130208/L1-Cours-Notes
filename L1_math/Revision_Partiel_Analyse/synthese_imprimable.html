@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analyse 1.1 — Synthèse imprimable</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  .sheet { columns: 2 330px; column-gap: 26px; font-size: 13.5px; line-height: 1.42; }
+  .sheet h2 { font-size: 15px; margin: 12px 0 4px; break-after: avoid; padding: 2px 8px; background: var(--primary-light); border-radius: 6px; }
+  .sheet ul { margin: 2px 0 6px 0; padding-left: 16px; }
+  .sheet li { margin: 2px 0; }
+  .sheet .blk { break-inside: avoid; }
+  .sheet code { font-size: 12.5px; }
+  @media print {
+    .topbar, .noprint { display: none !important; }
+    body { background: #fff; }
+    .page { max-width: none; padding: 0; margin: 0; }
+    .sheet { font-size: 10.6px; line-height: 1.3; column-gap: 18px; }
+    .sheet h2 { font-size: 11.5px; margin: 6px 0 2px; }
+    .sheet code { font-size: 10px; background: none; padding: 0; }
+    @page { size: A4; margin: 9mm; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Synthèse imprimable</span></div>
+<div class="page">
+
+<h1 class="noprint">🖨️ Synthèse : tout le partiel sur 2 pages</h1>
+<div class="box tip noprint">
+<span class="box-title">Pour imprimer</span>
+Ctrl + P → format A4, marges « Par défaut » ou « Minimales », cocher « Recto verso » si possible. Mise en page prévue : 2 colonnes, environ 2 pages. Les documents sont interdits le jour J : cette fiche sert à <strong>apprendre</strong>. Cache-la, récris-la de mémoire, compare.
+</div>
+
+<div class="sheet">
+
+<h2>1 · Réels</h2>
+<div class="blk"><ul>
+<li><b>Ordre</b> : réflexive, antisymétrique, transitive ; <b>total</b> : <code>x≼y</code> ou <code>y≼x</code>. <b>Archimède</b> : <code>∀x, ∃n∈N, n&gt;x</code>.</li>
+<li><b>Partie entière</b> : unique <code>E(x)∈Z</code>, <code>E(x) ≤ x &lt; E(x)+1</code>.</li>
+<li><b>|x|</b> = x si x≥0, −x sinon. <code>|x+y|≤|x|+|y|</code> ; <code>||x|−|y||≤|x−y|</code> ; <code>|x−a|&lt;r ⟺ a−r&lt;x&lt;a+r</code>.</li>
+<li><b>Intervalle</b> : <code>∀a,b∈I, ∀x, a≤x≤b ⇒ x∈I</code>. <b>Voisinage</b> de a : contient un intervalle ouvert contenant a.</li>
+<li><b>Densité</b> : tout <code>]a,b[</code> contient une infinité de rationnels et d'irrationnels.</li>
+<li><b>max A</b> : <code>α∈A</code> et <code>∀x∈A, x≤α</code>. <b>Majorant</b> : <code>∀x∈A, x≤M</code>. Majorée / minorée / bornée.</li>
+<li><b>sup A</b> = plus petit majorant ; <b>inf A</b> = plus grand minorant. <b>Th. R4</b> : non vide + majorée ⇒ sup existe.</li>
+<li><b>Prop. 5</b> : <code>M=sup A ⟺ (∀x∈A, x≤M) et (∀y&lt;M, ∃x∈A, y&lt;x)</code> (ou : ∃ suite de A → M).</li>
+<li>Preuves : <code>√2∉Q</code> (absurde, p et q pairs) ; sup(A+B)=sup A+sup B (majorant, puis ε/2).</li>
+</ul></div>
+
+<h2>2 · Suites : définitions</h2>
+<div class="blk"><ul>
+<li><b>uₙ→ℓ</b> : <code>∀ε&gt;0, ∃N, ∀n≥N, |uₙ−ℓ|≤ε</code>. <b>uₙ→+∞</b> : <code>∀A&gt;0, ∃N, ∀n≥N, uₙ≥A</code>.</li>
+<li><b>Convergente</b> = limite finie. <b>Bornée</b> : <code>∃M, ∀n, |uₙ|≤M</code>. Monotone, strictement monotone.</li>
+<li><b>Adjacentes</b> : (uₙ)↗, (vₙ)↘, <code>uₙ≤vₙ</code>, <code>vₙ−uₙ→0</code>. <b>Sous-suite</b> : <code>u_φ(n)</code>, φ strict. croissante.</li>
+<li><b>Récurrente</b> : <code>uₙ₊₁=f(uₙ)</code>.</li>
+</ul></div>
+
+<h2>3 · Suites : théorèmes</h2>
+<div class="blk"><ul>
+<li>Limite unique ; convergente ⇒ bornée (réciproque fausse) ; <code>borné × (→0) → 0</code>.</li>
+<li>Somme, produit, <code>1/uₙ→1/ℓ</code> (ℓ≠0) ; <code>uₙ→+∞ ⇒ 1/uₙ→0</code> ; formes indéterminées : <code>∞−∞, 0×∞, ∞/∞, 0/0, 1^∞</code>.</li>
+<li><b>Inégalités</b> : <code>uₙ≤vₙ</code> ⇒ <code>lim uₙ≤lim vₙ</code> (large) ; <code>uₙ→+∞, vₙ≥uₙ ⇒ vₙ→+∞</code> ; <b>gendarmes</b>.</li>
+<li><b>aⁿ</b> : →+∞ (a&gt;1), →0 (|a|&lt;1), diverge (a≤−1). <code>1+a+…+aⁿ=(1−aⁿ⁺¹)/(1−a)</code>.</li>
+<li><b>Rapport</b> : <code>|uₙ₊₁/uₙ|&lt;ℓ&lt;1 ⇒ uₙ→0</code> ; <code>aⁿ/n!→0</code> ; si ℓ=1 on ne conclut pas.</li>
+<li><b>Limite monotone</b> : ↗ majorée ⇒ converge (vers sup) ; ↗ non majorée ⇒ +∞.</li>
+<li><b>Adjacentes</b> ⇒ même limite, <code>uₙ≤ℓ≤vₙ</code>. <b>Sous-suites</b> : <code>uₙ→ℓ ⇒</code> toutes → ℓ ; deux limites différentes ⇒ diverge. <b>B-W</b> : bornée ⇒ sous-suite convergente.</li>
+<li><b>Prop. 13</b> : f continue et <code>uₙ→ℓ ⇒ f(ℓ)=ℓ</code>. <b>Prop. 14</b> : <code>f:[a,b]→[a,b]</code> continue ↗ ⇒ (uₙ) monotone, converge vers un point fixe. <b>Prop. 15</b> : f ↘ ⇒ (u₂ₙ), (u₂ₙ₊₁) convergent (points fixes de f∘f).</li>
+<li>Exemples : <code>Hₙ→+∞</code> (<code>H₂ₙ−Hₙ≥1/2</code>) ; <code>Σ1/k²</code> converge (adjacentes <code>Sₙ</code>, <code>Sₙ+1/n</code>).</li>
+</ul></div>
+
+<h2>4 · Fonctions : définitions</h2>
+<div class="blk"><ul>
+<li><b>f croissante</b> : <code>x≤y ⇒ f(x)≤f(y)</code> ; stricte : <code>x&lt;y ⇒ f(x)&lt;f(y)</code>. <b>Bornée</b> : <code>∃M, ∀x, |f(x)|≤M</code>.</li>
+<li><b>Paire</b> : <code>f(−x)=f(x)</code> ; <b>impaire</b> : <code>f(−x)=−f(x)</code> ; <b>T-périodique</b> : <code>f(x+T)=f(x)</code>.</li>
+<li><b>Limite en x₀</b> : <code>∀ε&gt;0, ∃δ&gt;0, ∀x∈I, |x−x₀|&lt;δ ⇒ |f(x)−ℓ|&lt;ε</code>. <b>En +∞</b> : <code>∃B, x&gt;B ⇒ |f(x)−ℓ|&lt;ε</code>. <b>+∞ en x₀</b> : <code>∀A, ∃δ, |x−x₀|&lt;δ ⇒ f(x)&gt;A</code>.</li>
+<li><b>Continue en x₀</b> : <code>∀ε, ∃δ, |x−x₀|&lt;δ ⇒ |f(x)−f(x₀)|&lt;ε</code> (limite = f(x₀)).</li>
+<li><b>Prolongeable par continuité</b> en x₀ : limite <b>finie</b> en x₀.</li>
+<li><b>Injective</b> : <code>f(x)=f(x') ⇒ x=x'</code>. <b>Surjective</b> : <code>∀y, ∃x, f(x)=y</code>. <b>Bijective</b> : les deux.</li>
+</ul></div>
+
+<h2>5 · Fonctions : théorèmes</h2>
+<div class="blk"><ul>
+<li><b>Caractérisation séquentielle</b> : f continue en x₀ ⟺ <code>uₙ→x₀ ⇒ f(uₙ)→f(x₀)</code>. Sert à : « pas de limite » (2 suites), suites récurrentes.</li>
+<li><b>Signe local</b> : f continue en x₀, f(x₀)≠0 ⇒ f≠0 près de x₀.</li>
+<li><b>TVI</b> : f continue sur [a,b], y entre f(a) et f(b) ⇒ ∃c∈[a,b], f(c)=y. <b>Cor.</b> : f(a)f(b)&lt;0 ⇒ ∃c∈]a,b[, f(c)=0 ; f(I) intervalle si I intervalle.</li>
+<li><b>Image d'un segment</b> : f continue sur [a,b] ⇒ f([a,b])=[m,M] : bornée, atteint ses bornes.</li>
+<li><b>Bijection</b> : f continue strictement monotone sur I ⇒ bijection I→f(I), f⁻¹ continue strictement monotone de même sens.</li>
+<li>Limites : composition, inégalités, gendarmes, limite à gauche/droite (si elles diffèrent : pas de limite).</li>
+</ul></div>
+
+<h2>6 · Réflexes de calcul</h2>
+<div class="blk"><ul>
+<li><b>Fraction en ±∞</b> : factoriser le terme dominant.</li>
+<li><b>0/0 en x₀</b> : factoriser (x−x₀), simplifier.</li>
+<li><b>Racines</b> : quantité conjuguée, puis diviser par la plus grande puissance.</li>
+<li><b>Borné × petit</b> (cos, sin, (−1)ⁿ, E) : encadrer, gendarmes ou comparaison.</li>
+<li><b>Dénominateur→0</b> : signe à gauche et à droite.</li>
+<li><b>Croissances</b> : ln ≪ puissance ≪ exponentielle ≪ n!.</li>
+<li><b>« Pas de limite »</b> : deux suites → x₀ avec images de limites différentes.</li>
+</ul></div>
+
+<h2>7 · Réflexes de preuve</h2>
+<div class="blk"><ul>
+<li><b>« ∃x tel que f(x)=g(x) »</b> : φ=f−g, deux points de signes opposés, TVI.</li>
+<li><b>« f surjective »</b> : f continue, limites (ou 2 suites de points) vers −∞ et +∞ aux deux bouts, TVI.</li>
+<li><b>« continue qui ne s'annule pas »</b> ⇒ signe constant sur un intervalle.</li>
+<li><b>« f bornée »</b> : continue sur un <b>segment</b> ⇒ bornée.</li>
+<li><b>Limite d'une suite récurrente</b> : bornes (récurrence) → monotonie → converge → point fixe.</li>
+<li><b>Vrai/faux</b> : preuve avec la définition ou contre-exemple explicite.</li>
+<li><b>Négation</b> : « ne tend pas vers +∞ » = <code>∃A, ∀N, ∃n≥N, uₙ&lt;A</code>.</li>
+</ul></div>
+
+</div>
+</div>
+</body>
+</html>
