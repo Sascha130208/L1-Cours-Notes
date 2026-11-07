@@ -1,0 +1,127 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing,arrows.meta}
+\usepackage[most]{tcolorbox}
+
+\newtheorem*{prop}{Propriété}
+\newcommand{\E}{\operatorname{E}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+
+\newtcolorbox{idee}{colback=blue!5,colframe=blue!50!black,title=Idée}
+\newtcolorbox{attention}{colback=orange!8,colframe=orange!70!black,title=À retenir}
+
+\title{Tout intervalle contient un rationnel\\[2pt]\large Démonstration détaillée avec la propriété d'Archimède}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{prop}
+Pour tous réels $a<b$, il existe $r\in\Q$ tel que $a<r<b$.
+\end{prop}
+
+\section{L'idée en une image}
+
+Fixons un entier $q\ge 1$. Les fractions de dénominateur $q$, c'est-à-dire les $\dfrac{p}{q}$ avec $p\in\Z$, sont espacées de $\dfrac1q$ sur la droite réelle : ce sont les graduations d'une règle.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.55, >=Stealth]
+  % droite
+  \draw[->] (-0.3,0) -- (4.2,0);
+  % graduations p/q (pas 0.7)
+  \foreach \k in {0,1,...,5}{
+    \draw (0.7*\k,0.08) -- (0.7*\k,-0.08);
+  }
+  \node[below] at (0.0,-0.1) {\small $\frac{p-2}{q}$};
+  \node[below] at (0.7,-0.1) {\small $\frac{p-1}{q}$};
+  \node[below,red!70!black] at (1.4,-0.1) {\small $\boxed{\frac{p}{q}}$};
+  \node[below] at (2.1,-0.1) {\small $\frac{p+1}{q}$};
+  \node[below] at (2.8,-0.1) {\small $\frac{p+2}{q}$};
+  \node[below] at (3.5,-0.1) {\small $\frac{p+3}{q}$};
+  % a et b
+  \draw[blue!60!black,very thick] (1.0,0.18) -- (1.0,-0.18);
+  \draw[blue!60!black,very thick] (3.2,0.18) -- (3.2,-0.18);
+  \node[above,blue!60!black] at (1.0,0.2) {$a$};
+  \node[above,blue!60!black] at (3.2,0.2) {$b$};
+  % intervalle
+  \draw[blue!60!black,line width=2pt,opacity=.35] (1.0,0) -- (3.2,0);
+  % point p/q
+  \fill[red!70!black] (1.4,0) circle (2pt);
+  % accolade b-a
+  \draw[decorate,decoration={brace,amplitude=5pt}] (1.0,0.75) -- (3.2,0.75)
+    node[midway,above=6pt] {\small longueur $b-a$};
+  % accolade 1/q
+  \draw[decorate,decoration={brace,amplitude=3pt,mirror}] (0.7,-0.85) -- (1.4,-0.85)
+    node[midway,below=4pt] {\small pas $\frac1q$};
+\end{tikzpicture}
+\end{center}
+
+\begin{idee}
+Si le pas $\dfrac1q$ est \emph{strictement plus petit} que la longueur $b-a$ de l'intervalle, alors une graduation tombe forcément dans $]a,b[$ : on ne peut pas « sauter par-dessus » l'intervalle.
+\end{idee}
+
+\section{Étape 1 : choisir $q$ grâce à Archimède}
+
+\begin{attention}
+\textbf{Propriété d'Archimède.} Pour tout réel $M$, il existe un entier $q\in\N^*$ tel que $q>M$. Autrement dit, $\N$ n'est pas borné dans $\R$.
+\end{attention}
+
+Comme $a<b$, on a $b-a>0$, donc $M=\dfrac{1}{b-a}$ est bien un réel. Archimède donne alors $q\in\N^*$ tel que
+\[
+q>\frac{1}{b-a}.
+\]
+Multiplions par $b-a>0$ (le sens de l'inégalité est conservé) :
+\[
+q(b-a)>1
+\quad\Longleftrightarrow\quad
+\boxed{\frac1q<b-a}.
+\]
+C'est exactement la condition « pas $<$ longueur » du dessin.
+
+\section{Étape 2 : choisir $p$ avec la partie entière}
+
+On pose $p=\E(aq)+1$. Par définition de la partie entière, $\E(aq)\le aq<\E(aq)+1$, donc
+\[
+\boxed{p-1\le aq<p}.
+\]
+Ainsi $p$ est le plus petit entier \emph{strictement} supérieur à $aq$ : $\dfrac{p}{q}$ est la première graduation à droite de $a$.
+
+\section{Étape 3 : vérifier $a<\dfrac pq<b$}
+
+\paragraph{Minoration.} On divise $aq<p$ par $q>0$ :
+\[
+a<\frac pq.
+\]
+
+\paragraph{Majoration.} On divise $p-1\le aq$ par $q>0$ :
+\[
+\frac pq-\frac1q\le a
+\quad\text{donc}\quad
+\frac pq\le a+\frac1q.
+\]
+Or $\dfrac1q<b-a$ (étape 1), d'où
+\[
+\frac pq\le a+\frac1q<a+(b-a)=b.
+\]
+
+\section{Conclusion}
+
+On a $a<\dfrac pq<b$ avec $p\in\Z$ et $q\in\N^*$, donc $r=\dfrac pq\in\Q$ convient. \hfill$\blacksquare$
+
+\bigskip
+\noindent\textbf{Résumé en trois lignes.}
+\begin{enumerate}
+  \item Archimède $\Rightarrow$ $q>\frac1{b-a}$, donc $\frac1q<b-a$ (le pas est plus petit que l'intervalle).
+  \item $p=\E(aq)+1$ $\Rightarrow$ $p-1\le aq<p$ (première graduation après $a$).
+  \item On en déduit $a<\frac pq\le a+\frac1q<b$.
+\end{enumerate}
+
+\end{document}
