@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analyse 1.1 — Top 20 à savoir</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  .sheet { columns: 2 330px; column-gap: 26px; font-size: 13.5px; line-height: 1.42; }
+  .sheet h2 { font-size: 15px; margin: 12px 0 4px; break-after: avoid; padding: 2px 8px; background: var(--primary-light); border-radius: 6px; }
+  .sheet ol { margin: 2px 0 6px 0; padding-left: 24px; }
+  .sheet li { margin: 3px 0; break-inside: avoid; }
+  .sheet code { font-size: 12.5px; }
+  .sheet .why { color: #777; font-size: 12px; }
+  @media print {
+    .topbar, .noprint { display: none !important; }
+    body { background: #fff; }
+    .page { max-width: none; padding: 0; margin: 0; }
+    .sheet { font-size: 10px; line-height: 1.28; column-gap: 16px; }
+    .sheet h2 { font-size: 11px; margin: 5px 0 2px; }
+    .sheet li { margin: 1px 0; }
+    .sheet code { font-size: 9.6px; background: none; padding: 0; }
+    .sheet .why { font-size: 9px; }
+    @page { size: A4; margin: 8mm; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Top 20 à savoir</span></div>
+<div class="page">
+
+<h1 class="noprint">🎯 Top 20 : ce qui a le plus de chances de tomber</h1>
+<div class="box tip noprint">
+<span class="box-title">D'où vient cette liste</span>
+Le prof a dit : <strong>« connaître parfaitement les définitions »</strong>, <strong>« savoir refaire les démonstrations simples du cours »</strong> et <strong>savoir retrouver les limites des feuilles de TD</strong>. Le vrai sujet aura la même longueur et la même difficulté que le <a href="partiel_blanc_corrige.html">sujet blanc</a> (27 points pour 20). Cette fiche est une <strong>estimation</strong> à partir de ces indications, pas une garantie. Imprime-la (1 page A4, Ctrl + P), cache-la, et récris chaque point de mémoire.
+</div>
+
+<div class="sheet">
+
+<h2>🔴 Définitions à réciter mot pour mot</h2>
+<ol>
+<li><b>uₙ → ℓ</b> : <code>∀ε&gt;0, ∃N∈N, ∀n≥N, |uₙ−ℓ| ≤ ε</code>.</li>
+<li><b>uₙ → +∞</b> : <code>∀A&gt;0, ∃N∈N, ∀n≥N, uₙ ≥ A</code>. <span class="why">Piège : uₙ ≥ A, pas |uₙ| ≥ A. Tombée au sujet blanc.</span></li>
+<li><b>sup A</b> = le plus petit des majorants. <b>Caractérisation (Prop. 5)</b> : <code>M = sup A ⟺ (∀x∈A, x ≤ M) et (∀y&lt;M, ∃x∈A, y&lt;x)</code>.</li>
+<li><b>Suites adjacentes</b> : (uₙ) croissante, (vₙ) décroissante, <code>vₙ − uₙ → 0</code>.</li>
+<li><b>lim<sub>x→x₀</sub> f = ℓ</b> : <code>∀ε&gt;0, ∃δ&gt;0, ∀x∈I, |x−x₀|&lt;δ ⇒ |f(x)−ℓ|&lt;ε</code>. En +∞ : <code>∀ε&gt;0, ∃B, ∀x≥B, |f(x)−ℓ|&lt;ε</code>.</li>
+<li><b>f continue en x₀</b> : même définition avec <code>ℓ = f(x₀)</code>.</li>
+</ol>
+
+<h2>🔴 Énoncés complets (hypothèses + conclusion)</h2>
+<ol start="7">
+<li><b>Limite monotone</b> : (uₙ) croissante et majorée ⇒ converge vers <code>sup{uₙ}</code> ; croissante non majorée ⇒ <code>uₙ → +∞</code>. <span class="why">Tombé au sujet blanc.</span></li>
+<li><b>Adjacentes</b> : elles convergent vers la même limite ℓ, et <code>uₙ ≤ ℓ ≤ vₙ</code> pour tout n.</li>
+<li><b>Bolzano–Weierstrass</b> : toute suite <b>bornée</b> admet une sous-suite convergente.</li>
+<li><b>TVI</b> : f continue sur le <b>segment</b> [a,b], y entre f(a) et f(b) ⇒ <code>∃c∈[a,b], f(c)=y</code>. <b>Image d'un segment</b> : f continue sur [a,b] ⇒ <code>f([a,b]) = [m,M]</code> (bornée, atteint ses bornes).</li>
+<li><b>Caractérisation séquentielle</b> : f continue en x₀ ⟺ pour toute suite <code>uₙ → x₀</code>, <code>f(uₙ) → f(x₀)</code>.</li>
+</ol>
+
+<h2>🟠 Preuves courtes à refaire</h2>
+<ol start="12">
+<li><b>√2 ∉ Q</b> : par l'absurde, <code>√2 = p/q</code> irréductible ⇒ <code>p² = 2q²</code> ⇒ p pair ⇒ <code>p = 2k</code> ⇒ <code>q² = 2k²</code> ⇒ q pair : contradiction.</li>
+<li><b>Unicité de la limite</b> : par l'absurde ℓ ≠ ℓ', on prend <code>ε = |ℓ−ℓ'|/3</code>. Pour n ≥ max(N, N') : <code>|ℓ−ℓ'| ≤ |ℓ−uₙ| + |uₙ−ℓ'| ≤ 2ε &lt; |ℓ−ℓ'|</code>.</li>
+<li><b>Convergente ⇒ bornée</b> : ε = 1 donne N, puis <code>|uₙ| ≤ |ℓ|+1</code> pour n ≥ N ; <code>M = max(|u₀|, …, |u_{N−1}|, |ℓ|+1)</code>.</li>
+<li><b>uₙ ≤ vₙ et uₙ → +∞ ⇒ vₙ → +∞</b> : soit A ; ∃N, ∀n ≥ N, uₙ ≥ A ; alors <code>vₙ ≥ uₙ ≥ A</code>. ∎ <span class="why">Le prof l'attend mot pour mot.</span></li>
+<li><b>Croissante majorée ⇒ converge</b> : <code>ℓ = sup{uₙ}</code> existe (R4). Soit ε : par Prop. 5, ∃N, <code>ℓ−ε &lt; u_N</code> ; pour n ≥ N, <code>ℓ−ε &lt; u_N ≤ uₙ ≤ ℓ</code>.</li>
+<li><b>Récurrente, f continue, uₙ → ℓ ⇒ f(ℓ) = ℓ</b> : <code>uₙ₊₁ → ℓ</code> (sous-suite) et <code>uₙ₊₁ = f(uₙ) → f(ℓ)</code> (séquentielle) ; unicité de la limite.</li>
+</ol>
+
+<h2>🛠️ Exercices types</h2>
+<ol start="18">
+<li><b>Limites</b> (≈ 6 pts) :
+  fraction en ±∞ → factoriser par le terme dominant ;
+  forme 0/0 en a → factoriser par (x−a) (astuce : <code>r₂ = −b/a − r₁</code>) ;
+  √… − √… → <b>quantité conjuguée</b> puis diviser par x ;
+  cos, sin, (−1)ⁿ → encadrer par ±1 puis comparer ou gendarmes ;
+  « pas de limite » → deux suites (ou sous-suites) de limites différentes.</li>
+<li><b>Signe constant + suite récurrente</b> (sujet blanc ex. 5) : f continue, <code>f(x) ≠ x</code>, f(0) = 1. On pose <code>φ = f − id</code>, continue, jamais nulle, <code>φ(0) = 1 &gt; 0</code>. S'il existait a avec φ(a) &lt; 0, le TVI donnerait un zéro : absurde. Donc <code>f(x) &gt; x</code>, (uₙ) est croissante ; si elle convergeait, sa limite serait un point fixe (n° 17) : absurde. Donc <code>uₙ → +∞</code> (n° 7).</li>
+<li><b>Surjectivité / bornée</b> :
+  surjective sur ]a,b[ : continuité, limites aux bornes (<b>signe de 0⁻ / 0⁺</b>), puis, pour y donné, trouver α avec <code>g(α) ≤ y</code> et β avec <code>g(β) ≥ y</code> et appliquer <b>le TVI du cours sur [α,β]</b> (pas de « TVI avec limites ») ;
+  continue sur un segment ⇒ bornée ⇒ <b>pas</b> surjective sur R (y = M+1) ;
+  g∘f bornée : <code>f(R) ⊂ [−M, M]</code> et g continue sur ce segment est bornée.</li>
+</ol>
+
+<h2>⚠️ Les contre-exemples à avoir en tête</h2>
+<ol style="list-style:none; padding-left:4px">
+<li><code>(−1)ⁿ</code> : bornée mais divergente. <code>1/x</code> sur ]0,1] : continue mais pas bornée (il faut un segment). <code>g(x) = x</code> : continue sur R mais pas bornée. <code>A = {1 − 1/n}</code> : sup = 1, pas de max.</li>
+</ol>
+
+</div>
+</div>
+</body>
+</html>
