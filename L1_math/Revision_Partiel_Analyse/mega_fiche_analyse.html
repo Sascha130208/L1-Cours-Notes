@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analyse 1.1 — Méga-fiche complète (réels, suites, limites, continuité)</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.td{background:#f3efff;border-left:6px solid #7c3aed;border-radius:8px;padding:12px 18px;margin:1.4em 0;color:#2e1a63}
+.td ul{margin:.4em 0 0;padding-left:1.2em}
+.td li{margin:.25em 0}
+.td .tag{font-size:.78em;font-weight:700;color:#7c3aed}
+details.q{border-left:4px solid #0d9488;background:#f6fffc}
+details.q>summary{color:#0d6e66}
+details.proof{border-left:4px solid #4338ca}
+.toc{columns:2;column-gap:28px;font-size:.95em}
+.toc a{color:var(--primary);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.toc li{margin:.15em 0;break-inside:avoid}
+.star3{color:#c2410c;font-weight:700}
+.star2{color:#b45309;font-weight:700}
+.star1{color:#6b7280;font-weight:700}
+@media(max-width:640px){.toc{columns:1}}
+@media print{.topbar{display:none} details{border:none} details>*{display:block}}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions partiel</a><span>Méga-fiche complète</span></div>
+<div class="page">
+
+<h1>🧠 Méga-fiche d'analyse 1.1 — tout le partiel, notion par notion</h1>
+<p>Cette fiche suit <strong>le polycopié du prof</strong> (« Analyse 1.1 », version du 26 octobre 2026, chapitres 1 à 4 : réels, suites, limites de fonctions, continuité). Pour <strong>chaque notion</strong> tu trouves, dans cet ordre : l'<strong>énoncé exact</strong> ; la <strong>formule expliquée en français</strong> ; des <strong>questions de cours</strong> avec la réponse cachée ; la <strong>démonstration</strong> cachée ; les <strong>pièges</strong> ; et les <strong>exercices des feuilles de TD</strong> à refaire pour t'entraîner.</p>
+
+<div class="box tip">
+<span class="box-title">💡 Comment t'en servir</span>
+<ol>
+<li>Lis l'encadré bleu (l'énoncé) puis l'encadré vert (explication).</li>
+<li><strong>Cache tout et écris l'énoncé de mémoire</strong>, puis compare.</li>
+<li>Ouvre les <span class="chip">❓ questions</span> une par une : réponds sur papier <em>avant</em> de cliquer.</li>
+<li>Refais la <span class="chip">🧩 démonstration</span> sur papier, puis compare.</li>
+<li>Termine par les exercices <span class="chip">✏️ TD</span> : les corrections sont sur le site, mais <strong>cherche d'abord</strong>.</li>
+</ol>
+<strong>Légende :</strong> 🔴 à savoir mot pour mot · 🟠 preuve courte à savoir refaire · 🟢 preuve longue, comprendre l'idée suffit.
+</div>
+
+<div class="box warn">
+<span class="box-title">⚠️ Trois conventions du prof à connaître</span>
+<ul>
+<li>Les définitions avec ε s'écrivent avec <strong>« ≤ »</strong> : <code>|uₙ − ℓ| ≤ ε</code>, <code>|x − a| ≤ δ ⇒ |f(x) − ℓ| ≤ ε</code>. Avec « &lt; » c'est équivalent, mais recopie la version du polycopié.</li>
+<li>Pour les limites <strong>infinies</strong> : <code>∀A ∈ R</code> (ou <code>∀B ∈ R</code>), pas seulement <code>A &gt; 0</code>.</li>
+<li>Pour une <strong>limite de fonction en un point <code>a</code></strong>, le point <code>a</code> <strong>n'est pas exclu</strong> : si <code>a ∈ A</code> et <code>lim f = ℓ</code>, alors <code>f(a) = ℓ</code>. De plus <code>a</code> doit être <strong>adhérent</strong> au domaine <code>A</code> (noté <code>a ∈ Ā</code>) : sinon la limite ne veut rien dire.</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="prio">0. Quelles feuilles de TD réviser en priorité ?</h2>
+<p>Le prof a annoncé : <em>questions de cours (définitions + démonstrations simples)</em> et <em>limites des feuilles de TD à savoir refaire</em>. Voici mon classement, exercice par exercice. <span class="star3">★★★</span> = à refaire sans regarder (c'est du cours déguisé ou une technique de calcul qui tombe) ; <span class="star2">★★</span> = à faire ; <span class="star1">★</span> = si tu as du temps.</p>
+<div class="tablewrap"><table>
+<tr><th>Feuille</th><th>Exercice</th><th>Priorité</th><th>Pourquoi</th><th>Notion(s)</th></tr>
+<tr><td rowspan="6"><a href="../Exercices/exercices_analyse_feuille1.html"><strong>F1</strong> Réels</a></td><td>Ex 1 vrai/faux</td><td class="star2">★★</td><td>Réflexe « contre-exemple ou preuve »</td><td><a href="#n2">N2</a>, <a href="#n4">N4</a>, <a href="#n8">N8</a>, <a href="#n10">N10</a></td></tr>
+<tr><td>Ex 2 intervalles</td><td class="star2">★★</td><td>Caractérisation des intervalles</td><td><a href="#n3">N3</a></td></tr>
+<tr><td>Ex 3 sup/inf/max/min</td><td class="star3">★★★</td><td>Calculs types, 6 parties à connaître</td><td><a href="#n7">N7</a>, <a href="#n8">N8</a></td></tr>
+<tr><td>Ex 4 propriétés du sup</td><td class="star3">★★★</td><td>Preuves « ε » classiques : −A, A∪B, A+B</td><td><a href="#n8">N8</a>, <a href="#n9">N9</a></td></tr>
+<tr><td>Ex 5 parties entières</td><td class="star2">★★</td><td>Encadrement p ≤ x &lt; p+1</td><td><a href="#n11">N11</a></td></tr>
+<tr><td>Ex 6 encadrement √n</td><td class="star1">★</td><td>Technique de télescopage</td><td><a href="#n10">N10</a></td></tr>
+<tr><td rowspan="4"><a href="../Exercices/exercices_analyse_feuille2.html"><strong>F2</strong> Suites (1)</a></td><td>Ex 1 vrai/faux</td><td class="star2">★★</td><td>Contre-exemples avec <code>(−1)ⁿ</code></td><td><a href="#n14">N14</a>–<a href="#n17">N17</a></td></tr>
+<tr><td>Ex 2 limites</td><td class="star3">★★★</td><td>Limites que le prof a dit de savoir refaire</td><td><a href="#n18">N18</a></td></tr>
+<tr><td>Ex 3 propositions de cours</td><td class="star3">★★★</td><td>Borné×0, comparaison, sous-suite majorée, entiers</td><td><a href="#n15">N15</a>–<a href="#n19">N19</a></td></tr>
+<tr><td>Ex 4 moyennes de Cesàro</td><td class="star2">★★</td><td>Preuve « ε/2 + paquets » très classique</td><td><a href="#n20">N20</a></td></tr>
+<tr><td rowspan="6"><a href="../Exercices/exercices_analyse_feuille3.html"><strong>F3</strong> Suites (2)</a></td><td>Ex 1 vrai/faux</td><td class="star2">★★</td><td>Monotone, bornée, adjacentes</td><td><a href="#n21">N21</a>, <a href="#n22">N22</a></td></tr>
+<tr><td>Ex 2 critère du rapport</td><td class="star3">★★★</td><td>Preuve de cours + cas ℓ = 1</td><td><a href="#n23">N23</a></td></tr>
+<tr><td>Ex 3 limites</td><td class="star3">★★★</td><td>4 limites types (dont 2026ⁿ/n!)</td><td><a href="#n18">N18</a>, <a href="#n23">N23</a></td></tr>
+<tr><td>Ex 4 ζ(2) adjacentes</td><td class="star3">★★★</td><td>Exemple du cours</td><td><a href="#n22">N22</a></td></tr>
+<tr><td>Ex 5 suite harmonique</td><td class="star3">★★★</td><td>Preuve de cours (divergence)</td><td><a href="#n21">N21</a></td></tr>
+<tr><td>Ex 6 série alternée</td><td class="star2">★★</td><td>Adjacentes pair/impair</td><td><a href="#n22">N22</a></td></tr>
+<tr><td rowspan="4"><a href="exos_feuille_4.html"><strong>F4</strong> Sous-suites</a></td><td>Ex 1 limites</td><td class="star3">★★★</td><td>4 limites types</td><td><a href="#n18">N18</a></td></tr>
+<tr><td>Ex 2 pairs / impairs</td><td class="star3">★★★</td><td>Preuve de cours (pair + impair ⇒ converge)</td><td><a href="#n16">N16</a></td></tr>
+<tr><td>Ex 3 critère de Cauchy</td><td class="star1">★</td><td>« Complément » dans le polycopié</td><td><a href="#n25">N25</a></td></tr>
+<tr><td>Ex 4 pics</td><td class="star2">★★</td><td>2<sup>e</sup> preuve de Bolzano–Weierstrass</td><td><a href="#n24">N24</a></td></tr>
+<tr><td rowspan="4"><a href="exos_feuilles_5_6_7.html"><strong>F5</strong> Fonctions</a></td><td>Ex 1 parité, monotonie</td><td class="star2">★★</td><td>Contre-exemples, composition</td><td><a href="#n27">N27</a></td></tr>
+<tr><td>Ex 2 limites</td><td class="star3">★★★</td><td>3 limites types</td><td><a href="#n30">N30</a></td></tr>
+<tr><td>Ex 3 parité / période</td><td class="star2">★★</td><td>Petites preuves de cours</td><td><a href="#n27">N27</a></td></tr>
+<tr><td>Ex 4 croissante local/global</td><td class="star1">★</td><td>Difficile, pas prioritaire</td><td><a href="#n27">N27</a></td></tr>
+<tr><td rowspan="4"><a href="exos_feuilles_5_6_7.html"><strong>F6</strong> Limites, continuité</a></td><td>Ex 1</td><td class="star2">★★</td><td>Comparaison de limites</td><td><a href="#n31">N31</a></td></tr>
+<tr><td>Ex 2 dix limites</td><td class="star3">★★★</td><td><strong>Le plus important de la feuille</strong> : le prof veut qu'on les sache refaire</td><td><a href="#n30">N30</a>–<a href="#n32">N32</a></td></tr>
+<tr><td>Ex 3 monotone, périodique, f(2x)=f(x)</td><td class="star2">★★</td><td>Preuves de cours</td><td><a href="#n28">N28</a>, <a href="#n33">N33</a></td></tr>
+<tr><td>Ex 4 ⌊cos x⌋</td><td class="star2">★★</td><td>Étude de continuité par morceaux</td><td><a href="#n33">N33</a></td></tr>
+<tr><td rowspan="4"><a href="exos_feuilles_5_6_7.html"><strong>F7</strong> TVI</a></td><td>Ex 1 cos x = x, surjectivités</td><td class="star3">★★★</td><td>Les 3 usages classiques du TVI</td><td><a href="#n36">N36</a></td></tr>
+<tr><td>Ex 2 f² = 1, f ≠ g</td><td class="star3">★★★</td><td>« signe constant »</td><td><a href="#n36">N36</a></td></tr>
+<tr><td>Ex 3 points fixes</td><td class="star3">★★★</td><td>Tombe aussi dans les suites récurrentes</td><td><a href="#n36">N36</a>, <a href="#n26">N26</a></td></tr>
+<tr><td>Ex 4 φ(a)+φ(b)=0, randonneur</td><td class="star3">★★★</td><td>Fabriquer φ</td><td><a href="#n36">N36</a></td></tr>
+<tr><td><strong>F8, F9</strong></td><td colspan="4"><strong>Non trouvées</strong> dans tes fichiers (je n'ai que les feuilles 1 à 7). Les notions « complément » du polycopié (fonctions lipschitziennes, continuité uniforme, bijection) sont déjà traitées plus bas (<a href="#n35">N35</a>, <a href="#n39">N39</a>, <a href="#n40">N40</a>). Envoie-moi les PDF des feuilles 8 et 9 et je les ajoute au même format.</td></tr>
+</table></div>
+
+<h2>Sommaire des notions</h2>
+<ul class="toc">
+<li><a href="#n1">N1 · Rationnels, irrationnels, √2</a></li>
+<li><a href="#n2">N2 · Calculs avec les inégalités</a></li>
+<li><a href="#n3">N3 · Intervalles et caractérisation</a></li>
+<li><a href="#n4">N4 · Valeur absolue, triangulaire, distance</a></li>
+<li><a href="#n5">N5 · Voisinage, intérieur, adhérence</a></li>
+<li><a href="#n6">N6 · Majorant, minorant, max, min</a></li>
+<li><a href="#n7">N7 · Borne supérieure, borne inférieure</a></li>
+<li><a href="#n8">N8 · Caractérisation par ε du sup / inf</a></li>
+<li><a href="#n9">N9 · Propriété de la borne supérieure (R)</a></li>
+<li><a href="#n10">N10 · Archimède</a></li>
+<li><a href="#n11">N11 · Partie entière, encadrement décimal</a></li>
+<li><a href="#n12">N12 · Suites, « à partir d'un rang », extraction</a></li>
+<li><a href="#n13">N13 · Suites bornées, monotones</a></li>
+<li><a href="#n14">N14 · Limite finie d'une suite</a></li>
+<li><a href="#n15">N15 · Limite infinie, divergence</a></li>
+<li><a href="#n16">N16 · Unicité, bornée, signe, sous-suites</a></li>
+<li><a href="#n17">N17 · Opérations sur les limites</a></li>
+<li><a href="#n18">N18 · Formes indéterminées, méthodes de calcul</a></li>
+<li><a href="#n19">N19 · Limites et ordre, gendarmes</a></li>
+<li><a href="#n20">N20 · Caractérisations séquentielles (adhérence, sup) et Cesàro</a></li>
+<li><a href="#n21">N21 · Théorème de la limite monotone</a></li>
+<li><a href="#n22">N22 · Suites adjacentes</a></li>
+<li><a href="#n23">N23 · Suites arithmétiques, géométriques, rapport</a></li>
+<li><a href="#n24">N24 · Segments emboîtés, Bolzano–Weierstrass</a></li>
+<li><a href="#n25">N25 · Valeurs d'adhérence, suites de Cauchy</a></li>
+<li><a href="#n26">N26 · Suites récurrentes</a></li>
+<li><a href="#n27">N27 · Fonctions : bornée, monotone, parité, période</a></li>
+<li><a href="#n28">N28 · Limite en un point (ε-δ)</a></li>
+<li><a href="#n29">N29 · Limites infinies, à droite/gauche, à l'infini</a></li>
+<li><a href="#n30">N30 · Unicité, bornitude locale, signe, opérations</a></li>
+<li><a href="#n31">N31 · Composition, ordre, gendarmes</a></li>
+<li><a href="#n32">N32 · Caractérisation séquentielle des limites</a></li>
+<li><a href="#n33">N33 · Continuité en un point et sur une partie</a></li>
+<li><a href="#n34">N34 · Prolongement par continuité</a></li>
+<li><a href="#n35">N35 · Opérations, fonctions lipschitziennes, min/max</a></li>
+<li><a href="#n36">N36 · Théorème des valeurs intermédiaires</a></li>
+<li><a href="#n37">N37 · Image d'un intervalle</a></li>
+<li><a href="#n38">N38 · Fonction continue sur un segment</a></li>
+<li><a href="#n39">N39 · Monotonie et théorème de la bijection</a></li>
+<li><a href="#n40">N40 · Continuité uniforme, théorème de Heine</a></li>
+<li><a href="#annexe">Annexe · Négations, rédaction, pièges</a></li>
+</ul>
+
+<!-- ============================================================ -->
+<h1>CHAPITRE 1 — Les nombres réels</h1>
+
+<!-- ---------- N1 ---------- -->
+<h2 id="n1">N1 · Rationnels, irrationnels, √2 <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.1)</span>
+<ul>
+<li><strong>Rationnel</strong> : <code>x ∈ Q</code> s'il existe <code>p ∈ Z</code> et <code>q ∈ N*</code> tels que <code>x = p/q</code>. <strong>Irrationnel</strong> : un réel qui n'est pas rationnel (<code>R∖Q</code>).</li>
+<li><strong>Admis</strong> : un réel est rationnel ⟺ son écriture décimale est finie ou périodique à partir d'un certain rang.</li>
+<li><strong>Proposition</strong> : <code>√2</code> est irrationnel.</li>
+<li>Q et R∖Q forment une <strong>partition</strong> de R : tout réel est dans l'un, et un seul, des deux.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+« Rationnel » = « fraction d'entiers ». Le dénominateur est dans <code>N*</code> (jamais 0). Tout décimal fini est rationnel (<code>0,125 = 1/8</code>). <code>√2</code> est la diagonale d'un carré de côté 1 : on ne peut pas l'écrire comme fraction, ce qui montre que Q ne suffit pas pour mesurer toutes les longueurs.
+</div>
+<details class="q"><summary>❓ Q1. Écris la définition de « x est un rationnel ». Pourquoi q ∈ N* et pas q ∈ Z ?</summary>
+<code>x ∈ Q ⟺ ∃p ∈ Z, ∃q ∈ N*, x = p/q</code>. On prend <code>q ≥ 1</code> pour exclure 0 ; le signe est porté par <code>p</code>. Avec <code>q ∈ Z*</code> on obtiendrait les mêmes nombres, mais le polycopié fixe <code>q ∈ N*</code>.
+</details>
+<details class="q"><summary>❓ Q2. Soit x ∈ Q et y ∈ R∖Q. x + y est-il irrationnel ? xy ?</summary>
+<strong>x + y : oui, toujours.</strong> Si <code>x + y = r ∈ Q</code>, alors <code>y = r − x</code> serait rationnel (différence de deux rationnels) : contradiction.<br>
+<strong>xy : non, pas toujours.</strong> Pour <code>x = 0</code> : <code>xy = 0 ∈ Q</code>. En revanche si <code>x ≠ 0</code>, <code>xy</code> est irrationnel (sinon <code>y = (xy)/x</code> serait rationnel). <em>(C'est la question 1.1 de la feuille 1.)</em>
+</details>
+<details class="proof"><summary>🧩 Démonstration — √2 ∉ Q (par l'absurde) 🟠</summary>
+Supposons <code>√2 = p/q</code> avec <code>p ∈ Z</code>, <code>q ∈ N*</code> <strong>premiers entre eux</strong> (on peut toujours simplifier la fraction ; c'est l'hypothèse qui fera craquer la preuve).<br>
+Alors <code>2 = p²/q²</code>, soit <code>p² = 2q²</code> : <code>p²</code> est pair.<br>
+<strong>Si p est pair alors p² l'est ; si p est impair, p = 2k+1 et p² = 4k²+4k+1 est impair.</strong> Donc <code>p²</code> pair ⇒ <code>p</code> pair : <code>p = 2p'</code>.<br>
+On remplace : <code>4p'² = 2q²</code>, donc <code>q² = 2p'²</code> est pair, donc <code>q</code> est pair (même argument).<br>
+Ainsi 2 divise à la fois <code>p</code> et <code>q</code> : contradiction avec « premiers entre eux ». Donc <code>√2 ∉ Q</code>. ∎
+</details>
+<div class="box warn"><span class="box-title">⚠️ Pièges</span>
+Dans la preuve, il faut <strong>justifier</strong> « p² pair ⇒ p pair » (par la contraposée ci-dessus) : c'est l'étape que les correcteurs regardent. Sans « premiers entre eux », il n'y a pas de contradiction.</div>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.1</a> — « x ∈ Q, y ∈ R∖Q : a-t-on x+y ∈ R∖Q ? xy ∈ R∖Q ? »</li>
+</ul></div>
+
+<!-- ---------- N2 ---------- -->
+<h2 id="n2">N2 · Calculs avec les inégalités <span class="chip">🔴</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.2)</span>
+Pour tous <code>x, y, z ∈ R</code> : <code>x ≤ x</code> (réflexivité) ; <code>x ≤ y</code> et <code>y ≤ x</code> ⇒ <code>x = y</code> (antisymétrie) ; <code>x ≤ y</code> et <code>y ≤ z</code> ⇒ <code>x ≤ z</code> (transitivité) ; <code>x ≤ y</code> ou <code>y ≤ x</code> (<strong>ordre total</strong>) ; <code>x ≤ y ⇒ x+z ≤ y+z</code> ; <code>x ≤ y</code> et <code>z ≥ 0 ⇒ xz ≤ yz</code> ; <code>x ≤ y</code> et <code>z ≤ 0 ⇒ xz ≥ yz</code>. Passage aux inverses : <code>0 &lt; x ≤ y ⇒ 0 &lt; 1/y ≤ 1/x</code>.
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+« Total » veut dire qu'on peut toujours comparer deux réels (ce n'est pas vrai pour les complexes ou les sous-ensembles). Multiplier par un <strong>négatif retourne</strong> l'inégalité : <code>−2 &lt; 3</code> donne <code>8 &gt; −12</code> en multipliant par <code>−4</code>. Inverser (<code>1/x</code>) retourne aussi, <em>pour des nombres positifs</em>.
+</div>
+<details class="q"><summary>❓ Q. Qu'est-ce qu'un ordre total ? Donne un ordre qui n'est pas total.</summary>
+Un ordre est <strong>total</strong> si deux éléments quelconques sont comparables. L'inclusion <code>⊂</code> sur les parties de R n'est pas totale : <code>{1}</code> et <code>{2}</code> ne sont pas comparables.
+</details>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.2</a> — « {x : 1 ≤ −2x+1 &lt; 3} est-il un intervalle ? un segment ? » (multiplication par un négatif)</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.3</a> — « |x+2026| &gt; 2026 ⇒ x &gt; 0 ? »</li>
+</ul></div>
+
+<!-- ---------- N3 ---------- -->
+<h2 id="n3">N3 · Intervalles et caractérisation <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.2 et 1.6)</span>
+<ul>
+<li><strong>Définition</strong> : les intervalles de R sont (pour <code>a &lt; b</code>) : <code>[a,b], [a,b[, ]a,b], ]a,b[</code> ; <code>]−∞,a], ]−∞,a[, [a,+∞[, ]a,+∞[</code> ; le singleton <code>[a,a] = {a}</code>, <code>∅</code> et <code>R</code>.</li>
+<li><strong>Remarque</strong> : <code>−∞</code> et <code>+∞</code> ne sont pas des réels : le crochet est <strong>toujours tourné vers l'extérieur</strong> de leur côté.</li>
+<li><strong>Théorème (caractérisation)</strong> : <code>I ⊂ R</code> est un intervalle ⟺ pour tous <code>x, z ∈ I</code> et tout <code>y ∈ R</code>, <code>x ≤ y ≤ z ⟹ y ∈ I</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+Un intervalle est une partie « sans trou » : si tu prends deux points dedans, <strong>tout ce qui est entre eux y est aussi</strong>. <code>R∖{0}</code> n'est pas un intervalle : il contient <code>−1</code> et <code>1</code> mais pas <code>0</code>. Un <strong>segment</strong> est un intervalle <code>[a,b]</code> fermé borné. La caractérisation est l'outil pour montrer qu'une <em>image</em> est un intervalle (N37).
+</div>
+<details class="q"><summary>❓ Q1. Énonce la caractérisation des intervalles.</summary>
+<code>I</code> est un intervalle ⟺ <code>∀x, z ∈ I, ∀y ∈ R, (x ≤ y ≤ z ⇒ y ∈ I)</code>.
+</details>
+<details class="q"><summary>❓ Q2. Les parties <code>]−∞,−2] ∪ R₊</code>, <code>]−1,0[ ∪ [0,1]</code>, <code>[−10,−2] ∩ ]−4,4[</code> sont-elles des intervalles ?</summary>
+<strong>Première</strong> : non, elle contient <code>−2</code> et <code>0</code> mais pas <code>−1</code>. <strong>Deuxième</strong> : oui, c'est <code>]−1,1]</code> (les deux morceaux se recollent en 0). <strong>Troisième</strong> : <code>[−10,−2] ∩ ]−4,4[ = ]−4,−2]</code>, oui.
+</details>
+<details class="proof"><summary>🧩 Démonstration du théorème de caractérisation 🟠</summary>
+<strong>(⇒)</strong> Pour chaque forme d'intervalle on vérifie la propriété en enchaînant les inégalités. Par exemple pour <code>I = [a,b[</code> : si <code>x, z ∈ I</code> et <code>x ≤ y ≤ z</code>, alors <code>a ≤ x ≤ y ≤ z &lt; b</code>, donc <code>y ∈ [a,b[</code>. Les autres cas sont identiques (seuls changent les « &lt; » et « ≤ »).<br>
+<strong>(⇐)</strong> Soit <code>I</code> non vide vérifiant la propriété (si <code>I = ∅</code> c'est un intervalle). Posons <code>α = inf I</code> et <code>β = sup I</code>, avec <code>α = −∞</code> si <code>I</code> n'est pas minorée et <code>β = +∞</code> si elle n'est pas majorée.<br>
+• Clairement <code>I ⊂ [α,β]</code> (en ignorant les infinis).<br>
+• Soit <code>y ∈ ]α,β[</code>. Comme <code>y &gt; α</code>, <code>y</code> n'est pas un minorant de <code>I</code> : il existe <code>x ∈ I</code> avec <code>x &lt; y</code>. De même <code>y &lt; β</code> donne <code>z ∈ I</code> avec <code>y &lt; z</code>. Par la propriété, <code>y ∈ I</code>. Donc <code>]α,β[ ⊂ I</code>.<br>
+Ainsi <code>]α,β[ ⊂ I ⊂ [α,β]</code> : <code>I</code> ne diffère de <code>]α,β[</code> que par la présence éventuelle de <code>α</code> et <code>β</code>, c'est-à-dire que <code>I</code> est de l'une des formes <code>]α,β[, [α,β[, ]α,β], [α,β]</code> (ou un singleton si <code>α = β</code>). ∎
+</details>
+<div class="box warn"><span class="box-title">⚠️ Pièges</span>
+Un singleton <code>{a}</code> <strong>est</strong> un intervalle (<code>[a,a]</code>) ; <code>∅</code> aussi. L'ensemble <code>{x ∈ Q : x ≥ 0}</code> n'est <strong>pas</strong> un intervalle (entre <code>0</code> et <code>1</code> il y a <code>√2/2 ∉ Q</code>). Une réunion d'intervalles qui se touchent peut être un intervalle (<code>]−1,0[ ∪ [0,1] = ]−1,1]</code>), mais pas si un point manque (<code>[−1,0[ ∪ ]0,1]</code>).</div>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 2 a)–f)</a> — six parties : « est-ce un intervalle ? » (justifier)</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.2</a> — ensemble défini par une double inégalité</li>
+</ul></div>
+
+<!-- ---------- N4 ---------- -->
+<h2 id="n4">N4 · Valeur absolue, inégalité triangulaire, distance <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.3)</span>
+<ul>
+<li><code>|x| = x</code> si <code>x ≥ 0</code>, <code>|x| = −x</code> si <code>x &lt; 0</code>. Distance entre <code>x</code> et <code>y</code> : <code>|x − y|</code>.</li>
+<li>Pour tous <code>x, y ∈ R</code>, <code>r ∈ R₊</code> : <code>|x| ≥ 0</code> ; <code>|x| = 0 ⟺ x = 0</code> ; <code>|−x| = |x|</code> ; <code>|xy| = |x||y|</code> ; <code>−|x| ≤ x ≤ |x|</code> ; <code>|x| ≤ r ⟺ −r ≤ x ≤ r</code>.</li>
+<li><strong>Inégalité triangulaire</strong> : <code>|x + y| ≤ |x| + |y|</code>. <strong>Corollaire</strong> : <code>| |x| − |y| | ≤ |x − y|</code>.</li>
+<li>Pour <code>a, x ∈ R</code>, <code>r &gt; 0</code> : <code>|x − a| &lt; r ⟺ a − r &lt; x &lt; a + r ⟺ x ∈ ]a−r, a+r[</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+<code>|x − a| &lt; r</code> se lit « <strong>x est à distance &lt; r de a</strong> » : c'est la même chose que « x est dans l'intervalle ouvert centré en a de rayon r ». L'inégalité triangulaire dit qu'<strong>aller tout droit est plus court qu'un détour</strong> : <code>|x − y| ≤ |x − z| + |z − y|</code>. Tu l'utiliseras dans <em>toutes</em> les preuves de limites.
+</div>
+<details class="q"><summary>❓ Q1. Énonce l'inégalité triangulaire et sa seconde forme.</summary>
+<code>|x+y| ≤ |x|+|y|</code> et <code>| |x| − |y| | ≤ |x − y|</code>.
+</details>
+<details class="q"><summary>❓ Q2. Traduis « |x − 3| ≤ 2 » en encadrement, puis « x ∈ [1, 5] » avec une valeur absolue.</summary>
+<code>|x − 3| ≤ 2 ⟺ 1 ≤ x ≤ 5</code>. Réciproquement <code>x ∈ [1,5] ⟺ |x − 3| ≤ 2</code> (centre = milieu, rayon = demi-longueur).
+</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>|x| ≤ r ⟺ −r ≤ x ≤ r.</strong> Si <code>x ≥ 0</code> : <code>|x| = x</code> et <code>−r ≤ 0 ≤ x</code>, donc les deux conditions se réduisent à <code>x ≤ r</code>. Si <code>x &lt; 0</code> : <code>|x| = −x ≤ r ⟺ x ≥ −r</code>, et <code>x &lt; 0 ≤ r</code> : les deux conditions se réduisent à <code>x ≥ −r</code>. (De même avec « &lt; » pour <code>|x−a| &lt; r</code>.)<br>
+<strong>Triangulaire.</strong> On a <code>−|x| ≤ x ≤ |x|</code> et <code>−|y| ≤ y ≤ |y|</code>. En additionnant : <code>−(|x|+|y|) ≤ x+y ≤ |x|+|y|</code>, donc <code>|x+y| ≤ |x|+|y|</code> (équivalence précédente avec <code>r = |x|+|y|</code>).<br>
+<strong>Corollaire.</strong> <code>x = (x−y) + y</code> donne <code>|x| ≤ |x−y| + |y|</code>, donc <code>|x| − |y| ≤ |x−y|</code>. En échangeant <code>x</code> et <code>y</code> : <code>|y| − |x| ≤ |x−y|</code>. Les deux ensemble donnent <code>| |x| − |y| | ≤ |x−y|</code>. ∎
+</details>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.3</a> — « |x + 2026| &gt; 2026 ⇒ x &gt; 0 ? »</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.4</a> — « xy ≥ 0 ⇒ |x+y| = |x|+|y| ? »</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 3 b)</a> — <code>{x : |x| ≤ |x−2|}</code></li>
+</ul></div>
+
+<!-- ---------- N5 ---------- -->
+<h2 id="n5">N5 · Voisinage, intérieur, adhérence <span class="chip">🔴</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.3 et 1.4)</span>
+<ul>
+<li><strong>Voisinage</strong> : <code>V ⊂ R</code> est un voisinage de <code>a</code> s'il existe <code>r &gt; 0</code> tel que <code>]a − r, a + r[ ⊂ V</code>.</li>
+<li><strong>Point intérieur</strong> : <code>a ∈ Å</code> si <code>∃r &gt; 0, ]a − r, a + r[ ⊂ A</code>. <strong>Intérieur</strong> : <code>Å</code> = ensemble des points intérieurs.</li>
+<li><strong>Point adhérent</strong> : <code>a ∈ Ā</code> si <code>∀r &gt; 0, A ∩ [a − r, a + r] ≠ ∅</code>. De façon équivalente : <code>∀δ &gt; 0, ∃x ∈ A, |x − a| ≤ δ</code>.</li>
+<li><strong>Proposition</strong> : <code>Å ⊂ A ⊂ Ā</code>. Exemple : pour <code>A = [0,1[</code>, <code>Å = ]0,1[</code> et <code>Ā = [0,1]</code>.</li>
+<li><strong>Caractérisation séquentielle</strong> : <code>x ∈ Ā</code> ⟺ il existe une suite <code>(aₙ)</code> d'éléments de <code>A</code> avec <code>aₙ → x</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+<strong>Intérieur</strong> = les points <em>entourés</em> par la partie (on peut bouger un peu dans les deux sens sans sortir). <strong>Adhérence</strong> = les points qu'on peut <em>approcher</em> par des points de la partie (même s'ils n'y sont pas : <code>1</code> est adhérent à <code>[0,1[</code>). <code>[0,2]</code> est un voisinage de <code>1</code> (il contient <code>]1/2, 3/2[</code>) mais pas de <code>0</code>.
+</div>
+<details class="q"><summary>❓ Q. Détermine l'intérieur et l'adhérence de A = ]0,1] ∪ {2}.</summary>
+<code>Å = ]0,1[</code> (1 n'est pas intérieur car <code>1+r ∉ A</code> ; 2 est isolé). <code>Ā = [0,1] ∪ {2}</code> (0 est adhérent par <code>1/n</code>).
+</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Å ⊂ A ⊂ Ā.</strong> Si <code>a ∈ Å</code> : <code>a ∈ ]a−r,a+r[ ⊂ A</code>, donc <code>a ∈ A</code>. Si <code>a ∈ A</code> : pour tout <code>r &gt; 0</code>, <code>a ∈ A ∩ [a−r,a+r]</code> qui est donc non vide, donc <code>a ∈ Ā</code>.<br>
+<strong>Caractérisation séquentielle.</strong> (⇒) Si <code>x ∈ Ā</code> : pour tout <code>n</code>, avec <code>δ = 1/(n+1)</code>, il existe <code>aₙ ∈ A</code> avec <code>|aₙ − x| ≤ 1/(n+1)</code>. Par gendarmes, <code>aₙ → x</code>. (⇐) Si <code>aₙ ∈ A</code> et <code>aₙ → x</code> : pour <code>r &gt; 0</code>, il existe <code>N</code> avec <code>|a_N − x| ≤ r</code>, donc <code>a_N ∈ A ∩ [x−r, x+r]</code> et <code>x ∈ Ā</code>. ∎
+</details>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li>Pas d'exercice direct dans F1–F7 : cette notion sert à <strong>comprendre pourquoi une limite en <code>a</code> est définie</strong> (N28) et dans les preuves de F6 (limites en un point).</li>
+</ul></div>
+
+<!-- ---------- N6 ---------- -->
+<h2 id="n6">N6 · Majorant, minorant, maximum, minimum <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.5)</span>
+<ul>
+<li><code>M</code> est un <strong>majorant</strong> de <code>A</code> si <code>∀x ∈ A, x ≤ M</code> ; <code>A</code> est <strong>majorée</strong> si elle a un majorant. <code>m</code> est un <strong>minorant</strong> si <code>∀x ∈ A, m ≤ x</code> ; <strong>minorée</strong>. <strong>Bornée</strong> = majorée et minorée.</li>
+<li>Si <code>M</code> majore <code>A</code>, tout <code>M' ≥ M</code> la majore aussi.</li>
+<li><strong>Maximum</strong> (pour <code>A ≠ ∅</code>) : <code>M = max A</code> si <code>M ∈ A</code> <strong>et</strong> <code>∀x ∈ A, x ≤ M</code>. <strong>Minimum</strong> : <code>m ∈ A</code> et <code>m ≤ x</code> pour tout <code>x</code>.</li>
+<li><strong>Proposition</strong> : s'il existe, le max (resp. le min) est <strong>unique</strong>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+<strong>La différence cruciale</strong> : un <em>majorant</em> est un nombre qui domine toute la partie, il peut être <strong>en dehors</strong> de la partie ; le <em>maximum</em> est un majorant <strong>qui appartient à la partie</strong>. Pour <code>A = [0,1[</code> : les majorants sont <code>[1,+∞[</code> ; il n'y a pas de maximum (si <code>x ∈ [0,1[</code>, alors <code>(x+1)/2 ∈ [0,1[</code> est plus grand).
+</div>
+<details class="q"><summary>❓ Q1. Donne les majorants et minorants de [0,1[, puis son max et son min.</summary>
+Minorants : <code>]−∞,0]</code>. Majorants : <code>[1,+∞[</code>. <code>min = 0</code> (il est dans la partie). Pas de max.
+</details>
+<details class="q"><summary>❓ Q2. Écris la négation de « A est majorée ».</summary>
+<code>∀M ∈ R, ∃x ∈ A, x &gt; M</code>. Exemple : <code>N</code> n'est pas majorée.
+</details>
+<details class="proof"><summary>🧩 Démonstration — unicité du maximum 🟠</summary>
+Soient <code>M</code> et <code>M'</code> deux maxima de <code>A</code>. Comme <code>M' ∈ A</code> et <code>M</code> majore <code>A</code>, <code>M' ≤ M</code>. Comme <code>M ∈ A</code> et <code>M'</code> majore <code>A</code>, <code>M ≤ M'</code>. Par antisymétrie, <code>M = M'</code>. (Idem pour le minimum.) ∎
+</details>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.5</a> — « A minorée, B majorée, A ⊂ B : A bornée ? B bornée ? »</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.6</a> — « {|x−1| : x ∈ R₊} est-il minoré ? a-t-il un plus petit élément ? »</li>
+</ul></div>
+
+<!-- ---------- N7 ---------- -->
+<h2 id="n7">N7 · Borne supérieure, borne inférieure <span class="chip">🔴</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.5)</span>
+<ul>
+<li><strong>Borne supérieure</strong> : pour <code>A</code> non vide et majorée, <code>M = sup A</code> si <code>M</code> est le <strong>plus petit majorant</strong> de <code>A</code>.</li>
+<li><strong>Borne inférieure</strong> : pour <code>A</code> non vide et minorée, <code>m = inf A</code> si <code>m</code> est le <strong>plus grand minorant</strong>.</li>
+<li><strong>Remarque</strong> : <code>A</code> a un maximum ⟺ <code>sup A ∈ A</code> (et alors <code>max A = sup A</code>). Idem avec <code>inf</code> et <code>min</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+Le sup, c'est « <strong>le plafond le plus bas</strong> » : parmi tous les nombres au-dessus de la partie, le plus petit. Il peut être atteint (alors c'est le max) ou seulement approché (<code>1</code> pour <code>[0,1[</code>). Le sup est une <em>borne</em>, pas forcément un élément.
+</div>
+<details class="q"><summary>❓ Q1. Donne les définitions de sup A et de inf A.</summary>
+<code>sup A</code> : le plus petit majorant de <code>A</code>. <code>inf A</code> : le plus grand minorant de <code>A</code>.
+</details>
+<details class="q"><summary>❓ Q2. Calcule sup, inf, max, min de A = {1 − 1/n : n ∈ N*}.</summary>
+<code>inf A = min A = 0</code> (atteint pour <code>n = 1</code>). <code>sup A = 1</code>, pas de maximum (1 n'est pas dans A). Preuve du sup : voir N8.
+</details>
+<details class="proof"><summary>🧩 Démonstration — max ⟺ sup ∈ A 🟠</summary>
+Soit <code>M = sup A</code>. Si <code>A</code> a un maximum <code>m</code> : <code>m</code> est un majorant, donc <code>M ≤ m</code> ; et <code>m ∈ A</code> est ≤ à tout majorant donc <code>m ≤ M</code> ; ainsi <code>m = M ∈ A</code>. Réciproquement si <code>M ∈ A</code>, comme <code>M</code> majore <code>A</code>, c'est un maximum. ∎
+</details>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 3 a)–f)</a> — six parties : minorée ? majorée ? min/max ? inf/sup ? (les ensembles : <code>[−1,0[ ∪ [1,2[</code>, <code>{|x| ≤ |x−2|}</code>, <code>N</code>, <code>{x : x²+1 ≤ 10}</code>, <code>{x ∈ Q : x² ≤ 2}</code>, <code>{1 − 1/n}</code>)</li>
+</ul></div>
+
+<!-- ---------- N8 ---------- -->
+<h2 id="n8">N8 · Caractérisation par ε du sup et de l'inf <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.5 et 2.3)</span>
+<ul>
+<li><strong>Proposition</strong> : <code>A</code> non vide majorée, <code>M ∈ R</code>. <code>M = sup A</code> ⟺ (i) <code>M</code> majore <code>A</code> <strong>et</strong> (ii) <code>∀ε &gt; 0, ∃x ∈ A, M − ε &lt; x</code>.</li>
+<li><strong>Version inf</strong> : <code>m = inf A</code> ⟺ (i) <code>m</code> minore <code>A</code> et (ii) <code>∀ε &gt; 0, ∃x ∈ A, x &lt; m + ε</code>.</li>
+<li><strong>Version séquentielle</strong> : <code>M = sup A</code> ⟺ <code>M</code> majore <code>A</code> et il existe une suite <code>(xₙ)</code> d'éléments de <code>A</code> telle que <code>xₙ → M</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+(i) dit « M est un plafond » ; (ii) dit « <strong>on ne peut pas le baisser, même d'un tout petit ε</strong> : il y a toujours un élément de A qui dépasse M − ε ». Les deux ensemble = « le plus petit plafond ». C'est <strong>l'outil numéro 1</strong> pour prouver qu'un nombre est un sup.
+</div>
+<details class="q"><summary>❓ Q1. Énonce la caractérisation de M = sup A.</summary>
+<code>M majore A</code> et <code>∀ε &gt; 0, ∃x ∈ A, M − ε &lt; x</code>.
+</details>
+<details class="q"><summary>❓ Q2. Écris le schéma de preuve pour montrer qu'un réel M est le sup de A.</summary>
+(1) Montrer que <code>M</code> est un majorant : <code>∀x ∈ A, x ≤ M</code>. (2) Fixer <code>ε &gt; 0</code> et <strong>construire</strong> un élément <code>x ∈ A</code> avec <code>x &gt; M − ε</code>. (3) Conclure par la proposition.
+</details>
+<details class="proof"><summary>🧩 Démonstration de la caractérisation 🟠</summary>
+<strong>(⇒)</strong> <code>M = sup A</code> est un majorant : c'est (i). Pour (ii), soit <code>ε &gt; 0</code> : <code>M − ε &lt; M</code> et <code>M</code> est le <em>plus petit</em> majorant, donc <code>M − ε</code> n'est pas un majorant : il existe <code>x ∈ A</code> avec <code>x &gt; M − ε</code>.<br>
+<strong>(⇐)</strong> Par (i), <code>M</code> est un majorant. Soit <code>M'</code> un majorant avec <code>M' &lt; M</code>. Prenons <code>ε = M − M' &gt; 0</code> : (ii) donne <code>x ∈ A</code> avec <code>x &gt; M − ε = M'</code>, ce qui contredit « M' majore A ». Donc aucun majorant n'est &lt; M : <code>M</code> est le plus petit, <code>M = sup A</code>. ∎<br>
+<strong>Version séquentielle.</strong> (⇒) Avec <code>ε = 1/(n+1)</code> on obtient <code>xₙ ∈ A</code> avec <code>M − 1/(n+1) &lt; xₙ ≤ M</code> ; gendarmes : <code>xₙ → M</code>. (⇐) Soit <code>ε &gt; 0</code> ; comme <code>xₙ → M</code>, il existe <code>n</code> avec <code>|xₙ − M| ≤ ε/2</code>, donc <code>xₙ ≥ M − ε/2 &gt; M − ε</code> : (ii) est vérifiée.
+</details>
+<details class="proof"><summary>🧩 Exemple type — sup {1 − 1/n} = 1 et pas de maximum 🟠</summary>
+(i) Pour tout <code>n ∈ N*</code>, <code>1 − 1/n &lt; 1</code> : 1 est un majorant. (ii) Soit <code>ε &gt; 0</code>. Par Archimède (N10) il existe <code>N ∈ N*</code> avec <code>1/N &lt; ε</code> ; alors <code>1 − ε &lt; 1 − 1/N ∈ A</code>. Donc <code>sup A = 1</code>. Comme <code>1 ∉ A</code> (car <code>1 − 1/n = 1</code> imposerait <code>1/n = 0</code>), <strong>il n'y a pas de maximum</strong>. ∎
+</details>
+<div class="box warn"><span class="box-title">⚠️ Pièges</span>
+Ne pas écrire « il existe x ∈ A tel que x &gt; M » (c'est faux : M majore A). C'est <code>x &gt; M − ε</code>. Et ne pas oublier (i) : sans elle, <code>M = 10</code> vérifierait (ii) pour <code>A = [0,1[</code>.</div>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 3 e), f)</a> — <code>sup {x ∈ Q : x² ≤ 2} = √2</code> (pas de maximum dans Q) et <code>sup {1 − 1/n}</code></li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 4.1</a> — <code>inf(−A) = −sup(A)</code></li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 4.2</a> — <code>A ⊂ B</code> ⇒ <code>sup A ≤ sup B</code></li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 4.3</a> — <code>sup(A ∪ B) = max{sup A, sup B}</code></li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 4.4</a> — <code>sup(A ∩ B) ≤ min{sup A, sup B}</code> ; l'inégalité peut-elle être stricte ?</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 4.5</a> — <code>sup(A + B) = sup A + sup B</code></li>
+</ul></div>
+
+<!-- ---------- N9 ---------- -->
+<h2 id="n9">N9 · Propriété de la borne supérieure (l'axiome de R) <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.6)</span>
+<ul>
+<li><strong>Propriété de la borne supérieure (admise)</strong> : toute partie <strong>non vide et majorée</strong> de R possède une borne supérieure. Elle est vraie dans R, <strong>fausse dans Q</strong>.</li>
+<li><strong>Corollaire</strong> : toute partie <strong>non vide et minorée</strong> de R possède une borne inférieure.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+C'est ce qui distingue R de Q : <strong>R n'a pas de trou</strong>. Dans Q, la partie <code>{x ∈ Q : x² ≤ 2}</code> est majorée mais n'a pas de sup (le sup devrait être <code>√2 ∉ Q</code>). Attention : la propriété garantit l'<em>existence</em> d'un sup, pas celle d'un <em>maximum</em>. Presque tous les théorèmes profonds du cours (limite monotone, TVI, Bolzano-Weierstrass) en découlent.
+</div>
+<details class="q"><summary>❓ Q. Cette propriété est-elle vraie dans Q ? Donne un contre-exemple.</summary>
+Non. <code>A = {x ∈ Q : x² ≤ 2}</code> est non vide et majorée dans Q (par 2) mais n'a pas de borne supérieure <em>dans Q</em> : ce serait <code>√2</code>, irrationnel.
+</details>
+<details class="proof"><summary>🧩 Démonstration du corollaire (inf) — c'est F1 Ex. 4.1 🟠</summary>
+Soit <code>A</code> non vide minorée. Alors <code>−A = {−a : a ∈ A}</code> est non vide et <strong>majorée</strong> (si <code>m</code> minore <code>A</code>, <code>−m</code> majore <code>−A</code>). Soit <code>s = sup(−A)</code> (propriété de la borne sup). Montrons que <code>−s = inf A</code> :<br>
+• <code>−s</code> minore <code>A</code> : pour <code>a ∈ A</code>, <code>−a ∈ −A</code> donc <code>−a ≤ s</code>, soit <code>a ≥ −s</code>.<br>
+• Pour <code>ε &gt; 0</code> : il existe <code>y ∈ −A</code> avec <code>y &gt; s − ε</code> ; en écrivant <code>y = −a</code>, on a <code>a ∈ A</code> et <code>a &lt; −s + ε</code>.<br>
+La caractérisation (N8, version inf) donne <code>−s = inf A</code>, c'est-à-dire <code>inf(−A) = −sup(A)</code> et <code>inf A = −sup(−A)</code>. ∎
+</details>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 4.1 à 4.5</a> (voir N8) : toutes supposent l'existence du sup, donc la propriété de la borne supérieure.</li>
+</ul></div>
+
+<!-- ---------- N10 ---------- -->
+<h2 id="n10">N10 · Propriété d'Archimède <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.6)</span>
+<ul>
+<li><strong>Théorème</strong> : pour tout <code>x ∈ R</code>, il existe <code>n ∈ N</code> tel que <code>n &gt; x</code>.</li>
+<li><strong>Corollaire</strong> : pour tout <code>ε &gt; 0</code>, il existe <code>N ∈ N*</code> tel que <code>1/N &lt; ε</code>.</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+« Aucun réel n'est plus grand que tous les entiers. » Le corollaire dit qu'<strong>on peut rendre 1/N aussi petit qu'on veut</strong> : c'est le moteur des preuves de limites (on choisit le rang <code>N</code> grâce à Archimède).
+</div>
+<details class="q"><summary>❓ Q. Énonce Archimède et son corollaire.</summary>
+<code>∀x ∈ R, ∃n ∈ N, n &gt; x</code>. Et <code>∀ε &gt; 0, ∃N ∈ N*, 1/N &lt; ε</code>.
+</details>
+<details class="proof"><summary>🧩 Démonstration 🟠</summary>
+Par l'absurde : supposons que <code>N</code> soit majoré par un réel <code>x</code>. <code>N</code> est non vide et majoré : par la propriété de la borne sup, <code>s = sup N</code> existe. Comme <code>s − 1 &lt; s</code>, <code>s − 1</code> n'est pas un majorant : il existe <code>n ∈ N</code> avec <code>n &gt; s − 1</code>. Alors <code>n + 1 &gt; s</code> avec <code>n + 1 ∈ N</code> : contradiction avec « s majore N ».<br>
+<strong>Corollaire.</strong> Soit <code>ε &gt; 0</code>. Archimède pour <code>x = 1/ε</code> donne <code>N ∈ N</code> avec <code>N &gt; 1/ε &gt; 0</code>. Donc <code>N ∈ N*</code> et <code>1/N &lt; ε</code>. ∎
+</details>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 3 f)</a> — sup de <code>{1 − 1/n}</code> (on y utilise le corollaire)</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 6</a> — encadrement de <code>1/√n</code> et valeur de <code>1 + 1/√2 + … + 1/√100</code></li>
+<li><a href="exos_feuilles_5_6_7.html">F5 · Ex. 3.3</a> — <code>f</code> périodique croissante ⇒ constante (on choisit <code>n</code> avec <code>y ≤ x + nT</code>)</li>
+</ul></div>
+
+<!-- ---------- N11 ---------- -->
+<h2 id="n11">N11 · Partie entière, encadrement décimal <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 1.6)</span>
+<ul>
+<li><strong>Proposition</strong> : pour tout <code>x ∈ R</code>, il existe un <strong>unique</strong> <code>p ∈ Z</code> tel que <code>p ≤ x &lt; p + 1</code>. On le note <code>⌊x⌋</code>.</li>
+<li>Donc <code>⌊x⌋ ≤ x &lt; ⌊x⌋ + 1</code> et <code>0 ≤ x − ⌊x⌋ &lt; 1</code>.</li>
+<li><strong>Encadrement décimal</strong> : pour <code>x ∈ R</code> et <code>n ∈ N</code>, il existe un unique <code>p ∈ Z</code> tel que <code>p/10ⁿ ≤ x &lt; (p+1)/10ⁿ</code>.</li>
+<li>Exemples : <code>⌊2,853⌋ = 2</code>, <code>⌊−0,2⌋ = −1</code>, <code>⌊−3,5⌋ = −4</code> (pour un négatif non entier, c'est l'entier <strong>à gauche</strong>).</li>
+</ul>
+</div>
+<div class="box tip">
+<span class="box-title">🗣️ En français</span>
+<code>⌊x⌋</code> est « le plus grand entier ≤ x » : <strong>on arrondit toujours vers le bas</strong>, y compris pour les négatifs. <code>x − ⌊x⌋</code> est la « partie décimale », toujours dans <code>[0,1[</code>. Pour prouver une égalité avec des <code>⌊·⌋</code>, <strong>on écrit <code>x = ⌊x⌋ + f</code> avec <code>0 ≤ f &lt; 1</code> et on distingue les cas</strong> (<code>f &lt; 1/2</code> ou <code>f ≥ 1/2</code>, par exemple).
+</div>
+<details class="q"><summary>❓ Q1. Calcule ⌊0,7⌋, ⌊2,3⌋, ⌊−1⌋, ⌊−1,9⌋, ⌊−2,1⌋.</summary>
+<code>0</code>, <code>2</code>, <code>−1</code>, <code>−2</code>, <code>−3</code>.
+</details>
+<details class="q"><summary>❓ Q2. A-t-on ⌊2x⌋ = 2⌊x⌋ pour tout x ?</summary>
+<strong>Non.</strong> <code>x = 0,6</code> : <code>⌊1,2⌋ = 1 ≠ 0 = 2⌊0,6⌋</code>.
+</details>
+<details class="proof"><summary>🧩 Démonstration — existence et unicité de ⌊x⌋ 🟠</summary>
+<strong>Existence.</strong> Par Archimède, il existe <code>n ∈ N</code> avec <code>n &gt; −x</code> (donc <code>−n &lt; x</code>) et <code>n' ∈ N</code> avec <code>n' &gt; x</code>. L'ensemble <code>E = {k ∈ Z : −n ≤ k ≤ n', k ≤ x}</code> est <strong>fini</strong> (entiers entre <code>−n</code> et <code>n'</code>) et non vide (<code>−n ∈ E</code>) : il a un plus grand élément <code>p</code>. Alors <code>p ≤ x</code>. Et <code>p + 1 &gt; x</code> : sinon <code>p+1 ≤ x &lt; n'</code> serait un élément de <code>E</code> plus grand que <code>p</code>.<br>
+<strong>Unicité.</strong> Si <code>p ≤ x &lt; p+1</code> et <code>q ≤ x &lt; q+1</code>, alors <code>p ≤ x &lt; q+1</code> donc <code>p &lt; q+1</code>, et de même <code>q &lt; p+1</code>. Donc <code>q − 1 &lt; p &lt; q + 1</code>, et le seul entier strictement entre <code>q−1</code> et <code>q+1</code> est <code>q</code> : <code>p = q</code>.<br>
+<strong>Encadrement décimal.</strong> On applique ce qui précède au réel <code>10ⁿx</code> : <code>p ≤ 10ⁿx &lt; p+1</code>, puis on divise par <code>10ⁿ &gt; 0</code>. ∎
+</details>
+<details class="proof"><summary>🧩 Exemple — <code>⌊x⌋ + ⌊y⌋ ≤ ⌊x+y⌋ ≤ ⌊x⌋ + ⌊y⌋ + 1</code> (F1 Ex. 5.2) 🟠</summary>
+En additionnant <code>⌊x⌋ ≤ x &lt; ⌊x⌋+1</code> et <code>⌊y⌋ ≤ y &lt; ⌊y⌋+1</code> : <code>k ≤ x+y &lt; k+2</code> avec <code>k = ⌊x⌋+⌊y⌋ ∈ Z</code>.<br>
+• <code>k ≤ x+y</code> et <code>k ∈ Z</code> ⇒ <code>k ≤ ⌊x+y⌋</code> (car <code>⌊x+y⌋</code> est le plus grand entier ≤ x+y).<br>
+• <code>⌊x+y⌋ ≤ x+y &lt; k+2</code> et <code>⌊x+y⌋ ∈ Z</code> ⇒ <code>⌊x+y⌋ ≤ k+1</code>. ∎
+</details>
+<div class="box warn"><span class="box-title">⚠️ Pièges</span>
+<code>⌊−1,9⌋ = −2</code>, <strong>pas</strong> <code>−1</code>. Ne pas « couper la partie décimale » pour les négatifs. Pour une suite : si <code>xₙ → +∞</code> alors <code>⌊xₙ⌋ → +∞</code> car <code>⌊xₙ⌋ ≥ xₙ − 1</code>.</div>
+<div class="td"><strong>✏️ Exos TD qui correspondent</strong>
+<ul>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 1.8</a> — « ⌊2x⌋ = 2⌊x⌋ ? »</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 5.1</a> — cinq valeurs de parties entières</li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 5.2</a> — <code>⌊x⌋ + ⌊y⌋ ≤ ⌊x+y⌋ ≤ ⌊x⌋ + ⌊y⌋ + 1</code></li>
+<li><a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 5.3</a> — <code>⌊x⌋ + ⌊x + 1/2⌋ = ⌊2x⌋</code></li>
+<li><a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 3 b)</a> et <a href="exos_feuille_4.html">F4 · Ex. 1 c)</a> — limites avec partie entière ; <a href="exos_feuilles_5_6_7.html">F6 · Ex. 4</a> — continuité de <code>⌊cos x⌋</code></li>
+</ul></div>
+
+<div class="box tip">
+<span class="box-title">➕ Bonus (livre Exo7, absent du polycopié) — densité de Q et de R∖Q</span>
+<strong>Théorème</strong> : tout intervalle ouvert non vide <code>]a,b[</code> contient une infinité de rationnels et d'irrationnels.
+<details class="proof"><summary>🧩 Démonstration 🟠</summary>
+<strong>Un rationnel.</strong> Par le corollaire d'Archimède, il existe <code>q ∈ N*</code> avec <code>1/q &lt; b − a</code>. Posons <code>p = ⌊aq⌋ + 1</code> : <code>p − 1 ≤ aq &lt; p</code>, donc <code>a &lt; p/q ≤ a + 1/q &lt; b</code>.<br>
+<strong>Un irrationnel.</strong> On applique le résultat à <code>]a − √2, b − √2[</code> : il y a un rationnel <code>r</code> dedans, donc <code>r + √2 ∈ ]a,b[</code>, irrationnel (N1, F1 Ex. 1.1).<br>
+<strong>Une infinité.</strong> Découper <code>]a,b[</code> en <code>N</code> sous-intervalles ouverts disjoints, chacun contenant au moins un rationnel : au moins <code>N</code> pour tout <code>N</code>. ∎
+</details>
+</div>
+
+
+<!-- ============================================================ -->
+<h1>CHAPITRE 2 — Les suites réelles</h1>
+
+<h2 id="n12">N12 · Suites, « à partir d'un rang », suites extraites <span class="chip">🔴🟠</span></h2>
+<div class="box info">
+<span class="box-title">📌 Énoncé (polycopié 2.1)</span>
+<ul>
+<li><strong>Suite</strong> : fonction <code>u : N → R</code>, notée <code>(uₙ)ₙ≥0</code>, <code>uₙ = u(n)</code> terme de rang <code>n</code>. Distinguer la suite (l'objet entier) et le réel <code>uₙ</code>.</li>
+<li><strong>Vraie à partir d'un certain rang</strong> : <code>∃N ∈ N, ∀n ≥ N, P(n)</code>.</li>
+<li><strong>Suite extraite</strong> (sous-suite) : <code>(u_φ(n))</code> avec <code>φ : N → N</code> <strong>strictement croissante</strong>.</li>
+<li><strong>Lemme</strong> : si <code>φ : N → N</code> est strictement croissante, alors <code>φ(n) ≥ n</code> pour tout <code>n</code>.</li>
+</ul>
+</div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>
+« À partir d'un rang » = on a le droit d'ignorer un nombre <em>fini</em> de premiers termes. Une sous-suite = on garde certains termes <em>dans le même ordre</em> (ex. <code>u₂ₙ</code> : termes de rang pair). Le lemme dit que les indices gardés ne « reculent » jamais : <code>φ(n)</code> est au moins <code>n</code>.</div>
+<details class="q"><summary>❓ Q. Donne deux sous-suites de (−1)ⁿ et leurs limites.</summary><code>u₂ₙ = 1</code> (φ(n)=2n), <code>u₂ₙ₊₁ = −1</code> (ψ(n)=2n+1).</details>
+<details class="proof"><summary>🧩 Démonstration du lemme φ(n) ≥ n 🟠</summary>Récurrence. <code>φ(0) ≥ 0</code> car <code>φ(0) ∈ N</code>. Si <code>φ(n) ≥ n</code>, alors <code>φ(n+1) &gt; φ(n) ≥ n</code>, donc <code>φ(n+1) ≥ n+1</code> (entiers). ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuille_4.html">F4 · Ex. 2.2</a> — <code>(u₆ₙ)</code> est extraite de <code>(u₂ₙ)</code> et de <code>(u₃ₙ)</code></li>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 3.3</a> — suite qui ne tend pas vers +∞ : sous-suite majorée (construction de φ)</li></ul></div>
+
+<h2 id="n13">N13 · Suites bornées et monotones <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.1)</span><ul>
+<li><strong>Majorée</strong> par <code>M</code> : <code>∀n, uₙ ≤ M</code> ; <strong>minorée</strong> par <code>m</code> : <code>m ≤ uₙ</code> ; <strong>bornée</strong> : <code>∃m, M, m ≤ uₙ ≤ M</code>.</li>
+<li><strong>Proposition</strong> : <code>(uₙ)</code> bornée ⟺ <code>∃M ∈ R₊, ∀n, |uₙ| ≤ M</code>.</li>
+<li><strong>Croissante</strong> : <code>uₙ ≤ uₙ₊₁</code> ; <strong>décroissante</strong> : <code>uₙ₊₁ ≤ uₙ</code> ; <strong>strictement</strong> avec « &lt; » ; <strong>monotone</strong> : croissante ou décroissante.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>« Croissante » est <em>large</em> : une suite constante est à la fois croissante et décroissante. Pour étudier la monotonie : signe de <code>uₙ₊₁ − uₙ</code>, ou (si <code>uₙ &gt; 0</code>) comparer <code>uₙ₊₁/uₙ</code> à 1.</div>
+<details class="q"><summary>❓ Q. Donne une suite bornée non monotone, et une suite croissante non majorée.</summary><code>(−1)ⁿ</code> et <code>n</code>.</details>
+<details class="proof"><summary>🧩 Démonstration : bornée ⟺ |uₙ| ≤ M 🟠</summary>(⇒) Si <code>m ≤ uₙ ≤ M₀</code>, on pose <code>M = max(|m|,|M₀|)</code> : <code>−M ≤ m ≤ uₙ ≤ M₀ ≤ M</code>. (⇐) <code>|uₙ| ≤ M</code> donne <code>−M ≤ uₙ ≤ M</code>. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 3.1</a> — borné × tend vers 0</li>
+<li><a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 1.1, 1.3</a> — croissante majorée par une convergente ; positive tendant vers 0 est-elle décroissante ?</li></ul></div>
+
+<h2 id="n14">N14 · Limite finie d'une suite <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.2)</span>
+<code>uₙ → ℓ</code> (ℓ ∈ R) si <strong><code>∀ε &gt; 0, ∃N ∈ N, ∀n ≥ N, |uₙ − ℓ| ≤ ε</code></strong>. <strong>Convergente</strong> = converge vers un réel ; <strong>divergente</strong> sinon. Exemples : <code>n → +∞</code>, <code>1/n → 0</code>.</div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Tu fixes une marge d'erreur <code>ε</code> (largeur de bande autour de ℓ). À partir d'un rang <code>N</code> (qui dépend de ε), <strong>tous</strong> les termes sont dans la bande. Avant <code>N</code>, tout est permis. L'ordre des quantificateurs est essentiel : <code>N</code> peut dépendre de ε, jamais l'inverse.</div>
+<details class="q"><summary>❓ Q1. Écris la définition de uₙ → ℓ puis de « uₙ ne converge pas vers ℓ ».</summary>Négation : <code>∃ε &gt; 0, ∀N, ∃n ≥ N, |uₙ − ℓ| &gt; ε</code>. (Variante du polycopié : il existe ε et une extraction φ avec <code>|u_φ(n) − ℓ| ≥ ε</code> pour tout n.)</details>
+<details class="q"><summary>❓ Q2. Montre avec la définition que (2n+1)/(n+2) → 2.</summary>Cherche le rang sur papier, puis compare.</details>
+<details class="proof"><summary>🧩 Réponse Q2 et preuve de 1/n → 0 🟠</summary><strong>1/n → 0.</strong> Soit <code>ε &gt; 0</code>. Archimède : <code>N ∈ N*</code> avec <code>1/N &lt; ε</code>. Pour <code>n ≥ N</code> : <code>|1/n − 0| = 1/n ≤ 1/N &lt; ε</code>.<br>
+<strong>(2n+1)/(n+2) → 2.</strong> <code>|uₙ − 2| = |(2n+1−2n−4)/(n+2)| = 3/(n+2)</code>. Soit <code>ε &gt; 0</code> ; Archimède donne <code>N &gt; 3/ε</code>. Pour <code>n ≥ N</code> : <code>3/(n+2) &lt; 3/N &lt; ε</code>. ∎<br>
+<strong>Méthode générale</strong> : fixer ε, transformer <code>|uₙ − ℓ| ≤ ε</code> en condition sur <code>n</code>, choisir <code>N</code> par Archimède.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 1.1–1.2</a> — <code>|uₙ|</code> converge ⇒ <code>uₙ</code> ? ; <code>|uₙ| → 0</code> ⇒ <code>uₙ → 0</code> ?</li></ul></div>
+
+<h2 id="n15">N15 · Limite infinie, divergence <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.2)</span><ul>
+<li><code>uₙ → +∞</code> si <code>∀A ∈ R, ∃N, ∀n ≥ N, uₙ ≥ A</code> ; <code>uₙ → −∞</code> si <code>∀A, ∃N, ∀n ≥ N, uₙ ≤ A</code>.</li>
+<li>+∞ et −∞ ne sont pas des réels : une suite qui tend vers ±∞ est <strong>divergente</strong>. Une suite divergente n'a pas forcément de limite infinie (<code>(−1)ⁿ</code>).</li>
+<li><strong>Négation</strong> de <code>uₙ → +∞</code> : <code>∃A, ∀N, ∃n ≥ N, uₙ &lt; A</code>.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>On fixe une hauteur <code>A</code> aussi grande qu'on veut : à partir d'un rang la suite reste au-dessus pour toujours. Elle n'est pas forcément croissante (<code>n + (−1)ⁿ</code>).</div>
+<details class="q"><summary>❓ Q. Montre qu'une suite qui ne tend pas vers +∞ admet une sous-suite majorée (F2 Ex 3.3).</summary>Voir la démonstration.</details>
+<details class="proof"><summary>🧩 Démonstration 🟠</summary>Négation : <code>∃A, ∀N, ∃n ≥ N, uₙ &lt; A</code>. Fixons ce <code>A</code>. Pour <code>N = 0</code> : <code>n₀</code> avec <code>u_{n₀} &lt; A</code>. Pour <code>N = n₀+1</code> : <code>n₁ ≥ n₀+1 &gt; n₀</code> avec <code>u_{n₁} &lt; A</code>. Etc. : <code>φ(k) = n_k</code> strictement croissante et <code>u_φ(k) &lt; A</code> pour tout k. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 3.2, 3.3</a> ; <a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 1.3–1.4</a> (suites d'inverses)</li></ul></div>
+
+<h2 id="n16">N16 · Unicité, bornée, signe, sous-suites <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.2)</span><ul>
+<li>Si <code>uₙ → ℓ</code> : (1) la limite est <strong>unique</strong> ; (2) <code>(uₙ)</code> est <strong>bornée</strong> ; (3) si <code>ℓ &gt; 0</code>, <code>uₙ &gt; 0</code> à partir d'un rang (idem <code>&lt; 0</code>).</li>
+<li><strong>Sous-suites</strong> : si <code>uₙ → ℓ</code>, toute suite extraite tend vers <code>ℓ</code> (aussi pour ±∞). <strong>Corollaire</strong> : deux extractions de limites différentes ⇒ <code>(uₙ)</code> diverge.</li>
+<li>Si <code>(u₂ₙ)</code> et <code>(u₂ₙ₊₁)</code> convergent <strong>toutes deux vers ℓ</strong>, alors <code>uₙ → ℓ</code>.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Convergente ⇒ bornée, mais <strong>pas la réciproque</strong> (<code>(−1)ⁿ</code>). Pour prouver une <em>divergence</em>, trouve <strong>deux sous-suites de limites différentes</strong>. Pour prouver une convergence par pairs/impairs il faut <strong>la même</strong> limite aux deux.</div>
+<details class="q"><summary>❓ Q1. Énonce trois propriétés d'une suite convergente.</summary>Limite unique ; bornée ; signe de la limite conservé à partir d'un rang.</details>
+<details class="q"><summary>❓ Q2. (u₂ₙ) → ℓ et (u₂ₙ₊₁) → ℓ' avec ℓ ≠ ℓ' : que dire ? Et si ℓ = ℓ' ?</summary>Si ℓ ≠ ℓ' : (uₙ) diverge. Si ℓ = ℓ' : (uₙ) converge vers ℓ.</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Unicité.</strong> Si <code>ℓ ≠ ℓ'</code> sont deux limites, prenons <code>ε = |ℓ−ℓ'|/3 &gt; 0</code>. Pour <code>n ≥ max(N₁,N₂)</code> : <code>|ℓ−ℓ'| ≤ |ℓ−uₙ| + |uₙ−ℓ'| ≤ 2ε = 2|ℓ−ℓ'|/3 &lt; |ℓ−ℓ'|</code> : absurde.<br>
+<strong>Bornée.</strong> <code>ε = 1</code> : <code>|uₙ| ≤ |ℓ|+1</code> pour <code>n ≥ N</code> ; <code>M = max(|u₀|,…,|u_{N−1}|, |ℓ|+1)</code>.<br>
+<strong>Signe.</strong> Si <code>ℓ &gt; 0</code>, <code>ε = ℓ/2</code> : <code>uₙ ≥ ℓ − ℓ/2 = ℓ/2 &gt; 0</code> à partir de N.<br>
+<strong>Sous-suite.</strong> <code>φ(n) ≥ n</code> : pour <code>n ≥ N</code>, <code>φ(n) ≥ N</code> donc <code>|u_φ(n) − ℓ| ≤ ε</code>.<br>
+<strong>Pairs + impairs (F4 Ex 2.1).</strong> Soit <code>ε &gt; 0</code> : <code>N₁</code> pour <code>u₂ₖ</code> et <code>N₂</code> pour <code>u₂ₖ₊₁</code>. Pour <code>n ≥ N = max(2N₁, 2N₂+1)</code> : si <code>n = 2k</code>, <code>k ≥ N₁</code> ; si <code>n = 2k+1</code>, <code>k ≥ N₂</code>. Dans les deux cas <code>|uₙ − ℓ| ≤ ε</code>. ∎<br>
+<strong>F4 Ex 2.3 (2, 3).</strong> <code>u₂ₙ, u₂ₙ₊₁, u₃ₙ</code> convergent. <code>u₆ₙ</code> est extraite de <code>u₂ₙ</code> et <code>u₃ₙ</code>, donc <code>lim u₂ₙ = lim u₃ₙ = L</code> ; <code>u₆ₙ₊₃</code> est extraite de <code>u₂ₙ₊₁</code> et de <code>u₃ₙ</code> : <code>lim u₂ₙ₊₁ = lim u₃ₙ = L</code>. Pairs et impairs ont la même limite : <code>uₙ → L</code>.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuille_4.html">F4 · Ex. 2.1, 2.2, 2.3</a> ; <a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 2 d)</a> — <code>(−1)ⁿ n/(n+1)</code> : pas de limite</li>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 3.4</a> — suite d'entiers convergente ⇒ constante à partir d'un rang (<code>ε = 1/2</code>)</li></ul></div>
+
+<h2 id="n17">N17 · Opérations sur les limites <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.3)</span><ul>
+<li>Si <code>uₙ → ℓ</code>, <code>vₙ → ℓ'</code> : <code>λuₙ → λℓ</code>, <code>uₙ+vₙ → ℓ+ℓ'</code>, <code>uₙ−vₙ → ℓ−ℓ'</code>, <code>uₙvₙ → ℓℓ'</code>, <code>|uₙ| → |ℓ|</code>. Si <code>ℓ' ≠ 0</code> (et vₙ ≠ 0) : <code>uₙ/vₙ → ℓ/ℓ'</code>.</li>
+<li>Limites infinies : <code>uₙ → +∞</code> et <code>vₙ ≥ m</code> ⇒ <code>uₙ+vₙ → +∞</code> ; <code>uₙ → +∞</code> et <code>vₙ ≥ m &gt; 0</code> ⇒ <code>uₙvₙ → +∞</code> ; <code>uₙ → ±∞</code> ⇒ <code>1/uₙ → 0</code> ; <code>uₙ → 0</code>, <code>uₙ &gt; 0</code> ⇒ <code>1/uₙ → +∞</code>. Règles pour −∞ : suites opposées.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Les limites « passent » dans +, ×, ÷ (quand le diviseur ne tend pas vers 0). Pour un quotient ou un produit avec ∞, <strong>étudie le signe de chaque facteur</strong>.</div>
+<details class="q"><summary>❓ Q. Écris la définition de lim uₙ = +∞ puis prouve que uₙ → +∞ ⇒ 1/uₙ → 0.</summary>Voir ci-dessous.</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Somme.</strong> <code>|(uₙ+vₙ) − (ℓ+ℓ')| ≤ |uₙ−ℓ| + |vₙ−ℓ'| ≤ ε/2 + ε/2</code> à partir de <code>max(N₁,N₂)</code>.<br>
+<strong>Produit.</strong> <code>uₙvₙ − ℓℓ' = (uₙ−ℓ)vₙ + ℓ(vₙ−ℓ')</code> ; <code>vₙ</code> est bornée (N16) et <code>uₙ−ℓ → 0</code> : borné × →0 (voir ci-dessous) ; et <code>ℓ(vₙ−ℓ') → 0</code>.<br>
+<strong>Borné × →0 (F2 Ex 3.1).</strong> <code>|uₙ| ≤ M</code>, <code>M &gt; 0</code>. Pour <code>ε &gt; 0</code>, <code>N</code> avec <code>|vₙ| ≤ ε/M</code> : <code>|uₙvₙ| ≤ M·ε/M = ε</code>.<br>
+<strong>Inverse.</strong> <code>ℓ ≠ 0</code>, <code>ε = |ℓ|/2</code> : <code>|uₙ| ≥ |ℓ|/2 &gt; 0</code> à partir de N, puis <code>|1/uₙ − 1/ℓ| = |ℓ−uₙ|/(|uₙ||ℓ|) ≤ 2|uₙ−ℓ|/ℓ² → 0</code>.<br>
+<strong>1/uₙ → 0 si uₙ → +∞.</strong> Pour <code>ε &gt; 0</code>, <code>N</code> avec <code>uₙ ≥ 1/ε</code> pour <code>n ≥ N</code> : <code>0 &lt; 1/uₙ ≤ ε</code>.<br>
+<strong>uₙ → +∞ et vₙ ≥ m.</strong> Pour <code>A</code>, <code>N</code> avec <code>uₙ ≥ A − m</code> : <code>uₙ+vₙ ≥ A</code>. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 2 a)–f)</a> ; <a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 1.2</a> — convergente × divergente</li></ul></div>
+
+<h2 id="n18">N18 · Formes indéterminées et méthodes de calcul de limite <span class="chip">🔴</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.3)</span>
+<strong>Formes indéterminées</strong> : <code>+∞ − ∞</code>, <code>0 × ∞</code>, <code>0/0</code>, <code>∞/∞</code>. « Indéterminée » ne veut pas dire « n'existe pas » : <code>n−n → 0</code>, <code>2n−n → +∞</code>, <code>n−2n → −∞</code>. Il faut transformer l'expression.</div>
+<div class="box tip"><span class="box-title">🗣️ Les 6 réflexes (à appliquer dans cet ordre)</span><ol>
+<li><strong>Factoriser le terme dominant</strong> (puissances, fractions rationnelles) : <code>(2n³−n+1)/(n³−n²+1) → 2</code> (rapport des coefficients dominants si même degré ; ±∞ si degré du haut plus grand ; 0 sinon).</li>
+<li><strong>Quantité conjuguée</strong> pour les racines : <code>√(n+1) − √n = 1/(√(n+1)+√n) → 0</code>.</li>
+<li><strong>Gendarmes / encadrement</strong> : <code>(−1)ⁿ/n → 0</code> car <code>|·| ≤ 1/n</code>.</li>
+<li><strong>Minoration</strong> pour ±∞ : <code>n + (−1)ⁿ ≥ n − 1 → +∞</code>.</li>
+<li><strong>Sous-suites</strong> pour montrer « pas de limite ».</li>
+<li><strong>Critère du rapport / croissances comparées</strong> : <code>aⁿ/n! → 0</code>, <code>2ⁿ/n²⁰²⁶ → +∞</code>.</li></ol></div>
+<details class="q"><summary>❓ Q. Donne trois formes indéterminées et un exemple où chacune de tes limites diffère.</summary><code>+∞−∞</code> : <code>n−n, 2n−n, n−2n</code> donnent 0, +∞, −∞.</details>
+<details class="proof"><summary>🧩 Les limites des feuilles (réponses justifiées) 🟠</summary><ul>
+<li><code>√n → +∞</code> : <code>√n ≥ A</code> dès <code>n ≥ A²</code>.</li>
+<li><code>n − √n = n(1 − 1/√n) → +∞</code>.</li>
+<li><code>(n²−n−2)/(2n+1) → +∞</code> (degré 2 contre 1).</li>
+<li><code>(−1)ⁿ n/(n+1)</code> : pas de limite (pairs → 1, impairs → −1).</li>
+<li><code>√(n+1) − √n → 0</code> (conjuguée).</li>
+<li><code>⌊(3n²+(−1)ⁿ)/(n+1)⌋ → +∞</code> : l'intérieur → +∞ et <code>⌊x⌋ ≥ x−1</code>.</li>
+<li><code>2026ⁿ/n! → 0</code> : rapport <code>2026/(n+1) → 0 &lt; 1</code>.</li>
+<li><code>2n/√(n²+1) → 2</code> : diviser par n : <code>2/√(1+1/n²)</code>.</li>
+<li><code>((−1)ⁿ n² − 3n)/(n+1)</code> : pas de limite (pairs → +∞, impairs → −∞).</li>
+<li><code>⌊n/(n+1)⌋ = 0</code> pour tout n (car <code>0 ≤ n/(n+1) &lt; 1</code>) : limite 0.</li>
+<li><code>√(n²+n+1) − n = (n+1)/(√(n²+n+1)+n) → 1/2</code> (conjuguée puis diviser par n).</li></ul></details>
+<div class="td"><strong>✏️ Exos TD (les « limites à savoir refaire »)</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 2 a)–f)</a> ; <a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 3 a)–d)</a> ; <a href="exos_feuille_4.html">F4 · Ex. 1 a)–d)</a></li>
+<li>Drill complet avec réponses cachées : <a href="techniques_limites.html">techniques_limites.html</a></li></ul></div>
+
+<h2 id="n19">N19 · Limites et ordre, théorème des gendarmes <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.3)</span><ul>
+<li><strong>Passage à la limite</strong> : <code>uₙ → ℓ</code>, <code>vₙ → ℓ'</code>, <code>uₙ ≤ vₙ</code> à partir d'un rang ⇒ <code>ℓ ≤ ℓ'</code>.</li>
+<li><code>uₙ → +∞</code> et <code>uₙ ≤ vₙ</code> ⇒ <code>vₙ → +∞</code> ; <code>uₙ → −∞</code> et <code>vₙ ≤ uₙ</code> ⇒ <code>vₙ → −∞</code>.</li>
+<li><strong>Gendarmes</strong> : <code>uₙ ≤ vₙ ≤ wₙ</code> à partir d'un rang et <code>lim uₙ = lim wₙ = ℓ</code> ⇒ <code>vₙ → ℓ</code>.</li>
+<li>Corollaire : <code>|vₙ| ≤ aₙ</code> et <code>aₙ → 0</code> ⇒ <code>vₙ → 0</code>.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Le passage à la limite conserve les inégalités <strong>larges</strong>, pas les strictes : <code>1/(n+1) &gt; 0</code> mais sa limite est <code>0</code>. Gendarmes = donne <em>l'existence et la valeur</em> de la limite d'un coup.</div>
+<details class="q"><summary>❓ Q. Énonce les gendarmes. Peut-on en déduire qu'une suite positive convergente a une limite &gt; 0 ?</summary>Non : <code>1/(n+1)</code> est strictement positive et converge vers 0.</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Passage à la limite.</strong> <code>wₙ = vₙ − uₙ ≥ 0</code> converge vers <code>L = ℓ'−ℓ</code>. Si <code>L &lt; 0</code>, <code>ε = −L/2</code> donne <code>wₙ ≤ L + ε = L/2 &lt; 0</code> pour n grand : absurde. Donc <code>L ≥ 0</code>.<br>
+<strong>Vers +∞.</strong> Pour <code>A</code>, <code>uₙ ≥ A</code> à partir de N, donc <code>vₙ ≥ uₙ ≥ A</code>.<br>
+<strong>Gendarmes.</strong> Soit <code>ε &gt; 0</code> ; à partir d'un rang, <code>ℓ − ε ≤ uₙ ≤ vₙ ≤ wₙ ≤ ℓ + ε</code>, donc <code>|vₙ − ℓ| ≤ ε</code>. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 1.1</a> — <code>uₙ</code> croissante, <code>uₙ ≤ vₙ</code> convergente : <code>uₙ</code> converge</li>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 3.2</a> — <code>uₙ₊₁ − uₙ → L &gt; 0</code> ⇒ <code>uₙ → +∞</code></li></ul></div>
+
+<h2 id="n20">N20 · Caractérisations séquentielles (adhérence, sup) et moyennes de Cesàro <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.3)</span><ul>
+<li><code>x ∈ Ā</code> ⟺ il existe <code>(aₙ)</code> dans <code>A</code> avec <code>aₙ → x</code>.</li>
+<li><code>M = sup A</code> ⟺ <code>M</code> majore <code>A</code> et il existe <code>(xₙ)</code> dans <code>A</code>, <code>xₙ → M</code>. (Idem inf.)</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Un sup se « touche » avec une suite d'éléments de A qui montent vers lui. C'est ce qui sert dans la preuve du TVI (N36). Démonstrations : N5 et N8.</div>
+<details class="q"><summary>❓ F2 Ex 4.1 — si uₙ → ℓ, montre que (u₀+…+uₙ)/(n+1) → ℓ.</summary>Voir la démonstration.</details>
+<details class="proof"><summary>🧩 Cesàro (F2 Ex 4.1) 🟠</summary>On pose <code>vₙ = uₙ − ℓ → 0</code> ; il suffit de montrer que la moyenne des <code>vₙ</code> tend vers 0. Soit <code>ε &gt; 0</code> et <code>N</code> tel que <code>|vₙ| ≤ ε/2</code> pour <code>n ≥ N</code>. Pour <code>n ≥ N</code> :<br>
+<code>|v₀+…+vₙ|/(n+1) ≤ |v₀+…+v_{N−1}|/(n+1) + (n−N+1)/(n+1)·ε/2 ≤ C/(n+1) + ε/2</code> avec <code>C</code> constante. Comme <code>C/(n+1) → 0</code>, il est ≤ ε/2 pour n grand. Total ≤ ε. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille2.html">F2 · Ex. 4.1, 4.2</a> (Cesàro) ; Ex. 3.3 (sous-suite majorée)</li></ul></div>
+
+<h2 id="n21">N21 · Théorème de la limite monotone <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.4)</span><ul>
+<li><strong>Croissante et majorée</strong> ⇒ converge, et <code>lim uₙ = sup{uₙ : n ∈ N}</code>. <strong>Croissante non majorée</strong> ⇒ <code>uₙ → +∞</code>.</li>
+<li><strong>Décroissante et minorée</strong> ⇒ converge vers <code>inf{uₙ}</code>. <strong>Décroissante non minorée</strong> ⇒ <code>uₙ → −∞</code>.</li>
+<li>Une suite monotone a toujours une limite (finie ou infinie).</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Une suite qui ne fait que monter et ne peut dépasser un plafond ne peut que se « coller » contre ce plafond. Ce théorème donne l'<em>existence</em> d'une limite sans la calculer (ζ(2) : converge, valeur inconnue ici).</div>
+<details class="q"><summary>❓ Q. Énonce le théorème de la limite monotone (4 cas).</summary>Voir énoncé.</details>
+<details class="proof"><summary>🧩 Démonstration 🟠</summary>Soit <code>(uₙ)</code> croissante majorée. <code>A = {uₙ}</code> est non vide et majoré : <code>ℓ = sup A</code> existe. Soit <code>ε &gt; 0</code> : il existe <code>N</code> avec <code>ℓ − ε &lt; u_N ≤ ℓ</code>. Pour <code>n ≥ N</code> : <code>ℓ − ε &lt; u_N ≤ uₙ ≤ ℓ</code>, d'où <code>|uₙ − ℓ| ≤ ε</code>.<br>
+<strong>Non majorée.</strong> Pour tout <code>A</code> il existe <code>N</code> avec <code>u_N ≥ A</code>, et <code>uₙ ≥ u_N ≥ A</code> pour <code>n ≥ N</code>. (Décroissante : appliquer à <code>−uₙ</code>.) ∎</details>
+<details class="proof"><summary>🧩 Exemples classiques 🟠</summary>
+<strong>sₙ = Σ 1/k² converge (ζ(2)).</strong> <code>sₙ₊₁ − sₙ = 1/(n+1)² &gt; 0</code> : croissante. Pour <code>k ≥ 2</code>, <code>1/k² ≤ 1/(k(k−1)) = 1/(k−1) − 1/k</code>, donc par télescopage <code>sₙ ≤ 1 + (1 − 1/n) &lt; 2</code> : majorée.<br>
+<strong>Harmonique Hₙ = Σ 1/k diverge vers +∞ (F3 Ex 5).</strong> Croissante. <code>H₂ₙ − Hₙ = 1/(n+1)+…+1/(2n) ≥ n·1/(2n) = 1/2</code>. Si <code>Hₙ → L</code> fini alors <code>H₂ₙ − Hₙ → 0</code> (sous-suite) : contradiction. Croissante non convergente : <code>Hₙ → +∞</code>.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 5.1–5.3</a> (harmonique) ; <a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 4.2</a> (ζ(2))</li></ul></div>
+
+<h2 id="n22">N22 · Suites adjacentes <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.4)</span><ul>
+<li><strong>Définition</strong> : <code>(uₙ)</code> <strong>croissante</strong>, <code>(vₙ)</code> <strong>décroissante</strong>, <code>uₙ ≤ vₙ</code> pour tout n, et <code>lim(vₙ − uₙ) = 0</code>.</li>
+<li><strong>Théorème</strong> : elles convergent vers la <strong>même</strong> limite ℓ, et <code>uₙ ≤ ℓ ≤ vₙ</code> pour tout n. Erreur : <code>0 ≤ ℓ − uₙ ≤ vₙ − uₙ</code>.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Deux suites qui se resserrent comme un étau. Les <strong>4 conditions</strong> sont à vérifier une par une (la plus oubliée : <code>uₙ ≤ vₙ</code>).</div>
+<details class="q"><summary>❓ Q. Écris les 4 conditions de suites adjacentes.</summary>(1) <code>u</code> croissante ; (2) <code>v</code> décroissante ; (3) <code>uₙ ≤ vₙ</code> ; (4) <code>vₙ − uₙ → 0</code>.</details>
+<details class="proof"><summary>🧩 Démonstration du théorème 🟠</summary><code>uₙ ≤ vₙ ≤ v₀</code> : <code>(uₙ)</code> croissante majorée converge vers <code>ℓ</code>. <code>vₙ ≥ uₙ ≥ u₀</code> : <code>(vₙ)</code> décroissante minorée converge vers <code>ℓ'</code>. <code>ℓ' − ℓ = lim(vₙ − uₙ) = 0</code>. Comme <code>uₙ</code> croît vers ℓ, <code>uₙ ≤ ℓ</code> ; comme <code>vₙ</code> décroît vers ℓ, <code>vₙ ≥ ℓ</code>. ∎</details>
+<details class="proof"><summary>🧩 Applications (F3 Ex 4 et 6) 🟠</summary>
+<strong>Sₙ = Σ 1/k², Tₙ = Sₙ + 1/n.</strong> <code>Sₙ</code> croissante. <code>Tₙ₊₁ − Tₙ = 1/(n+1)² + 1/(n+1) − 1/n = 1/(n+1)² − 1/(n(n+1)) = (n − (n+1))/(n(n+1)²) &lt; 0</code> : décroissante. <code>Tₙ − Sₙ = 1/n → 0</code> (et &gt; 0). Adjacentes : <code>S = lim Sₙ</code> existe et <code>S ≤ T₁ = 2</code>.<br>
+<strong>Série alternée Sₙ = Σ(−1)ᵏuₖ, uₖ ↓ 0 (F3 Ex 6).</strong> <code>S₂ₙ₊₂ − S₂ₙ = −u₂ₙ₊₁ + u₂ₙ₊₂ ≤ 0</code> : <code>S₂ₙ</code> décroissante ; <code>S₂ₙ₊₃ − S₂ₙ₊₁ = u₂ₙ₊₂ − u₂ₙ₊₃ ≥ 0</code> : <code>S₂ₙ₊₁</code> croissante ; <code>S₂ₙ − S₂ₙ₊₁ = u₂ₙ₊₁ ≥ 0</code> ; et <code>S₂ₙ − S₂ₙ₊₁ = u₂ₙ₊₁ → 0</code>. Adjacentes ⇒ <code>S₂ₙ₊₁ ≤ S ≤ S₂ₙ</code>.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 4.1–4.2</a> et <a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 6.1–6.2</a></li></ul></div>
+
+<h2 id="n23">N23 · Suites arithmétiques, géométriques, critère du rapport <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.5 + livre)</span><ul>
+<li><strong>Arithmétique</strong> : <code>uₙ = u₀ + nr</code> : <code>→ +∞</code> si <code>r &gt; 0</code>, <code>→ −∞</code> si <code>r &lt; 0</code>, constante si <code>r = 0</code>.</li>
+<li><strong>Géométrique</strong> <code>(qⁿ)</code> : <code>|q| &lt; 1</code> → 0 ; <code>q = 1</code> constante 1 ; <code>q &gt; 1</code> → +∞ ; <code>q ≤ −1</code> diverge sans limite infinie.</li>
+<li><strong>Somme</strong> <code>sₙ = Σₖ₌₀ⁿ qᵏ</code> : si <code>q ≠ 1</code>, <code>sₙ = (1 − qⁿ⁺¹)/(1 − q)</code> ; si <code>|q| &lt; 1</code>, <code>sₙ → 1/(1−q)</code> ; si <code>q = 1</code>, <code>sₙ = n+1 → +∞</code>.</li>
+<li><strong>Critère du rapport</strong> (F3 Ex 2) : <code>uₙ &gt; 0</code>, <code>uₙ₊₁/uₙ → ℓ</code>. Si <code>ℓ &lt; 1</code> : <code>uₙ</code> strictement décroissante à partir d'un rang et <code>uₙ → 0</code>. Si <code>ℓ &gt; 1</code> (ou +∞) : strictement croissante et <code>uₙ → +∞</code>. Si <code>ℓ = 1</code> : <strong>aucune conclusion</strong> (<code>n</code> et <code>1/(n+1)</code> ont tous deux rapport → 1).</li>
+<li>Conséquence : <code>aⁿ/n! → 0</code> pour tout <code>a</code>.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Pour une suite géométrique, tout dépend de la taille de la raison : <strong>plus petite que 1 en valeur absolue, elle écrase vers 0</strong> ; plus grande, elle explose. Le critère du rapport compare un terme au précédent : si on multiplie à chaque pas par un nombre &lt; 1, on tend vers 0.</div>
+<details class="q"><summary>❓ Q1. Énonce la formule de la somme géométrique et ses limites.</summary>Voir énoncé : <code>(1−qⁿ⁺¹)/(1−q)</code> ; limite <code>1/(1−q)</code> si <code>|q|&lt;1</code>.</details>
+<details class="q"><summary>❓ Q2. Pourquoi le critère du rapport ne conclut pas si ℓ = 1 ?</summary>Parce que <code>uₙ = n</code> (→ +∞) et <code>uₙ = 1/(n+1)</code> (→ 0) ont tous deux un rapport tendant vers 1.</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Bernoulli : q &gt; 1 ⇒ qⁿ → +∞.</strong> <code>q = 1 + b</code>, <code>b &gt; 0</code> ; binôme (termes positifs) : <code>qⁿ ≥ 1 + nb → +∞</code>. <strong>|q| &lt; 1, q ≠ 0</strong> : <code>1/|q| &gt; 1</code> donc <code>1/|q|ⁿ → +∞</code> et <code>|q|ⁿ → 0</code>. <strong>q ≤ −1</strong> : <code>q²ⁿ ≥ 1</code> et <code>q²ⁿ⁺¹ ≤ −1</code> : deux sous-suites de limites ≥ 1 et ≤ −1 ; divergence sans limite infinie.<br>
+<strong>Somme.</strong> <code>(1−q)(1+q+…+qⁿ) = 1 − qⁿ⁺¹</code> (télescopage), divisé par <code>1−q ≠ 0</code>.<br>
+<strong>Rapport, ℓ &lt; 1.</strong> Prenons <code>ℓ &lt; ρ &lt; 1</code> ; à partir de <code>N</code>, <code>uₙ₊₁/uₙ &lt; ρ</code> : <code>uₙ₊₁ &lt; uₙ</code> (décroissante) et <code>0 &lt; uₙ ≤ u_N ρⁿ⁻ᴺ → 0</code> (gendarmes).<br>
+<strong>Rapport, ℓ &gt; 1.</strong> Même chose avec <code>1 &lt; ρ &lt; ℓ</code> : <code>uₙ ≥ u_N ρⁿ⁻ᴺ → +∞</code>.<br>
+<strong>aⁿ/n!.</strong> <code>|uₙ₊₁/uₙ| = |a|/(n+1) → 0 &lt; 1</code>. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 2.1, 2.2, 2.3</a> ; <a href="../Exercices/exercices_analyse_feuille3.html">F3 · Ex. 3 c), d)</a> — <code>2ⁿ/n²⁰²⁶</code> et <code>2026ⁿ/n!</code></li></ul></div>
+
+<h2 id="n24">N24 · Segments emboîtés, théorème de Bolzano–Weierstrass <span class="chip">🔴🟢</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.6)</span><ul>
+<li><strong>Lemme</strong> : <code>aₙ ≤ bₙ</code>, <code>[aₙ₊₁,bₙ₊₁] ⊂ [aₙ,bₙ]</code>, <code>bₙ − aₙ → 0</code> ⇒ il existe un unique <code>ℓ</code> avec <code>∩[aₙ,bₙ] = {ℓ}</code>, et <code>aₙ → ℓ</code>, <code>bₙ → ℓ</code>.</li>
+<li><strong>Bolzano–Weierstrass</strong> : toute suite <strong>bornée</strong> possède une sous-suite convergente.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Bornée ne veut pas dire convergente, mais on peut <strong>toujours extraire</strong> un morceau convergent (dichotomie : on coupe en deux, on garde la moitié qui contient une infinité de termes).</div>
+<details class="q"><summary>❓ Q. Énonce B–W. Donne un exemple où la suite entière ne converge pas.</summary><code>(−1)ⁿ</code> est bornée et diverge ; <code>(u₂ₙ)</code> converge.</details>
+<details class="proof"><summary>🧩 Preuve par dichotomie 🟢</summary>Termes dans <code>[a₀,b₀]</code>. On coupe en deux ; une moitié contient <code>uₙ</code> pour une infinité d'indices : on la garde <code>[a₁,b₁]</code> et on choisit <code>φ(1) &gt; φ(0)</code> avec <code>u_φ(1)</code> dedans. On itère : <code>(aₖ)</code> croissante, <code>(bₖ)</code> décroissante, <code>bₖ − aₖ = (b₀−a₀)/2ᵏ → 0</code> : adjacentes, de limite <code>ℓ</code>. Comme <code>aₖ ≤ u_φ(k) ≤ bₖ</code>, gendarmes : <code>u_φ(k) → ℓ</code>.</details>
+<details class="proof"><summary>🧩 2<sup>e</sup> preuve par les pics (F4 Ex 4) 🟠</summary>Un indice <code>n</code> est un <strong>pic</strong> si <code>uₚ &lt; uₙ</code> pour tout <code>p &gt; n</code>. <strong>Infinité de pics</strong> <code>n₀ &lt; n₁ &lt; …</code> : <code>u_{n₁} &lt; u_{n₀}</code>… sous-suite strictement décroissante. <strong>Finité de pics</strong> : après le dernier pic <code>N</code>, tout indice <code>n &gt; N</code> n'est pas un pic : il existe <code>p &gt; n</code> avec <code>uₚ ≥ uₙ</code>. On construit <code>n₀ = N+1</code>, <code>n₁ &gt; n₀</code> avec <code>u_{n₁} ≥ u_{n₀}</code>, etc. : sous-suite croissante. <strong>Toute suite a une sous-suite monotone</strong> ; si elle est bornée, cette sous-suite est monotone bornée donc converge (limite monotone) : c'est B–W.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuille_4.html">F4 · Ex. 4.1 à 4.4</a> (pics ⇒ sous-suite monotone ⇒ B–W)</li></ul></div>
+
+<h2 id="n25">N25 · Valeurs d'adhérence et suites de Cauchy <span class="chip">🔴🟢</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 2.6 et 2.7)</span><ul>
+<li><strong>Valeur d'adhérence</strong> de <code>(uₙ)</code> : <code>ℓ</code> tel qu'il existe <code>φ</code> strictement croissante avec <code>u_φ(n) → ℓ</code>. Toute suite bornée en a une (B–W).</li>
+<li>Une suite <strong>bornée</strong> converge vers ℓ ⟺ ℓ est son <strong>unique</strong> valeur d'adhérence. (Fausse sans « bornée » : <code>0, 1, 0, 3, 0, 5…</code>.)</li>
+<li><strong>Suite de Cauchy</strong> : <code>∀ε &gt; 0, ∃N, ∀p,q ≥ N, |uₚ − u_q| ≤ ε</code>. <strong>Théorème</strong> : <code>(uₙ)</code> converge ⟺ elle est de Cauchy.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Cauchy = les termes finissent par être <strong>proches les uns des autres</strong>, sans connaître la limite. Matière « complément » : à comprendre, F4 Ex 3 donne le plan de preuve.</div>
+<details class="proof"><summary>🧩 Plan de preuve du critère de Cauchy (F4 Ex 3) 🟢</summary>
+(1) <strong>Convergente ⇒ Cauchy</strong> : <code>|uₚ−u_q| ≤ |uₚ−ℓ| + |ℓ−u_q| ≤ ε/2+ε/2</code>.<br>
+(2) <strong>Cauchy ⇒ bornée</strong> : avec <code>ε=1</code>, <code>|uₙ − u_N| ≤ 1</code> pour <code>n ≥ N</code>, donc <code>|uₙ| ≤ |u_N|+1</code> ; max avec les premiers termes.<br>
+(3) <strong>Cauchy + sous-suite convergente (vers ℓ) ⇒ converge vers ℓ</strong> : <code>|uₙ − ℓ| ≤ |uₙ − u_φ(m)| + |u_φ(m) − ℓ| ≤ ε/2 + ε/2</code>.<br>
+(4) <strong>Cauchy ⇒ converge</strong> : bornée (2), donc B–W donne une sous-suite convergente, puis (3).</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul><li><a href="exos_feuille_4.html">F4 · Ex. 3.1 à 3.4</a></li></ul></div>
+
+<h2 id="n26">N26 · Suites récurrentes <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (livre Exo7 ch. 2 ; l'idée du polycopié est l'exemple « point fixe » de 4.3)</span><ul>
+<li><code>u₀ ∈ R</code>, <code>uₙ₊₁ = f(uₙ)</code>. Si <code>f</code> est <strong>continue</strong> et <code>uₙ → ℓ</code>, alors <code>f(ℓ) = ℓ</code> (<strong>point fixe</strong>).</li>
+<li>Si <code>f : [a,b] → [a,b]</code> est continue <strong>croissante</strong> : <code>(uₙ)</code> est monotone, converge vers un point fixe de <code>f</code>. Si <code>f</code> est <strong>décroissante</strong> : <code>(u₂ₙ)</code> et <code>(u₂ₙ₊₁)</code> convergent vers des points fixes de <code>f∘f</code>.</li>
+<li><strong>Existence d'un point fixe</strong> (polycopié 4.3) : <code>f : [a,b] → [a,b]</code> continue ⇒ il existe <code>c</code> avec <code>f(c) = c</code> (TVI sur <code>g = f − id</code>).</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ Méthode en 6 étapes</span>(1) Trouver un intervalle stable <code>[a,b]</code> avec <code>f([a,b]) ⊂ [a,b]</code> ; (2) montrer <code>uₙ ∈ [a,b]</code> par récurrence ; (3) étudier la monotonie de <code>f</code> ; (4) en déduire la monotonie de <code>(uₙ)</code> (comparer <code>u₁</code> et <code>u₀</code>) ; (5) conclure à la convergence (limite monotone) ; (6) résoudre <code>f(ℓ) = ℓ</code> et choisir la bonne racine. Détails : <a href="methode_suites_recurrentes.html">page « suites récurrentes »</a>.</div>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Limite = point fixe.</strong> <code>uₙ → ℓ</code> donc <code>uₙ₊₁ → ℓ</code> ; par continuité (caractérisation séquentielle) <code>f(uₙ) → f(ℓ)</code> ; l'unicité de la limite dans <code>uₙ₊₁ = f(uₙ)</code> donne <code>ℓ = f(ℓ)</code>.<br>
+<strong>f croissante.</strong> Si <code>u₁ ≥ u₀</code> : <code>u₂ = f(u₁) ≥ f(u₀) = u₁</code>, et par récurrence <code>uₙ₊₁ ≥ uₙ</code> ; majorée par b : converge. Cas <code>u₁ ≤ u₀</code> symétrique.<br>
+<strong>f décroissante.</strong> <code>f∘f</code> est croissante : appliquer le cas précédent à <code>(u₂ₙ)</code> et <code>(u₂ₙ₊₁)</code>.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F7 · Ex. 3.1–3.3</a> (points fixes) ; <a href="partiel_blanc_corrige.html">sujet blanc ex. 3-5</a></li></ul></div>
+
+<!-- ============================================================ -->
+<h1>CHAPITRE 3 — Fonctions réelles et limites</h1>
+
+<h2 id="n27">N27 · Fonctions : bornée, monotone, paire/impaire, périodique <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 3.1)</span><ul>
+<li><code>f : A → R</code> est <strong>majorée</strong> sur A si <code>∃M, ∀x ∈ A, f(x) ≤ M</code> ; <strong>minorée</strong> ; <strong>bornée</strong> ⟺ <code>∃M ≥ 0, ∀x ∈ A, |f(x)| ≤ M</code>.</li>
+<li><strong>Croissante</strong> sur A : <code>∀x,y ∈ A, x ≤ y ⇒ f(x) ≤ f(y)</code> ; <strong>décroissante</strong> : <code>f(x) ≥ f(y)</code> ; <strong>strictement</strong> avec <code>x &lt; y</code> et <code>&lt;</code>/<code>&gt;</code> ; <strong>monotone</strong>.</li>
+<li><strong>Paire</strong> (A symétrique par rapport à 0) : <code>f(−x) = f(x)</code> (graphe symétrique par rapport à l'axe des ordonnées) ; <strong>impaire</strong> : <code>f(−x) = −f(x)</code> (symétrique par rapport à l'origine).</li>
+<li><strong>Période</strong> <code>T &gt; 0</code> : <code>f(x+T) = f(x)</code> pour tout x (avec <code>x ∈ A ⟺ x+T ∈ A</code>). Alors <code>nT</code> est aussi une période pour <code>n ∈ N*</code>.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>La bornitude et la monotonie dépendent de <strong>l'ensemble A</strong> : <code>x²</code> est bornée sur <code>[−1,2]</code> mais pas sur R. <code>1/x</code> est décroissante sur <code>]−∞,0[</code> et sur <code>]0,+∞[</code> séparément, <strong>pas</strong> sur <code>R*</code> (<code>−1 &lt; 1</code> mais <code>f(−1) &lt; f(1)</code>).</div>
+<details class="q"><summary>❓ Q1. Que valent f(0) si f est impaire ? Que dire d'une fonction paire ET croissante sur R ?</summary><code>f(0) = 0</code> et elle est <strong>constante</strong> (voir démonstrations).</details>
+<details class="q"><summary>❓ Q2. f, g croissantes : f+g, f×g, f∘g sont-elles croissantes ?</summary><code>f+g</code> et <code>f∘g</code> : oui. <code>f×g</code> : non en général (<code>f = g = id</code> donne <code>x²</code>, décroissante sur <code>R₋</code>).</details>
+<details class="q"><summary>❓ Q3. Parité de f+g, f×g, g∘f selon la parité de f, g.</summary>Impaire+impaire = impaire ; impaire×impaire = <strong>paire</strong> ; impaire∘impaire = impaire. Paire×impaire = impaire ; impaire∘paire = paire ; paire∘impaire = paire. Pour paire + impaire : en général <strong>ni l'une ni l'autre</strong> (<code>1 + x</code>). <code>xⁿ</code> est paire si <code>n</code> pair, impaire si <code>n</code> impair.</details>
+<details class="proof"><summary>🧩 Démonstrations (F5 Ex 3) 🟠</summary>
+<strong>f impaire ⇒ f(0) = 0.</strong> <code>f(0) = f(−0) = −f(0)</code>, donc <code>2f(0) = 0</code>.<br>
+<strong>f paire et croissante ⇒ constante.</strong> Soit <code>x ≥ 0</code>. <code>0 ≤ x</code> donne <code>f(0) ≤ f(x)</code>. <code>−x ≤ 0</code> donne <code>f(−x) ≤ f(0)</code>, et par parité <code>f(−x) = f(x)</code> : <code>f(x) ≤ f(0)</code>. Donc <code>f(x) = f(0)</code> pour <code>x ≥ 0</code>, et pour <code>x &lt; 0</code>, <code>f(x) = f(−x) = f(0)</code>.<br>
+<strong>f périodique et croissante ⇒ constante.</strong> Soit <code>T</code> une période (donc <code>f(x+nT) = f(x)</code>). Pour <code>x ≤ y</code>, Archimède donne <code>n</code> avec <code>y ≤ x + nT</code> ; croissance : <code>f(x) ≤ f(y) ≤ f(x+nT) = f(x)</code>. Donc <code>f(y) = f(x)</code>.<br>
+<strong>f+g, f∘g croissantes.</strong> <code>x ≤ y</code> : <code>f(x)+g(x) ≤ f(y)+g(y)</code> ; <code>g(x) ≤ g(y)</code> puis <code>f(g(x)) ≤ f(g(y))</code>. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F5 · Ex. 1.1 à 1.4</a> ; <a href="exos_feuilles_5_6_7.html">F5 · Ex. 3.1 à 3.3</a> ; <a href="exos_feuilles_5_6_7.html">F5 · Ex. 4</a> (local contre global, ★)</li>
+<li><a href="exos_feuilles_5_6_7.html">F6 · Ex. 1.1</a> — <code>f(x) ≥ x</code> ⇒ <code>f</code> croissante ? (non : <code>x + 1/x</code>)</li></ul></div>
+
+<h2 id="n28">N28 · Limite d'une fonction en un point (ε–δ) <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 3.2)</span><ul>
+<li>Pour <code>f : A → R</code>, <code>a ∈ Ā</code> (adhérent à A), <code>ℓ ∈ R</code> : <strong><code>lim_{x→a} f(x) = ℓ</code> si <code>∀ε &gt; 0, ∃δ &gt; 0, ∀x ∈ A, |x − a| ≤ δ ⇒ |f(x) − ℓ| ≤ ε</code></strong>.</li>
+<li>Le point <code>a</code> <strong>n'est pas exclu</strong> : si <code>a ∈ A</code> et <code>lim_a f = ℓ</code>, alors <code>f(a) = ℓ</code>.</li>
+<li><strong>Limite infinie en a</strong> : <code>lim f = +∞</code> si <code>∀B ∈ R, ∃δ &gt; 0, ∀x ∈ A, |x−a| ≤ δ ⇒ f(x) ≥ B</code> (idem −∞ avec <code>≤ B</code>). Avec cette convention, une fonction ne peut tendre vers ±∞ en un point <code>a ∈ A</code>.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>ε est la tolérance sur les <strong>valeurs</strong> (bande horizontale autour de ℓ), δ est la tolérance sur la <strong>variable</strong> (bande verticale autour de a). Pour chaque ε on doit trouver un δ : « si x est assez proche de a, f(x) est assez proche de ℓ ». δ dépend de ε.</div>
+<details class="q"><summary>❓ Q. Écris la définition de lim_{x→a} f(x) = ℓ, puis sa négation.</summary>Négation : <code>∃ε &gt; 0, ∀δ &gt; 0, ∃x ∈ A, |x−a| ≤ δ et |f(x) − ℓ| &gt; ε</code>.</details>
+<details class="q"><summary>❓ Q. Montre avec ε–δ que lim_{x→a} (2x − 3) = 2a − 3.</summary>Voir la démonstration.</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>f(x) = 2x − 3.</strong> Fixons <code>a</code> et <code>ε &gt; 0</code>, <code>δ = ε/2</code>. Si <code>|x−a| &lt; δ</code> : <code>|f(x) − f(a)| = 2|x−a| &lt; 2δ = ε</code>.<br>
+<strong>f(x) = 1/x² → +∞ en 0.</strong> Soit <code>B ∈ R</code>, <code>δ = 1/√(|B|+1)</code>. Si <code>0 &lt; |x| ≤ δ</code> : <code>1/x² ≥ 1/δ² = |B|+1 &gt; B</code>.<br>
+<strong>a ∈ A et lim = ℓ ⇒ f(a) = ℓ.</strong> Prendre <code>x = a</code> dans la définition : <code>|f(a) − ℓ| ≤ ε</code> pour tout <code>ε &gt; 0</code>, donc <code>f(a) = ℓ</code>. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F6 · Ex. 2 et 3.1</a> (limites par la définition ou les règles) ; <a href="exos_feuilles_5_6_7.html">F6 · Ex. 3.3</a> — <code>f(2x) = f(x)</code>, continue en 0 ⇒ constante</li></ul></div>
+
+<h2 id="n29">N29 · Limites à droite / à gauche et à l'infini <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 3.2 et 3.3)</span><ul>
+<li><strong>À droite</strong> : limite en <code>a</code> de la restriction <code>f|A∩]a,+∞[</code> (si <code>a</code> adhérent à <code>A∩]a,+∞[</code>), notée <code>lim_{x→a⁺}</code>. <strong>À gauche</strong> : restriction à <code>A∩]−∞,a[</code>, <code>lim_{x→a⁻}</code>. Elles <strong>ignorent la valeur de f en a</strong>.</li>
+<li><strong>Proposition</strong> : <code>lim_a f = ℓ</code> ⟺ <code>lim_{a⁻} f = lim_{a⁺} f = ℓ</code> et (si <code>a ∈ A</code>) <code>f(a) = ℓ</code>. Exemple : <code>f = −1</code> si <code>x &lt; 0</code>, <code>1</code> si <code>x &gt; 0</code> : limites −1 et 1, donc pas de limite en 0.</li>
+<li><strong>En +∞</strong> (A non majorée) : <code>lim = ℓ</code> si <code>∀ε &gt; 0, ∃C ∈ R, ∀x ∈ A, x ≥ C ⇒ |f(x) − ℓ| ≤ ε</code> ; <code>= +∞</code> si <code>∀B, ∃C, x ≥ C ⇒ f(x) ≥ B</code>. En −∞ : <code>x ≤ C</code>.</li>
+<li><strong>Limites usuelles</strong> : <code>xⁿ → +∞</code> en +∞ ; en −∞, <code>+∞</code> (n pair) ou <code>−∞</code> (n impair) ; <code>1/xⁿ → 0</code> en ±∞.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>« À droite » = on s'approche de a en restant <em>au-dessus</em> de a ; « à gauche » = en restant <em>en dessous</em>. Pour qu'une limite en a existe il faut <strong>accord des deux côtés</strong>. En +∞ : « x assez grand ⇒ f(x) proche de ℓ ».</div>
+<details class="q"><summary>❓ Q1. Écris la définition de lim_{x→+∞} f(x) = ℓ et de lim_{x→+∞} f(x) = +∞.</summary>Voir énoncé (ε,C) et (B,C).</details>
+<details class="q"><summary>❓ Q2. f(x) = 1/x : limite en 0⁺, 0⁻, 0 ? Limite de x/(x−1) en 1 ?</summary><code>+∞</code> à droite, <code>−∞</code> à gauche : pas de limite en 0. De même <code>x/(x−1)</code> en 1 : latérales <code>+∞</code> et <code>−∞</code>, donc pas de limite.</details>
+<details class="proof"><summary>🧩 Démonstration — 1/x → 0 en ±∞ 🟠</summary>Soit <code>ε &gt; 0</code>, <code>C = 1/ε</code>. Si <code>x ≥ C</code> : <code>|1/x| ≤ 1/C = ε</code>. Si <code>x ≤ −C</code> : <code>|1/x| ≤ ε</code>. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F6 · Ex. 2 e), f), b)</a> ; <a href="exos_feuilles_5_6_7.html">F6 · Ex. 3.1</a> — <code>f</code> croissante majorée sur <code>[0,1[</code>, <code>lim_{x→1} f = sup f</code> ; <a href="exos_feuilles_5_6_7.html">F6 · Ex. 3.2</a> — périodique avec limite en +∞ ⇒ constante</li></ul></div>
+
+<h2 id="n30">N30 · Unicité, bornitude locale, signe, opérations, formes indéterminées <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 3.4 et 3.5)</span><ul>
+<li><strong>Vraie au voisinage de a</strong> : pour <code>a ∈ R</code>, <code>∃δ &gt; 0, ∀x ∈ A, |x−a| ≤ δ ⇒ P(x)</code> ; pour <code>a = +∞</code>, <code>∃r, x ≥ r ⇒ P(x)</code> ; pour <code>−∞</code>, <code>x ≤ r</code>.</li>
+<li><strong>Unicité</strong> de la limite (finie ou infinie). Si <code>f → ℓ ∈ R</code> : <strong>bornée au voisinage de a</strong> ; si <code>ℓ &gt; 0</code> alors <code>f &gt; 0</code> au voisinage (idem <code>&lt; 0</code>) ; si <code>ℓ ≠ 0</code>, <code>f ≠ 0</code> au voisinage. Si <code>ℓ = 0</code> on ne peut rien dire du signe (<code>x</code> en 0).</li>
+<li><strong>Opérations</strong> : <code>f → ℓ</code>, <code>g → ℓ'</code> ⇒ <code>f ± g → ℓ ± ℓ'</code>, <code>λf → λℓ</code>, <code>fg → ℓℓ'</code>, <code>|f| → |ℓ|</code>, <code>g/f → ℓ'/ℓ</code> si <code>ℓ ≠ 0</code>. Cas infinis : <code>f → +∞</code> et <code>g → ℓ'</code> ⇒ <code>f+g → +∞</code> ; produit : <code>+∞</code> si <code>ℓ' &gt; 0</code>, <code>−∞</code> si <code>ℓ' &lt; 0</code> ; <code>f → ±∞</code> ⇒ <code>1/f → 0</code> ; <code>f → 0</code> avec <code>f &gt; 0</code> au voisinage ⇒ <code>1/f → +∞</code> (<code>f &lt; 0</code> ⇒ <code>−∞</code>).</li>
+<li><strong>Formes indéterminées</strong> : <code>+∞−∞</code>, <code>0×∞</code>, <code>0/0</code>, <code>∞/∞</code> (<code>x−x → 0</code>, <code>2x−x → +∞</code>, <code>x−2x → −∞</code> en +∞).</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ Réflexes pour calculer une limite de fonction</span><ol>
+<li>La fonction est-elle <strong>continue</strong> au point ? Alors la limite est la valeur (<code>cos(x+3sin x) → cos π = −1</code> en π).</li>
+<li><strong>Fraction rationnelle en ±∞</strong> : terme dominant haut / terme dominant bas.</li>
+<li><strong>0/0 en un point</strong> : factoriser et simplifier (<code>(2x−2)/(x²+2x−3) = 2/(x+3) → 1/2</code> en 1).</li>
+<li><strong>Racines</strong> : conjuguée ou factoriser par le terme dominant (<code>√(x²+4x+3) − √(x²+1) → 2</code>).</li>
+<li><strong>Fonction trigonométrique multipliée/divisée</strong> : gendarmes (<code>(2cos x+1)/x → 0</code>).</li>
+<li><strong>Pas de limite</strong> : deux suites (N32).</li></ol></div>
+<details class="q"><summary>❓ Q. Que peut-on dire du signe de f près de a si lim f = 0 ? Donne un exemple.</summary>Rien : <code>f(x) = x</code> tend vers 0 en 0 mais prend des valeurs des deux signes dans tout voisinage.</details>
+<details class="proof"><summary>🧩 Démonstration — f → ℓ ≠ 0 ⇒ f ≠ 0 près de a, et bornée 🟠</summary><strong>Bornée.</strong> <code>ε = 1</code> : <code>|f(x)| ≤ |ℓ| + 1</code> au voisinage de a. <strong>Signe.</strong> <code>ℓ &gt; 0</code>, <code>ε = ℓ/2</code> : <code>f(x) ≥ ℓ/2 &gt; 0</code> au voisinage. Cas <code>ℓ &lt; 0</code> : symétrique. ∎ <strong>Unicité.</strong> Même preuve que pour les suites (ε = |ℓ−ℓ'|/3). La preuve des opérations par ε est celle des suites ; on la fait plus vite par la caractérisation séquentielle (N32).</details>
+<details class="proof"><summary>🧩 Les dix limites de la feuille 6 (réponses) 🟠</summary><ul>
+<li><code>lim_{x→π} cos(x + 3 sin x) = cos(π + 0) = −1</code> (continuité).</li>
+<li><code>lim_{x→0} cos x + 1/sin²x = +∞</code> (<code>cos x → 1</code>, <code>1/sin² x → +∞</code> car <code>sin² x → 0⁺</code>).</li>
+<li><code>lim_{x→−∞} (2x⁴−3x²+x)/(x⁴+2x+1) = 2</code> (même degré : rapport des coefficients dominants).</li>
+<li><code>lim_{x→+∞} (2x−√x+1)/(x+2) = 2</code> (diviser par x : <code>(2 − 1/√x + 1/x)/(1+2/x)</code>).</li>
+<li><code>lim_{x→2} (x²−3x+2)/(x²−x−2) = lim (x−1)/(x+1) = 1/3</code>.</li>
+<li><code>lim_{x→1} x/(x−1)</code> : pas de limite (+∞ / −∞).</li>
+<li><code>lim_{x→+∞} √(x³+1) − x = +∞</code> (<code>√(x³+1) ≥ x^{3/2}</code> ; <code>x(√x − 1) → +∞</code>).</li>
+<li><code>lim_{x→+∞} √(4x²+x) − 2√(x²+1) = 1/4</code> : écrire <code>(√(4x²+x) − 2x) − 2(√(x²+1) − x)</code> ; la première parenthèse <code>= x/(√(4x²+x)+2x) → 1/4</code>, la seconde <code>→ 0</code>.</li>
+<li><code>lim_{x→+∞} (x sin x + 1)/(2x²+1) = 0</code> : <code>|x sin x + 1| ≤ x+1</code>, et <code>(x+1)/(2x²+1) → 0</code> (gendarmes).</li>
+<li><code>lim_{x→0} cos(1/x)</code> : pas de limite (suites <code>1/(2nπ)</code> → cos = 1 et <code>1/(π+2nπ)</code> → cos = −1).</li></ul>
+Feuille 5 Ex 2 : <code>(x³+x²−2x+1)/(x²+1) ~ x → −∞</code> en −∞ ; <code>(2x−2)/(x²+2x−3) → 1/2</code> en 1 ; <code>(2cos x+1)/x → 0</code> en +∞. Tous les calculs détaillés : <a href="techniques_limites.html">drill</a>.</details>
+<div class="td"><strong>✏️ Exos TD (à refaire sans regarder)</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F5 · Ex. 2 a), b), c)</a> ; <a href="exos_feuilles_5_6_7.html">F6 · Ex. 2 a)–j)</a> (les dix)</li></ul></div>
+
+<h2 id="n31">N31 · Composition, limites et ordre, gendarmes <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 3.5 et 3.6)</span><ul>
+<li><strong>Composition</strong> : <code>f : A → B</code>, <code>g : B → R</code>. Si <code>lim_{x→a} f(x) = b</code> et <code>lim_{y→b} g(y) = ℓ</code>, alors <code>lim_{x→a} g(f(x)) = ℓ</code> (a, b, ℓ ∈ R ∪ {±∞}). Il faut vérifier que <code>f(A) ⊂ B</code> et que <code>b</code> est approchable dans <code>B</code>.</li>
+<li><strong>Passage à la limite</strong> : <code>lim f = ℓ</code>, <code>lim g = ℓ'</code>, <code>f ≤ g</code> au voisinage de a ⇒ <code>ℓ ≤ ℓ'</code>. <code>lim f = +∞</code> et <code>f ≤ g</code> ⇒ <code>lim g = +∞</code>. <code>lim f = −∞</code> et <code>g ≤ f</code> ⇒ <code>lim g = −∞</code>. Les inégalités strictes ne passent pas (<code>1/x &gt; 0</code>, limite 0).</li>
+<li><strong>Gendarmes</strong> : <code>f ≤ g ≤ h</code> au voisinage de a, <code>lim f = lim h = ℓ</code> ⇒ <code>lim g = ℓ</code>. Exemple : <code>x sin(1/x) → 0</code> en 0 car <code>−|x| ≤ x sin(1/x) ≤ |x|</code>.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Composer : « f envoie x près de a vers un point près de b, puis g envoie ce point vers ℓ ». <strong>Écris les deux limites successives</strong> sur la copie. Gendarmes : on coince g entre deux fonctions qui ont la même limite.</div>
+<details class="q"><summary>❓ Q. Énonce le théorème des gendarmes pour une fonction en a ∈ R.</summary>Voir énoncé. L'inégalité n'a besoin d'être vraie qu'<strong>au voisinage</strong> de a.</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Gendarmes.</strong> Pour <code>ε &gt; 0</code>, il existe <code>δ</code> tel que pour <code>|x−a| ≤ δ</code>, <code>ℓ−ε ≤ f(x) ≤ g(x) ≤ h(x) ≤ ℓ+ε</code>, d'où <code>|g(x) − ℓ| ≤ ε</code>.<br>
+<strong>x sin(1/x) → 0.</strong> <code>|sin| ≤ 1</code> donne <code>|x sin(1/x)| ≤ |x| → 0</code>.<br>
+<strong>Composition.</strong> Soit <code>V</code> un voisinage de <code>ℓ</code> (ou <code>ε</code>). Comme <code>g → ℓ</code> en <code>b</code>, il existe <code>η</code> tel que <code>|y−b| ≤ η ⇒ |g(y) − ℓ| ≤ ε</code>. Comme <code>f → b</code> en <code>a</code>, il existe <code>δ</code> tel que <code>|x−a| ≤ δ ⇒ |f(x) − b| ≤ η</code>. Alors <code>|g(f(x)) − ℓ| ≤ ε</code>. (Cas infinis : même idée avec <code>B, C</code>.) ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F6 · Ex. 1.2</a> — <code>f(x)/x → 1</code> en +∞ ⇒ <code>f(x) → +∞</code> ? (oui : <code>f(x) ≥ x/2</code>) ; <a href="exos_feuilles_5_6_7.html">F6 · Ex. 2 c), i)</a> ; <a href="exos_feuilles_5_6_7.html">F5 · Ex. 2 c)</a></li></ul></div>
+
+<h2 id="n32">N32 · Caractérisation séquentielle des limites <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 3.7)</span><ul>
+<li><strong>Théorème</strong> : <code>lim_{x→a} f(x) = ℓ</code> ⟺ pour <strong>toute</strong> suite <code>(xₙ)</code> d'éléments de A avec <code>xₙ → a</code>, on a <code>f(xₙ) → ℓ</code>. (a, ℓ ∈ R ∪ {±∞}. Aucune condition <code>xₙ ≠ a</code>.)</li>
+<li><strong>Corollaire</strong> : version à droite (suites avec <code>xₙ &gt; a</code>) et à gauche (<code>xₙ &lt; a</code>).</li>
+<li><strong>Proposition (pas de limite)</strong> : si <code>xₙ → a</code>, <code>yₙ → a</code>, <code>f(xₙ) → ℓ</code>, <code>f(yₙ) → ℓ'</code> avec <code>ℓ ≠ ℓ'</code>, alors <code>f</code> n'a pas de limite en a.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Pour <strong>prouver</strong> une limite on utilise plutôt ε–δ ou les règles ; pour <strong>réfuter</strong>, il suffit de <em>deux suites</em> qui s'approchent de a avec des images de limites différentes : <code>cos(1/x)</code> en 0 avec <code>xₙ = 1/(2nπ)</code> et <code>yₙ = 1/(π+2nπ)</code>.</div>
+<details class="q"><summary>❓ Q. Montre que sin(x) n'a pas de limite en +∞.</summary>Prendre <code>xₙ = 2nπ</code> (sin = 0) et <code>yₙ = π/2 + 2nπ</code> (sin = 1) : deux suites → +∞ avec des images de limites différentes.</details>
+<details class="proof"><summary>🧩 Démonstration 🟠</summary>
+<strong>(⇒)</strong> <code>lim f = ℓ</code> et <code>xₙ → a</code>. Soit <code>ε &gt; 0</code> : <code>δ</code> avec <code>|x−a| ≤ δ ⇒ |f(x)−ℓ| ≤ ε</code> ; <code>N</code> avec <code>|xₙ − a| ≤ δ</code> pour <code>n ≥ N</code> ; donc <code>|f(xₙ) − ℓ| ≤ ε</code>.<br>
+<strong>(⇐) par contraposée.</strong> Si <code>f</code> ne tend pas vers <code>ℓ</code> : <code>∃ε &gt; 0, ∀δ &gt; 0, ∃x ∈ A, |x−a| ≤ δ et |f(x)−ℓ| &gt; ε</code>. Avec <code>δ = 1/(n+1)</code>, on construit <code>xₙ</code> : <code>xₙ → a</code> mais <code>|f(xₙ) − ℓ| &gt; ε</code> : <code>f(xₙ)</code> ne tend pas vers ℓ.<br>
+<strong>Pas de limite.</strong> Si <code>lim f = L</code>, les deux suites donneraient <code>f(xₙ) → L</code> et <code>f(yₙ) → L</code>, donc <code>ℓ = L = ℓ'</code> par unicité. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F6 · Ex. 2 j)</a> — <code>cos(1/x)</code> ; <a href="exos_feuilles_5_6_7.html">F6 · Ex. 3.2</a> — f périodique avec limite en +∞ ⇒ constante (suites <code>x + nT</code>)</li></ul></div>
+
+<!-- ============================================================ -->
+<h1>CHAPITRE 4 — Continuité des fonctions réelles</h1>
+
+<h2 id="n33">N33 · Continuité en un point et sur une partie <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 4.1)</span><ul>
+<li><code>f : A → R</code>, <code>a ∈ A</code>. <strong><code>f</code> est continue en a si <code>lim_{x→a} f(x) = f(a)</code></strong>, c'est-à-dire <code>∀ε &gt; 0, ∃δ &gt; 0, ∀x ∈ A, |x − a| ≤ δ ⇒ |f(x) − f(a)| ≤ ε</code>. <strong>Continue sur A</strong> : continue en tout point de A.</li>
+<li><strong>Caractérisation séquentielle</strong> : <code>f</code> continue en <code>a</code> ⟺ pour toute suite <code>(xₙ)</code> de A avec <code>xₙ → a</code>, <code>f(xₙ) → f(a)</code>.</li>
+<li><strong>Conservation locale du signe</strong> : <code>f</code> continue en <code>a</code> et <code>f(a) &gt; 0</code> ⇒ <code>∃δ &gt; 0, ∀x ∈ A, |x−a| ≤ δ ⇒ f(x) &gt; 0</code> (idem <code>&lt; 0</code>) ; si <code>f(a) ≠ 0</code>, <code>f</code> ne s'annule pas au voisinage de a.</li>
+<li>Continues : constantes, identité, polynômes, fractions rationnelles (où le dénominateur ne s'annule pas), <code>|x|</code>, <code>√x</code>, <code>sin</code>, <code>cos</code>, <code>exp</code>, <code>ln</code>. La partie entière n'est pas continue aux entiers.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Continue = <strong>pas de saut</strong> : un petit changement de x entraîne un petit changement de f(x). Le rayon δ peut dépendre de ε <em>et du point a</em>. Pour prouver une <strong>discontinuité</strong>, on donne une suite <code>xₙ → a</code> telle que <code>f(xₙ)</code> ne tend pas vers <code>f(a)</code>.</div>
+<details class="q"><summary>❓ Q1. Définition de « f continue en a » (avec ε et δ), puis sa négation.</summary>Négation : <code>∃ε &gt; 0, ∀δ &gt; 0, ∃x ∈ A, |x−a| ≤ δ et |f(x) − f(a)| &gt; ε</code>.</details>
+<details class="q"><summary>❓ Q2. f(x) = x² si x ≠ 0, f(0) = 1 : continue en 0 ?</summary>Non : <code>xₙ = 1/(n+1) → 0</code> mais <code>f(xₙ) → 0 ≠ 1 = f(0)</code>.</details>
+<details class="q"><summary>❓ Q3. Où f(x) = ⌊cos x⌋ est-elle discontinue ? (F6 Ex 4)</summary>Elle vaut <code>1</code> si <code>cos x = 1</code> (x = 2kπ), <code>0</code> si <code>0 ≤ cos x &lt; 1</code>, <code>−1</code> si <code>−1 ≤ cos x &lt; 0</code>. Elle est <strong>discontinue</strong> aux points où <code>cos x = 1</code> (valeur 1 contre 0 autour) et où <code>cos x = 0</code> (<code>x = π/2 + kπ</code>, saut de 0 à −1). Ailleurs elle est localement constante donc continue. <em>(Détail et graphe : F6 Ex 4 sur le site.)</em></details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>x² est continue (ε–δ).</strong> Fixons <code>a</code>, <code>ε</code>, <code>δ = min(1, ε/(2|a|+1))</code>. Si <code>|x−a| &lt; δ</code> : <code>|x+a| ≤ |x−a| + 2|a| &lt; 1 + 2|a|</code>, donc <code>|x²−a²| = |x−a||x+a| &lt; δ(2|a|+1) ≤ ε</code>.<br>
+<strong>Caractérisation séquentielle.</strong> C'est le théorème de N32 appliqué avec <code>ℓ = f(a)</code> (preuve : (⇒) δ puis N ; (⇐) contraposée avec <code>δ = 1/(n+1)</code>).<br>
+<strong>Signe local.</strong> <code>f(a) &gt; 0</code>, <code>ε = f(a)/2</code> : <code>|x−a| ≤ δ ⇒ f(x) ≥ f(a)/2 &gt; 0</code>. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F6 · Ex. 4</a> — <code>⌊cos x⌋</code> : ensemble des points de discontinuité et graphe ; <a href="exos_feuilles_5_6_7.html">F6 · Ex. 3.3</a> — <code>f</code> continue en 0 avec <code>f(2x) = f(x)</code> : <code>f(x) = f(x/2ⁿ) → f(0)</code>, donc constante</li></ul></div>
+
+<h2 id="n34">N34 · Prolongement par continuité <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 4.1)</span><ul>
+<li><code>I</code> intervalle, <code>a ∈ I</code>, <code>f : I∖{a} → R</code>. <code>f</code> est <strong>prolongeable par continuité en a</strong> si <code>∃ℓ ∈ R, lim_{x→a} f(x) = ℓ</code> (limite <strong>finie</strong>).</li>
+<li><strong>Proposition</strong> : si de plus <code>f</code> est continue sur <code>I∖{a}</code>, la fonction <code>f̃(x) = f(x)</code> si <code>x ≠ a</code>, <code>f̃(a) = ℓ</code> est continue sur I : c'est le <strong>prolongement par continuité</strong>. La valeur en a est <strong>imposée</strong> : c'est la limite.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>On « bouche le trou » d'une fonction avec la seule valeur qui ne fait pas de saut. <code>(x²−1)/(x−1) = x+1</code> pour <code>x ≠ 1</code> : limite 2, donc <code>f̃(1) = 2</code>. Pas prolongeable si la limite est infinie (<code>1/x²</code>) ou n'existe pas (<code>sin(1/x)</code>).</div>
+<details class="q"><summary>❓ Q. Prolonge x sin(1/x) en 0 ; peut-on prolonger sin(1/x) ?</summary><code>x sin(1/x) → 0</code> (gendarmes) : <code>f̃(0) = 0</code>. <code>sin(1/x)</code> : non (pas de limite : suites <code>1/(2nπ)</code> et <code>1/(π/2+2nπ)</code>).</details>
+<details class="proof"><summary>🧩 Démonstration 🟠</summary>Soit <code>x₀ ∈ I</code>. Si <code>x₀ ≠ a</code>, <code>f̃</code> coïncide avec <code>f</code> au voisinage de <code>x₀</code> (continue). En <code>a</code> : <code>lim_{x→a} f̃(x) = lim f(x) = ℓ = f̃(a)</code> (la valeur en a n'intervient pas dans la limite, ici on la prend égale à ℓ : continuité). ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul><li>Pas d'exercice dédié dans F1–F7 ; l'exemple <code>x sin(1/x)</code> est dans le cours, et le sujet blanc contient un cas de limite en un point.</li></ul></div>
+
+<h2 id="n35">N35 · Opérations, fonctions lipschitziennes, min/max <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 4.2)</span><ul>
+<li><code>f, g : A → R</code> continues sur A, <code>h : B → R</code> continue sur B, <code>f(A) ⊂ B</code>, <code>C = {x ∈ A : g(x) ≠ 0}</code>, <code>λ ∈ R</code> : <code>λf</code>, <code>f+g</code>, <code>fg</code> continues sur A ; <code>f/g</code> continue sur C ; <code>h∘f</code> continue sur A.</li>
+<li><strong>Lipschitzienne</strong> : <code>f</code> est <strong>κ-lipschitzienne</strong> sur A si <code>∀x,y ∈ A, |f(x) − f(y)| ≤ κ|x − y|</code> (κ ≥ 0, <strong>le même pour tous</strong> les x, y). <strong>Proposition</strong> : lipschitzienne ⇒ continue.</li>
+<li><strong>Corollaire</strong> : <code>min(f,g)</code> et <code>max(f,g)</code> sont continues sur A si <code>f, g</code> le sont.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Les opérations usuelles (+, ×, ÷, ∘) <strong>préservent la continuité</strong> : un polynôme, une fraction rationnelle, <code>cos(x+3 sin x)</code> sont continus sans avoir à refaire ε–δ. Lipschitzienne = la « pente » est bornée par κ.</div>
+<details class="q"><summary>❓ Q. Montre que |x| est 1-lipschitzienne, donc continue. Pourquoi min(f,g) est continue ?</summary>Corollaire de l'inégalité triangulaire : <code>| |x| − |y| | ≤ |x − y|</code>. Et <code>min(f,g) = (f + g − |f − g|)/2</code>, <code>max(f,g) = (f + g + |f − g|)/2</code> : somme/composée de continues.</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Somme/produit/quotient/composée.</strong> Soit <code>xₙ → a</code>. Continuité ⇒ <code>f(xₙ) → f(a)</code>, <code>g(xₙ) → g(a)</code> ; donc <code>f(xₙ)+g(xₙ) → f(a)+g(a)</code>, idem produit, et <code>f(xₙ)/g(xₙ) → f(a)/g(a)</code> si <code>g(a) ≠ 0</code>. Pour la composée : <code>f(xₙ) → f(a)</code> (continuité de f), puis <code>h(f(xₙ)) → h(f(a))</code> (continuité de h en <code>f(a)</code>). Caractérisation séquentielle ⇒ continuité.<br>
+<strong>Lipschitzienne ⇒ continue.</strong> Si <code>κ &gt; 0</code>, <code>δ = ε/κ</code> : <code>|x−a| ≤ δ ⇒ |f(x) − f(a)| ≤ κδ = ε</code> (si <code>κ = 0</code>, f est constante). ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F6 · Ex. 2 a)</a> (composée continue) ; sujet blanc (continuité d'un min/max)</li></ul></div>
+
+<h2 id="n36">N36 · Théorème des valeurs intermédiaires (TVI) <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 4.3)</span><ul>
+<li><strong>TVI</strong> : <code>a ≤ b</code>, <code>f : [a,b] → R</code> <strong>continue</strong> sur <code>[a,b]</code>. Pour tout <code>y</code> compris entre <code>f(a)</code> et <code>f(b)</code>, <strong>il existe <code>c ∈ [a,b]</code> tel que <code>f(c) = y</code></strong>.</li>
+<li><strong>Remarque</strong> : sur un intervalle I, le TVI s'applique entre deux points quelconques <code>x₁ ≤ x₂</code> de I.</li>
+<li><strong>Cas des zéros</strong> : <code>f(a)f(b) &lt; 0</code> (ou <code>f(a) &lt; 0 &lt; f(b)</code>) ⇒ <code>∃c ∈ ]a,b[, f(c) = 0</code>.</li>
+<li><strong>Exemple</strong> : <code>f : [a,b] → [a,b]</code> continue ⇒ il existe un <strong>point fixe</strong> <code>c</code>, <code>f(c) = c</code>.</li>
+<li>Sans continuité, c'est faux : <code>0</code> sur <code>[0,1/2[</code>, <code>1</code> sur <code>[1/2,1]</code> ne prend jamais <code>1/2</code> (et elle est pourtant croissante).</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Une fonction continue ne peut pas passer d'une valeur à une autre sans passer par <strong>toutes les valeurs intermédiaires</strong> (on peut tracer le graphe sans lever le crayon). Les <strong>3 usages</strong> au partiel :
+<ol><li><strong>« Il existe x tel que A(x) = B(x) »</strong> : on pose <code>φ = A − B</code> (continue), on trouve <code>a, b</code> avec <code>φ(a) ≤ 0 ≤ φ(b)</code> (ou l'inverse), TVI : <code>φ(c) = 0</code>.</li>
+<li><strong>« f est surjective »</strong> : pour <code>y ∈ R</code>, on trouve <code>a, b</code> (avec les limites en ±∞ ou des suites de points) tels que <code>f(a) &lt; y &lt; f(b)</code>, TVI : <code>f(c) = y</code>.</li>
+<li><strong>« Signe constant »</strong> : si <code>φ</code> continue ne s'annule jamais, alors <code>φ &gt; 0</code> partout ou <code>φ &lt; 0</code> partout (sinon TVI donne un zéro).</li></ol></div>
+<details class="q"><summary>❓ Q1. Énonce le TVI, avec toutes les hypothèses.</summary>Voir énoncé : continuité sur <strong>le segment</strong> <code>[a,b]</code> ; y entre <code>f(a)</code> et <code>f(b)</code> ; conclusion <code>∃c ∈ [a,b], f(c) = y</code>.</details>
+<details class="q"><summary>❓ Q2. Montre que x³ + x − 1 s'annule sur ]0,1[.</summary>Polynôme continu ; <code>P(0) = −1 &lt; 0</code>, <code>P(1) = 1 &gt; 0</code> ; TVI : <code>c ∈ [0,1]</code> avec <code>P(c) = 0</code>, et <code>c ≠ 0,1</code> car <code>P(0), P(1) ≠ 0</code>.</details>
+<details class="q"><summary>❓ Q3. Pourquoi un polynôme de degré impair a-t-il une racine réelle ?</summary>Il tend vers <code>−∞</code> et <code>+∞</code> aux deux bouts : il existe <code>a, b</code> avec <code>P(a) &lt; 0 &lt; P(b)</code> ; TVI.</details>
+<details class="proof"><summary>🧩 Démonstration du TVI par la borne supérieure 🟠</summary>Cas <code>f(a) ≤ y ≤ f(b)</code> (l'autre cas : appliquer le résultat à <code>−f</code> et <code>−y</code>).<br>
+Soit <code>A = {x ∈ [a,b] : f(x) ≤ y}</code>. <code>A ≠ ∅</code> (<code>a ∈ A</code>) et majoré par <code>b</code> : <code>c = sup A ∈ [a,b]</code> existe.<br>
+<strong>f(c) ≤ y.</strong> Il existe <code>xₙ ∈ A</code> avec <code>xₙ → c</code> (caractérisation séquentielle du sup, N20). <code>f(xₙ) ≤ y</code> et, par continuité, <code>f(xₙ) → f(c)</code> : passage à la limite, <code>f(c) ≤ y</code>.<br>
+<strong>f(c) ≥ y.</strong> Si <code>c = b</code>, <code>f(c) = f(b) ≥ y</code>. Sinon, pour tout <code>x ∈ ]c,b]</code>, <code>x ∉ A</code> (au-dessus du sup), donc <code>f(x) &gt; y</code>. Avec <code>xₙ = c + (b−c)/(n+1) → c</code> (xₙ ∈ ]c,b]) : <code>f(xₙ) &gt; y</code>, et <code>f(xₙ) → f(c)</code> : <code>f(c) ≥ y</code>.<br>
+Donc <code>f(c) = y</code>. ∎</details>
+<details class="proof"><summary>🧩 Les exercices de la feuille 7 (rédaction type) 🟠</summary>
+<strong>Ex 1.1 — <code>cos x = x</code> a une solution dans <code>[0,π/2]</code>.</strong> <code>h(x) = cos x − x</code> continue, <code>h(0) = 1 &gt; 0</code>, <code>h(π/2) = −π/2 &lt; 0</code> : TVI.<br>
+<strong>Ex 1.2 — <code>f(x) = (x⁸ − 4x⁶ + x + 1)/(x − 1)</code> est surjective de <code>]1,+∞[</code> dans R.</strong> Continue (fraction rationnelle sur <code>]1,+∞[</code>). Quand <code>x → 1⁺</code>, numérateur <code>→ 1 − 4 + 1 + 1 = −1 &lt; 0</code> et dénominateur <code>→ 0⁺</code> : <code>f → −∞</code>. Quand <code>x → +∞</code>, <code>f ~ x⁷ → +∞</code>. Soit <code>y ∈ R</code> : il existe <code>a &gt; 1</code> avec <code>f(a) &lt; y</code> et <code>b &gt; 1</code> avec <code>f(b) &gt; y</code> ; TVI sur le segment d'extrémités <code>a</code> et <code>b</code> : <code>f(c) = y</code>.<br>
+<strong>Ex 1.3 — <code>g(x) = x sin x</code> surjective.</strong> Pour <code>k</code> entier grand : <code>g(π/2 + 2kπ) = π/2 + 2kπ → +∞</code> et <code>g(3π/2 + 2kπ) = −(3π/2 + 2kπ) → −∞</code>. Donc pour <code>y ∈ R</code>, il existe <code>a, b</code> avec <code>g(a) &gt; y &gt; g(b)</code> ; TVI.<br>
+<strong>Ex 2.1 — <code>f² = 1</code> continue ⇒ <code>f = 1</code> ou <code>f = −1</code>.</strong> <code>f(x) ∈ {−1, 1}</code> pour tout x. Si <code>f</code> prenait <code>1</code> en <code>a</code> et <code>−1</code> en <code>b</code>, le TVI donnerait un point où <code>f = 0</code> (entre −1 et 1), impossible.<br>
+<strong>Ex 2.2 — <code>f ≠ g</code> continues ⇒ <code>f &lt; g</code> partout ou <code>f &gt; g</code> partout.</strong> <code>h = f − g</code> continue ne s'annule jamais : si elle changeait de signe, le TVI donnerait un zéro.<br>
+<strong>Ex 3.1 — point fixe sur <code>[a,b]</code>.</strong> <code>φ(x) = f(x) − x</code> continue ; <code>f(a) ≥ a</code> donc <code>φ(a) ≥ 0</code> ; <code>f(b) ≤ b</code> donc <code>φ(b) ≤ 0</code> ; TVI : <code>φ(c) = 0</code>.<br>
+<strong>Ex 3.2 — <code>f : R → R</code> continue : point fixe ?</strong> Non en général : <code>f(x) = x + 1</code>.<br>
+<strong>Ex 3.3 — f continue décroissante : point fixe unique.</strong> <em>Existence</em> : <code>φ = f − id</code> est continue et strictement décroissante ; on trouve <code>a</code> avec <code>φ(a) &gt; 0</code> et <code>b</code> avec <code>φ(b) &lt; 0</code> (comme <code>f(0) ∈ R</code>, <code>a = min(0, f(0)−1)</code>, <code>b = max(0, f(0)+1)</code>) ; TVI. <em>Unicité</em> : <code>φ</code> strictement décroissante est injective, donc un seul zéro.<br>
+<strong>Ex 4.1 — <code>φ(a) + φ(b) = 0</code> ⇒ φ s'annule.</strong> <code>φ(b) = −φ(a)</code> : <code>0</code> est entre <code>φ(a)</code> et <code>φ(b)</code> ; TVI.<br>
+<strong>Ex 4.2 — <code>f(a) = f(b)</code> ⇒ <code>∃x ∈ [a,(a+b)/2], f(x) = f(x + (b−a)/2)</code>.</strong> <code>φ(x) = f(x + (b−a)/2) − f(x)</code> sur <code>[a,(a+b)/2]</code>. <code>φ(a) = f(m) − f(a)</code> et <code>φ(m) = f(b) − f(m) = f(a) − f(m) = −φ(a)</code> avec <code>m = (a+b)/2</code> : on applique Ex 4.1.<br>
+<strong>Ex 4.3 — Le randonneur.</strong> Altitude <code>f(t)</code> continue sur <code>[0,72]</code>, <code>f(0) = f(72)</code>. Ex 4.2 avec <code>b − a = 72</code> : il existe <code>t ∈ [0,36]</code> avec <code>f(t) = f(t + 36)</code>.</details>
+<div class="box warn"><span class="box-title">⚠️ Pièges</span><ul>
+<li>Le TVI donne <strong>l'existence</strong>, pas l'unicité (plusieurs antécédents possibles) ; l'unicité vient de la <strong>stricte monotonie</strong> (N39).</li>
+<li>Il faut la continuité sur <strong>tout le segment</strong>, y compris les bouts.</li>
+<li>Avec des limites : pour <code>f(c) = y</code> sur un intervalle ouvert, on choisit <code>a, b</code> <strong>dans l'intervalle</strong> avec <code>f(a) &lt; y &lt; f(b)</code> grâce aux limites, puis on applique le TVI entre <code>a</code> et <code>b</code> (que <code>a &lt; b</code> ou non).</li>
+<li>Le TVI n'est <strong>pas</strong> « f([a,b]) = [f(a), f(b)] » : <code>x²</code> sur <code>[−1,1]</code> donne <code>[0,1]</code>.</li></ul></div>
+<div class="td"><strong>✏️ Exos TD</strong><ul>
+<li><a href="exos_feuilles_5_6_7.html">F7 · Ex. 1.1, 1.2, 1.3</a> ; <a href="exos_feuilles_5_6_7.html">F7 · Ex. 2.1, 2.2</a> ; <a href="exos_feuilles_5_6_7.html">F7 · Ex. 3.1, 3.2, 3.3</a> ; <a href="exos_feuilles_5_6_7.html">F7 · Ex. 4.1, 4.2, 4.3</a> ; <a href="partiel_blanc_corrige.html">sujet blanc ex. 3</a></li></ul></div>
+
+<h2 id="n37">N37 · Image d'un intervalle par une fonction continue <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 4.3)</span><strong>Théorème</strong> : <code>I</code> intervalle, <code>f : I → R</code> continue ⇒ <code>f(I)</code> est un <strong>intervalle</strong>. Attention : <code>f(I)</code> ne se lit pas à partir de <code>f(a), f(b)</code> : <code>x²</code> sur <code>[−1,1]</code> donne <code>[0,1]</code> alors que <code>[f(−1), f(1)] = [1,1]</code>.</div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>C'est le TVI reformulé avec la caractérisation des intervalles (N3) : l'image n'a « pas de trou ».</div>
+<details class="q"><summary>❓ Q. Énonce le théorème et dis pourquoi f(I) peut être différent de [f(a),f(b)].</summary>Si <code>f</code> monte puis redescend, l'image dépasse <code>f(b)</code>.</details>
+<details class="proof"><summary>🧩 Démonstration 🟠</summary>Soient <code>y₁ = f(x₁)</code>, <code>y₂ = f(x₂)</code> dans <code>f(I)</code>, <code>y₁ ≤ y₂</code>, et <code>y</code> tel que <code>y₁ ≤ y ≤ y₂</code>. <code>y</code> est compris entre <code>f(x₁)</code> et <code>f(x₂)</code> ; le TVI sur le segment d'extrémités <code>x₁, x₂</code> (contenu dans I car I est un intervalle) donne <code>x</code> avec <code>f(x) = y</code> : <code>y ∈ f(I)</code>. Par la caractérisation (N3), <code>f(I)</code> est un intervalle. ∎</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul><li><a href="exos_feuilles_5_6_7.html">F7 · Ex. 1.2, 1.3</a> (images égales à R) ; <a href="../Exercices/exercices_analyse_feuille1.html">F1 · Ex. 2</a> (caractérisation) ; <a href="../Methodes_SF/injection_surjection_bijection.html">méthode surjection</a></li></ul></div>
+
+<h2 id="n38">N38 · Fonction continue sur un segment : bornée et bornes atteintes <span class="chip">🔴🟢</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 4.4)</span><ul>
+<li><strong>Théorème</strong> : <code>f : [a,b] → R</code> continue ⇒ <code>f</code> est <strong>bornée</strong>, et il existe <code>α, β ∈ [a,b]</code> avec <code>f(α) ≤ f(x) ≤ f(β)</code> pour tout x : elle <strong>atteint</strong> son min <code>m = f(α)</code> et son max <code>M = f(β)</code>.</li>
+<li><strong>Corollaire</strong> : <code>f([a,b]) = [m,M]</code> : l'image d'un <strong>segment</strong> est un <strong>segment</strong>.</li>
+<li>Faux sans « segment » : <code>1/x</code> sur <code>]0,1]</code> est continue mais non majorée.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Sur un segment (fermé borné), une fonction continue ne peut pas « s'échapper vers l'infini » et elle atteint réellement son plus haut et son plus bas niveau. On l'utilise pour dire « il existe un max » dans les sujets.</div>
+<details class="q"><summary>❓ Q. Donne un contre-exemple si le domaine n'est pas fermé, puis s'il n'est pas borné.</summary><code>1/x</code> sur <code>]0,1]</code> (non bornée) ; <code>x</code> sur <code>[0,+∞[</code> (non bornée) ; <code>x</code> sur <code>]0,1[</code> (bornée, mais n'atteint ni 0 ni 1).</details>
+<details class="proof"><summary>🧩 Idée de preuve 🟢</summary><strong>Bornée.</strong> Sinon, pour tout <code>n</code> il existe <code>xₙ ∈ [a,b]</code> avec <code>|f(xₙ)| ≥ n</code>. B–W : sous-suite <code>x_φ(n) → c ∈ [a,b]</code>. Par continuité <code>f(x_φ(n)) → f(c)</code>, donc <code>|f(x_φ(n))|</code> est bornée, contradiction avec <code>≥ φ(n) → +∞</code>.<br><strong>Max atteint.</strong> <code>M = sup f([a,b])</code> existe (bornée). Il existe <code>xₙ</code> avec <code>f(xₙ) → M</code> ; B–W : <code>x_φ(n) → β ∈ [a,b]</code> ; continuité : <code>f(β) = lim f(x_φ(n)) = M</code>. Idem pour le min. <strong>Corollaire</strong> : l'image est un intervalle (N37) contenant <code>m</code> et <code>M</code> et contenue dans <code>[m,M]</code> : c'est <code>[m,M]</code>.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul><li><a href="partiel_blanc_corrige.html">Sujet blanc ex. 3.1 et 4.2</a> (bornée et atteint ses bornes)</li></ul></div>
+
+<h2 id="n39">N39 · Monotonie et théorème de la bijection <span class="chip">🔴🟠</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 4.5)</span><ul>
+<li>I intervalle, <code>f : I → R</code> <strong>strictement monotone</strong> ⇒ <code>f</code> est <strong>injective</strong>.</li>
+<li>I intervalle, <code>f</code> strictement monotone et <code>f(I)</code> intervalle ⇒ <code>f</code> est <strong>continue</strong>.</li>
+<li><strong>Théorème de la bijection</strong> : <code>f : I → R</code> <strong>continue et strictement monotone</strong>. Alors <code>J = f(I)</code> est un intervalle, <code>f : I → J</code> est <strong>bijective</strong>, et <code>f⁻¹ : J → I</code> est <strong>continue et strictement monotone de même sens</strong>.</li>
+<li>Exemple : <code>x ↦ x²</code> de <code>[0,+∞[</code> dans <code>[0,+∞[</code> est bijective ; sa réciproque <code>√</code> est continue strictement croissante.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>TVI donne <strong>l'existence</strong> d'un antécédent ; la stricte monotonie donne <strong>l'unicité</strong> (injectivité). Ensemble : <strong>exactement un antécédent</strong> pour chaque valeur de <code>J</code>. Définitions rappelées : <em>injective</em> : <code>f(x) = f(x') ⇒ x = x'</code> ; <em>surjective</em> : tout <code>y</code> a un antécédent ; <em>bijective</em> : les deux.</div>
+<details class="q"><summary>❓ Q1. Énonce le théorème de la bijection avec ses hypothèses.</summary>Voir énoncé : continuité <strong>et</strong> stricte monotonie, sur un <strong>intervalle</strong>.</details>
+<details class="q"><summary>❓ Q2. Pourquoi x ↦ 1/x n'est pas décroissante sur R* ?</summary><code>−1 &lt; 1</code> mais <code>f(−1) = −1 &lt; 1 = f(1)</code> : l'inégalité n'est pas renversée. Elle est strictement décroissante sur chaque intervalle <code>]−∞,0[</code> et <code>]0,+∞[</code>.</details>
+<details class="proof"><summary>🧩 Démonstrations 🟠</summary>
+<strong>Strictement monotone ⇒ injective.</strong> Si <code>x ≠ x'</code>, disons <code>x &lt; x'</code>, alors <code>f(x) &lt; f(x')</code> ou <code>f(x) &gt; f(x')</code> : dans les deux cas <code>f(x) ≠ f(x')</code>.<br>
+<strong>Théorème.</strong> <code>f(I) = J</code> est un intervalle (N37). <code>f : I → J</code> est injective (ci-dessus) et surjective par définition de J : bijective. <strong>Monotonie de <code>f⁻¹</code></strong> (cas strictement croissante) : <code>y &lt; y'</code> dans <code>J</code>, <code>x = f⁻¹(y)</code>, <code>x' = f⁻¹(y')</code>. Si <code>x ≥ x'</code>, alors <code>y = f(x) ≥ f(x') = y'</code>, contradiction : donc <code>x &lt; x'</code>. <strong>Continuité de <code>f⁻¹</code></strong> : <code>f⁻¹ : J → I</code> est strictement monotone et son image <code>I</code> est un intervalle, donc continue par la deuxième proposition (le « pas de saut » : une fonction strictement monotone qui saute omettrait des valeurs de I). ∎</details>
+<details class="proof"><summary>🧩 Application — surjection et bijection de fonctions usuelles 🟠</summary><code>f(x) = x³ + x</code> : continue, strictement croissante (somme de deux strictement croissantes), <code>f → ±∞</code> en ±∞ : <code>f(R) = R</code> et <code>f</code> bijective de R sur R. Le <code>√</code> se construit ainsi, sans ε–δ.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul><li><a href="exos_feuilles_5_6_7.html">F7 · Ex. 3.3</a> (unicité du point fixe par stricte monotonie) ; <a href="../Methodes_SF/injection_surjection_bijection.html">méthode injection/surjection/bijection</a> ; <a href="partiel_blanc_corrige.html">sujet blanc</a></li></ul></div>
+
+<h2 id="n40">N40 · Continuité uniforme, théorème de Heine <span class="chip">🔴🟢</span></h2>
+<div class="box info"><span class="box-title">📌 Énoncé (polycopié 4.6, « complément »)</span><ul>
+<li><code>f : A → R</code> est <strong>uniformément continue</strong> sur A si <code>∀ε &gt; 0, ∃δ &gt; 0, ∀x,y ∈ A, |x − y| &lt; δ ⇒ |f(x) − f(y)| &lt; ε</code>.</li>
+<li>Lipschitzienne ⇒ uniformément continue ⇒ continue. <strong>Réciproques fausses</strong> : <code>√x</code> sur <code>[0,+∞[</code> est uniformément continue mais pas lipschitzienne ; <code>x²</code> est continue sur R mais pas uniformément.</li>
+<li><strong>Théorème de Heine</strong> : <code>f</code> continue sur un <strong>segment</strong> <code>[a,b]</code> ⇒ uniformément continue.</li></ul></div>
+<div class="box tip"><span class="box-title">🗣️ En français</span>Continuité ordinaire : <code>δ</code> dépend de <code>ε</code> <em>et du point a</em>. Uniforme : <code>δ</code> ne dépend que de <code>ε</code> (<strong>le même pour tous les points</strong>). Les quantificateurs : <code>∀ε ∃δ ∀x,y</code> (uniforme) contre <code>∀a ∀ε ∃δ ∀x</code>. Chapitre complément : l'énoncé suffit pour le partiel.</div>
+<details class="proof"><summary>🧩 Lipschitzienne ⇒ unif. continue ⇒ continue 🟠</summary>Si <code>f</code> est κ-lipschitzienne, <code>δ = ε/(κ+1)</code> convient pour tous <code>x,y</code> : <code>|f(x) − f(y)| ≤ κ|x−y| &lt; κδ ≤ ε</code>. Si <code>f</code> est uniformément continue, fixer <code>y = a</code> dans la définition donne la continuité en <code>a</code>. <strong>x² pas uniformément continue</strong> : <code>xₙ = n+1/n</code>, <code>yₙ = n</code> : <code>|xₙ − yₙ| = 1/n → 0</code> mais <code>|xₙ² − yₙ²| = 2 + 1/n² ≥ 2</code>.</details>
+<div class="td"><strong>✏️ Exos TD</strong><ul><li>Pas de feuille 1–7 sur ce complément (le polycopié renvoie à « des travaux dirigés » ultérieurs : probablement F8/F9).</li></ul></div>
+
+<!-- ============================================================ -->
+<h1 id="annexe">Annexe — Négations, rédaction, pièges</h1>
+
+<h2>A. Tableau des négations à savoir faire</h2>
+<div class="tablewrap"><table>
+<tr><th>Énoncé</th><th>Négation</th></tr>
+<tr><td><code>uₙ → ℓ</code> : <code>∀ε&gt;0 ∃N ∀n≥N |uₙ−ℓ|≤ε</code></td><td><code>∃ε&gt;0 ∀N ∃n≥N |uₙ−ℓ|&gt;ε</code></td></tr>
+<tr><td><code>uₙ → +∞</code> : <code>∀A ∃N ∀n≥N uₙ≥A</code></td><td><code>∃A ∀N ∃n≥N uₙ&lt;A</code></td></tr>
+<tr><td><code>(uₙ)</code> majorée : <code>∃M ∀n uₙ≤M</code></td><td><code>∀M ∃n uₙ&gt;M</code></td></tr>
+<tr><td><code>f</code> continue en <code>a</code> : <code>∀ε ∃δ ∀x |x−a|≤δ ⇒ |f(x)−f(a)|≤ε</code></td><td><code>∃ε ∀δ ∃x |x−a|≤δ et |f(x)−f(a)|&gt;ε</code></td></tr>
+<tr><td><code>f</code> croissante : <code>∀x,y x≤y ⇒ f(x)≤f(y)</code></td><td><code>∃x,y x≤y et f(x)&gt;f(y)</code></td></tr>
+<tr><td><code>f</code> injective : <code>f(x)=f(x') ⇒ x=x'</code></td><td><code>∃x≠x', f(x)=f(x')</code></td></tr>
+</table></div>
+
+<h2>B. Les contre-exemples à connaître</h2>
+<div class="tablewrap"><table>
+<tr><th>Affirmation fausse</th><th>Contre-exemple</th></tr>
+<tr><td>bornée ⇒ convergente</td><td><code>(−1)ⁿ</code></td></tr>
+<tr><td><code>|uₙ|</code> converge ⇒ <code>uₙ</code> converge</td><td><code>(−1)ⁿ</code></td></tr>
+<tr><td><code>1/uₙ</code> converge ⇒ <code>uₙ</code> converge</td><td><code>uₙ = n</code></td></tr>
+<tr><td><code>uₙ</code> diverge ⇒ <code>1/uₙ → 0</code></td><td><code>(−1)ⁿ</code></td></tr>
+<tr><td><code>uₙ₊₁ − uₙ → 0</code> ⇒ converge</td><td><code>√n</code>, <code>Hₙ</code></td></tr>
+<tr><td><code>uₙ → 0</code>, <code>uₙ ≥ 0</code> ⇒ décroissante à partir d'un rang</td><td><code>(2+(−1)ⁿ)/n</code></td></tr>
+<tr><td>converge × diverge ⇒ diverge</td><td><code>0 × (−1)ⁿ</code></td></tr>
+<tr><td><code>uₙ &gt; 0</code> converge ⇒ limite <code>&gt; 0</code></td><td><code>1/(n+1)</code></td></tr>
+<tr><td>critère du rapport avec <code>ℓ = 1</code> conclut</td><td><code>n</code> et <code>1/(n+1)</code></td></tr>
+<tr><td><code>f(x) ≥ x</code> ⇒ croissante</td><td><code>x + 1/x</code></td></tr>
+<tr><td><code>f, g</code> croissantes ⇒ <code>fg</code> croissante</td><td><code>x·x = x²</code></td></tr>
+<tr><td><code>f</code> paire, <code>g</code> impaire ⇒ <code>f+g</code> paire ou impaire</td><td><code>1 + x</code></td></tr>
+<tr><td>continue sur R ⇒ point fixe</td><td><code>x + 1</code></td></tr>
+<tr><td>continue ⇒ bornée</td><td><code>1/x</code> sur <code>]0,1]</code> ; <code>x</code> sur R</td></tr>
+<tr><td><code>f([a,b]) = [f(a), f(b)]</code></td><td><code>x²</code> sur <code>[−1,1]</code></td></tr>
+<tr><td>TVI sans continuité</td><td><code>0</code> sur <code>[0,1/2[</code>, <code>1</code> sur <code>[1/2,1]</code></td></tr>
+<tr><td>pas de limite en a ⇒ …</td><td><code>cos(1/x)</code> : deux suites</td></tr>
+<tr><td><code>⌊2x⌋ = 2⌊x⌋</code></td><td><code>x = 0,6</code></td></tr>
+</table></div>
+
+<h2>C. Modèle de rédaction d'une preuve ε–N ou ε–δ</h2>
+<div class="box tip"><ol>
+<li><strong>« Soit ε &gt; 0. »</strong> (jamais « pour ε assez petit » avant d'avoir fixé).</li>
+<li>Calculer / majorer <code>|uₙ − ℓ|</code> (ou <code>|f(x) − ℓ|</code>) en fonction de <code>n</code> (ou <code>|x − a|</code>).</li>
+<li><strong>« Posons N = … »</strong> (ou « D'après Archimède, il existe N tel que … ») : le choix dépend de ε.</li>
+<li><strong>« Alors pour tout n ≥ N, … ≤ ε. »</strong></li>
+<li><strong>« Donc uₙ → ℓ. »</strong></li></ol></div>
+
+<h2>D. Checklist de dernière minute</h2>
+<div class="box warn"><ul>
+<li>Je sais écrire <strong>sans erreur</strong> : sup (plus petit majorant), caractérisation par ε, limite de suite, limite de fonction, continuité, suite de Cauchy, adjacentes (4 conditions), voisinage, intervalle (caractérisation), partie entière.</li>
+<li>Je sais refaire : √2 ∉ Q, Archimède, convergente ⇒ bornée, unicité de la limite, gendarmes, croissante majorée ⇒ converge, adjacentes, harmonique diverge, pair+impair, caractérisation séquentielle, TVI, image d'un intervalle, théorème de la bijection.</li>
+<li>Pour « il existe x tel que » : <code>φ</code> + TVI. Pour « pas de limite » : deux sous-suites. Pour « converge » : monotone bornée ou adjacentes. Pour une limite : réflexes N18/N30.</li></ul></div>
+
+<div class="nav-links"><a href="index.html">← Retour au plan de révision</a><a href="fiche_definitions_preuves.html">Fiche définitions/preuves →</a></div>
+</div>
+</body>
+</html>
