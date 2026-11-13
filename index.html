@@ -5,31 +5,259 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>L1 — Notes de cours (Maths & Info)</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  .intro { color: var(--muted); margin-top: -4px; }
+
+  /* ---------- Onglets ---------- */
+  .tabs { display: flex; gap: 8px; margin: 22px 0 0; flex-wrap: wrap; }
+  .tab {
+    flex: 1 1 180px; cursor: pointer; font: inherit; text-align: left;
+    padding: 12px 16px; border-radius: 12px 12px 0 0;
+    border: 2px solid var(--border); border-bottom: none;
+    background: #eef0f6; color: var(--muted);
+  }
+  .tab b { display: block; font-size: 17px; color: var(--text); }
+  .tab span { font-size: 13px; }
+  .tab:hover { background: #fff; }
+  .tab[aria-selected="true"] { background: #fff; color: var(--text); border-color: var(--c); box-shadow: inset 0 5px 0 var(--c); }
+  .tab[aria-selected="true"] b { color: var(--c); }
+  .tab:focus-visible { outline: 3px solid var(--c); outline-offset: 2px; }
+
+  .t-analyse { --c: #4338ca; }
+  .t-sf      { --c: #0d9488; }
+  .t-graphes { --c: #c27803; }
+
+  .panel {
+    background: #fff; border: 2px solid var(--c); border-radius: 0 0 14px 14px;
+    padding: 6px 22px 22px; margin-bottom: 30px;
+  }
+  .js .panel[hidden] { display: none; }
+  .panel > h2.titre { display: block; background: none; padding: 0; color: var(--c); font-size: 1.6rem; margin: 18px 0 4px; }
+
+  /* Une section = un seul type de contenu */
+  .section { margin-top: 22px; }
+  .section-head { display: flex; align-items: baseline; gap: 10px; border-bottom: 2px solid var(--border); padding-bottom: 6px; }
+  .section-head h3 { margin: 0; border: none; padding: 0; color: var(--c); font-size: 1.15rem; }
+  .section-head small { color: var(--muted); font-size: 13px; }
+  .panel .grid-cards { margin: 12px 0 0; }
+  .panel .card { border-top: 4px solid var(--c); }
+  .panel .card a { color: var(--c); }
+
+  .autres { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 15px; }
+  .autres a { color: var(--primary); font-weight: 600; text-decoration: none; }
+  .autres a:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    .tab { flex: 1 1 100%; border-radius: 10px; border-bottom: 2px solid var(--border); }
+    .tab[aria-selected="true"] { border-bottom: 2px solid var(--c); }
+    .panel { border-radius: 14px; padding: 4px 14px 16px; margin-top: 8px; }
+  }
+</style>
 </head>
 <body>
 <div class="topbar"><span>🎓 L1 — Notes de cours</span><span>Accueil</span></div>
 <div class="page">
 
-<h1>🎓 Mes notes de L1 — Maths &amp; Info</h1>
+<h1>🎓 Mes notes de L1 — Maths</h1>
+<p class="intro">Choisis ta matière. Dans chaque onglet, tout est rangé dans le même ordre : <strong>Cours</strong> → <strong>Fiches</strong> → <strong>Exercices</strong> → <strong>Flashcards</strong>.</p>
 
-<p>Notes de cours réécrites, complétées et mises en couleur, mises à jour au fur et à mesure du semestre. Choisis une matière ci-dessous.</p>
-
-<h2>📚 Les matières</h2>
-<div class="grid-cards">
-  <div class="card"><a href="L1_math/index.html">📐 L1 Maths — Structures Fondamentales</a><p>Logique propositionnelle, quantificateurs, récurrence, raisonnements classiques, exercices corrigés</p></div>
-  <div class="card"><a href="L1_info/index.html">💻 L1 Info — Unix/Linux &amp; Algorithmique</a><p>Navigation dans le système de fichiers, commandes, traitement de texte, variables, exercices et méthodes de révision</p></div>
+<div class="tabs" role="tablist" aria-label="Matières">
+  <button class="tab t-analyse" role="tab" id="tab-analyse" aria-controls="analyse" aria-selected="true"><b>📉 Analyse</b><span>Réels, suites, limites, continuité</span></button>
+  <button class="tab t-sf" role="tab" id="tab-sf" aria-controls="sf" aria-selected="false" tabindex="-1"><b>🧩 Structures fondamentales</b><span>Logique, ensembles, applications, complexes</span></button>
+  <button class="tab t-graphes" role="tab" id="tab-graphes" aria-controls="graphes" aria-selected="false" tabindex="-1"><b>🕸️ Théorie des graphes</b><span>Définitions, exos types (cours L2)</span></button>
 </div>
 
-<h2>🔗 Pour s'entraîner</h2>
-<div class="grid-cards">
-  <div class="card"><a href="ressources.html">⭐ Ressources externes gratuites</a><p>Exo7 (Université de Lille) et autres sites d'exercices corrigés — avec la correspondance chapitre par chapitre avec mes notes</p></div>
+<!-- ============================================================ ANALYSE -->
+<section class="panel t-analyse" id="analyse" role="tabpanel" aria-labelledby="tab-analyse">
+<h2 class="titre">📉 Analyse 1.1</h2>
+
+<div class="section">
+  <div class="section-head"><h3>📖 Cours</h3><small>le livre Exo7, chapitre par chapitre</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/02_Analyse/00_nombres_reels.html">Ch. 1 · Les nombres réels</a><p>Q, densité, valeur absolue, partie entière, borne sup/inf</p></div>
+    <div class="card"><a href="L1_math/02_Analyse/01_suites.html">Ch. 2 · Les suites</a><p>Limites, gendarmes, adjacentes, Bolzano-Weierstrass, suites récurrentes</p></div>
+    <div class="card"><a href="L1_math/02_Analyse/02_limites_fonctions_continues.html">Ch. 3 · Limites et continuité</a><p>TVI, image d'un segment, théorème de la bijection</p></div>
+    <div class="card"><a href="L1_math/02_Analyse/03_fonctions_usuelles.html">Ch. 4 · Fonctions usuelles</a><p>ln, exp, arccos/arcsin/arctan, ch/sh/th</p></div>
+    <div class="card"><a href="L1_math/02_Analyse/04_derivees.html">Ch. 5 · Dérivées</a><p>Rolle, accroissements finis, règle de l'Hospital</p></div>
+  </div>
 </div>
 
-<div class="box tip">
-<span class="box-title">💡 Astuce</span>
-Ajoute cette page à tes favoris (ou à l'écran d'accueil de ton téléphone) : elle est toujours à jour avec la dernière version des notes.
+<div class="section">
+  <div class="section-head"><h3>🧠 Fiches</h3><small>résumés et méthodes</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/mega_fiche_analyse.html">⭐ Méga-fiche</a><p>40 notions, démonstrations, questions de cours</p></div>
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/fiche_definitions_preuves.html">Le cours à connaître par cœur</a><p>Définitions, théorèmes, preuves cachées, contre-exemples</p></div>
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/synthese_imprimable.html">🖨️ Synthèse imprimable</a><p>Tout le programme en 2 pages A4</p></div>
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/techniques_limites.html">Méthode : calculer une limite</a><p>Les 6 réflexes + drill sur les limites des feuilles</p></div>
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/methode_suites_recurrentes.html">Méthode : suites récurrentes</a><p>6 étapes, 4 exemples corrigés</p></div>
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/index.html">🗓️ Plan de révision</a><p>Planning jour par jour, les 5 types de questions</p></div>
+  </div>
 </div>
 
+<div class="section">
+  <div class="section-head"><h3>✏️ Exercices</h3><small>feuilles de TD corrigées</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/Exercices/exercices_analyse_feuille1.html">Feuille 1 · Nombres réels</a><p>Vrai/faux, intervalles, majorants, sup/inf, partie entière</p></div>
+    <div class="card"><a href="L1_math/Exercices/exercices_analyse_feuille2.html">Feuille 2 · Suites, limites</a><p>Convergence, sous-suites, limites usuelles, Cesàro</p></div>
+    <div class="card"><a href="L1_math/Exercices/exercices_analyse_feuille3.html">Feuille 3 · Suites (suite)</a><p>Adjacentes, série harmonique, séries alternées</p></div>
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/exos_feuille_4.html">Feuille 4 · Sous-suites, Cauchy</a><p>Critère de Cauchy, pics, Bolzano-Weierstrass</p></div>
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/exos_feuilles_5_6_7.html">Feuilles 5, 6, 7 · Fonctions</a><p>Parité, limites de fonctions, continuité, TVI</p></div>
+    <div class="card"><a href="L1_math/Revision_Partiel_Analyse/partiel_blanc_corrige.html">📝 Sujet blanc corrigé</a><p>En 2 h, puis correction avec le barème</p></div>
+  </div>
 </div>
+
+<div class="section">
+  <div class="section-head"><h3>🃏 Flashcards</h3><small>pour se tester</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/Flashcards/analyse_partiel.html">Flashcards d'analyse</a><p>90 cartes : définitions, théorèmes, preuves, contre-exemples</p></div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ STRUCTURES FONDAMENTALES -->
+<section class="panel t-sf" id="sf" role="tabpanel" aria-labelledby="tab-sf" hidden>
+<h2 class="titre">🧩 Structures fondamentales</h2>
+<p class="intro">D'après le polycopié de Fabien Durand (UPJV 2026-2027).</p>
+
+<div class="section">
+  <div class="section-head"><h3>📖 Cours</h3><small>chapitre par chapitre</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/00_descriptif_cours.html">Ch. 1 · Descriptif du cours</a><p>Objectifs, évaluation, méthodes de travail</p></div>
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/01_logique_propositionnelle.html">Ch. 2.1 · Logique propositionnelle</a><p>ET/OU, tables de vérité, implication, De Morgan</p></div>
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/02_quantificateurs.html">Ch. 2.2 · Quantificateurs</a><p>∀, ∃, négation, variables muettes</p></div>
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/03_recurrence.html">Ch. 2.3 · Récurrence</a><p>Initialisation, hérédité, récurrence forte</p></div>
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/04_raisonnements_classiques.html">Ch. 2.4 · Raisonnements classiques</a><p>Absurde, contraposée, contre-exemple</p></div>
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/05_notion_ensemble.html">Ch. 3.1-3.2 · Ensembles, inclusion</a><p>N, Z, Q, R, C, intervalles, ∈ vs ⊂</p></div>
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/06_operations_ensembles.html">Ch. 3.3 · Opérations sur les ensembles</a><p>∩, ∪, complémentaire, P(E), produit cartésien</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>🧠 Fiches</h3><small>résumés de chapitre</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/Revision_Structures/fiche_ch2_logique.html">Ch. 2 · Logique</a><p>Logique, quantificateurs, raisonnements</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/fiche_ch3_ensembles.html">Ch. 3 · Ensembles</a><p>Notion d'ensemble, opérations</p></div>
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/07_fiche_regles_ensembles.html">Ch. 3 · Les petites règles</a><p>Symboles, ensemble vide, cardinal, De Morgan</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/fiche_ch4_relations_applications.html">Ch. 4 · Relations et applications</a><p>Relations, applications, cardinal</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/fiche_composition_injective_surjective.html">Ch. 4 · Composition injective / surjective</a><p>Schémas, preuves, mini-quiz</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/fiche_ch5_construction_nombres.html">Ch. 5 · Construction des nombres</a><p>N, Z, Q, R, densité</p></div>
+    <div class="card"><a href="L1_math/Complexes/fiche_complexes.html">Ch. 6 · Nombres complexes</a><p>Forme algébrique, module, Euler, second degré, racines de l'unité</p></div>
+    <div class="card"><a href="L1_math/Complexes/fiche_forme_exponentielle.html">Ch. 6 · Forme exponentielle</a><p>Trouver r et θ en 3 étapes, cercle trigonométrique</p></div>
+  </div>
+  <div class="section-head" style="margin-top:18px"><h3>🛠️ Fiches méthode</h3><small>comment faire un exercice</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/Methodes_SF/index.html">⭐ Quel exercice, quelle méthode ?</a><p>TD1 + TD2, exo par exo</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/methode.html">Rédiger une démonstration</a><p>Soit / Supposons / Alors / Donc</p></div>
+    <div class="card"><a href="L1_math/Methodes_SF/injection_surjection_bijection.html">Injection, surjection, bijection</a><p>Prouver / réfuter, pièges</p></div>
+    <div class="card"><a href="L1_math/Methodes_SF/reciproque.html">Calculer une réciproque</a><p>Méthode universelle, 10 cas types</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>✏️ Exercices</h3><small>corrigés</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/Exercices/exercices_logique.html">Ch. 2 · Logique &amp; quantificateurs</a><p>Tables de vérité, négations, rédaction</p></div>
+    <div class="card"><a href="L1_math/Exercices/exercices_recurrence_raisonnements.html">Ch. 2 · Récurrence &amp; raisonnements</a><p>Récurrence simple et forte, absurde, contraposée</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/exos_ch2_logique.html">Ch. 2 · Exercices de révision</a><p>Logique, quantificateurs, raisonnements</p></div>
+    <div class="card"><a href="L1_math/01_Structures_Fondamentales/08_TD2_ensembles_corrections.html">Ch. 3 · TD2 corrigé</a><p>Appartenance vs inclusion, P(A), cardinal</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/exos_ch3_ensembles.html">Ch. 3 · Exercices de révision</a><p>Ensembles</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/exos_ch4_relations_applications.html">Ch. 4 · Exercices de révision</a><p>Relations, applications, cardinal</p></div>
+    <div class="card"><a href="L1_math/Methodes_SF/exo_associations_double_comptage.html">Ch. 4 · Exo 11 : associations</a><p>Double comptage + bijection</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/exos_ch5_nombres.html">Ch. 5 · Exercices de révision</a><p>Construction des nombres, densité</p></div>
+    <div class="card"><a href="L1_math/Complexes/exos_complexes.html">Ch. 6 · Nombres complexes</a><p>Exercices types + correction rédigée</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>🃏 Flashcards</h3><small>pour se tester</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/Flashcards/structures_fondamentales.html">Flashcards SF</a><p>155 cartes : logique, ensembles, relations, applications, nombres</p></div>
+    <div class="card"><a href="L1_math/Revision_Structures/index.html">Import Anki + PDF</a><p>Les mêmes cartes pour Anki, et les PDF des fiches</p></div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ GRAPHES -->
+<section class="panel t-graphes" id="graphes" role="tabpanel" aria-labelledby="tab-graphes" hidden>
+<h2 class="titre">🕸️ Théorie des graphes <span class="chip">cours L2</span></h2>
+
+<div class="section">
+  <div class="section-head"><h3>📖 Cours</h3></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/03_Graphes/00_introduction_graphes.html">Introduction · premières définitions</a><p>Orientés/non orientés, degrés, connexité, arbres, coloriage</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>🧠 Fiches</h3></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/03_Graphes/01_definitions_completes.html">⭐ Toutes les définitions du cours</a><p>83 définitions et théorèmes : matrices, chemins, arbres, planarité, Euler/Hamilton, Hall, Dijkstra, PERT</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>✏️ Exercices</h3></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/03_Graphes/03_exos_types.html">Exos types et rédactions</a><p>18 exercices modèles avec rédaction type et correction</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>🃏 Flashcards</h3></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_math/Flashcards/graphes.html">Flashcards (cartes à retourner)</a><p>83 cartes : définitions, démonstrations, choix de l'outil</p></div>
+    <div class="card"><a href="L1_math/03_Graphes/02_flashcards.html">Flashcards (version lecture)</a><p>Toutes les cartes visibles d'un coup</p></div>
+  </div>
+</div>
+</section>
+
+<div class="section-head"><h3 style="color:var(--muted)">🔗 Autres</h3></div>
+<p class="autres">
+  <a href="ressources.html">⭐ Ressources externes (Exo7…)</a>
+  <a href="L1_info/Revisions/methodes_revision.html">Méthodes de révision</a>
+  <a href="L1_info/index.html">💻 L1 Info (Unix, algo)</a>
+</p>
+
+</div>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var ids = tabs.map(function (t) { return t.getAttribute('aria-controls'); });
+
+  function show(id, focus) {
+    if (ids.indexOf(id) < 0) id = 'analyse';
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('aria-controls') === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      if (on && focus) t.focus();
+    });
+    try { localStorage.setItem('onglet', id); } catch (e) {}
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () {
+      var id = t.getAttribute('aria-controls');
+      history.replaceState(null, '', '#' + id);
+      show(id);
+    });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      var n = tabs[(i + d + tabs.length) % tabs.length];
+      history.replaceState(null, '', '#' + n.getAttribute('aria-controls'));
+      show(n.getAttribute('aria-controls'), true);
+    });
+  });
+
+  var start = location.hash.slice(1);
+  if (ids.indexOf(start) < 0) { try { start = localStorage.getItem('onglet'); } catch (e) {} }
+  show(start);
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1)); });
+})();
+</script>
 </body>
 </html>

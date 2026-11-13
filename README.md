@@ -10,10 +10,9 @@ Tout est lisible directement dans le navigateur, sur ordi comme sur téléphone 
 
 ## 📂 Comment consulter
 
-Ouvre simplement le sommaire de la matière qui t'intéresse dans ton navigateur :
+Ouvre **[index.html](index.html)** : trois onglets séparés, **Analyse**, **Structures fondamentales** et **Théorie des graphes**. Dans chaque onglet, tout est rangé dans le même ordre : Cours → Fiches → Exercices → Flashcards.
 
-- **[L1_info/index.html](L1_info/index.html)** — Unix/Linux + Algorithmique
-- **[L1_math/index.html](L1_math/index.html)** — Structures Fondamentales (logique, ensembles, applications...)
+L'info (Unix/Linux + algorithmique) est dans **[L1_info/index.html](L1_info/index.html)**.
 
 👉 Si tu as cloné ce dépôt, double-clique sur ces fichiers `.html` dans ton explorateur de fichiers pour les ouvrir dans ton navigateur.
 
@@ -38,7 +37,7 @@ L1_info/
 └── Revisions/
 
 L1_math/
-├── index.html                  ← sommaire (commence ici)
+├── index.html                  ← redirige vers l'accueil à onglets
 ├── Methodes_SF/                ← 🛠️ quel exercice de TD → quelle méthode
 ├── Revision_Structures/        ← fiches, exercices corrigés (ch. 2 à 5)
 ├── Flashcards/                 ← cartes à retourner
