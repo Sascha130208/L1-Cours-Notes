@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trouve la méthode — Analyse</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../Revision_Structures/revision.css">
+<style>
+  .exo { border: 1px solid #d0d7de; border-radius: 10px; padding: 14px 16px; margin: 18px 0; }
+  .exo h3 { margin-top: 0; }
+  .exo .src { font-size: 0.85em; opacity: 0.75; }
+  .exo details { margin: 8px 0; }
+  .methode { font-weight: bold; }
+  .piege { margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="topbar"><a href="../../index.html#analyse">← Sommaire</a><span>Analyse — Trouve la méthode</span></div>
+<div class="page">
+<span class="chip">🧭 Méthodes</span><span class="chip">Analyse 1.1</span>
+<h1>🧭 Trouve la méthode</h1>
+
+<p>Le but n'est pas seulement de résoudre l'exercice : c'est de <strong>savoir quoi faire en lisant l'énoncé</strong>. Absurde ? Contre-exemple ? Disjonction de cas ? Quelle définition déplier ? Quel théorème citer ?</p>
+
+<div class="box tip">
+<span class="box-title">Comment s'entraîner sur cette page</span>
+<ol>
+<li>Lis l'énoncé. <strong>Avant d'ouvrir quoi que ce soit</strong>, écris sur ta feuille : vrai ou faux, et quelle méthode tu vas utiliser.</li>
+<li>Ouvre « 🧭 Quelle méthode ? » et compare avec ton choix.</li>
+<li>Rédige ta réponse, puis ouvre « ✍️ Rédaction » pour comparer.</li>
+<li>Lis le « ⚠️ Piège » : ce sont des erreurs faites pour de vrai en TD.</li>
+</ol>
+</div>
+
+<h2 id="reflexes">1. Les 4 questions à se poser devant un énoncé</h2>
+<ol>
+<li><strong>Est-ce vrai ?</strong> Teste 3 ou 4 valeurs, dont des valeurs « extrêmes » : 0, un nombre négatif, un nombre très grand, ½.</li>
+<li><strong>Si c'est faux</strong> : un <strong>contre-exemple</strong> concret suffit. Pose-le, vérifie qu'il respecte toutes les hypothèses, puis montre que la conclusion est fausse. Pas besoin d'absurde.</li>
+<li><strong>Si c'est vrai</strong>, regarde la forme de ce qu'il faut montrer :
+  <ul>
+  <li>une propriété <em>négative</em> (« n'est pas rationnel », « n'est pas majoré », « il n'existe pas ») → <strong>absurde</strong> ;</li>
+  <li>une hypothèse sur un <em>signe</em>, une valeur absolue, un max/min → <strong>disjonction de cas</strong> ;</li>
+  <li>« il existe » → <strong>exhiber</strong> l'élément (ou absurde si on ne peut pas le construire) ;</li>
+  <li>sinon → <strong>preuve directe</strong> : écrire les définitions avec les quantificateurs, et enchaîner.</li>
+  </ul></li>
+<li><strong>Conclus</strong> par une phrase qui répond à la question posée.</li>
+</ol>
+
+<h2 id="boite">2. La boîte à outils : signal dans l'énoncé → outil</h2>
+<div class="tablewrap"><table>
+<tr><th>Si tu vois…</th><th>Pense à…</th></tr>
+<tr><td>« A-t-on … pour tout … ? » et un exemple marche mal</td><td><strong>Contre-exemple</strong> (concret, hypothèses vérifiées)</td></tr>
+<tr><td>Montrer qu'un nombre est irrationnel, ∉ ℚ</td><td><strong>Absurde</strong> : supposer qu'il est rationnel, et faire apparaître un autre nombre qui deviendrait rationnel</td></tr>
+<tr><td>ℚ, opérations sur des rationnels</td><td>ℚ est <strong>stable</strong> par +, −, × et ÷ par un nombre non nul</td></tr>
+<tr><td>|A| &gt; c ou |A| &lt; c</td><td>|A| &gt; c ⟺ A &gt; c <em>ou</em> A &lt; −c ; |A| &lt; c ⟺ −c &lt; A &lt; c</td></tr>
+<tr><td>Une hypothèse sur un signe (xy ≥ 0, x ≤ 0…)</td><td><strong>Disjonction de cas</strong> selon le signe</td></tr>
+<tr><td>Diviser ou multiplier une inégalité</td><td>Par un nombre <strong>négatif</strong> → on <strong>inverse</strong> le sens</td></tr>
+<tr><td>Minoré / majoré / borné</td><td>Écrire la définition : <strong>∃m ∈ ℝ, ∀x ∈ A, m ≤ x</strong> (le ∃ <em>avant</em> le ∀)</td></tr>
+<tr><td>« … n'est pas minoré / majoré »</td><td><strong>Absurde + propriété d'Archimède</strong> (ℕ n'est pas majoré)</td></tr>
+<tr><td>Plus petit / plus grand élément (min, max)</td><td>Deux points : c'est un minorant (majorant) <strong>et</strong> il appartient à l'ensemble</td></tr>
+<tr><td>Une inégalité sur sup A</td><td>sup A est le <strong>plus petit majorant</strong> : si M majore A, alors sup A ≤ M</td></tr>
+<tr><td>Une inégalité sur inf A</td><td>inf A est le <strong>plus grand minorant</strong> : si m minore A, alors m ≤ inf A</td></tr>
+<tr><td>Partie entière ⌊x⌋</td><td>L'encadrement <strong>⌊x⌋ ≤ x &lt; ⌊x⌋ + 1</strong>, et ⌊x⌋ ∈ ℤ ; tester x = ½</td></tr>
+<tr><td>Intervalle ? Segment ?</td><td>Résoudre pour écrire l'ensemble sous forme d'intervalle ; segment = <strong>[a, b] fermé et borné</strong></td></tr>
+</table></div>
+
+<h2 id="exos">3. Les exercices</h2>
+<p>Source : Feuille d'exercices 1, exercice 1 (UPJV, Analyse 1.1, 2026–2027). Pour chaque question : <strong>vrai ou faux, en justifiant</strong>.</p>
+
+<!-- ============ 1a ============ -->
+<div class="exo" id="q1a">
+<h3>Q1a · Rationnel + irrationnel</h3>
+<p class="src">Feuille 1, ex. 1, question 1</p>
+<p>Soient x ∈ ℚ et y ∈ ℝ \ ℚ. A-t-on x + y ∈ ℝ \ ℚ ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Vrai → raisonnement par l'absurde.</p>
+<p>Signal : on veut montrer que x + y <em>n'est pas</em> rationnel. « Ne pas être rationnel » ne se manipule pas bien directement, alors qu'« être rationnel » donne une égalité utilisable. On suppose donc le contraire.</p>
+<p>Outil : ℚ est stable par soustraction.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p>Supposons par l'absurde que x + y ∈ ℚ. Posons r = x + y, donc r ∈ ℚ.<br>
+Alors y = r − x. Comme r ∈ ℚ et x ∈ ℚ, et que ℚ est stable par soustraction, on a y ∈ ℚ.<br>
+C'est absurde puisque y ∈ ℝ \ ℚ. Donc <strong>x + y ∈ ℝ \ ℚ</strong>.</p>
+<p><em>Version avec fractions :</em> x = a/b et x + y = c/d avec a, b, c, d entiers, b ≠ 0, d ≠ 0. Alors y = c/d − a/b = (cb − ad)/(bd), qui est un quotient d'entiers avec bd ≠ 0. Donc y ∈ ℚ, contradiction.</p>
+</details>
+<div class="box warn piege"><span class="box-title">⚠️ Piège</span>
+Ne pas appeler le nombre rationnel « q » : on confond avec le q de l'écriture p/q (le dénominateur). Prends plutôt r.</div>
+</div>
+
+<!-- ============ 1b ============ -->
+<div class="exo" id="q1b">
+<h3>Q1b · Rationnel × irrationnel</h3>
+<p class="src">Feuille 1, ex. 1, question 1</p>
+<p>Soient x ∈ ℚ et y ∈ ℝ \ ℚ. A-t-on xy ∈ ℝ \ ℚ ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Faux → contre-exemple.</p>
+<p>Signal : si on recopie l'absurde de Q1a, on écrit y = (xy)/x… et on bloque, car il faut <strong>diviser par x</strong>. L'endroit où la preuve bloque indique où chercher le contre-exemple : <strong>x = 0</strong>.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Faux.</strong> Contre-exemple : x = 0 ∈ ℚ et y = √2 ∈ ℝ \ ℚ. Alors xy = 0 ∈ ℚ.</p>
+<p><em>Pour aller plus loin :</em> si on ajoute x ≠ 0, l'énoncé devient vrai, avec le même absurde qu'en Q1a (y = (xy)/x serait rationnel).</p>
+</details>
+<div class="box warn piege"><span class="box-title">⚠️ Piège</span>
+Pour montrer qu'un « pour tout » est <strong>faux</strong>, on ne fait pas d'absurde : <strong>un seul</strong> contre-exemple suffit.</div>
+</div>
+
+<!-- ============ 2 ============ -->
+<div class="exo" id="q2">
+<h3>Q2 · Intervalle ou segment ?</h3>
+<p class="src">Feuille 1, ex. 1, question 2</p>
+<p>L'ensemble {x ∈ ℝ : 1 ≤ −2x + 1 &lt; 3} est-il un intervalle ? Est-ce un segment ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Calcul direct par équivalences, puis définitions.</p>
+<p>On résout la double inégalité pour écrire l'ensemble sous la forme d'un intervalle. Ensuite on applique les définitions : un <strong>intervalle</strong> est un ensemble « sans trou » ; un <strong>segment</strong> est un intervalle <strong>[a, b]</strong> avec a, b réels : <strong>fermé</strong> (bornes incluses) <strong>et borné</strong>.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p>1 ≤ −2x + 1 &lt; 3 ⟺ 0 ≤ −2x &lt; 2 ⟺ 0 ≥ x &gt; −1 (on divise par −2 &lt; 0, donc on inverse les inégalités).</p>
+<p>L'ensemble est donc <strong>]−1, 0]</strong>. C'est un <strong>intervalle</strong>, mais <strong>pas un segment</strong> car il n'est pas fermé en −1.</p>
+<p><em>Vérification :</em> x = −0,5 donne −2x + 1 = 2 ∈ [1, 3[ ✓ ; x = 0,5 donne 0 ∉ [1, 3[ ✗.</p>
+</details>
+<div class="box warn piege"><span class="box-title">⚠️ Piège</span>
+Oublier d'inverser les inégalités en divisant par −2 : on trouve alors [0, 1[ au lieu de ]−1, 0]. Toujours vérifier avec une valeur.</div>
+</div>
+
+<!-- ============ 3 ============ -->
+<div class="exo" id="q3">
+<h3>Q3 · Valeur absolue et signe</h3>
+<p class="src">Feuille 1, ex. 1, question 3</p>
+<p>Soit x ∈ ℝ tel que |x + 2026| &gt; 2026. A-t-on x &gt; 0 ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Faux → contre-exemple, trouvé en testant une valeur extrême.</p>
+<p>Signal : une valeur absolue <strong>efface le signe</strong>, donc un nombre très négatif peut aussi la rendre grande. Outil : |A| &gt; c ⟺ A &gt; c ou A &lt; −c.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Faux.</strong> Contre-exemple : x = −5000. Alors |−5000 + 2026| = |−2974| = 2974 &gt; 2026, mais x &lt; 0.</p>
+<p><em>Pour comprendre :</em> |x + 2026| &gt; 2026 ⟺ x + 2026 &gt; 2026 ou x + 2026 &lt; −2026 ⟺ x &gt; 0 ou x &lt; −4052.</p>
+</details>
+<div class="box warn piege"><span class="box-title">⚠️ Piège</span>
+Partir sur un absurde « si x &lt; 0 alors |x + 2026| &lt; 2026 » : ce n'est vrai que pour x proche de 0. Avant de prouver, <strong>teste une valeur très négative</strong>.</div>
+</div>
+
+<!-- ============ 4 ============ -->
+<div class="exo" id="q4">
+<h3>Q4 · Égalité dans l'inégalité triangulaire</h3>
+<p class="src">Feuille 1, ex. 1, question 4</p>
+<p>Soient x, y ∈ ℝ tels que xy ≥ 0. A-t-on |x + y| = |x| + |y| ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Vrai → disjonction de cas selon le signe.</p>
+<p>Signal : l'hypothèse xy ≥ 0 parle d'un <strong>signe</strong> (règle des signes : x et y ont le même signe), et la conclusion contient des valeurs absolues. Outil : |a| = a si a ≥ 0, |a| = −a si a ≤ 0.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Vrai.</strong> Comme xy ≥ 0, x et y sont de même signe au sens large.</p>
+<p><strong>Cas 1 :</strong> x ≥ 0 et y ≥ 0. Alors x + y ≥ 0, donc |x + y| = x + y = |x| + |y|.<br>
+<strong>Cas 2 :</strong> x ≤ 0 et y ≤ 0. Alors x + y ≤ 0, donc |x + y| = −(x + y) = (−x) + (−y) = |x| + |y|.</p>
+<p>Dans les deux cas, |x + y| = |x| + |y|.</p>
+</details>
+<div class="box warn piege"><span class="box-title">⚠️ Piège</span>
+Écrire seulement « même signe donc ça donne la même chose » : c'est l'idée, mais la copie doit contenir <strong>le calcul de chaque cas</strong>. Le cas x = 0 est inclus grâce aux inégalités larges.</div>
+</div>
+
+<!-- ============ 5a ============ -->
+<div class="exo" id="q5a">
+<h3>Q5a · A minorée, B majorée, A ⊂ B : A est-elle bornée ?</h3>
+<p class="src">Feuille 1, ex. 1, question 5</p>
+<p>Soient A et B deux parties de ℝ telles que A est minorée, B est majorée et A ⊂ B. La partie A est-elle bornée ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Vrai → preuve directe en dépliant les définitions.</p>
+<p>Écrire les trois hypothèses avec des quantificateurs, puis prendre un x quelconque de A et enchaîner : x ∈ A ⇒ x ∈ B ⇒ x ≤ M.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Vrai.</strong> A est minorée : il existe m ∈ ℝ tel que ∀x ∈ A, m ≤ x.<br>
+B est majorée : il existe M ∈ ℝ tel que ∀x ∈ B, x ≤ M.</p>
+<p>Soit x ∈ A. Comme A ⊂ B, x ∈ B, donc x ≤ M. Et comme x ∈ A, m ≤ x.<br>
+Donc ∀x ∈ A, m ≤ x ≤ M : <strong>A est bornée</strong>.</p>
+</details>
+<div class="box danger piege"><span class="box-title">⚠️ Piège (important)</span>
+Écrire « ∀x ∈ A, ∃m ∈ ℝ, m &lt; x » : c'est <strong>toujours vrai</strong> (prendre m = x − 1), donc ça ne définit rien. Un minorant est le <strong>même</strong> pour tous les x : <strong>∃m, ∀x</strong>. Et l'inclusion A ⊂ B s'écrit ∀x ∈ A, x ∈ B, sans accolades.</div>
+</div>
+
+<!-- ============ 5b ============ -->
+<div class="exo" id="q5b">
+<h3>Q5b · … et B est-elle bornée ?</h3>
+<p class="src">Feuille 1, ex. 1, question 5</p>
+<p>Mêmes hypothèses. La partie B est-elle bornée ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Faux → contre-exemple, puis absurde + propriété d'Archimède pour montrer « B n'est pas minorée ».</p>
+<p>Signal : rien dans les hypothèses ne retient B vers le bas. On choisit un B qui « descend à l'infini ». Pour prouver qu'il n'est pas minoré (propriété négative), on raisonne par l'absurde.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Faux.</strong> Posons A = [0, 1] et B = ]−∞, 1].</p>
+<p><em>Hypothèses :</em> A est minorée par 0 ; B est majorée par 1 ; A ⊂ B car tout x ∈ [0, 1] vérifie x ≤ 1.</p>
+<p><em>B n'est pas minorée :</em> supposons par l'absurde que B est minorée par un réel m. Pour tout n ∈ ℕ, −n ≤ 1, donc −n ∈ B, donc m ≤ −n, c'est-à-dire n ≤ −m. Alors ℕ serait majoré par −m, ce qui contredit la propriété d'Archimède.</p>
+<p>Donc <strong>B n'est pas bornée</strong>.</p>
+</details>
+<div class="box warn piege"><span class="box-title">⚠️ Piège</span>
+Dire seulement « B est simplement majorée » ne justifie rien. Un contre-exemple, c'est 3 étapes : <strong>poser</strong> A et B, <strong>vérifier les hypothèses</strong>, <strong>montrer que la conclusion échoue</strong>.</div>
+</div>
+
+<!-- ============ 6 ============ -->
+<div class="exo" id="q6">
+<h3>Q6 · Minoré ? Plus petit élément ?</h3>
+<p class="src">Feuille 1, ex. 1, question 6</p>
+<p>L'ensemble E = {|x − 1| : x ∈ ℝ₊} est-il minoré ? Admet-il un plus petit élément ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Vrai et vrai → preuve directe : un minorant évident, puis la définition du min.</p>
+<p>Signal : « plus petit élément ». Il faut deux choses : m minore E, <strong>et</strong> m ∈ E. Outil : une valeur absolue est toujours ≥ 0.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Minoré : vrai.</strong> Pour tout x ∈ ℝ₊, |x − 1| ≥ 0, donc 0 minore E.</p>
+<p><strong>Plus petit élément : vrai, c'est 0.</strong> 0 ∈ E car 1 ∈ ℝ₊ et |1 − 1| = 0. Et 0 minore E. Donc min E = 0 (et par conséquent inf E = 0).</p>
+</details>
+<div class="box warn piege"><span class="box-title">⚠️ Piège</span>
+Le min et le max <strong>appartiennent toujours</strong> à l'ensemble ; l'inf et le sup, pas forcément. Exemple : ]0, 1] a pour inf 0, mais pas de min. Pense aussi à vérifier que 1 ∈ ℝ₊.</div>
+</div>
+
+<!-- ============ 7a ============ -->
+<div class="exo" id="q7a">
+<h3>Q7a · sup A &gt; 0 : tous les éléments sont-ils &gt; 0 ?</h3>
+<p class="src">Feuille 1, ex. 1, question 7</p>
+<p>Soit A une partie non vide et majorée de ℝ telle que sup(A) &gt; 0. A-t-on a &gt; 0 pour tout a ∈ A ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Faux → contre-exemple.</p>
+<p>Signal : le sup ne contrôle que le <strong>haut</strong> de A. Rien n'empêche A de contenir des nombres négatifs.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Faux.</strong> Contre-exemple : A = {−1, 1}. A est non vide, majorée par 1, et sup A = 1 &gt; 0. Mais −1 ∈ A et −1 ≤ 0.</p>
+</details>
+<div class="box warn piege"><span class="box-title">⚠️ Piège</span>
+La bonne raison n'est pas « le sup n'est pas forcément dans A », mais « le sup ne dit rien sur les petits éléments ».</div>
+</div>
+
+<!-- ============ 7b ============ -->
+<div class="exo" id="q7b">
+<h3>Q7b · … existe-t-il un élément &gt; 0 ?</h3>
+<p class="src">Feuille 1, ex. 1, question 7</p>
+<p>Mêmes hypothèses. Existe-t-il a ∈ A tel que a &gt; 0 ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Vrai → absurde (ou contraposée) + « sup A est le plus petit majorant ».</p>
+<p>Signal : une inégalité sur un sup. Si tous les éléments étaient ≤ 0, alors 0 serait un majorant, et le sup (plus petit majorant) serait ≤ 0.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Vrai.</strong> Supposons par l'absurde que pour tout a ∈ A, a ≤ 0. Alors 0 est un majorant de A. Comme sup A est le plus petit des majorants de A, on a sup A ≤ 0, ce qui contredit sup A &gt; 0.</p>
+<p>Donc il existe a ∈ A tel que a &gt; 0.</p>
+</details>
+<div class="box info piege"><span class="box-title">💡 Réflexe à retenir</span>
+Si M majore A, alors sup A ≤ M. Par contraposée : si sup A &gt; M, alors il existe a ∈ A avec a &gt; M. La question 7b, c'est ce réflexe avec M = 0. « Non vide » sert à garantir que sup A existe.</div>
+</div>
+
+<!-- ============ 8 ============ -->
+<div class="exo" id="q8">
+<h3>Q8 · Partie entière du double</h3>
+<p class="src">Feuille 1, ex. 1, question 8</p>
+<p>Soit x ∈ ℝ. A-t-on ⌊2x⌋ = 2⌊x⌋ ?</p>
+<details><summary>🧭 Quelle méthode ?</summary>
+<p class="methode">Faux → contre-exemple, en testant x = ½.</p>
+<p>Signal : une égalité « trop belle » avec une partie entière. La partie entière « coupe » aux entiers, donc on teste un nombre <strong>non entier</strong>, typiquement ½.</p>
+</details>
+<details><summary>✍️ Rédaction</summary>
+<p><strong>Faux.</strong> Contre-exemple : x = ½. Alors ⌊2x⌋ = ⌊1⌋ = 1, mais 2⌊x⌋ = 2 × 0 = 0.</p>
+<p><em>Pour aller plus loin :</em> avec ⌊x⌋ ≤ x &lt; ⌊x⌋ + 1, on obtient 2⌊x⌋ ≤ 2x &lt; 2⌊x⌋ + 2, donc ⌊2x⌋ vaut 2⌊x⌋ ou 2⌊x⌋ + 1.</p>
+</details>
+</div>
+
+<h2 id="index">4. Index par méthode</h2>
+<details><summary>Ouvrir l'index (à regarder <strong>après</strong> avoir cherché)</summary>
+<div class="tablewrap"><table>
+<tr><th>Méthode</th><th>Exercices</th></tr>
+<tr><td>Contre-exemple</td><td><a href="#q1b">Q1b</a> · <a href="#q3">Q3</a> · <a href="#q5b">Q5b</a> · <a href="#q7a">Q7a</a> · <a href="#q8">Q8</a></td></tr>
+<tr><td>Absurde</td><td><a href="#q1a">Q1a</a> · <a href="#q5b">Q5b</a> · <a href="#q7b">Q7b</a></td></tr>
+<tr><td>Disjonction de cas</td><td><a href="#q4">Q4</a></td></tr>
+<tr><td>Preuve directe (déplier les définitions)</td><td><a href="#q2">Q2</a> · <a href="#q5a">Q5a</a> · <a href="#q6">Q6</a></td></tr>
+<tr><td>Propriété d'Archimède</td><td><a href="#q5b">Q5b</a></td></tr>
+<tr><td>sup = plus petit majorant</td><td><a href="#q7b">Q7b</a></td></tr>
+<tr><td>Min / max : minorant + appartenance</td><td><a href="#q6">Q6</a></td></tr>
+</table></div>
+</details>
+
+<p>Les corrections complètes des autres exercices de la feuille sont dans <a href="../Exercices/exercices_analyse_feuille1.html">Feuille 1 · Nombres réels</a>.</p>
+
+<!-- Pour ajouter un exercice : copier un bloc <div class="exo" id="..."> ... </div>,
+     changer l'id, l'énoncé, la méthode, la rédaction et le piège, puis l'ajouter à l'index par méthode. -->
+
+</div>
+</body>
+</html>
