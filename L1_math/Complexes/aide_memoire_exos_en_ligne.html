@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aide-mémoire complexes : argument, forme exponentielle, binôme — Structures fondamentales</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../Revision_Structures/revision.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+</head>
+<body>
+<div class="topbar"><a href="fiche_complexes.html">← Fiche complexes</a><span>Aide-mémoire : exos « Transformation d'écriture »</span></div>
+<div class="page">
+<span class="chip">📝 Aide-mémoire</span><span class="chip">Chapitre 6</span>
+<h1>Argument, forme exponentielle et binôme : les règles qui m'ont fait perdre des points</h1>
+
+<div class="box info">
+<span class="box-title">🧭 Les 3 mots à ne pas mélanger</span>
+<ul>
+<li><strong>Module</strong> \(r=|z|=\sqrt{a^2+b^2}\) : toujours \(\ge 0\).</li>
+<li><strong>Argument principal</strong> \(\operatorname{Arg}(z)=\theta\) : l'angle de \(z\), choisi dans \(]-\pi,\pi]\).</li>
+<li><strong>Forme exponentielle</strong> \(z=r\,e^{i\theta}\) avec \(r>0\).</li>
+</ul>
+</div>
+
+<h2>1. Lire l'affixe d'un point sur le plan complexe</h2>
+<p>Si \(M\) a pour coordonnées \((a\,;\,b)\), son affixe est \(z=a+ib\).</p>
+<ol>
+<li>\(a\) = abscisse (axe horizontal = axe des <strong>réels</strong>).</li>
+<li>\(b\) = ordonnée (axe vertical = axe des <strong>imaginaires</strong>).</li>
+<li>L'unité est la longueur des vecteurs \(\vec u\) et \(\vec v\) : <strong>vérifie ce que vaut une case</strong>.</li>
+</ol>
+<div class="box warn">
+<span class="box-title">⚠️ Écriture sur le site</span>
+Si le coefficient de \(i\) vaut 1, on écrit <code>7+i</code> et non <code>7+1*i</code>. Pour 7 + 3i : <code>7+3*i</code>.
+</div>
+
+<h2>2. Trouver l'argument principal depuis \(a+ib\)</h2>
+<ol>
+<li>\(r=\sqrt{a^2+b^2}\)</li>
+<li>\(\cos\theta=\dfrac ar\) et \(\sin\theta=\dfrac br\)</li>
+<li>Chercher l'angle qui a <strong>ce cos ET ce sin</strong>, dans \(]-\pi,\pi]\).</li>
+<li>Test final : \(\cos^2\theta+\sin^2\theta=1\). Si ce n'est pas le cas, une erreur s'est glissée.</li>
+</ol>
+
+<div class="box warn">
+<span class="box-title">⚠️ Piège : \(a\) n'est pas « le nombre devant le cos »</span>
+Dans \(z=7\cos\frac{5\pi}{6}-7i\sin\frac{5\pi}{6}\), le 7 est le <strong>module</strong>, pas \(a\). Il faut calculer \(a=7\cos\frac{5\pi}{6}=-\frac{7\sqrt3}{2}\) et \(b=-7\sin\frac{5\pi}{6}=-\frac72\).
+</div>
+
+<h3>Les 4 cas simples</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>\(z\)</th><th>\(\cos\theta\)</th><th>\(\sin\theta\)</th><th>\(\operatorname{Arg}(z)\)</th></tr></thead>
+<tbody>
+<tr><td>réel positif (\(5\))</td><td>1</td><td>0</td><td>\(0\)</td></tr>
+<tr><td>réel négatif (\(-5\))</td><td>−1</td><td>0</td><td>\(\pi\)</td></tr>
+<tr><td>imaginaire pur positif (\(3i\))</td><td>0</td><td>1</td><td>\(\frac\pi2\)</td></tr>
+<tr><td>imaginaire pur négatif (\(-3i\))</td><td>0</td><td>−1</td><td>\(-\frac\pi2\)</td></tr>
+</tbody></table></div>
+
+<h3>Valeurs usuelles</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>\(\theta\)</th><th>0</th><th>\(\frac\pi6\)</th><th>\(\frac\pi4\)</th><th>\(\frac\pi3\)</th><th>\(\frac\pi2\)</th><th>\(\frac{2\pi}3\)</th><th>\(\frac{3\pi}4\)</th><th>\(\frac{5\pi}6\)</th><th>\(\pi\)</th></tr></thead>
+<tbody>
+<tr><td>\(\cos\)</td><td>1</td><td>\(\frac{\sqrt3}2\)</td><td>\(\frac{\sqrt2}2\)</td><td>\(\frac12\)</td><td>0</td><td>\(-\frac12\)</td><td>\(-\frac{\sqrt2}2\)</td><td>\(-\frac{\sqrt3}2\)</td><td>−1</td></tr>
+<tr><td>\(\sin\)</td><td>0</td><td>\(\frac12\)</td><td>\(\frac{\sqrt2}2\)</td><td>\(\frac{\sqrt3}2\)</td><td>1</td><td>\(\frac{\sqrt3}2\)</td><td>\(\frac{\sqrt2}2\)</td><td>\(\frac12\)</td><td>0</td></tr>
+</tbody></table></div>
+<p>Angles négatifs : \(\cos(-\theta)=\cos\theta\) et \(\sin(-\theta)=-\sin\theta\).</p>
+
+<h2>3. Forme exponentielle et forme algébrique</h2>
+<h3>Algébrique → exponentielle</h3>
+<p>\(r=|z|\), \(\theta=\operatorname{Arg}(z)\) (étapes du §2), puis \(z=r\,e^{i\theta}\).</p>
+<h3>Exponentielle → algébrique</h3>
+\[ z=r\,e^{i\theta}=r\cos\theta+i\,r\sin\theta \]
+<p>Exemple : \(2e^{i\pi/3}=2\cdot\frac12+i\cdot2\cdot\frac{\sqrt3}2=1+i\sqrt3\).</p>
+
+<h2>4. Quand \(z\) est écrit avec des \(\cos\) et des \(\sin\)</h2>
+<p>On <strong>lit</strong> \(\theta\) sans refaire \(a/r\), à condition de bien regarder les signes :</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Forme de \(z\) (avec \(r>0\))</th><th>Forme exponentielle</th></tr></thead>
+<tbody>
+<tr><td>\(r(\cos\theta+i\sin\theta)\)</td><td>\(r\,e^{i\theta}\)</td></tr>
+<tr><td>\(r(\cos\theta-i\sin\theta)\)</td><td>\(r\,e^{-i\theta}\)</td></tr>
+<tr><td>\(-r(\cos\theta+i\sin\theta)\)</td><td>\(r\,e^{i(\theta\pm\pi)}\)</td></tr>
+<tr><td>\(-r(\cos\theta-i\sin\theta)\)</td><td>\(r\,e^{i(-\theta\pm\pi)}\)</td></tr>
+</tbody></table></div>
+
+<div class="box tip">
+<span class="box-title">✅ Règle du signe « − » devant</span>
+Un \(-1\) devant est un demi-tour : \(-1=e^{i\pi}=e^{-i\pi}\). On met le module en <strong>positif</strong> et on ajoute \(\pm\pi\) à l'angle pour retomber dans \(]-\pi,\pi]\) :
+<ul>
+<li>angle <strong>positif</strong> (ou nul) → on <strong>retire</strong> \(\pi\)</li>
+<li>angle <strong>négatif</strong> → on <strong>ajoute</strong> \(\pi\)</li>
+</ul>
+</div>
+
+<h3>Exemples</h3>
+<ul>
+<li>\(z=-14\,e^{i\pi/3}\) : angle positif, donc \(\theta=\frac\pi3-\pi=-\frac{2\pi}3\). Réponse : \(14\,e^{-2i\pi/3}\).</li>
+<li>\(z=10\sqrt2\cos\frac{2\pi}3-10\sqrt2\,i\sin\frac{2\pi}3\) : forme \(r(\cos\theta-i\sin\theta)\), donc \(\operatorname{Arg}=-\frac{2\pi}3\).</li>
+<li>\(z=-14\sqrt2\cos(-\frac\pi2)-14\sqrt2\,i\sin(-\frac\pi2)=+14\sqrt2\,i\) : \(\operatorname{Arg}=+\frac\pi2\).</li>
+<li>\(z=7\cos\frac{5\pi}6-7i\sin\frac{5\pi}6\) : \(|z|=7\) et \(\operatorname{Arg}=-\frac{5\pi}6\).</li>
+</ul>
+
+<div class="box warn">
+<span class="box-title">⚠️ Piège du site : \(\pi\) ou \(-\pi\) ?</span>
+Pour un réel négatif, \(\pi\) et \(-\pi\) donnent le même nombre. Mais le site compare avec <strong>sa</strong> réponse : suis la règle mécanique du « − devant » ci-dessus. (Pour un nombre déjà donné comme \(-6\), il attend \(\pi\), saisi <code>1</code>.)
+</div>
+
+<div class="box info">
+<span class="box-title">⌨️ Saisie des angles sur le site</span>
+La case est suivie de \(\pi\) : on tape le <strong>coefficient</strong>. \(\frac{2\pi}3\to\) <code>2/3</code> ; \(-\frac{\pi}2\to\) <code>-1/2</code> ; \(\pi\to\) <code>1</code> ; \(0\to\) <code>0</code>.
+</div>
+
+<h2>5. Le binôme de Newton</h2>
+<p>Il développe \((a+b)^n\) en une seule fois :</p>
+\[ (a+b)^n=\sum_{k=0}^{n}\binom nk\,a^{k}\,b^{\,n-k},\qquad \binom nk=\frac{n!}{k!\,(n-k)!} \]
+<h3>Triangle de Pascal (coefficients \(\binom nk\))</h3>
+<pre style="line-height:1.5">n=0:               1
+n=1:             1   1
+n=2:           1   2   1
+n=3:         1   3   3   1
+n=4:       1   4   6   4   1
+n=5:     1   5  10  10   5   1
+n=6:   1   6  15  20  15   6   1
+n=7: 1   7  21  35  35  21   7   1</pre>
+
+<h3>Pourquoi c'est utile avec les complexes</h3>
+<p>Les puissances de \(i\) se répètent : \(i^0=1,\ i^1=i,\ i^2=-1,\ i^3=-i,\ i^4=1,\dots\)</p>
+<ul>
+<li>\(k\) <strong>pair</strong> : \(i^k=\pm1\), le terme est <strong>réel</strong> → il va dans la <strong>partie réelle</strong>.</li>
+<li>\(k\) <strong>impair</strong> : \(i^k=\pm i\), le terme est <strong>imaginaire</strong> → il va dans la <strong>partie imaginaire</strong>.</li>
+</ul>
+
+<h3>Exemple : partie réelle de \((i-1)^7\)</h3>
+<p>On pose \(a=i\) et \(b=-1\) :</p>
+\[ (i-1)^7=\sum_{k=0}^{7}\binom 7k\,i^{k}\,(-1)^{7-k} \]
+<div class="tablewrap"><table>
+<thead><tr><th>\(k\)</th><th>\(\binom 7k\)</th><th>\(i^k\)</th><th>\((-1)^{7-k}\)</th><th>terme</th><th>type</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>1</td><td>1</td><td>−1</td><td>\(-1\)</td><td>réel</td></tr>
+<tr><td>1</td><td>7</td><td>\(i\)</td><td>1</td><td>\(7i\)</td><td>imag.</td></tr>
+<tr><td>2</td><td>21</td><td>−1</td><td>−1</td><td>\(21\)</td><td>réel</td></tr>
+<tr><td>3</td><td>35</td><td>\(-i\)</td><td>1</td><td>\(-35i\)</td><td>imag.</td></tr>
+<tr><td>4</td><td>35</td><td>1</td><td>−1</td><td>\(-35\)</td><td>réel</td></tr>
+<tr><td>5</td><td>21</td><td>\(i\)</td><td>1</td><td>\(21i\)</td><td>imag.</td></tr>
+<tr><td>6</td><td>7</td><td>−1</td><td>−1</td><td>\(7\)</td><td>réel</td></tr>
+<tr><td>7</td><td>1</td><td>\(-i\)</td><td>1</td><td>\(-i\)</td><td>imag.</td></tr>
+</tbody></table></div>
+\[ \operatorname{Re}\big((i-1)^7\big)=-1+21-35+7=\boxed{-8},\qquad \operatorname{Im}\big((i-1)^7\big)=7-35+21-1=\boxed{-8} \]
+
+<div class="box tip">
+<span class="box-title">✅ Vérification par la forme exponentielle</span>
+\(i-1=\sqrt2\,e^{3i\pi/4}\), donc \((i-1)^7=(\sqrt2)^7e^{21i\pi/4}=8\sqrt2\,e^{5i\pi/4}\) (car \(\frac{21\pi}4-4\pi=\frac{5\pi}4\)).
+Partie réelle : \(8\sqrt2\cos\frac{5\pi}4=8\sqrt2\cdot\left(-\frac{\sqrt2}2\right)=-8\) ✓.
+</div>
+
+<div class="box info">
+<span class="box-title">🧭 Quelle méthode choisir ?</span>
+Exposant petit (2 ou 3) : le binôme ou le développement direct. Exposant grand (5, 7, 10…) : la <strong>forme exponentielle</strong> est presque toujours plus rapide, car \(z^n=r^n e^{in\theta}\).
+</div>
+
+<div class="nav-links"><span><a href="fiche_forme_exponentielle.html">← Forme exponentielle</a></span><span><a href="exos_complexes.html">Exercices types corrigés →</a></span></div>
+</div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="../Revision_Structures/revision.js"></script>
+</body>
+</html>
