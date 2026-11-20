@@ -26,6 +26,7 @@
   .t-analyse { --c: #4338ca; }
   .t-sf      { --c: #0d9488; }
   .t-graphes { --c: #c27803; }
+  .t-info    { --c: #7c3aed; }
 
   .panel {
     background: #fff; border: 2px solid var(--c); border-radius: 0 0 14px 14px;
@@ -65,6 +66,7 @@
   <button class="tab t-analyse" role="tab" id="tab-analyse" aria-controls="analyse" aria-selected="true"><b>📉 Analyse</b><span>Réels, suites, limites, continuité</span></button>
   <button class="tab t-sf" role="tab" id="tab-sf" aria-controls="sf" aria-selected="false" tabindex="-1"><b>🧩 Structures fondamentales</b><span>Logique, ensembles, applications, complexes</span></button>
   <button class="tab t-graphes" role="tab" id="tab-graphes" aria-controls="graphes" aria-selected="false" tabindex="-1"><b>🕸️ Théorie des graphes</b><span>Définitions, exos types (cours L2)</span></button>
+  <button class="tab t-info" role="tab" id="tab-info" aria-controls="info" aria-selected="false" tabindex="-1"><b>💻 Informatique</b><span>Algo, représentation de l'info, systèmes</span></button>
 </div>
 
 <!-- ============================================================ ANALYSE -->
@@ -209,6 +211,54 @@
   <div class="grid-cards">
     <div class="card"><a href="L1_math/Flashcards/graphes.html">Flashcards (cartes à retourner)</a><p>83 cartes : définitions, démonstrations, choix de l'outil</p></div>
     <div class="card"><a href="L1_math/03_Graphes/02_flashcards.html">Flashcards (version lecture)</a><p>Toutes les cartes visibles d'un coup</p></div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ INFORMATIQUE -->
+<section class="panel t-info" id="info" role="tabpanel" aria-labelledby="tab-info" hidden>
+<h2 class="titre">💻 Informatique <span class="chip">examens de décembre</span></h2>
+
+<div class="section">
+  <div class="section-head"><h3>🎯 Révisions d'examen</h3><small>planning sur 4 semaines</small></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_info/Revision_Examens/index.html">⭐ Page de révision des 3 matières</a><p>Fiches, annales corrigées, TD corrigés, flashcards, planning</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>🧠 Fiches</h3></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_info/Revision_Examens/algo_fiche.html">Algorithmique 1</a><p>Traces, si, boucles, fonctions, tableaux, 12 patrons</p></div>
+    <div class="card"><a href="L1_info/Revision_Examens/repr_fiche.html">Représentation de l'information</a><p>Bases, C2, IEEE 754, UTF-8, fichiers C, Hamming</p></div>
+    <div class="card"><a href="L1_info/Revision_Examens/sys_fiche.html">Systèmes d'exploitation</a><p>Commandes, tubes, jokers, regex, grep/sed/awk, scripts</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>✏️ Exercices</h3></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_info/Revision_Examens/algo_annales.html">Annales d'algo corrigées</a><p>3 partiels + l'examen 2024</p></div>
+    <div class="card"><a href="L1_info/Revision_Examens/algo_exos.html">TD/TP d'algo corrigés</a><p>Séries 1 à 3, TP4</p></div>
+    <div class="card"><a href="L1_info/Revision_Examens/repr_exos.html">TD de représentation corrigés</a><p>Séries 1 à 5 + CM6</p></div>
+    <div class="card"><a href="L1_info/Revision_Examens/sys_exos.html">TD de systèmes corrigés</a><p>TD1 à TD5</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>🃏 Flashcards</h3></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_info/Revision_Examens/flashcards_algo.html">Algorithmique</a><p>33 cartes</p></div>
+    <div class="card"><a href="L1_info/Revision_Examens/flashcards_repr.html">Représentation</a><p>34 cartes</p></div>
+    <div class="card"><a href="L1_info/Revision_Examens/flashcards_sys.html">Systèmes</a><p>38 cartes</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-head"><h3>📂 Documents de l'ENT</h3></div>
+  <div class="grid-cards">
+    <div class="card"><a href="L1_info/Cours_ENT/index.html">Cours, TD, TP, annales</a><p>Les fichiers de MesCoursJV</p></div>
+    <div class="card"><a href="L1_info/index.html">Anciennes notes L1 Info</a><p>Unix, algo, bases</p></div>
   </div>
 </div>
 </section>

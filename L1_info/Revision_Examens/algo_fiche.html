@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiche Algorithmique 1 — Révision examen</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="exam.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions examens</a><span>Fiche — Algorithmique 1</span></div>
+<div class="page">
+<span class="chip">📘 Fiche de cours</span><span class="chip">Algorithmique 1</span><span class="chip">CM 1 à 4 + TP4 + traducteur</span>
+<h1>🧮 Algorithmique 1 — tout le cours sur une page</h1>
+
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul>
+<li><a href="#exam">0. L'examen : ce qu'on attend de toi</a></li>
+<li><a href="#structure">1. Structure d'un algorithme</a></li>
+<li><a href="#variables">2. Variables, types, constantes</a></li>
+<li><a href="#operateurs">3. Opérateurs, priorités, type d'une expression</a></li>
+<li><a href="#trace">4. La trace d'exécution</a></li>
+<li><a href="#si">5. Instructions conditionnelles (si)</a></li>
+<li><a href="#bool">6. Expressions booléennes</a></li>
+<li><a href="#arbre">7. L'arbre de décision</a></li>
+<li><a href="#pour">8. La boucle pour</a></li>
+<li><a href="#tantque">9. La boucle tantque</a></li>
+<li><a href="#fonctions">10. Fonctions et procédures</a></li>
+<li><a href="#tableaux">11. Tableaux</a></li>
+<li><a href="#patrons">12. ⭐ Les 12 patrons à connaître par cœur</a></li>
+<li><a href="#c">13. Traduction en C (TP)</a></li>
+<li><a href="#pieges">14. Pièges classiques</a></li>
+</ul></details></nav>
+
+<div class="box info"><span class="box-title">🔗 Liens</span>
+<a href="algo_annales.html">Annales corrigées (3 partiels + 1 examen)</a> · <a href="algo_exos.html">Exos de TD/TP corrigés</a> · <a href="flashcards_algo.html">Flashcards</a> · <a href="../Cours_ENT/index.html#algo">PDF du cours (ENT)</a>
+</div>
+
+<h2 id="exam">0. L'examen : ce qu'on attend de toi</h2>
+<ul>
+<li><strong>Note finale</strong> = 30 % QCM (2 QCM en TP) + 35 % partiel + 35 % <strong>examen terminal (1 h)</strong>.</li>
+<li><strong>Langage algorithmique uniquement</strong> : « Le langage C n'est pas accepté ».</li>
+<li><strong>Indentation obligatoire</strong> : en 2023 « les algorithmes non indentés obtiendront une note nulle ».</li>
+<li>Les sujets reviennent toujours aux mêmes types de questions : <mark>trace d'exécution</mark>, <mark>arbre de décision</mark>, <mark>saisie contrôlée</mark>, <mark>découper un nombre en chiffres</mark> (<code>mod 10</code> / <code>div 10</code>), <mark>compter / sommer / multiplier dans une boucle</mark>, et à l'examen de fin de semestre : <mark>fonctions</mark> et <mark>tableaux</mark>.</li>
+</ul>
+
+<h2 id="structure">1. Structure d'un algorithme</h2>
+<pre><code>Algorithme NomDeLAlgo
+/* Rôle : ce que fait l'algorithme. Données : ... Résultat : ... */
+constantes
+    réel TVA ← 0.20 ;
+variables
+    entier n, i ;
+    réel prix ;
+début
+    écrire "Donnez n :" ;
+    lire n ;
+    ...
+fin</code></pre>
+<ul>
+<li>Les instructions s'exécutent <strong>séquentiellement</strong> (dans l'ordre, une par une).</li>
+<li>Chaque instruction finit par <code>;</code>.</li>
+<li>Commentaires : <code>// sur une ligne</code> et <code>/* sur un bloc */</code>.</li>
+<li><strong>Spécification</strong> avant d'écrire : données (nom, type, rôle), résultat, préconditions (cas général / cas particuliers).</li>
+</ul>
+
+<h2 id="variables">2. Variables, types, constantes</h2>
+<h3>Une variable = une boîte avec un nom, un type, une valeur</h3>
+<ul>
+<li>Déclarée <strong>une fois et une seule</strong>, <strong>avant</strong> toute utilisation : <code>type nom ;</code> ou <code>type a, b, c ;</code></li>
+<li>À la déclaration, elle n'a <strong>aucune valeur</strong> (on note <code>?</code> dans une trace) → il faut l'<strong>initialiser</strong> avant de l'utiliser dans une expression.</li>
+</ul>
+<h3>Nom de variable (identificateur)</h3>
+<p>Lettres, chiffres et <code>_</code>, <strong>commence par une lettre</strong>, pas d'espace, pas de mot-clé.</p>
+<table>
+<tr><th>Valides</th><th>Non valides (pourquoi)</th></tr>
+<tr><td><code>a</code>, <code>x</code>, <code>solution1</code>, <code>unReel</code>, <code>s1_4_Xt</code></td><td><code>1variable</code> (chiffre au début), <code>solution%1</code> (%), <code>ma solution</code> (espace), <code>reel</code> (mot-clé), <code>a/b</code> (/)</td></tr>
+</table>
+<h3>Les 5 types</h3>
+<table>
+<tr><th>Type</th><th>Exemples</th><th>Attention</th></tr>
+<tr><td><code>entier</code></td><td>1, -10, 0</td><td></td></tr>
+<tr><td><code>réel</code></td><td>1.3, 4.0, 2.5</td><td>3.14 est réel ; <code>pi</code> tout seul est un <em>nom</em>, pas une valeur</td></tr>
+<tr><td><code>booléen</code></td><td><code>vrai</code>, <code>faux</code></td><td><code>"vrai"</code> avec guillemets est une <strong>chaîne</strong> !</td></tr>
+<tr><td><code>caractère</code></td><td><code>'a'</code>, <code>'1'</code>, <code>'!'</code></td><td>un seul caractère entre apostrophes</td></tr>
+<tr><td><code>chaîne</code></td><td><code>"Bonjour"</code>, <code>"1.3"</code>, <code>"faux"</code></td><td><code>'au revoir'</code> : plusieurs caractères entre apostrophes → incorrect ; <code>oui</code> sans guillemets → c'est un nom de variable</td></tr>
+</table>
+<h3>Affectation <code>x ← expression ;</code></h3>
+<ol><li>on <strong>évalue</strong> l'expression (les variables sont remplacées par leur valeur) ;</li><li>la variable reçoit cette valeur (l'ancienne est perdue).</li></ol>
+<div class="box warn"><span class="box-title">⚠️ L'ordre compte</span>
+<code>x←2; y←3; x←y; y←x;</code> → x et y valent <strong>3</strong>. Pour <strong>échanger</strong>, il faut une variable temporaire :
+<code>tmp ← x ; x ← y ; y ← tmp ;</code></div>
+<h3>Constantes</h3>
+<p><code>constantes réel TVA ← 0.20 ;</code> : initialisée à la déclaration, <strong>ne peut plus être modifiée</strong> (écrire <code>TVA ← 0.3 ;</code> plus loin = erreur).</p>
+<h3>Lire / écrire</h3>
+<ul>
+<li><code>lire a ;</code> ou <code>lire a, b ;</code> → la valeur tapée au clavier est affectée à la variable.</li>
+<li><code>écrire "Tu auras ", age+1, " ans" ;</code> → on peut mélanger texte et expressions, séparés par des virgules.</li>
+<li>Toujours un <code>écrire "Donnez ..." ;</code> avant un <code>lire</code> (sinon l'utilisateur ne sait pas quoi taper).</li>
+</ul>
+
+<h2 id="operateurs">3. Opérateurs, priorités, type d'une expression</h2>
+<table>
+<tr><th>Opérateur</th><th>Sur</th><th>Rôle</th></tr>
+<tr><td><code>+</code></td><td>nombres / chaînes</td><td>addition / <strong>concaténation</strong> (<code>"bon"+"jour"</code> = <code>"bonjour"</code>)</td></tr>
+<tr><td><code>- * /</code></td><td>nombres</td><td>soustraction, multiplication, division</td></tr>
+<tr><td><code>div</code></td><td>entiers</td><td><strong>quotient</strong> de la division entière : 14 div 4 = 3</td></tr>
+<tr><td><code>mod</code></td><td>entiers</td><td><strong>reste</strong> : 14 mod 4 = 2 (car 14 = 3×4 + 2)</td></tr>
+<tr><td><code>= ≠ &lt; ≤ &gt; ≥</code></td><td>nombres</td><td>comparaison → booléen</td></tr>
+<tr><td><code>non et ou</code></td><td>booléens</td><td>logique</td></tr>
+</table>
+<h3>Priorités (de la plus forte à la plus faible)</h3>
+<ol>
+<li>parenthèses (et appels de fonctions)</li>
+<li><code>-</code> unaire</li>
+<li><code>* / div mod</code></li>
+<li><code>+ -</code></li>
+<li>comparaisons</li>
+<li><code>non</code>, puis <code>et</code>, puis <code>ou</code></li>
+</ol>
+<p>À priorité égale : <strong>de gauche à droite</strong>. Donc <code>a/b*c</code> = <span class="math">(a/b)×c</span> et <code>a/b/c</code> = <span class="math">a/(b×c)</span>.</p>
+<p>Exemples : <code>3+4*5</code> = 23 ; <code>(3+4)*5</code> = 35 ; <code>5 * 4 div 3</code> = 20 div 3 = <strong>6</strong>.</p>
+<h3>Type du résultat</h3>
+<table>
+<tr><th>Opérandes</th><th>Opérateur</th><th>Résultat</th></tr>
+<tr><td>entier, entier</td><td><code>+ - * div mod</code></td><td>entier</td></tr>
+<tr><td>réel (au moins un)</td><td><code>+ - * /</code></td><td>réel</td></tr>
+<tr><td>entier, entier</td><td><code>/</code></td><td>réel</td></tr>
+<tr><td>chaîne, chaîne</td><td><code>+</code></td><td>chaîne</td></tr>
+<tr><td>n'importe quoi</td><td>comparaison, <code>et ou non</code></td><td>booléen</td></tr>
+</table>
+<ul>
+<li><strong>Conversion automatique</strong> entier → réel : <code>x ← 3.5 + 16</code> (16 devient 16.0). Mais <code>x ← -3.5</code> avec x <strong>entier</strong> = <strong>erreur</strong>.</li>
+<li><strong>Conversion forcée</strong> réel → entier (on tronque) : <code>(entier)1.2</code> = 1 ; <code>(entier)1.2 + 0.9</code> = 1.9 ; <code>(entier)(1.2 + 0.9)</code> = 2.</li>
+</ul>
+
+<h2 id="trace">4. La trace d'exécution (tombe à CHAQUE partiel)</h2>
+<p><strong>Méthode</strong> : numéroter les lignes → tableau avec une colonne <em>ligne</em>, une colonne par <em>variable</em>, une colonne <em>test</em> (si/boucles) et une colonne <em>affichage</em> → exécuter pas à pas en notant <strong>seulement ce qui change</strong>. Une variable non initialisée vaut <code>?</code>.</p>
+<pre><code>01 variables
+02     réel p, xn, x ;
+03 début
+04     lire x ;
+05     p ← 7 ;
+06     xn ← x * x ;
+07     p ← p + 4 * xn ;
+08     xn ← xn * x ;
+09     p ← p + xn ;
+10     écrire p ;
+11 fin</code></pre>
+<table>
+<tr><th>ligne</th><th>p</th><th>xn</th><th>x</th><th>affichage</th></tr>
+<tr><td>01-02</td><td>?</td><td>?</td><td>?</td><td></td></tr>
+<tr><td>04</td><td></td><td></td><td>5.0</td><td></td></tr>
+<tr><td>05</td><td>7.0</td><td></td><td></td><td></td></tr>
+<tr><td>06</td><td></td><td>25.0</td><td></td><td></td></tr>
+<tr><td>07</td><td>107.0</td><td></td><td></td><td></td></tr>
+<tr><td>08</td><td></td><td>125.0</td><td></td><td></td></tr>
+<tr><td>09</td><td>232.0</td><td></td><td></td><td></td></tr>
+<tr><td>10</td><td></td><td></td><td></td><td>232.0</td></tr>
+</table>
+<p>(calcule x³ + 4x² + 7 pour x = 5).</p>
+
+<h2 id="si">5. Instructions conditionnelles</h2>
+<pre><code>si (condition) alors
+    instructions ;
+sinon                // le sinon est facultatif
+    instructions ;
+finsi</code></pre>
+<ul>
+<li>On évalue la condition ; si <code>vrai</code> → bloc <code>alors</code>, sinon → bloc <code>sinon</code> ; puis on continue <strong>après le finsi</strong>.</li>
+<li><strong>Imbriquer plutôt qu'enchaîner</strong> quand les cas s'excluent :</li>
+</ul>
+<div class="cols">
+<pre><code>// MAUVAIS : 3 tests toujours faits
+si (d = 0) alors n ← 1 ; finsi
+si (d &gt; 0) alors n ← 2 ; finsi
+si (d &lt; 0) alors n ← 0 ; finsi</code></pre>
+<pre><code>// BON : sinon si imbriqué
+si (d = 0) alors
+    n ← 1 ;
+sinon
+    si (d &gt; 0) alors
+        n ← 2 ;
+    sinon
+        n ← 0 ;
+    finsi
+finsi</code></pre>
+</div>
+<p>Chaque <code>finsi</code> ferme le <code>si</code> <strong>le plus proche encore ouvert</strong> : c'est l'indentation qui rend ça lisible.</p>
+<h3>Exemple de cours : ax + b = 0</h3>
+<pre><code>lire a, b ;
+si (a = 0) alors
+    si (b = 0) alors
+        msg ← "n'importe quel réel" ;
+    sinon
+        msg ← "aucune solution" ;
+    finsi
+    écrire msg ;
+sinon
+    x ← -b / a ;      // a ≠ 0 : pas de division par 0
+    écrire "la solution est x = ", x ;
+finsi</code></pre>
+
+<h2 id="bool">6. Expressions booléennes</h2>
+<table>
+<tr><th>a</th><th>b</th><th>non a</th><th>a et b</th><th>a ou b</th></tr>
+<tr><td>vrai</td><td>vrai</td><td>faux</td><td>vrai</td><td>vrai</td></tr>
+<tr><td>vrai</td><td>faux</td><td>faux</td><td>faux</td><td>vrai</td></tr>
+<tr><td>faux</td><td>vrai</td><td>vrai</td><td>faux</td><td>vrai</td></tr>
+<tr><td>faux</td><td>faux</td><td>vrai</td><td>faux</td><td>faux</td></tr>
+</table>
+<ul>
+<li><strong>Priorité</strong> : <code>non</code> &gt; <code>et</code> &gt; <code>ou</code>. Donc <code>x ou y et z</code> = <code>x ou (y et z)</code> ≠ <code>(x ou y) et z</code> (essaie x=vrai, y=vrai, z=faux).</li>
+<li><strong>Court-circuit</strong> : dans <code>x et y</code>, si x est faux, y n'est pas évalué ; dans <code>x ou y</code>, si x est vrai, y n'est pas évalué. Utile : <code>(d ≠ 0) et (n mod d = 0)</code> ne plante pas si d = 0.</li>
+<li>« a entre 10 et 20 inclus » : <code>(10 ≤ a) et (a ≤ 20)</code> (jamais <code>10 ≤ a ≤ 20</code>).</li>
+<li>« a <strong>pas</strong> entre 10 et 20 » : <code>(a &lt; 10) ou (a &gt; 20)</code>.</li>
+<li><strong>Lois de De Morgan</strong> (pour nier une condition de boucle) : <code>non (p et q)</code> = <code>non p ou non q</code> ; <code>non (p ou q)</code> = <code>non p et non q</code>.</li>
+<li>Booléen lu au clavier : <code>booléen rep ; lire rep ; si (rep) alors ...</code> — <strong>pas</strong> <code>si (rep = "oui")</code>.</li>
+</ul>
+
+<h2 id="arbre">7. L'arbre de décision (≈ 2-3 points à chaque partiel)</h2>
+<p>Un arbre <strong>binaire</strong> : chaque nœud = une condition (losange), deux branches <strong>vrai / faux</strong>, chaque feuille = une action (afficher, calculer). On commence par <strong>déclarer les variables</strong> (nom + type) comme demandé dans l'énoncé.</p>
+<p>Exemple (prix de copies, partiel 2025) — variables : <code>entier nb</code>, <code>réel prixU, ht, tva, ttc</code>, constante <code>réel TVA ← 0.20</code>.</p>
+<pre class="tree">               nb ≤ 100 ?
+             /vrai       \faux
+     prixU ← 0.10      nb ≤ 300 ?
+                     /vrai      \faux
+              prixU ← 0.09   prixU ← 0.08
+        (puis dans tous les cas : ht ← nb*prixU ; tva ← TVA*ht ; ttc ← ht+tva)</pre>
+<p>Traduction directe : chaque nœud devient un <code>si … alors … sinon … finsi</code>, les sous-arbres deviennent des <code>si</code> imbriqués.</p>
+
+<h2 id="pour">8. La boucle <code>pour</code> (nombre de tours CONNU)</h2>
+<pre><code>pour (i allant de valInit à valFinale pas valPas) faire
+    instructions ;
+finpour</code></pre>
+<ul>
+<li>i prend valInit, valInit+pas, … jusqu'à valFinale.</li>
+<li>Pas cohérent : <code>de 1 à 10 pas 1</code> ✔, <code>de 10 à 1 pas -1</code> ✔, <code>de 10 à 10 pas 1</code> ✔ (1 tour), <code>de 1 à 10 pas -1</code> ✘, <code>de 10 à 1 pas 1</code> ✘.</li>
+<li>⚠️ <strong>Ne jamais modifier le compteur</strong> dans la boucle (<code>i ← 2*i</code> interdit), et éviter de l'utiliser après.</li>
+<li>Nombre de tours de <code>pour i de a à b pas 1</code> : b − a + 1.</li>
+</ul>
+<pre><code>// Trace : pour (i allant de 2 à 4 pas 1) faire x ← 2*i ; finpour   x ← x+3 ;
+// i=2 x=4 | i=3 x=6 | i=4 x=8 | sortie : x=11</code></pre>
+
+<h2 id="tantque">9. La boucle <code>tantque</code> (nombre de tours INCONNU)</h2>
+<pre><code>tantque (condition) faire
+    instructions ;
+fintantque</code></pre>
+<ul>
+<li>La condition est testée <strong>avant</strong> chaque tour → si elle est fausse dès le départ, on ne rentre <strong>jamais</strong>.</li>
+<li>Il faut que quelque chose <strong>dans</strong> la boucle fasse évoluer la condition, sinon <strong>boucle infinie</strong> (<code>x←1; tantque (x ≠ 10) faire x ← 2*x</code> : 1,2,4,8,16… ne vaut jamais 10 !).</li>
+<li>À la sortie, la condition est <strong>fausse</strong> : « tantque (a &gt; 0 et b &lt; 0) » → à la sortie on a <code>a ≤ 0 ou b ≥ 0</code> (De Morgan).</li>
+</ul>
+<h3>Simuler un <code>pour</code> avec un <code>tantque</code> (demandé au partiel 2024)</h3>
+<div class="cols">
+<pre><code>pour (i allant de a à b pas p) faire
+    instructions ;
+finpour</code></pre>
+<pre><code>i ← a ;
+tantque (i ≤ b) faire
+    instructions ;
+    i ← i + p ;
+fintantque</code></pre>
+</div>
+<h3>Quelle boucle choisir ?</h3>
+<p>« Peut-on prévoir le nombre de tours ? » → <strong>oui : pour</strong> ; <strong>non : tantque</strong> (saisie contrôlée, jusqu'à -1, chiffres d'un nombre, jeu, Syracuse…).</p>
+<h3>Méthode pour écrire une boucle</h3>
+<ol><li>faire le calcul à la main sur un exemple ;</li><li>repérer ce qui se répète ;</li><li>choisir pour / tantque ;</li><li>initialiser les variables <strong>avant</strong> la boucle ;</li><li>écrire la condition d'arrêt et l'évolution de la variable de contrôle ;</li><li>tester sur un cas limite (0 tour, 1 tour) et un cas normal.</li></ol>
+
+<h2 id="fonctions">10. Fonctions et procédures (TP4, examen)</h2>
+<pre><code>fonction avec retour entier Puissance(entier a, entier b)
+variables
+    entier i, res ;
+début
+    res ← 1 ;
+    pour (i allant de 1 à b pas 1) faire
+        res ← res * a ;
+    finpour
+    retourne res ;
+fin
+
+fonction sans retour afficheLigne(chaîne s, entier nb)     // = procédure
+variables
+    entier i ;
+début
+    pour (i allant de 1 à nb pas 1) faire
+        écrire s ;
+    finpour
+fin</code></pre>
+<ul>
+<li><strong>Avec retour</strong> : renvoie une valeur (<code>retourne</code>) qu'on utilise dans une expression : <code>p ← Puissance(2, 10) ;</code></li>
+<li><strong>Sans retour</strong> (procédure) : fait une action (afficher, remplir un tableau) ; on l'appelle comme une instruction : <code>afficheLigne("+", 5) ;</code></li>
+<li>Les <strong>paramètres</strong> sont des copies des valeurs passées (sauf les tableaux, voir après) ; les variables déclarées dans la fonction sont <strong>locales</strong>.</li>
+<li>« Toute fonction déclarée peut être utilisée dans les questions suivantes » → <strong>réutilise</strong> tes fonctions précédentes (c'est le but !).</li>
+<li>Fonctions prédéfinies : <code>racineCarrée(x)</code>, <code>nombreAléatoire()</code>, <code>entierEnChaine(n)</code>, <code>chaineEnEntier(c)</code>.</li>
+</ul>
+
+<h2 id="tableaux">11. Tableaux</h2>
+<pre><code>entier Tableau T[10] ;            // 10 cases : T[0] ... T[9]
+entier Tableau M[3][4] ;          // 3 lignes, 4 colonnes : M[i][j]
+
+pour (i allant de 0 à 9 pas 1) faire     // parcours complet
+    T[i] ← 0 ;
+finpour
+
+fonction sans retour afficheTab(entier Tableau T, entier longueur)</code></pre>
+<ul>
+<li>Indices de <strong>0 à longueur−1</strong> (comme en C). Accéder à <code>T[10]</code> dans un tableau de 10 cases = erreur.</li>
+<li>Un tableau passé en paramètre est <strong>modifiable</strong> par la fonction (c'est comme ça qu'on « remplit » deux tableaux dans <code>SaisieNombre</code> à l'examen 2024).</li>
+<li>On passe toujours la <strong>longueur</strong> avec le tableau.</li>
+</ul>
+
+<h2 id="patrons">12. ⭐ Les 12 patrons à connaître par cœur</h2>
+<p>90 % des exercices sont une combinaison de ces briques.</p>
+
+<h3>P1. Saisie contrôlée (tombe à tous les partiels)</h3>
+<pre><code>écrire "Donnez un entier strictement positif :" ;
+lire n ;
+tantque (n ≤ 0) faire
+    écrire "Erreur, recommencez :" ;
+    lire n ;
+fintantque</code></pre>
+<p>La condition du <code>tantque</code> = la <strong>négation</strong> de ce qu'on veut. Entre 11 et 17 : <code>tantque ((n &lt; 11) ou (n &gt; 17))</code>.</p>
+
+<h3>P2. Parcourir les chiffres d'un nombre (mod 10 / div 10)</h3>
+<pre><code>tantque (n &gt; 0) faire
+    chiffre ← n mod 10 ;     // dernier chiffre (unités)
+    écrire chiffre ;
+    n ← n div 10 ;           // on « enlève » le dernier chiffre
+fintantque</code></pre>
+<p>1234 → affiche 4, 3, 2, 1. Sert à : somme des chiffres, nombre de chiffres, produit des chiffres pairs (Mstar), nombres insolites, inverser un nombre…</p>
+
+<h3>P3. Accumulateur somme / produit</h3>
+<pre><code>somme ← 0 ;                 // élément neutre de +
+produit ← 1 ;               // élément neutre de *
+pour (i allant de 1 à n pas 1) faire
+    somme ← somme + i ;
+    produit ← produit * i ;  // factorielle
+finpour</code></pre>
+
+<h3>P4. Compteur</h3>
+<pre><code>nb ← 0 ;
+pour (i allant de 1 à 100 pas 1) faire
+    lire val ;
+    si (val mod 2 = 0) alors
+        nb ← nb + 1 ;
+    finsi
+finpour</code></pre>
+
+<h3>P5. Maximum / minimum</h3>
+<pre><code>lire val ;
+max ← val ;                       // on initialise avec la 1re valeur, PAS avec 0
+pour (i allant de 2 à 100 pas 1) faire
+    lire val ;
+    si (val &gt; max) alors
+        max ← val ;
+    finsi
+finpour</code></pre>
+
+<h3>P6. Valeur sentinelle (« jusqu'à ce qu'il tape -1 »)</h3>
+<pre><code>somme ← 0 ;
+lire val ;                        // lecture AVANT la boucle
+tantque (val ≠ -1) faire
+    somme ← somme + val ;
+    lire val ;                    // lecture à la FIN du corps
+fintantque</code></pre>
+<p>Variante « -1 ou n valeurs » : <code>tantque ((val ≠ -1) et (cpt &lt; n))</code> avec un compteur.</p>
+
+<h3>P7. Divisibilité, parité</h3>
+<p><code>a mod b = 0</code> ⟺ b divise a. Pair : <code>n mod 2 = 0</code>. Bissextile : <code>((a mod 4 = 0) et (a mod 100 ≠ 0)) ou (a mod 400 = 0)</code>.</p>
+
+<h3>P8. Test de primalité</h3>
+<pre><code>fonction avec retour booléen EstPremier(entier n)
+variables
+    entier d ;
+    booléen premier ;
+début
+    si (n &lt; 2) alors
+        premier ← faux ;
+    sinon
+        premier ← vrai ;
+        d ← 2 ;
+        tantque ((d * d ≤ n) et premier) faire
+            si (n mod d = 0) alors
+                premier ← faux ;
+            finsi
+            d ← d + 1 ;
+        fintantque
+    finsi
+    retourne premier ;
+fin</code></pre>
+
+<h3>P9. Décomposition par div/mod (monnaie, durées)</h3>
+<pre><code>// secondes → h, m, s
+h ← total div 3600 ;
+reste ← total mod 3600 ;
+m ← reste div 60 ;
+s ← reste mod 60 ;
+// inverse : total ← h*3600 + m*60 + s ;</code></pre>
+
+<h3>P10. Itérer jusqu'à un seuil (suite, intérêts, dépréciation)</h3>
+<pre><code>annees ← 0 ;
+valeur ← prix ;
+tantque (valeur &gt; prix / 2) faire
+    valeur ← valeur * 0.9 ;
+    annees ← annees + 1 ;
+fintantque</code></pre>
+
+<h3>P11. Recherche dans un tableau</h3>
+<pre><code>pos ← -1 ;
+i ← 0 ;
+tantque ((i &lt; long) et (pos = -1)) faire
+    si (T[i] = x) alors
+        pos ← i ;
+    finsi
+    i ← i + 1 ;
+fintantque</code></pre>
+
+<h3>P12. Échange de deux variables</h3>
+<pre><code>tmp ← x ; x ← y ; y ← tmp ;
+// astuce entiers sans tmp : x ← x+y ; y ← x-y ; x ← x-y ;</code></pre>
+
+<h2 id="c">13. Traduction en C (pour les TP et QCM)</h2>
+<table>
+<tr><th>Algorithmique</th><th>C</th></tr>
+<tr><td><code>entier / réel / caractère</code></td><td><code>int / double / char</code></td></tr>
+<tr><td><code>booléen</code></td><td><code>typedef int bool;</code> + <code>#define TRUE 1</code> / <code>FALSE 0</code></td></tr>
+<tr><td><code>chaîne</code></td><td><code>typedef char string[1024];</code></td></tr>
+<tr><td><code>←</code> / <code>=</code> / <code>≠</code></td><td><code>=</code> / <code>==</code> / <code>!=</code></td></tr>
+<tr><td><code>div</code> / <code>mod</code></td><td><code>/</code> entre deux int / <code>%</code></td></tr>
+<tr><td><code>et ou non</code></td><td><code>&amp;&amp; || !</code></td></tr>
+<tr><td><code>lire a;</code></td><td><code>scanf("%d",&amp;a);</code> (int) <code>"%lf"</code> (double) <code>"%s",a</code> (chaîne, sans &amp;)</td></tr>
+<tr><td><code>écrire "x = ", x;</code></td><td><code>printf("x = %d\n", x);</code></td></tr>
+<tr><td><code>si (c) alors … sinon … finsi</code></td><td><code>if (c) { … } else { … }</code></td></tr>
+<tr><td><code>pour (i de 1 à 10 pas 1)</code></td><td><code>for (i=1; i&lt;=10; i=i+1) { … }</code></td></tr>
+<tr><td><code>tantque (c) faire</code></td><td><code>while (c) { … }</code></td></tr>
+<tr><td><code>fonction avec retour type f(…)</code></td><td><code>type f(…) { … return v; }</code></td></tr>
+<tr><td><code>fonction sans retour f(…)</code></td><td><code>void f(…) { … }</code></td></tr>
+<tr><td><code>c1 ← c2</code> (chaînes) / <code>c1 = c2</code> (test)</td><td><code>strcpy(c1,c2)</code> / <code>strcmp(c1,c2)==0</code> (<code>#include &lt;string.h&gt;</code>)</td></tr>
+<tr><td><code>racineCarrée(x)</code></td><td><code>sqrt(x)</code> + <code>#include &lt;math.h&gt;</code> + compiler avec <code>-lm</code></td></tr>
+<tr><td><code>nombreAléatoire()</code></td><td><code>srand(time(NULL));</code> une fois, puis <code>rand() % 100 + 1</code></td></tr>
+</table>
+<p>Compiler / exécuter : <code>gcc prog.c -o prog</code> puis <code>./prog</code>.</p>
+
+<h2 id="pieges">14. Pièges classiques</h2>
+<div class="box danger"><span class="box-title">❌ À ne jamais faire</span>
+<ul>
+<li>Utiliser une variable <strong>non initialisée</strong> (somme, compteur, max…).</li>
+<li>Initialiser un <strong>max à 0</strong> (faux si toutes les valeurs sont négatives) → prends la 1re valeur.</li>
+<li>Oublier le <code>lire</code> <strong>dans</strong> la boucle de saisie contrôlée → boucle infinie.</li>
+<li>Modifier le compteur d'un <code>pour</code>.</li>
+<li>Diviser par une variable qui peut valoir 0 (tester avant !). Ex. : nombre insolite avec un chiffre 0 → produit = 0.</li>
+<li>Écrire <code>10 ≤ a ≤ 20</code> au lieu de <code>(10 ≤ a) et (a ≤ 20)</code>.</li>
+<li>Confondre <code>"vrai"</code> (chaîne) et <code>vrai</code> (booléen), <code>'a'</code> (caractère) et <code>a</code> (variable).</li>
+<li>Oublier <code>finsi</code> / <code>finpour</code> / <code>fintantque</code>, ou ne pas indenter.</li>
+<li>Écrire du C à la place du langage algorithmique.</li>
+</ul></div>
+
+<div class="nav-links"><span><a href="index.html">← Révisions examens</a></span><span><a href="algo_annales.html">Annales corrigées →</a></span></div>
+</div>
+</body>
+</html>

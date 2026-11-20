@@ -1,0 +1,39 @@
+/* Compléments au style.css de L1_info pour les pages de révision d'examen */
+.toc details { margin: 0.6em 0 1.4em; }
+.toc ul { margin: 6px 0; padding-left: 20px; }
+.toc li { margin: 2px 0; }
+.toc a { color: var(--primary); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.cols pre { margin: 0.6em 0; }
+@media (max-width: 680px) { .cols { grid-template-columns: 1fr; } }
+
+pre.tree { background: #f1f2fb; color: var(--text); box-shadow: none; border: 1px solid var(--border); line-height: 1.45; }
+.math { font-style: italic; white-space: nowrap; }
+
+table { display: block; overflow-x: auto; }
+@media (min-width: 700px) { table { display: table; } }
+td code, th code { white-space: nowrap; }
+
+.enonce { background: #f4f5fb; border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px; margin: 0.8em 0; }
+.enonce > :first-child { margin-top: 0; }
+.enonce > :last-child { margin-bottom: 0; }
+.pts { float: right; font-size: 0.8em; color: var(--muted); font-weight: 600; }
+
+details.corr > summary::before { content: "✅ "; }
+details.indice > summary::before { content: "💡 "; }
+
+.plan { width: 100%; }
+.plan td:first-child { white-space: nowrap; font-weight: 700; color: var(--primary); }
+
+.files li { margin: 3px 0; }
+.files a { color: var(--primary); }
+
+@media print {
+  .topbar, .nav-links, .toc { display: none; }
+  details { border: none; padding: 0; }
+  details > summary { display: none; }
+  details:not([open]) > *:not(summary) { display: block; }
+  pre { box-shadow: none; }
+}

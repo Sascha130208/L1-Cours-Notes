@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TD corrigés — Systèmes d'exploitation</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="exam.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions examens</a><span>TD corrigés — Systèmes d'exploitation</span></div>
+<div class="page">
+<span class="chip">✍️ Exercices corrigés</span><span class="chip">TD1 à TD5</span>
+<h1>✍️ Systèmes d'exploitation — TD corrigés</h1>
+<p>Les sorties ci-dessous ont été obtenues en <strong>exécutant réellement</strong> les commandes sur les fichiers des TD. À l'examen tu devras les prévoir <strong>sans machine</strong> : entraîne-toi à écrire le flux après chaque <code>|</code>.</p>
+
+<nav class="toc"><details><summary>📑 Sommaire</summary><ul>
+<li><a href="#td1">TD1 — Fichiers, chemins, premières commandes</a></li>
+<li><a href="#td2">TD2 — Composition de commandes et jokers</a></li>
+<li><a href="#td3">TD3 — Expressions régulières</a></li>
+<li><a href="#td4">TD4 — grep, sed, awk</a></li>
+<li><a href="#td5">TD5 — Droits et scripts shell</a></li>
+</ul></details></nav>
+
+<h2 id="td1">TD1 — Fichiers, répertoires, premières commandes</h2>
+<pre class="tree">/
+├── etc
+├── home
+│   ├── alice
+│   │   ├── cours
+│   │   │   ├── systeme ── cours1.txt, notes.txt
+│   │   │   └── programmation ── tp1.c, tp2.c
+│   │   ├── documents ── cv.txt
+│   │   └── photo.jpg
+│   └── bob ── rapport.txt
+└── tmp</pre>
+
+<h3>Ex 1 — Se repérer (répertoire courant /home/alice)</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>cours1.txt : <code>/home/alice/cours/systeme/cours1.txt</code> ; rapport.txt : <code>/home/bob/rapport.txt</code>.</li>
+<li>Relatifs : <code>cours/programmation/tp1.c</code> ; <code>../bob/rapport.txt</code>.</li>
+<li><code>.</code> = /home/alice ; <code>..</code> = /home ; <code>cours/..</code> = /home/alice ; <code>cours/systeme/notes.txt</code> = /home/alice/cours/systeme/notes.txt ; <code>../alice/documents</code> = /home/alice/documents ; <code>../../tmp</code> = /tmp.</li>
+<li>Absolus : <code>/home/alice/photo.jpg</code> et <code>/tmp</code> (ceux qui commencent par /). Les autres sont relatifs (même <code>./documents/cv.txt</code>).</li>
+</ul></details>
+
+<h3>Ex 2 — Où suis-je ?</h3>
+<details class="corr"><summary>Correction</summary>
+<p>Série 1 : /home/alice/cours → …/cours/systeme → …/cours → …/cours/programmation → …/cours → /home/alice → /home/alice/documents.</p>
+<p>Série 2 : /home/alice/cours/systeme → /home/alice/cours → /home/alice/cours/programmation → /home/alice → /home/alice (<code>cd .</code> ne change rien ; utile pour comprendre que . est le répertoire courant).</p></details>
+
+<h3>Ex 3 — ls</h3>
+<details class="corr"><summary>Correction</summary>
+<p><code>ls</code> → cours documents photo.jpg ; <code>ls cours</code> → programmation systeme ; <code>ls cours/systeme</code> → cours1.txt notes.txt ; <code>ls ..</code> → alice bob ; <code>ls ../bob</code> → rapport.txt ; <code>ls toto</code> → erreur « No such file or directory ».</p></details>
+
+<h3>Ex 4 — Suite de commandes</h3>
+<div class="enonce">Départ : /home/alice avec cours/systeme/cours.txt, documents/, notes.txt. Commandes : <code>cd cours/systeme; touch exercice.txt; mkdir sauvegarde; cp cours.txt sauvegarde/; mv exercice.txt td.txt; cp td.txt ../../documents/; cd ../..; mv notes.txt ancien.txt</code></div>
+<details class="corr"><summary>Correction</summary>
+<pre class="tree">/home/alice
+├── ancien.txt                 (ex notes.txt, renommé)
+├── cours
+│   └── systeme
+│       ├── cours.txt
+│       ├── td.txt             (ex exercice.txt, renommé)
+│       └── sauvegarde
+│           └── cours.txt      (copie)
+└── documents
+    └── td.txt                 (copie)</pre>
+<p>Deux fichiers td.txt (même contenu au moment de la copie : vide, mais ils peuvent évoluer séparément ensuite). Répertoire courant final : /home/alice.</p></details>
+
+<h3>Ex 5 — cp, mv, rm</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li><code>cp a.txt sauvegarde/</code> → a.txt reste, une copie apparaît dans sauvegarde.</li>
+<li><code>mv a.txt sauvegarde/</code> → a.txt n'est plus à la racine, il est dans sauvegarde.</li>
+<li><code>cp a.txt copie.txt; rm a.txt</code> et <code>mv a.txt copie.txt</code> → même résultat visible : copie.txt, b.txt, c.txt, sauvegarde. (mv renomme directement, sans recopier les données.)</li>
+</ul></details>
+
+<h3>Ex 6-7 — Redirections</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Après <code>echo Bonjour &gt; ; echo Alice &gt;&gt; ; echo Bob &gt;&gt;</code> : Bonjour / Alice / Bob. Après <code>echo Charlie &gt; message.txt</code> : <strong>Charlie</strong> seul.</li>
+<li><code>&gt;</code> remplace, <code>&gt;&gt;</code> ajoute. Si le fichier n'existe pas, <code>&gt;</code> le crée.</li>
+<li>Ex 7 : copie.txt = les 3 lignes ; puis + « David 12 » ; puis <code>echo Emma 15 &gt; copie.txt</code> → <strong>« Emma 15 » seul</strong>. Prudence : <code>&gt;</code> détruit l'ancien contenu sans prévenir.</li>
+</ul></details>
+
+<h3>Ex 8 à 11 — cut, sort, paste</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li><code>cut -d ':' -f 1</code> → Alice Bob Charlie David Emma ; <code>-f 3</code> → L1 L1 L2 L1 L2 ; <code>-f 1,4</code> → Alice:14 Bob:11 Charlie:16 David:9 Emma:13 ; <code>-f 2-4</code> → Martin:L1:14 … (le délimiteur est conservé). <code>-d</code> = délimiteur, <code>-f</code> = numéros de champs.</li>
+<li>nombres.txt : <code>sort</code> → 100 12 25 3 42 8 (alphabétique) ; <code>sort -n</code> → 3 8 12 25 42 100 ; <code>sort -n -r</code> → 100 42 25 12 8 3.</li>
+<li><code>sort etudiants.txt</code> → par prénom (début de ligne) ; <code>sort -t ':' -k 2</code> → par nom : Bernard, Dupont, Durand, Martin, Petit ; <code>sort -t ':' -k 4 -n</code> → par note : 9, 11, 13, 14, 16.</li>
+<li><code>paste -d ':' prenoms.txt notes.txt</code> → Alice:14 … ; pour Alice:L1:14 : <code>paste -d ':' prenoms.txt formation.txt notes.txt</code>.</li>
+</ul></details>
+
+<h3>Ex 12-13 — Composer</h3>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Objectif</th><th>Commande</th></tr>
+<tr><td>noms de famille</td><td><code>cut -d ':' -f 2 etudiants.txt</code></td></tr>
+<tr><td>noms triés</td><td><code>cut -d ':' -f 2 etudiants.txt | sort</code></td></tr>
+<tr><td>notes croissantes / décroissantes</td><td><code>cut -d ':' -f 4 etudiants.txt | sort -n</code> / <code>sort -nr</code></td></tr>
+<tr><td>formations sans répétition</td><td><code>cut -d ':' -f 3 etudiants.txt | sort | uniq</code> → L1 L2</td></tr>
+<tr><td>effectif par formation</td><td><code>cut -d ':' -f 3 etudiants.txt | sort | uniq -c</code> → 3 L1 / 2 L2</td></tr>
+</table>
+<p><code>|</code> = « la sortie de gauche devient l'entrée de droite ».</p></details>
+
+<h3>Ex 14 — Enquête : « sort a modifié mon fichier »</h3>
+<details class="corr"><summary>Correction</summary>
+<p><strong>Faux.</strong> <code>sort resultat.txt &gt; resultat-trie.txt</code> lit resultat.txt et écrit le tri dans <strong>resultat-trie.txt</strong>. resultat.txt a été modifié par la commande d'avant (<code>cut … &gt; resultat.txt</code>, qui a remplacé « ancien resultat »), et il n'est pas trié (Durand est à la fin). Directement : <code>cut -d ':' -f 2 documents/etudiants.txt | sort</code>.</p></details>
+
+<h3>Ex 15 — Défi ventes.txt</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li><code>cut -d ':' -f 1 ventes.txt | sort</code> → clavier clavier ecran ecran ordinateur ordinateur souris</li>
+<li><code>… | uniq</code> → clavier ecran ordinateur souris</li>
+<li><code>… | uniq -c</code> → 2 clavier / 2 ecran / 2 ordinateur / 1 souris</li>
+<li>prix croissants : <code>cut -d ':' -f 3 ventes.txt | sort -n</code> → 25 35 40 250 300 850 900</li>
+<li>vendeurs triés : <code>cut -d ':' -f 2 ventes.txt | sort</code> (avec répétitions)</li>
+<li>Alice Bob Charlie David Emma : <code>cut -d ':' -f 2 ventes.txt | sort | uniq</code></li>
+</ul></details>
+
+<h2 id="td2">TD2 — Composition et jokers (fichier de 10 étudiants)</h2>
+<h3>Ex 1 — Résultats intermédiaires</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>cut -d ':' -f 3   → L1 L1 L2 L1 L2 L2 L1 L3 L3 L2
+| sort            → L1 L1 L1 L1 L2 L2 L2 L2 L3 L3
+| uniq -c         → 4 L1 / 4 L2 / 2 L3
+| sort -nr        → 4 L2 / 4 L1 / 2 L3</code></pre>
+<p>Le 1er tri (alphabétique) <strong>regroupe</strong> les valeurs identiques pour que uniq -c puisse compter ; le 2e (numérique, décroissant) <strong>classe</strong> par effectif. (À égalité, <code>sort -nr</code> inverse aussi l'ordre alphabétique, d'où L2 avant L1.)</p></details>
+
+<h3>Ex 2 — Conserver l'information utile</h3>
+<details class="corr"><summary>Correction</summary>
+<p>1re chaîne → <code>16</code> seulement (l'identité de l'étudiant a été détruite par cut). 2e → <code>Charlie:Durand:L2:16</code> (ou Gabrielle, aussi 16 : en cas d'égalité, une seule ligne est gardée). head doit venir après le tri sinon on garde la première ligne du fichier. Règle : <strong>trier/sélectionner avant de réduire, extraire le plus tard possible</strong>.</p></details>
+
+<h3>Ex 3-4 — Construire par étapes</h3>
+<details class="corr"><summary>Correction</summary>
+<p>Notes différentes croissantes : <code>cut -d ':' -f 4 etudiants.txt | sort -n | uniq</code> → 9 11 13 14 15 16 (tri numérique, et avant uniq pour rendre les doublons consécutifs).</p>
+<p>Formations par effectif décroissant : extraire → trier (alphabétique) → compter (uniq -c) → classer (sort -nr) : c'est la commande de l'Ex 1.</p></details>
+
+<h3>Ex 5 à 8 — tee, tr, paste, plusieurs fichiers</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Ex 5 : <code>cut -d ':' -f 2 etudiants.txt | sort | tee noms.txt | wc -l</code> → tee reçoit les noms triés, les écrit dans noms.txt et les transmet à wc. Le nombre (10) s'affiche mais n'est <strong>pas</strong> écrit dans noms.txt.</li>
+<li>Ex 6 : <code>tr '[:upper:]' '[:lower:]' &lt; villes.txt | sort | uniq -c | sort -nr</code> → 3 paris / 2 lille / 2 amiens. Il faut normaliser <strong>en premier</strong> (sinon Paris, PARIS et paris sont différents).</li>
+<li>Ex 7 : <code>paste -d ':' prenoms.txt notes.txt | sort -t ':' -k 2,2 -nr | tee classement.txt | head -n 3</code> → Charlie:16 / Alice:14 / Emma:13 à l'écran, tout le classement dans le fichier. tee est placé <strong>avant</strong> head.</li>
+<li>Ex 8 : <code>cat groupe1.txt groupe2.txt groupe3.txt | sort -nr | head -n 5</code> ; version qui conserve : <code>cat groupe?.txt | sort -nr | tee toutes-les-notes.txt | head -n 5</code>.</li>
+</ul></details>
+
+<h3>Ex 9-10 — Développement des jokers</h3>
+<div class="enonce">Répertoire : a.txt ab.txt abc.txt b.txt notes1.txt notes2.txt notes10.txt programme.c programme.h photo.jpg .secret.txt</div>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Motif</th><th>Noms</th></tr>
+<tr><td><code>*.txt</code></td><td>a.txt ab.txt abc.txt b.txt notes1.txt notes10.txt notes2.txt (pas .secret.txt : caché)</td></tr>
+<tr><td><code>a*.txt</code></td><td>a.txt ab.txt abc.txt</td></tr>
+<tr><td><code>a?.txt</code></td><td>ab.txt</td></tr>
+<tr><td><code>notes?.txt</code></td><td>notes1.txt notes2.txt</td></tr>
+<tr><td><code>notes[12].txt</code></td><td>notes1.txt notes2.txt</td></tr>
+<tr><td><code>*.[ch]</code></td><td>programme.c programme.h</td></tr>
+<tr><td><code>?.txt</code></td><td>a.txt b.txt</td></tr>
+</table>
+<p><code>cat notes?.txt</code> → <code>cat notes1.txt notes2.txt</code> (2 arguments) ; <code>cp *.[ch] sauvegarde/</code> → 3 arguments ; <code>wc -l *.txt</code> → 7 arguments. Les commandes ne voient jamais les jokers : c'est le shell qui les a remplacés.</p></details>
+
+<h3>Ex 11-13 — Chemins, protection, prudence</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li><code>groupe?/notes.txt</code> → groupe1, groupe2 ; <code>groupe*/notes.txt</code> → groupe1, groupe10, groupe2 ; <code>*/notes.txt</code> → idem (commun n'a pas de notes.txt) ; <code>groupe[12]/rapport.pdf</code> → 2 rapports ; <code>*/*.txt</code> → les 3 notes.txt + commun/consignes.txt. <code>*</code> ne traverse pas <code>/</code> car chaque partie du chemin est développée séparément.</li>
+<li><code>echo *.txt</code> → la liste ; <code>echo "*.txt"</code> et <code>echo \*.txt</code> → <code>*.txt</code> littéral. Sans correspondance (<code>*.pdf</code>), Bash laisse le motif tel quel.</li>
+<li><code>cp rapport*.txt sauvegarde/</code> copie rapport-final, rapport1, rapport2 ; <code>mv rapport?.txt sauvegarde/</code> déplace rapport1 et rapport2 ; <code>rm *.txt</code> supprime <strong>tous</strong> les .txt (dont notes.txt !) sans corbeille → vérifier avec <code>pwd</code> et <code>echo *.txt</code>.</li>
+</ul></details>
+
+<h3>Ex 14-17 — Synthèse et diagnostics</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Ex 14 : <code>cat notes-L?.txt | sort -n | uniq -c | sort -nr | tee bilan-licence.txt</code> (notes-L? exclut notes-M1).</li>
+<li>Ex 15 : motif <code>ventes-2026-*.txt</code> ; produits : <code>cat ventes-2026-*.txt | cut -d ':' -f 2 | sort | uniq -c | sort -nr</code> ; prix : <code>cat ventes-2026-*.txt | sort -t ':' -k 3,3 -nr | tee classement-2026.txt | head -n 5</code>.</li>
+<li>Ex 16 : A → ajouter <code>sort</code> avant <code>uniq -c</code> ; B → trier avant <code>head</code> ; C → trier les lignes complètes (<code>sort -t ':' -k …</code>) au lieu d'extraire ; D → <code>tee noms.txt | wc -l</code> au lieu de <code>&gt; noms.txt | wc -l</code> ; E → enlever les guillemets autour du joker.</li>
+<li>Ex 17 : <code>cat groupe?.txt | cut -d ':' -f 3 | sort | uniq -c | sort -nr | tee bilan-formations.txt</code>.</li>
+</ul></details>
+
+<h2 id="td3">TD3 — Expressions régulières</h2>
+<h3>Ex 1 — Joker ou regex ?</h3>
+<details class="corr"><summary>Correction</summary>
+<p>Jokers (noms de fichiers) : <code>*.txt</code>, <code>notes?.txt</code>, <code>image[12].jpg</code>. Regex (contenu) : <code>^Alice</code>, <code>:[0-9]+$</code>, <code>^(chat|chien)$</code>. En joker <code>*</code> = n'importe quelle suite ; en regex <code>*</code> = répétition de l'élément précédent (« n'importe quoi » = <code>.*</code>).</p></details>
+<h3>Ex 2 à 6 — Quelles lignes sont reconnues ?</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Ex 2 : <code>chat</code> → les 5 lignes ; <code>^chat</code> → chat, chateau, chat noir ; <code>chat$</code> → chat, un chat, le chat ; <code>^chat$</code> → chat.</li>
+<li>Ex 3 : <code>^image..jpg$</code> → image1.jpg, imageA.jpg, image1Xjpg (le 2e point est quelconque) ; <code>^image.\.jpg$</code> → image1.jpg, imageA.jpg ; <code>^image[0-9]\.jpg$</code> → image1.jpg.</li>
+<li>Ex 4 : <code>^[ABC][0-9]{2}$</code> → A12 B07 C99 ; <code>^[A-Z][0-9]+$</code> → A12 B07 C99 D3 ; <code>^[^AB][0-9]{2}$</code> → C99, a45 ; <code>^[[:upper:]][[:digit:]]{2}$</code> → A12 B07 C99.</li>
+<li>Ex 5 : <code>^ab*c$</code> → ac abc abbc abbbc ; <code>^ab+c$</code> → abc abbc abbbc ; <code>^ab?c$</code> → ac abc ; <code>^ab{2,3}c$</code> → abbc abbbc. (abXc jamais.)</li>
+<li>Ex 6 : <code>^(chat|chien)$</code> → chat chien ; <code>^(chat|chien)s?$</code> → chat chats chien chiens ; <code>^ch(at|ien)s?$</code> → les mêmes 4. Les parenthèses délimitent la portée du <code>|</code> et du <code>?</code>.</li>
+</ul></details>
+<h3>Ex 7 à 10 — Construire des motifs</h3>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Objectif</th><th>Regex</th></tr>
+<tr><td>un chiffre unique</td><td><code>^[0-9]$</code></td></tr>
+<tr><td>entier positif</td><td><code>^[0-9]+$</code></td></tr>
+<tr><td>exactement 2 chiffres / de 2 à 4</td><td><code>^[0-9]{2}$</code> / <code>^[0-9]{2,4}$</code></td></tr>
+<tr><td>entier éventuellement négatif</td><td><code>^-?[0-9]+$</code></td></tr>
+<tr><td>note de 0 à 19</td><td><code>^([0-9]|1[0-9])$</code></td></tr>
+<tr><td>nom terminé par .txt</td><td><code>^.+\.txt$</code></td></tr>
+<tr><td>image + chiffres + .jpg</td><td><code>^image[0-9]+\.jpg$</code></td></tr>
+<tr><td>rapport-AAAA.pdf</td><td><code>^rapport-[0-9]{4}\.pdf$</code></td></tr>
+<tr><td>notes-L1/L2/L3.txt</td><td><code>^notes-L[1-3]\.txt$</code></td></tr>
+<tr><td>Majuscule … .c ou .h</td><td><code>^[A-Z].*\.(c|h)$</code></td></tr>
+<tr><td>ligne de L1 / de L1 ou L2</td><td><code>:L1:</code> / <code>:L(1|2):</code></td></tr>
+<tr><td>note à 2 chiffres</td><td><code>:[0-9]{2}$</code></td></tr>
+<tr><td>prénom commençant par A, B ou C</td><td><code>^[ABC]</code></td></tr>
+<tr><td>nom finissant par « on »</td><td><code>^[^:]*:[^:]*on:</code></td></tr>
+<tr><td>exactement 3 « : »</td><td><code>^[^:]*:[^:]*:[^:]*:[^:]*$</code></td></tr>
+<tr><td>code 200 / code 4xx ou 5xx</td><td><code>:200:</code> / <code>:[45][0-9]{2}:</code></td></tr>
+<tr><td>ressource .html</td><td><code>\.html$</code></td></tr>
+<tr><td>adresse 10.0.0.x</td><td><code>^10\.0\.0\.[0-9]+:</code></td></tr>
+</table></details>
+<h3>Ex 11 — Corriger les motifs</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li><code>*.txt</code> (joker) → regex <code>\.txt$</code> ; <code>L1</code> → <code>^L1$</code> (sinon L10 passe) ; <code>[0-9]*</code> accepte la chaîne vide → <code>[0-9]+</code> ; <code>^chat|chien$</code> → <code>^(chat|chien)$</code> ; <code>.</code> → <code>\.</code> ; <code>[0-9]{2-3}</code> → <code>[0-9]{2,3}</code> (virgule, pas tiret).</li>
+</ul></details>
+<h3>Ex 12-14 — Décomposer, concevoir, synthèse</h3>
+<details class="corr"><summary>Correction</summary>
+<p><code>^[A-Z][a-z]+:[A-Z][a-z]+:L[1-3]:[0-9]{1,2}$</code> = prénom (majuscule + minuscules) : nom : L1-L3 : note sur 1 ou 2 chiffres. Reconnues : Alice:Martin:L1:14, Bob:Dupont:L3:9. Rejetées : alice:Martin:L1:14, Bob:Dupont:L4:10. Limite : pas d'accents, de tirets ni d'espaces (Jean-Luc, Éloïse, Le Gall).</p>
+<ul>
+<li>identifiant : <code>^[a-z][0-9]{2,5}$</code> ; module : <code>^(systeme|reseau|programmation)$</code> ; date : <code>^[0-9]{4}-[0-9]{2}-[0-9]{2}$</code> ; adresse : <code>^[a-zA-Z.]+@u-picardie\.fr$</code>.</li>
+<li>Synthèse : <code>^[0-9]{4}-[0-9]{2}-[0-9]{2}:[A-Za-z ]+:L[1-3]:(systeme|reseau|programmation):[0-9]{1,2}$</code></li>
+</ul></details>
+
+<h2 id="td4">TD4 — grep, sed, awk (fichier de 10 étudiants)</h2>
+<h3>Ex 1-2 — grep</h3>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Objectif</th><th>Commande</th><th>Résultat</th></tr>
+<tr><td>lignes de L2 / pas de L2</td><td><code>grep ':L2:' f</code> / <code>grep -v ':L2:' f</code></td><td>4 / 6 lignes</td></tr>
+<tr><td>compter les L1</td><td><code>grep -c ':L1:' f</code></td><td>4</td></tr>
+<tr><td>note 11 avec numéro</td><td><code>grep -n ':11$' f</code></td><td>2:Bob… / 6:Farid…</td></tr>
+<tr><td>prénom A, B ou C</td><td><code>grep -E '^[ABC]' f</code></td><td>Alice, Bob, Charlie</td></tr>
+<tr><td>note à 2 chiffres</td><td><code>grep -E ':[0-9]{2}$' f</code></td><td>8 lignes</td></tr>
+<tr><td>L1 ou L2</td><td><code>grep -E ':(L1|L2):' f</code></td><td>8 lignes</td></tr>
+<tr><td>terminées par :9</td><td><code>grep -E ':9$' f</code></td><td>David, Jules</td></tr>
+<tr><td>nom contenant « ar »</td><td><code>grep -E '^[^:]*:[^:]*ar' f</code></td><td>Martin, Bernard</td></tr>
+<tr><td>nom commençant par D</td><td><code>grep -E '^[^:]*:D' f</code></td><td>Dupont, Durand</td></tr>
+</table>
+<p>Plusieurs fichiers : <code>grep 'L3' groupe*.txt</code> ; <code>grep -l ':16$' groupe*.txt</code> ; <code>grep -n 'L1' groupe*.txt</code> ; <code>grep -c ':L2:' groupe*.txt</code> (un compte par fichier). Le joker choisit les fichiers, grep cherche dans leur contenu.</p></details>
+<h3>Ex 4 à 7 — sed</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li><code>sed 's/:/|/g' f</code> ; <code>sed -E 's/L([1-3])/Licence \1/' f</code> ; <code>sed 's/^Alice/ALICE/' f</code> ; <code>sed 's/:/ /' f</code> (sans g : seulement le 1er).</li>
+<li><code>sed -n '3p' f</code> ; <code>sed -n '3,6p' f</code> ; <code>sed -n '/:L2:/p' f</code> ; <code>sed '/:L1:/d' f</code> ; <code>sed '/^$/d' f</code>. Le fichier n'est pas modifié : sed écrit sur sa sortie.</li>
+<li>Ex 6 : <code>sed -E 's/^([^:]+):([^:]+):([^:]+):([^:]+)$/\2, \1 — \3 — \4/' f</code> → « Martin, Alice — L1 — 14 », « Dupont, Bob — L1 — 11 ».</li>
+<li>Ex 7 : prévisualiser <code>sed 's/L1/Licence 1/g' f</code>, puis <code>sed -i.bak 's/L1/Licence 1/g' f</code> → il existe f (modifié) et f.bak (l'original).</li>
+</ul></details>
+<h3>Ex 8 à 11 — awk</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>awk -F ':' '{ print $1 }' f                 # prénoms
+awk -F ':' '{ print $2, $4 }' f             # nom et note
+awk -F ':' '{ print NR, $1, $2 }' f         # numéro de ligne
+awk -F ':' '{ print $NF }' f                # dernier champ
+awk -F ':' '{ print NF, $0 }' f             # nb de champs + ligne
+awk -F ':' '$3 == "L2"' f
+awk -F ':' '$4 &gt;= 14 { print $1, $2 }' f
+awk -F ':' '$3 != "L1"' f
+awk -F ':' '$2 ~ /^D/' f                    # Dupont, Durand
+awk -F ':' '$4 &lt; 10' f                      # David, Jules
+awk -F ':' '{ s += $4 } END { print s }' f                       # 127
+awk -F ':' '{ s += $4 } END { if (NR &gt; 0) print s / NR }' f      # 12.7
+awk -F ':' '$3 == "L2" { n++ } END { print n }' f                # 4
+awk -F ':' '$3 == "L2" { s += $4; n++ } END { if (n &gt; 0) print s / n }' f   # 12.25
+awk -F ':' 'NR == 1 || $4 &gt; m { m = $4 } END { print m }' f      # 16
+awk -F ':' '{ e[$3]++ } END { for (k in e) print k, e[k] }' f | sort   # L1 4 / L2 4 / L3 2
+awk -F ':' '{ e[substr($2,1,1)]++ } END { for (k in e) print k, e[k] }' f | sort</code></pre>
+<p>On envoie la sortie d'un tableau associatif vers <code>sort</code> car l'ordre du <code>for (k in e)</code> n'est pas garanti.</p></details>
+<h3>Ex 12-14 — Composition</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Ex 12 : <code>grep -Ev '^#|^$' inscriptions.txt | sed -E 's/^[[:space:]]+//' | cut -d ':' -f 3 | sort | uniq -c</code> → 2 L1 / 3 L2.</li>
+<li>Ex 13 : <code>grep -E ':[45][0-9]{2}:' acces.log | cut -d ':' -f 1 | sort | uniq -c | sort -nr | tee erreurs.txt</code> → 2 10.0.0.2 puis 1 pour .1, .3 et .4. Version awk : <code>awk -F ':' '$2 ~ /^[45]/ { e[$1]++ } END { for (a in e) print e[a], a }' acces.log | sort -nr</code>.</li>
+<li>Ex 14 (resultats.txt, format date:etudiant:formation:module:note) :
+<ul>
+<li>systeme par note décroissante : <code>grep ':systeme:' resultats.txt | sort -t ':' -k 5,5 -nr</code></li>
+<li>moyenne reseau : <code>awk -F ':' '$4 == "reseau" { s += $5; n++ } END { if (n) print s/n }' resultats.txt</code> → (16+11+9)/3 = 12</li>
+<li>résultats par module : <code>cut -d ':' -f 4 resultats.txt | sort | uniq -c</code> → 3 programmation, 3 reseau, 4 systeme</li>
+<li>notes &lt; 10 : <code>awk -F ':' '$5 &lt; 10' resultats.txt</code> → Bob Dupont (8), Hugo Moreau (9)</li>
+<li>affichage : <code>sed -E 's/^[^:]*:([^:]*):[^:]*:([^:]*):(.*)$/\1 — \2 — \3/' resultats.txt</code></li>
+<li>bilan par étudiant : <code>cut -d ':' -f 2 resultats.txt | sort | uniq -c | sort -nr</code> → Alice Martin 2, les autres 1</li>
+</ul></li>
+</ul></details>
+
+<h2 id="td5">TD5 — Droits et premiers scripts</h2>
+<h3>Préliminaires — droits</h3>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Fichier</th><th>u</th><th>g</th><th>o</th></tr>
+<tr><td>notes.txt <code>rw-r--r--</code></td><td>lire, écrire</td><td>lire</td><td>lire</td></tr>
+<tr><td>analyse.sh <code>rwxr-x---</code></td><td>tout</td><td>lire, exécuter</td><td>rien</td></tr>
+<tr><td>secret.txt <code>rw-------</code></td><td>lire, écrire</td><td>rien</td><td>rien</td></tr>
+<tr><td>sujet.txt <code>r--r--r--</code></td><td>lire</td><td>lire</td><td>lire</td></tr>
+</table>
+<p>Tout le monde lit notes.txt ; seule alice modifie secret.txt ; elle ne peut pas modifier sujet.txt ; le groupe peut exécuter analyse.sh, pas les autres.</p>
+<p>Commandes : <code>chmod u+x programme.sh</code> ; <code>chmod o-r notes.txt</code> ; <code>chmod g+r resultats.txt</code> ; <code>chmod a-x ancien.sh</code>.</p>
+<p><code>bash bonjour.sh</code> marche car c'est Bash qui <strong>lit</strong> le fichier (droit r suffit) ; <code>./bonjour.sh</code> échoue (« Permission denied ») sans le droit x → <code>chmod u+x bonjour.sh</code> → <code>-rwxr--r--</code>. <code>bonjour.sh</code> seul échoue car le répertoire courant n'est pas dans le PATH : il faut <code>./</code>.</p></details>
+
+<h3>Ex 4 à 8 — Variables et guillemets</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Correctes : <code>nom=Alice</code>, <code>ville="Amiens"</code>, <code>fichier=notes.txt</code>, <code>message="Bonjour tout le monde"</code>. Fausses : <code>prenom = Bob</code> et <code>age =20</code> (le shell lance une commande « prenom »/« age »), <code>message=Bonjour tout le monde</code> (lance la commande « tout » avec message=Bonjour en variable temporaire).</li>
+<li><code>echo nom</code> → nom ; <code>echo $nom</code> → Alice ; <code>echo "$nom"</code> → Alice ; <code>echo '$nom'</code> → $nom ; <code>"$nom habite à $ville"</code> → Alice habite à Amiens ; avec apostrophes → $nom habite à $ville.</li>
+<li>Ex 6 : <code>wc -l $fichier</code> → 2 arguments (« compte », « rendu.txt ») → erreurs ; <code>wc -l "$fichier"</code> → 1 argument ✔. Les guillemets de l'affectation ne « restent » pas : il faut protéger à chaque utilisation.</li>
+<li>Ex 7 : <code>echo $motif</code> → notes1.txt notes2.txt (joker développé après remplacement) ; <code>echo "$motif"</code> → notes?.txt ; <code>echo '$motif'</code> → $motif.</li>
+<li>Ex 8 : <code>"$nom_notes.txt"</code> cherche la variable <code>nom_notes</code> (vide) → « .txt » ; <code>"${nom}_notes.txt"</code> → Alice_notes.txt. <code>touch "${nom}_resultat.txt"</code>.</li>
+</ul></details>
+
+<h3>Ex 9-10 — Paramètres</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>$ ./parametres.sh Alice Amiens        $ bash parametres.sh notes.txt
+Script : ./parametres.sh              Script : parametres.sh
+Premier : Alice                       Premier : notes.txt
+Deuxième : Amiens                     Deuxième :
+Nombre : 2                            Nombre : 1</code></pre>
+<p>Sans paramètre : $1 et $2 vides, $# = 0. <code>./saluer.sh Alice "Le Mans"</code> → 2 paramètres ($2 = « Le Mans ») ; sans guillemets → 3 paramètres et $2 = « Le ». Affectations sûres : <code>nom="$1"</code>, <code>ville="$2"</code>.</p></details>
+
+<h3>Ex 11 — Script paramétrable</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>#!/bin/bash
+fichier="$1"
+echo "Nombre de paramètres : $#"
+echo "Analyse de $fichier"
+wc -l "$fichier"
+head -n 3 "$fichier"
+tail -n 3 "$fichier"</code></pre></details>
+
+<h3>Ex 12-13 — Substitution de commande</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Les commandes dans <code>$(…)</code> sont exécutées <strong>au moment de l'affectation</strong> ; les variables contiennent leurs <strong>sorties</strong> (le chemin, la date AAAA-MM-JJ, le nombre de lignes), pas le texte « pwd ».</li>
+<li><code>wc -l &lt; notes.txt</code> affiche seulement « 5 » ; <code>wc -l notes.txt</code> afficherait « 5 notes.txt ».</li>
+<li>Ex 13 : <code>sort</code> → Amiens×3, Lille, Paris×2 ; <code>uniq -c</code> → 3 Amiens / 1 Lille / 2 Paris ; <code>sort -nr</code> → 3 Amiens / 2 Paris / 1 Lille ; <code>head -n 1</code> → « 3 Amiens ». La variable contient le compte <strong>et</strong> la ville : un meilleur nom est <code>ville_plus_frequente</code> ou <code>occurrences_et_ville</code>.</li>
+</ul></details>
+
+<h3>Ex 14 et 16 — fiche.sh et compte-rendu.sh</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>#!/bin/bash
+# fiche.sh
+fichier="$1"
+lignes=$(wc -l &lt; "$fichier")
+mots=$(wc -w &lt; "$fichier")
+premiere=$(head -n 1 "$fichier")
+derniere=$(tail -n 1 "$fichier")
+echo "Fichier : $fichier"
+echo "Nombre de lignes : $lignes"
+echo "Nombre de mots : $mots"
+echo "Première ligne : $premiere"
+echo "Dernière ligne : $derniere"</code></pre>
+<pre><code>#!/bin/bash
+# compte-rendu.sh entree sortie
+entree="$1"
+sortie="$2"
+lignes=$(wc -l &lt; "$entree")
+champs=$(head -n 1 "$entree" | tr ':' '\n' | wc -l)
+premier=$(head -n 1 "$entree" | cut -d ':' -f 2)
+dernier=$(tail -n 1 "$entree" | cut -d ':' -f 2)
+{
+    echo "Analyse de $entree"
+    echo "Nombre de lignes : $lignes"
+    echo "Nombre de champs de la première ligne : $champs"
+    echo "Premier titre : $premier"
+    echo "Dernier titre : $dernier"
+} &gt; "$sortie"                     # une seule redirection pour tout le bloc</code></pre>
+<p>Ex 15 (ouvrages) : titres triés <code>cut -d ':' -f 2 "$f" | sort</code> ; plus ancien <code>cut -d ':' -f 3 "$f" | sort -n | head -n 1</code> ; auteurs différents <code>cut -d ':' -f 7 "$f" | sort | uniq | wc -l</code>.</p></details>
+
+<h3>Ex 17 — Diagnostiquer</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>A : espaces autour de <code>=</code> → <code>fichier=notes.txt</code>.</li>
+<li>B : <code>cat $fichier</code> → <code>cat "$fichier"</code>.</li>
+<li>C : apostrophes → <code>echo "Bonjour $nom"</code>.</li>
+<li>D : <code>repertoire=pwd</code> stocke le mot pwd → <code>repertoire=$(pwd)</code>.</li>
+<li>E : le script utilise <code>$2</code> alors qu'un seul paramètre est donné → <code>sort "$entree"</code>.</li>
+<li>F : <code>"$nom_resultat.txt"</code> → <code>"${nom}_resultat.txt"</code>.</li>
+<li>G : <code>./analyse.sh compte rendu.txt</code> → 2 paramètres → <code>./analyse.sh "compte rendu.txt"</code>.</li>
+</ul></details>
+
+<div class="nav-links"><span><a href="sys_fiche.html">← Fiche Systèmes</a></span><span><a href="flashcards_sys.html">Flashcards →</a></span></div>
+</div>
+</body>
+</html>

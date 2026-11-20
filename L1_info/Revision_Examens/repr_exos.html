@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exos corrigés — Représentation de l'information</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="exam.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions examens</a><span>Exos corrigés — Représentation de l'information</span></div>
+<div class="page">
+<span class="chip">✍️ Exercices corrigés</span><span class="chip">Séries 1 à 5 + CM6</span>
+<h1>✍️ Représentation de l'information — exercices corrigés</h1>
+<p>Toutes les réponses ont été vérifiées par calcul. Fais les calculs <strong>à la main</strong> d'abord : à l'examen, pas de calculatrice.</p>
+
+<nav class="toc"><details><summary>📑 Sommaire</summary><ul>
+<li><a href="#s1">Série 1 — Conversions et opérations</a></li>
+<li><a href="#s2">Série 2 — Représentations numériques</a></li>
+<li><a href="#s3">Série 3 — Sur machine (bases, flottants)</a></li>
+<li><a href="#s4">Série 4 — Codage des caractères</a></li>
+<li><a href="#s5">Série 5 — Fichiers en C</a></li>
+<li><a href="#cm6">Entraînement CM6 — Parité, Luhn, CRC, Hamming</a></li>
+</ul></details></nav>
+
+<h2 id="s1">Série 1 — Conversions et opérations</h2>
+
+<h3>Ex 1 à 8 — Entiers</h3>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Ex</th><th>Question</th><th>Réponse</th></tr>
+<tr><td>1</td><td>(245)₁₀ ; (129)₁₀ ; (261)₁₀ → base 2</td><td>11110101 ; 10000001 ; 100000101</td></tr>
+<tr><td>2</td><td>(110110)₂ ; (1010101)₂ ; (111111111111)₂ → base 10</td><td>54 ; 85 ; 4095 (= 2¹² − 1)</td></tr>
+<tr><td>3</td><td>(172)₁₀ ; (96)₁₀ ; (210)₁₀ → base 16</td><td>AC ; 60 ; D2</td></tr>
+<tr><td>4</td><td>(B5)₁₆ ; (A1C)₁₆ → base 10</td><td>11·16+5 = 181 ; 10·256+16+12 = 2588</td></tr>
+<tr><td>5</td><td>B5 ; A1C ; 5D9E ; 3F9C → base 2</td><td>1011 0101 ; 1010 0001 1100 ; 0101 1101 1001 1110 ; 0011 1111 1001 1100</td></tr>
+<tr><td>6</td><td>(110110)₂ ; (1011101)₂ ; (10010111010)₂ → base 16</td><td>11 0110 = 36 ; 101 1101 = 5D ; 100 1011 1010 = 4BA</td></tr>
+<tr><td>7</td><td>(5D9E)₁₆ ; (3F9C)₁₆ → base 8</td><td>101 110 110 011 110 = 56636 ; 11 111 110 011 100 = 37634</td></tr>
+<tr><td>8</td><td>(5783)₈ ; (3621)₈ → base 16</td><td><strong>(5783)₈ n'existe pas</strong> (8 n'est pas un chiffre octal) ; 011 110 010 001 = 0111 1001 0001 = <strong>791</strong></td></tr>
+</table>
+<p>Méthode des puissances pour 261 : 256 + 4 + 1 → bits 8, 2, 0 → 100000101.</p></details>
+
+<h3>Ex 9 à 12 — Nombres fractionnaires</h3>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Question</th><th>Réponse</th></tr>
+<tr><td>(110,11)₂</td><td>4+2+0,5+0,25 = <strong>6,75</strong></td></tr>
+<tr><td>(1011,101)₂</td><td>11 + 0,5 + 0,125 = <strong>11,625</strong></td></tr>
+<tr><td>(110,11)₈</td><td>64+8+1/8+1/64 = <strong>72,140625</strong></td></tr>
+<tr><td>(35,25)₁₀</td><td>100011 , 01 → <strong>(100011,01)₂</strong></td></tr>
+<tr><td>(64,34375)₁₀</td><td><strong>(1000000,01011)₂</strong></td></tr>
+<tr><td>(242,45)₁₀</td><td>(11110010,0111001100 1100…)₂ — infini (motif 1100)</td></tr>
+<tr><td>(0,15)₁₀</td><td>(0,0010011001 1001…)₂ — infini</td></tr>
+<tr><td>(0,3)₁₀</td><td>(0,0100110011…)₂ — infini</td></tr>
+<tr><td>(35,25)₁₀ → 16</td><td>0,25×16 = 4 → <strong>(23,4)₁₆</strong></td></tr>
+<tr><td>(64,34375)₁₀ → 16</td><td>0,34375×16 = 5,5 → 5 ; 0,5×16 = 8 → <strong>(40,58)₁₆</strong></td></tr>
+</table></details>
+
+<h3>Ex 13 à 15 — Opérations</h3>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Opération</th><th>Résultat</th><th>Vérification</th></tr>
+<tr><td>(1100 + 111)₂</td><td>10011</td><td>12 + 7 = 19</td></tr>
+<tr><td>(101110 + 1011)₂</td><td>111001</td><td>46 + 11 = 57</td></tr>
+<tr><td>(101111 + 10101)₂</td><td>1000100</td><td>47 + 21 = 68</td></tr>
+<tr><td>(110111 + 10110 + 11011)₂</td><td>1101000</td><td>55 + 22 + 27 = 104</td></tr>
+<tr><td>(1110011 − 11101)₂</td><td>1010110</td><td>115 − 29 = 86</td></tr>
+<tr><td>(A4F2 + 1808)₁₆</td><td>BCFA</td><td>42226 + 6152 = 48378</td></tr>
+<tr><td>(A5EF + 6A45)₁₆</td><td>11034</td><td>F+5 = 20 → 4 retenue 1 …</td></tr>
+<tr><td>(9FE3 + 6FC8)₁₆</td><td>10FAB</td><td></td></tr>
+<tr><td>(3061 + 1457)₁₆</td><td>44B8</td><td></td></tr>
+<tr><td>(2A4F2E − A808B)₁₆</td><td>1FCEA3</td><td></td></tr>
+<tr><td>(1001 × 101)₂</td><td>101101 = (2D)₁₆</td><td>9 × 5 = 45</td></tr>
+<tr><td>(101111 × 10111)₂</td><td>10000111001 = (439)₁₆</td><td>47 × 23 = 1081</td></tr>
+<tr><td>(2F × 17)₁₆</td><td>(439)₁₆</td><td>même calcul ! 2F = 47, 17₁₆ = 23</td></tr>
+</table></details>
+
+<h2 id="s2">Série 2 — Représentations numériques</h2>
+
+<h3>Ex 1 à 3 — Entiers non signés sur un octet</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>100 = 01100100 ; 200 = 11001000 ; 50 = 00110010 ; 51 = 00110011 ; 120 = 01111000 ; <strong>300 impossible</strong> (&gt; 255, il faut 9 bits : 100101100).</li>
+<li>00101101 = 45 ; 01100100 = 100.</li>
+<li>100 + 120 = 220 = 11011100 ✔ ; 200 + 100 = 300 → 1 00101100 → il reste 00101100 = <strong>44 : dépassement</strong> ; 50 + 50 = 100 ✔.</li>
+</ul></details>
+
+<h3>Ex 4 à 6 — Entiers signés (complément à 2)</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>−45 = 11010011 ; −64 = 11000000 ; 100 = 01100100 ; −1 = 11111111 ; −120 = 10001000 ; <strong>200 impossible</strong> (&gt; 127).</li>
+<li>11011100 → négatif → C2 : 00100100 = 36 → <strong>−36</strong> ; 00110111 = <strong>55</strong>.</li>
+</ul>
+<table>
+<tr><th>Opération</th><th>Calcul binaire</th><th>Résultat lu</th><th>Interprétation</th></tr>
+<tr><td>100 + 120</td><td>01100100 + 01111000 = 11011100</td><td>−36</td><td>❌ dépassement (220 &gt; 127)</td></tr>
+<tr><td>100 − 45</td><td>01100100 + 11010011 = (1)00110111</td><td>55</td><td>✔ (retenue ignorée)</td></tr>
+<tr><td>−64 + (−64)</td><td>11000000 + 11000000 = (1)10000000</td><td>−128</td><td>✔ (pile la limite)</td></tr>
+<tr><td>−120 + (−45)</td><td>10001000 + 11010011 = (1)01011011</td><td>91</td><td>❌ dépassement (−165 &lt; −128)</td></tr>
+<tr><td>50 + 51</td><td>00110010 + 00110011 = 01100101</td><td>101</td><td>✔</td></tr>
+<tr><td>50 + (−120)</td><td>00110010 + 10001000 = 10111010</td><td>−70</td><td>✔</td></tr>
+</table>
+<p>Règle : dépassement ⟺ deux opérandes de même signe et un résultat de signe opposé.</p></details>
+
+<h3>Activité — le bug de l'an 2038</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>a) Entier signé 32 bits : maximum 2³¹ − 1 = <strong>2 147 483 647</strong> secondes.</li>
+<li>b) Cela correspond au <strong>19 janvier 2038 à 03:14:07</strong> (UTC).</li>
+<li>c) Une seconde plus tard : dépassement → la valeur devient −2³¹ = <strong>−2 147 483 648</strong>, soit le <strong>13 décembre 1901 à 20:45:52</strong>.</li>
+</ul></details>
+
+<h3>Ex 7 à 9 — Virgule fixe [5,3]</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>9,75 = 1001,11 → 01001,110 → <strong>01001110</strong> (non signé et signé, car 9,75 ≤ 15,875).</li>
+<li>5,25 = 101,01 → 00101,010 → <strong>00101010</strong> (les deux).</li>
+<li>3,5625 = 11,1001 : il faut 4 bits après la virgule → <strong>impossible en [5,3]</strong>. Format [4,4] : 0011,1001 = 00111001 (fonctionne en non signé et en signé car 3,5625 &lt; 8).</li>
+</ul>
+<table>
+<tr><th>Octet</th><th>[5,3] non signé</th><th>[5,3] signé</th></tr>
+<tr><td>10010010</td><td>10010,010 = 18,25</td><td>18,25 − 32 = <strong>−13,75</strong></td></tr>
+<tr><td>01010101</td><td>01010,101 = 10,625</td><td>10,625</td></tr>
+<tr><td>10101011</td><td>10101,011 = 21,375</td><td>21,375 − 32 = <strong>−10,625</strong></td></tr>
+</table>
+<p>(En signé, un octet qui commence par 1 vaut « valeur non signée − 32 » car 2⁸ / 2³ = 32.)</p>
+<p>Ex 9 : 9,75 + (−5,25) = 01001110 + 11010110 = (1)00100100 → 00100,100 = <strong>4,5</strong> ✔.</p></details>
+
+<h3>Ex 10 à 13 — Virgule flottante</h3>
+<details class="corr"><summary>Correction Ex 10 — coder en [S,3,4] (biais 3)</summary>
+<table>
+<tr><th>Nombre</th><th>Normalisation</th><th>S</th><th>Exposant</th><th>Mantisse</th><th>Octet</th></tr>
+<tr><td>2,75</td><td>10,11 = 1,011 × 2¹</td><td>0</td><td>1+3 = 4 = 100</td><td>0110</td><td>01000110</td></tr>
+<tr><td>3,25</td><td>11,01 = 1,101 × 2¹</td><td>0</td><td>100</td><td>1010</td><td>01001010</td></tr>
+<tr><td>12,25</td><td>1100,01 = 1,10001 × 2³</td><td>0</td><td>3+3 = 6 = 110</td><td>1000<s>1</s></td><td>01101000 → vaut <strong>12</strong> : perte de précision</td></tr>
+</table></details>
+<details class="corr"><summary>Correction Ex 11 — décoder du [S,3,4]</summary>
+<ul>
+<li>1 101 1001 : négatif ; exposant 5 − 3 = 2 ; mantisse 1,1001 = 1,5625 → −1,5625 × 4 = <strong>−6,25</strong>.</li>
+<li>0 010 0100 : positif ; exposant 2 − 3 = −1 ; mantisse 1,0100 = 1,25 → 1,25 / 2 = <strong>0,625</strong>.</li>
+</ul></details>
+<details class="corr"><summary>Correction Ex 12 et 13 — IEEE 754 simple précision</summary>
+<ul>
+<li>−4,5 = −100,1 = −1,001 × 2² → 1 | 129 = 10000001 | 001000… → <strong>C0 90 00 00</strong>.</li>
+<li>10 = 1010 = 1,01 × 2³ → 0 | 130 = 10000010 | 01000… → <strong>41 20 00 00</strong>.</li>
+<li>−0,15 = −1,0011 0011 0011… × 2⁻³ → 1 | 124 = 01111100 | 00110011001100110011010 (arrondi) → <strong>BE 19 99 9A</strong> (BE199999 si on tronque).</li>
+<li>41480000 = 0 | 10000010 | 1001000… → exposant 3, mantisse 1,1001 = 1,5625 → <strong>12,5</strong>.</li>
+<li>40490000 = 0 | 10000000 | 1001001000… → exposant 1, mantisse 1,5703125 → <strong>3,140625</strong> (une approximation de π).</li>
+</ul></details>
+
+<h2 id="s3">Série 3 — Sur machine</h2>
+<h3>Ex 1 — Le tour de magie binaire</h3>
+<details class="corr"><summary>Correction</summary>
+<p>Entre 0 et 31, 5 bits suffisent → <strong>5 cartes</strong>. La carte k contient tous les nombres dont le bit k vaut 1 ; son premier nombre est 2ᵏ (1, 2, 4, 8, 16). Alice additionne les premiers nombres des cartes citées : 1ère et 5e carte → 1 + 16 = <strong>17</strong>.</p>
+<p>En base 3, de 0 à 26 = 3³ − 1 → 3 chiffres ternaires. Chaque chiffre vaut 0, 1 ou 2 : il faut une carte « chiffre = 1 » et une carte « chiffre = 2 » par position, soit <strong>6 cartes</strong>.</p>
+<pre><code>/* conversion en base 3 (affiche les chiffres à l'envers) */
+int n;
+scanf("%d", &amp;n);
+while (n &gt; 0) {
+    printf("%d", n % 3);
+    n = n / 3;
+}</code></pre></details>
+<h3>Ex 2 — La base Zeck (Fibonacci)</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>F2…F9 = 1, 2, 3, 5, 8, 13, 21, 34.</li>
+<li>11 = 8 + 3 = F6 + F4 → <strong>(10100)Zeck</strong> ; 47 = 34 + 13 = F9 + F7 → <strong>(10100000)Zeck</strong> (méthode gloutonne : on prend le plus grand F ≤ N, on recommence avec le reste).</li>
+<li>(1010001)Zeck = F8 + F6 + F2 = 21 + 8 + 1 = <strong>30</strong> ; (1000010001)Zeck = F11 + F6 + F2 = 89 + 8 + 1 = <strong>98</strong>.</li>
+</ul></details>
+<h3>Ex 3 et 4 — Pièges des float</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Ex 3 : <code>x = 100000000000000</code> (10¹⁴) n'est pas représentable exactement avec 24 bits de mantisse : ligne 5 affiche <strong>100000000376832.000000</strong>. <code>y = x − 1</code> donne <strong>la même valeur</strong> (1 est sous la précision). Donc <code>while (x &gt; 0) x = x − 1;</code> ne fait jamais diminuer x : <strong>boucle infinie</strong>, la ligne 10 n'est jamais atteinte.</li>
+<li>Ex 4 : 0,1 n'a pas d'écriture binaire finie → <code>x</code> vaut ≈ 0,100000001. Après 100 additions, y ≈ 10,0000019 ≠ 10 → <code>y != 10</code> reste vrai → <strong>boucle infinie</strong>. Règle : ne jamais tester l'égalité de deux réels ; utiliser <code>y &lt; 10</code>.</li>
+</ul></details>
+
+<h2 id="s4">Série 4 — Codage des caractères</h2>
+<h3>Ex 1 — Programmes C sur les caractères</h3>
+<details class="corr"><summary>Correction Q1, Q2, Q5</summary>
+<pre><code>char c;
+scanf(" %c", &amp;c);
+printf("Code ASCII de %c : %d\n", c, c);          /* Q1 : un char EST un nombre */
+
+if (c &gt;= '0' &amp;&amp; c &lt;= '9')      printf("chiffre\n");      /* Q2 */
+else if (c &gt;= 'a' &amp;&amp; c &lt;= 'z') printf("minuscule\n");
+else if (c &gt;= 'A' &amp;&amp; c &lt;= 'Z') printf("majuscule\n");
+else                           printf("autre\n");
+
+/* Q5 : minuscules → majuscules */
+char ch[51];
+int i = 0;
+scanf("%50s", ch);
+while (ch[i] != '\0') {
+    if (ch[i] &gt;= 'a' &amp;&amp; ch[i] &lt;= 'z')
+        ch[i] = ch[i] - 32;          /* 'a' = 97, 'A' = 65 */
+    i++;
+}
+printf("%s\n", ch);</code></pre></details>
+<details class="corr"><summary>Correction Q3 — chiffres saisis → entier</summary>
+<pre><code>int n, i, val = 0;
+char c;
+scanf("%d", &amp;n);
+for (i = 1; i &lt;= n; i++) {
+    printf("Donnez le caractère %d : ", i);
+    scanf(" %c", &amp;c);
+    val = val * 10 + (c - '0');      /* '7' - '0' = 55 - 48 = 7 */
+}
+printf("La valeur entière correspondante est %d\n", val);</code></pre>
+<p>7, 0, 2 → 7 → 70 → 702 (schéma de Horner).</p></details>
+<h3>Ex 2 — Décoder de l'UTF-8 à la main</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Version 1 : français. <code>c3 a9</code> = 110<strong>00011</strong> 10<strong>101001</strong> → 00011101001 = U+00E9 = <strong>é</strong> (233) ; <code>e2 80 99</code> = 1110<strong>0010</strong> 10<strong>000000</strong> 10<strong>011001</strong> → U+2019 = <strong>’</strong> (apostrophe typographique, 8217). Le reste est de l'ASCII (1 octet commençant par 0).</li>
+<li>Version 2 : octets <code>d8</code>/<code>d9</code> = 2 octets → U+062F, U+0648… : <strong>arabe</strong>.</li>
+<li>Version 3 : <code>e8 b3 87</code> = 3 octets → U+8CC7 (資) … : <strong>chinois</strong> (traditionnel).</li>
+<li>Version 4 : U+C815 (정) … : <strong>coréen</strong>.</li>
+<li>Version 5 : U+60C5 (情), puis U+30B3 (コ, katakana) … : <strong>japonais</strong>.</li>
+</ul>
+<p>Le programme qui affiche octet par octet avec <code>%c</code> casse les caractères multi-octets : il faut regrouper les octets selon leur en-tête.</p></details>
+<details class="corr"><summary>Algorithme de décodage UTF-8 (fin de l'Ex 2)</summary>
+<pre><code>while (i &lt; taille) {
+    unsigned char o = TabChar[i];
+    int code, nb;
+    if (o &lt; 0x80)      { code = o;        nb = 0; }   /* 0xxxxxxx */
+    else if (o &lt; 0xE0) { code = o &amp; 0x1F; nb = 1; }   /* 110xxxxx : garde 5 bits */
+    else if (o &lt; 0xF0) { code = o &amp; 0x0F; nb = 2; }   /* 1110xxxx : garde 4 bits */
+    else               { code = o &amp; 0x07; nb = 3; }   /* 11110xxx : garde 3 bits */
+    i++;
+    while (nb &gt; 0) {                     /* octets de suite 10xxxxxx */
+        code = code * 64 + (TabChar[i] &amp; 0x3F);    /* décale de 6 bits, ajoute 6 bits */
+        i++; nb--;
+    }
+    printf("%d ", code);
+}</code></pre></details>
+
+<h2 id="s5">Série 5 — Fichiers en C</h2>
+<details class="corr"><summary>Ex 1 et 2 — écrire puis relire</summary>
+<pre><code>FILE *f = fopen("bonjour.txt", "w");
+if (f == NULL) { printf("Erreur\n"); return 1; }
+fprintf(f, "Bonjour !\nPremier TD sur les fichiers en C.\n");
+fclose(f);
+
+f = fopen("bonjour.txt", "r");
+if (f == NULL) { printf("Erreur\n"); return 1; }
+int c;                               /* int, pour pouvoir recevoir EOF */
+while ((c = fgetc(f)) != EOF)
+    putchar(c);
+fclose(f);</code></pre></details>
+<details class="corr"><summary>Ex 3 et 4 — compter caractères et lignes</summary>
+<pre><code>int c, nbCar = 0, nbLignes = 0;
+while ((c = fgetc(f)) != EOF) {
+    nbCar++;                         /* le '\n' compte comme un caractère */
+    if (c == '\n')
+        nbLignes++;
+}
+printf("%d caractères, %d lignes\n", nbCar, nbLignes);</code></pre>
+<p>« Bonjour » suivi d'un retour à la ligne = 8 caractères.</p></details>
+<details class="corr"><summary>Ex 5 — moyenne des notes</summary>
+<pre><code>int note, somme = 0, nb = 0;
+while (fscanf(f, "%d", &amp;note) == 1) {
+    somme += note;
+    nb++;
+}
+if (nb &gt; 0)
+    printf("Moyenne : %.2f\n", (double)somme / nb);   /* 67/5 = 13.40 */</code></pre></details>
+<details class="corr"><summary>Ex 6 — afficher les prénoms</summary>
+<pre><code>char nom[50]; int age; float moy;
+while (fscanf(f, "%49s %d %f", nom, &amp;age, &amp;moy) == 3)
+    printf("%s\n", nom);</code></pre></details>
+<details class="corr"><summary>Ex 7 — fichier binaire avec fwrite / fread</summary>
+<pre><code>int tab[10] = {1,2,3,4,5,6,7,8,9,10}, lu[10], i;
+FILE *f = fopen("donnees.dat", "wb");
+fwrite(tab, sizeof(int), 10, f);
+fclose(f);
+
+f = fopen("donnees.dat", "rb");
+fread(lu, sizeof(int), 10, f);
+fclose(f);
+for (i = 0; i &lt; 10; i++) printf("%d ", lu[i]);</code></pre>
+<p>Le fichier fait 10 × 4 = 40 octets et n'est pas lisible avec un éditeur de texte.</p></details>
+<details class="corr"><summary>Ex 12 — chiffre de César</summary>
+<pre><code>/* décalage d : lettres et chiffres décalés circulairement, le reste inchangé */
+if (c &gt;= 'A' &amp;&amp; c &lt;= 'Z') c = 'A' + (c - 'A' + d) % 26;
+else if (c &gt;= 'a' &amp;&amp; c &lt;= 'z') c = 'a' + (c - 'a' + d) % 26;
+else if (c &gt;= '0' &amp;&amp; c &lt;= '9') c = '0' + (c - '0' + d) % 10;
+/* déchiffrer = décaler de 26 - d (lettres) et 10 - d (chiffres) */</code></pre>
+<p>Pour lire une phrase avec espaces au clavier : <code>fgets(phrase, 200, stdin);</code> (et pas <code>scanf("%s")</code> qui s'arrête au premier espace).</p></details>
+
+<h2 id="cm6">Entraînement CM6 — détection et correction</h2>
+<h3>A. Bits de parité</h3>
+<div class="enonce">Ajouter un bit de parité paire à 1010001, 1111000, 0000001. Le mot 10100011 a été reçu en 10010011 : l'erreur est-elle détectée ?</div>
+<details class="corr"><summary>Correction</summary>
+<p>1010001 (3 uns) → 1010001<strong>1</strong> ; 1111000 (4 uns) → 1111000<strong>0</strong> ; 0000001 (1 un) → 0000001<strong>1</strong>.</p>
+<p>10010011 contient 4 uns (pair) → <strong>non détectée</strong> : deux bits ont changé, la parité est conservée.</p></details>
+
+<h3>B. Distance de Hamming</h3>
+<div class="enonce">Calculer d(1011101, 1001001) et d(1100110, 0110011).</div>
+<details class="corr"><summary>Correction</summary>
+<p>XOR bit à bit puis compter les 1 : 1011101 ⊕ 1001001 = 0010100 → <strong>2</strong> ; 1100110 ⊕ 0110011 = 1010101 → <strong>4</strong>.</p></details>
+
+<h3>C. Formule de Luhn</h3>
+<div class="enonce">Le numéro 7992739871<strong>3</strong> est-il valide ?</div>
+<details class="corr"><summary>Correction</summary>
+<pre><code>Chiffres (droite→gauche)  3  1  7  8  9  3  7  2  9  9  7
+Poids                     1  2  1  2  1  2  1  2  1  2  1
+Produits                  3  2  7 16  9  6  7  4  9 18  7
+Après « −9 si &gt; 9 »        3  2  7  7  9  6  7  4  9  9  7    somme = 70</code></pre>
+<p>70 est un multiple de 10 → <strong>valide</strong>.</p></details>
+
+<h3>D. CRC (exemple du cours, en entier)</h3>
+<div class="enonce">m = 1001101011, G(x) = x³ + 1 = 1001. On ajoute 4 zéros (convention du cours).</div>
+<details class="corr"><summary>Correction</summary>
+<pre><code>10011010110000
+1001             → 00001010110000
+    1001         → 00000011110000
+      1001       → 00000001100000
+       1001      → 00000000101000
+        1001     → 00000000001100
+          1001   → 00000000000101
+reste R = 0101   → on transmet 1001101011 0101</code></pre>
+<p>Le récepteur refait la division : reste nul → pas d'erreur détectée.</p></details>
+
+<h3>E. Code de Hamming 7-4</h3>
+<div class="enonce">1) Coder 1101 et 0110. 2) On reçoit 1010011, puis 0111100. Y a-t-il une erreur ? Laquelle ?</div>
+<details class="corr"><summary>Correction 1)</summary>
+<p>Rappel : positions 7 6 5 4 3 2 1 = D3 D2 D1 C2 D0 C1 C0 ; C2 → {7,6,5,4}, C1 → {7,6,3,2}, C0 → {7,5,3,1}.</p>
+<ul>
+<li>1101 : D3=1 D2=1 D1=0 D0=1 → C2 = parité(1,1,0) = 0 ; C1 = parité(1,1,1) = 1 ; C0 = parité(1,0,1) = 0 → <strong>1100110</strong>.</li>
+<li>0110 : D3=0 D2=1 D1=1 D0=0 → C2 = 0 ; C1 = 1 ; C0 = 1 → <strong>0110011</strong>.</li>
+</ul></details>
+<details class="corr"><summary>Correction 2)</summary>
+<ul>
+<li>1010011 : groupe {7,6,5,4} = 1+0+1+0 pair → 0 ; {7,6,3,2} = 1+0+0+1 pair → 0 ; {7,5,3,1} = 1+1+0+1 impair → 1. Syndrome <strong>001 = 1</strong> → le bit n°1 (C0) est faux → mot corrigé 1010010, message <strong>1010</strong>.</li>
+<li>0111100 : {7,6,5,4} = 0+1+1+1 impair → 1 ; {7,6,3,2} = 0+1+1+0 pair → 0 ; {7,5,3,1} = 0+1+1+0 pair → 0. Syndrome <strong>100 = 4</strong> → bit n°4 (C2) faux → corrigé 0110100, message (positions 7, 6, 5, 3) <strong>0111</strong>.</li>
+</ul></details>
+
+<div class="nav-links"><span><a href="repr_fiche.html">← Fiche Représentation</a></span><span><a href="flashcards_repr.html">Flashcards →</a></span></div>
+</div>
+</body>
+</html>

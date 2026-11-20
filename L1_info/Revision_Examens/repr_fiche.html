@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiche Représentation de l'information — Révision examen</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="exam.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions examens</a><span>Fiche — Représentation de l'information</span></div>
+<div class="page">
+<span class="chip">📘 Fiche de cours</span><span class="chip">Représentation de l'information</span><span class="chip">CM 1 à 6</span>
+<h1>🔢 Représentation de l'information — tout le cours</h1>
+
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul>
+<li><a href="#bases">1. Bases de numération (CM1)</a></li>
+<li><a href="#conv">2. Les 4 méthodes de conversion</a></li>
+<li><a href="#frac">3. Nombres à virgule : conversions</a></li>
+<li><a href="#ops">4. Opérations en binaire et en hexadécimal</a></li>
+<li><a href="#codes">5. Codes : DCB, Gray, ASCII… (CM2)</a></li>
+<li><a href="#nonsigne">6. Entiers non signés</a></li>
+<li><a href="#signe">7. Entiers signés : signe+valeur, C1, C2</a></li>
+<li><a href="#fixe">8. Virgule fixe (CM3)</a></li>
+<li><a href="#flottant">9. Virgule flottante : format [S,3,4] et IEEE 754</a></li>
+<li><a href="#car">10. Codage des caractères : ASCII, ISO-8859, UTF-8 (CM4)</a></li>
+<li><a href="#fichiers">11. Les fichiers en C (CM5)</a></li>
+<li><a href="#erreurs">12. Détection et correction d'erreurs (CM6)</a></li>
+</ul></details></nav>
+
+<div class="box info"><span class="box-title">🔗 Liens</span>
+<a href="repr_exos.html">Exos de TD corrigés</a> · <a href="flashcards_repr.html">Flashcards</a> · <a href="../03_Representation_Information/01_bases_numeration.html">Ton ancienne fiche « bases »</a> · <a href="../Cours_ENT/index.html#repr">PDF du cours (ENT)</a>
+</div>
+
+<h2 id="bases">1. Bases de numération</h2>
+<p>Un <strong>système de numération</strong> = une base <span class="math">B</span> + un ensemble ordonné de <span class="math">B</span> chiffres. Le nombre <span class="math">(x<sub>n−1</sub> … x<sub>1</sub> x<sub>0</sub>)<sub>B</sub></span> vaut :</p>
+<p style="text-align:center"><span class="math">x<sub>n−1</sub>·B<sup>n−1</sup> + … + x<sub>2</sub>·B² + x<sub>1</sub>·B + x<sub>0</sub></span></p>
+<ul><li><span class="math">x<sub>n−1</sub></span> = chiffre de <strong>poids fort</strong> (à gauche) ; <span class="math">x<sub>0</sub></span> = chiffre de <strong>poids faible</strong> (à droite).</li>
+<li>Bases utilisées : 2 (binaire, chiffres 0-1), 8 (octal, 0-7), 10, 16 (hexadécimal, 0-9 puis A=10 … F=15).</li>
+<li>0 et 1 s'écrivent pareil dans toutes les bases. Un chiffre doit être <strong>&lt; B</strong> : <code>(5783)₈</code> n'existe pas (8 n'est pas un chiffre octal) !</li></ul>
+<table>
+<tr><th>10</th><th>2</th><th>8</th><th>16</th><th></th><th>10</th><th>2</th><th>8</th><th>16</th></tr>
+<tr><td>0</td><td>0000</td><td>0</td><td>0</td><td></td><td>8</td><td>1000</td><td>10</td><td>8</td></tr>
+<tr><td>1</td><td>0001</td><td>1</td><td>1</td><td></td><td>9</td><td>1001</td><td>11</td><td>9</td></tr>
+<tr><td>2</td><td>0010</td><td>2</td><td>2</td><td></td><td>10</td><td>1010</td><td>12</td><td>A</td></tr>
+<tr><td>3</td><td>0011</td><td>3</td><td>3</td><td></td><td>11</td><td>1011</td><td>13</td><td>B</td></tr>
+<tr><td>4</td><td>0100</td><td>4</td><td>4</td><td></td><td>12</td><td>1100</td><td>14</td><td>C</td></tr>
+<tr><td>5</td><td>0101</td><td>5</td><td>5</td><td></td><td>13</td><td>1101</td><td>15</td><td>D</td></tr>
+<tr><td>6</td><td>0110</td><td>6</td><td>6</td><td></td><td>14</td><td>1110</td><td>16</td><td>E</td></tr>
+<tr><td>7</td><td>0111</td><td>7</td><td>7</td><td></td><td>15</td><td>1111</td><td>17</td><td>F</td></tr>
+</table>
+<p>Puissances de 2 à connaître : 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096 … 2¹⁶ = 65 536, 2³¹ = 2 147 483 648, 2³² = 4 294 967 296.</p>
+
+<h2 id="conv">2. Les 4 méthodes de conversion</h2>
+<h3>Méthode 1 — calcul de l'expression (base B → base 10)</h3>
+<p>(11101011)₂ = 128 + 64 + 32 + 8 + 2 + 1 = <strong>235</strong>. &nbsp; (A1C)₁₆ = 10·256 + 1·16 + 12 = <strong>2588</strong>.</p>
+<h3>Méthode 2 — divisions successives (base 10 → base B)</h3>
+<p>On divise par B jusqu'à un quotient nul ; on lit les <strong>restes de bas en haut</strong>.</p>
+<pre><code>235 / 2 = 117 reste 1   ↑
+117 / 2 =  58 reste 1   |
+ 58 / 2 =  29 reste 0   |   lire de bas en haut :
+ 29 / 2 =  14 reste 1   |   235 = (11101011)₂
+ 14 / 2 =   7 reste 0   |
+  7 / 2 =   3 reste 1   |
+  3 / 2 =   1 reste 1   |
+  1 / 2 =   0 reste 1   |</code></pre>
+<h3>Méthode 3 — table des puissances de 2 (base 10 → base 2)</h3>
+<p>On retire la plus grande puissance de 2 possible, et on recommence : 235 = 128 + 107 = 128 + 64 + 43 = 128+64+32+11 = 128+64+32+8+2+1 → bits 7,6,5,3,1,0 à 1 → 11101011.</p>
+<h3>Méthode 4 — regroupement de bits (base 2 ↔ 8 ou 16)</h3>
+<ul><li>16 = 2⁴ : <strong>1 chiffre hexa = 4 bits</strong>. On groupe <strong>depuis la droite</strong> par 4.</li>
+<li>8 = 2³ : <strong>1 chiffre octal = 3 bits</strong>. On groupe par 3.</li>
+<li>Hexa → octal : passer par le binaire. (5D9E)₁₆ = 101 110 110 011 110 = (56636)₈.</li></ul>
+<p>(3A9B)₁₆ = 0011 1010 1001 1011 = (11101010011011)₂. &nbsp; (10010111010)₂ = 100 1011 1010 = (4BA)₁₆.</p>
+
+<h2 id="frac">3. Nombres à virgule</h2>
+<ul>
+<li><strong>Base B → 10</strong> : les chiffres après la virgule valent B⁻¹, B⁻², … : (110,11)₂ = 4+2+0,5+0,25 = <strong>6,75</strong> ; (110,11)₈ = 64+8+1/8+1/64 = <strong>72,140625</strong>.</li>
+<li><strong>10 → base 2</strong> : partie entière par divisions ; partie décimale par <strong>multiplications successives par 2</strong> : on garde la partie entière obtenue (0 ou 1) et on continue avec la partie décimale.</li>
+</ul>
+<pre><code>0,34375 × 2 = 0,6875  → 0
+0,6875  × 2 = 1,375   → 1
+0,375   × 2 = 0,75    → 0      lire de HAUT en bas :
+0,75    × 2 = 1,5     → 1      0,34375 = (0,01011)₂
+0,5     × 2 = 1,0     → 1      donc 64,34375 = (1000000,01011)₂</code></pre>
+<div class="box warn"><span class="box-title">⚠️ Développement infini</span>
+0,1 ; 0,15 ; 0,3 ; 0,45 n'ont <strong>pas</strong> d'écriture binaire finie : (0,3)₁₀ = (0,0100110011…)₂ — le motif 1001 se répète. C'est la cause de la catastrophe du missile Patriot (TD2) et des boucles infinies avec des <code>float</code>.</div>
+<p>10 → 16 : même méthode en multipliant par 16 : 0,25 × 16 = 4 → (35,25)₁₀ = (23,4)₁₆.</p>
+
+<h2 id="ops">4. Opérations</h2>
+<ul>
+<li><strong>Addition binaire</strong> : 0+0=0, 0+1=1, 1+1=10 (0, retenue 1), 1+1+1=11 (1, retenue 1).</li>
+<li><strong>Soustraction</strong> : 0−1 = 1 avec emprunt de 1 sur le rang suivant.</li>
+<li><strong>Hexa</strong> : on additionne en décimal chiffre par chiffre ; si ≥ 16 on retire 16 et on retient 1. Ex. F + 8 = 23 = 16 + 7 → 7 retenue 1.</li>
+<li><strong>Multiplication binaire</strong> : comme à la main, avec des décalages (multiplier par 2 = ajouter un 0 à droite).</li>
+<li>Toujours <strong>vérifier en décimal</strong>.</li>
+</ul>
+
+<h2 id="codes">5. Codes de chiffres et de caractères (CM2)</h2>
+<table>
+<tr><th>Code</th><th>Principe</th><th>Exemple</th></tr>
+<tr><td><strong>DCB</strong> (décimal codé binaire)</td><td>chaque chiffre décimal sur un <strong>quartet</strong> (4 bits), code pondéré 8-4-2-1. Facile à convertir, mais l'addition binaire classique ne marche pas.</td><td>59 → 0101 1001 (≠ binaire 111011)</td></tr>
+<tr><td><strong>Gray</strong> (binaire réfléchi)</td><td>un seul bit change d'une valeur à la suivante (même entre 15 et 0 : code <strong>circulaire</strong>). Formule : g = b XOR (b décalé de 1).</td><td>0000, 0001, 0011, 0010, 0110, 0111, 0101, 0100, 1100…</td></tr>
+<tr><td><strong>ATI / Baudot</strong></td><td>5 bits (32 codes) + caractères spéciaux « lettre » / « chiffre » qui changent de colonne → ~60 caractères.</td><td>10000 = 'E' (lettres) ou '3' (chiffres)</td></tr>
+<tr><td><strong>EBCDIC</strong></td><td>8 bits, IBM, lecture de table.</td><td>'X' = 11100111</td></tr>
+<tr><td><strong>ASCII</strong></td><td>7 bits = 128 caractères.</td><td>'B' = 1000010 = 66</td></tr>
+</table>
+
+<h2 id="nonsigne">6. Entiers non signés</h2>
+<ul>
+<li>Écriture binaire complétée à gauche par des 0. 98 sur un octet = 01100010.</li>
+<li>Sur n bits : de <strong>0 à 2ⁿ − 1</strong>. 1 octet : 0 → 255 ; 2 octets : 0 → 65 535 ; 4 octets : 0 → 4 294 967 295.</li>
+<li><strong>Dépassement de capacité</strong> : le résultat ne tient plus sur n bits, la retenue sortante est perdue. 200 + 100 = 300 = 1 0010 1100 → sur un octet il reste 00101100 = <strong>44</strong> (faux). C'est l'erreur d'Ariane 5 (accélération 300 codée sur 8 bits).</li>
+</ul>
+
+<h2 id="signe">7. Entiers signés</h2>
+<h3>Signe + valeur absolue</h3>
+<p>Le bit de poids fort = signe (0 → +, 1 → −), les autres = valeur absolue. Sur un octet : −9 = 1000 1001. Intervalle <span class="math">[−(2ⁿ⁻¹−1), +(2ⁿ⁻¹−1)]</span> = [−127, 127]. Défauts : <strong>deux zéros</strong> (00000000 et 10000000) et l'addition ne marche pas directement (5 + (−9) donne n'importe quoi).</p>
+<h3>Complément à 1 (C1)</h3>
+<p>Pour −X, on inverse tous les bits de X. −9 = NON(00001001) = 11110110. Encore deux zéros.</p>
+<h3>⭐ Complément à 2 (C2) — la représentation utilisée par les ordinateurs</h3>
+<div class="box tip"><span class="box-title">Méthode pour coder −X sur n bits</span>
+<ol><li>écrire X en binaire sur n bits ;</li><li>inverser tous les bits (C1) ;</li><li>ajouter 1.</li></ol>
+Astuce rapide : en partant de la droite, on recopie les bits <strong>jusqu'au premier 1 inclus</strong>, puis on inverse tous les autres.</div>
+<pre><code>−45 :  45 = 00101101  → C1 : 11010010 → +1 : 11010011
+−64 :  64 = 01000000  → C1 : 10111111 → +1 : 11000000
+ −1 :   1 = 00000001  → C1 : 11111110 → +1 : 11111111</code></pre>
+<ul>
+<li><strong>Décoder</strong> un octet signé : s'il commence par 0 → positif, on lit normalement. S'il commence par 1 → négatif : on refait C2 pour obtenir la valeur absolue. 11011100 → C1 00100011 → +1 00100100 = 36 → <strong>−36</strong>. (Ou : valeur non signée − 256 = 220 − 256 = −36.)</li>
+<li>Intervalle sur n bits : <strong>[−2ⁿ⁻¹, 2ⁿ⁻¹ − 1]</strong> → 1 octet : [−128, 127]. Un seul zéro.</li>
+<li>La <strong>soustraction devient une addition</strong> : 5 − 9 = 5 + (−9). On ignore la retenue qui sort.</li>
+<li><strong>Dépassement</strong> : seulement quand on additionne deux nombres de <strong>même signe</strong> et que le résultat a le <strong>signe opposé</strong>. 100 + 120 = 220 &gt; 127 → 11011100 = −36 (faux). −120 + (−45) = −165 &lt; −128 → 01011011 = 91 (faux).</li>
+</ul>
+
+<h2 id="fixe">8. Virgule fixe</h2>
+<p>La virgule est à une place fixée une fois pour toutes. Format <strong>[5,3]</strong> sur un octet : 5 bits avant la virgule, 3 après.</p>
+<ul>
+<li>11000101 en [5,3] non signé = (11000,101)₂ = 16+8+0,5+0,125 = <strong>24,625</strong>.</li>
+<li>Pas (écart entre deux valeurs) : 2⁻³ = 0,125. Non signé : de 0 à 31,875. Signé (C2) : de −16 (10000000) à 15,875 (01111111).</li>
+<li>Signé : on code la valeur comme un entier C2 sur 8 bits puis on divise par 2³ = 8. Ex. 10010010 → 146 − 256 = −110 → −110/8 = <strong>−13,75</strong>.</li>
+<li>Un nombre qui demande plus de 3 bits après la virgule (3,5625 = 11,1001) n'est pas représentable en [5,3] → il faut un autre format, par ex. [4,4].</li>
+</ul>
+
+<h2 id="flottant">9. Virgule flottante</h2>
+<p>On écrit N = M × B<sup>E</sup> (M mantisse, E exposant). 27,9803 = 0,279803 × 10².</p>
+<h3>Norme IEEE 754 (principe)</h3>
+<ol>
+<li><strong>Signe</strong> S : 0 pour +, 1 pour −.</li>
+<li>On écrit |N| en binaire puis on le <strong>normalise</strong> : |N| = 1,xxxx × 2<sup>E</sup>. Le « 1, » n'est <strong>pas stocké</strong> (bit caché) : on ne garde que xxxx (la mantisse normalisée).</li>
+<li>L'exposant est stocké <strong>biaisé</strong> (« par excès ») : on écrit E + biais, avec biais = 2<sup>k−1</sup> − 1 si l'exposant a k bits. L'exposant codé 0…0 est réservé (au zéro).</li>
+</ol>
+<table>
+<tr><th>Format</th><th>signe</th><th>exposant</th><th>biais</th><th>mantisse</th></tr>
+<tr><td>[S,3,4] sur 1 octet (TD)</td><td>1 bit</td><td>3 bits</td><td>2² − 1 = <strong>3</strong></td><td>4 bits</td></tr>
+<tr><td>IEEE 754 simple précision (32 bits, <code>float</code>)</td><td>1 bit</td><td>8 bits</td><td>2⁷ − 1 = <strong>127</strong></td><td>23 bits</td></tr>
+</table>
+<h3>Exemple de codage [S,3,4] : 6,25</h3>
+<pre><code>6,25 = (110,01)₂ = (1,1001)₂ × 2²
+S = 0 ; exposant = 2 + 3 = 5 = 101 ; mantisse = 1001
+→ 0 101 1001 = 01011001 = (59)₁₆</code></pre>
+<h3>Exemple de codage IEEE 754 : −123,5</h3>
+<pre><code>123,5 = (1111011,1)₂ = (1,1110111)₂ × 2⁶
+S = 1 ; exposant = 6 + 127 = 133 = 10000101
+mantisse = 1110111 complétée à 23 bits : 11101110000000000000000
+→ 1 10000101 11101110000000000000000 = C2 F7 00 00</code></pre>
+<h3>Exemple de décodage IEEE 754 : C1 18 00 00</h3>
+<pre><code>1100 0001 0001 1000 0000 ... → 1 | 10000010 | 00110000000000000000000
+signe 1 → négatif ; exposant 130 − 127 = 3 ; mantisse (1,0011)₂ = 1,1875
+→ −1,1875 × 2³ = −9,5</code></pre>
+<div class="box warn"><span class="box-title">⚠️ Précision limitée</span>
+Avec 23 bits de mantisse, un <code>float</code> a ≈ 7 chiffres significatifs. 10¹⁴ est stocké 100000000376832 et <code>x − 1</code> donne la même valeur : « 1 » est trop petit pour modifier x (TD3 machine). Et 0,1 n'est pas exact, donc <code>y</code> n'atteint jamais exactement 10 en ajoutant 0,1.</div>
+
+<h2 id="car">10. Codage des caractères (CM4)</h2>
+<ul>
+<li><strong>Baudot</strong> (1874) : 5 bits, deux alphabets (codes 11011 et 11111 pour changer d'alphabet) → ~60 caractères. Utilisé par le Télex.</li>
+<li><strong>ASCII</strong> (1963, ISO 646) : 7 bits = <strong>128 caractères</strong> : lettres sans accents, chiffres, ponctuation. Les 32 premiers = codes de contrôle (CR, LF, tabulation…). Un 8e bit = bit de parité ou 0. À connaître : <code>'0'</code> = 48 (0x30), <code>'A'</code> = 65 (0x41), <code>'a'</code> = 97 (0x61), espace = 32 (0x20). Minuscule = majuscule + 32.</li>
+<li><strong>ISO-8859</strong> (fin des années 80) : extensions sur 8 bits (accents, grec, cyrillique…).</li>
+<li><strong>Unicode</strong> (années 90) : un numéro (« point de code ») pour chaque caractère de tous les alphabets. <strong>UTF-8</strong> est une façon de stocker ces numéros, la plus utilisée depuis 2007.</li>
+</ul>
+<h3>⭐ Règle UTF-8 (longueur variable)</h3>
+<table>
+<tr><th>Octets</th><th>1er octet</th><th>octets suivants</th><th>bits utiles</th></tr>
+<tr><td>1</td><td><code>0xxxxxxx</code></td><td>—</td><td>7 (= ASCII)</td></tr>
+<tr><td>2</td><td><code>110xxxxx</code></td><td><code>10xxxxxx</code></td><td>11</td></tr>
+<tr><td>3</td><td><code>1110xxxx</code></td><td><code>10xxxxxx 10xxxxxx</code></td><td>16</td></tr>
+<tr><td>4</td><td><code>11110xxx</code></td><td><code>10xxxxxx</code> ×3</td><td>21</td></tr>
+</table>
+<p><strong>Décoder</strong> : on enlève les bits d'en-tête (<code>110</code>, <code>10</code>…) et on colle les x.</p>
+<pre><code>C3 A9 = 110 00011  10 101001 → 00011 101001 = 000 1110 1001 = 0xE9 = 233 = 'é'
+E2 80 99 = 1110 0010  10 000000  10 011001 → 0010 000000 011001 = 0x2019 = '’'</code></pre>
+<p>Si on lit les octets UTF-8 de « é » comme de l'ISO-8859-1, on voit <code>Ã©</code> : c'est le bug d'affichage classique des accents.</p>
+
+<h2 id="fichiers">11. Les fichiers en C (CM5)</h2>
+<p>La mémoire (RAM) est perdue à la fin du programme → on sauvegarde dans des fichiers. <strong>Fichier texte</strong> = caractères lisibles ; <strong>fichier binaire</strong> = octets bruts (pas lisibles directement).</p>
+<pre><code>#include &lt;stdio.h&gt;
+FILE *f;
+f = fopen("notes.txt", "r");          /* 1. ouvrir */
+if (f == NULL) {                       /*    TOUJOURS vérifier */
+    printf("Erreur d'ouverture.\n");
+    return 1;
+}
+/* 2. lire / écrire */
+fclose(f);                             /* 3. fermer */</code></pre>
+<table>
+<tr><th>Mode</th><th>Signification</th></tr>
+<tr><td><code>"r"</code></td><td>lecture (le fichier doit exister)</td></tr>
+<tr><td><code>"w"</code></td><td>écriture : <strong>efface</strong> le contenu s'il existe, crée sinon</td></tr>
+<tr><td><code>"a"</code></td><td>ajout à la fin (crée si besoin)</td></tr>
+<tr><td><code>"r+" "w+" "a+"</code></td><td>lecture et écriture / lecture et écriture (recrée) / lecture et ajout</td></tr>
+<tr><td><code>"rb" "wb"</code></td><td>idem en binaire</td></tr>
+</table>
+<table>
+<tr><th>Fonction</th><th>Rôle</th></tr>
+<tr><td><code>fprintf(f, "%d\n", x)</code></td><td>écrire formaté (comme printf)</td></tr>
+<tr><td><code>fputc('A', f)</code> / <code>fputs("txt\n", f)</code></td><td>écrire un caractère / une chaîne (fputs n'ajoute pas de \n)</td></tr>
+<tr><td><code>fscanf(f, "%d", &amp;x)</code></td><td>lire formaté ; renvoie le <strong>nombre de valeurs lues</strong> → <code>while (fscanf(f,"%d",&amp;x) == 1)</code></td></tr>
+<tr><td><code>c = fgetc(f)</code></td><td>lire un caractère ; renvoie <code>EOF</code> à la fin → stocker dans un <strong>int</strong> (pas char) car EOF n'est pas un caractère</td></tr>
+<tr><td><code>fgets(ligne, 100, f)</code></td><td>lire une ligne (au plus 99 caractères + '\0')</td></tr>
+<tr><td><code>ftell / rewind / fseek(f, dep, SEEK_SET|SEEK_CUR|SEEK_END)</code></td><td>position du curseur / retour au début / déplacement</td></tr>
+<tr><td><code>fwrite(tab, sizeof(int), 5, f)</code> / <code>fread(&amp;x, sizeof(int), 1, f)</code></td><td>écrire / lire des octets bruts (fichiers binaires) ; renvoient le nombre d'éléments traités</td></tr>
+</table>
+<pre><code>/* Lire un fichier caractère par caractère */
+int c;
+while ((c = fgetc(f)) != EOF) {
+    putchar(c);
+}</code></pre>
+
+<h2 id="erreurs">12. Détection et correction d'erreurs (CM6)</h2>
+<p>Pendant une transmission, un bit peut changer (bruit) : 'A' = 01000001 devient 01000101 = 'E'. Idée clé : la <strong>redondance</strong> (envoyer plus de bits que le message).</p>
+<ul><li><strong>Détecter</strong> = savoir qu'il y a une erreur ; <strong>corriger</strong> = savoir quel bit est faux et le réparer.</li>
+<li><strong>Rendement</strong> = bits du message / bits transmis. Doubler le message : rendement 50 % (mauvais).</li></ul>
+<h3>Distance de Hamming</h3>
+<p>Nombre de bits qui diffèrent entre deux mots : d(1011101, 1001001) = 2. Si les mots du code sont à distance ≥ 2 les uns des autres, une erreur sur 1 bit donne un mot inconnu → détectée.</p>
+<h3>Bit de parité</h3>
+<ul><li>Parité <strong>paire</strong> : on ajoute un bit pour que le nombre total de 1 soit pair. 1010001 (3 uns) → 1010001<strong>1</strong>. (Ce bit = XOR de tous les bits.)</li>
+<li>Détecte un nombre <strong>impair</strong> d'erreurs ; deux erreurs passent inaperçues. Ne corrige pas.</li></ul>
+<h3>Parité bidimensionnelle</h3>
+<p>On range les bits en tableau, bit de parité par ligne <strong>et</strong> par colonne. Une erreur → une ligne et une colonne fausses → leur <strong>croisement</strong> localise le bit → on peut le corriger.</p>
+<h3>Somme de contrôle (checksum) et formule de Luhn</h3>
+<p>On envoie aussi une valeur calculée à partir des données (ex. somme 12+25+17+8 = 62). Utilisé par ISBN, IMEI, cartes bancaires…</p>
+<p><strong>Luhn</strong> (modulo 10) : de droite à gauche, poids 1, 2, 1, 2… ; on multiplie ; si un produit dépasse 9 on retire 9 ; on additionne ; valide si la somme est un multiple de 10.</p>
+<pre><code>Code      9  7  2  4  8  7  0  8  6
+Poids     1  2  1  2  1  2  1  2  1      (en partant de la droite)
+Produits  9 14  2  8  8 14  0 16  6
+Chiffres  9  5  2  8  8  5  0  7  6     somme = 50 → multiple de 10 → valide</code></pre>
+<h3>CRC (contrôle de redondance cyclique)</h3>
+<ul><li>Le message est vu comme un polynôme : 1101 → x³ + x² + 1. Émetteur et récepteur se mettent d'accord sur un <strong>polynôme générateur G</strong> (ex. x³+1 = 1001 ; CRC-32 pour Ethernet, ZIP…).</li>
+<li>On ajoute des 0 au message, on fait la <strong>division polynomiale avec des XOR</strong>, on envoie message + <strong>reste</strong>. Le récepteur divise à son tour : reste nul ⇒ pas d'erreur détectée.</li>
+<li>Exemple du cours : m = 1001101011, G = 1001, le cours ajoute 4 zéros et trouve R = 0101 → on transmet 1001101011 0101.</li></ul>
+<pre><code>Division par XOR : on aligne G sous le premier 1, on fait XOR, on recommence.
+1001101011 0000
+1001
+----
+0000101011 0000
+    1001
+    ----
+0000001111 0000   ... (on continue jusqu'au bout ; ce qui reste à droite = R)</code></pre>
+<div class="box info"><span class="box-title">ℹ️ Nombre de zéros</span>
+La convention habituelle est d'ajouter <strong>autant de zéros que le degré de G</strong> (3 ici, reste sur 3 bits = 110). Le cours en ajoute 4 et obtient 0101 ; les deux fonctionnent pour la vérification. En examen, applique la convention de ton enseignant.</div>
+<h3>⭐ Code de Hamming 7-4 (détecte ET corrige 1 erreur)</h3>
+<p>Mot de 7 bits = 4 bits de message D + 3 bits de contrôle C placés aux positions <strong>puissances de 2</strong> (1, 2, 4) :</p>
+<table>
+<tr><th>position</th><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td></tr>
+<tr><th>bit</th><td>D3</td><td>D2</td><td>D1</td><td>C2</td><td>D0</td><td>C1</td><td>C0</td></tr>
+</table>
+<ul><li><strong>C2</strong> rend pair le groupe des positions <strong>7, 6, 5, 4</strong>.</li>
+<li><strong>C1</strong> rend pair le groupe <strong>7, 6, 3, 2</strong>.</li>
+<li><strong>C0</strong> rend pair le groupe <strong>7, 5, 3, 1</strong>.</li></ul>
+<p>(Chaque position est contrôlée par les C dont le numéro apparaît dans son écriture binaire : 7 = 111 → C2, C1, C0 ; 5 = 101 → C2, C0.)</p>
+<pre><code>Coder 1010 : D3=1 D2=0 D1=1 D0=0
+C2 = parité(1,0,1) = 0   C1 = parité(1,0,0) = 1   C0 = parité(1,1,0) = 0
+→ mot de Hamming : 1 0 1 0 0 1 0 = 1010010
+
+Recevoir 0010010 : on recalcule les 3 groupes
+groupe 7,6,5,4 : 0+0+1+0 impair → erreur (1)
+groupe 7,6,3,2 : 0+0+0+1 impair → erreur (1)
+groupe 7,5,3,1 : 0+1+0+0 impair → erreur (1)
+syndrome C2C1C0 = 111 = 7 → le bit n°7 est faux → on corrige : 1010010</code></pre>
+<p>Rendements : 7-4 → 57 % ; 15-11 → 73 % ; 31-26 → 83 %. Longueur totale 2ⁿ − 1 avec n bits de contrôle.</p>
+
+<div class="nav-links"><span><a href="index.html">← Révisions examens</a></span><span><a href="repr_exos.html">Exos corrigés →</a></span></div>
+</div>
+</body>
+</html>

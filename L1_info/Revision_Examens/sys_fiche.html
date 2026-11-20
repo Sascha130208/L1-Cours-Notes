@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiche Systèmes d'exploitation — Révision examen</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="exam.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions examens</a><span>Fiche — Systèmes d'exploitation</span></div>
+<div class="page">
+<span class="chip">📘 Fiche de cours</span><span class="chip">Systèmes d'exploitation</span><span class="chip">4 cours + TD1 à TD5</span>
+<h1>🐧 Systèmes d'exploitation — tout le cours</h1>
+
+<nav class="toc"><details><summary>📑 Sommaire de cette page</summary><ul>
+<li><a href="#arbo">1. Arborescence et chemins</a></li>
+<li><a href="#cmd">2. Commandes de base sur les fichiers</a></li>
+<li><a href="#redir">3. Redirections &gt; et &gt;&gt;</a></li>
+<li><a href="#texte">4. Traiter du texte : cut, paste, sort, uniq, wc, head, tail, tr, tee</a></li>
+<li><a href="#pipe">5. Le tube | et la méthode de composition</a></li>
+<li><a href="#jokers">6. Les jokers du shell : * ? []</a></li>
+<li><a href="#regex">7. Expressions régulières</a></li>
+<li><a href="#grep">8. grep</a></li>
+<li><a href="#sed">9. sed</a></li>
+<li><a href="#awk">10. awk</a></li>
+<li><a href="#droits">11. Droits et chmod</a></li>
+<li><a href="#scripts">12. Scripts Bash, variables, guillemets, paramètres</a></li>
+<li><a href="#pieges">13. Pièges et erreurs à diagnostiquer</a></li>
+</ul></details></nav>
+
+<div class="box info"><span class="box-title">🔗 Liens</span>
+<a href="sys_exos.html">TD1 à TD5 corrigés</a> · <a href="flashcards_sys.html">Flashcards</a> · <a href="../01_Unix_Linux/01_navigation_systeme_fichiers.html">Tes anciennes fiches Unix</a> · <a href="../Cours_ENT/index.html#sys">Cours et TD bruts (ENT)</a>
+</div>
+
+<p>Fichier d'exemple utilisé partout dans le cours (<code>etudiants.txt</code>, format <code>prenom:nom:formation:note</code>) :</p>
+<pre><code>Alice:Martin:L1:14
+Bob:Dupont:L1:11
+Charlie:Durand:L2:16
+David:Petit:L1:9
+Emma:Bernard:L2:13</code></pre>
+
+<h2 id="arbo">1. Arborescence et chemins</h2>
+<ul>
+<li>Tout part de la <strong>racine</strong> <code>/</code>. Répertoires importants : <code>/home</code> (utilisateurs), <code>/etc</code> (configuration), <code>/tmp</code> (temporaires), <code>/usr</code> (programmes), <code>/var</code> (données variables), <code>/dev</code> (périphériques), <code>/bin</code>.</li>
+<li><strong>Répertoire personnel</strong> : <code>/home/alice</code>, noté <code>~</code>.</li>
+<li><strong>Répertoire courant</strong> : où l'on se trouve (<code>pwd</code>). <code>.</code> = le courant, <code>..</code> = le parent.</li>
+<li><strong>Chemin absolu</strong> : commence par <code>/</code>, désigne toujours le même fichier. <strong>Chemin relatif</strong> : interprété depuis le répertoire courant.</li>
+<li>Fichiers <strong>cachés</strong> : nom qui commence par <code>.</code> (<code>.bashrc</code>) ; visibles avec <code>ls -a</code>.</li>
+<li>Linux ne se fie pas à l'extension : <code>file notes.txt</code> analyse le <strong>contenu</strong>. Sous Unix « tout est fichier » (données, programmes, périphériques…).</li>
+</ul>
+<pre><code>Depuis /home/alice/cours/systeme, pour désigner /home/alice/images/logo.png :
+../../images/logo.png      (relatif : on remonte 2 fois)
+/home/alice/images/logo.png  (absolu)
+~/images/logo.png            (absolu via ~)</code></pre>
+
+<h2 id="cmd">2. Commandes de base</h2>
+<table>
+<tr><th>Commande</th><th>Rôle</th><th>À savoir</th></tr>
+<tr><td><code>pwd</code></td><td>Print Working Directory</td><td></td></tr>
+<tr><td><code>ls</code>, <code>ls -l</code>, <code>ls -a</code></td><td>lister</td><td><code>-l</code> : 1er caractère <code>d</code> = répertoire, <code>-</code> = fichier ; <code>ls toto</code> → erreur si absent</td></tr>
+<tr><td><code>cd rep</code>, <code>cd ..</code>, <code>cd</code>, <code>cd ~</code></td><td>changer de répertoire</td><td><code>cd</code> seul → retour au home ; <code>cd .</code> ne fait rien</td></tr>
+<tr><td><code>mkdir a b c</code></td><td>créer des répertoires</td><td>plusieurs arguments possibles</td></tr>
+<tr><td><code>touch f</code></td><td>met à jour les dates ; crée un fichier vide s'il n'existe pas</td><td></td></tr>
+<tr><td><code>cat f1 f2</code></td><td>affiche (concatène) des fichiers</td><td></td></tr>
+<tr><td><code>less f</code></td><td>lecture page par page</td><td><code>/mot</code> chercher, <code>n</code> suivant, <code>q</code> quitter</td></tr>
+<tr><td><code>head -n 3 f</code> / <code>tail -n 5 f</code></td><td>premières / dernières lignes</td><td>10 par défaut</td></tr>
+<tr><td><code>wc -l / -w / -c f</code></td><td>compter lignes / mots / octets</td><td></td></tr>
+<tr><td><code>cp src dest</code></td><td>copier</td><td>la source reste ; <code>cp f rep/</code> copie dans rep</td></tr>
+<tr><td><code>mv src dest</code></td><td>déplacer <strong>ou</strong> renommer</td><td>la source disparaît</td></tr>
+<tr><td><code>rm f</code></td><td>supprimer</td><td><strong>pas de corbeille</strong></td></tr>
+<tr><td><code>rmdir rep</code></td><td>supprimer un répertoire</td><td>seulement s'il est <strong>vide</strong></td></tr>
+<tr><td><code>nano f</code></td><td>éditer</td><td>Ctrl+O enregistrer, Ctrl+X quitter</td></tr>
+<tr><td><code>man cmd</code> / <code>apropos mot</code></td><td>manuel / chercher une commande</td><td></td></tr>
+<tr><td><code>file f</code></td><td>type réel d'un fichier</td><td></td></tr>
+</table>
+
+<h2 id="redir">3. Redirections</h2>
+<table>
+<tr><th>Syntaxe</th><th>Effet</th></tr>
+<tr><td><code>cmd &gt; f</code></td><td>la sortie va dans f ; <strong>remplace</strong> son contenu (crée f si besoin)</td></tr>
+<tr><td><code>cmd &gt;&gt; f</code></td><td><strong>ajoute</strong> à la fin de f</td></tr>
+<tr><td><code>cmd &lt; f</code></td><td>f devient l'entrée de cmd (<code>wc -l &lt; f</code> affiche juste le nombre, sans le nom du fichier)</td></tr>
+</table>
+<pre><code>$ echo Bonjour &gt; message.txt     # message.txt : Bonjour
+$ echo Alice &gt;&gt; message.txt      # Bonjour / Alice
+$ echo Charlie &gt; message.txt    # Charlie   (tout le reste est écrasé !)</code></pre>
+
+<h2 id="texte">4. Traiter du texte</h2>
+<table>
+<tr><th>Commande</th><th>Rôle</th><th>Exemple</th></tr>
+<tr><td><code>cut -d ':' -f 2</code></td><td>extraire le champ 2 (délimiteur <code>:</code>)</td><td><code>-f 1,4</code> champs 1 et 4 ; <code>-f 2-4</code> plage ; <code>-c 1-3</code> caractères 1 à 3</td></tr>
+<tr><td><code>paste -d ':' f1 f2</code></td><td>coller les lignes côte à côte</td><td>séparateur par défaut : tabulation. « Inverse » de cut</td></tr>
+<tr><td><code>sort</code></td><td>trier les lignes (ordre <strong>alphabétique</strong> par défaut)</td><td><code>-n</code> numérique, <code>-r</code> inverse, <code>-t ':' -k 4,4</code> trier sur le champ 4</td></tr>
+<tr><td><code>uniq</code></td><td>supprime les lignes identiques <strong>consécutives</strong></td><td><code>-c</code> compte les occurrences → <strong>toujours trier avant</strong></td></tr>
+<tr><td><code>wc -l</code></td><td>compter les lignes</td><td></td></tr>
+<tr><td><code>head / tail -n k</code></td><td>garder les k premières / dernières lignes</td><td>à placer <strong>après</strong> le tri</td></tr>
+<tr><td><code>tr '[:upper:]' '[:lower:]'</code></td><td>transformer des caractères</td><td><code>tr ':' '\n'</code> remplace : par des retours à la ligne</td></tr>
+<tr><td><code>tee f</code></td><td>affiche <strong>et</strong> enregistre dans f</td><td><code>tee -a</code> ajoute au lieu d'écraser</td></tr>
+</table>
+<div class="box warn"><span class="box-title">⚠️ sort ne modifie pas le fichier</span>
+<code>sort f</code> affiche le résultat trié ; f est inchangé. Pour garder le tri : <code>sort f &gt; f_trie.txt</code> (et surtout pas <code>sort f &gt; f</code> qui vide f avant de le lire !).</div>
+<p>Tri alphabétique vs numérique : <code>sort</code> sur 2, 11, 8, 100, 20 donne 100, 11, 2, 20, 8 (comparaison caractère par caractère) ; <code>sort -n</code> donne 2, 8, 11, 20, 100.</p>
+
+<h2 id="pipe">5. Le tube <code>|</code> et la méthode de composition</h2>
+<p><code>cmd1 | cmd2</code> : la <strong>sortie</strong> de cmd1 devient l'<strong>entrée</strong> de cmd2, sans fichier intermédiaire. Philosophie Unix : des outils simples qu'on combine.</p>
+<pre><code>cut -d ':' -f 3 etudiants.txt | sort | uniq -c | sort -nr
+#   extraire        trier  regrouper/compter  classer par effectif décroissant
+#   L1 L1 L2 L1 L2 → L1 L1 L1 L2 L2 →  3 L1 / 2 L2  →  3 L1 / 2 L2</code></pre>
+<div class="box tip"><span class="box-title">⭐ Méthode (TD2)</span>
+<ol><li>Décompose avec des verbes : <strong>sélectionner → extraire → normaliser → trier → compter → classer → limiter → conserver</strong>.</li>
+<li>Pour chaque tube, dis ce que la commande de gauche <strong>produit</strong> et ce que celle de droite <strong>reçoit</strong>.</li>
+<li>Construis la chaîne étape par étape en exécutant à chaque fois.</li></ol></div>
+<h3>Règles d'or de l'ordre des commandes</h3>
+<ul>
+<li><code>sort</code> <strong>avant</strong> <code>uniq</code> (uniq ne voit que les doublons consécutifs).</li>
+<li><code>head</code> <strong>après</strong> le tri (sinon on garde les 3 premières lignes du fichier, pas les 3 meilleures).</li>
+<li>Ne pas <strong>extraire trop tôt</strong> une information encore utile : pour la ligne complète du meilleur, <code>sort -t ':' -k 4,4 -nr etudiants.txt | head -n 1</code> et pas <code>cut … | sort | head</code> (qui ne donne que « 16 »).</li>
+<li><code>tee</code> se place à l'endroit dont on veut garder le flux : <code>… | sort | tee noms.txt | wc -l</code> enregistre les noms triés, et affiche seulement leur nombre.</li>
+<li>Éviter les tubes inutiles : <code>sort f</code> plutôt que <code>cat f | sort</code>.</li>
+<li><code>cmd &gt; f | wc -l</code> est faux : la sortie part dans f, wc ne reçoit rien.</li>
+</ul>
+
+<h2 id="jokers">6. Les jokers du shell (globbing)</h2>
+<table>
+<tr><th>Joker</th><th>Signification</th><th>Exemple</th></tr>
+<tr><td><code>*</code></td><td>0, 1 ou plusieurs caractères</td><td><code>*.txt</code></td></tr>
+<tr><td><code>?</code></td><td>exactement 1 caractère</td><td><code>image?.jpg</code> → image1.jpg, image2.jpg mais <strong>pas</strong> image10.jpg</td></tr>
+<tr><td><code>[abc]</code>, <code>[1-3]</code></td><td>1 caractère parmi un ensemble / intervalle</td><td><code>*.[ch]</code> → fichiers .c et .h</td></tr>
+<tr><td><code>[!abc]</code></td><td>1 caractère <strong>sauf</strong> a, b, c</td><td><code>image[!0].jpg</code></td></tr>
+</table>
+<ul>
+<li>C'est le <strong>shell</strong> qui développe le motif <strong>avant</strong> de lancer la commande : <code>ls *.txt</code> devient <code>ls cours1.txt cours2.txt notes.txt</code>. Vérifier avec <code>echo *.txt</code>.</li>
+<li><code>*</code> ne traverse pas <code>/</code> : <code>cours/*.txt</code> ne trouve pas <code>cours/systeme/notes.txt</code> ; <code>*/*/*.txt</code> = exactement deux niveaux plus bas.</li>
+<li><code>*</code> ne sélectionne pas les fichiers cachés : il faut <code>.*.txt</code>.</li>
+<li>Aucune correspondance → Bash transmet le motif tel quel (<code>ls *.pdf</code> → « cannot access '*.pdf' »).</li>
+<li>Protéger un joker : <code>"*.txt"</code> ou <code>\*.txt</code> → pas de développement.</li>
+<li>Avant un <code>rm *.txt</code> : <code>pwd</code> puis <code>echo *.txt</code>. <code>rm -- *.txt</code> : <code>--</code> = fin des options (protège d'un fichier nommé <code>-ancien.txt</code>).</li>
+<li>Joker = choisit des <strong>noms de fichiers</strong> ; tube = traite le <strong>contenu</strong> : <code>cat notes-L?.txt | sort -n | uniq -c | tee bilan.txt</code>.</li>
+</ul>
+
+<h2 id="regex">7. Expressions régulières (ERE, avec <code>grep -E</code> / <code>sed -E</code>)</h2>
+<table>
+<tr><th>Symbole</th><th>Sens</th><th>Exemple</th></tr>
+<tr><td><code>.</code></td><td>un caractère quelconque</td><td><code>L.</code> → L1, L2, LA…</td></tr>
+<tr><td><code>\.</code></td><td>un vrai point</td><td><code>\.txt$</code></td></tr>
+<tr><td><code>^</code> / <code>$</code></td><td>début / fin de ligne (des positions)</td><td><code>^L1$</code> = ligne exactement « L1 »</td></tr>
+<tr><td><code>[abc]</code> <code>[0-9]</code> <code>[A-Z]</code></td><td>un caractère de l'ensemble</td><td><code>^[ABC]</code></td></tr>
+<tr><td><code>[^0-9]</code></td><td>un caractère <strong>hors</strong> de l'ensemble (^ juste après [)</td><td></td></tr>
+<tr><td><code>[[:digit:]] [[:alpha:]] [[:alnum:]] [[:space:]] [[:upper:]]</code></td><td>classes POSIX</td><td></td></tr>
+<tr><td><code>*</code></td><td>0 ou plus de l'élément précédent</td><td><code>ab*c</code> → ac, abc, abbc</td></tr>
+<tr><td><code>+</code></td><td>1 ou plus</td><td><code>[0-9]+</code> → un entier non vide</td></tr>
+<tr><td><code>?</code></td><td>0 ou 1 (optionnel)</td><td><code>couleurs?</code></td></tr>
+<tr><td><code>{2}</code> <code>{2,4}</code> <code>{2,}</code></td><td>exactement 2 / de 2 à 4 / au moins 2</td><td><code>[0-9]{2}</code></td></tr>
+<tr><td><code>a|b</code></td><td>ou</td><td><code>L1|L2</code></td></tr>
+<tr><td><code>( )</code></td><td>groupe</td><td><code>^(chat|chien)s?$</code></td></tr>
+</table>
+<div class="box danger"><span class="box-title">❌ Joker ≠ regex</span>
+En joker, <code>*</code> = « n'importe quoi ». En regex, <code>*</code> = « répéter l'élément d'avant » et « n'importe quoi » s'écrit <code>.*</code>. « Fichiers .txt » : joker <code>*.txt</code>, regex <code>\.txt$</code>. Et <code>^chat|chien$</code> ≠ <code>^(chat|chien)$</code> (le premier = « commence par chat » OU « finit par chien »).</div>
+<p>Méthode : décrire chaque morceau séparément, assembler, ajouter <code>^…$</code> si toute la ligne doit correspondre, tester sur des exemples positifs <strong>et</strong> négatifs.</p>
+<pre><code>^[A-Z].*:[0-9]+$        ligne qui commence par une majuscule et finit par un nombre
+^image[0-9]+\.jpg$      image1.jpg, image12.jpg (pas image.jpg, ni monimage1.jpg)
+^(1[0-9]|[0-9])$        une note entre 0 et 19</code></pre>
+
+<h2 id="grep">8. grep — sélectionner des lignes</h2>
+<table>
+<tr><th>Option</th><th>Effet</th></tr>
+<tr><td><code>grep 'L2' f</code></td><td>lignes contenant L2</td></tr>
+<tr><td><code>-i</code></td><td>ignorer la casse</td></tr>
+<tr><td><code>-n</code></td><td>numéros de ligne (<code>3:Charlie:…</code>)</td></tr>
+<tr><td><code>-v</code></td><td>lignes qui ne correspondent <strong>pas</strong></td></tr>
+<tr><td><code>-c</code></td><td>nombre de lignes trouvées</td></tr>
+<tr><td><code>-w</code></td><td>mot entier (chat mais pas chateau)</td></tr>
+<tr><td><code>-l</code></td><td>seulement les noms des fichiers</td></tr>
+<tr><td><code>-r</code></td><td>récursif dans un répertoire</td></tr>
+<tr><td><code>-E</code></td><td>regex étendues (+ ? | () {})</td></tr>
+</table>
+<p>Toujours mettre le motif entre <strong>apostrophes</strong> (protège du shell). Code de retour : 0 trouvé, 1 rien, 2 erreur.</p>
+
+<h2 id="sed">9. sed — transformer un flux</h2>
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td><code>sed 's/L1/Licence 1/' f</code></td><td>remplace la <strong>1re</strong> occurrence de chaque ligne</td></tr>
+<tr><td><code>sed 's/:/ | /g' f</code></td><td><code>g</code> : <strong>toutes</strong> les occurrences</td></tr>
+<tr><td><code>sed -n '2,4p' f</code></td><td>afficher les lignes 2 à 4 (<code>-n</code> coupe l'affichage auto, <code>p</code> affiche)</td></tr>
+<tr><td><code>sed -n '/:L2:/p' f</code></td><td>afficher les lignes qui contiennent :L2:</td></tr>
+<tr><td><code>sed '/:L2:/d' f</code></td><td>supprimer ces lignes du flux</td></tr>
+<tr><td><code>sed '/^$/d' f</code></td><td>supprimer les lignes vides</td></tr>
+<tr><td><code>sed -E 's/^([^:]+):([^:]+)/\2, \1/' f</code></td><td>groupes capturés : <code>\1</code>, <code>\2</code> → « Martin, Alice:L1:14 »</td></tr>
+<tr><td><code>sed 's#/home/alice#/home/bob#g'</code></td><td>autre séparateur que /</td></tr>
+<tr><td><code>sed -i.bak 's/a/b/g' f</code></td><td>modifie f <strong>pour de vrai</strong> et garde f.bak</td></tr>
+</table>
+<p>Par défaut sed <strong>ne modifie pas</strong> le fichier : il écrit le résultat sur sa sortie. Toujours tester sans <code>-i</code> d'abord.</p>
+
+<h2 id="awk">10. awk — champs, conditions, calculs</h2>
+<pre><code>awk -F ':' '{ print $1 }' f                      # 1er champ
+awk -F ':' '{ print NR, $2, $4 }' f              # numéro de ligne, nom, note
+awk -F ':' '$3 == "L2" { print $1, $2 }' f       # condition { action }
+awk -F ':' '$4 &gt;= 14' f                          # sans action : affiche la ligne
+awk -F ':' '$2 ~ /^D/ { print $2 }' f            # ~ : correspond à la regex (!~ : ne correspond pas)
+awk -F ':' '{ s += $4 } END { print s / NR }' f  # moyenne
+awk -F ':' '$3=="L2" { s+=$4; n++ } END { if (n &gt; 0) print s/n }' f
+awk -F ':' '{ eff[$3]++ } END { for (f in eff) print f, eff[f] }' f | sort   # comptage par catégorie
+awk -F ':' 'BEGIN { print "Début" } { print $1 } END { print NR, "lignes" }' f</code></pre>
+<table>
+<tr><th>Élément</th><th>Sens</th></tr>
+<tr><td><code>$0</code></td><td>la ligne entière</td></tr>
+<tr><td><code>$1, $2…</code></td><td>les champs</td></tr>
+<tr><td><code>NF</code> / <code>$NF</code></td><td>nombre de champs / dernier champ</td></tr>
+<tr><td><code>NR</code></td><td>numéro de la ligne courante (à la fin : nombre de lignes)</td></tr>
+<tr><td><code>BEGIN { }</code> / <code>END { }</code></td><td>avant la 1re ligne / après la dernière</td></tr>
+<tr><td><code>tab[cle]++</code></td><td>tableau associatif ; ordre de parcours <strong>non garanti</strong> → piper vers <code>sort</code></td></tr>
+</table>
+<p><strong>Quel outil ?</strong> cut = extraire simplement ; grep = sélectionner par motif ; sed = remplacer/supprimer du texte ; awk = tester un champ précis, calculer, compter. <code>awk -F ':' '$3 == "L2"'</code> est plus précis que <code>grep 'L2'</code> (qui trouverait aussi « L2 » ailleurs dans la ligne).</p>
+
+<h2 id="droits">11. Droits et chmod</h2>
+<pre><code>-rwxr-x---  1 alice etudiants 132 oct. 19 10:18 analyse.sh
+│└┬┘└┬┘└┬┘
+│ u  g  o       u = propriétaire (user), g = groupe, o = autres (others)
+└ type : - fichier, d répertoire                  r lire, w modifier, x exécuter</code></pre>
+<table>
+<tr><th>Commande</th><th>Effet</th></tr>
+<tr><td><code>chmod u+x f</code></td><td>ajoute l'exécution au propriétaire</td></tr>
+<tr><td><code>chmod go-r f</code></td><td>retire la lecture au groupe et aux autres</td></tr>
+<tr><td><code>chmod a+r f</code></td><td>lecture pour tous (a = all = ugo)</td></tr>
+<tr><td><code>chmod u-w f</code></td><td>le propriétaire ne peut plus modifier</td></tr>
+</table>
+
+<h2 id="scripts">12. Scripts Bash (TD5)</h2>
+<pre><code>#!/bin/bash
+# fiche.sh : affiche une fiche sur le fichier passé en paramètre
+fichier="$1"
+nbLignes=$(wc -l &lt; "$fichier")
+premiere=$(head -n 1 "$fichier")
+echo "Fichier : $fichier"
+echo "Nombre de lignes : $nbLignes"
+echo "Première ligne : $premiere"
+echo "Paramètres reçus : $#"</code></pre>
+<table>
+<tr><th>Élément</th><th>Sens</th></tr>
+<tr><td><code>#!/bin/bash</code></td><td>« shebang » : choisit l'interpréteur (Bash)</td></tr>
+<tr><td><code>bash script.sh</code></td><td>lance Bash qui lit le fichier → <strong>pas besoin</strong> du droit x</td></tr>
+<tr><td><code>./script.sh</code></td><td>exécute le fichier du répertoire courant → <strong>il faut</strong> <code>chmod u+x</code></td></tr>
+<tr><td><code>script.sh</code> seul</td><td>cherché dans le PATH, pas dans le répertoire courant → « command not found »</td></tr>
+<tr><td><code>nom="Alice"</code></td><td>affectation <strong>sans espace</strong> autour de <code>=</code> (<code>nom = Alice</code> lance la commande « nom »)</td></tr>
+<tr><td><code>"$nom"</code></td><td>valeur de la variable, <strong>protégée</strong> (pas de découpage en mots ni de jokers)</td></tr>
+<tr><td><code>'$nom'</code></td><td>texte littéral « $nom » (rien n'est remplacé)</td></tr>
+<tr><td><code>${nom}_notes.txt</code></td><td>accolades pour délimiter le nom (<code>$nom_notes</code> chercherait la variable <code>nom_notes</code>)</td></tr>
+<tr><td><code>$0 $1 $2 $#</code></td><td>nom du script, 1er paramètre, 2e paramètre, nombre de paramètres</td></tr>
+<tr><td><code>res=$(commande)</code></td><td>substitution de commande : la variable reçoit la <strong>sortie</strong> de la commande</td></tr>
+</table>
+<div class="box tip"><span class="box-title">Règle d'or</span>Toujours écrire <code>"$variable"</code> avec des guillemets doubles. <code>wc -l $fichier</code> avec <code>fichier="compte rendu.txt"</code> donne 2 arguments (« compte » et « rendu.txt ») → erreur ; <code>wc -l "$fichier"</code> en donne 1 ✔. Au lancement : <code>./analyse.sh "compte rendu.txt"</code>.</div>
+<table>
+<tr><th>Écriture</th><th>Variable remplacée ?</th><th>Découpage en mots ?</th><th>Jokers développés ?</th></tr>
+<tr><td><code>$nom</code></td><td>oui</td><td>oui</td><td>oui</td></tr>
+<tr><td><code>"$nom"</code></td><td>oui</td><td>non</td><td>non</td></tr>
+<tr><td><code>'$nom'</code></td><td>non</td><td>non</td><td>non</td></tr>
+</table>
+
+<h2 id="pieges">13. Pièges classiques (questions « diagnostiquer » du TD2 et TD5)</h2>
+<table>
+<tr><th>Commande fautive</th><th>Problème</th><th>Correction</th></tr>
+<tr><td><code>cut -d ':' -f 3 f | uniq -c</code></td><td>doublons non consécutifs</td><td><code>cut … | sort | uniq -c</code></td></tr>
+<tr><td><code>head -n 3 f | sort …</code></td><td>limite avant de trier</td><td><code>sort … f | head -n 3</code></td></tr>
+<tr><td><code>cut -f 4 f | sort -nr | head -n 3</code> (pour voir qui)</td><td>info supprimée trop tôt</td><td><code>sort -t ':' -k 4,4 -nr f | head -n 3</code></td></tr>
+<tr><td><code>cut … &gt; noms.txt | wc -l</code></td><td>redirection au milieu : wc ne reçoit rien</td><td><code>cut … | tee noms.txt | wc -l</code></td></tr>
+<tr><td><code>cat "notes-L?.txt"</code></td><td>joker protégé par les guillemets</td><td><code>cat notes-L?.txt</code></td></tr>
+<tr><td><code>fichier = notes.txt</code></td><td>espaces autour de =</td><td><code>fichier=notes.txt</code></td></tr>
+<tr><td><code>cat $fichier</code></td><td>variable non protégée</td><td><code>cat "$fichier"</code></td></tr>
+<tr><td><code>echo 'Bonjour $nom'</code></td><td>guillemets simples : pas de remplacement</td><td><code>echo "Bonjour $nom"</code></td></tr>
+<tr><td><code>repertoire=pwd</code></td><td>la variable contient le texte « pwd »</td><td><code>repertoire=$(pwd)</code></td></tr>
+<tr><td><code>touch "$nom_resultat.txt"</code></td><td>cherche la variable nom_resultat</td><td><code>touch "${nom}_resultat.txt"</code></td></tr>
+<tr><td><code>sort f &gt; f</code></td><td>f est vidé avant d'être lu</td><td><code>sort f &gt; f2</code></td></tr>
+</table>
+
+<div class="nav-links"><span><a href="index.html">← Révisions examens</a></span><span><a href="sys_exos.html">TD corrigés →</a></span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exos corrigés — Algorithmique 1</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="exam.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions examens</a><span>Exos TD/TP corrigés — Algorithmique 1</span></div>
+<div class="page">
+<span class="chip">✍️ Exercices corrigés</span><span class="chip">Séries 1 à 3 + TP4</span>
+<h1>✍️ Algorithmique 1 — exercices de TD et TP corrigés</h1>
+<p>Les exercices des séries de TD (et du TP4 sur les fonctions) qui ressemblent le plus aux questions d'examen. Le numéro entre crochets renvoie au sujet sur MesCoursJV.</p>
+
+<nav class="toc"><details><summary>📑 Sommaire</summary><ul>
+<li><a href="#s1">Série 1 — Premières notions (types, traces, expressions)</a></li>
+<li><a href="#s2">Série 2 — Conditionnelles</a></li>
+<li><a href="#s3">Série 3 — Boucles</a></li>
+<li><a href="#tp4">TP4 — Fonctions et procédures</a></li>
+</ul></details></nav>
+
+<h2 id="s1">Série 1 — Premières notions</h2>
+
+<h3>[S1 Ex1] Instructions correctes ou non ?</h3>
+<div class="enonce"><code>entier e, f, g; chaîne c, c1, c2;</code> puis :
+<code>e←3;</code> <code>e←3.5;</code> <code>c←bonjour;</code> <code>booléen←VRAI;</code> <code>variableEntière←3;</code> <code>f←g;</code> <code>c1←"bonjour";</code> <code>c2←c1;</code> <code>c2←"salut";</code> <code>c1←c2;</code></div>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>Instruction</th><th>Verdict</th></tr>
+<tr><td><code>e ← 3</code></td><td>✔</td></tr>
+<tr><td><code>e ← 3.5</code></td><td>✘ réel dans un entier</td></tr>
+<tr><td><code>c ← bonjour</code></td><td>✘ sans guillemets, <code>bonjour</code> est un nom de variable (non déclarée)</td></tr>
+<tr><td><code>booléen ← VRAI</code></td><td>✘ <code>booléen</code> est un type (mot-clé), pas une variable</td></tr>
+<tr><td><code>variableEntière ← 3</code></td><td>✘ variable non déclarée</td></tr>
+<tr><td><code>f ← g</code></td><td>✘ g n'a jamais reçu de valeur (non initialisée)</td></tr>
+<tr><td><code>c1 ← "bonjour"</code>, <code>c2 ← c1</code>, <code>c2 ← "salut"</code>, <code>c1 ← c2</code></td><td>✔ (à la fin c1 = c2 = "salut")</td></tr>
+</table></details>
+
+<h3>[S1 Ex2] Type de chaque valeur</h3>
+<div class="enonce">2 ; 2.5 ; "bonjour" ; "faux" ; 'a' ; 'au revoir' ; 3.14 ; pi ; oui ; vrai</div>
+<details class="corr"><summary>Correction</summary>
+<p>2 : entier · 2.5 : réel · "bonjour" : chaîne · <strong>"faux" : chaîne</strong> · 'a' : caractère · <strong>'au revoir' : invalide</strong> (plusieurs caractères entre apostrophes) · 3.14 : réel · <strong>pi : un identificateur</strong> (nom de variable/constante), pas une valeur · <strong>oui : identificateur</strong> · vrai : booléen.</p></details>
+
+<h3>[S1 Ex3] Trace avec des chaînes</h3>
+<pre><code>05 a ← "0" ;   06 e ← 2 ;   07 d ← 3 * e + 4 ;
+08 b ← "bonjour " + a + a + "7" ;   09 b ← "a" ;   10 a ← "br" ;
+11 c ← "toto" ;   12 c ← b + a + b + "c" + b + "d" + b + a + b ;</code></pre>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>ligne</th><th>a</th><th>b</th><th>c</th><th>d</th><th>e</th></tr>
+<tr><td>05</td><td>"0"</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td>06</td><td></td><td></td><td></td><td></td><td>2</td></tr>
+<tr><td>07</td><td></td><td></td><td></td><td>10</td><td></td></tr>
+<tr><td>08</td><td></td><td>"bonjour 007"</td><td></td><td></td><td></td></tr>
+<tr><td>09</td><td></td><td>"a"</td><td></td><td></td><td></td></tr>
+<tr><td>10</td><td>"br"</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>11</td><td></td><td></td><td>"toto"</td><td></td><td></td></tr>
+<tr><td>12</td><td></td><td></td><td>"abracadabra"</td><td></td><td></td></tr>
+</table></details>
+
+<h3>[S1 Ex4] Deux traces</h3>
+<div class="cols">
+<pre><code>a←7; x←5; y←a; z←4;
+x←y+z; y←2*x+z; y←z div 2;</code></pre>
+<pre><code>b←"r"; a←"e"; c←b+a+"po";
+b←b+b+a; c←c+"ns"+a+" ";
+a←b+"ct"+a; a←c+"co"+a;</code></pre>
+</div>
+<details class="corr"><summary>Correction</summary>
+<p>Gauche : x = 11, y = 26 puis y = 4 div 2 = <strong>2</strong>, z = 4, a = 7. Final : x=11, y=2, z=4, a=7.</p>
+<p>Droite : c="repo" ; b="rre" ; c="reponse " ; a="rrecte" ; a = <strong>"reponse correcte"</strong>.</p></details>
+
+<h3>[S1 Ex5-6] Expressions et priorités</h3>
+<div class="enonce">a) Écrire en maths : <code>a*b/c</code>, <code>a/b*c</code>, <code>a/b/c</code>. b) Écrire en algo : (3x + 5y(z − 6)) / (4x). c) Traduire <code>-2*2+4/x*y-x/3*z</code>. d) Évaluer <code>3*x-8/y*(4*z)+2.5</code> pour x=10.0, y=1.0, z=2.0 et <code>5 * 4 div 3</code>.</div>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>a) <span class="math">ab/c</span> ; <span class="math">(a/b)·c = ac/b</span> ; <span class="math">(a/b)/c = a/(bc)</span> (gauche à droite à priorité égale).</li>
+<li>b) <code>(3*x + 5*y*(z - 6)) / (4*x)</code> — les parenthèses autour du dénominateur sont indispensables.</li>
+<li>c) <span class="math">−4 + (4/x)·y − (x/3)·z</span>.</li>
+<li>d) 30 − 8/1×8 + 2.5 = 30 − 64 + 2.5 = <strong>−31.5</strong> ; 5×4 = 20 puis 20 div 3 = <strong>6</strong>.</li>
+</ul></details>
+
+<h3>[S1 Ex10] Types et valeurs</h3>
+<div class="enonce">a←5; b←2 (entiers); c←7.5; d←3.0 (réels); e←vrai. Puis <code>x←a div b*2+1; y←c/d*2+1; z←a mod b+1; v←(entier)(c/d)+1; w←(a div b&lt;0) et (non e ou (a=b)); t←d/b;</code></div>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>var</th><th>calcul</th><th>type</th><th>valeur</th></tr>
+<tr><td>x</td><td>(5 div 2)×2+1 = 2×2+1</td><td>entier</td><td>5</td></tr>
+<tr><td>y</td><td>7.5/3.0×2+1 = 2.5×2+1</td><td>réel</td><td>6.0</td></tr>
+<tr><td>z</td><td>5 mod 2 + 1</td><td>entier</td><td>2</td></tr>
+<tr><td>v</td><td>(entier)2.5 + 1 = 2+1</td><td>entier</td><td>3</td></tr>
+<tr><td>w</td><td>(2 &lt; 0) et … = faux et …</td><td>booléen</td><td>faux</td></tr>
+<tr><td>t</td><td>3.0 / 2</td><td>réel</td><td>1.5</td></tr>
+</table></details>
+
+<h3>[S1 Ex11-13] Échanges</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>Échange de x et y : <code>tmp ← x ; x ← y ; y ← tmp ;</code> (tmp du même type que x et y). Même séquence pour des réels ou des booléens. Si x est entier et y réel : <code>x ← y</code> met un réel dans un entier → <strong>erreur</strong> (ou perte de la partie décimale).</li>
+<li>Rotation de 3 variables : <code>tmp ← x ; x ← y ; y ← z ; z ← tmp ;</code></li>
+<li>Ex13 : <code>x←x+y; y←x-y; x←x-y;</code> → x = x₀+y₀ ; y = (x₀+y₀)−y₀ = x₀ ; x = (x₀+y₀)−x₀ = y₀ : <strong>échange sans variable temporaire</strong>.</li>
+</ul></details>
+
+<h3>[S1 Ex15] Durées</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>Algorithme EnSecondes
+variables
+    entier h, m, s, total ;
+début
+    écrire "Heures, minutes, secondes :" ;
+    lire h, m, s ;
+    total ← h * 3600 + m * 60 + s ;
+    écrire "Durée : ", total, " s" ;
+fin
+
+Algorithme EnHMS
+variables
+    entier h, m, s, total, reste ;
+début
+    écrire "Durée en secondes :" ;
+    lire total ;
+    h ← total div 3600 ;
+    reste ← total mod 3600 ;
+    m ← reste div 60 ;
+    s ← reste mod 60 ;
+    écrire h, "h ", m, "m ", s, "s" ;
+fin</code></pre></details>
+
+<h2 id="s2">Série 2 — Conditionnelles</h2>
+
+<h3>[S2 Ex1 et Ex2] Suivre deux séquences</h3>
+<div class="cols">
+<pre><code>// Séquence Ex1
+si (x &gt; 15) alors x ← x - 15 ; finsi
+si ((x mod 2) = 0) alors x ← 2 * x ;
+sinon x ← 4 * x ; finsi</code></pre>
+<pre><code>// Séquence Ex2 (ordre inversé)
+si ((x mod 2) = 0) alors x ← 2 * x ;
+sinon x ← 4 * x ; finsi
+si (x &gt; 15) alors x ← x - 15 ; finsi</code></pre>
+</div>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>x initial</th><th>Ex1</th><th>Ex2</th></tr>
+<tr><td>18</td><td>18→3 (impair) → 12</td><td>18 pair → 36 → 21</td></tr>
+<tr><td>17</td><td>17→2 (pair) → 4</td><td>17 impair → 68 → 53</td></tr>
+<tr><td>12</td><td>12 pair → 24</td><td>12 pair → 24 → 9</td></tr>
+<tr><td>11</td><td>11 impair → 44</td><td>11 impair → 44 → 29</td></tr>
+</table>
+<p><strong>Valeur finale = valeur initiale</strong> :</p>
+<ul>
+<li>Ex1 : x ≤ 15 → il faut 2x = x ou 4x = x → x = 0. x &gt; 15 → y = x−15 ; si y impair : 4(x−15) = x → <strong>x = 20</strong> (y = 5 impair ✔). Réponses : <strong>x = 0 et x = 20</strong>.</li>
+<li>Ex2 : x pair : 2x = x → 0, ou 2x−15 = x → x = 15 (impair ✘). x impair : 4x−15 = x → <strong>x = 5</strong> (20 &gt; 15 ✔). Réponses : <strong>x = 0 et x = 5</strong>.</li>
+</ul></details>
+
+<h3>[S2 Ex6] Expressions booléennes (a = vrai, b = faux)</h3>
+<details class="corr"><summary>Correction</summary>
+<ul>
+<li>(a ou non b) et b = vrai et faux = <strong>faux</strong></li>
+<li>non a et b = faux et faux = <strong>faux</strong></li>
+<li>non (a ou b) = non vrai = <strong>faux</strong></li>
+<li>a ou b et non a = a ou (b et non a) = vrai ou … = <strong>vrai</strong></li>
+<li>a et non (a ou b) = vrai et faux = <strong>faux</strong></li>
+<li>b et a ou non b = (b et a) ou non b = faux ou vrai = <strong>vrai</strong></li>
+<li>non a ou (a et non (b ou a) ou a) = faux ou ((vrai et faux) ou vrai) = <strong>vrai</strong></li>
+</ul>
+<p>Règle : <code>et</code> est prioritaire sur <code>ou</code> (comme × sur +).</p></details>
+
+<h3>[S2 Ex8] Deux séquences presque identiques</h3>
+<div class="enonce">Séquence 1 : <code>si (((x&lt;5) ou (y&gt;2)) et (z&gt;3))</code> ; séquence 2 : <code>si ((x&lt;5) ou ((y&gt;2) et (z&gt;3)))</code>. Corps : alors <code>x←1; si ((z-y)&gt;0) alors z←0; finsi; y←y+z;</code> sinon <code>x←2; z←y+z;</code>. Valeurs initiales (x,y,z) : a) 1,3,1 b) 4,5,4 c) 4,1,4.</div>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>initial</th><th>Séquence 1</th><th>Séquence 2</th></tr>
+<tr><td>a) 1, 3, 1</td><td>(vrai) et (faux) = faux → x=2, z=4 → <strong>(2, 3, 4)</strong></td><td>vrai ou … = vrai → x=1 ; z−y=−2 ; y=4 → <strong>(1, 4, 1)</strong></td></tr>
+<tr><td>b) 4, 5, 4</td><td>vrai → x=1 ; z−y=−1 ; y=9 → <strong>(1, 9, 4)</strong></td><td>vrai → <strong>(1, 9, 4)</strong></td></tr>
+<tr><td>c) 4, 1, 4</td><td>vrai → x=1 ; z−y=3 &gt; 0 → z=0 ; y=1 → <strong>(1, 1, 0)</strong></td><td>vrai → <strong>(1, 1, 0)</strong></td></tr>
+</table>
+<p>La place des parenthèses change le résultat dans le cas a).</p></details>
+
+<h3>[S2 Ex10] Année bissextile</h3>
+<details class="corr"><summary>Correction a) avec des si imbriqués</summary>
+<pre><code>lire annee ;
+si (annee mod 400 = 0) alors
+    bis ← vrai ;
+sinon
+    si (annee mod 100 = 0) alors
+        bis ← faux ;                 // séculaire non multiple de 400
+    sinon
+        si (annee mod 4 = 0) alors
+            bis ← vrai ;
+        sinon
+            bis ← faux ;
+        finsi
+    finsi
+finsi
+si (bis) alors écrire annee, " est bissextile" ;
+sinon écrire annee, " n'est pas bissextile" ; finsi</code></pre></details>
+<details class="corr"><summary>Correction b) avec une seule condition</summary>
+<pre><code>si (((annee mod 4 = 0) et (annee mod 100 ≠ 0)) ou (annee mod 400 = 0)) alors
+    écrire annee, " est bissextile" ;
+sinon
+    écrire annee, " n'est pas bissextile" ;
+finsi</code></pre>
+<p>Tests : 2008 ✔, 2000 ✔, 1900 ✘, 2023 ✘.</p></details>
+
+<h3>[S2 Ex12] Billet d'avion selon l'âge</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>variables
+    réel tarif, prix ;
+    entier age ;
+début
+    écrire "Plein tarif du vol :" ; lire tarif ;
+    écrire "Âge du client :" ; lire age ;
+    si (age ≤ 2) alors
+        prix ← tarif * 0.10 ;
+    sinon
+        si (age ≤ 12) alors
+            prix ← tarif * 0.50 ;
+        sinon
+            prix ← tarif ;
+        finsi
+    finsi
+    écrire "Montant à payer : ", prix ;
+fin</code></pre></details>
+
+<h3>[S2 Ex13] Cinéma (arbre de décision complet)</h3>
+<details class="corr"><summary>Correction a) b) — données et arbre</summary>
+<p>Variables : <code>réel prix</code> (prix normal), <code>booléen mercredi</code>, <code>booléen carteEtudiant</code>, <code>entier age</code>, <code>booléen salarie</code>, <code>réel aPayer</code>.</p>
+<pre class="tree">                       mercredi ?
+                   vrai/          \faux
+          aPayer ← 5            carteEtudiant ?
+                             faux/          \vrai
+                     aPayer ← prix          age ≥ 26 ?
+                                        vrai/        \faux
+                                 aPayer ← prix     salarie ?
+                                                vrai/      \faux
+                                       aPayer ← prix*0.7  aPayer ← prix*0.4</pre>
+<p>Le mercredi est testé en premier : le tarif unique s'applique « à tous ».</p></details>
+<details class="corr"><summary>Correction c) — algorithme</summary>
+<pre><code>début
+    écrire "Prix de la place :" ; lire prix ;
+    écrire "Sommes-nous mercredi ?" ; lire mercredi ;
+    si (mercredi) alors
+        aPayer ← 5 ;
+    sinon
+        écrire "Carte étudiant/lycéen/collégien ?" ; lire carteEtudiant ;
+        si (non carteEtudiant) alors
+            aPayer ← prix ;
+        sinon
+            écrire "Âge ?" ; lire age ;
+            si (age ≥ 26) alors
+                aPayer ← prix ;
+            sinon
+                écrire "Salarié ?" ; lire salarie ;
+                si (salarie) alors
+                    aPayer ← prix * 0.7 ;      // réduction de 30 %
+                sinon
+                    aPayer ← prix * 0.4 ;      // réduction de 60 %
+                finsi
+            finsi
+        finsi
+    finsi
+    écrire "Prix à payer : ", aPayer ;
+fin</code></pre></details>
+
+<h3>[S2 Ex14-15] Supprimer / créer des imbrications</h3>
+<details class="corr"><summary>Correction</summary>
+<p>Ex14 : s vaut 1 dans les cas (V,V), (V,F), (F,V) et 0 dans (F,F) → <code>si ((x &gt; 0) ou (y &gt; 0)) alors s ← 1 ; sinon s ← 0 ; finsi</code></p>
+<p>Ex15 :</p>
+<div class="cols">
+<pre><code>// si (p et q) alors I1 sinon I2
+si (p) alors
+    si (q) alors I1 ;
+    sinon I2 ;
+    finsi
+sinon
+    I2 ;
+finsi</code></pre>
+<pre><code>// si (p ou q) alors I1 sinon I2
+si (p) alors
+    I1 ;
+sinon
+    si (q) alors I1 ;
+    sinon I2 ;
+    finsi
+finsi</code></pre>
+</div></details>
+
+<h2 id="s3">Série 3 — Boucles</h2>
+
+<h3>[S3 Ex1 et Ex4] Traces de boucles</h3>
+<div class="cols">
+<pre><code>pour (i allant de 1 à 4 pas 1) faire
+    x ← i + i * i ;
+finpour
+x ← x + 3 ;</code></pre>
+<pre><code>s ← 0 ; n ← 5 ;
+tantque (n &gt; 1) faire
+    s ← s + n ; n ← n - 1 ;
+fintantque
+s ← s * 2 ;</code></pre>
+</div>
+<details class="corr"><summary>Correction</summary>
+<p>Gauche : i=1 x=2 ; i=2 x=6 ; i=3 x=12 ; i=4 x=20 ; après : <strong>x = 23</strong>.</p>
+<table>
+<tr><th>test n &gt; 1</th><th>s</th><th>n</th></tr>
+<tr><td>(init)</td><td>0</td><td>5</td></tr>
+<tr><td>vrai</td><td>5</td><td>4</td></tr>
+<tr><td>vrai</td><td>9</td><td>3</td></tr>
+<tr><td>vrai</td><td>12</td><td>2</td></tr>
+<tr><td>vrai</td><td>14</td><td>1</td></tr>
+<tr><td>faux → sortie</td><td>28</td><td>1</td></tr>
+</table></details>
+
+<h3>[S3 Ex2] Carrés</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>pour (i allant de 0 à 100 pas 1) faire
+    écrire i * i ;
+finpour
+
+// impairs entre 0 et 100, ordre décroissant : 99, 97, ..., 1
+pour (i allant de 99 à 1 pas -2) faire
+    écrire i * i ;
+finpour</code></pre></details>
+
+<h3>[S3 Ex5] Somme des n premiers impairs</h3>
+<details class="corr"><summary>Correction</summary>
+<div class="cols">
+<pre><code>// avec tantque
+somme ← 0 ; k ← 1 ; cpt ← 0 ;
+tantque (cpt &lt; n) faire
+    somme ← somme + k ;
+    k ← k + 2 ;
+    cpt ← cpt + 1 ;
+fintantque</code></pre>
+<pre><code>// avec pour
+somme ← 0 ;
+pour (i allant de 1 à n pas 1) faire
+    somme ← somme + (2 * i - 1) ;
+finpour</code></pre>
+</div>
+<p>On trouve toujours n² (1, 4, 9, 16…) : bon moyen de vérifier.</p></details>
+
+<h3>[S3 Ex6] Factorielle</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>lire n ;
+tantque (n &lt; 0) faire lire n ; fintantque
+fact ← 1 ;                          // 0! = 1 : la boucle ne tourne pas
+pour (i allant de 2 à n pas 1) faire
+    fact ← fact * i ;
+finpour
+écrire n, "! = ", fact ;</code></pre></details>
+
+<h3>[S3 Ex7] Sommes jusqu'à -1</h3>
+<details class="corr"><summary>Correction a) et b)</summary>
+<pre><code>// a) jusqu'à -1
+somme ← 0 ;
+lire val ;
+tantque (val ≠ -1) faire
+    somme ← somme + val ;
+    lire val ;
+fintantque
+écrire somme ;
+
+// b) jusqu'à -1 OU n valeurs saisies
+lire n ;
+somme ← 0 ; cpt ← 0 ;
+lire val ; cpt ← 1 ;
+tantque ((val ≠ -1) et (cpt ≤ n)) faire
+    somme ← somme + val ;
+    si (cpt &lt; n) alors
+        lire val ;
+    finsi
+    cpt ← cpt + 1 ;
+fintantque
+écrire somme ;</code></pre>
+<p>Pour b) on compte les saisies : on ne relit pas après la n-ième valeur.</p></details>
+
+<h3>[S3 Ex8] Entier entre 11 et 17</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>écrire "Entier entre 11 et 17 :" ;
+lire n ;
+tantque ((n &lt; 11) ou (n &gt; 17)) faire     // négation de (11 ≤ n et n ≤ 17)
+    écrire "Hors intervalle, recommencez :" ;
+    lire n ;
+fintantque</code></pre></details>
+
+<h3>[S3 Ex9 a)] Trop grand / trop petit</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>variables
+    entier secret, essai ;
+début
+    secret ← nombreAléatoire() mod 100 + 1 ;     // entre 1 et 100
+    écrire "Devine le nombre :" ;
+    lire essai ;
+    tantque (essai ≠ secret) faire
+        si (essai &gt; secret) alors
+            écrire "Trop grand" ;
+        sinon
+            écrire "Trop petit" ;
+        finsi
+        lire essai ;
+    fintantque
+    écrire "C'est gagné !" ;
+fin</code></pre></details>
+
+<h3>[S3 Ex10 b)] Fibonacci</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>// f0 = 1, f1 = 1, fn = fn-1 + fn-2
+lire n ;
+prec ← 1 ;        // f(i-2)
+cour ← 1 ;        // f(i-1)
+pour (i allant de 2 à n pas 1) faire
+    suiv ← prec + cour ;
+    prec ← cour ;
+    cour ← suiv ;
+finpour
+écrire "f", n, " = ", cour ;     // pour n = 0 ou 1 la boucle ne tourne pas : 1 ✔</code></pre>
+<p>Suite : 1, 1, 2, 3, 5, 8, 13, 21…</p></details>
+
+<h2 id="tp4">TP4 — Fonctions et procédures (à rédiger en algo !)</h2>
+
+<h3>[TP4 Ex2] plusGrand, plusPetit, saisirEntre</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>fonction avec retour entier plusGrand(entier a, entier b)
+début
+    si (a &gt; b) alors retourne a ;
+    sinon retourne b ;
+    finsi
+fin
+
+fonction avec retour entier plusPetit(entier a, entier b)
+début
+    si (a &lt; b) alors retourne a ;
+    sinon retourne b ;
+    finsi
+fin
+
+fonction avec retour entier saisirEntre(entier a, entier b)
+variables
+    entier x ;
+début
+    écrire "Entier entre ", a, " et ", b, " :" ;
+    lire x ;
+    tantque ((x &lt; a) ou (x &gt; b)) faire
+        écrire "Erreur :" ;
+        lire x ;
+    fintantque
+    retourne x ;
+fin
+
+// Programme : 10 notes entre 0 et 20, plus petite et plus grande
+variables
+    entier i, note, mini, maxi ;
+début
+    note ← saisirEntre(0, 20) ;
+    mini ← note ; maxi ← note ;
+    pour (i allant de 2 à 10 pas 1) faire
+        note ← saisirEntre(0, 20) ;
+        mini ← plusPetit(mini, note) ;
+        maxi ← plusGrand(maxi, note) ;
+    finpour
+    écrire "Min : ", mini, " Max : ", maxi ;
+fin</code></pre>
+<p>Plus grand de trois : <code>plusGrand(plusGrand(a, b), c)</code>.</p></details>
+
+<h3>[TP4 Ex3 / Ex5] Dessins d'étoiles (boucles imbriquées)</h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>fonction sans retour afficheCaractere(chaîne s, entier nb)
+variables entier i ;
+début
+    pour (i allant de 1 à nb pas 1) faire
+        écrire s ;            // sans retour à la ligne
+    finpour
+fin
+
+fonction sans retour carrePlein(entier nb)
+variables entier lig ;
+début
+    pour (lig allant de 1 à nb pas 1) faire
+        afficheCaractere("*", nb) ;
+        écrire "\n" ;
+    finpour
+fin
+
+fonction sans retour carreVide(entier nb)
+variables entier lig ;
+début
+    pour (lig allant de 1 à nb pas 1) faire
+        si ((lig = 1) ou (lig = nb)) alors
+            afficheCaractere("*", nb) ;             // bord haut / bas
+        sinon
+            écrire "*" ;
+            afficheCaractere(" ", nb - 2) ;         // intérieur vide
+            écrire "*" ;
+        finsi
+        écrire "\n" ;
+    finpour
+fin
+
+fonction sans retour triangleRectangle(entier nb)
+variables entier lig ;
+début
+    pour (lig allant de 1 à nb pas 1) faire
+        afficheCaractere("*", lig) ;                // ligne i : i étoiles
+        écrire "\n" ;
+    finpour
+fin
+
+fonction sans retour triangleIsocele(entier nb)
+variables entier lig ;
+début
+    pour (lig allant de 1 à nb pas 1) faire
+        afficheCaractere(" ", nb - lig) ;           // décalage
+        afficheCaractere("*", 2 * lig - 1) ;        // 1, 3, 5, 7 étoiles
+        écrire "\n" ;
+    finpour
+fin</code></pre></details>
+
+<div class="nav-links"><span><a href="algo_annales.html">← Annales corrigées</a></span><span><a href="flashcards_algo.html">Flashcards algo →</a></span></div>
+</div>
+</body>
+</html>

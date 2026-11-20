@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Annales corrigées — Algorithmique 1</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="exam.css">
+</head>
+<body>
+<div class="topbar"><a href="index.html">← Révisions examens</a><span>Annales corrigées — Algorithmique 1</span></div>
+<div class="page">
+<span class="chip">📝 Annales corrigées</span><span class="chip">Algorithmique 1</span>
+<h1>📝 Algorithmique 1 — annales corrigées</h1>
+
+<p>Les 4 sujets déposés sur MesCoursJV, avec une correction rédigée comme on l'attend en examen (langage algorithmique, indenté). <strong>Essaie d'abord seul, chrono en main</strong> (1 h par partiel), puis ouvre la correction.</p>
+
+<div class="box tip"><span class="box-title">💡 Comment s'en servir</span>
+Fais un sujet par séance. Rédige au propre sur papier (c'est noté à la main). Compare ensuite ligne par ligne avec la correction : regarde surtout les <strong>initialisations</strong>, les <strong>conditions de boucle</strong> et l'<strong>indentation</strong>. Les PDF originaux sont dans <a href="../Cours_ENT/index.html#algo">Cours_ENT</a>.</div>
+
+<nav class="toc"><details open><summary>📑 Les sujets</summary><ul>
+<li><a href="#p2025">Partiel 2025-2026 (le plus récent)</a></li>
+<li><a href="#p2024">Partiel 2024-2025</a></li>
+<li><a href="#p2023">Partiel 2023-2024</a></li>
+<li><a href="#e2024">⭐ Examen terminal 2024-2025 (fonctions + tableaux)</a></li>
+</ul></details></nav>
+
+<!-- ===================================================== 2025 -->
+<h2 id="p2025">Partiel 2025-2026 (1 h)</h2>
+
+<h3>Exercice 1 — valeurs après chaque instruction <span class="pts">3 pts</span></h3>
+<div class="enonce"><code>n</code>, <code>m</code> entiers, <code>a</code>, <code>b</code> booléens. Donner les valeurs après chaque instruction :
+<code>n←1; m←2; a←(n&gt;m); b←(n≠m); a←a OU b; n←n+1; a←(n=m); b←NON b; a←b ET NON b; n←n+1; a←(n≥m); b←(n≤m) OU a;</code></div>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>instruction</th><th>n</th><th>m</th><th>a</th><th>b</th></tr>
+<tr><td>n ← 1</td><td>1</td><td>?</td><td>?</td><td>?</td></tr>
+<tr><td>m ← 2</td><td>1</td><td>2</td><td>?</td><td>?</td></tr>
+<tr><td>a ← (n&gt;m)</td><td>1</td><td>2</td><td>faux</td><td>?</td></tr>
+<tr><td>b ← (n≠m)</td><td>1</td><td>2</td><td>faux</td><td>vrai</td></tr>
+<tr><td>a ← a OU b</td><td>1</td><td>2</td><td>vrai</td><td>vrai</td></tr>
+<tr><td>n ← n+1</td><td>2</td><td>2</td><td>vrai</td><td>vrai</td></tr>
+<tr><td>a ← (n=m)</td><td>2</td><td>2</td><td>vrai</td><td>vrai</td></tr>
+<tr><td>b ← NON b</td><td>2</td><td>2</td><td>vrai</td><td>faux</td></tr>
+<tr><td>a ← b ET NON b</td><td>2</td><td>2</td><td><strong>faux</strong></td><td>faux</td></tr>
+<tr><td>n ← n+1</td><td>3</td><td>2</td><td>faux</td><td>faux</td></tr>
+<tr><td>a ← (n≥m)</td><td>3</td><td>2</td><td>vrai</td><td>faux</td></tr>
+<tr><td>b ← (n≤m) OU a</td><td>3</td><td>2</td><td>vrai</td><td>vrai</td></tr>
+</table>
+<p>Remarque : <code>b ET NON b</code> est <strong>toujours faux</strong> (une chose ne peut pas être vraie et fausse à la fois), quelle que soit la valeur de b.</p>
+</details>
+
+<h3>Exercice 2 — exercice inverse <span class="pts">3 pts</span></h3>
+<div class="enonce">Retrouver les variables (Var1…Var4 parmi a, b, n, m) et la valeur Val1 pour obtenir les valeurs données. Ligne 1 donnée : <code>m ← 4</code>.</div>
+<details class="corr"><summary>Correction</summary>
+<table>
+<tr><th>instruction</th><th>devient</th><th>n</th><th>m</th><th>a</th><th>b</th><th>justification</th></tr>
+<tr><td>Var1 ← Val1</td><td><code>m ← 4</code></td><td>-</td><td>4</td><td>-</td><td>-</td><td>donné</td></tr>
+<tr><td>Var1 ← Val1</td><td><code>b ← faux</code></td><td>-</td><td>4</td><td>-</td><td>faux</td><td>seul b change</td></tr>
+<tr><td>Var1 ← NON(Var2 &lt; 8)</td><td><code>a ← NON(m &lt; 8)</code></td><td>-</td><td>4</td><td>faux</td><td>faux</td><td>4 &lt; 8 vrai → NON → faux ; seule variable numérique connue : m</td></tr>
+<tr><td>Var1 ← NON Var2</td><td><code>b ← NON a</code></td><td>-</td><td>4</td><td>faux</td><td>vrai</td><td>NON faux = vrai</td></tr>
+<tr><td>Var1 ← Var2 Div Val1</td><td><code>n ← m Div 2</code></td><td>2</td><td>4</td><td>faux</td><td>vrai</td><td>4 div 2 = 2</td></tr>
+<tr><td>Var1 ← Var2 + Val1</td><td><code>n ← n + 3</code></td><td>5</td><td>4</td><td>faux</td><td>vrai</td><td>2 + 3 = 5</td></tr>
+<tr><td>Var1 ← Var2 Mod 3</td><td><code>m ← n Mod 3</code></td><td>5</td><td>2</td><td>faux</td><td>vrai</td><td>5 mod 3 = 2</td></tr>
+<tr><td>Var1 ← (Var2 −3) ≤ m</td><td><code>a ← (n − 3) ≤ m</code></td><td>5</td><td>2</td><td>vrai</td><td>vrai</td><td>2 ≤ 2 vrai</td></tr>
+<tr><td>Var1 ← Var2 ET (Var3 &gt; Var4)</td><td><code>a ← b ET (n &gt; m)</code></td><td>5</td><td>2</td><td>vrai</td><td>vrai</td><td>vrai ET (5&gt;2) = vrai (rien ne change)</td></tr>
+<tr><td>Var1 ← Var2 + Val1 * Var3</td><td><code>m ← m + 2 * n</code></td><td>5</td><td>12</td><td>vrai</td><td>vrai</td><td>2 + 2×5 = 12</td></tr>
+<tr><td>Var1 ← a ET (Var2 &gt; Var3)</td><td><code>b ← a ET (n &gt; m)</code></td><td>5</td><td>12</td><td>vrai</td><td>faux</td><td>5 &gt; 12 faux → faux</td></tr>
+</table>
+<p>Méthode : regarde <strong>quelle colonne change</strong> → c'est Var1. Puis cherche quelles variables donnent le bon résultat. Plusieurs réponses sont parfois possibles (ligne 9 : <code>b ← b ET (n&gt;m)</code> marche aussi).</p>
+</details>
+
+<h3>Exercice 3 — facture de reprographie <span class="pts">2 + 4 pts</span></h3>
+<div class="enonce">0,10 € la copie de 1 à 100 copies, 0,09 € de 101 à 300, 0,08 € au-delà. TVA = constante de 20 %. Q1 : arbre de décision binaire. Q2 : algorithme qui affiche la facture.</div>
+<details class="corr"><summary>Correction Q1 — arbre</summary>
+<p>Variables : <code>entier nb</code> (nombre de copies) ; <code>réel prixU, ht, tva, ttc</code> ; constante <code>réel TVA ← 0.20</code>.</p>
+<pre class="tree">                 nb ≤ 100 ?
+              vrai/        \faux
+       prixU ← 0.10       nb ≤ 300 ?
+                        vrai/     \faux
+                 prixU ← 0.09   prixU ← 0.08
+
+  ensuite : ht ← nb * prixU ; tva ← TVA * ht ; ttc ← ht + tva ; affichage</pre>
+</details>
+<details class="corr"><summary>Correction Q2 — algorithme</summary>
+<pre><code>Algorithme Reprographie
+constantes
+    réel TVA ← 0.20 ;
+variables
+    entier nb ;
+    réel prixU, ht, tva, ttc ;
+début
+    écrire "Combien de copies voulez-vous ? " ;
+    lire nb ;
+    tantque (nb &lt; 1) faire                     // au moins 1 copie
+        écrire "Nombre incorrect, recommencez : " ;
+        lire nb ;
+    fintantque
+    si (nb ≤ 100) alors
+        prixU ← 0.10 ;
+    sinon
+        si (nb ≤ 300) alors
+            prixU ← 0.09 ;
+        sinon
+            prixU ← 0.08 ;
+        finsi
+    finsi
+    ht ← nb * prixU ;
+    tva ← TVA * ht ;
+    ttc ← ht + tva ;
+    écrire "Le montant hors taxes : ", nb, " x ", prixU, " = ", ht ;
+    écrire "Le montant de la TVA : ", TVA, " x ", ht, " = ", tva ;
+    écrire "Le prix total à payer : ", ttc ;
+fin</code></pre>
+<p>Vérification avec 150 : prixU = 0,09 ; ht = 13,5 ; tva = 2,7 ; ttc = 16,2 ✔.</p>
+</details>
+
+<h3>Exercice 4 — dépréciation d'une machine <span class="pts">4 + 4 pts</span></h3>
+<div class="enonce">Une machine perd 10 % de sa valeur par an. Q1 : valeur après n années. Q2 : au bout de combien d'années aura-t-elle perdu 50 % de sa valeur ?</div>
+<details class="corr"><summary>Correction Q1</summary>
+<pre><code>Algorithme Decote
+variables
+    réel prix, valeur ;
+    entier n, i ;
+début
+    écrire "Quel est le prix d'achat de votre machine outil en € ? " ;
+    lire prix ;
+    écrire "Sur combien d'années souhaitez-vous calculer sa décote ? " ;
+    lire n ;
+    valeur ← prix ;
+    pour (i allant de 1 à n pas 1) faire       // nombre de tours connu → pour
+        valeur ← valeur * 0.9 ;                 // perdre 10 % = garder 90 %
+    finpour
+    écrire "Votre machine vaudra ", valeur, " € au bout de ", n, " ans" ;
+fin</code></pre>
+<p>192 × 0,9³ = 139,968 ≈ 139,97 €.</p>
+</details>
+<details class="corr"><summary>Correction Q2</summary>
+<pre><code>Algorithme MoitieValeur
+variables
+    réel prix, valeur ;
+    entier annees ;
+début
+    écrire "Quel est le prix d'achat de votre machine outil en € ? " ;
+    lire prix ;
+    valeur ← prix ;
+    annees ← 0 ;
+    tantque (valeur &gt; prix / 2) faire          // nombre de tours inconnu → tantque
+        valeur ← valeur * 0.9 ;
+        annees ← annees + 1 ;
+    fintantque
+    écrire "La machine aura perdu 50 % de sa valeur au bout de ", annees, " ans" ;
+fin</code></pre>
+<p>Résultat : <strong>7 ans</strong> quel que soit le prix (0,9⁶ ≈ 0,53 &gt; 0,5 et 0,9⁷ ≈ 0,48 ≤ 0,5). Attention : si prix ≤ 0 la boucle ne tourne pas ; on peut ajouter une saisie contrôlée <code>prix &gt; 0</code>.</p>
+</details>
+
+<!-- ===================================================== 2024 -->
+<h2 id="p2024">Partiel 2024-2025 (1 h)</h2>
+
+<h3>Exercice 1 — comprendre un algorithme <span class="pts">7 pts</span></h3>
+<pre><code>01 variables
+02     entier i, D, Val1, Val2;
+03 début
+04     écrire "Donnez trois entiers D, Val1 et Val2 :";
+05     lire D, Val1, Val2 ;
+06     tantque ((D &gt; Val1) ou (D &gt; Val2) ou (Val1 &gt; Val2)) faire
+07         écrire "Donnez trois entiers D, Val1 et Val2 :";
+08         lire D, Val1, Val2 ;
+09     fintantque
+10     pour (i allant de Val1 à Val2 pas 1) faire
+11         si (i mod D = 0) alors
+12             écrire i," ";
+13         finsi
+14     finpour
+15 fin</code></pre>
+<details class="corr"><summary>Q1 — à quoi servent les lignes 06 à 09 ?</summary>
+<p>C'est une <strong>saisie contrôlée</strong> : on redemande les trois entiers tant qu'on n'a pas <strong>D ≤ Val1 ≤ Val2</strong>.</p></details>
+<details class="corr"><summary>Q2 — peut-on simplifier la ligne 06 ?</summary>
+<p>Oui : <code>tantque ((D &gt; Val1) ou (Val1 &gt; Val2)) faire</code>.</p>
+<p>Justification : si D ≤ Val1 et Val1 ≤ Val2 alors forcément D ≤ Val2 (transitivité). Donc le test <code>D &gt; Val2</code> ne peut être vrai que si l'un des deux autres l'est déjà : il est inutile.</p></details>
+<details class="corr"><summary>Q3 — que font les lignes 10 à 14 ?</summary>
+<p>Elles affichent tous les <strong>multiples de D</strong> compris entre Val1 et Val2 (bornes incluses).</p>
+<p>(Remarque bonus : si D = 0, <code>i mod 0</code> est une erreur ; la saisie n'empêche pas D = 0.)</p></details>
+<details class="corr"><summary>Q4 — réécrire les lignes 10 à 14 avec un tantque</summary>
+<pre><code>10     i ← Val1 ;
+11     tantque (i ≤ Val2) faire
+12         si (i mod D = 0) alors
+13             écrire i, " " ;
+14         finsi
+15         i ← i + 1 ;                // ne pas oublier l'incrémentation !
+16     fintantque</code></pre></details>
+
+<h3>Exercice 2 — diviseurs <span class="pts">3 + 4 pts</span></h3>
+<div class="enonce">On saisit x, y, z supposés triés (x ≤ y ≤ z). Afficher si x divise y et/ou z, et si y divise z. Si non triés : message d'erreur. Ex. : 3, 6, 18 → « 3 est diviseur de 6 et 18 », « 6 est diviseur de 18 ».</div>
+<details class="corr"><summary>Correction Q1 — arbre de décision</summary>
+<p>Variables : <code>entier x, y, z</code>. On suppose les entiers strictement positifs (sinon <code>mod 0</code>).</p>
+<pre class="tree">                     (x ≤ y) et (y ≤ z) ?
+                  faux/                 \vrai
+     "erreur : non triés"           y mod x = 0 ?
+                              vrai/                 \faux
+                        z mod x = 0 ?             z mod x = 0 ?
+                      vrai/      \faux          vrai/      \faux
+            "x div. de y et z"  "x div. de y"  "x div. de z"   (rien)
+
+          puis (dans la branche « triés ») :   z mod y = 0 ?
+                                            vrai/      \faux
+                                     "y div. de z"    (rien)</pre></details>
+<details class="corr"><summary>Correction Q2 — algorithme</summary>
+<pre><code>Algorithme Diviseurs
+variables
+    entier x, y, z ;
+début
+    écrire "Donnez trois entiers strictement positifs triés x ≤ y ≤ z :" ;
+    lire x, y, z ;
+    si ((x ≤ 0) ou (x &gt; y) ou (y &gt; z)) alors
+        écrire "Erreur : les valeurs ne sont pas triées (ou x ≤ 0)" ;
+    sinon
+        si (y mod x = 0) alors
+            si (z mod x = 0) alors
+                écrire x, " est diviseur de ", y, " et ", z ;
+            sinon
+                écrire x, " est diviseur de ", y ;
+            finsi
+        sinon
+            si (z mod x = 0) alors
+                écrire x, " est diviseur de ", z ;
+            finsi
+        finsi
+        si (z mod y = 0) alors
+            écrire y, " est diviseur de ", z ;
+        finsi
+    finsi
+fin</code></pre>
+<p>Test 3, 6, 21 : 6 mod 3 = 0 et 21 mod 3 = 0 → « 3 est diviseur de 6 et 21 » ; 21 mod 6 = 3 → rien d'autre ✔.</p></details>
+
+<h3>Exercice 3 — valeur « Mstar paire » <span class="pts">4 + 2 pts</span></h3>
+<div class="enonce">Saisir NB jusqu'à ce qu'il soit positif. On multiplie les chiffres pairs ; si le résultat a plus d'un chiffre, on recommence. Ex. : 34651514 → 4×6×4 = 96 → 6. Mstar(34505678) = 0 (il y a un 0) et Mstar(35733979) = 0 (aucun chiffre pair).</div>
+<details class="corr"><summary>Correction Q1</summary>
+<pre><code>Algorithme MstarPaire
+variables
+    entier NB, n, p, c ;
+    booléen pairTrouve ;
+début
+    écrire "Donnez un entier positif :" ;
+    lire NB ;
+    tantque (NB &lt; 0) faire                       // patron P1 : saisie contrôlée
+        écrire "Erreur, donnez un entier positif :" ;
+        lire NB ;
+    fintantque
+    n ← NB ;
+    tantque (n ≥ 10) faire                       // tant qu'il y a plus d'un chiffre
+        p ← 1 ;
+        pairTrouve ← faux ;
+        tantque (n &gt; 0) faire                    // patron P2 : parcours des chiffres
+            c ← n mod 10 ;
+            si (c mod 2 = 0) alors
+                p ← p * c ;
+                pairTrouve ← vrai ;
+            finsi
+            n ← n div 10 ;
+        fintantque
+        si (non pairTrouve) alors                // aucun chiffre pair → 0
+            p ← 0 ;
+        finsi
+        n ← p ;
+    fintantque
+    écrire "La valeur Mstar paire de ", NB, " vaut ", n ;
+fin</code></pre>
+<p>Pourquoi le booléen ? Sans lui, un nombre sans chiffre pair donnerait p = 1 (valeur initiale), alors que l'énoncé veut 0.</p></details>
+<details class="corr"><summary>Correction Q2 — trace (avec l'exemple de l'énoncé 34229321)</summary>
+<p>Fais-la avec ton propre numéro d'étudiant (0 remplacés par des 2) ! Voici la méthode avec 34229321 :</p>
+<table>
+<tr><th>étape</th><th>c</th><th>pair ?</th><th>p</th><th>n</th></tr>
+<tr><td>init</td><td></td><td></td><td>1</td><td>34229321</td></tr>
+<tr><td>1</td><td>1</td><td>non</td><td>1</td><td>3422932</td></tr>
+<tr><td>2</td><td>2</td><td>oui</td><td>2</td><td>342293</td></tr>
+<tr><td>3</td><td>3</td><td>non</td><td>2</td><td>34229</td></tr>
+<tr><td>4</td><td>9</td><td>non</td><td>2</td><td>3422</td></tr>
+<tr><td>5</td><td>2</td><td>oui</td><td>4</td><td>342</td></tr>
+<tr><td>6</td><td>2</td><td>oui</td><td>8</td><td>34</td></tr>
+<tr><td>7</td><td>4</td><td>oui</td><td>32</td><td>3</td></tr>
+<tr><td>8</td><td>3</td><td>non</td><td>32</td><td>0 → n ← p = 32</td></tr>
+<tr><td>2e passage</td><td>2</td><td>oui</td><td>2</td><td>3</td></tr>
+<tr><td></td><td>3</td><td>non</td><td>2</td><td>0 → n ← 2</td></tr>
+</table>
+<p>n = 2 &lt; 10 → on sort. Affichage : « La valeur Mstar paire de 34229321 vaut 2 ».</p></details>
+
+<!-- ===================================================== 2023 -->
+<h2 id="p2023">Partiel 2023-2024 (1 h)</h2>
+
+<h3>Exercice 1 — rendu de monnaie <span class="pts">3 + 2 pts</span></h3>
+<div class="enonce">Pièces de 15@, 10@, 7@ et 1@. Afficher la répartition en commençant par les plus grosses. 23@ → 1×15, 1×7, 1×1. Q2 : traces pour 27 et 32.</div>
+<details class="corr"><summary>Correction Q1</summary>
+<pre><code>Algorithme Monnaie
+variables
+    entier somme, reste, n15, n10, n7, n1 ;
+début
+    écrire "Donnez une somme entière :" ;
+    lire somme ;
+    n15 ← somme div 15 ;          // patron P9 : div pour le nombre, mod pour le reste
+    reste ← somme mod 15 ;
+    n10 ← reste div 10 ;
+    reste ← reste mod 10 ;
+    n7 ← reste div 7 ;
+    n1 ← reste mod 7 ;
+    si (n15 &gt; 0) alors écrire n15, " pièce(s) de 15@ " ; finsi
+    si (n10 &gt; 0) alors écrire n10, " pièce(s) de 10@ " ; finsi
+    si (n7 &gt; 0) alors écrire n7, " pièce(s) de 7@ " ; finsi
+    si (n1 &gt; 0) alors écrire n1, " pièce(s) de 1@ " ; finsi
+fin</code></pre></details>
+<details class="corr"><summary>Correction Q2 — traces</summary>
+<table>
+<tr><th>somme</th><th>n15</th><th>reste</th><th>n10</th><th>reste</th><th>n7</th><th>n1</th><th>affichage</th></tr>
+<tr><td>27</td><td>1</td><td>12</td><td>1</td><td>2</td><td>0</td><td>2</td><td>1 pièce de 15@, 1 de 10@, 2 de 1@</td></tr>
+<tr><td>32</td><td>2</td><td>2</td><td>0</td><td>2</td><td>0</td><td>2</td><td>2 pièces de 15@, 2 de 1@</td></tr>
+</table>
+<p>Remarque : pour 14@ l'algorithme (glouton) donne 1×10 + 4×1 (5 pièces) alors que 2×7 (2 pièces) est mieux : « dans l'ordre d'importance » ne donne pas toujours le moins de pièces.</p></details>
+
+<h3>Exercice 2 — trier trois entiers <span class="pts">2 + 3 pts</span></h3>
+<details class="corr"><summary>Correction Q1 — arbre de décision</summary>
+<p>Variables : <code>entier a, b, c</code> (saisis) et <code>entier p1, p2, p3</code> (le plus petit, le moyen, le plus grand).</p>
+<pre class="tree">                         a ≤ b ?
+               vrai/                    \faux
+            b ≤ c ?                    a ≤ c ?
+         vrai/   \faux              vrai/    \faux
+       a b c    a ≤ c ?            b a c     b ≤ c ?
+              vrai/  \faux                 vrai/  \faux
+             a c b   c a b                b c a   c b a</pre></details>
+<details class="corr"><summary>Correction Q2 — algorithme</summary>
+<pre><code>Algorithme Tri3
+variables
+    entier a, b, c, p1, p2, p3 ;
+début
+    écrire "Donnez trois entiers :" ;
+    lire a, b, c ;
+    écrire "Avant le tri : ", a, " ", b, " ", c ;
+    si (a ≤ b) alors
+        si (b ≤ c) alors
+            p1 ← a ; p2 ← b ; p3 ← c ;
+        sinon
+            si (a ≤ c) alors
+                p1 ← a ; p2 ← c ; p3 ← b ;
+            sinon
+                p1 ← c ; p2 ← a ; p3 ← b ;
+            finsi
+        finsi
+    sinon
+        si (a ≤ c) alors
+            p1 ← b ; p2 ← a ; p3 ← c ;
+        sinon
+            si (b ≤ c) alors
+                p1 ← b ; p2 ← c ; p3 ← a ;
+            sinon
+                p1 ← c ; p2 ← b ; p3 ← a ;
+            finsi
+        finsi
+    finsi
+    écrire "Après le tri : ", p1, " ", p2, " ", p3 ;
+fin</code></pre></details>
+
+<h3>Exercice 3 — nombres insolites <span class="pts">3 + 3 + 4 pts</span></h3>
+<div class="enonce">n est insolite s'il est divisible par S = somme des carrés de ses chiffres <strong>et</strong> par P = produit des carrés de ses chiffres. Ex. : 11112 → S = 8, P = 4, et 11112 est divisible par 8 et par 4.</div>
+<details class="corr"><summary>Correction Q1 — saisie répétée</summary>
+<pre><code>écrire "Donnez un entier strictement positif :" ;
+lire n ;
+tantque (n ≤ 0) faire
+    écrire "Erreur, recommencez :" ;
+    lire n ;
+fintantque</code></pre></details>
+<details class="corr"><summary>Correction Q2 — afficher les chiffres</summary>
+<pre><code>copie ← n ;                      // on garde n intact pour la suite
+tantque (copie &gt; 0) faire
+    écrire copie mod 10 ;
+    copie ← copie div 10 ;
+fintantque</code></pre>
+<p>(les chiffres s'affichent de droite à gauche : unités d'abord).</p></details>
+<details class="corr"><summary>Correction Q3 — algorithme complet</summary>
+<pre><code>Algorithme Insolite
+variables
+    entier n, copie, c, S, P ;
+début
+    écrire "Donnez un entier strictement positif :" ;
+    lire n ;
+    tantque (n ≤ 0) faire
+        écrire "Erreur, recommencez :" ;
+        lire n ;
+    fintantque
+    S ← 0 ;                      // neutre de l'addition
+    P ← 1 ;                      // neutre de la multiplication
+    copie ← n ;
+    tantque (copie &gt; 0) faire
+        c ← copie mod 10 ;
+        S ← S + c * c ;
+        P ← P * c * c ;
+        copie ← copie div 10 ;
+    fintantque
+    // P = 0 si n contient un 0 : on teste P ≠ 0 AVANT de diviser (court-circuit du et)
+    si ((P ≠ 0) et (n mod S = 0) et (n mod P = 0)) alors
+        écrire n, " est un nombre insolite" ;
+    sinon
+        écrire n, " n'est pas un nombre insolite" ;
+    finsi
+fin</code></pre></details>
+
+<!-- ===================================================== EXAMEN 2024 -->
+<h2 id="e2024">⭐ Examen terminal 2024-2025</h2>
+<div class="box warn"><span class="box-title">⚠️ Le sujet le plus proche de ton examen</span>
+C'est le seul sujet d'<strong>examen terminal</strong> disponible : il porte sur les <strong>fonctions</strong> et les <strong>tableaux</strong>. Cette année l'examen dure 1 h (contre 2 h en 2024) : attends-toi à un sujet plus court mais du même style.</div>
+<div class="enonce">Un entier &gt; 0 est représenté par sa décomposition en facteurs premiers dans deux tableaux de 10 cases : <code>Prem</code> (les nombres premiers, croissants, 0 = case vide) et <code>Puiss</code> (les puissances). Ex. : 378 = 2¹·3³·7¹.</div>
+
+<h3>Q1 — valeur de Prem = [2,3,5,0…], Puiss = [3,1,1,0…] <span class="pts">1 pt</span></h3>
+<details class="corr"><summary>Correction</summary><p>2³ × 3¹ × 5¹ = 8 × 3 × 5 = <strong>120</strong>.</p></details>
+
+<h3>Q2 — fonction Puissance(a, b) <span class="pts">2,5 pts</span></h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>fonction avec retour entier Puissance(entier a, entier b)
+variables
+    entier i, res ;
+début
+    res ← 1 ;
+    pour (i allant de 1 à b pas 1) faire
+        res ← res * a ;
+    finpour
+    retourne res ;               // si b = 0, la boucle ne tourne pas : a⁰ = 1 ✔
+fin</code></pre></details>
+
+<h3>Q3 — fonction Nombre(Prem, Puiss) qui calcule et affiche l'entier <span class="pts">3 pts</span></h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>fonction avec retour entier Nombre(entier Tableau Prem, entier Tableau Puiss)
+variables
+    entier i, res ;
+début
+    res ← 1 ;
+    pour (i allant de 0 à 9 pas 1) faire
+        si (Prem[i] ≠ 0) alors
+            res ← res * Puissance(Prem[i], Puiss[i]) ;    // on réutilise Q2
+        finsi
+    finpour
+    écrire res ;
+    retourne res ;
+fin</code></pre></details>
+
+<h3>Q4 — fonction SaisieSup(a) : saisie d'un entier &gt; a <span class="pts">1,5 pt</span></h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>fonction avec retour entier SaisieSup(entier a)
+variables
+    entier x ;
+début
+    écrire "Donnez un entier strictement supérieur à ", a, " :" ;
+    lire x ;
+    tantque (x ≤ a) faire
+        écrire "Erreur, il faut un entier &gt; ", a, " :" ;
+        lire x ;
+    fintantque
+    retourne x ;
+fin</code></pre></details>
+
+<h3>Q5 — fonction EstPremier(n) <span class="pts">2 pts</span></h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>fonction avec retour booléen EstPremier(entier n)
+variables
+    entier d ;
+    booléen premier ;
+début
+    si (n &lt; 2) alors                  // 0 et 1 ne sont pas premiers
+        premier ← faux ;
+    sinon
+        premier ← vrai ;
+        d ← 2 ;
+        tantque ((d * d ≤ n) et premier) faire
+            si (n mod d = 0) alors
+                premier ← faux ;
+            finsi
+            d ← d + 1 ;
+        fintantque
+    finsi
+    retourne premier ;
+fin</code></pre>
+<p>On peut aussi tester <code>d</code> de 2 à n−1 : c'est juste plus lent. Il suffit d'aller jusqu'à √n : si n = d × e avec d ≤ e, alors d ≤ √n.</p></details>
+
+<h3>Q6 — procédure SaisieNombre(Prem, Puiss) avec contrôles <span class="pts">4 pts</span></h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>fonction sans retour SaisieNombre(entier Tableau Prem, entier Tableau Puiss)
+variables
+    entier i, nb, p, dernier ;
+début
+    pour (i allant de 0 à 9 pas 1) faire          // on vide les tableaux
+        Prem[i] ← 0 ;
+        Puiss[i] ← 0 ;
+    finpour
+    écrire "Combien de nombres premiers (0 à 10) ?" ;
+    lire nb ;
+    tantque ((nb &lt; 0) ou (nb &gt; 10)) faire          // pas plus de 10 premiers
+        écrire "Erreur, entre 0 et 10 :" ;
+        lire nb ;
+    fintantque
+    dernier ← 1 ;                                   // le 1er premier doit être &gt; 1
+    pour (i allant de 0 à nb - 1 pas 1) faire
+        p ← SaisieSup(dernier) ;                    // ordre strictement croissant
+        tantque (non EstPremier(p)) faire          // doit être premier
+            écrire p, " n'est pas premier." ;
+            p ← SaisieSup(dernier) ;
+        fintantque
+        Prem[i] ← p ;
+        dernier ← p ;
+        écrire "Puissance de ", p, " :" ;
+        Puiss[i] ← SaisieSup(0) ;                   // puissance strictement positive
+    finpour
+fin</code></pre>
+<p>Les tableaux passés en paramètre sont modifiés par la procédure : c'est comme ça qu'elle « renvoie » deux résultats.</p></details>
+
+<h3>Q7 — fonction RechercheTab(T, long, x) <span class="pts">2 pts</span></h3>
+<details class="corr"><summary>Correction (recherche séquentielle)</summary>
+<pre><code>fonction avec retour entier RechercheTab(entier Tableau T, entier long, entier x)
+variables
+    entier i, pos ;
+début
+    pos ← -1 ;
+    i ← 0 ;
+    // tableau trié : inutile de continuer quand T[i] dépasse x
+    tantque ((i &lt; long) et (pos = -1) et (T[i] ≤ x)) faire
+        si (T[i] = x) alors
+            pos ← i ;
+        finsi
+        i ← i + 1 ;
+    fintantque
+    retourne pos ;
+fin</code></pre>
+<p>Le court-circuit du <code>et</code> évite de lire <code>T[long]</code> (hors tableau) quand <code>i = long</code>.</p></details>
+<details class="corr"><summary>Bonus : recherche dichotomique (plus rapide, possible car le tableau est trié)</summary>
+<pre><code>fonction avec retour entier RechercheTab(entier Tableau T, entier long, entier x)
+variables
+    entier deb, fin2, milieu, pos ;
+début
+    deb ← 0 ; fin2 ← long - 1 ; pos ← -1 ;
+    tantque ((deb ≤ fin2) et (pos = -1)) faire
+        milieu ← (deb + fin2) div 2 ;
+        si (T[milieu] = x) alors
+            pos ← milieu ;
+        sinon
+            si (T[milieu] &lt; x) alors
+                deb ← milieu + 1 ;
+            sinon
+                fin2 ← milieu - 1 ;
+            finsi
+        finsi
+    fintantque
+    retourne pos ;
+fin</code></pre></details>
+
+<h3>Q8 — fonction PGCD de deux nombres décomposés <span class="pts">3 pts</span></h3>
+<div class="enonce">Exemple : 3⁴·5³·7²·11 et 5²·7³·13 → PGCD = 5²·7² = 1225.</div>
+<details class="corr"><summary>Idée</summary>
+<p>Le PGCD contient les premiers <strong>communs</strong> aux deux nombres, chacun avec la <strong>plus petite</strong> des deux puissances.</p></details>
+<details class="corr"><summary>Correction</summary>
+<pre><code>fonction avec retour entier PGCD(entier Tableau Prem1, entier Tableau Puiss1,
+                                 entier Tableau Prem2, entier Tableau Puiss2)
+variables
+    entier i, n2, pos, e, res ;
+début
+    n2 ← 0 ;                                   // nombre de cases utiles de Prem2
+    tantque ((n2 &lt; 10) et (Prem2[n2] ≠ 0)) faire
+        n2 ← n2 + 1 ;
+    fintantque
+    res ← 1 ;
+    pour (i allant de 0 à 9 pas 1) faire
+        si (Prem1[i] ≠ 0) alors
+            pos ← RechercheTab(Prem2, n2, Prem1[i]) ;   // premier commun ?
+            si (pos ≠ -1) alors
+                si (Puiss1[i] &lt; Puiss2[pos]) alors       // plus petite puissance
+                    e ← Puiss1[i] ;
+                sinon
+                    e ← Puiss2[pos] ;
+                finsi
+                res ← res * Puissance(Prem1[i], e) ;
+            finsi
+        finsi
+    finpour
+    écrire res ;
+    retourne res ;
+fin</code></pre>
+<p>Pourquoi <code>n2</code> ? Les 0 en fin de Prem2 cassent l'ordre croissant : on ne cherche que dans la partie remplie.</p></details>
+
+<h3>Q9 — programme principal <span class="pts">1 pt</span></h3>
+<details class="corr"><summary>Correction</summary>
+<pre><code>Algorithme DecompositionPGCD
+variables
+    entier Tableau Prem1[10], Puiss1[10], Prem2[10], Puiss2[10] ;
+    entier v1, v2, g ;
+début
+    écrire "Saisie du premier nombre" ;
+    SaisieNombre(Prem1, Puiss1) ;
+    écrire "Saisie du second nombre" ;
+    SaisieNombre(Prem2, Puiss2) ;
+    écrire "Valeur du premier nombre : " ;
+    v1 ← Nombre(Prem1, Puiss1) ;
+    écrire "Valeur du second nombre : " ;
+    v2 ← Nombre(Prem2, Puiss2) ;
+    écrire "PGCD : " ;
+    g ← PGCD(Prem1, Puiss1, Prem2, Puiss2) ;
+fin</code></pre></details>
+
+<div class="nav-links"><span><a href="algo_fiche.html">← Fiche Algorithmique</a></span><span><a href="algo_exos.html">Exos de TD/TP corrigés →</a></span></div>
+</div>
+</body>
+</html>
